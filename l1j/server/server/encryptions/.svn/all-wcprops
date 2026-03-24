@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/7/trunk/src/l1j/server/server/encryptions
+END
+LineageEncryption.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/7/trunk/src/l1j/server/server/encryptions/LineageEncryption.java
+END
+LineageKeys.java
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/7/trunk/src/l1j/server/server/encryptions/LineageKeys.java
+END
+LineageBlowfish.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/7/trunk/src/l1j/server/server/encryptions/LineageBlowfish.java
+END
+ClientIdExistsException.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/7/trunk/src/l1j/server/server/encryptions/ClientIdExistsException.java
+END
+NoSuchClientIdException.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/7/trunk/src/l1j/server/server/encryptions/NoSuchClientIdException.java
+END
+NoEncryptionKeysSelectedException.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/!svn/ver/7/trunk/src/l1j/server/server/encryptions/NoEncryptionKeysSelectedException.java
+END

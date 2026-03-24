@@ -1,0 +1,614 @@
+package l1j.server.AutoHuntSystem;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
+import l1j.server.MJ3SEx.EActionCodes;
+import l1j.server.server.ActionCodes;
+import l1j.server.server.model.L1Character;
+import l1j.server.server.model.L1GroundInventory;
+import l1j.server.server.model.L1Inventory;
+import l1j.server.server.model.L1Object;
+import l1j.server.server.model.L1World;
+import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.model.Instance.L1MonsterInstance;
+import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.monitor.L1PcMonitor;
+import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.model.trap.L1WorldTraps;
+import l1j.server.server.serverpackets.S_AttackPacket;
+import l1j.server.server.serverpackets.S_ChatPacket;
+import l1j.server.server.serverpackets.S_MoveCharPacket;
+import l1j.server.server.serverpackets.S_Sound;
+import l1j.server.server.serverpackets.S_SystemMessage;
+
+public class AutoHuntController extends L1PcMonitor {
+	public AutoHuntController(int oId) {
+		super(oId);
+	}
+
+	@Override
+	public void execTask(L1PcInstance pc) {
+		try {
+			if (owner != pc)
+				owner = pc;
+
+			getSource();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private Random _rnd = new Random(System.nanoTime());
+
+	public final int AUTO_STATUS_NONE = -1;
+	public final int AUTO_STATUS_WALK = 0;
+	public final int AUTO_STATUS_ATTACK = 1;
+	public final int AUTO_STATUS_PICKUP_ITEM = 2;
+
+	private L1PcInstance owner;
+
+	private void getSource() {
+		if (owner == null) {
+			removeAuto("자동 사냥을 종료 합니다.");
+			return;
+		}
+		int percent = (int) Math.round(((double) owner.getCurrentHp() / (double) owner.getMaxHp()) * 100);
+		if (percent < 30) {
+			if (owner.isAlarmHp()) {
+				if (owner.getHpArlamTime() == 0) {
+					owner.setHpArlamTime(System.currentTimeMillis());
+				} else {
+					if (System.currentTimeMillis() >= owner.getHpArlamTime() + 2000) {
+						owner.setHpArlamTime(0);
+						int sound_num = owner.get_sex() == 0 ? 21234:21233;
+						owner.sendPackets(new S_Sound(sound_num));
+					}
+				}
+			}
+		}
+		if (owner.getAutoDropTime() != 0) {
+			if (System.currentTimeMillis() < owner.getAutoDropTime() + 1000) {
+				return;
+			} else {
+				owner.setAutoDropTime(0);
+			}
+		}
+		if ((owner.getAutoStatus() != AUTO_STATUS_WALK && owner.getAutoStatus() != AUTO_STATUS_ATTACK
+				&& owner.getAutoStatus() != AUTO_STATUS_PICKUP_ITEM)) {
+			owner.setAutoStatus(AUTO_STATUS_WALK);
+		}
+
+		if (owner.isDead()) {
+			owner.resetAuto();
+			owner.sendPackets(new S_SystemMessage("캐릭터가 사망하여 자동사냥을 종료 합니다."));
+			owner.EndAutoController();
+			return;
+		} else {
+			AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
+			itemuse.toUseItem();
+			itemuse.toPolyScroll();
+			AutoHuntSkillUse skilluse = new AutoHuntSkillUse(owner);
+			skilluse.toUseSkills();
+			skilluse.toUseHealingMagic();
+			
+			toPickupItem();
+		}
+
+		switch (owner.getAutoStatus()) {
+		case AUTO_STATUS_WALK:
+			noTargetTeleport(owner);
+			searchTarget();
+			
+			if (owner.getAutoTarget() == null)
+				toRandomWalk();
+			
+			if (owner.getAutoTargetList().toTargetArrayList().size() > 0) {
+				owner.setAutoStatus(AUTO_STATUS_ATTACK);
+			}
+			toReturnScroll(owner);
+			break;
+		case AUTO_STATUS_ATTACK:
+			if (owner.getAutoTargetList().toTargetArrayList().size() == 0) {
+				owner.getAutoTargetList().clear();
+				owner.setAutoTarget(null);
+				owner.setAutoStatus(AUTO_STATUS_WALK);
+			}
+			toAttackMonster();
+			toReturnScroll(owner);
+			break;
+		case AUTO_STATUS_PICKUP_ITEM:
+			PickUpItem();
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void toAttackMonster() {
+		try {
+			if (!isAutoAttackTime()) {
+				return;
+			}
+			L1Character target = owner.getAutoTarget();
+
+			if (target != null && target.isDead()) {
+				owner.removeAutoTargetList(target);
+				owner.setAutoTarget(null);
+				searchTarget();
+				return;
+			}
+
+			if (owner.getAutoTarget() == null) {
+				owner.setAutoTarget(getTarget());
+			}
+
+			if (!isAttack(target)) {
+				owner.removeAutoTargetList(target);
+				owner.setAutoTarget(null);
+			}
+
+			if (owner.getAutoTarget() == null) {
+				owner.setAutoStatus(AUTO_STATUS_WALK);
+				return;
+			}
+
+			if (owner.getLocation().getTileLineDistance(getTarget().getLocation()) < owner.getLocation()
+					.getTileLineDistance(target.getLocation())) {
+				owner.removeAutoTargetList(target);
+				owner.setAutoTarget(getTarget());
+			}
+
+			if (isDistance(owner.getX(), owner.getY(), owner.getMapId(), target.getX(), target.getY(),
+					target.getMapId(), owner.getAttackRang())) {
+				if (owner.glanceCheck(target.getX(), target.getY())) {
+					toAttack();
+				} else {
+					toMoving(target.getX(), target.getY(), 0, true);
+				}
+			} else {
+				if (owner.getAutoAiTime() == 0) {
+					owner.setAutoAiTime(System.currentTimeMillis());
+				} else {
+					if (System.currentTimeMillis() >= owner.getAutoAiTime() + 10000) {
+						owner.setAutoAiTime(0);
+						owner.removeAutoTargetList(target);
+						owner.setAutoTarget(null);
+					}
+				}
+				toMoving(target.getX(), target.getY(), 0, true);
+			}
+		} catch (Exception e) {
+			owner.removeAutoTargetList(owner.getAutoTarget());
+			owner.setAutoTarget(null);
+		}
+	}
+
+	private boolean isAttack(L1Character cha) {
+		try {
+			if (cha == null) {
+				return false;
+			}
+
+			if (cha.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.EARTH_BIND) || cha.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ICE_LANCE)) {
+				return false;
+			}
+			if (cha.getMap().isSafetyZone(cha.getLocation()))
+				return false;
+
+			if (cha.isDead())
+				return false;
+
+			if (cha.isInvisble())
+				return false;
+
+			if (!isDistance(owner.getX(), owner.getY(), owner.getMapId(), cha.getX(), cha.getY(), cha.getMapId(), 16))
+				return false;
+
+			if (!owner.glanceCheck(cha.getX(), cha.getY()))
+				return false;
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	private void toAttack() {
+		try {
+			L1Character target = owner.getAutoTarget();
+			if (target == null) {
+				owner.getAutoTargetList().clear();
+				owner.setAutoStatus(AUTO_STATUS_WALK);
+				return;
+			}
+
+			if (owner.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.MEDITATION)) {
+				owner.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.MEDITATION);
+			}
+			owner.delInvis();
+			if (owner.isElf() && owner.getWeapon().getItem().getType1() == 20) {
+				if (owner.getInventory().getArrow() == null) {
+					// 화살이 없다
+					// returnScroll();
+					return;
+				}
+				int chance = _rnd.nextInt(100) + 1;
+				if (chance <= 30) {
+					AutoHuntSkillUse skilluse = new AutoHuntSkillUse(owner);
+					skilluse.toTripleArrow(target);
+				} else {
+					target.onAction(owner);
+				}
+			} else {
+				target.onAction(owner);
+			}
+		} catch (Exception e) {
+			owner.setAutoTarget(null);
+			owner.getAutoTargetList().clear();
+		}
+	}
+
+	private L1Character getTarget() {
+		L1Character realTarget = null;
+		try {
+			for (int i = 0; i < owner.getAutoTargetList().toTargetArrayList().size(); i++) {
+				L1Character target = owner.getAutoTargetList().toTargetArrayList().get(i);
+				if (target.isDead()) {
+					owner.removeAutoTargetList(target);
+					owner.setAutoTarget(null);
+					continue;
+				}
+				if (!owner.glanceCheck(target.getX(), target.getY())) {
+					owner.removeAutoTargetList(target);
+					owner.setAutoTarget(null);
+					continue;
+				}
+
+				if (realTarget == null) {
+					realTarget = target;
+				} else if (!target.isDead()
+						&& getDistance(owner.getX(), owner.getY(), target.getX(), target.getY()) < getDistance(
+								owner.getX(), owner.getY(), realTarget.getX(), realTarget.getY())) {
+					realTarget = target;
+				}
+			}
+			return realTarget;
+		} catch (Exception e) {
+			e.printStackTrace();
+			owner.getAutoTargetList().clear();
+			owner.setAutoTarget(null);
+			return realTarget;
+		}
+	}
+
+	private boolean isDistance(int x, int y, int m, int tx, int ty, int tm, int loc) {
+		int distance = getDistance(x, y, tx, ty);
+		if (loc < distance)
+			return false;
+		if (m != tm)
+			return false;
+		return true;
+	}
+
+	private int getDistance(int x, int y, int tx, int ty) {
+		long dx = tx - x;
+		long dy = ty - y;
+		return (int) Math.sqrt(dx * dx + dy * dy);
+	}
+
+	private void searchTarget() {
+		checkTarget();
+		for (L1Object obj : L1World.getInstance().getVisibleObjects(owner)) {
+			if (obj == null) {
+				continue;
+			}
+			if (obj instanceof L1MonsterInstance) {
+				L1MonsterInstance mon = (L1MonsterInstance) obj;
+				if (mon.isDead()) {
+					continue;
+				}
+				if (mon.getHiddenStatus() >= 1) {
+					continue;
+				}
+
+				if (!owner.glanceCheck(mon.getX(), mon.getY())) {
+					continue;
+				}
+				owner.addAutoTargetList(mon);
+			}
+		}
+	}
+
+	private void checkTarget() {
+		try {
+			L1Character target = owner.getAutoTarget();
+			if (target == null || target.getMapId() != owner.getMapId() || target.isDead() || target.getCurrentHp() <= 0
+					|| (target.isInvisble() && !owner.getAutoTargetList().containsKey(target))) {
+				if (target != null) {
+					tagertClear();
+				}
+
+				if (!owner.getAutoTargetList().isEmpty()) {
+					owner.setAutoTarget(owner.getAutoTargetList().getMaxHateCharacter());
+					checkTarget();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void tagertClear() {
+		L1Character target = owner.getAutoTarget();
+		if (target == null) {
+			return;
+		}
+		owner.getAutoTargetList().remove(target);
+		owner.setAutoTarget(null);
+	}
+
+	private void toRandomWalk() {
+		if (!isAutoMoveTime())
+			return;
+		
+		if(owner.getAutoMoveCount() == 0) {
+			int randomLocX = (int) ((Math.random() * 20) - 10);
+			int randomLocY = (int) ((Math.random() * 20) - 10);
+			int _locX = owner.getX() + randomLocX;
+			int _locY = owner.getY() + randomLocY;	
+			owner.setAutoLocX(_locX);
+			owner.setAutoLocY(_locY);				
+		}		
+		int dir = owner.targetDirection(owner.getAutoLocX(), owner.getAutoLocY());		
+		toMoving(owner.getAutoLocX(), owner.getAutoLocY(), dir, true);
+	}
+
+	private void toMoving(int x, int y, int h, boolean astar) {
+		try {
+			if (astar) {
+				owner.getAutoAstar().ResetPath();
+				owner.setAutoTail(owner.getAutoAstar().FindPath(owner, x, y, owner.getMapId(), null));
+				if (owner.getAutoTail() != null) {
+					owner._autoCurrentPath = -1;
+					while (owner.getAutoTail() != null) {
+						if (owner.getAutoTail().x == owner.getX() && owner.getAutoTail().y == owner.getY()) {
+							break;
+						}
+			
+						owner.getAutoPath()[++owner._autoCurrentPath][0] = owner.getAutoTail().x;
+						owner.getAutoPath()[owner._autoCurrentPath][1] = owner.getAutoTail().y;
+						owner.setAutoTail(owner.getAutoTail().prev);
+					}
+					if (owner._autoCurrentPath == -1) {
+						owner.setAutoMoveCount(0);
+						return;
+					}
+					
+				 	toMoving(owner.getAutoPath()[owner._autoCurrentPath][0],
+							owner.getAutoPath()[owner._autoCurrentPath][1],
+							calcheading(owner.getX(), owner.getY(), owner.getAutoPath()[owner._autoCurrentPath][0],
+									owner.getAutoPath()[owner._autoCurrentPath][1]));
+				} else {
+				}
+			} else {
+				toMoving(x, y, h);
+			}
+		} catch (Exception e) {
+
+		}
+	}
+
+	private void toMoving(final int x, final int y, final int h) {
+		try {
+			owner.getMap().setPassable(owner.getLocation(), true);
+			owner.getLocation().set(x, y);
+			owner.setHeading(h);
+			L1WorldTraps.getInstance().onPlayerMoved(owner);
+			owner.getMap().setPassable(owner.getLocation(), false);
+			owner.sendPackets(new S_MoveCharPacket(owner));
+			owner.broadcastPacket(new S_MoveCharPacket(owner));
+			owner.setAutoMoveCount(owner.getAutoMoveCount() + 1);
+			if (owner.getAutoMoveCount() >= 5) {
+				owner.setAutoMoveCount(0);
+				owner.toCharacterRefresh();
+			}
+		} catch (Exception e) {
+			// e.printStackTrace();
+		}
+	}
+
+	private int calcheading(int myx, int myy, int tx, int ty) {
+		if (tx > myx && ty > myy) {
+			return 3;
+		} else if (tx < myx && ty < myy) {
+			return 7;
+		} else if (tx > myx && ty == myy) {
+			return 2;
+		} else if (tx < myx && ty == myy) {
+			return 6;
+		} else if (tx == myx && ty < myy) {
+			return 0;
+		} else if (tx == myx && ty > myy) {
+			return 4;
+		} else if (tx < myx && ty > myy) {
+			return 5;
+		} else {
+			return 1;
+		}
+	}
+
+	private boolean isAutoAttackTime() {
+		long temp = System.currentTimeMillis() - owner.getAutoTimeAttack();
+  
+		if (owner.isNonAction(owner))
+			return false;
+		
+		
+		long interval = owner.getCurrentSpriteInterval(EActionCodes.fromInt(owner.getCurrentWeapon() + 1));
+		if (temp < interval) {
+			return false;
+		}
+		if (temp >= interval) {
+			owner.setAutoTimeAttack(System.currentTimeMillis());
+			return true;
+		}
+		return false;
+	}
+
+	private boolean isAutoMoveTime() {
+		long temp = System.currentTimeMillis() - owner.getAutoTimeMove();
+		if (owner.isNonAction(owner))
+			return false;
+		long interval = owner.getCurrentSpriteInterval(EActionCodes.fromInt(owner.getCurrentWeapon()));
+
+		if (temp < interval) {
+			return false;
+		}
+		if (temp >= interval) {
+			owner.setAutoTimeMove(System.currentTimeMillis());
+			return true;
+		}
+		return false;
+	}
+
+	protected L1ItemInstance _targetItem = null;
+	protected List<L1ItemInstance> _targetItemList = new ArrayList<L1ItemInstance>();
+
+	private void PickUpItem() {
+		if (_targetItem != null) {
+			L1Inventory groundInventory = L1World.getInstance().getInventory(_targetItem.getX(), _targetItem.getY(),
+					_targetItem.getMapId());
+			if (groundInventory.checkItem(_targetItem.getItemId())) {
+				onTargetItem();
+			} else {
+				_targetItemList.remove(_targetItem);
+				_targetItem = null;
+				return;
+			}
+		} else {
+			owner.setAutoStatus(0);
+		}
+	}
+
+	private void onTargetItem() {
+		try {
+			if (!isAutoMoveTime())
+				return;
+
+			if (owner.getLocation().getTileLineDistance(_targetItem.getLocation()) <= 1) {
+				L1Inventory inv = L1World.getInstance().getInventory(_targetItem.getX(), _targetItem.getY(),
+						_targetItem.getMapId());
+				L1ItemInstance item = inv.getItem(_targetItem.getId());
+				if (item != null) {
+					inv.tradeItem(item.getId(), item.getCount(), owner.getInventory());
+					S_AttackPacket pck = new S_AttackPacket(owner, _targetItem.getId(), ActionCodes.ACTION_Pickup);
+					owner.sendPackets(pck);
+					owner.broadcastPacket(pck);
+					_targetItemList.remove(_targetItem);
+					_targetItem = null;
+					inv = null;
+					owner.setAutoDropTime(System.currentTimeMillis());
+				}
+			} else {
+				toMoving(_targetItem.getX(), _targetItem.getY(), 0, true);
+			}
+		} catch (Exception e) {
+			// e.printStackTrace();
+		}
+	}
+
+	private void toPickupItem() {
+		checkTargetItem();
+		if (_targetItem == null) {
+			searchTargetItem();
+		}
+
+		if (_targetItem != null) {
+			owner.setAutoStatus(AUTO_STATUS_PICKUP_ITEM);
+		}
+	}
+
+	private void checkTargetItem() {
+		if (_targetItem == null || _targetItem.getMapId() != owner.getMapId()
+				|| owner.getLocation().getTileDistance(_targetItem.getLocation()) > 15) {
+			if (!_targetItemList.isEmpty()) {
+				_targetItem = _targetItemList.get(0);
+				_targetItemList.remove(0);
+				checkTargetItem();
+			} else {
+				_targetItem = null;
+			}
+		}
+	}
+
+	private void searchTargetItem() {
+		ArrayList<L1GroundInventory> gInventorys = new ArrayList<L1GroundInventory>();
+		for (L1Object obj : L1World.getInstance().getVisibleObjects(owner)) {
+			if (obj == null)
+				continue;
+			if (obj != null && obj instanceof L1GroundInventory) {
+				gInventorys.add((L1GroundInventory) obj);
+			}
+		}
+		if (gInventorys.size() == 0) {
+			return;
+		}
+
+		int pickupIndex = (int) (Math.random() * gInventorys.size());
+		L1GroundInventory inventory = gInventorys.get(pickupIndex);
+		for (L1ItemInstance item : inventory.getItems()) {
+			if (item == null)
+				continue;
+			if (owner.getInventory().checkAddItem(item, item.getCount()) == L1Inventory.OK) {
+				_targetItem = item;
+				_targetItemList.add(_targetItem);
+			}
+		}
+	}
+
+	public void removeAuto(String ment) {
+		owner.toCharacterRefresh();
+		if (owner != null) {
+			owner.resetAuto();
+			owner.sendPackets(new S_SystemMessage(ment));
+		}
+		owner.EndAutoController();
+	}
+
+	private void noTargetTeleport(L1PcInstance pc) {
+		if (pc.getMap().isTeleportable() == false) {
+			return;
+		}
+		AutoHuntItemUse autoitem = new AutoHuntItemUse(pc);
+		if (pc.getAutoAiTime() == 0) {
+			pc.setAutoAiTime(System.currentTimeMillis());
+		} else {
+			if (pc.getAutoTargetList().toTargetArrayList().size() == 0
+					&& System.currentTimeMillis() >= pc.getAutoAiTime() + 3000) {
+				autoitem.toUseScroll(40100);
+				pc.setAutoAiTime(System.currentTimeMillis());
+			}
+		}
+	}
+	
+	private void toReturnScroll(L1PcInstance pc) {
+		int percent = (int) Math.round(((double) pc.getCurrentHp() / (double) pc.getMaxHp()) * 100);
+		if (percent <= 30) {
+			if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.SHOCK_STUN) || pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ICE_LANCE)) {
+				return;
+			}
+			returnScroll(pc);
+		}
+	}
+	
+	private void returnScroll(L1PcInstance pc) {
+		AutoHuntItemUse autoitem = new AutoHuntItemUse(pc);
+		autoitem.toUseScroll(301066);
+		pc.setAutoTarget(null);
+		pc.getAutoTargetList().clear();
+		removeAuto("자동 사냥을 종료 합니다.");
+	}
+}

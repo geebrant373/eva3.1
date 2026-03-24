@@ -1,0 +1,6299 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+
+package l1j.server.server;
+
+import static l1j.server.server.model.skill.L1SkillId.ADVANCE_SPIRIT;
+import static l1j.server.server.model.skill.L1SkillId.BLESS_WEAPON;
+import static l1j.server.server.model.skill.L1SkillId.BUYER_COOLTIME;
+import static l1j.server.server.model.skill.L1SkillId.IRON_SKIN;
+import static l1j.server.server.model.skill.L1SkillId.PHYSICAL_ENCHANT_DEX;
+import static l1j.server.server.model.skill.L1SkillId.PHYSICAL_ENCHANT_STR;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+import java.util.StringTokenizer;
+import java.util.TimeZone;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javolution.util.FastTable;
+import l1j.server.Config;
+import l1j.server.L1DatabaseFactory;
+import l1j.server.Warehouse.PrivateWarehouse;
+import l1j.server.Warehouse.Warehouse;
+import l1j.server.Warehouse.WarehouseManager;
+import l1j.server.server.datatables.AuctionSystemTable;
+import l1j.server.server.datatables.BoardAdenaTable;
+import l1j.server.server.datatables.BoardTable;
+import l1j.server.server.datatables.CharacterTable;
+import l1j.server.server.datatables.ExpTable;
+import l1j.server.server.datatables.ItemTable;
+import l1j.server.server.datatables.LetterTable;
+import l1j.server.server.datatables.NpcTable;
+import l1j.server.server.datatables.ShopNpcTable;
+import l1j.server.server.datatables.SkillsTable;
+import l1j.server.server.model.Broadcaster;
+import l1j.server.server.model.CharPosUtil;
+import l1j.server.server.model.L1Clan;
+import l1j.server.server.model.L1Object;
+import l1j.server.server.model.L1PcInventory;
+import l1j.server.server.model.L1PolyMorph;
+import l1j.server.server.model.L1Teleport;
+import l1j.server.server.model.L1World;
+import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.model.Instance.L1MonsterInstance;
+import l1j.server.server.model.Instance.L1NpcInstance;
+import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.Instance.L1ShopNpcInstance;
+import l1j.server.server.model.item.L1ItemId;
+import l1j.server.server.model.item.function.Armor;
+import l1j.server.server.model.item.function.Arrow;
+import l1j.server.server.model.item.function.Weapon;
+import l1j.server.server.model.shop.L1Shop;
+import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.serverpackets.S_Ability;
+import l1j.server.server.serverpackets.S_AddItem;
+import l1j.server.server.serverpackets.S_ChatPacket;
+import l1j.server.server.serverpackets.S_DeleteInventoryItem;
+import l1j.server.server.serverpackets.S_Disconnect;
+import l1j.server.server.serverpackets.S_InvGfx;
+import l1j.server.server.serverpackets.S_LetterList;
+import l1j.server.server.serverpackets.S_Message_YN;
+import l1j.server.server.serverpackets.S_NPCTalkReturn;
+import l1j.server.server.serverpackets.S_NpcChatPacket;
+import l1j.server.server.serverpackets.S_OutputRawString;
+import l1j.server.server.serverpackets.S_PacketBox;
+import l1j.server.server.serverpackets.S_PinkName;
+import l1j.server.server.serverpackets.S_PremiumShopSellList;
+import l1j.server.server.serverpackets.S_AutoPotionList;
+import l1j.server.server.serverpackets.S_AutoSellTest;
+import l1j.server.server.serverpackets.S_Board;
+import l1j.server.server.serverpackets.S_BoardAdena;
+import l1j.server.server.serverpackets.S_SPMR;
+import l1j.server.server.serverpackets.S_SearchAdenaTrade;
+import l1j.server.server.serverpackets.S_SearchAdenaTrade3;
+import l1j.server.server.serverpackets.S_SearchAdenaTrade4;
+import l1j.server.server.serverpackets.S_SearchItem;
+import l1j.server.server.serverpackets.S_Serchdrop;
+import l1j.server.server.serverpackets.S_Serchdrop2;
+import l1j.server.server.serverpackets.S_ServerMessage;
+import l1j.server.server.serverpackets.S_SkillSound;
+import l1j.server.server.serverpackets.S_SystemMessage;
+import l1j.server.server.serverpackets.S_War;
+import l1j.server.server.serverpackets.ServerBasePacket;
+import l1j.server.server.templates.L1BoardAdena;
+import l1j.server.server.templates.L1Item;
+import l1j.server.server.templates.L1PriceTemp;
+import l1j.server.server.templates.L1PrivateShopBuyList;
+import l1j.server.server.templates.L1PrivateShopSellList;
+import l1j.server.server.templates.L1ShopItem;
+import l1j.server.server.templates.L1Skills;
+import l1j.server.server.utils.IntRange;
+import l1j.server.server.utils.SQLUtil;
+import manager.LinAllManager;
+import server.LineageClient;
+
+//Referenced classes of package l1j.server.server:
+//ClientThread, Shutdown, IpTable, MobTable,
+//PolyTable, IdFactory
+
+public class UserCommands {
+	private static Logger _log = Logger.getLogger(GMCommands.class.getName());
+
+	private static UserCommands _instance;
+
+	private static Random _random = new Random(System.nanoTime());
+	
+	private UserCommands() {
+	}
+
+	public static UserCommands getInstance() {
+		if (_instance == null) {
+			_instance = new UserCommands();
+		}
+		return _instance;
+	}
+
+	public void handleCommands(L1PcInstance pc, String cmdLine) {
+		StringTokenizer token = new StringTokenizer(cmdLine);
+		// 최초의 공백까지가 커맨드, 그 이후는 공백을 단락으로 한 파라미터로서 취급한다
+		String cmd = token.nextToken();
+		String param = "";
+		while (token.hasMoreTokens()) {
+			param = new StringBuilder(param).append(token.nextToken()).append(' ').toString();
+		}
+		param = param.trim();
+
+		if (cmd.equalsIgnoreCase("도움말")) {
+			showHelp(pc);
+			// } else if (cmd.equalsIgnoreCase("조사")){
+			// infoitem(pc, param);
+		/*} else if (cmd.equalsIgnoreCase("보스")) {
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "bosslist"));*/
+		/*} else if (cmd.equalsIgnoreCase("키등록")) {
+			keywordInsert(pc, param);*/
+		} else if (cmd.equalsIgnoreCase("장비저장")) {
+			장비스왑(pc, param);
+		/*} else if (cmd.equalsIgnoreCase("키인증")) {
+			keywordResult(pc, param);*/
+		} else if (cmd.equalsIgnoreCase("랭킹")) {
+			infoRanking(pc);
+		} else if (cmd.equalsIgnoreCase("자동인형")) {
+			AutoDoll(pc, param);
+		} else if (cmd.equalsIgnoreCase("감옥")) {
+			hold(pc, param);
+		} else if (cmd.equalsIgnoreCase("인형이펙트")) {
+			인형이펙트(pc, param);
+		/*} else if (cmd.equalsIgnoreCase("캐릭등록")) {
+			chaTrade(pc, param);
+		} else if (cmd.equalsIgnoreCase("캐릭조회")) {
+			chaTrade2(pc, param);*/
+		} else if (cmd.equalsIgnoreCase("버프")) {
+			buff(pc);
+		/*} else if (cmd.equalsIgnoreCase("시세")) {
+			GoingPrice(pc, param);*/
+		} else if (cmd.equalsIgnoreCase(".")) {
+			tell(pc);
+		} else if (cmd.equals("빨")) {
+			자물빨(pc, cmd, param);
+		} else if (cmd.equals("주")) {
+			자물주(pc, cmd, param);
+		} else if (cmd.equals("말")) {
+			자물말(pc, cmd, param);
+		} else if (cmd.equalsIgnoreCase("무인가입")) {
+			autoclanjoin(pc);
+		} else if (cmd.equalsIgnoreCase("혈맹파티")) {
+			BloodParty(pc);
+		} else if (cmd.equalsIgnoreCase("마크")) {
+			clanmark(pc);
+	/*	} else if(cmd.equalsIgnoreCase("인형합성")) {
+			ArrayList<String> onelevelresult = new ArrayList<String>();
+			onelevelresult.add("인형합성");
+			onelevelresult.add("1704");
+			onelevelresult.add("1705");
+			onelevelresult.add("1706");
+			onelevelresult.add("1707");
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "dollcraft", (String[]) onelevelresult.toArray(new String[onelevelresult.size()])));*/
+		} else if (cmd.equalsIgnoreCase("원격교환")) {
+			if (Config.STANDBY_SERVER == false) {
+				원격교환(pc, param, pc.getNetConnection());
+			} else {
+				pc.sendPackets(new S_SystemMessage("오픈대기중에는 원격교환이 금지됩니다."));
+			}
+		} else if (cmd.equalsIgnoreCase("보라")) { // 
+			PinkNmae(pc);
+		} else if (cmd.equalsIgnoreCase("멘트")) {
+			ment(pc, cmd, param);
+		} else if (cmd.equalsIgnoreCase("드랍")) {
+			showDropMobList(pc, param);
+		} else if (cmd.equalsIgnoreCase("나이")) {
+			age(pc, param);
+		} else if (cmd.equalsIgnoreCase("자동판매")) {
+			autoSell(pc);
+		} else if (cmd.equalsIgnoreCase("라이트")) {
+			maphack(pc, param);
+			// } else if (cmd.equalsIgnoreCase("드랍")) {
+			// serchdroplist(pc, param) ;
+		/*} else if (cmd.equalsIgnoreCase("서버정보")) {
+			neoinfo(pc);*/
+		} else if (cmd.equalsIgnoreCase("베리합치기")) {
+			adenaAdd(pc);
+		} else if (cmd.equalsIgnoreCase("이름변경")) {
+			changename(pc, param);
+		} else if (cmd.equalsIgnoreCase("입장시간")) {
+			entertime(pc);
+		} else if (cmd.equalsIgnoreCase("상점")) {
+			상점(pc, param);
+		/*} else if (cmd.equalsIgnoreCase("인벤정리")) {
+			인벤정리(pc);*/
+		} else if (cmd.equalsIgnoreCase("계좌등록")) {
+			add_bank(pc, param);
+		} else if (cmd.equalsIgnoreCase("계좌확인")) {
+			bank_check(pc);
+		} else if (cmd.equalsIgnoreCase("거래정보")) {
+			pc.sendPackets(new S_SearchAdenaTrade(pc));
+		} else if (cmd.equalsIgnoreCase("판매신청")) {
+			sell_adena1(pc, param);
+		} else if (cmd.equalsIgnoreCase("판매취소")) {
+			sell_adena2(pc, param);
+		} else if (cmd.equalsIgnoreCase("판매완료")) {
+			sell_adena3(pc, param);
+		} else if (cmd.equalsIgnoreCase("구매신청")) {
+			buy_adena1(pc, param);
+		} else if (cmd.equalsIgnoreCase("구매취소")) {
+			buy_adena2(pc, param);
+		} else if (cmd.equalsIgnoreCase("아데나시세")) {
+			pc.sendPackets(new S_SearchAdenaTrade3(pc));
+		} else if (cmd.equalsIgnoreCase("구매판매매뉴얼")) {
+			pc.sendPackets(new S_SearchAdenaTrade4(pc));
+		/*} else if (cmd.equalsIgnoreCase("비번변경")) {
+			changePassword(pc, param);*/
+		} else if (cmd.equals("자동드다")) {
+			자동드다(pc, param);
+		}
+		/**
+		 * else if (cmd.equalsIgnoreCase("판매등록")) { countR1(pc, param); } else
+		 * if (cmd.equalsIgnoreCase("구매신청")) { countR2(pc, param); } else if
+		 * (cmd.equalsIgnoreCase("판매취소")) { countR3(pc, param); } else if
+		 * (cmd.equalsIgnoreCase("판매완료")) { countR4(pc, param); } else if
+		 * (cmd.equalsIgnoreCase("구매취소")) { countR5(pc, param); // } else if
+		 * (cmd.equalsIgnoreCase("몹드랍")) { // serchdroplist2(pc, param) ; }
+		 */
+		else if (cmd.equalsIgnoreCase("수배")) {
+			if (Config.수배작동유무) {
+				Hunt(pc, param);
+			} else {
+				pc.sendPackets(new S_SystemMessage("명령어 " + cmd + " 는 존재하지 않습니다. "));
+			}
+
+			// } else if (cmd.equalsIgnoreCase("몹이름")) {
+			// mobname(pc, param) ;
+			// } else if (cmd.equalsIgnoreCase("spdlqjqhtm")){
+			// BossSpawnTimeController.getBossTime(pc);
+		} else {
+			pc.sendPackets(new S_SystemMessage("입력하신 명령어는 올바른 값이 아닙니다."));
+			// if (!pc.getExcludingList().contains(pc.getName())) {
+			// pc.sendPackets(s_chatpacket);
+			// }
+			// for (L1PcInstance listner :
+			// L1World.getInstance().getRecognizePlayer(pc)) {
+			// if (!listner.getExcludingList().contains(pc.getName())) {
+			// listner.sendPackets(s_chatpacket);
+			// }
+			// }
+			// 돕펠 처리
+			L1MonsterInstance mob = null;
+			for (L1Object obj : pc.getNearObjects().getKnownObjects()) {
+				if (obj instanceof L1MonsterInstance) {
+					mob = (L1MonsterInstance) obj;
+					if (mob.getNpcTemplate().is_doppel() && mob.getName().equals(pc.getName())) {
+						Broadcaster.broadcastPacket(mob, new S_NpcChatPacket(mob, cmdLine, 0));
+					}
+				}
+			}
+		}
+	}
+
+	/*private void showHelp(L1PcInstance pc) {
+		pc.sendPackets(new S_SystemMessage("--------<유저 명령어>-----------"));
+		pc.sendPackets(new S_SystemMessage(".멘트 .마크 .나이 .."));
+		pc.sendPackets(new S_SystemMessage(".혈맹파티  .라이트  .수배 .비번변경"));
+		pc.sendPackets(new S_SystemMessage(".입장시간 .서버정보 .이름변경 .캐릭등록 .캐릭조회"));
+		pc.sendPackets(new S_SystemMessage(".장비저장 .자 [.자 <-자동물약 단축명령어]"));
+		pc.sendPackets(new S_SystemMessage(".키등록 .키인증 .자동숫돌 "));
+		pc.sendPackets(new S_SystemMessage(".시세 <-안내 :시장검색-텔 (ex채창:.시세 일반 마법 4 )"));
+		pc.sendPackets(new S_SystemMessage(".보스  (리니지월드 보스시간표보기) .드랍 .원격교환"));
+		pc.sendPackets(new S_SystemMessage(".인형합성 .자동인형 .인형이펙트 .무인가입"));
+		if (!pc.getAutoHunt()) {
+			pc.sendPackets(new S_SystemMessage(".빨 .주 .말"));
+		}
+		pc.sendPackets(new S_SystemMessage("---------아데나 거래 도움말--------"));
+		pc.sendPackets(new S_SystemMessage(".판매신청 .판매취소 .판매완료"));
+		pc.sendPackets(new S_SystemMessage(".구매신청 .구매취소 .거래정보"));
+		pc.sendPackets(new S_SystemMessage(".계좌등록 .계좌확인 .구매판매매뉴얼 .아데나시세"));
+		// pc.sendPackets(new S_SystemMessage(""));
+		// pc.sendPackets(new S_SystemMessage(">상점연후 리스시 자동으로 무인상점 됩니다.<"));
+		pc.sendPackets(new S_SystemMessage("--------------------------------"));
+	}*/
+	
+	private void showHelp(L1PcInstance pc) {
+		pc.sendPackets(new S_SystemMessage("--------<유저 명령어>-----------"));
+		pc.sendPackets(new S_SystemMessage(".멘트 .마크 .나이 .."));
+		pc.sendPackets(new S_SystemMessage(".혈맹파티  .라이트 .수배"));
+		pc.sendPackets(new S_SystemMessage(".입장시간 .이름변경 .장비저장"));
+		pc.sendPackets(new S_SystemMessage(".드랍 .원격교환"));
+		pc.sendPackets(new S_SystemMessage(".자동인형 .인형이펙트 .무인가입"));
+		if (!pc.getAutoHunt()) {
+			pc.sendPackets(new S_SystemMessage(".빨 .주 .말"));
+		}
+		// pc.sendPackets(new S_SystemMessage(""));
+		// pc.sendPackets(new S_SystemMessage(">상점연후 리스시 자동으로 무인상점 됩니다.<"));
+		pc.sendPackets(new S_SystemMessage("--------------------------------"));
+	}
+	
+	public void 원격교환(L1PcInstance pc, String cmd, LineageClient clientthread) {
+		try {
+			StringTokenizer st = new StringTokenizer(cmd);
+			String Trade_name = st.nextToken();
+			L1PcInstance target = null;
+			target = L1World.getInstance().getPlayer(Trade_name);
+			clientthread.getActiveChar();
+			if (target != null) {
+				if (target.isGm()) {
+					pc.sendPackets(new S_SystemMessage("\\f:운영자에게는 원격거래를 신청할 수 없습니다."));
+					return;
+				}
+				if (target.isPrivateShop() || target.isFishing() || target.isDeathMatch() 
+						 || target.isParalyzed() ) {
+					pc.sendPackets(new S_SystemMessage("\\f:상대방이 원격교환을 받을수 없는 상태입니다."));
+					return;
+				}
+				if (Trade_name.equals(pc.getName())) {
+					pc.sendPackets(new S_SystemMessage("\\f:자신에게는 원격교환을 신청할 수 없습니다."));
+					return;
+				}
+				if (target.getTradeID() > 0) {
+					S_SystemMessage sm = new S_SystemMessage("\\f:상대방은 현재 교환 중인 상태 입니다.");
+					pc.sendPackets(sm);
+					sm = null;
+					return;
+				}
+				if (pc.getAccountName().equalsIgnoreCase(target.getAccountName())) {
+					pc.sendPackets(new S_Disconnect());
+					target.sendPackets(new S_Disconnect());
+					pc.sendPackets(new S_SystemMessage("\\f:뭔데 ?"));
+					return;
+				}
+				if (!target.isParalyzed()) {
+					pc.setTradeID(target.getId());
+					target.setTradeID(pc.getId());
+					target.sendPackets(new S_Message_YN(252, pc.getName()));
+					pc.sendPackets(new S_SystemMessage("\\f:" + target.getName() + "님에게 거래를 신청했습니다."));
+				} else {
+					pc.sendPackets(new S_SystemMessage("\\f:상대방이 거래를 취소 하였습니다."));
+				}
+			} else {
+				pc.sendPackets(new S_SystemMessage("\\f:해당 유저는 접속해 있지 않습니다."));
+				
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage("\\f:.원격교환 [캐릭터명]"));
+		}
+	}
+	
+	private void autoSell(L1PcInstance pc) {
+		
+	}
+	
+	// 자동숫돌
+	private void autoWeapon(L1PcInstance pc) {
+		pc.setAutoWeapon(true);
+		pc.sendPackets(new S_SystemMessage("자동숫돌을 시작합니다."));
+	}
+	/// 자동물약220102////
+
+	////////////////////
+
+	private void changePassword(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			String newpasswd = tok.nextToken();
+
+			if (newpasswd.length() < 4) {
+				pc.sendPackets(new S_SystemMessage("[Command] 입력하신 암호의 자릿수가 너무 짧습니다."));
+				pc.sendPackets(new S_SystemMessage("[Command] 최소 4자 이상 입력해 주십시오."));
+				return;
+			}
+			if (newpasswd.length() > 12) {
+				pc.sendPackets(new S_SystemMessage("[Command] 입력하신 암호의 자릿수가 너무 깁니다."));
+				pc.sendPackets(new S_SystemMessage("[Command] 최대 12자 이하로 입력해 주십시오."));
+				return;
+			}
+
+			getchangePassword(pc.getAccountName(), newpasswd);
+			pc.sendPackets(new S_SystemMessage(String.format("계정비번변경이 완료되었습니다. [비번 : %s]", newpasswd)));
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage("[Command] .비번변경 [바꿀비번] 입력"));
+		}
+	}
+
+	private void getchangePassword(String account, String pass) {
+		java.sql.Connection con = null;
+		PreparedStatement pstm = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("UPDATE accounts SET password=password(?) WHERE login=?");
+			pstm.setString(1, pass);
+			pstm.setString(2, account);
+			pstm.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			SQLUtil.close(pstm, con);
+		}
+	}
+
+	///
+
+	private void addBank(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			String realName = tok.nextToken();
+			String bankName = tok.nextToken();
+			String bankNumber = tok.nextToken();
+			pc.setRealName((String) realName);
+			pc.setBankName((String) bankName);
+			pc.setBankNumber((String) bankNumber);
+			pc.sendPackets(new S_SystemMessage("예금주[" + realName + "]" + " 은행[" + bankName + "]" + "계좌번호[" + bankNumber + "] 등록 완료."));
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".계좌등록 [실명] [은행이름] [계좌번호]"));
+		}
+	}
+
+	private void checkBank(L1PcInstance pc, String param) {
+		// TODO Auto-generated method stub
+		try {
+			if (pc.getRealName() != null || pc.getBankName() != null || pc.getBankNumber() != null) {
+				pc.sendPackets(
+						new S_SystemMessage("예금주[" + pc.getRealName() + "]" + " 은행[" + pc.getBankName() + "]" + "계좌번호[" + pc.getBankNumber() + "]"));
+			} else {
+				pc.sendPackets(new S_SystemMessage("계좌를 먼저 등록 하여 주십시오."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".계좌확인"));
+		}
+	}
+
+	private static String currentTime() {
+		TimeZone tz = TimeZone.getTimeZone(Config.TIME_ZONE);
+		Calendar cal = Calendar.getInstance(tz);
+		int year = cal.get(Calendar.YEAR) - 2000;
+		String year2;
+		if (year < 10) {
+			year2 = "0" + year;
+		} else {
+			year2 = Integer.toString(year);
+		}
+		int Month = cal.get(Calendar.MONTH) + 1;
+		String Month2 = null;
+		if (Month < 10) {
+			Month2 = "0" + Month;
+		} else {
+			Month2 = Integer.toString(Month);
+		}
+		int date = cal.get(Calendar.DATE);
+		String date2 = null;
+		if (date < 10) {
+			date2 = "0" + date;
+		} else {
+			date2 = Integer.toString(date);
+		}
+		return year2 + "/" + Month2 + "/" + date2;
+	}
+
+	private void addSell(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			int adena = Integer.parseInt(tok.nextToken());
+			int price = Integer.parseInt(tok.nextToken());
+			DecimalFormat comentAdena = new DecimalFormat("###,###");
+			L1ItemInstance checkadena = pc.getInventory().findItemId(L1ItemId.ADENA);
+			if (pc.getInventory().checkItem(40308, 1)) {
+				if (pc.getRealName() == null || pc.getBankName() == null || pc.getBankNumber() == null) {
+					pc.sendPackets(new S_SystemMessage("판매 등록: 계좌등록을 하지 않으면 물품을 등록 할 수 없습니다."));
+					return;
+				}
+				if (adena > checkadena.getCount()) {
+					pc.sendPackets(new S_SystemMessage("판매 등록: 아데나가 부족 합니다."));
+					return;
+				}
+				if (pc.getAdenaSellCount() > 0) {
+					pc.sendPackets(new S_SystemMessage("판매 등록: 이미 판매중인 물품이 있습니다."));
+					return;
+				}
+				if (adena < 10000000) {
+					pc.sendPackets(new S_SystemMessage("판매 등록: 판매 최소 금액은 1천만 아데나 입니다."));
+					return;
+				}
+				if (adena >= 10000001 && adena <= 19999999 || adena >= 20000001 && adena <= 29999999 || adena >= 30000001 && adena <= 39999999
+						|| adena >= 40000001 && adena <= 49999999 || adena >= 50000001 && adena <= 59999999 || adena >= 60000001 && adena <= 69999999
+						|| adena >= 70000001 && adena <= 79999999 || adena >= 80000001 && adena <= 89999999 || adena >= 90000001 && adena <= 99999999
+						|| adena >= 90000001 && adena <= 99999999) {
+					pc.sendPackets(new S_SystemMessage("판매 등록: 판매 금액은 1천만 단위로 등록 하셔야 합니다."));
+					return;
+				}
+				if (adena >= 100000001) {
+					pc.sendPackets(new S_SystemMessage("판매 등록: 판매 최대 금액은 1억 아데나 입니다."));
+					return;
+				}
+				pc.getSkillEffectTimerSet().setSkillEffect(12000, 3600 * 1000);
+				pc.getInventory().consumeItem(L1ItemId.ADENA, adena);
+				writeAdenaSell(pc, adena, price);
+				pc.sendPackets(new S_SystemMessage("판매 등록: 아데나 (" + comentAdena.format(adena) + ") 가격: " + comentAdena.format(price) + "원 완료."));
+			} else {
+				pc.sendPackets(new S_SystemMessage("판매 등록: 아데나가 부족 합니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".판매등록 [아데나] [판매금액]"));
+		}
+	}
+
+	public void writeAdenaSell(L1PcInstance pc, int adena, int price) {
+		int count = 0;
+		String date = currentTime();
+		Connection con = null;
+		PreparedStatement pstm1 = null;
+		ResultSet rs = null;
+		PreparedStatement pstm2 = null;
+		String comentAdena = "";
+		// String comentPrice ="";
+		DecimalFormat comentPrice = new DecimalFormat("###,###");
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm1 = con.prepareStatement("SELECT * FROM board_adena ORDER BY id DESC");
+			rs = pstm1.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt("id");
+			}
+			pstm2 = con.prepareStatement(
+					"INSERT INTO board_adena SET id=?, name=?,  date=?, type=?, title=?, content=?, adena=?, pay=?, seller=?, bidder=?, coment=?, step=?,real_name=?,bank_name=?,bank_number=?");
+			pstm2.setInt(1, (count + 1));
+			pstm2.setString(2, pc.getName());
+			pstm2.setString(3, date); // 날짜
+			pstm2.setString(4, "adena"); // 타입
+			pstm2.setString(5, "판매중"); // 타이틀
+			pstm2.setString(6, null); // 내용
+			pstm2.setInt(7, adena);
+			pstm2.setLong(8, price);
+			pstm2.setString(9, pc.getName());
+			if (adena == 10000000) {
+				comentAdena = "1천만";
+			} else if (adena == 20000000) {
+				comentAdena = "2천만";
+			} else if (adena == 30000000) {
+				comentAdena = "3천만";
+			} else if (adena == 40000000) {
+				comentAdena = "4천만";
+			} else if (adena == 50000000) {
+				comentAdena = "5천만";
+			} else if (adena == 60000000) {
+				comentAdena = "6천만";
+			} else if (adena == 70000000) {
+				comentAdena = "7천만";
+			} else if (adena == 80000000) {
+				comentAdena = "8천만";
+			} else if (adena == 90000000) {
+				comentAdena = "9천만";
+			} else if (adena == 100000000) {
+				comentAdena = "1억";
+			}
+			pstm2.setString(10, null);
+			pstm2.setString(11, comentAdena + " - " + comentPrice.format(price) + "원");
+			pstm2.setInt(12, 0);
+			pstm2.setString(13, pc.getRealName());
+			pstm2.setString(14, pc.getBankName());
+			pstm2.setString(15, pc.getBankNumber());
+			pstm2.executeUpdate();
+			pc.setAdenaSellCount(count + 1);
+		} catch (SQLException e) {
+			pc.sendPackets(new S_SystemMessage(".판매등록 [판매아데나(숫자기입)] [받을금액(숫자기입)]"));
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm1);
+			SQLUtil.close(pstm2);
+			SQLUtil.close(con);
+		}
+	}
+
+	private void adenaSellDone(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			int id = Integer.parseInt(tok.nextToken());
+			AdenaSellDone(pc, id);
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".판매완료 [게시물 번호]"));
+		}
+	}
+
+	public void AdenaSellDone(L1PcInstance pc, int id) {
+		//
+		// StringTokenizer tok = new StringTokenizer(param) ;
+		// int id = Integer.parseInt(tok.nextToken()) ;
+
+		String SellerName = null;
+		String BidderName = null;
+		String title = null;
+		int adena = 0;
+		Connection con = null;
+		PreparedStatement pstm1 = null;
+		ResultSet rs = null;
+		PreparedStatement pstm2 = null;
+
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm1 = con.prepareStatement("SELECT * FROM board_adena WHERE type=?AND id=?");
+			pstm1.setString(1, "adena");
+			pstm1.setInt(2, id);
+			rs = pstm1.executeQuery();
+
+			if (rs.next()) {
+				id = rs.getInt("id");
+				title = rs.getString("title");
+				adena = rs.getInt("adena");
+				SellerName = rs.getString("seller");
+				BidderName = rs.getString("bidder");
+			}
+
+			if (!SellerName.equalsIgnoreCase(pc.getName())) {
+				pc.sendPackets(new S_SystemMessage("판매 완료: 자신이 등록한 물품 번호만 판매완료가 가능합니다."));
+				return;
+			}
+
+			if (pc.getAdenaSellCount() < 0) {
+				pc.sendPackets(new S_SystemMessage("판매 완료: 완료 가능한 물품이 없습니다."));
+				return;
+			}
+			if (BidderName == null || title.equalsIgnoreCase("판매중")) {
+				pc.sendPackets(new S_SystemMessage("판매 완료: 거래 신청자가 없습니다."));
+				return;
+			}
+			if (title.equalsIgnoreCase("거래완료")) {
+				pc.sendPackets(new S_SystemMessage("판매 완료: 이미 판매완료된 물품입니다."));
+				return;
+			}
+			L1PcInstance target = L1World.getInstance().getPlayer(BidderName);
+			if (target == null) {
+				pc.sendPackets(new S_SystemMessage("판매 완료: 구매자가 접속중이지 않습니다."));
+				return;
+			}
+			if (target != null) {
+				// 여기서 아데나 주도록
+				target.getInventory().storeItem(40308, adena);
+				target.setAdenaBuyCount(0);
+				target.sendPackets(new S_SystemMessage("판매 완료: 물품번호: " + id + "에 대한 구매가 완료되었습니다."));
+			}
+			pstm2 = con.prepareStatement("UPDATE board_adena SET  bidder=?, title=?, step=? WHERE id=?");
+			pstm2.setString(1, BidderName);
+			pstm2.setString(2, "거래완료");
+			pstm2.setInt(3, 2);
+			pstm2.setInt(4, id);
+			pstm2.executeUpdate();
+			pstm2.close();
+			pc.setAdenaSellCount(0);
+			pc.sendPackets(new S_SystemMessage("판매 완료: 물품번호: " + id + "에 대한 판매가 완료되었습니다."));
+			// target.sendPackets(new S_SystemMessage("물품번호: " + id + "에 대한 구매가
+			// 완료되었습니다."));
+		} catch (SQLException e) {
+			pc.sendPackets(new S_SystemMessage(".안대"));
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm1);
+			SQLUtil.close(pstm2);
+			SQLUtil.close(con);
+		}
+	}
+
+	private void deleteAdenaSell(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			int id = Integer.parseInt(tok.nextToken());
+			CancelAdenaSell(pc, id);
+
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".판매취소 [게시물 번호] 게시물 번호가 0001이면 1만 입력"));
+		}
+	}
+
+	private void CancelAdenaSell(L1PcInstance pc, int id) {
+		// TODO Auto-generated method stub
+		String SellerName = null;
+		String BidderName = null;
+		String title = null;
+		String coment = null;
+		int adena = 0;
+		Connection con = null;
+		PreparedStatement pstm1 = null;
+		ResultSet rs = null;
+		PreparedStatement pstm2 = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm1 = con.prepareStatement("SELECT * FROM board_adena WHERE type=? AND id=?");
+			pstm1.setString(1, "adena");
+			pstm1.setInt(2, id);
+			rs = pstm1.executeQuery();
+
+			if (rs.next()) {
+				title = rs.getString("title");
+				SellerName = rs.getString("name");
+				BidderName = rs.getString("bidder");
+				coment = rs.getString("coment");
+				adena = rs.getInt("adena");
+			}
+
+			if (title.equalsIgnoreCase("거래중")) {
+				L1PcInstance target = L1World.getInstance().getPlayer(BidderName);
+				if (target != null) {
+					target.sendPackets(new S_Message_YN(622, "상대방이 판매 취소를 원합니다 동의 하시겠습니까?"));
+					target.setAttrMsgType(1);
+					pc.sendPackets(new S_SystemMessage("판매 취소: 상대방의 동의를 얻고 있습니다. "));
+				} else {
+					pc.sendPackets(new S_SystemMessage("판매 취소: 구매자가 접속중이지 않습니다. "));
+				}
+				return;
+			}
+			BoardTable.getInstance().deleteAdena(pc.getAdenaSellCount());
+			pc.getInventory().storeItem(40308, adena);
+			pstm2 = con.prepareStatement("UPDATE board_adena SET bidder=?, title=?, step=? WHERE id=?");
+			pstm2.setString(1, BidderName);
+			pstm2.setString(2, "판매취소");
+			pstm2.setInt(3, 3);
+			pstm2.setInt(4, id);
+			pstm2.executeUpdate();
+			pc.setAdenaSellCount(0);
+			pc.sendPackets(new S_SystemMessage("판매 취소: 등록하신 물품이 취소 되었습니다."));
+			pstm2.close();
+		} catch (SQLException e) {
+			pc.sendPackets(new S_SystemMessage(".구매신청 [게시물 번호] 게시물 번호가 0001이면 1만 입력."));
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm1);
+			SQLUtil.close(pstm2);
+			SQLUtil.close(con);
+		}
+	}
+
+	private void requestAdena(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			int id = Integer.parseInt(tok.nextToken());
+			writeAdenaBuy(pc, id);
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".구매신청 [게시물 번호] 게시물 번호가 0001이면 1만 입력"));
+		}
+	}
+
+	public void writeAdenaBuy(L1PcInstance pc, int id) {
+
+		String SellerName = null;
+		String BidderName = null;
+		String title = null;
+		String coment = null;
+
+		Connection con = null;
+		PreparedStatement pstm1 = null;
+		ResultSet rs = null;
+		PreparedStatement pstm2 = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm1 = con.prepareStatement("SELECT * FROM board_adena WHERE type=? AND id=?");
+			pstm1.setString(1, "adena");
+			pstm1.setInt(2, id);
+			rs = pstm1.executeQuery();
+
+			if (rs.next()) {
+				title = rs.getString("title");
+				SellerName = rs.getString("name");
+				BidderName = rs.getString("bidder");
+				coment = rs.getString("coment");
+			}
+			if (SellerName == null) {
+				pc.sendPackets(new S_SystemMessage("구매 신청: 신청할 게시물 번호가 없습니다. "));
+				return;
+			}
+			if (title.equalsIgnoreCase("거래중")) {
+				pc.sendPackets(new S_SystemMessage("구매 신청: 이미 거래중인 물품입니다."));
+				return;
+			}
+			if (title.equalsIgnoreCase("거래완료")) {
+				pc.sendPackets(new S_SystemMessage("구매 신청: 이미 판매완료된 물품입니다."));
+				return;
+			}
+			if (SellerName.equalsIgnoreCase(pc.getName())) {
+				pc.sendPackets(new S_SystemMessage("구매 신청: 자신이 등록한 게시물은 구매 신청 할 수 없습니다."));
+				return;
+			}
+			if (pc.getAdenaBuyCount() > 0) {
+				pc.sendPackets(new S_SystemMessage("구매 신청: 이미 거래중인 물품이 있습니다."));
+				return;
+			}
+			L1PcInstance target = L1World.getInstance().getPlayer(SellerName);
+			if (target == null) {
+				pc.sendPackets(new S_SystemMessage("구매 신청: 판매자가 접속중이지 않습니다. "));
+				return;
+			}
+			target.setAdenaTrade(true);
+			pstm2 = con.prepareStatement("UPDATE board_adena SET  bidder=?, title=?, step=? WHERE id=?");
+			pstm2.setString(1, pc.getName());
+			pstm2.setString(2, "거래중");
+			pstm2.setInt(3, 1);
+			pstm2.setInt(4, id);
+			pstm2.executeUpdate();
+			// 여기에 변수하나 주자
+			target.sendPackets(new S_SystemMessage("구매 신청: 물품번호 " + id + " 에 대한 구매 신청이 왔습니다."));
+			pc.sendPackets(new S_SystemMessage("구매 신청: 물품번호 " + id + " 에 대한 구매 신청이 완료 되었습니다."));
+			pc.setAdenaBuyCount(id);
+			pstm2.close();
+
+		} catch (SQLException e) {
+			pc.sendPackets(new S_SystemMessage(".구매신청 [게시물 번호] 게시물 번호가 0001이면 1만 입력."));
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm1);
+			SQLUtil.close(pstm2);
+			SQLUtil.close(con);
+		}
+	}
+
+	private void mycharinfo(L1PcInstance pc) {
+		pc.sendPackets(new S_OutputRawString(pc.getId(), "내 캐릭터 정보",
+				"" + "클래스랭킹[" + pc.getclassRankLevel() + "]" + " 전체랭킹[" + pc.getRankLevel() + "] ★★" + "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣" + "★★★★힘["
+						+ pc.getAbility().getStr() + "]" + " 위즈[" + pc.getAbility().getWis() + "]★★★★ " + "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣" + " ★★★★덱["
+						+ pc.getAbility().getDex() + "]" + " 카리[" + pc.getAbility().getCha() + "]★★★★" + "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣" + " ★★★★콘["
+						+ pc.getAbility().getCon() + "]  " + " 인트[" + pc.getAbility().getInt() + "]★★★★ " + "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣" + " ★★스턴내성["
+						+ pc.getResistance().getStun() + "]  " + " 리덕션[" + pc.getDamageReductionByArmor() + "]★★ " + "￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣" + " ★★★KILL["
+						+ pc.getKills() + "]" + " DEATH[" + pc.getDeaths() + "]★★★ "));
+	}
+
+
+	private void 상점(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			String name = tok.nextToken();
+			시세검색(pc, "%" + name + "%");
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".상점 [아이템명]을 입력 해주세요."));
+			pc.sendPackets(new S_SystemMessage("예) .상점 오리하루콘 단검"));
+		}
+	}
+
+	private void 시세검색(L1PcInstance pc, String name) {
+		try {
+			String str1 = null;
+			String str2 = null;
+			String str3 = null;
+			String str4 = null;
+			java.sql.Connection con = null;
+			PreparedStatement statement = null;
+			int count = 0;
+			con = L1DatabaseFactory.getInstance().getConnection();
+			statement = con.prepareStatement("select char_name, Item_name, enchant, price, obj_id from character_shop where Item_name Like '" + name
+					+ "' order by price desc");
+			ResultSet rs = statement.executeQuery();
+			pc.sendPackets(new S_SystemMessage("\\aH===========< 아이템시세 >==========="));
+			while (rs.next()) {
+				str1 = rs.getString(1);
+				str2 = rs.getString(2);
+				str3 = rs.getString(3);
+				str4 = rs.getString(4);
+				pc.sendPackets(new S_SystemMessage("\\aH +" + str3 + " " + str2 + " : " + str4 + " [" + str1 + "]"));
+				count++;
+			}
+			rs.close();
+			statement.close();
+			con.close();
+			pc.sendPackets(new S_SystemMessage("총 [" + count + "]개 검색이 되었습니다."));
+		} catch (Exception e) {
+		}
+	}
+
+	private void adenaAdd(L1PcInstance pc) {
+		try {
+			L1ItemInstance[] items = pc.getInventory().findItemsId(45066);
+			int count = 0;
+
+			for (L1ItemInstance item : items) {
+				count += pc.getInventory().removeItem(item, item.getCount());
+			}
+			pc.getInventory().storeItem(45066, count);
+			pc.sendPackets(new S_SystemMessage("총 " + count + "베리를 합쳤습니다."));
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".베리합치기 로 입력해주세요."));
+		}
+	}
+
+	private void entertime(L1PcInstance pc) {
+		try {
+			int entertime1 = 120 - pc.getGdungeonTime() % 1000;
+
+			String time1 = Integer.toString(entertime1);
+
+			pc.sendPackets(new S_SystemMessage("기란감옥: " + time1 + " 분 남았습니다.")); // 2535
+																					// %0
+																					// :
+																					// 남은
+																					// 시간
+																					// %1
+																					// 분
+																					// //
+																					// 순서는
+																					// 기란
+																					// 감옥:
+																					// ,
+																					// 상아탑:,
+																					// 라스타바드
+																					// 던전:
+
+		} catch (Exception e) {
+		}
+	}
+
+	private void neoinfo(L1PcInstance pc) {
+		// TODO Auto-generated method stub
+		pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "neoserver"));
+	}
+
+	private void mobname(L1PcInstance gm, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			String name = tok.nextToken().trim();
+
+			mob_name(gm, name);
+		} catch (Exception e) {
+			gm.sendPackets(new S_SystemMessage(""));
+		}
+	}
+
+	private void mob_name(L1PcInstance gm, String name) {
+		try {
+			String s_npcid = name;
+
+			int count = 0;
+
+			java.sql.Connection con = null;
+			con = L1DatabaseFactory.getInstance().getConnection();
+			PreparedStatement statement = null;
+
+			gm.sendPackets(new S_SystemMessage("검색할 몹이름 : <<" + s_npcid + ">>"));
+
+			String strQry = " select TBLA.npcid, TBLA.name, TBLA.lvl, TBLB.MonID, TBLB.mapid, TBLC.locationname " + " from " + " ( "
+					+ "  ( (select npc_templateid as MonID, mapid from spawnlist ) " + "    union all "
+					+ "    (select npc_id as MonID, mapid from spawnlist_boss ) " + "  ) as TBLB "
+					+ "  left outer join (select npcid, name, lvl from npc where name like '%" + s_npcid + "%' ) as TBLA on TBLB.MonID = TBLA.npcid "
+					+ "  left outer join mapids as TBLC on TBLB.mapid = TBLC.mapid " + " ) " + " where TBLA.lvl is not null "
+					+ " group by TBLB.mapid ";
+
+			statement = con.prepareStatement(strQry);
+
+			ResultSet rs = statement.executeQuery();
+
+			String Data = "";
+			while (rs.next()) {
+				Data = "이름[" + rs.getString(2) + "]lvl[" + rs.getString(3) + "]출몰지역[" + rs.getString(6) + "]";
+				gm.sendPackets(new S_SystemMessage(Data));
+				count++;
+			}
+
+			rs.close();
+			statement.close();
+			con.close();
+		} catch (Exception e) {
+		}
+
+	}
+
+	private void serchdroplist(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			String nameid = tok.nextToken();
+
+			int itemid = 0;
+			try {
+				itemid = Integer.parseInt(nameid);
+			} catch (NumberFormatException e) {
+				itemid = ItemTable.getInstance().findItemIdByNameWithoutSpace(nameid);
+				if (itemid == 0) {
+					pc.sendPackets(new S_SystemMessage("해당 아이템이 발견되지 않았습니다."));
+					return;
+				}
+			}
+			pc.sendPackets(new S_Serchdrop(itemid));
+		} catch (Exception e) {
+			// _log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			pc.sendPackets(new S_SystemMessage(".드랍리스트 [itemid 또는 name]를 입력해 주세요."));
+			pc.sendPackets(new S_SystemMessage("아이템 name을 공백없이 정확히 입력해야 합니다."));
+			pc.sendPackets(new S_SystemMessage("ex) .드랍 마법서(디스인티그레이트) -- > 검색 O"));
+			pc.sendPackets(new S_SystemMessage("ex) .드랍 디스 -- > 검색 X"));
+		}
+	}
+
+	private void serchdroplist2(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			String nameid = tok.nextToken();
+
+			int npcid = 0;
+			try {
+				npcid = Integer.parseInt(nameid);
+			} catch (NumberFormatException e) {
+				npcid = NpcTable.getInstance().findNpcIdByName(nameid);
+				if (npcid == 0) {
+					pc.sendPackets(new S_SystemMessage("해당 몬스터가 발견되지 않았습니다."));
+					return;
+				}
+			}
+			pc.sendPackets(new S_Serchdrop2(npcid));
+		} catch (Exception e) {
+			// _log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			pc.sendPackets(new S_SystemMessage(".몹드랍 [npcid 또는 name]를 입력해 주세요."));
+			pc.sendPackets(new S_SystemMessage("몬스터 name을 공백없이 정확히 입력해야 합니다."));
+			pc.sendPackets(new S_SystemMessage("ex) .몹드랍 사이클롭스 -- > 검색 O"));
+			pc.sendPackets(new S_SystemMessage("ex) .몹드랍 사이 클롭스 -- > 검색 X"));
+		}
+	}
+
+	private void AutoDoll(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer st = new StringTokenizer(param);
+			String on = st.nextToken();
+			if (on.equalsIgnoreCase("켬")) {
+				if (pc.isAutoDollFlag()) {
+					pc.sendPackets(new S_SystemMessage("이미 자동인형 소환 기능 ON 상태입니다."));
+					return;
+				}
+				pc.setAutoDollFlag(true);
+				pc.sendPackets(new S_SystemMessage("인형 자동소환 : [켬]"));
+			} else if (on.equals("끔")) {
+				if (!pc.isAutoDollFlag()) {
+					pc.sendPackets(new S_SystemMessage("이미 자동인형 소환 기능 OFF 상태입니다."));
+					return;
+				}
+				pc.setAutoDollFlag(false);
+				pc.sendPackets(new S_SystemMessage("인형 자동소환 : [끔]"));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".자동인형 [켬, 끔]"));
+		}
+	}
+	
+	private void 인형이펙트(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer st = new StringTokenizer(param);
+			String on = st.nextToken();
+			if (on.equalsIgnoreCase("켬")) {
+				if (pc.isDollEffect()) {
+					pc.sendPackets(new S_SystemMessage("이미 인형 이펙트가 켜져있는 상태입니다."));
+					return;
+				}
+				pc.setDollEffect(true);
+				pc.sendPackets(new S_SystemMessage("인형 이펙트 : [켬]"));
+			} else if (on.equals("끔")) {
+				if (!pc.isDollEffect()) {
+					pc.sendPackets(new S_SystemMessage("이미 인형 이펙트가 꺼져있는 상태입니다."));
+					return;
+				}
+				pc.setDollEffect(false);
+				pc.sendPackets(new S_SystemMessage("인형 이펙트 : [끔]"));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".인형이펙트 [켬, 끔]"));
+		}
+	}
+	
+	private void maphack(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer st = new StringTokenizer(param);
+			String on = st.nextToken();
+			if (on.equalsIgnoreCase("켬")) {
+				pc.sendPackets(new S_Ability(3, true));
+				pc.sendPackets(new S_SystemMessage("라이트 : [켬]"));
+			} else if (on.equals("끔")) {
+				pc.sendPackets(new S_Ability(3, false));
+				pc.sendPackets(new S_SystemMessage("라이트 : [끔]"));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".라이트  [켬, 끔]"));
+		}
+	}
+
+	private void keywordResult(L1PcInstance pc, String cmd) {
+		try {
+			StringTokenizer tok = new StringTokenizer(cmd);
+			String AGE = tok.nextToken();
+
+			if (pc.getNetConnection().getAccount().getKeyword() == null || pc.getNetConnection().getAccount().getKeyword().length() < 6) {
+				pc.sendPackets("키워드가 인증되어 있지 않습니다. 키워드등록 을 해주세요[.키등록 [숫자6자리].");
+				return;
+			}
+
+			if (!isNumeric(AGE)) {// if(!isNumeric 자바언어 코더님과 다른부분 이부분미수정시 err
+									// 클라먹통됨 220108수정
+				pc.sendPackets("\\fR[!] 키워드는 숫자 6자리만 가능합니다.");
+				return;
+			}
+
+			if (AGE.length() != 6) {
+				pc.sendPackets("\\fR[!] 키워드는 숫자 6자리만 가능합니다.");
+				return;
+			}
+
+			if (pc.getNetConnection().getAccount().getKeyword().equalsIgnoreCase(AGE)) {
+				pc.getNetConnection().keyword = true;
+				pc.sendPackets("\\fS[!] 키워드 인증이 완료되었습니다.");
+			} else {
+				pc.sendPackets("\\fR[!] 키워드를 잘못 입력하였습니다.");
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".키인증 [숫자6자리]"));
+		}
+
+	}
+
+	public boolean isNumeric(String s) {
+		try {
+			Double.parseDouble(s);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
+		}
+	}
+
+	private void keywordInsert(L1PcInstance pc, String cmd) {
+		try {
+			StringTokenizer tok = new StringTokenizer(cmd);
+			String key = tok.nextToken();
+
+			if (!isNumeric(key)) {
+				pc.sendPackets("\\fR[!] 키워드는 숫자 6자리만 가능합니다.");
+				return;
+			}
+
+			if (key.length() != 6) {
+				pc.sendPackets("\\fR[!] 키워드는 숫자 6자리만 가능합니다.");
+				return;
+			}
+
+			if (pc.getNetConnection().getAccount().getKeyword() != null) {
+				if (!pc.getNetConnection().keyword) {
+					pc.sendPackets("\\fR[!] 이미키워드가 등록되어있습니다.");
+					pc.sendPackets("\\fR[!] 키이 되어야 재등록이 가능합니다.");
+					return;
+				}
+			}
+
+			pc.getNetConnection().getAccount().setKeyWord(key);
+			pc.sendPackets("\\fS[!] 키워드 등록이 완료되었습니다.");
+			pc.sendPackets("\\fS[!] 키워드인증을 진행해주세요.[.키인증 [숫자6자리]");
+			pc.sendPackets("\\fS[!] 인증완료되어야만 정상적인 게임진행이 가능합니다.");
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".키등록 [숫자6자리]"));
+		}
+	}
+
+	private void age(L1PcInstance pc, String cmd) {
+		try {
+			StringTokenizer tok = new StringTokenizer(cmd);
+			String AGE = tok.nextToken();
+			int AGEint = Integer.parseInt(AGE);
+
+			if (AGEint > 99) {
+				pc.sendPackets(new S_SystemMessage("입력하신 나이는 올바른 값이 아닙니다."));
+				return;
+			}
+
+			pc.setAge(AGEint);
+			pc.save();
+			// MySqlCharacterStorage.update나이(pc);
+			pc.sendPackets(new S_SystemMessage(pc.getName() + " 님의 나이 (" + AGEint + ")가 설정되었습니다."));
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage("  사용 예) .나이 22"));
+		}
+	}
+
+	public void ment(L1PcInstance pc, String cmd, String param) {
+		if (param.equalsIgnoreCase("끔")) {
+			pc.getSkillEffectTimerSet().setSkillEffect(L1SkillId.STATUS_MENT, 0);
+			pc.sendPackets(new S_SystemMessage("오토루팅, 드랍멘트, 물약멘트, 파티드랍멘트를 끕니다."));
+		} else if (param.equalsIgnoreCase("켬")) {
+			pc.getSkillEffectTimerSet().removeSkillEffect(L1SkillId.STATUS_MENT);
+			pc.sendPackets(new S_SystemMessage("오토루팅, 드랍멘트, 물약멘트, 파티드랍멘트를 켭니다."));
+
+		} else {
+			pc.sendPackets(new S_SystemMessage(cmd + " [켬,끔] 라고 입력해 주세요. "));
+		}
+	}
+
+	/** 혈맹 파티 신청 명령어 * */
+	public void BloodParty(L1PcInstance pc) {
+		long curtime = System.currentTimeMillis() / 1000;
+		if (pc.getQuizTime() + 20 > curtime) {
+			pc.sendPackets(new S_SystemMessage("20초간의 지연시간이 필요합니다."));
+			return;
+		}
+		if (pc.isDead()) {
+			pc.sendPackets(new S_SystemMessage("죽은 상태에선 사용할 수 없습니다."));
+			return;
+		}
+
+		int ClanId = pc.getClanid();
+		L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
+
+		if (clan == null) {
+			pc.sendPackets(new S_SystemMessage("혈맹이 존재하지 않아 사용할 수 없습니다."));
+			return;
+		}
+
+		if (pc.getClanRank() == 1 || pc.getClanRank() == 2 || pc.getClanRank() == 3 || pc.isCrown()) { // Clan[O]
+																										// [군주,수호기사]
+			for (L1PcInstance SearchBlood : clan.getOnlineClanMember()) {
+				if (SearchBlood.getClanid() != ClanId || SearchBlood.isPrivateShop() || SearchBlood.isAutoClanjoin() || SearchBlood.isInParty()) { // 클랜이
+																													// 같지않다면[X],
+																													// 이미파티중이면[X],
+																													// 상점중[X]
+					continue; // 포문탈출
+				} else if (SearchBlood.getName() != pc.getName()) {
+					pc.setPartyType(1); // 파티타입 설정
+					SearchBlood.setPartyID(pc.getId()); // 파티아이디 설정
+					SearchBlood.sendPackets(new S_Message_YN(954, pc.getName())); // 분패파티
+																					// 신청
+					pc.sendPackets(new S_SystemMessage("당신은 [" + SearchBlood.getName() + "]에게 파티를 신청했습니다."));
+				}
+			}
+			pc.setQuizTime(curtime);
+		} else { // 클랜이 없거나 군주 또는 수호기사 [X]
+			pc.sendPackets(new S_SystemMessage("혈맹의 [군주], [수호기사]만 사용할수 있습니다."));
+		}
+	}
+
+	private void PinkNmae(L1PcInstance pc) {
+		if (pc._attackClick) {
+			pc._attackClick = false;
+			for (L1PcInstance pc1 : L1World.getInstance().getVisiblePlayer(pc)) {
+				if (pc.getId() == pc1.getId())
+					continue;
+				pc.sendPackets(new S_PinkName(pc1.getId(), 0));
+
+			}
+			pc.sendPackets(new S_SystemMessage("PVP모드가 종료 되었습니다.."));
+		} else {
+			pc._attackClick = true;
+			pc.sendPackets(new S_SystemMessage("PVP모드가 시작 되었습니다."));
+		}
+	}
+
+	private void clanmark(L1PcInstance pc) {
+		try {
+			int i = 1;
+			if (pc.GMCommand_Clanmark) {
+				i = 3;
+				pc.GMCommand_Clanmark = false;
+			} else
+				pc.GMCommand_Clanmark = true;
+			for (L1Clan clan : L1World.getInstance().getAllClans()) {
+				if (clan != null) {
+					pc.sendPackets(new S_War(i, pc.getClanname(), clan.getClanName()));
+				}
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage("[Command] .마크"));
+		}
+	}
+
+	private void infoRanking(L1PcInstance pc) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		PreparedStatement pstm1 = null;
+		ResultSet rs1 = null;
+		int allRank = 0;
+		int classRank = 0;
+
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement(
+					"SELECT * FROM ( SELECT @RNUM:=@RNUM+1 AS ROWNUM , C.Exp,C.char_name,c.objid,c.type  FROM (SELECT @RNUM:=0) R, characters c  WHERE C.AccessLevel = 0  ORDER BY C.Exp DESC ) A  WHERE objid = ?");
+			pstm.setInt(1, pc.getId());
+			rs = pstm.executeQuery();
+			if (rs.next()) {
+				allRank = rs.getInt(1);
+			}
+
+			pstm1 = con.prepareStatement(
+					"SELECT * FROM ( SELECT @RNUM:=@RNUM+1 AS ROWNUM , C.Exp,C.char_name,c.objid,c.type  FROM (SELECT @RNUM:=0) R, characters c  WHERE C.AccessLevel = 0  and c.type =? ORDER BY C.Exp DESC ) A  WHERE objid = ?");
+			pstm1.setInt(1, pc.getType());
+			pstm1.setInt(2, pc.getId());
+			rs1 = pstm1.executeQuery();
+
+			if (rs1.next()) {
+				classRank = rs1.getInt(1);
+			}
+
+		} catch (SQLException e) {
+			System.out.println("랭킹 조회 실패");
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm);
+			SQLUtil.close(rs1);
+			SQLUtil.close(pstm1);
+			SQLUtil.close(con);
+		}
+		pc.sendPackets(new S_SystemMessage("\\fY[** " + pc.getName() + "님의 랭킹 내용 **]"));
+		pc.sendPackets(new S_SystemMessage("\\fY전체 : " + allRank + "위 // 클래스 : " + classRank + "위"));
+	}
+
+	private void tell(L1PcInstance pc) {
+		try {
+			long curtime = System.currentTimeMillis() / 1000;
+			if (pc.isPinkName() || pc.isDead() || pc.isParalyzed() 
+					|| pc.isSleeped() || pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.SHOCK_STUN)) {
+				pc.sendPackets(new S_SystemMessage("사용할 수 없는 상태입니다."));
+				return;
+			}
+			if (pc.getQuizTime() + 30 > curtime) {
+				long time = (pc.getQuizTime() + 30) - curtime;
+				pc.sendPackets(new S_SystemMessage(time + "초 후 사용할 수 있습니다."));
+				return;
+			}
+			if (pc.getMapId() == 781) {
+				if (pc.getLocation().getX() <= 32998 && pc.getLocation().getX() >= 32988 && pc.getLocation().getY() <= 32758 && pc.getLocation().getY() >= 32736) {
+					pc.sendPackets(new S_SystemMessage("사용할 수 없는 장소입니다."));
+					return;
+				}
+			}
+			L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc.getHeading(), false);
+			pc.setQuizTime(curtime);
+		} catch (Exception exception) {
+		}
+	}
+
+	private void buff(L1PcInstance pc) {
+		if (pc.getLevel() > 52) {
+			pc.sendPackets(new S_SystemMessage("초보버프는 52레벨까지 사용 가능합니다."));
+			return;
+		}
+		long curtime = System.currentTimeMillis() / 1000;
+		if (pc.getQuizTime() + 20 > curtime) {
+			long sec = (pc.getQuizTime() + 20) - curtime;
+			pc.sendPackets(new S_SystemMessage(sec + "초간의 지연시간이 필요합니다."));
+			return;
+		}
+		int[] allBuffSkill = { PHYSICAL_ENCHANT_DEX, PHYSICAL_ENCHANT_STR, BLESS_WEAPON, ADVANCE_SPIRIT, IRON_SKIN, ADVANCE_SPIRIT };
+		L1SkillUse l1skilluse = null;
+
+		l1skilluse = new L1SkillUse();
+		for (int i = 0; i < allBuffSkill.length; i++) {
+			l1skilluse.handleCommands(pc, allBuffSkill[i], pc.getId(), pc.getX(), pc.getY(), null, 0, L1SkillUse.TYPE_GMBUFF);
+			pc.setQuizTime(curtime);
+		}
+		pc.setQuizTime(curtime);
+		pc.sendPackets(new S_SystemMessage("초보버프는 52레벨까지 사용 가능합니다."));
+	}
+
+	private void infoitem(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer tok = new StringTokenizer(param);
+			String charname = tok.nextToken();
+			L1PcInstance target = L1World.getInstance().getPlayer(charname);
+			if (target != null) {
+				pc.sendPackets(new S_SystemMessage("\\fY[** " + target.getName() + "님의 조사 내용 **]"));
+				pc.sendPackets(new S_SystemMessage("\\fY+9무기 이상 : " + target.getInventory().getItemEnchantCount(1, 9) + "개 // +7방어구 이상 : "
+						+ target.getInventory().getItemEnchantCount(2, 7) + "개"));
+			} else {
+				pc.sendPackets(new S_SystemMessage("현재 플레이 유저 중 조사하신 [" + charname + "] 유저는 없습니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".조사 [캐릭터명] 으로 입력해 주시기 바랍니다."));
+		}
+	}
+
+	private void Hunt(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer st = new StringTokenizer(param);
+			String name = st.nextToken();
+			L1PcInstance target = L1World.getInstance().getPlayer(name);
+			if (target != null) {
+				if (target.getWanted() != 0) {
+					pc.sendPackets((ServerBasePacket) new S_SystemMessage(name + "는 이미 수배가 걸려 있습니다."));
+					return;
+				}
+				if (target.isDead()) {
+					pc.sendPackets((ServerBasePacket) new S_SystemMessage(name + "는 사망한 캐릭터 입니다."));
+					return;
+				}
+				int Adena = 0;
+				if (target.getLevel() <= 52) {
+					Adena = Config.WANTED_ADENA_52;
+				} else if (target.getLevel() <= 55) {
+					Adena = Config.WANTED_ADENA_55;
+				} else if (target.getLevel() <= 60) {
+					Adena = Config.WANTED_ADENA_60;
+				} else if (target.getLevel() <= 65) {
+					Adena = Config.WANTED_ADENA_65;
+				} else if (target.getLevel() <= 70) {
+					Adena = Config.WANTED_ADENA_70;
+				} else if (target.getLevel() <= 75) {
+					Adena = Config.WANTED_ADENA_75;
+				} else { // 76 레벨 이상
+					Adena = Config.WANTED_ADENA_80;
+				}
+				if (pc.getInventory().consumeItem(40308, Adena)) {
+					target.setHuntPrice(Adena);
+					target.setWanted(1);
+					target.save();
+					target.addDmgup(3);
+					target.addBowDmgup(3);
+					target.getAbility().addSp(3);
+					target.sendPackets((ServerBasePacket) new S_SPMR(target));
+					pc.sendPackets((ServerBasePacket) new S_SystemMessage(name + "에게 수배를 걸었습니다."));
+					pc.sendPackets(new S_SkillSound(pc.getId(), 8943)); // 별4
+					target.sendPackets((ServerBasePacket) new S_SystemMessage("수배 효과:추타+3,SP+3"));
+				} else {
+					pc.sendPackets((ServerBasePacket) new S_SystemMessage("수배를 걸기 위해선" + Adena + "아데나가 필요합니다."));
+				}
+			} else {
+				pc.sendPackets((ServerBasePacket) new S_SystemMessage(name + "는 월드에 존재하지 않습니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets((ServerBasePacket) new S_SystemMessage(".[수배]  [캐릭터명]"));
+		}
+	}
+
+	// TODO 중개 거래 게시판
+	private static void LetterList(L1PcInstance pc, int type, int count) {
+		pc.sendPackets(new S_LetterList(pc, type, count));
+	}
+
+	public static void WriteCancle(String buyer, String seller) {
+		int nu1 = 949;
+		SimpleDateFormat formatter = new SimpleDateFormat("yy/MM/dd", Locale.KOREA);
+		Date currentTime = new Date();
+		String dTime = formatter.format(currentTime);
+		String subject = "구매취소내역";
+		String content = "구매자 :" + buyer + "" + "\n\n상대방이 구매를 취소하엿습니다." + "\n입금 대기상태로 바뀝니다.";
+		String name = "거래관리자";
+		L1PcInstance target = L1World.getInstance().getPlayer(seller);
+		LetterTable.getInstance().writeLetter(nu1, dTime, name, seller, 0, subject, content);
+		if (target != null && target.getOnlineStatus() != 0) {
+			target.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "구매취소: " + buyer + "님이 구매를 취소 하였습니다."));
+			target.sendPackets(new S_SystemMessage("구매취소: " + buyer + "님이 구매를 취소 하였습니다."));
+			LetterList(target, 0, 20);
+			target.sendPackets(new S_SkillSound(target.getId(), 1091));
+			target.sendPackets(new S_ServerMessage(428));
+		}
+	}
+
+	public static void WriteComplete(String buyer, int count, String seller) {
+		int nu1 = 949;
+		SimpleDateFormat formatter = new SimpleDateFormat("yy/MM/dd", Locale.KOREA);
+		Date currentTime = new Date();
+		String dTime = formatter.format(currentTime);
+		String subject = "판매완료내역";
+		String content = "아데나 :" + count + "개" + "\n판매자 :" + seller + "" + "\n물품 구매가 완료되었습니다. " + "\n\n반드시 리스타트 후에 " + "\n부가 아이템 창고에서"
+				+ "\n아데나를 수령하십시요.";
+		String name = "거래관리자";
+		L1PcInstance target = L1World.getInstance().getPlayer(buyer);
+		LetterTable.getInstance().writeLetter(nu1, dTime, name, buyer, 0, subject, content);
+		if (target != null && target.getOnlineStatus() != 0) {
+			target.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "판매완료: 아데나가 '부가아이템창고'로 지급 되었습니다(리스타트후 수령가능)"));
+			target.sendPackets(new S_SystemMessage("판매완료: 아데나가 '부가아이템창고'로 지급 되었습니다(리스타트후 수령가능)"));
+			target.getSkillEffectTimerSet().killSkillEffectTimer(BUYER_COOLTIME);
+			LetterList(target, 0, 20);
+			target.sendPackets(new S_SkillSound(target.getId(), 1091));
+			target.sendPackets(new S_ServerMessage(428));
+		}
+	}
+
+	public static void WriteBuyLetter(String player, int count, int sellcount, String bankname, String name, String number, String sellername,
+			String buyername) {
+		int nu1 = 949;
+		SimpleDateFormat formatter = new SimpleDateFormat("yy/MM/dd", Locale.KOREA);
+		Date currentTime = new Date();
+		String dTime = formatter.format(currentTime);
+		String subject = "구매 신청 내역";
+		String content = "구매 아데나 : " + count + "개." + "\n구매 금액 : " + sellcount + "원. " + "\n은행 : " + bankname + "" + "\n예금주 : " + name + ""
+				+ "\n계좌번호 : " + number + "" + "\n판매자 캐릭터 : " + sellername + "" + "\n구매자 캐릭터 : " + buyername + "" + "\n\n판매자는 입금완료후 반드시"
+				+ "\n.판매완료 (게시번호) 를 하셔야" + "\n구매자에게 아데나가 지급됩니다." + "\n\n판매자가 악의적으로 판매완료를" + "\n거부할 경우 메티스로 문의." + "\n입금전 반드시 상대방이" + "\n접속중인지 확인후 거래를"
+				+ "\n진행해 주시기 바랍니다.";
+		String project = "거래관리자";
+		L1PcInstance target = L1World.getInstance().getPlayer(player);
+		LetterTable.getInstance().writeLetter(nu1, dTime, project, player, 0, subject, content);
+		if (target != null && target.getOnlineStatus() != 0) {
+			LetterList(target, 0, 20);
+			target.sendPackets(new S_SkillSound(target.getId(), 1091));
+			target.sendPackets(new S_ServerMessage(428));
+		}
+	}
+
+	public static void WriteSellLetter(String player, int count, int sellcount, String bankname, String name, String number, String charname) {
+		int nu1 = 949;
+		SimpleDateFormat formatter = new SimpleDateFormat("yy/MM/dd", Locale.KOREA);
+		Date currentTime = new Date();
+		String dTime = formatter.format(currentTime);
+		String subject = "판매 등록 내역";
+		String content = "판매 아데나 : " + count + "개." + "\n판매 금액 : " + sellcount + "원. " + "\n은행 : " + bankname + "" + "\n예금주 : " + name + ""
+				+ "\n계좌번호 : " + number + "" + "\n판매자 캐릭터 : " + charname + "" + "\n\n위 내용과 상이할 경우 " + "\n.판매취소 (게시글번호)" + "\n하신후 재등록 하시기 바랍니다."
+				+ "\n\n잘못된 정보 기재로 인한 피해사항은" + "\n어떤한 경우에도 책임지지 않습니다.";
+		String project = "거래관리자";
+		L1PcInstance target = L1World.getInstance().getPlayer(player);
+		LetterTable.getInstance().writeLetter(nu1, dTime, project, player, 0, subject, content);
+		if (target != null && target.getOnlineStatus() != 0) {
+			LetterList(target, 0, 20);
+			target.sendPackets(new S_SkillSound(target.getId(), 1091));
+			target.sendPackets(new S_ServerMessage(428));
+		}
+	}
+
+	private static void countR1(L1PcInstance pc, String count) {
+		StringTokenizer st = new StringTokenizer(count);
+		try {
+			int i = 0;
+			int sellcount = 0;
+			String bankname = null;
+			String name = null;
+			String numeber = null;
+			try {
+				i = Integer.parseInt(st.nextToken());
+				sellcount = Integer.parseInt(st.nextToken());
+				bankname = st.nextToken();
+				name = st.nextToken();
+				numeber = st.nextToken();
+			} catch (NumberFormatException e) {
+			}
+
+			if (i <= 0) {
+				pc.sendPackets(new S_SystemMessage(".판매등록  (판매금액)을 적어주세요."));
+				return;
+			}
+			if (pc.getLevel() < Config.ADENASHOP_LEVEL) {
+				pc.sendPackets(new S_SystemMessage("판매등록 최소 (" + Config.ADENASHOP_LEVEL + ")레벨 이상만 등록 가능합니다."));
+				return;
+			}
+			if (i > Config.MAX_SELL_ADENA) {
+				pc.sendPackets(new S_SystemMessage("최대판매 아데나는 " + Config.MAX_SELL_ADENA + " 아데나 이상 판매하실 수 없습니다."));
+				return;
+			}
+			if (i >= 1 && i < Config.MIN_SELL_ADENA) {
+				pc.sendPackets(new S_SystemMessage("최소판매 아데나는 " + Config.MIN_SELL_ADENA + " 아데나 이상 입니다."));
+				return;
+			}
+			if (sellcount < Config.MIN_SELL_CASH) {
+				pc.sendPackets(new S_SystemMessage("최소판매금액은 " + Config.MIN_SELL_CASH + "원 이상 입니다."));
+				return;
+			}
+			if (sellcount > Config.MAX_SELL_CASH) {
+				pc.sendPackets(new S_SystemMessage("최대판매금액은 " + Config.MAX_SELL_CASH + "원 이하 입니다."));
+				return;
+			}
+
+			String selltype = "판매중";
+			L1Item temp = ItemTable.getInstance().getTemplate(L1ItemId.ADENA);
+			L1ItemInstance adena = new L1ItemInstance(temp, i);
+
+			if (pc.getInventory().checkItem(L1ItemId.ADENA, i)) {
+				pc.getInventory().consumeItem(L1ItemId.ADENA, i);
+				AuctionSystemTable.getInstance().writeTopic(pc, selltype, adena, i, sellcount, bankname, numeber, name);
+				WriteSellLetter(pc.getName(), i, sellcount, bankname, name, numeber, pc.getName());
+				WriteSellLetter("메티스", i, sellcount, bankname, name, numeber, pc.getName());
+			} else {
+				pc.sendPackets(new S_SystemMessage("입력하신 숫자가 소지하신 아데나보다 작습니다."));
+			}
+		} catch (Exception exception) {
+			pc.sendPackets(new S_SystemMessage(".판매등록 (아데나) (판매금액) (은행명) (예금주) (계좌)"));
+			pc.sendPackets(new S_SystemMessage(".판매등록 10000000 5000 한국은행 홍길동 123123(-제외)"));
+		}
+	}
+
+	private static void countR2(L1PcInstance pc, String count) {
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(BUYER_COOLTIME)) {
+			int n = pc.getSkillEffectTimerSet().getSkillEffectTimeSec(BUYER_COOLTIME);
+			pc.sendPackets(new S_SystemMessage("이미 다른 물품을 구매중이거나 쿨타임이 적용중입니다."));
+			pc.sendPackets(new S_SystemMessage(String.format("%d초 후에 구매신청을 하실 수 있습니다.", n)));
+			return;
+		}
+		int i = 0;
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		try {
+			i = Integer.parseInt(count);
+		} catch (NumberFormatException e) {
+		}
+		String charname = null;
+		int adenacount = 0;
+		int sellcount = 0;
+		int status = 0;
+		String bank = null;
+		String banknumeber = null;
+		String bankname = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement(
+					"SELECT  id, name, count, sellcount, status, bank, banknumber, bankname from Auction where id Like '" + i + "'");
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				charname = rs.getString("name");
+				adenacount = rs.getInt("count");
+				sellcount = rs.getInt("sellcount");
+				status = rs.getInt("status");
+				bank = rs.getString("bank");
+				banknumeber = rs.getString("banknumber");
+				bankname = rs.getString("bankname");
+			}
+
+			if (charname == null) {
+				pc.sendPackets(new S_SystemMessage("잘못된 게시번호 입니다."));
+				return;
+			}
+			if (status == 1) {
+				pc.sendPackets(new S_SystemMessage("이미 다른사람이 구매신청을 한 상태입니다."));
+				return;
+			}
+			if (status == 2) {
+				pc.sendPackets(new S_SystemMessage("이미 판매 완료된 물품입니다."));
+				return;
+			}
+
+			try {
+				int time = 600;
+				WriteBuyLetter(pc.getName(), adenacount, sellcount, bank, bankname, banknumeber, charname, pc.getName());
+				WriteBuyLetter(charname, adenacount, sellcount, bank, bankname, banknumeber, charname, pc.getName());
+				WriteBuyLetter("메티스", adenacount, sellcount, bank, bankname, banknumeber, charname, pc.getName());
+				AuctionSystemTable.getInstance().AuctionUpdate(i, pc.getName(), pc.getAccountName(), "입금대기", 1);
+				pc.getSkillEffectTimerSet().setSkillEffect(BUYER_COOLTIME, time * 1000);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+		} catch (SQLException e) {
+			pc.sendPackets(new S_SystemMessage(".구매신청 (게시글번호)"));
+			pc.sendPackets(new S_SystemMessage(".구매신청 0017"));
+		} finally {
+			SQLUtil.close(rs, pstm, con);
+		}
+	}
+
+	private static void countR3(L1PcInstance pc, String count) {
+		int i = 0;
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			i = Integer.parseInt(count);
+		} catch (NumberFormatException e) {
+		}
+		int itemid = 0;
+		int itemcount = 0;
+		String account = null;
+		int status = 0;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT  item_id ,count ,AccountName ,status from Auction where id Like '" + i + "'");
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				itemid = rs.getInt("item_id");
+				itemcount = rs.getInt("count");
+				account = rs.getString("AccountName");
+				status = rs.getInt("status");
+			}
+			if (status == 1) {
+				pc.sendPackets(new S_SystemMessage("입금 대기상태 에서는 판매취소가 불가능 합니다."));
+				return;
+			}
+			if (status == 2) {
+				pc.sendPackets(new S_SystemMessage("판매가 완료된 상태입니다."));
+				return;
+			}
+			if (pc.getAccountName().equalsIgnoreCase(account) || pc.isGm()) {
+				pc.getInventory().storeItem(itemid, itemcount);
+				AuctionSystemTable.getInstance().deleteTopic(i);
+				pc.sendPackets(new S_SystemMessage("정상취소 되었습니다"));
+			} else {
+				pc.sendPackets(new S_SystemMessage("등록하신 물품이 아닙니다"));
+			}
+		} catch (SQLException e) {
+			pc.sendPackets(new S_SystemMessage(".판매취소 (게시글번호) 라고 적어주십시요."));
+			pc.sendPackets(new S_SystemMessage("예)  .판매취소 0035"));
+		} finally {
+			SQLUtil.close(rs, pstm, con);
+		}
+	}
+
+	private static void countR4(L1PcInstance pc, String count) {
+		int i = 0;
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		try {
+			i = Integer.parseInt(count);
+		} catch (NumberFormatException e) {
+		}
+		String charname = null;
+		int sellcount = 0;
+		int status = 0;
+		String buyerName = null;
+		String buyerAccountName = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT  name, count, status, buyername, buyerAccountName from Auction where id Like '" + i + "'");
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				charname = rs.getString("name");
+				sellcount = rs.getInt("count");
+				status = rs.getInt("status");
+				buyerName = rs.getString("buyername");
+				buyerAccountName = rs.getString("buyerAccountName");
+			}
+
+			if (status == 1) {
+				if (pc.getName().equalsIgnoreCase(charname) || pc.isGm()) {
+					AuctionSystemTable.getInstance().AuctionComplete(i);
+					try {
+						WriteComplete(buyerName, sellcount, charname);
+						WriteComplete("메티스", sellcount, charname);
+						Warehouse.present(buyerAccountName, 40308, 0, sellcount);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					pc.sendPackets(new S_SystemMessage("정상 판매 완료 되었습니다."));
+				} else {
+					pc.sendPackets(new S_SystemMessage("당신은 해당글의 판매자가 아닙니다."));
+				}
+			} else {
+				pc.sendPackets(new S_SystemMessage("아직 구매 신청자가 없습니다."));
+			}
+		} catch (SQLException e) {
+			pc.sendPackets(new S_SystemMessage(".판매완료(게시글번호)"));
+			pc.sendPackets(new S_SystemMessage(".판매완료 0017"));
+		} finally {
+			SQLUtil.close(rs, pstm, con);
+		}
+	}
+
+	private static void countR5(L1PcInstance pc, String count) {
+		int i = 0;
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			i = Integer.parseInt(count);
+		} catch (NumberFormatException e) {
+		}
+		int status = 0;
+		String charname = null;
+		String buyername = null;
+		String buyeraccount = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT  name, status, buyername, buyerAccountName from Auction where id Like '" + i + "'");
+			rs = pstm.executeQuery();
+			while (rs.next()) {
+				charname = rs.getString("name");
+				status = rs.getInt("status");
+				buyeraccount = rs.getString("buyerAccountName");
+				buyername = rs.getString("buyername");
+			}
+			if (status == 0) {
+				pc.sendPackets(new S_SystemMessage("구매 취소가 불가능한 상태입니다."));
+				return;
+			}
+			if (status == 2) {
+				pc.sendPackets(new S_SystemMessage("판매가 완료된 상태입니다."));
+				return;
+			}
+			if (pc.getAccountName().equalsIgnoreCase(buyeraccount) || pc.isGm()) {
+				AuctionSystemTable.getInstance().AuctionUpdate(i, "", "", "입금대기", 0);
+				WriteCancle(buyername, charname);
+				WriteCancle("메티스", charname);
+				pc.sendPackets(new S_SystemMessage("정상취소 되었습니다"));
+			} else {
+				pc.sendPackets(new S_SystemMessage("등록하신 물품이 아닙니다"));
+			}
+		} catch (SQLException e) {
+			pc.sendPackets(new S_SystemMessage(".구매취소 (게시글번호) 라고 적어주십시요."));
+			pc.sendPackets(new S_SystemMessage("예)  .구매취소 0035"));
+		} finally {
+			SQLUtil.close(rs, pstm, con);
+		}
+	}
+	// TODO 중개 거래 게시판
+
+	public void 인벤정리(L1PcInstance pc) {
+		List<L1ItemInstance> list = pc.getInventory().getItems();
+		List<L1ItemInstance> tempList = new ArrayList<L1ItemInstance>();
+
+		// 정렬(getType2 내림차순, getType 오름차순)
+		Collections.sort(list, new Comparator<L1ItemInstance>() {
+			@Override
+			public int compare(L1ItemInstance o1, L1ItemInstance o2) {
+				int ret = 0;
+				if (o1.getItem().getType2() < o2.getItem().getType2()) {
+					ret = 1;
+				} else if (o1.getItem().getType2() > o2.getItem().getType2()) {
+					ret = -1;
+				} else {
+					if (o1.getItem().getType() > o2.getItem().getType()) {
+						ret = 1;
+					} else {
+						ret = -1;
+					}
+				}
+				return ret;
+			}
+		});
+
+		// 전체 아이템의 useType Type Type1 Type2 출력
+		// for(int i=0; i<list.size(); i++) {
+		// System.out.println(list.get(i).getItem().getName() + " getUseType : "
+		// + list.get(i).getItem().getUseType()
+		// + " getType : " + list.get(i).getItem().getType() + " getType1 : "+
+		// list.get(i).getItem().getType1() + " getType2 : " +
+		// list.get(i).getItem().getType2());
+		// }
+		for (L1ItemInstance i : list) {
+			if (i.getItem().getName().equalsIgnoreCase("아데나")) {
+				if (!tempList.contains(i)) {
+					tempList.add(i);
+					pc.sendPackets(new S_DeleteInventoryItem(i));
+					break;
+				}
+			}
+		}
+		for (L1ItemInstance i : list) {
+			if (i.getItem().getName().equalsIgnoreCase("강제칼질")) {
+				if (!tempList.contains(i)) {
+					tempList.add(i);
+					pc.sendPackets(new S_DeleteInventoryItem(i));
+					break;
+				}
+			}
+		}
+		for (L1ItemInstance i : list) {
+			if (i.getItem().getName().equalsIgnoreCase("신비한 날개깃털")) {
+				if (!tempList.contains(i)) {
+					tempList.add(i);
+					pc.sendPackets(new S_DeleteInventoryItem(i));
+					break;
+				}
+			}
+		}
+		for (L1ItemInstance i : list) {
+			if (i.getItem().getName().equalsIgnoreCase("1억 수표 변환기")) {
+				if (!tempList.contains(i)) {
+					tempList.add(i);
+					pc.sendPackets(new S_DeleteInventoryItem(i));
+					break;
+				}
+			}
+		}
+		for (L1ItemInstance i : list) {
+			if (i.getItem().getName().equalsIgnoreCase("기란 마을 귀환 부적")) {
+				if (!tempList.contains(i)) {
+					tempList.add(i);
+					pc.sendPackets(new S_DeleteInventoryItem(i));
+					break;
+				}
+			}
+		}
+		// 착용중인 무기
+		for (L1ItemInstance i : list) {
+			if (i instanceof Weapon && i.isEquipped()) {
+				if (!tempList.contains(i))
+					tempList.add(i);
+				pc.sendPackets(new S_DeleteInventoryItem(i));
+			}
+		}
+		// 착용중인방어구
+		for (L1ItemInstance i : list) {
+			if (i instanceof Armor && i.isEquipped()) {
+				if (!tempList.contains(i))
+					tempList.add(i);
+				pc.sendPackets(new S_DeleteInventoryItem(i));
+			}
+		}
+		for (L1ItemInstance i : list) {
+			if (i.getItem().getName().equalsIgnoreCase("라우풀 물약")) {
+				if (!tempList.contains(i)) {
+					tempList.add(i);
+					pc.sendPackets(new S_DeleteInventoryItem(i));
+					break;
+				}
+			}
+		}
+		for (L1ItemInstance i : list) {
+			if (i.getItem().getName().equalsIgnoreCase("카오틱 물약")) {
+				if (!tempList.contains(i)) {
+					tempList.add(i);
+					pc.sendPackets(new S_DeleteInventoryItem(i));
+					break;
+				}
+			}
+		}
+		for (L1ItemInstance i : list) {
+			if (i instanceof Arrow) {
+				if (!tempList.contains(i))
+					tempList.add(i);
+				pc.sendPackets(new S_DeleteInventoryItem(i));
+				break;
+			}
+		}
+		for (L1ItemInstance i : list) {
+			if (i.getItem().getName().contains("오만")) {
+				if (!tempList.contains(i)) {
+					tempList.add(i);
+					pc.sendPackets(new S_DeleteInventoryItem(i));
+					break;
+				}
+			}
+		}
+		// 마법인형
+		for (L1ItemInstance i : list) {
+			if (i.getItem().getName().contains("인형")) {
+				if (!tempList.contains(i)) {
+					tempList.add(i);
+					pc.sendPackets(new S_DeleteInventoryItem(i));
+					break;
+				}
+			}
+		}
+
+		// 기타 아이템
+		for (L1ItemInstance i : list) {
+			if (!tempList.contains(i))
+				tempList.add(i);
+			pc.sendPackets(new S_DeleteInventoryItem(i));
+		}
+
+		for (L1ItemInstance i : tempList)
+			pc.sendPackets(new S_AddItem(i));
+	}
+
+	private void 장비스왑(L1PcInstance gm, String param) {
+		try {
+			StringTokenizer st = new StringTokenizer(param);
+			int type = Integer.parseInt(st.nextToken(), 10);
+			if (type == 1) {
+				gm.addSlotItem(0, 0, true);
+				gm.sendPackets(new S_SystemMessage("장비 셋트 1번이 저장 되었습니다."));
+			} else if (type == 2) {
+				gm.addSlotItem(1, 0, true);
+				gm.sendPackets(new S_SystemMessage("장비 셋트 2번이 저장 되었습니다."));
+			} else {
+				gm.sendPackets(new S_SystemMessage(".장비저장 [1/2]"));
+			}
+		} catch (Exception e) {
+			gm.sendPackets((ServerBasePacket) new S_SystemMessage(".장비저장 [1/2]"));
+		}
+	}
+	private void GoingPrice(L1PcInstance gm, String cmd) {
+		try {
+			StringTokenizer tok = new StringTokenizer(cmd);
+
+			String blessTemp = tok.nextToken();
+			int itemBless = 1;
+			if (blessTemp.equalsIgnoreCase("축복")) {
+				itemBless = 0;
+			} else if (blessTemp.equalsIgnoreCase("일반")) {
+				itemBless = 1;
+			} else if (blessTemp.equalsIgnoreCase("저주")) {
+				itemBless = 2;
+			}
+
+			String itemName = tok.nextToken();
+
+			int enchant = 0;
+			if (tok.hasMoreTokens()) {
+				enchant = Integer.parseInt(tok.nextToken(), 10);
+			}
+
+			FastTable<L1PriceTemp> sellitemlist = new FastTable<L1PriceTemp>();
+			FastTable<L1PriceTemp> buyitemlist = new FastTable<L1PriceTemp>();
+			for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
+				if (pc.isPrivateShop()) {
+					ArrayList<?> selllist = pc.getSellList();
+					ArrayList<?> buylist = pc.getBuyList();
+					int sellsize = selllist.size();
+					int buysize = buylist.size();
+					L1PrivateShopSellList pssl = null;
+					L1PrivateShopBuyList psbl = null;
+
+					L1ItemInstance item = null;
+					for (int i = 0; i < sellsize; i++) {
+						pssl = (L1PrivateShopSellList) selllist.get(i);
+						int itemObjectId = pssl.getItemObjectId();
+						item = pc.getInventory().getItem(itemObjectId);
+						if (item == null) {
+							continue;
+						}
+						if (itemBless != item.getBless()) {
+							continue;
+						}
+						int price = pssl.getSellPrice();
+
+						String nameTemp = item.getName().replaceAll(" ", ""); // 공백제거
+						// gm.sendPackets(new S_SystemMessage("이름 = " +
+						// nameTemp));
+						if (nameTemp.contains(itemName)) {
+							if (enchant != 0) {
+								if (item.getEnchantLevel() == enchant) {
+									L1PriceTemp temp = new L1PriceTemp();
+									temp.itemname = item.getName();
+									temp.enchant = item.getEnchantLevel();
+									temp.price = price;
+									temp.bless = item.getBless();
+									temp.pcname = pc.getName();
+									temp.locX = pc.getX() - 1;
+									temp.locY = pc.getY() - 1;
+									temp.mapid = pc.getMapId();
+									sellitemlist.add(temp);
+								}
+							} else {
+								L1PriceTemp temp = new L1PriceTemp();
+								temp.itemname = item.getName();
+								temp.enchant = item.getEnchantLevel();
+								temp.price = price;
+								temp.bless = item.getBless();
+								temp.pcname = pc.getName();
+								temp.locX = pc.getX() - 1;
+								temp.locY = pc.getY() - 1;
+								temp.mapid = pc.getMapId();
+								sellitemlist.add(temp);
+							}
+						}
+					}
+					for (int i = 0; i < buysize; i++) {
+						psbl = (L1PrivateShopBuyList) buylist.get(i);
+						int itemObjectId = psbl.getItemObjectId();
+						item = pc.getInventory().getItem(itemObjectId);
+						if (item == null) {
+							continue;
+						}
+						if (itemBless != item.getBless()) {
+							continue;
+						}
+						int price = psbl.getBuyPrice();
+
+						String nameTemp = item.getName().replaceAll(" ", ""); // 공백제거
+						// gm.sendPackets(new S_SystemMessage("이름 = " +
+						// nameTemp));
+						if (nameTemp.contains(itemName)) {
+							if (enchant != 0) {
+								if (item.getEnchantLevel() == enchant) {
+									L1PriceTemp temp = new L1PriceTemp();
+									temp.itemname = item.getName();
+									temp.enchant = item.getEnchantLevel();
+									temp.price = price;
+									temp.bless = item.getBless();
+									temp.pcname = pc.getName();
+									temp.locX = pc.getX() - 1;
+									temp.locY = pc.getY() - 1;
+									temp.mapid = pc.getMapId();
+									buyitemlist.add(temp);
+								}
+							} else {
+								L1PriceTemp temp = new L1PriceTemp();
+								temp.itemname = item.getName();
+								temp.enchant = item.getEnchantLevel();
+								temp.price = price;
+								temp.bless = item.getBless();
+								temp.pcname = pc.getName();
+								temp.locX = pc.getX() - 1;
+								temp.locY = pc.getY() - 1;
+								temp.mapid = pc.getMapId();
+								buyitemlist.add(temp);
+							}
+						}
+					}
+				}
+			}
+
+			for (L1ShopNpcInstance npcc : L1World.getInstance().getAllShopNpc()) {
+				L1Shop shop = ShopNpcTable.getInstance().get(npcc.getNpcId());
+				if (shop != null) {
+					List<L1ShopItem> shopItems = shop.getSellingItems();
+
+					int size = shopItems.size();
+					for (int i = 0; i < size; i++) {
+						L1ShopItem shopItem = shopItems.get(i);
+						L1Item item = shopItem.getItem();
+
+						if (item == null)
+							continue;
+
+						if (shopItem.getEnchant() != enchant)
+							continue;
+
+						if (shopItem.getBless() != itemBless)
+							continue;
+
+						String nameTemp = item.getName().replaceAll(" ", ""); // 공백제거
+						if (nameTemp.contains(itemName)) {
+							if (enchant != 0) {
+								if (shopItem.getEnchant() == enchant) {
+									L1PriceTemp temp = new L1PriceTemp();
+									temp.itemname = item.getName();
+									temp.enchant = shopItem.getEnchant();
+									temp.price = shopItem.getPrice();
+									temp.bless = item.getBless();
+									temp.pcname = npcc.getName();
+									temp.locX = npcc.getX() - 1;
+									temp.locY = npcc.getY() - 1;
+									temp.mapid = npcc.getMapId();
+									sellitemlist.add(temp);
+								}
+							} else {
+								L1PriceTemp temp = new L1PriceTemp();
+								temp.itemname = item.getName();
+								temp.enchant = shopItem.getEnchant();
+								temp.price = shopItem.getPrice();
+								temp.bless = item.getBless();
+								temp.pcname = npcc.getName();
+								temp.locX = npcc.getX() - 1;
+								temp.locY = npcc.getY() - 1;
+								temp.mapid = npcc.getMapId();
+								sellitemlist.add(temp);
+							}
+						}
+					}
+				}
+
+				L1Shop buyshop = ShopNpcTable.getInstance().get(npcc.getNpcId());
+				if (buyshop != null) {
+					List<L1ShopItem> buyshopItems = buyshop.getPurchasingItems();
+
+					int size2 = buyshopItems.size();
+					for (int i = 0; i < size2; i++) {
+						L1ShopItem shopItem = buyshopItems.get(i);
+						L1Item item = shopItem.getItem();
+						if (item == null)
+							continue;
+
+						if (shopItem.getEnchant() != enchant)
+							continue;
+
+						if (shopItem.getBless() != itemBless)
+							continue;
+
+						String nameTemp = item.getName().replaceAll(" ", ""); // 공백제거
+						if (nameTemp.contains(itemName)) {
+							if (enchant != 0) {
+								if (shopItem.getEnchant() == enchant) {
+									L1PriceTemp temp = new L1PriceTemp();
+									temp.itemname = item.getName();
+									temp.enchant = shopItem.getEnchant();
+									temp.price = shopItem.getPrice();
+									temp.bless = item.getBless();
+									temp.pcname = npcc.getName();
+									temp.locX = npcc.getX() - 1;
+									temp.locY = npcc.getY() - 1;
+									temp.mapid = npcc.getMapId();
+									buyitemlist.add(temp);
+								}
+							} else {
+								L1PriceTemp temp = new L1PriceTemp();
+								temp.itemname = item.getName();
+								temp.enchant = shopItem.getEnchant();
+								temp.price = shopItem.getPrice();
+								temp.bless = item.getBless();
+								temp.pcname = npcc.getName();
+								temp.locX = npcc.getX() - 1;
+								temp.locY = npcc.getY() - 1;
+								temp.mapid = npcc.getMapId();
+								buyitemlist.add(temp);
+							}
+						}
+					}
+				}
+			}
+
+			Collections.sort(sellitemlist, new Comparator<L1PriceTemp>() {
+				@Override
+				public int compare(L1PriceTemp temp1, L1PriceTemp temp2) {
+					if (temp1.price > temp2.price) {
+						return 1;
+					} else if (temp1.price < temp2.price) {
+						return -1;
+					} else {
+						return 0;
+					}
+				}
+			});
+			Collections.sort(buyitemlist, new Comparator<L1PriceTemp>() {
+				@Override
+				public int compare(L1PriceTemp temp1, L1PriceTemp temp2) {
+					if (temp1.price > temp2.price) {
+						return -1;
+					} else if (temp1.price < temp2.price) {
+						return 1;
+					} else {
+						return 0;
+					}
+				}
+			});
+
+			// 판매리스트
+			gm.SellPriclist = sellitemlist;
+			gm.BuyPriclist = buyitemlist;
+
+			String SearchName = itemName;
+			if (itemBless == 0) {
+				if (enchant != 0) {
+					SearchName = "(축복) " + "+" + enchant + " " + itemName;
+				} else {
+					SearchName = "(축복) " + itemName;
+				}
+			} else if (itemBless == 1) {
+				if (enchant != 0) {
+					SearchName = "(일반) " + "+" + enchant + " " + itemName;
+				} else {
+					SearchName = "(일반) " + itemName;
+				}
+			} else if (itemBless == 2) {
+				if (enchant != 0) {
+					SearchName = "(저주) " + "+" + enchant + " " + itemName;
+				} else {
+					SearchName = "(저주) " + itemName;
+				}
+			}
+			gm.sendPackets(new S_SearchItem(gm, SearchName, sellitemlist, buyitemlist));
+		} catch (Exception e) {
+			gm.sendPackets(new S_SystemMessage(".시세 [일반/축복/저주][아이템이름][인챈트]"));
+		}
+	}
+
+	private void changename(L1PcInstance pc, String name) {
+		if (BadNamesList.getInstance().isBadName(name)) {
+			pc.sendPackets(new S_SystemMessage("생성 금지된 캐릭명입니다. (영어, 숫자는 사용 불가능)"));
+			return;
+		}
+		if (CharacterTable.doesCharNameExist(name)) {
+			pc.sendPackets(new S_SystemMessage("동일한 이름이 서버에 존재합니다."));
+			return;
+		}
+		if (pc.getClanid() != 0) {
+			pc.sendPackets(new S_SystemMessage("혈맹을 탈퇴한후 변경 가능 합니다."));
+			return;
+		}
+		/*
+		 * if (pc.isCrown()) { pc.sendPackets(new S_SystemMessage(
+		 * "군주는 운영자와 상담 후에만 변경할 수 있습니다")); return; }
+		 */
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(1005) || pc.getSkillEffectTimerSet().hasSkillEffect(2005)) {
+			pc.sendPackets(new S_SystemMessage("채금 상태에는 변경할 수 없습니다."));
+			return;
+		}
+		try {
+			if (pc.getLevel() >= 51) {
+				for (int i = 0; i < name.length(); i++) {
+					if (name.charAt(i) == 'ㄱ' || name.charAt(i) == 'ㄲ' || name.charAt(i) == 'ㄴ' || name.charAt(i) == 'ㄷ' || // 한문자(char)단위로
+																															// 비교.
+							name.charAt(i) == 'ㄸ' || name.charAt(i) == 'ㄹ' || name.charAt(i) == 'ㅁ' || name.charAt(i) == 'ㅂ' || // 한문자(char)단위로
+																																// 비교
+							name.charAt(i) == 'ㅃ' || name.charAt(i) == 'ㅅ' || name.charAt(i) == 'ㅆ' || name.charAt(i) == 'ㅇ' || // 한문자(char)단위로
+																																// 비교
+							name.charAt(i) == 'ㅈ' || name.charAt(i) == 'ㅉ' || name.charAt(i) == 'ㅊ' || name.charAt(i) == 'ㅋ' || // 한문자(char)단위로
+																																// 비교.
+							name.charAt(i) == 'ㅌ' || name.charAt(i) == 'ㅍ' || name.charAt(i) == 'ㅎ' || name.charAt(i) == 'ㅛ' || // 한문자(char)단위로
+																																// 비교.
+							name.charAt(i) == 'ㅕ' || name.charAt(i) == 'ㅑ' || name.charAt(i) == 'ㅐ' || name.charAt(i) == 'ㅔ' || // 한문자(char)단위로
+																																// 비교.
+							name.charAt(i) == 'ㅗ' || name.charAt(i) == 'ㅓ' || name.charAt(i) == 'ㅏ' || name.charAt(i) == 'ㅣ' || // 한문자(char)단위로
+																																// 비교.
+							name.charAt(i) == 'ㅠ' || name.charAt(i) == 'ㅜ' || name.charAt(i) == 'ㅡ' || name.charAt(i) == 'ㅒ' || // 한문자(char)단위로
+																																// 비교.
+							name.charAt(i) == 'ㅖ' || name.charAt(i) == 'ㅢ' || name.charAt(i) == 'ㅟ' || name.charAt(i) == 'ㅝ' || // 한문자(char)단위로
+																																// 비교.
+							name.charAt(i) == 'ㅞ' || name.charAt(i) == 'ㅙ' || name.charAt(i) == 'ㅚ' || name.charAt(i) == 'ㅘ' || // 한문자(char)단위로
+																																// 비교.
+							name.charAt(i) == '씹' || name.charAt(i) == '좃' || name.charAt(i) == '좆' || name.charAt(i) == 'ㅤ') {
+						pc.sendPackets(new S_SystemMessage("캐릭명이 올바르지 않습니다."));
+						return;
+					}
+				}
+
+				for (int i = 0; i < name.length(); i++) {
+					if (!((name.charAt(i) > 0x3130 && name.charAt(i) < 0x318F) || (name.charAt(i) >= 0xAC00 && name.charAt(i) <= 0xD7A3))) {
+						pc.sendPackets(new S_SystemMessage("한글만 입력해 주세요."));
+						return;
+					}
+				}
+
+				for (int i = 0; i < name.length(); i++) {
+					if (!Character.isLetterOrDigit(name.charAt(i))) {
+						pc.sendPackets(new S_SystemMessage("캐릭명이 올바르지 않습니다."));
+						return;
+					}
+				}
+
+				int numOfNameBytes = 0;
+				numOfNameBytes = name.getBytes("EUC-KR").length;
+				if (numOfNameBytes == 0) {
+					pc.sendPackets(new S_SystemMessage(".이름변경 바꿀캐릭명 <--형식으로 입력"));
+					return;
+				}
+
+				if (numOfNameBytes < 2 || numOfNameBytes > 12) {
+					pc.sendPackets(new S_SystemMessage("한글 1자 ~ 6자 사이로 입력하세요."));
+					return;
+				}
+
+				if (BadNamesList.getInstance().isBadName(name)) {
+					pc.sendPackets(new S_SystemMessage("생성이 금지된 캐릭명입니다."));
+					return;
+				}
+
+				if (pc.getInventory().checkItem(50135, 1)) {
+					Connection con = null;
+					PreparedStatement pstm = null;
+					try {
+						con = L1DatabaseFactory.getInstance().getConnection();
+						pstm = con.prepareStatement("UPDATE characters SET char_name =? WHERE char_name = ?");
+						pstm.setString(1, name);
+						pstm.setString(2, pc.getName());
+						pstm.execute();
+					} catch (SQLException e) {
+					} finally {
+						SQLUtil.close(pstm);
+						SQLUtil.close(con);
+					}
+
+					pc.save(); // 저장
+					/****** 여긴 파일로 캐릭명변경 내용 작성 부분 *******/
+
+					/****** LogDB 라는 폴더를 미리 생성 해두세요 *******/
+					Calendar rightNow = Calendar.getInstance();
+					int year = rightNow.get(Calendar.YEAR);
+					int month = rightNow.get(Calendar.MONTH) + 1;
+					int date = rightNow.get(Calendar.DATE);
+					int hour = rightNow.get(Calendar.HOUR);
+					int min = rightNow.get(Calendar.MINUTE);
+					String stryyyy = "";
+					String strmmmm = "";
+					String strDate = "";
+					String strhour = "";
+					String strmin = "";
+					stryyyy = Integer.toString(year);
+					strmmmm = Integer.toString(month);
+					strDate = Integer.toString(date);
+					strhour = Integer.toString(hour);
+					strmin = Integer.toString(min);
+					String str = "";
+					str = new String(
+							"[" + stryyyy + "-" + strmmmm + "-" + strDate + " " + strhour + ":" + strmin + "]  " + pc.getName() + "  --->  " + name);
+					StringBuffer FileName = new StringBuffer("LogDB/캐릭명변경.txt");
+					PrintWriter out = null;
+					try {
+						out = new PrintWriter(new FileWriter(FileName.toString(), true));
+						out.println(str);
+						out.close();
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					str = "";// 초기화
+					pc.getInventory().consumeItem(50135, 1);
+					pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "다시 접속하시면 새로운 이름으로 변경됩니다."));
+					pc.sendPackets(new S_SystemMessage("\\aD다시 접속하시면 새로운 이름으로 변경됩니다."));
+
+					Thread.sleep(500);
+					pc.sendPackets(new S_Disconnect());
+
+				} else {
+					pc.sendPackets(new S_SystemMessage("캐릭명 변경 주문서 구매 후 이용하세요."));
+				}
+			} else {
+				pc.sendPackets(new S_SystemMessage("사용 가능 레벨: LV51 이상."));
+			}
+
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".이름변경 바꿀캐릭명 으로 입력해 주세요."));
+		}
+	}
+
+	private void chaTrade2(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer st = new StringTokenizer(param);
+			int ChaId = Integer.parseInt(st.nextToken());
+			if (isTradeCha(ChaId)) {
+				String ChaName = CharacterTable.getTradeChaName(ChaId);
+
+				L1PcInstance target = CharacterTable.getInstance().loadCharacter(ChaName);
+				if (target != null) {
+					target.getInventory().loadItems();
+					pc.sendPackets(new S_InvGfx(target, target.getInventory()));
+					StringBuffer info = new StringBuffer();
+					pc.sendPackets(new S_SystemMessage("-----------캐릭정보--------------"));
+					info.append("직업:" + target.getClassName() + " / ");
+					int lv = target.getLevel();
+					int currentLvExp = ExpTable.getExpByLevel(lv);
+					int nextLvExp = ExpTable.getExpByLevel(lv + 1);
+					double neededExp = nextLvExp - currentLvExp;
+					double currentExp = target.getExp() - currentLvExp;
+					int per = (int) ((currentExp / neededExp) * 100.0);
+					info.append("레벨:" + target.getLevel() + "." + per + " / ");
+
+					info.append("엘릭서복용:" + target.getAbility().getElixirCount() + "개");
+					pc.sendPackets(new S_SystemMessage(info.toString()));
+
+					StringBuffer info2 = new StringBuffer();
+					info2.append("힘:" + target.getAbility().getBaseStr() + ", ");
+					info2.append("덱스:" + target.getAbility().getBaseDex() + ", ");
+					info2.append("인트:" + target.getAbility().getBaseInt() + ", ");
+					info2.append("위즈:" + target.getAbility().getBaseWis() + ", ");
+					info2.append("콘:" + target.getAbility().getBaseCon() + ", ");
+					info2.append("카리:" + target.getAbility().getBaseCha() + ", ");
+					pc.sendPackets(new S_SystemMessage(info2.toString()));
+
+					StringBuffer info3 = new StringBuffer();
+					info3.append("마법정보:");
+
+					Connection con = null;
+					PreparedStatement pstm = null;
+					ResultSet rs = null;
+					try {
+
+						con = L1DatabaseFactory.getInstance().getConnection();
+						pstm = con.prepareStatement("SELECT * FROM character_skills WHERE char_obj_id=?");
+						pstm.setInt(1, target.getId());
+						rs = pstm.executeQuery();
+						while (rs.next()) {
+							int skillId = rs.getInt("skill_id");
+							switch (skillId) {
+							case 28: // 뱀파
+							case 60: // 인비지
+							case 65: // 라톰
+							case 67: // 셰이프 체인지
+							case 68: // 이뮨
+							case 71: // 디케이
+							case 74: // 미티어
+							case 77: // 디스
+							case 78: // 앱솔
+							case 79: // 어벤
+							case 87: // 스턴
+							case 90: // 솔리드 캐리지
+							case 91: // 카베
+							case 105: // 더블브레이크
+							case 107: // 쉐도우펭
+							case 114: // 글로잉 오라
+							case 115: // 샤이닝오라
+							case 117: // 브레이브 오라
+							case 146: // 블러드 투 소울
+							case 157: // 어바
+							case 164: // 블레싱
+							case 166: // 스톰샷
+							case 174: // 스트라이커 게일
+							case 175: // 소프
+								L1Skills l1skills = SkillsTable.getInstance().getTemplate(skillId);
+								info3.append(l1skills.getName() + ", ");
+								break;
+							}
+						}
+					} catch (SQLException e) {
+						_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+					} finally {
+						SQLUtil.close(rs);
+						SQLUtil.close(pstm);
+						SQLUtil.close(con);
+					}
+					pc.sendPackets(new S_SystemMessage(info3.toString()));
+
+				} else {
+					pc.sendPackets(new S_SystemMessage(ChaId + "는 등록되지 않았습니다."));
+				}
+			} else {
+				pc.sendPackets(new S_SystemMessage(ChaId + "는 등록되지 않았습니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".캐릭조회 [id]"));
+		}
+	}
+
+	private void chaTrade(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer st = new StringTokenizer(param);
+			String name = st.nextToken();
+			if (!pc.getInventory().checkItem(50111, 1)) {
+				pc.sendPackets(new S_SystemMessage("빈 캐릭터 인형을 구입 후 등록해 주세요."));
+				return;
+			}
+
+			if (pc.getName().equalsIgnoreCase(name)) {
+				pc.sendPackets(new S_SystemMessage("접속한 캐릭터는 등록이 불가능합니다."));
+				return;
+			}
+
+			// 계정명을 받아온다.
+			String AccName = getTradeAccName(name);
+
+			if (pc.getAccountName().equalsIgnoreCase(AccName)) {
+				pc.sendPackets(new S_SystemMessage("내 계정에 존재한다."));
+				L1PcInstance TradePc = CharacterTable.getInstance().loadCharacter(name);
+				if (TradePc != null) {
+					if (TradePc.getClanid() != 0) {
+						pc.sendPackets(new S_SystemMessage("혈맹을 탈퇴한 후 등록해주세요."));
+						return;
+					}
+
+					// 캐릭터 테이블 계정명을 비운다.
+					CharacterTable.TradeAccUpdate("", name);
+					L1ItemInstance TradeItem = pc.getInventory().findItemId(50111);
+					TradeItem.setTradeCha(TradePc.getId());
+
+					pc.getInventory().updateItem(TradeItem, L1PcInventory.COL_TRADE_CHA);
+					pc.getInventory().saveItem(TradeItem, L1PcInventory.COL_TRADE_CHA);
+
+					LineageClient client = pc.getNetConnection();
+					/**
+					 * client.CharReStart(true); client.sendPacket(new
+					 * S_PacketBox(S_PacketBox.LOGOUT)); client.loginStatus2 =
+					 * 1;
+					 */
+					pc.save();
+					pc.saveInventory();
+
+					// client.quitGame(pc);
+					// pc.logout();
+					// client.setActiveChar(null);
+
+					client.kick();
+
+					// new C_NoticeClick(client);
+				}
+			} else {
+				pc.sendPackets(new S_SystemMessage("자신의 계정에 존재하는 캐릭만 등록가능합니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".캐릭등록 [캐릭명]"));
+		}
+	}
+
+	private boolean isTradeCha(int chaid) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT * FROM character_items WHERE trade_char_id=?");
+			pstm.setInt(1, chaid);
+			rs = pstm.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			_log.warning("could not check existing charname:" + e.getMessage());
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+		return false;
+	}
+
+	private String getTradeAccName(String name) {
+		String AccName = "";
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT account_name FROM characters WHERE char_name=?");
+			pstm.setString(1, name);
+			rs = pstm.executeQuery();
+			if (rs.next()) {
+				AccName = rs.getString(1);
+			}
+		} catch (SQLException e) {
+			_log.warning("could not check existing charname:" + e.getMessage());
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+		return AccName;
+	}
+
+	/**
+	 * 아데나 거래 게시판 계좌등록
+	 */
+	private void add_bank(L1PcInstance pc, String cmd) {
+		try {
+			StringTokenizer tok = new StringTokenizer(cmd);
+			String phone = tok.nextToken();
+			String bank_name = tok.nextToken();
+			String bank_number = tok.nextToken();
+			String name = tok.nextToken();
+
+			Connection con = null;
+			PreparedStatement pstm = null;
+			// 등록되어있을경우 업데이트
+			if (!is_bank(pc)) {
+				try {
+					con = L1DatabaseFactory.getInstance().getConnection();
+					pstm = con.prepareStatement(
+							"INSERT INTO board_adena_user SET objid=?, char_name=?, phone_number=?,bank_name=?,bank_number=?,name=?");
+					pstm.setInt(1, pc.getId());
+					pstm.setString(2, pc.getName());
+					pstm.setString(3, phone);
+					pstm.setString(4, bank_name);
+					pstm.setString(5, bank_number);
+					pstm.setString(6, name);
+					pstm.execute();
+				} catch (SQLException e) {
+					_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+				} finally {
+					SQLUtil.close(pstm);
+					SQLUtil.close(con);
+				}
+				pc.sendPackets(new S_SystemMessage("연락처 : " + phone));
+				pc.sendPackets(new S_SystemMessage("은행명 : " + bank_name));
+				pc.sendPackets(new S_SystemMessage("계좌번호 : " + bank_number));
+				pc.sendPackets(new S_SystemMessage("예금주명 : " + name));
+				pc.sendPackets(new S_SystemMessage("계좌등록이 완료 되었습니다."));
+			} else { // 등록되지 않을경우 추가
+				try {
+					con = L1DatabaseFactory.getInstance().getConnection();
+					pstm = con.prepareStatement("UPDATE board_adena_user SET phone_number=?,bank_name=?,bank_number=?,name=? WHERE objid=?");
+					pstm.setString(1, phone);
+					pstm.setString(2, bank_name);
+					pstm.setString(3, bank_number);
+					pstm.setString(4, name);
+					pstm.setInt(5, pc.getId());
+					pstm.execute();
+				} catch (SQLException e) {
+					_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+				} finally {
+					SQLUtil.close(pstm);
+					SQLUtil.close(con);
+				}
+				pc.sendPackets(new S_SystemMessage("연락처 : " + phone));
+				pc.sendPackets(new S_SystemMessage("은행명 : " + bank_name));
+				pc.sendPackets(new S_SystemMessage("계좌번호 : " + bank_number));
+				pc.sendPackets(new S_SystemMessage("예금주명 : " + name));
+				pc.sendPackets(new S_SystemMessage("계좌가 업데이트 되었습니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".계좌등록 [연락처][은행명][계좌번호][예금주명]"));
+		}
+	}
+
+	/**
+	 * 계좌 확인
+	 */
+	private void bank_check(L1PcInstance pc) {
+		try {
+			if (!is_bank(pc)) {
+				pc.sendPackets(new S_SystemMessage("계좌가 등록되어있지 않습니다. 계좌를 등록해주세요."));
+				return;
+			}
+
+			Connection con = null;
+			PreparedStatement pstm = null;
+			ResultSet rs = null;
+			String phone = "";
+			String bank_name = "";
+			String bank_number = "";
+			String name = "";
+			try {
+				con = L1DatabaseFactory.getInstance().getConnection();
+				pstm = con.prepareStatement("SELECT * FROM board_adena_user WHERE objid=?");
+				pstm.setInt(1, pc.getId());
+				rs = pstm.executeQuery();
+				if (rs.next()) {
+					phone = rs.getString("phone_number");
+					bank_name = rs.getString("bank_name");
+					bank_number = rs.getString("bank_number");
+					name = rs.getString("name");
+				}
+				pc.sendPackets(new S_SystemMessage("연락처 : " + phone));
+				pc.sendPackets(new S_SystemMessage("은행명 : " + bank_name));
+				pc.sendPackets(new S_SystemMessage("계좌번호 : " + bank_number));
+				pc.sendPackets(new S_SystemMessage("예금주명 : " + name));
+			} catch (SQLException e) {
+				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+			} finally {
+				SQLUtil.close(rs);
+				SQLUtil.close(pstm);
+				SQLUtil.close(con);
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".계좌확인"));
+		}
+	}
+
+	private boolean is_bank(L1PcInstance pc) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT * FROM board_adena_user WHERE objid=?");
+			pstm.setInt(1, pc.getId());
+			rs = pstm.executeQuery();
+			if (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+		return false;
+	}
+
+	/**
+	 * 판매신청
+	 */
+	private void sell_adena1(L1PcInstance pc, String cmd) {
+	    try {
+	        DecimalFormat priceformat = new DecimalFormat("#,###,###,###");
+	        StringTokenizer tok = new StringTokenizer(cmd);
+	        int adenaCount = Integer.parseInt(tok.nextToken());
+	        int sellCount = Integer.parseInt(tok.nextToken());
+
+	        if (pc.getLevel() < Config.ADENASHOP_LEVEL) {
+	            pc.sendPackets(new S_SystemMessage("판매등록은 " + Config.ADENASHOP_LEVEL + "부터 가능합니다."));
+	            return;
+	        }
+
+	        if (!is_bank(pc)) {
+	            pc.sendPackets(new S_SystemMessage("계좌가 등록되어있지 않습니다. 계좌를 등록해주세요."));
+	            return;
+	        }
+	        if (adenaCount < Config.MIN_SELL_ADENA) {
+	            pc.sendPackets(new S_SystemMessage("최소 아데나 수량은 " + priceformat.format(Config.MIN_SELL_ADENA) + "아데나 입니다."));
+	            return;
+	        }
+	        if (sellCount < Config.MIN_SELL_CASH) {
+	            pc.sendPackets(new S_SystemMessage("최소 판매금액은 " + priceformat.format(Config.MIN_SELL_CASH) + "원 입니다."));
+	            return;
+	        }
+	        if (!pc.getInventory().checkItem(40308, adenaCount)) {
+	            pc.sendPackets(new S_SystemMessage("판매하려는 아데나가 모자랍니다."));
+	            return;
+	        }
+
+	        for (L1BoardAdena board : BoardAdenaTable.getInstance().getBoardAdenaList()) {
+	            if (board == null) {
+	                continue;
+	            }
+	            if (board.getType() == 2) { // 판매가 완료된 물품은 제외
+	                continue;
+	            }
+	            if (board.getChaId() == pc.getId()) {
+	                pc.sendPackets(new S_SystemMessage("이미 판매중인 물품이 존재합니다."));
+	                return;
+	            }
+	        }
+
+	        // 판매신청시 패널티가 존재하는지 확인한다.
+	        Calendar panalcal = sellTimeCheck(pc);
+	        if (panalcal != null) {
+	            long panalTime = panalcal.getTimeInMillis() / 1000;
+	            long Realtime = System.currentTimeMillis() / 1000;
+	            int time = (int) (panalTime - Realtime);
+	            if (time > 0) {
+	                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	                String fm = formatter.format(panalcal.getTime());
+	                pc.sendPackets(new S_SystemMessage("판매취소 패널티중입니다."));
+	                pc.sendPackets(new S_SystemMessage("다음 판매가능 시간은 " + fm + " 입니다."));
+	                return;
+	            }
+	        }
+
+	        // 아데나 삭제
+	        pc.getInventory().consumeItem(40308, adenaCount);
+	        L1BoardAdena board = new L1BoardAdena();
+	        int id = getBroadAdenaTable_Id();
+	        board.setId(id);
+	        board.setName("판매중");
+	        board.setDate(currentTime());
+
+	        // 제목 처리 (억 + 만 단위 병기)
+	        long ok = adenaCount / 100000000; // 억 단위
+	        long remain = (adenaCount % 100000000) / 10000; // 만 단위
+
+	        String title = "";
+	        if (ok > 0) {
+	            title += ok + "억";
+	        }
+	        if (remain > 0) {
+	            title += remain + "만";
+	        }
+	        if (title.isEmpty()) {
+	            title = adenaCount + "아데나";
+	        }
+
+	        // 판매금액(현금) 표시
+	        title = title + "[" + (sellCount / 10000) + "만]";
+	        board.setTitle(title);
+
+	        board.setType(0);
+	        board.setChaId(pc.getId());
+	        board.setChaName(pc.getName());
+	        board.setChaAccountName(pc.getAccountName());
+
+	        board.setTradeId(0);
+	        board.setTradeName("");
+	        board.setTradeAccountName("");
+	        board.setAdenaCount(adenaCount);
+	        board.setSellCount(sellCount);
+
+	        int trade_number = getBroadAdenaTable_TradeNumber();
+	        board.setTradeNumber(trade_number);
+
+	        String content = "\r\n" +
+	                "현재상태 : " + board.getName() + "\r\n" +
+	                "물품번호 : " + trade_number + "\r\n" +
+	                "아덴수량 : " + priceformat.format(adenaCount) + "\r\n" +
+	                "판매금액 : " + priceformat.format(sellCount) + "\r\n" +
+	                "판매자 : " + board.getChaName();
+	        board.setContent(content);
+
+	        Calendar cal = Calendar.getInstance();
+	        cal.setTimeInMillis(System.currentTimeMillis());
+	        board.setAdenaTime(cal);
+
+	        // 테이블에 등록한다
+	        BoardAdenaTable.getInstance().writeBoardAdena(board);
+	        // 계정에 판매신청 시간을 저장
+	        sellTimeIn(pc);
+
+	        pc.sendPackets(new S_SystemMessage("[판매신청:" + trade_number + "] 등록이 완료되었습니다."));
+	        pc.sendPackets(new S_SystemMessage("명령어 [거래정보]로 확인 가능합니다."));
+	    } catch (Exception e) {
+	        pc.sendPackets(new S_SystemMessage(".판매신청 [아데나수량][판매금액]"));
+	    }
+	}
+
+	/**
+	 * 판매신청시 계정에 판매를 신청한 시간을 저장한다.
+	 * 
+	 * 계정명, 시간
+	 */
+	private void sellTimeIn(L1PcInstance pc) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("UPDATE accounts SET sell_time=? WHERE login=?");
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(System.currentTimeMillis());
+			cal.add(Calendar.MINUTE, 120); // 2시간
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String fm = formatter.format(cal.getTime());
+			pstm.setString(1, fm);
+			pstm.setString(2, pc.getAccountName());
+
+			pstm.execute();
+
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+	}
+
+	/**
+	 * 판매신청이 가능한 시간인지 체크한다.
+	 */
+	private Calendar sellTimeCheck(L1PcInstance pc) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		Calendar cal = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT * FROM accounts WHERE login=?");
+			pstm.setString(1, pc.getAccountName());
+			rs = pstm.executeQuery();
+			if (rs.next()) {
+				Timestamp ts = (Timestamp) rs.getObject("sell_time");
+				if (ts == null) {
+					return null;
+				}
+
+				cal = timestampToCalendar((Timestamp) rs.getObject("sell_time"));
+			}
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+
+		return cal;
+	}
+
+	/**
+	 * 구매신청시 계정에 판매를 신청한 시간을 저장한다.
+	 * 
+	 * 계정명, 시간
+	 */
+	private void buyTimeIn(L1PcInstance pc) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("UPDATE accounts SET buy_time=? WHERE login=?");
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(System.currentTimeMillis());
+			cal.add(Calendar.MINUTE, 60); // 2시간
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String fm = formatter.format(cal.getTime());
+			pstm.setString(1, fm);
+			pstm.setString(2, pc.getAccountName());
+
+			pstm.execute();
+
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+	}
+
+	/**
+	 * 구매신청이 가능한 시간인지 체크한다.
+	 */
+	private Calendar buyTimeCheck(L1PcInstance pc) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		Calendar cal = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT * FROM accounts WHERE login=?");
+			pstm.setString(1, pc.getAccountName());
+			rs = pstm.executeQuery();
+			if (rs.next()) {
+				Timestamp ts = (Timestamp) rs.getObject("buy_time");
+				if (ts == null) {
+					return null;
+				}
+
+				cal = timestampToCalendar((Timestamp) rs.getObject("buy_time"));
+			}
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+
+		return cal;
+	}
+
+	/**
+	 * 판매완료시 판매자와 구매자의 패널티 시간을 초기화한다.
+	 */
+	private void penalTimedel(String sellAccName, String buyAccName) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		PreparedStatement pstm2 = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("UPDATE accounts SET sell_time=? WHERE login=?");
+			pstm.setString(1, null);
+			pstm.setString(2, sellAccName);
+			pstm.execute();
+
+			pstm2 = con.prepareStatement("UPDATE accounts SET buy_time=? WHERE login=?");
+			pstm2.setString(1, null);
+			pstm2.setString(2, buyAccName);
+			pstm2.execute();
+
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm2);
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+	}
+
+	private Calendar timestampToCalendar(Timestamp ts) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTimeInMillis(ts.getTime());
+		return cal;
+	}
+
+	/**
+	 * 판매취소
+	 */
+	private void sell_adena2(L1PcInstance pc, String cmd) {
+		try {
+			StringTokenizer tok = new StringTokenizer(cmd);
+			int tradenumber = Integer.parseInt(tok.nextToken());
+
+			L1BoardAdena board = BoardAdenaTable.getInstance().getBoardAdena(tradenumber);
+			if (board == null) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + tradenumber + "] 등록되어있지 않습니다."));
+				return;
+			}
+
+			if (board.getType() != 0) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + tradenumber + "] 거래가 진행중이거나 완료된 물품은 취소할 수 없습니다."));
+				return;
+			}
+			if (pc.getId() != board.getChaId()) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + tradenumber + "] 자신이 등록한 물품만 취소할 수 있습니다."));
+				return;
+			}
+
+			// 판매취소시 패널티
+			// int adenacount = (int)(board.getAdenaCount() / 2);
+
+			PrivateWarehouse w = WarehouseManager.getInstance().getPrivateWarehouse(pc.getAccountName());
+			if (w == null) {
+				pc.sendPackets(new S_SystemMessage("패키지 창고 오류! 운영자에게 문의하세요!"));
+				return;
+			}
+			w.storeItem(40308, board.getAdenaCount()); // 패키지 창고 아데나 생성
+
+			// 테이블에서 삭제
+			BoardAdenaTable.getInstance().deleteBoardAdena(tradenumber);
+			pc.sendPackets(new S_SystemMessage("[판매취소:[창고]를 확인해주세요!"));
+			pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "[아이템창고]를 확인해주세요!"));
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".판매취소 [물품번호]"));
+		}
+	}
+
+	/**
+	 * 구매신청
+	 */
+	private void buy_adena1(L1PcInstance pc, String cmd) {
+		try {
+			StringTokenizer tok = new StringTokenizer(cmd);
+			int trade_number = Integer.parseInt(tok.nextToken());
+			if (pc.getLevel() < Config.ADENASHOP_LEVEL) {
+				pc.sendPackets(new S_SystemMessage("구매신청은 " + Config.ADENASHOP_LEVEL + "레벨부터 가능합니다."));
+				return;
+			}
+
+			if (is_tradeAdenaTable(pc.getId())) {
+				pc.sendPackets(new S_SystemMessage("이미 구매중인 물품이 존재합니다. 거래를 종료한 후 구매신청을 해주세요."));
+				return;
+			}
+			if (is_tradeAdenaTableAcc(pc.getAccountName())) {
+				pc.sendPackets(new S_SystemMessage("구매신청은 계정당 1개만 가능합니다. 거래를 종료한 후 구매신청을 해주세요."));
+				return;
+			}
+
+			L1BoardAdena board = BoardAdenaTable.getInstance().getBoardAdena(trade_number);
+			if (board == null) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + trade_number + "] 등록되어있지 않습니다."));
+				return;
+			}
+			if (board.getType() != 0) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + trade_number + "] 거래가 진행중이거나 완료된 물품은 구매할 수 없습니다."));
+				return;
+			}
+			if (pc.getId() == board.getChaId()) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + trade_number + "] 자신이 등록한 물품은 구매할 수 없습니다."));
+				return;
+			}
+
+			// 판매신청시 패널티가 존재하는지 확인한다.
+			Calendar panalcal = buyTimeCheck(pc);
+			if (panalcal != null) {
+				long panalTime = panalcal.getTimeInMillis() / 1000;
+				long Realtime = System.currentTimeMillis() / 1000;
+				int time = (int) (panalTime - Realtime);
+				if (time > 0) {
+					SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+					String fm = formatter.format(panalcal.getTime());
+					pc.sendPackets(new S_SystemMessage("구매취소 패널티중입니다."));
+					pc.sendPackets(new S_SystemMessage("다음 구매가능 시간은 " + fm + " 입니다."));
+					return;
+				}
+			}
+
+			board.setName("거래중");
+			board.setType(1);
+			board.setTradeId(pc.getId());
+			board.setTradeName(pc.getName());
+			board.setTradeAccountName(pc.getAccountName());
+
+			DecimalFormat priceformat = new DecimalFormat("#,###,###,###");
+			// 내용변경
+			String content = "\r\n" + "현재상태 : " + board.getName() + "\r\n" + "물품번호 : " + trade_number + "\r\n" + "아덴수량 : "
+					+ priceformat.format(board.getAdenaCount()) + "\r\n" + "판매금액 : " + priceformat.format(board.getSellCount()) + "\r\n" + "판매자 : "
+					+ board.getChaName();
+			board.setContent(content);
+
+			// 거래중일때 시간을 업데이트
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(System.currentTimeMillis());
+			board.setAdenaTime(cal);
+
+			// 테이블 정보 업데이트
+			BoardAdenaTable.getInstance().updateBoardAdena(board);
+
+			buyTimeIn(pc); // 구매신청후 패널티시간을 지정한다.
+			// 자신에게 편지를 보낸다
+			// String bank = get_bank(board.getChaId()) + content; //등록자의 은행정보 및
+			// 물품정보
+			// LetterTable.getInstance().writeLetter(949, getLetterTime(),
+			// board.getChaName(), pc.getName(), 0, "구매신청:" + trade_number,
+			// bank);
+			// pc.sendPackets(new S_SkillSound(pc.getId(), 1091));
+			// pc.sendPackets(new S_ServerMessage(428)); // 편지가 도착했습니다.
+			// pc.sendPackets(new S_LetterList(pc, 0 ,40));
+			pc.sendPackets(new S_SystemMessage("[구매신청:" + trade_number + "] 신청이 완료되었습니다"));
+			pc.sendPackets(new S_SystemMessage("명령어 [.거래정보] 에서 계좌확인이 가능합니다."));
+			pc.sendPackets(new S_SystemMessage("거래시 상대방이 접속중인지 확인하고 거래를 진행해주세요."));
+			// 판매자에게 편지를 전송한다
+			// String buy_bank = "\r\n" + "구매자 캐릭명:" + pc.getName() + content;
+			// LetterTable.getInstance().writeLetter(949, getLetterTime(),
+			// pc.getName(), board.getChaName(), 0, "구매신청:" + trade_number,
+			// buy_bank);
+
+			L1PcInstance target = L1World.getInstance().getPlayer(board.getChaName());
+			if (target != null) {
+				target.sendPackets(new S_SkillSound(target.getId(), 1091));
+				target.sendPackets(new S_SystemMessage("[구매신청:" + trade_number + "] 구매신청이 들어왔습니다."));
+				target.sendPackets(new S_SystemMessage("명령어 [.거래정보] 에서 확인이 가능합니다."));
+				// target.sendPackets(new S_ServerMessage(428)); // 편지가 도착했습니다.
+				// target.sendPackets(new S_LetterList(target, 0 ,40));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".구매신청 [물품번호]"));
+		}
+	}
+
+	/**
+	 * 구매 취소
+	 */
+	private void buy_adena2(L1PcInstance pc, String cmd) {
+		try {
+			StringTokenizer tok = new StringTokenizer(cmd);
+			int trade_number = Integer.parseInt(tok.nextToken());
+			L1BoardAdena board = BoardAdenaTable.getInstance().getBoardAdena(trade_number);
+			if (board == null) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + trade_number + "] 등록되어있지 않습니다."));
+				return;
+			}
+			if (board.getType() != 1) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + trade_number + "] 거래가 진행중인 물품이 아닙니다."));
+				return;
+			}
+			if (pc.getId() != board.getTradeId()) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + trade_number + "] 자신이 구매신청한 물품이 아닙니다."));
+				return;
+			}
+
+			board.setName("판매중");
+			board.setType(0);
+			board.setTradeId(0);
+			board.setTradeName("");
+			board.setTradeAccountName("");
+
+			DecimalFormat priceformat = new DecimalFormat("#,###,###,###");
+			// 내용변경
+			String content = "\r\n" + "현재상태 : " + board.getName() + "\r\n" + "물품번호 : " + trade_number + "\r\n" + "아덴수량 : "
+					+ priceformat.format(board.getAdenaCount()) + "\r\n" + "판매금액 : " + priceformat.format(board.getSellCount()) + "\r\n" + "판매자 : "
+					+ board.getChaName();
+			board.setContent(content);
+
+			// 시간을 업데이트
+			Calendar cal = Calendar.getInstance();
+			cal.setTimeInMillis(System.currentTimeMillis());
+			board.setAdenaTime(cal);
+
+			// 테이블 정보 업데이트
+			BoardAdenaTable.getInstance().updateBoardAdena(board);
+
+			// 자신에게 편지를 보낸다
+			// String bank = content; //등록자의 은행정보 및 물품정보
+			// LetterTable.getInstance().writeLetter(949, getLetterTime(),
+			// board.getChaName(), pc.getName(), 0, "구매취소:" + trade_number,
+			// bank);
+			// pc.sendPackets(new S_SkillSound(pc.getId(), 1091));
+			// pc.sendPackets(new S_ServerMessage(428)); // 편지가 도착했습니다.
+			// pc.sendPackets(new S_LetterList(pc, 0 ,40));
+			pc.sendPackets(new S_SystemMessage("[구매취소:" + trade_number + "] 구매취소가 완료되었습니다."));
+
+			// 판매자에게 편지를 전송한다
+			// String buy_bank = "\r\n" + "구매자 캐릭명:" + pc.getName() + content;
+			// LetterTable.getInstance().writeLetter(949, getLetterTime(),
+			// pc.getName(), board.getChaName(), 0, "구매취소:" + trade_number,
+			// buy_bank);
+
+			L1PcInstance target = L1World.getInstance().getPlayer(board.getChaName());
+			if (target != null) {
+				target.sendPackets(new S_SkillSound(target.getId(), 1091));
+				target.sendPackets(new S_SystemMessage("[구매취소:" + trade_number + "] 상대방이 구매를 취소 하였습니다."));
+				// target.sendPackets(new S_ServerMessage(428)); // 편지가 도착했습니다.
+				// target.sendPackets(new S_LetterList(target, 0 ,40));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".구매취소 [물품번호]"));
+		}
+	}
+
+	/**
+	 * 판매완료
+	 */
+	private void sell_adena3(L1PcInstance pc, String cmd) {
+		try {
+			StringTokenizer tok = new StringTokenizer(cmd);
+			int trade_number = Integer.parseInt(tok.nextToken());
+
+			L1BoardAdena board = BoardAdenaTable.getInstance().getBoardAdena(trade_number);
+			if (board == null) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + trade_number + "] 등록되어있지 않습니다."));
+				return;
+			}
+			if (board.getType() != 1) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + trade_number + "] 거래가 진행중인 물품이 아닙니다."));
+				return;
+			}
+			if (pc.getId() != board.getChaId()) {
+				pc.sendPackets(new S_SystemMessage("물품번호[" + trade_number + "] 자신이 판매신청한 물품이 아닙니다."));
+				return;
+			}
+
+			board.setName("판매완료");
+			board.setType(2);
+
+			DecimalFormat priceformat = new DecimalFormat("#,###,###,###");
+			// 내용변경
+			String content = "\r\n" + "현재상태 : " + board.getName() + "\r\n" + "물품번호 : " + trade_number + "\r\n" + "아덴수량 : "
+					+ priceformat.format(board.getAdenaCount()) + "\r\n" + "판매금액 : " + priceformat.format(board.getSellCount()) + "\r\n" + "판매자 : "
+					+ board.getChaName() + "\r\n" + "구매자 : " + board.getTradeName();
+			board.setContent(content);
+
+			// 자신에게 편지를 보낸다
+			// String bank = content; //등록자의 은행정보 및 물품정보
+			// LetterTable.getInstance().writeLetter(949, getLetterTime(),
+			// board.getTradeName(), pc.getName(), 0, "판매완료:" + trade_number,
+			// bank);
+			// pc.sendPackets(new S_SkillSound(pc.getId(), 1091));
+			// pc.sendPackets(new S_ServerMessage(428)); // 편지가 도착했습니다.
+			// pc.sendPackets(new S_LetterList(pc, 0 ,40));
+			pc.sendPackets(new S_SystemMessage("[판매완료:" + trade_number + "] 판매가 완료되었습니다"));
+
+			// String bank2 = content + "\r\n\r\n" + "구매가 완료되었습니다." + "\r\n\r\n"
+			// + "인벤토리 하단" + "\r\n" + "부가아이템 창고를 확인해주세요.";
+			// 구매자에게 편지를 보낸다
+			// LetterTable.getInstance().writeLetter(949, getLetterTime(),
+			// pc.getName(), board.getTradeName(), 0, "구매완료:" + trade_number,
+			// bank2);
+
+			// 아데나 지급
+
+			PrivateWarehouse w = WarehouseManager.getInstance().getPrivateWarehouse(board.getTradeAccountName());
+			if (w == null) {
+				pc.sendPackets(new S_SystemMessage("패키지 창고 오류! 운영자에게 문의하세요!"));
+				return;
+			}
+			w.storeItem(40308, board.getAdenaCount());
+
+			L1PcInstance target = L1World.getInstance().getPlayer(board.getTradeName());
+			if (target != null) {
+				target.sendPackets(new S_SkillSound(target.getId(), 1091));
+				// target.sendPackets(new S_ServerMessage(428)); // 편지가 도착했습니다.
+				// target.sendPackets(new S_LetterList(target, 0 ,40));
+				target.sendPackets(new S_SystemMessage("[구매완료:" + trade_number + "] 구매가 완료되었습니다!"));
+				target.sendPackets(new S_SystemMessage("[창고]를 확인해주세요!"));
+				target.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "[아이템창고]를 확인해주세요!"));
+			}
+
+			penalTimedel(board.getChaAccountName(), board.getTradeAccountName()); // 판매자와
+																					// 구매자의
+																					// 패널티를
+																					// 초기화
+
+			board.setTradeId(0);
+			// board.setTradeName("");
+			board.setTradeAccountName("");
+
+			// 테이블 정보 업데이트
+			BoardAdenaTable.getInstance().updateBoardAdena(board);
+
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".판매완료 [물품번호]"));
+		}
+	}
+
+	/**
+	 * 거래가 진행중인 물품이 있는지 찾는다. objid
+	 */
+	private boolean is_tradeAdenaTable(int objid) {
+		for (L1BoardAdena board : BoardAdenaTable.getInstance().getBoardAdenaList()) {
+			if (board.getTradeId() == objid) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 거래가 진행중인 물품이 있는지 찾는다. objid
+	 */
+	private boolean is_tradeAdenaTableAcc(String accountName) {
+		for (L1BoardAdena board : BoardAdenaTable.getInstance().getBoardAdenaList()) {
+			if (board.getTradeAccountName().equals(accountName)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * 테이블에 등록될 id를 받아온다.
+	 */
+	private int getBroadAdenaTable_Id() {
+		int id = 0;
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT * FROM board_adena ORDER BY id DESC");
+			rs = pstm.executeQuery();
+			if (rs.next()) {
+				id = rs.getInt("id");
+			}
+			id++;
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+
+		return id;
+	}
+
+	/**
+	 * 테이블에 등록될 TradeNumber를 받아온다.
+	 */
+	private int getBroadAdenaTable_TradeNumber() {
+		int trade_number = 0;
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT * FROM board_adena ORDER BY trade_number DESC");
+			rs = pstm.executeQuery();
+			if (rs.next()) {
+				trade_number = rs.getInt("trade_number");
+			}
+			if (trade_number == 0) {
+				trade_number = 10000;
+			}
+			trade_number++;
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(rs);
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+
+		return trade_number;
+	}
+
+	private void 자동구매(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer st = new StringTokenizer(param);
+			String OnOff = st.nextToken();
+			if (OnOff.equalsIgnoreCase("켬")) {
+				pc.setAutoBuy(true);
+				pc.sendPackets(new S_SystemMessage("자동구매가 활성화 됩니다."));
+			} else if (OnOff.equalsIgnoreCase("끔")) {
+				pc.setAutoBuy(false);
+				pc.sendPackets(new S_SystemMessage("자동구매가 비활성화 됩니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".자동구매 [켬/끔]"));
+		}
+	}
+	private void 자동드다(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer st = new StringTokenizer(param);
+			String OnOff = st.nextToken();
+			if (OnOff.equalsIgnoreCase("켬")) {
+				pc.setDragonDia(true);
+				pc.sendPackets(new S_SystemMessage("자동으로 드래곤의 다이아몬드를 복용합니다."));
+			} else if (OnOff.equalsIgnoreCase("끔")) {
+				pc.setDragonDia(false);
+				pc.sendPackets(new S_SystemMessage("자동 드다 기능이 꺼졌습니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".자동드다 [켬/끔]"));
+		}
+	}
+
+	private void 장비저장(L1PcInstance pc, String param) {
+		try {
+			StringTokenizer st = new StringTokenizer(param);
+			int type = Integer.parseInt(st.nextToken(), 10);
+			if (type == 1) {
+				ArrayList<L1ItemInstance> list = new ArrayList<>();
+				for (L1ItemInstance item : pc.getInventory().getItems()) {
+					if (item.isEquipped() && (item.getItem().getType2() == 1 || item.getItem().getType2() == 2))
+						list.add(item);
+				}
+				int[] slot = new int[list.size()];
+				for (int i = 0; i < list.size(); i++)
+					slot[i] = ((L1ItemInstance) list.get(i)).getId();
+				pc.setSlot1(slot);
+				slotupdate(pc, 1, pc.getSlot1());
+				pc.sendPackets((ServerBasePacket) new S_SystemMessage("장비슬롯 1번에 저장되었습니다."));
+			} else if (type == 2) {
+				ArrayList<L1ItemInstance> list = new ArrayList<>();
+				for (L1ItemInstance item : pc.getInventory().getItems()) {
+					if (item.isEquipped() && (item.getItem().getType2() == 1 || item.getItem().getType2() == 2))
+						list.add(item);
+				}
+				int[] slot = new int[list.size()];
+				for (int i = 0; i < list.size(); i++)
+					slot[i] = ((L1ItemInstance) list.get(i)).getId();
+				pc.setSlot2(slot);
+				slotupdate(pc, 2, pc.getSlot2());
+				pc.sendPackets((ServerBasePacket) new S_SystemMessage("장비슬롯 2번에 저장되었습니다."));
+			} else {
+				pc.sendPackets((ServerBasePacket) new S_SystemMessage(".장비저장 [1/2]"));
+			}
+		} catch (Exception e) {
+			pc.sendPackets((ServerBasePacket) new S_SystemMessage(".장비저장 [1/2]"));
+		}
+	}
+
+	private void slotupdate(L1PcInstance pc, int type, int[] slot) {
+		Connection con = null;
+		PreparedStatement pstm = null;
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			if (type == 1) {
+				pstm = con.prepareStatement("UPDATE characters SET slot1=? WHERE objid=?");
+			} else {
+				pstm = con.prepareStatement("UPDATE characters SET slot2=? WHERE objid=?");
+			}
+			String slots = "";
+			for (int i : slot)
+				slots = slots + i + ",";
+			pstm.setString(1, slots);
+			pstm.setInt(2, pc.getId());
+			pstm.execute();
+		} catch (SQLException e) {
+			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
+		} finally {
+			SQLUtil.close(pstm);
+			SQLUtil.close(con);
+		}
+	}
+	
+	public static void showAuto(L1PcInstance pc) {
+		ArrayList<String> result = new ArrayList<String>();
+		L1Item temp = ItemTable.getInstance().getTemplate(pc.getAutoPotion());
+		String potion_type = "없음";
+		String autoHtml = "autohunt";
+		if (temp != null) {
+			potion_type = temp.getName();
+		}
+		int totaltime = pc.getSkillEffectTimerSet().getSkillEffectTimeSec(L1SkillId.자동사냥시간);
+		int hours = totaltime / 3600; // 1시간 = 3600초
+		int minutes = (totaltime % 3600) / 60; // 남은 초에서 분 계산
+		result.add("남은 시간: " + (totaltime < 0 ? "0시간0분0초" : hours + "시간" + minutes + "분"));
+		result.add(pc.getAutoHunt() ? "1713" : "1712");
+		result.add("898");
+		result.add(potion_type);
+		result.add("899");
+		result.add(String.valueOf(pc.get_자동귀환퍼센트()));
+		result.add("896");
+		result.add("897");
+		result.add(pc.getAutoTell() ? "1714" : "1715");
+		result.add(pc.getAutoPickup() ? "1714" : "1715");
+		result.add(String.valueOf(pc.get_자동피퍼센트()));
+		result.add(String.valueOf(pc.get_자동마나퍼센트()));
+		result.add("896");
+		result.add("897");
+		result.add("896");
+		result.add("897");
+		if (pc.isWizard()) {
+			result.add(pc.getAutoTurnUndead() ? "ON" : "OFF");
+			result.add(pc.getAutoskill1() ? "ON" : "OFF");
+			result.add(pc.getAutoskill2() ? "ON" : "OFF");
+			result.add(pc.getAutoskill3() ? "ON" : "OFF");
+			result.add(pc.getAutoskill4() ? "ON" : "OFF");
+			result.add(pc.getAutoskill5() ? "ON" : "OFF");
+			result.add(pc.getAutoskill6() ? "ON" : "OFF");
+		} else if (pc.isElf()) {
+			result.add(pc.getAutosoul() ? "ON" : "OFF");
+			result.add(pc.getAutoTripple() ? "ON" : "OFF");
+		}
+		
+		if (result.isEmpty()) {
+			return;
+		}
+		if (pc.isWizard()) {
+			autoHtml = "autohuntM";
+		} else if (pc.isElf()) {
+			autoHtml = "autohuntE";
+		}
+		pc.sendPackets(new S_NPCTalkReturn(pc.getId(), autoHtml, (String[]) result.toArray(new String[result.size()])));
+	}
+	
+	public static boolean abc(L1PcInstance pc, String s) {
+		String s2 = s;
+		if(pc.isGm()) {
+			pc.sendPackets(new S_SystemMessage("대화명: " + s2));
+		}
+		switch (s2) {
+		
+		case "auto11":
+			showAuto(pc);
+			return true;
+		case "auto22":
+			if (Config.자동물약) {
+				showAutoPotionList(pc);
+			} else {
+				pc.sendPackets(new S_SystemMessage("운영자에 의해 자동물약이 비활성화 되었습니다."));
+			}
+			return true;
+		case "auto33":
+			pc.sendPackets(new S_SystemMessage("자동판매 :아덴상단에서 매입하는 아이템들만 표시됩니다."));
+			showAutoSell(pc);
+			return true;
+		case "autosell-on":
+			if (pc.is_자동판매사용()) {
+				pc.sendPackets(String.format("자동판매가 이미 활성화 되어있습니다."));
+			} else {
+				pc.sendPackets(String.format("자동판매를 활성화 하였습니다."));
+				pc.set_자동판매사용(true);
+			}
+			showAutoSell(pc);
+			return true;
+		case "autosell-off":
+			if (pc.is_자동판매사용()) {
+				pc.sendPackets(String.format("자동판매가 비활성화 되었습니다."));
+				pc.set_자동판매사용(false);
+			}
+			showAutoSell(pc);
+			return true;
+		case "autosell-list":
+			showAutoSellList(pc);
+			return true;
+		case "autosell-listup":
+			pc.sendPackets(new S_AutoSellTest(pc,70037));
+			return true;
+		case "autosell-initial":
+			pc.get_자동판매리스트().clear();
+			pc.sendPackets(String.format("자동판매 리스트가 초기화되었습니다."));
+			showAutoSell(pc);
+			return true;
+		case "polyrun":
+			if (pc.getMapId() == 5153 || pc.getMapId() == 5001) {
+				pc.sendPackets(new S_SystemMessage("현재맵에서는 변신할 수 없습니다."));
+				return true;
+			}
+			List<String> top3 = getClassTop3Rankers(pc, pc.getType());
+			if (!top3.contains(pc.getName())) {
+			    pc.sendPackets("클래스별 상위 " + Config.랭커변신가능순위 + "위 랭커가 아니므로 변신할 수 없습니다.");
+			    return true;
+			}
+			switch (pc.getType()) {
+			case 0:
+				if (pc.get_sex() == 0) {
+					L1PolyMorph.doPoly(pc, 20286, 1800, 7);
+				} else {
+					L1PolyMorph.doPoly(pc, 20290, 1800, 7);
+				}
+				break;
+			case 1:
+				if (pc.get_sex() == 0) {
+					L1PolyMorph.doPoly(pc, 19342, 1800, 7); 
+				} else {
+					L1PolyMorph.doPoly(pc, 18384, 1800, 7);
+				}
+				break;
+			case 2:
+				if (pc.get_sex() == 0) {
+					L1PolyMorph.doPoly(pc, 20270, 1800, 7);
+				} else {
+					L1PolyMorph.doPoly(pc, 20274, 1800, 7);
+				}
+				break;
+			case 3:
+				if (pc.get_sex() == 0) {
+					L1PolyMorph.doPoly(pc, 20278, 1800, 7);
+				} else {
+					L1PolyMorph.doPoly(pc, 20282, 1800, 7);
+				}
+				break;
+			case 4:
+				if (pc.get_sex() == 0) {
+					L1PolyMorph.doPoly(pc, 20880, 1800, 7);
+				} else {
+					L1PolyMorph.doPoly(pc, 20885, 1800, 7);
+				}
+				break;
+			}
+			pc.sendPackets(String.format("찬란한 빛 속에서 알수없는 랭커의 힘이 깨어난다"));
+			pc.sendPackets(new S_SkillSound(pc.getId(), 13639));
+			return true;
+		case "polyrun1":
+			if (pc.getMapId() == 5153 || pc.getMapId() == 5001) {
+				pc.sendPackets(new S_SystemMessage("현재맵에서는 변신할 수 없습니다."));
+				return true;
+			}
+			List<String> top10 = getClassTop10Rankers(pc, pc.getType());
+			/*if (!top10.contains(pc.getName())) {
+			    pc.sendPackets("클래스별 상위" + Config.드슬변신랭킹 + "위 랭커가 아니므로 변신할 수 없습니다.");
+			    return true;
+			}*/
+			L1PolyMorph.doPoly(pc, 19094, 1800, 7);
+			pc.sendPackets(String.format("찬란한 빛 속에서 알수없는 랭커의 힘이 깨어난다"));
+			pc.sendPackets(new S_SkillSound(pc.getId(), 13639));
+			return true;
+		case "oneleveldoll": 
+			ArrayList<String> onelevelresult = new ArrayList<String>();
+			onelevelresult.add("1711");
+			onelevelresult.add("1711");
+			onelevelresult.add("1711");
+			onelevelresult.add("1711");
+			onelevelresult.add(Integer.toString(Config.인형합성비용1단계));
+			onelevelresult.add("1710");
+			onelevelresult.add("1709");
+			onelevelresult.add("1682"); //버그베어
+			onelevelresult.add("1683"); //늑대인간
+			onelevelresult.add("1684"); //허수아비
+			onelevelresult.add(pc.getInventory().checkItemCount(41248) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(41248) + "개]");
+			onelevelresult.add(pc.getInventory().checkItemCount(41250) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(41250) + "개]");
+			onelevelresult.add(pc.getInventory().checkItemCount(41916) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(41916) + "개]");
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "oneleveldoll", (String[]) onelevelresult.toArray(new String[onelevelresult.size()])));
+			return true;
+		case "twoleveldoll": 
+			ArrayList<String> twolevelresult = new ArrayList<String>();
+			twolevelresult.add("1711");
+			twolevelresult.add("1711");
+			twolevelresult.add("1711");
+			twolevelresult.add("1711");
+			twolevelresult.add("1711");
+			twolevelresult.add(Integer.toString(Config.인형합성비용2단계));
+			twolevelresult.add("1710");
+			twolevelresult.add("1709");
+			twolevelresult.add("1685");
+			twolevelresult.add("1686");
+			twolevelresult.add("1687");
+			twolevelresult.add("1688");
+			twolevelresult.add("1689");
+			twolevelresult.add(pc.getInventory().checkItemCount(430000) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430000) + "개]");
+			twolevelresult.add(pc.getInventory().checkItemCount(430002) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430002) + "개]");
+			twolevelresult.add(pc.getInventory().checkItemCount(430004) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430004) + "개]");
+			twolevelresult.add(pc.getInventory().checkItemCount(430003) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430003) + "개]");
+			twolevelresult.add(pc.getInventory().checkItemCount(430505) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430505) + "개]");
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "twoleveldoll", (String[]) twolevelresult.toArray(new String[twolevelresult.size()])));
+			return true;
+		case "threelvdoll": 
+			ArrayList<String> threelevelresult = new ArrayList<String>();
+			threelevelresult.add("1711");
+			threelevelresult.add("1711");
+			threelevelresult.add("1711");
+			threelevelresult.add("1711");
+			threelevelresult.add("1711");
+			threelevelresult.add(Integer.toString(Config.인형합성비용3단계));
+			threelevelresult.add("1710");
+			threelevelresult.add("1709");
+			threelevelresult.add("1690");
+			threelevelresult.add("1691");
+			threelevelresult.add("1692");
+			threelevelresult.add("1693");
+			threelevelresult.add("1694");
+			threelevelresult.add(pc.getInventory().checkItemCount(743) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(743) + "개]");
+			threelevelresult.add(pc.getInventory().checkItemCount(447016) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(447016) + "개]");
+			threelevelresult.add(pc.getInventory().checkItemCount(4370600) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(4370600) + "개]");
+			threelevelresult.add(pc.getInventory().checkItemCount(4370599) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(4370599) + "개]");
+			threelevelresult.add(pc.getInventory().checkItemCount(744) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(744) + "개]");
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "threelvdoll", (String[]) threelevelresult.toArray(new String[threelevelresult.size()])));
+			return true;
+		case "fourlvdoll": 
+			ArrayList<String> fourlevelresult = new ArrayList<String>();
+			fourlevelresult.add("1711");
+			fourlevelresult.add("1711");
+			fourlevelresult.add("1711");
+			fourlevelresult.add("1711");
+			fourlevelresult.add("1711");
+			fourlevelresult.add(Integer.toString(Config.인형합성비용4단계));
+			fourlevelresult.add("1710");
+			fourlevelresult.add("1709");
+			fourlevelresult.add("1695");
+			fourlevelresult.add("1696");
+			fourlevelresult.add("1697");
+			fourlevelresult.add("1698");
+			fourlevelresult.add("1699");
+			fourlevelresult.add(pc.getInventory().checkItemCount(5370600) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370600) + "개]");
+			fourlevelresult.add(pc.getInventory().checkItemCount(5370601) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370601) + "개]");
+			fourlevelresult.add(pc.getInventory().checkItemCount(5370604) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370604) + "개]");
+			fourlevelresult.add(pc.getInventory().checkItemCount(5370602) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370602) + "개]");
+			fourlevelresult.add(pc.getInventory().checkItemCount(5370603) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370603) + "개]");
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "fourlvdoll", (String[]) fourlevelresult.toArray(new String[fourlevelresult.size()])));
+			return true;
+		case "dollcraft":
+			ArrayList<String> dollcraftresult = new ArrayList<String>();
+			dollcraftresult.add("인형합성");
+			dollcraftresult.add("1704");
+			dollcraftresult.add("1705");
+			dollcraftresult.add("1706");
+			dollcraftresult.add("1707");
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "dollcraft", (String[]) dollcraftresult.toArray(new String[dollcraftresult.size()])));
+			return true;
+		case "info0":
+			for (L1Object obj : L1World.getInstance().getObject()) {
+				if (obj instanceof L1NpcInstance) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcId() == 500001) { 
+						pc.sendPackets(new S_Board(npc));
+						break;
+					}
+				}
+			}
+			return true;
+		case "info1":
+			for (L1Object obj : L1World.getInstance().getObject()) {
+				if (obj instanceof L1NpcInstance) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcId() == 80006) { 
+						pc.sendPackets(new S_Board(npc));
+						break;
+					}
+				}
+			}
+			return true;
+		case "info2":
+			for (L1Object obj : L1World.getInstance().getObject()) {
+				if (obj instanceof L1NpcInstance) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcId() == 900009646) { 
+						pc.sendPackets(new S_Board(npc));
+						break;
+					}
+				}
+			}
+			return true;
+		case "info3":
+			for (L1Object obj : L1World.getInstance().getObject()) {
+				if (obj instanceof L1NpcInstance) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcId() == 900009647) { 
+						pc.sendPackets(new S_Board(npc));
+						break;
+					}
+				}
+			}
+			return true;
+		case "info4":
+			for (L1Object obj : L1World.getInstance().getObject()) {
+				if (obj instanceof L1NpcInstance) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcId() == 900009645) { 
+						pc.sendPackets(new S_Board(npc));
+						break;
+					}
+				}
+			}
+			return true;
+		case "info5":
+			for (L1Object obj : L1World.getInstance().getObject()) {
+				if (obj instanceof L1NpcInstance) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcId() == 900009644) { 
+						pc.sendPackets(new S_Board(npc));
+						break;
+					}
+				}
+			}
+			return true;
+		case "info6":
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "usercommand"));
+			return true;
+		case "info7":
+			for (L1Object obj : L1World.getInstance().getObject()) {
+				if (obj instanceof L1NpcInstance) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcId() == 900009648) { 
+						pc.sendPackets(new S_Board(npc));
+						break;
+					}
+				}
+			}
+			return true;
+		case "info8":
+			ArrayList<String> userInforesult = new ArrayList<String>();
+			int 근거리추타 = pc.getDmgup() + pc.getDmgupByArmor();
+			int 근거리명중 = pc.getHitup() + pc.getHitupByArmor() + pc.getHitupByDoll();
+			int 원거리추타 = pc.getBowDmgup() + pc.getBowDmgupByArmor() + pc.getBowDmgupByDoll();
+			int 원거리명중 = pc.getBowHitup() + pc.getBowHitupByArmor() + pc.getBowHitupByDoll();
+			int 대미지감소 = pc.getDamageReductionByArmor();
+			int PVP대미지감소 = pc.getPVPDamageReduction();
+			int PVP대미지 = pc.getPVPDamage();
+			int 스턴내성 = pc.getResistance().getStun();
+			int 홀드내성 = pc.getResistance().getHold();
+			int 동빙내성 = pc.getResistance().getFreeze();
+			int 석화내성 = pc.getResistance().getPetrifaction();
+			int 마법대미지감소 = pc.getPVPMagicDamageReduction();
+			int 마법적중 = pc.getHitup_magic();
+			int 피틱 = pc.getHpr();
+			int 엠틱 = pc.getMpr();
+			int 스턴적중 = pc.getHitup_skill();
+			
+			userInforesult.add("근거리 추타 : +");
+			userInforesult.add(String.valueOf(근거리추타));
+			userInforesult.add("근거리 명중 : +");
+			userInforesult.add(String.valueOf(근거리명중));
+			userInforesult.add("원거리 추타 : +");
+			userInforesult.add(String.valueOf(원거리추타));
+			userInforesult.add("원거리 명중 : +");
+			userInforesult.add(String.valueOf(원거리명중));
+			userInforesult.add("대미지 감소 : +");
+			userInforesult.add(String.valueOf(대미지감소));
+			userInforesult.add("PVP대미지 감소 : +");
+			userInforesult.add(String.valueOf(PVP대미지감소));
+			userInforesult.add("PVP대미지 :");
+			userInforesult.add(String.valueOf(PVP대미지));
+			userInforesult.add("마법대미지감소 : +");
+			userInforesult.add(String.valueOf(마법대미지감소));
+			userInforesult.add("스턴적중 : +");
+			userInforesult.add(String.valueOf(스턴적중));
+			userInforesult.add("스턴내성 : +");
+			userInforesult.add(String.valueOf(스턴내성));
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "userinfo", (String[]) userInforesult.toArray(new String[userInforesult.size()])));
+			return true;
+		case "info9":
+			for (L1Object obj : L1World.getInstance().getObject()) {
+				if (obj instanceof L1NpcInstance) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcId() == 82001) { 
+						pc.sendPackets(new S_BoardAdena(npc));
+						break;
+					}
+				}
+			}
+			return true;
+		case "shop0":
+			for (L1Object obj : L1World.getInstance().getObject()) {
+				if (obj instanceof L1NpcInstance) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcId() == 146198) { 
+						pc.sendPackets(new S_PremiumShopSellList(npc.getId()));
+						break;
+					}
+				}
+			}
+			return true;
+		case "shop1":
+			for (L1Object obj : L1World.getInstance().getObject()) {
+				if (obj instanceof L1NpcInstance) {
+					L1NpcInstance npc = (L1NpcInstance) obj;
+					if (npc.getNpcId() == 46198) { 
+						pc.sendPackets(new S_PremiumShopSellList(npc.getId()));
+						break;
+					}
+				}
+			}
+			return true;
+	     default: 
+	            return false;
+	    }
+	}
+	
+	public static List<String> getTotalTop5Rankers() {
+	    List<String> top5 = new ArrayList<>();
+	    String sql = "SELECT char_name FROM characters WHERE accesslevel != 9999 ORDER BY exp DESC LIMIT 5";
+
+	    try (Connection con = L1DatabaseFactory.getInstance().getConnection();
+	         PreparedStatement pstm = con.prepareStatement(sql);
+	         ResultSet rs = pstm.executeQuery()) {
+	        while (rs.next()) {
+	            top5.add(rs.getString("char_name"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return top5;
+	}
+	
+	public static List<String> getClassTop3Rankers(L1PcInstance pc, int type) {
+	    List<String> top5 = new ArrayList<>();
+	    String sql = "SELECT char_name FROM characters WHERE accesslevel != 9999 AND type = " + pc.getType() + " ORDER BY exp DESC LIMIT " + Config.랭커변신가능순위;
+
+	    try (Connection con = L1DatabaseFactory.getInstance().getConnection();
+	         PreparedStatement pstm = con.prepareStatement(sql);
+	         ResultSet rs = pstm.executeQuery()) {
+	        while (rs.next()) {
+	            top5.add(rs.getString("char_name"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return top5;
+	}
+	
+	public static List<String> getClassTop10Rankers(L1PcInstance pc, int type) {
+	    List<String> top5 = new ArrayList<>();
+	    String sql = "SELECT char_name FROM characters WHERE accesslevel != 9999 AND type = " + pc.getType() + " ORDER BY exp DESC LIMIT " + Config.드슬변신랭킹;
+
+	    try (Connection con = L1DatabaseFactory.getInstance().getConnection();
+	         PreparedStatement pstm = con.prepareStatement(sql);
+	         ResultSet rs = pstm.executeQuery()) {
+	        while (rs.next()) {
+	            top5.add(rs.getString("char_name"));
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    }
+	    return top5;
+	}
+	
+	public static void showAutoSellList(L1PcInstance pc) {
+	    ArrayList<String> result = new ArrayList<String>();
+	    result.add("자동판매 등록 리스트");
+	    ArrayList<Integer> autoSellList = pc.get_자동판매리스트();
+	    if (autoSellList.size() != 0) {
+	        for (int itemId : autoSellList) {
+	        	L1ItemInstance item = ItemTable.getInstance().createItem(itemId);
+	            if (item != null) {
+	                String name = item.getItem().getName();
+	                int bless = item.getItem().getBless();
+	                if (bless == 0) {
+	                	  result.add(name + "(축)");
+	                } else {
+	                	  result.add(name);
+	                }
+	            }
+	        }
+	    } else {
+	    	result.add("없음");
+	    }
+	    if (result.isEmpty()) {
+	        return;
+	    }
+	    pc.sendPackets(new S_NPCTalkReturn(
+	        pc.getId(),
+	        "autoselllist",
+	        result.toArray(new String[result.size()])
+	    ));
+	}
+	
+	public static void showAutoSell(L1PcInstance pc) {
+		ArrayList<String> result = new ArrayList<String>();
+		result.add("자동 판매 관리");
+		result.add(pc.is_자동판매사용() ? "ON" : "OFF");
+		result.add(String.valueOf(pc.get_자동판매리스트().size()));
+		
+		if (result.isEmpty()) {
+			return;
+		}
+		pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "autosell", (String[]) result.toArray(new String[result.size()])));
+	}
+	
+	public static boolean checkAutoList(L1PcInstance pc, String s) {
+		switch(s) {
+		case "cmd_u_autopotion_1":  //전투시 물약 유지 on
+			if (!pc.자동물약) {
+				pc.자동물약 = true;
+				pc.sendPackets(new S_SystemMessage("전투시에도 자동물약이 유지됩니다."));
+			} else {
+				pc.자동물약 = false;
+				pc.sendPackets(new S_SystemMessage("전투시에 자동물약이 해제됩니다."));
+			}
+		   	showAutoPotionList(pc);
+			return true;
+		case "cmd_u_autopotion_2":  //전투시 물약 유지 off
+			pc.자동물약 = false;
+			pc.sendPackets(new S_SystemMessage("전투시에는 자동물약이 중지됩니다."));
+			showAutoPotionList(pc);
+			return true;
+		case "cmd_u_potion_1":  //물약 -10
+			pc.set_자동물약퍼센트(IntRange.ensure((pc.get_자동물약퍼센트() -10), 30, 95));
+			showAutoPotionList(pc);
+			return true;
+		case "cmd_u_potion_2": //물약 -1
+			pc.set_자동물약퍼센트(IntRange.ensure((pc.get_자동물약퍼센트() -1), 30, 95));
+			showAutoPotionList(pc);
+			return true;
+		case "cmd_u_potion_3": //물약 +1
+			pc.set_자동물약퍼센트(IntRange.ensure((pc.get_자동물약퍼센트() +1), 30, 95));
+			showAutoPotionList(pc);
+			return true;
+		case "cmd_u_potion_4": //물약 +10
+			pc.set_자동물약퍼센트(IntRange.ensure((pc.get_자동물약퍼센트() +10), 30, 95));
+			showAutoPotionList(pc);
+			return true;
+		case "cmd_u_potion_5": //자동물약 시작
+			if (pc.is_자동물약사용()) {
+				pc.sendPackets(new S_SystemMessage("이미 자동물약모드 시작 상태입니다."));
+				return true;
+			}
+			if (pc.getAutoHunt()) {
+				pc.sendPackets(new S_SystemMessage("자동사냥중에는 사용할 수 없습니다."));
+				return true;
+			}
+			pc.set_자동물약사용(true);
+			pc.sendPackets(new S_SystemMessage("자동물약 모드 시작"));
+			showAutoPotionList(pc);		
+			return true;
+		case "cmd_u_potion_6": //자동물약 중지
+			if (!pc.is_자동물약사용()) {
+				pc.sendPackets(new S_SystemMessage("현재 자동물약모드 상태가 아닙니다."));
+				return true;
+			}
+			pc.set_자동물약사용(false);
+			pc.sendPackets(new S_SystemMessage("자동물약 모드 중지"));
+			showAutoPotionList(pc);			
+			return true;
+		case "cmd_u_potion_7": //자동 물약 선택
+			pc.sendPackets(new S_AutoPotionList(pc));
+			return true;
+		case "cmd_u_convenience_1":
+			if (pc.is_라이트켬()) {
+				pc.sendPackets(new S_SystemMessage("라이트를 끔 상태입니다."));
+				pc.set_라이트켬(false);
+				pc.sendPackets(new S_Ability(3, false));
+			} else {
+				pc.sendPackets(new S_SystemMessage("라이트를 켬 상태입니다."));
+				pc.set_라이트켬(true);
+				pc.sendPackets(new S_Ability(3, true));
+			}
+			showAutoPotionList(pc);
+			return true;
+		case "cmd_u_autobuff_1": //자동버프 설정
+			showAutoBuffList(pc);
+			return true;
+		case "cmd_u_autobuff_2": //자동버프 시작
+			if (pc.is_자동버프사용()) {
+				pc.sendPackets(new S_SystemMessage("이미 자동버프모드 시작 상태입니다."));
+				return true;
+			}
+			if (pc.getWeapon() == null) {
+				pc.sendPackets(new S_SystemMessage("무기를 착용해 주세요."));
+				return true;
+			}
+			if (pc.getAutoHunt()) {
+				pc.sendPackets(new S_SystemMessage("자동사냥중에는 사용할 수 없습니다."));
+				return true;
+			}
+			pc.set_자동버프사용(true);
+			pc.sendPackets(new S_SystemMessage("자동버프: 시작"));
+			showAutoPotionList(pc);	
+			return true;
+		case "cmd_u_autobuff_3": //자동버프 중지
+			if (!pc.is_자동버프사용()) {
+				pc.sendPackets(new S_SystemMessage("현재 자동버프모드 상태가 아닙니다."));
+				return true;
+			}
+			pc.set_자동버프사용(false);
+			pc.sendPackets(new S_SystemMessage("자동버프: 중지"));
+			showAutoPotionList(pc);		
+			return true;
+		case "cmd_u_autobuff_4": //전투시 자동 버프
+			if (!pc.is_자동버프전투시사용()) {
+				pc.sendPackets(new S_SystemMessage("전투시 자동버프: 유지함"));
+				pc.set_자동버프전투시사용(true);
+			} else {
+				pc.sendPackets(new S_SystemMessage("전투시 자동버프: 유지안함"));
+				pc.set_자동버프전투시사용(false);
+			}
+			showAutoPotionList(pc);
+			return true;
+		case "cmd_u_autobuff_5": //세이프존 자동 버프
+			if (!pc.is_자동버프세이프티존사용()) {
+				pc.sendPackets(new S_SystemMessage("세이프존 자동버프: 유지함"));
+				pc.set_자동버프세이프티존사용(true);
+			} else {
+				pc.sendPackets(new S_SystemMessage("세이프존 자동버프: 유지안함"));
+				pc.set_자동버프세이프티존사용(false);
+			}
+			showAutoPotionList(pc);
+			return true;
+		case "auto_buff_2"://라이트
+		case "auto_buff_3"://실드
+		case "auto_buff_8"://홀리 웨폰
+		case "auto_buff_12"://인챈트 웨폰
+		case "auto_buff_14"://디크리즈 웨이트
+		case "auto_buff_114"://글로잉 웨폰
+		case "auto_buff_115"://샤이닝 실드
+		case "auto_buff_117"://브레이브 멘탈
+
+		case "auto_buff_88": //리덕션 아머</a>:<var img src="#3": //<br>				
+		case "auto_buff_89": //바운스 어택</a>:<var img src="#4": //<br>
+		case "auto_buff_90": //솔리드 캐리지</a>:<var img src="#5": //<br>
+		case "auto_buff_91": //카운터 배리어</a>:<var img src="#6": //<br>
+
+		case "auto_buff_21": //블래스드 아머</a>:<var img src="#5": //<br>
+		case "auto_buff_26": //인챈트 덱스터리티</a>:<var img src="#6": //<br>
+		case "auto_buff_42": //인챈트 마이티</a>:<var img src="#7": //<br>
+		case "auto_buff_43": //헤이스트</a>:<var img src="#8": //<br>
+		case "auto_buff_48": //블레스 웨폰</a>:<var img src="#9": //<br><br>
+		case "auto_buff_129": //레지스트 매직</a>:<var img src="#10": //<br>
+		case "auto_buff_134": //카운터 미러</a>:<var img src="#11": //<br>
+		case "auto_buff_137": //클리어 마인드</a>:<var img src="#12": //<br>
+		case "auto_buff_138": //레지스트 엘리멘트</a>:<var img src="#13": //<br> 
+		case "auto_buff_147": //프로텍션 프롬 엘리멘트</a>:<var img src="#14": //<br><br>
+			
+		case "auto_buff_148": //파이어 웨폰</a>:<var img src="#30": //<br>
+		case "auto_buff_155": //파이어 블레스</a>:<var img src="#16": //<br>
+		case "auto_buff_163": //버닝 웨폰</a>:<var img src="#17": //<br>
+		case "auto_buff_171": //엘리멘탈 파이어</a>:<var img src="#18": //<br>
+		case "auto_buff_175": //소울 오브 프레임</a>:<var img src="#19": //<br>
+		case "auto_buff_176": //어디셔널 파이어</a>:<var img src="#20": //<br>
+			
+		case "auto_buff_158": //네이쳐스 터치</a>:<var img src="#22": //<br>
+		case "auto_buff_160": //아쿠아 프로텍트</a>:<var img src="#23": //<br>
+			
+		case "auto_buff_149": //윈드 샷</a>:<var img src="#21": //<br>
+		case "auto_buff_150": //윈드 워크</a>:<var img src="#25": //<br>
+		case "auto_buff_156": //스톰아이</a>:<var img src="#26": //<br>
+		case "auto_buff_166": //스톰 샷</a>:<var img src="#27": //<br>
+			
+		case "auto_buff_151": //어스 스킨</a>:<var img src="#15": //<br>
+		case "auto_buff_159": //어스 블레스</a>:<var img src="#32": //<br>
+		case "auto_buff_168": //아이언 스킨</a>:<var img src="#33": //<br>
+		case "auto_buff_169": //엑조틱 바이탈라이즈</a>:<var img src="#34": //<br>
+
+		case "auto_buff_52": //홀리 워크</a>:<var img src="#10": //<br>
+		case "auto_buff_54": //그레이터 헤이스트</a>:<var img src="#11": //<br>
+		case "auto_buff_79": //어드밴스 스피릿</a>:<var img src="#12": //<br><br>
+
+		case "auto_buff_98": //인챈트 베놈</a>:<var img src="#5": //<br>
+		case "auto_buff_99": //쉐도우 아머</a>:<var img src="#6": //<br>
+		case "auto_buff_101": //무빙 악셀레이션</a>:<var img src="#7": //<br>
+		case "auto_buff_102": //버닝 스피릿츠</a>:<var img src="#8": //<br>
+		case "auto_buff_104": //베놈 레지스트</a>:<var img src="#9": //<br>
+		case "auto_buff_105": //더블 브레이크</a>:<var img src="#10": //<br>
+		case "auto_buff_106": //언케니 닷지</a>:<var img src="#11": //<br>
+		case "auto_buff_107": //쉐도우 팽</a>:<var img src="#12": //<br>
+		case "auto_buff_109": //드레스 마이티</a>:<var img src="#13": //<br>
+		case "auto_buff_110": //드레스 덱스터리티</a>:<var img src="#14": //<br>
+		case "auto_buff_111": //드레스 이베이젼</a>:<var img src="#15": //<br>
+			s = s.replace("auto_buff_", "");
+			int skillid = Integer.valueOf(s);
+			
+			if (skillid == L1SkillId.ELEMENTAL_PROTECTION) {
+				if (pc.getElfAttr() == 0) {
+					pc.sendPackets(new S_SystemMessage("속성 선택후에 사용가능힙니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.HOLY_WEAPON) {
+				if (pc.is_자동버프리스트(L1SkillId.ENCHANT_WEAPON) || pc.is_자동버프리스트(L1SkillId.BLESS_WEAPON)) {
+					pc.sendPackets(new S_SystemMessage("인챈트웨폰/블레스웨폰과 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.ENCHANT_WEAPON) {
+				if (pc.is_자동버프리스트(L1SkillId.HOLY_WEAPON) || pc.is_자동버프리스트(L1SkillId.BLESS_WEAPON)) {
+					pc.sendPackets(new S_SystemMessage("홀리웨폰/블레스웨폰과 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.BLESS_WEAPON) {
+				if (pc.is_자동버프리스트(L1SkillId.ENCHANT_WEAPON) || pc.is_자동버프리스트(L1SkillId.HOLY_WEAPON)) {
+					pc.sendPackets(new S_SystemMessage("인챈트웨폰/홀리웨폰과 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.FIRE_WEAPON) {
+				if (pc.is_자동버프리스트(L1SkillId.FIRE_BLESS)) {
+					pc.sendPackets(new S_SystemMessage("파이어 웨폰/블레스 오브 파이어와 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.FIRE_BLESS) {
+				if (pc.is_자동버프리스트(L1SkillId.FIRE_WEAPON)) {
+					pc.sendPackets(new S_SystemMessage("파이어 웨폰/블레스 오브 파이어와 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.STORM_EYE) {
+				if (pc.is_자동버프리스트(L1SkillId.WIND_SHOT) || pc.is_자동버프리스트(L1SkillId.STORM_SHOT)) {
+					pc.sendPackets(new S_SystemMessage("윈드샷/아이오브스톰/스톰샷과 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.WIND_SHOT) {
+				if (pc.is_자동버프리스트(L1SkillId.STORM_EYE) || pc.is_자동버프리스트(L1SkillId.STORM_SHOT)) {
+					pc.sendPackets(new S_SystemMessage("윈드샷/아이오브스톰/스톰샷과 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.STORM_SHOT) {
+				if (pc.is_자동버프리스트(L1SkillId.STORM_EYE) || pc.is_자동버프리스트(L1SkillId.WIND_SHOT)) {
+					pc.sendPackets(new S_SystemMessage("윈드샷/아이오브스톰/스톰샷과 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.SHIELD) {
+				if (pc.is_자동버프리스트(L1SkillId.SHINING_AURA) || pc.is_자동버프리스트(L1SkillId.EARTH_SKIN) || pc.is_자동버프리스트(L1SkillId.EARTH_BLESS)
+						|| pc.is_자동버프리스트(L1SkillId.IRON_SKIN) || pc.is_자동버프리스트(L1SkillId.SHADOW_ARMOR)) {
+					pc.sendPackets(new S_SystemMessage("실드와 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.EARTH_SKIN) {
+				if (pc.is_자동버프리스트(L1SkillId.SHIELD) || pc.is_자동버프리스트(L1SkillId.EARTH_BLESS) || pc.is_자동버프리스트(L1SkillId.IRON_SKIN)) {
+					pc.sendPackets(new S_SystemMessage("어스스킨과 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.EARTH_BLESS) {
+				if (pc.is_자동버프리스트(L1SkillId.SHIELD) || pc.is_자동버프리스트(L1SkillId.EARTH_SKIN) || pc.is_자동버프리스트(L1SkillId.IRON_SKIN)) {
+					pc.sendPackets(new S_SystemMessage("블레스오브어스와 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.IRON_SKIN) {
+				if (pc.is_자동버프리스트(L1SkillId.SHIELD) || pc.is_자동버프리스트(L1SkillId.EARTH_BLESS) || pc.is_자동버프리스트(L1SkillId.EARTH_SKIN)) {
+					pc.sendPackets(new S_SystemMessage("아이언스킨과 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.SHADOW_ARMOR) {
+				if (pc.is_자동버프리스트(L1SkillId.SHIELD)) {
+					pc.sendPackets(new S_SystemMessage("쉴드와 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (skillid == L1SkillId.SHINING_AURA) {
+				if (pc.is_자동버프리스트(L1SkillId.SHIELD)) {
+					pc.sendPackets(new S_SystemMessage("실드와 중복하여 사용할 수 없습니다."));
+					return false;
+				}
+			}
+			if (pc.getElfAttr() == 1) { // 땅계열
+				switch(skillid) {
+				case L1SkillId.FIRE_BLESS: 
+				case L1SkillId.FIRE_WEAPON:
+				case L1SkillId.BURNING_WEAPON: 		
+				case L1SkillId.ELEMENTAL_FIRE: 		
+				case L1SkillId.SOUL_OF_FLAME: 		
+				case L1SkillId.ADDITIONAL_FIRE: 		
+				case L1SkillId.NATURES_TOUCH: 		
+				case L1SkillId.AQUA_PROTECTER: 		
+				case L1SkillId.WIND_SHOT:
+				case L1SkillId.WIND_WALK:
+				case L1SkillId.STORM_EYE:
+				case L1SkillId.STORM_SHOT: 		
+					pc.sendPackets(new S_SystemMessage("다른 계열 마법은 활성화 할 수 없습니다."));
+					return false;
+				}
+				
+			} else if (pc.getElfAttr() == 2) { // 불계열
+				switch(skillid) {
+				case L1SkillId.NATURES_TOUCH: 		
+				case L1SkillId.AQUA_PROTECTER: 		
+				case L1SkillId.WIND_SHOT:
+				case L1SkillId.WIND_WALK:
+				case L1SkillId.STORM_EYE:
+				case L1SkillId.STORM_SHOT: 	
+				case L1SkillId.EARTH_SKIN:
+				case L1SkillId.EARTH_BLESS:
+				case L1SkillId.IRON_SKIN:  		
+				case L1SkillId.EXOTIC_VITALIZE:  		
+					pc.sendPackets(new S_SystemMessage("다른 계열 마법은 활성화 할 수 없습니다."));
+					return false;
+				}
+			} else if (pc.getElfAttr() == 4) { // 물계열
+				switch(skillid) {
+				case L1SkillId.FIRE_BLESS: 
+				case L1SkillId.FIRE_WEAPON:
+				case L1SkillId.BURNING_WEAPON: 		
+				case L1SkillId.ELEMENTAL_FIRE: 		
+				case L1SkillId.SOUL_OF_FLAME: 		
+				case L1SkillId.ADDITIONAL_FIRE: 
+				case L1SkillId.WIND_SHOT:
+				case L1SkillId.WIND_WALK:
+				case L1SkillId.STORM_EYE:
+				case L1SkillId.STORM_SHOT: 	
+				case L1SkillId.EARTH_SKIN:
+				case L1SkillId.EARTH_BLESS:
+				case L1SkillId.IRON_SKIN:  		
+				case L1SkillId.EXOTIC_VITALIZE: 		
+					pc.sendPackets(new S_SystemMessage("다른 계열 마법은 활성화 할 수 없습니다."));
+					return false;
+				}
+			} else if (pc.getElfAttr() == 8) { // 바람계열
+				switch(skillid) {
+				case L1SkillId.FIRE_BLESS: 
+				case L1SkillId.FIRE_WEAPON:
+				case L1SkillId.BURNING_WEAPON: 		
+				case L1SkillId.ELEMENTAL_FIRE: 		
+				case L1SkillId.SOUL_OF_FLAME: 		
+				case L1SkillId.ADDITIONAL_FIRE: 		
+				case L1SkillId.EARTH_SKIN:
+				case L1SkillId.EARTH_BLESS:
+				case L1SkillId.IRON_SKIN:  		
+				case L1SkillId.EXOTIC_VITALIZE: 		
+				case L1SkillId.NATURES_TOUCH: 		
+				case L1SkillId.AQUA_PROTECTER: 		
+					pc.sendPackets(new S_SystemMessage("다른 계열 마법은 활성화 할 수 없습니다."));
+					return false;
+				}
+			}
+			if (!SkillsTable.getInstance().spellCheck(pc.getId(), skillid)) {
+				pc.remove_자동버프리스트(skillid);
+				L1Skills skill = SkillsTable.getInstance().getTemplate(skillid);
+				if (skill != null)
+					pc.sendPackets(new S_SystemMessage("\\aD자동버프 설정 실패: \\aA"+ skill.getName()+"(습득하지 않은 마법)"));
+			} else {
+				pc.check_자동버프리스트(skillid);
+			}
+			showAutoBuffList(pc);
+			return true;
+		}
+		return false;
+	}
+	
+	public static void showAutoPotionList(L1PcInstance pc) {
+		ArrayList<String> result = new ArrayList<String>();
+		result.add(pc.자동물약 ? "3073" : "3074"); //on 0 전투시 자동물약 상태
+		result.add(pc.is_자동물약사용() ? "3073" : "3074"); //on 1 자동물약 상태
+		result.add(String.valueOf(pc.get_자동물약퍼센트()));//"92"); //2 자동물약 퍼센트
+		result.add("off"); //3
+		result.add("-1"); //4
+		result.add("3073"); //5
+		result.add("3073"); //6
+		result.add("3074"); //off 7
+		result.add("3074"); //8
+		result.add("3074"); //9
+		result.add("3074"); //10
+		result.add("3073"); //11
+		result.add(""); //12 서버이름
+		result.add("3073"); //13
+		result.add("3073"); //14
+		result.add(pc.is_자동버프사용() ? "3073" : "3074"); //15 자동버프 상태
+		result.add(pc.is_자동버프전투시사용() ? "3073" : "3074"); //16 전투시 자동버프 onoff
+		result.add(pc.is_자동버프세이프티존사용() ? "3073" : "3074"); //17 세이프존 자동버프 onoff
+		result.add(pc.is_라이트켬() ? "3073" : "3074"); //19
+		if (result.isEmpty()) {
+			return;
+		}
+
+		pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "cmd_u1", result.toArray(new String[result.size()])));
+	}
+	
+	public static void showAutoBuffList(L1PcInstance pc) {
+		ArrayList<String> result = new ArrayList<String>();
+
+		ArrayList<Integer> _자동버프리스트 = pc.get_자동버프리스트();
+
+		String html = "";
+		
+		/*if (pc.getElfAttr() == 0) {
+			_자동버프리스트.clear();
+		}*/
+		switch(pc.getType()) {
+		case 0: //군주
+			result.add(_자동버프리스트.contains(L1SkillId.LIGHT) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.SHIELD) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.HOLY_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.ENCHANT_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.DECREASE_WEIGHT) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.GLOWING_AURA) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.SHINING_AURA) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.BRAVE_AURA) ? "3073" : "3074"); //on 
+			html = "auto_buff_0";
+			break;
+		case 1: //기사
+			result.add(_자동버프리스트.contains(L1SkillId.LIGHT) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.SHIELD) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.HOLY_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.REDUCTION_ARMOR) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.BOUNCE_ATTACK) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.SOLID_CARRIAGE) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.COUNTER_BARRIER) ? "3073" : "3074"); //on 
+			html = "auto_buff_1";
+			break;
+		case 2: //요정
+			result.add(_자동버프리스트.contains(L1SkillId.LIGHT) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.SHIELD) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.HOLY_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.ENCHANT_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.DECREASE_WEIGHT) ? "3073" : "3074"); //on
+			result.add(_자동버프리스트.contains(L1SkillId.BLESSED_ARMOR) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.PHYSICAL_ENCHANT_DEX) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.PHYSICAL_ENCHANT_STR) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.HASTE) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.BLESS_WEAPON) ? "3073" : "3074"); //on 
+
+			result.add(_자동버프리스트.contains(L1SkillId.RESIST_MAGIC) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.COUNTER_MIRROR) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.CLEAR_MIND) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.ELEMENTAL_PROTECTION) ? "3073" : "3074"); //on 
+
+			result.add(_자동버프리스트.contains(L1SkillId.FIRE_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.FIRE_BLESS) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.BURNING_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.ELEMENTAL_FIRE) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.SOUL_OF_FLAME) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.ADDITIONAL_FIRE) ? "3073" : "3074"); //on 
+
+			result.add(_자동버프리스트.contains(L1SkillId.NATURES_TOUCH) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.AQUA_PROTECTER) ? "3073" : "3074"); //on 
+
+			result.add(_자동버프리스트.contains(L1SkillId.WIND_SHOT) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.WIND_WALK) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.STORM_EYE) ? "3073" : "3074"); //on
+			result.add(_자동버프리스트.contains(L1SkillId.STORM_SHOT) ? "3073" : "3074"); //on 
+			
+			result.add(_자동버프리스트.contains(L1SkillId.EARTH_SKIN) ? "3073" : "3074"); //on
+			result.add(_자동버프리스트.contains(L1SkillId.EARTH_BLESS) ? "3073" : "3074"); //on
+			result.add(_자동버프리스트.contains(L1SkillId.IRON_SKIN) ? "3073" : "3074"); //on
+			result.add(_자동버프리스트.contains(L1SkillId.EXOTIC_VITALIZE) ? "3073" : "3074"); //on
+
+			html = "auto_buff_2";
+			break;
+		case 3: //마법사
+			result.add(_자동버프리스트.contains(L1SkillId.LIGHT) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.SHIELD) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.HOLY_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.ENCHANT_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.DECREASE_WEIGHT) ? "3073" : "3074"); //on
+			result.add(_자동버프리스트.contains(L1SkillId.BLESSED_ARMOR) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.PHYSICAL_ENCHANT_DEX) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.PHYSICAL_ENCHANT_STR) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.HASTE) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.BLESS_WEAPON) ? "3073" : "3074"); //on
+
+			result.add(_자동버프리스트.contains(L1SkillId.HOLY_WALK) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.GREATER_HASTE) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.ADVANCE_SPIRIT) ? "3073" : "3074"); //on 
+
+			html = "auto_buff_3";
+			break;
+		case 4: //다크엘프
+			result.add(_자동버프리스트.contains(L1SkillId.LIGHT) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.SHIELD) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.HOLY_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.ENCHANT_WEAPON) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.DECREASE_WEIGHT) ? "3073" : "3074"); //on
+			result.add(_자동버프리스트.contains(L1SkillId.ENCHANT_VENOM) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.SHADOW_ARMOR) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.MOVING_ACCELERATION) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.BURNING_SPIRIT) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.VENOM_RESIST) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.DOUBLE_BRAKE) ? "3073" : "3074"); //on 
+
+			result.add(_자동버프리스트.contains(L1SkillId.UNCANNY_DODGE) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.SHADOW_FANG) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.DRESS_MIGHTY) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.DRESS_DEXTERITY) ? "3073" : "3074"); //on 
+			result.add(_자동버프리스트.contains(L1SkillId.DRESS_EVASION) ? "3073" : "3074"); //on 
+			html = "auto_buff_4";
+			break;
+		}
+ 		if (result.isEmpty()) {
+			return;
+		}
+		pc.sendPackets(new S_NPCTalkReturn(pc.getId(), html, result.toArray(new String[result.size()])));
+	}
+	
+	private void autoclanjoin(L1PcInstance pc) {
+		try {
+			//실패조건
+			if (pc.getClanRank() != 4) { 
+			    pc.sendPackets(new S_ServerMessage(92, pc.getName())); // \f1%0은 프린스나 프린세스가 아닙니다.
+			      return;
+			}
+			if (pc.isFishing()) {
+				pc.sendPackets(new S_SystemMessage("낚시중 일때는 행동이 제한됩니다."));
+				return;	
+			}
+			if (pc.getClanid()==0 || pc.getClanid()== 1) {//신규혈 아이디
+				pc.sendPackets(new S_SystemMessage("혈맹창설 상태가 아닙니다."));
+				return;	
+			}
+			if (pc.isPrivateShop()) {
+				pc.sendPackets(new S_SystemMessage("개인상점중엔 사용할수 없습니다."));
+				return;	
+			}
+			if (pc.isPinkName() || pc.isParalyzed() || pc.isSleeped()) {
+				pc.sendPackets(new S_SystemMessage("보라중 마비중 잠수중에는 사용할 수 없습니다."));
+				return;
+			}
+			if (pc.isDead()) {
+				pc.sendPackets(new S_SystemMessage("죽은 상태에선 실행 할수없습니다."));
+				return;
+			}
+				
+			if(pc.getX()>=33426 && pc.getX()<=33435 && pc.getY()>=32795 && pc.getY()<=32802 && pc.getMapId()==4){
+				for(L1PcInstance target : L1World.getInstance().getAllPlayers3()){
+					if(target.getId() != pc.getId() && target.getAccountName().toLowerCase().equals(pc.getAccountName().toLowerCase()) && target.isAutoClanjoin() ){
+						pc.sendPackets(new S_ChatPacket(pc,"이미 당신의 보조 캐릭터가 무인가입 상태입니다."));
+						return;
+					}
+				}
+				pc.setAutoClanjoin(true);			
+				L1PolyMorph.undoPolyAutoClanjoin(pc);	
+				LinAllManager.getInstance().LogLogOutAppend(pc.getName(), pc.getNetConnection().getHostname());
+				LineageClient client = pc.getNetConnection();
+				pc.setNetConnection(null);
+				WarehouseManager w = WarehouseManager.getInstance();
+				w.delPrivateWarehouse(pc.getAccountName());
+				w.delPackageWarehouse(pc.getAccountName());
+				try { 
+					pc.save();
+					pc.saveInventory();
+				} catch(Exception e) {                    		
+				}
+				client.setActiveChar(null);
+				client.setLoginAvailable();
+				client.CharReStart(true);
+				S_PacketBox pb = new S_PacketBox(S_PacketBox.LOGOUT);
+				client.sendPacket(pb);
+			}else{
+				pc.sendPackets(new S_ChatPacket(pc,"기란마을 여관 앞 공간에서만 사용할 수 있습니다."));
+			}
+		} catch (Exception e) {
+			System.out.println(pc.getName()+"무인가입 처리 에러");
+		}		
+	}
+
+	// 자동사냥 리뉴얼 by 카시
+	public static boolean checkAutohunt(L1PcInstance pc, String s) {
+		int[] AUTO_POTION_LIST;
+		AUTO_POTION_LIST= new int[] { 40010, 40011, 40012 };
+		
+		ArrayList<Integer> potions = new ArrayList<Integer>(); 
+		for (L1ItemInstance item : pc.getInventory().getItems()) {
+			for (Integer id : AUTO_POTION_LIST) {
+				if (item.getItemId() == id) {
+					potions.add(id);
+				}
+			}
+		}
+		switch (s) {
+		case "autohunt-on":
+			if (pc.getAutoHunt()) {
+				if (pc._AutoController != null) {
+					pc.EndAutoController();
+					pc.sendPackets(new S_SystemMessage("\\fT자동 사냥을 종료합니다."));
+				}
+			} else {
+				L1PcInventory.autoHuntItems.clear();
+				if (CharPosUtil.getZoneType(pc) == 1) {
+					pc.sendPackets(new S_SystemMessage("\\fTSafety zone에서는 시작할 수 없습니다."));
+					return true;
+				}
+				try (Connection con = L1DatabaseFactory.getInstance().getConnection();
+						PreparedStatement ps = con
+								.prepareStatement("SELECT 1 FROM autohunt_maps WHERE map_id = ?")) {
+					ps.setInt(1, pc.getMapId());
+					try (ResultSet rs = ps.executeQuery()) {
+						if (!rs.next()) {
+							pc.sendPackets(new S_SystemMessage("\\f3이 지역에서는 자동사냥을 사용할 수 없습니다."));
+							return true;
+						}
+					}
+				} catch (Exception e) {
+				}
+				if (pc.getParty() != null) {
+					pc.sendPackets(new S_SystemMessage("\\fT파티중에는 자동사냥을 할 수 없습니다."));
+					return true;
+				}
+				if (!pc.getInventory().checkItem(46175)) {
+					pc.sendPackets(new S_SystemMessage("\\fT기란 마을 귀환 부적을 구매한 후에 자동사냥을 시작하십시오."));
+					return true;
+				}
+				if (pc.getSkillEffectTimerSet().getSkillEffectTimeSec(L1SkillId.자동사냥시간) < 10) {
+					pc.sendPackets(new S_SystemMessage("\\fT자동사냥시간이 부족합니다. 충전 후 다시 시도하세요."));
+					showAuto(pc);
+					return true;
+				}
+				if (pc.getWeapon() == null) {
+					pc.sendPackets(new S_SystemMessage("\\fT무기 착용 후에 자동사냥을 시작하십시오."));
+					return true;
+				}
+				if (pc.getCurrentSpriteId() == pc.getClassId()) {
+					pc.sendPackets(new S_SystemMessage("\\fT변신 후에 자동사냥을 시작하십시오."));
+					return true;
+				}
+				if (pc.isAutoPotion()) {
+					pc.setAutoPotion(false);
+					pc.setHealItemNum(0);
+					pc.setHealVal(0);
+				}
+				if (pc.is_자동물약사용()) {
+					pc.set_자동물약사용(false);
+				}
+				if (pc.is_자동버프사용()) {
+					pc.set_자동버프사용(false);
+				}
+				if (pc.getAutoPotion() == 0) {
+					pc.sendPackets(new S_SystemMessage("\\fT자동물약을 먼저 선택해주세요."));
+					return true;
+				}
+				if (!pc.getInventory().checkItem(pc.getAutoPotion())) {
+					pc.sendPackets(new S_SystemMessage("\\fT인벤토리에 물약이 없습니다."));
+					return true;
+				}
+				if (pc._AutoController != null) {
+					pc.sendPackets(new S_SystemMessage("\\fT이미 자동사냥중입니다."));
+					return true;
+				}
+				pc.StartAutoController();
+				pc.setAutoPolyID(pc.getCurrentSpriteId());
+				pc.sendPackets(new S_SystemMessage("자동 사냥을 시작합니다."));
+			}
+			showAuto(pc);
+			return true;
+		case "autohunt-skill-":
+			showAutoPotionList(pc);
+			return true;
+		case "autohunt-1":
+			pc.set_자동귀환퍼센트(IntRange.ensure((pc.get_자동귀환퍼센트() - 10), 30, 90));
+			showAuto(pc);
+			return true;
+		case "autohunt-2":
+			pc.set_자동귀환퍼센트(IntRange.ensure((pc.get_자동귀환퍼센트() + 10), 30, 90));
+			showAuto(pc);
+			return true;
+		case "autohp-1":
+			pc.set_자동피퍼센트(IntRange.ensure((pc.get_자동피퍼센트() - 10), 50, 100));
+			showAuto(pc);
+			return true;
+		case "autohp-2":
+			pc.set_자동피퍼센트(IntRange.ensure((pc.get_자동피퍼센트() + 10), 50, 100));
+			showAuto(pc);
+			return true;
+		case "automp-1":
+			pc.set_자동마나퍼센트(IntRange.ensure((pc.get_자동마나퍼센트() - 10), 30, 90));
+			showAuto(pc);
+			return true;
+		case "automp-2":
+			pc.set_자동마나퍼센트(IntRange.ensure((pc.get_자동마나퍼센트() + 10), 30, 90));
+			showAuto(pc);
+			return true;
+		case "autohunt-sunbuston":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if (pc.getAutoTurnUndead()) {
+				pc.sendPackets("\\fT턴 사냥중에는 다른 공격마법을 활성화할 수 없습니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.SUNBURST)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill1(true);
+			showAuto(pc);
+			return true;
+		case "autohunt-sunbustoff":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.SUNBURST)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill1(false);
+			showAuto(pc);
+			return true;
+		case "autohunt-firestormon":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if (pc.getAutoTurnUndead()) {
+				pc.sendPackets("\\fT턴 사냥중에는 다른 공격마법을 활성화할 수 없습니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.FIRE_STORM)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill2(true);
+			showAuto(pc);
+			return true;
+		case "autohunt-firestormoff":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.FIRE_STORM)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill2(false);
+			showAuto(pc);
+			return true;
+		case "autohunt-eluptionon": // 아스파
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if (pc.getAutoTurnUndead()) {
+				pc.sendPackets("\\fT턴 사냥중에는 다른 공격마법을 활성화할 수 없습니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.FREEZING_BLIZZARD)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill3(true);
+			showAuto(pc);
+			return true;
+		case "autohunt-eluptionoff":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.FREEZING_BLIZZARD)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill3(false);
+			showAuto(pc);
+			return true;
+		case "autohunt-metemoon":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if (pc.getAutoTurnUndead()) {
+				pc.sendPackets("\\fT턴 사냥중에는 다른 공격마법을 활성화할 수 없습니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.METEOR_STRIKE)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill4(true);
+			showAuto(pc);
+			return true;
+		case "autohunt-metemooff":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.METEOR_STRIKE)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill4(false);
+			showAuto(pc);
+			return true;
+		case "autohunt-chilltouchon":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.CHILL_TOUCH)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill5(true);
+			showAuto(pc);
+			return true;
+		case "autohunt-chilltouchoff":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.CHILL_TOUCH)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill5(false);
+			showAuto(pc);
+			return true;
+		case "autohunt-manadrainon":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.MANA_DRAIN)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill6(true);
+			showAuto(pc);
+			return true;
+		case "autohunt-manadrainoff":
+			if (!pc.isWizard()) {
+				pc.sendPackets("\\fT법사만 사용가능합니다.");
+				return true;
+			}
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.MANA_DRAIN)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoskill6(false);
+			showAuto(pc);
+			return true;
+		case "autohunt-soulon":
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.BLOODY_SOUL)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutosoul(true);
+			showAuto(pc);
+			return true;
+		case "autohunt-souloff":
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.BLOODY_SOUL)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutosoul(false);
+			showAuto(pc);
+			return true;
+		case "autohunt-trippleon":
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.TRIPLE_ARROW)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoTripple(true);
+			showAuto(pc);
+			return true;
+		case "autohunt-trippleoff":
+			if(!SkillCheck.getInstance().CheckSkill(pc, L1SkillId.TRIPLE_ARROW)) {
+				pc.sendPackets("\\fT해당 스킬을 배우지 않았습니다.");
+				return true;
+			}
+			pc.setAutoTripple(false);
+			showAuto(pc);
+			return true;
+		case "autohunt-pickup":
+			if (pc.getAutoPickup()) {
+				pc.setAutoPickup(false);
+				pc.sendPackets("\\fT자동 아이템 줍기 기능이 비활성화 되었습니다.");
+			} else {
+				pc.setAutoPickup(true);
+				pc.sendPackets("\\fT자동 아이템 줍기 기능이 활성화 되었습니다.");
+			}
+			showAuto(pc);
+			return true;
+		case "autohunt-teleport":
+			if (pc.getAutoTell()) {
+				pc.setAutoTell(false);
+				pc.sendPackets("\\fT자동 텔레포트 기능이 비활성화 되었습니다..");
+			} else {
+				pc.setAutoTell(true);
+				pc.sendPackets("\\fT자동 텔레포트 기능이 활성화 되었습니다..");
+			}
+			showAuto(pc);
+			return true;
+		case "autohunt-potionbuy":
+			ArrayList<String> result = new ArrayList<String>();
+			int size = 0;
+			for (L1ItemInstance item : pc.getInventory().getItems()) {
+				for (Integer id : AUTO_POTION_LIST) {
+					if (item.getItemId() == id) {
+						L1Item potion = ItemTable.getInstance().getTemplate(id);
+						result.add(potion.getName());
+					} else {
+						size++;
+					}
+				}
+			}
+
+			for (int i = 0; i < size; i++) {
+				result.add("없음");
+			}
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "potions", (String[]) result.toArray(new String[result.size()])));
+			return true;
+		case "potion_1st":
+			if (potions.size() > 0) {
+				L1Item temp = ItemTable.getInstance().getTemplate(potions.get(0));
+				pc.setAutoPotion(potions.get(0));
+				pc.sendPackets(String.format("%s을 선택 하였습니다.", temp.getName()));
+				showAuto(pc);
+			} else {
+				pc.sendPackets("인벤토리에 물약이 존재하지 않습니다.");
+			}
+			return true;
+		case "potion_2nd":
+			if (potions.size() > 1) {
+				L1Item temp = ItemTable.getInstance().getTemplate(potions.get(1));
+				pc.setAutoPotion(potions.get(1));
+				pc.sendPackets(String.format("%s을 선택 하였습니다.", temp.getName()));
+				showAuto(pc);
+			} else {
+				pc.sendPackets("인벤토리에 물약이 존재하지 않습니다.");
+			}
+			return true;
+		case "potion_3rd":
+			if (potions.size() > 2) {
+				L1Item temp = ItemTable.getInstance().getTemplate(potions.get(2));
+				pc.setAutoPotion(potions.get(2));
+				pc.sendPackets(String.format("%s을 선택 하였습니다.", temp.getName()));
+				showAuto(pc);
+			} else {
+				pc.sendPackets("인벤토리에 물약이 존재하지 않습니다.");
+			}
+			return true;
+		case "potion_4th":
+			if (potions.size() > 3) {
+				L1Item temp = ItemTable.getInstance().getTemplate(potions.get(3));
+				pc.setAutoPotion(potions.get(3));
+				pc.sendPackets(String.format("%s을 선택 하였습니다.", temp.getName()));
+				showAuto(pc);
+			} else {
+				pc.sendPackets("인벤토리에 물약이 존재하지 않습니다.");
+			}
+			return true;
+		case "potion_5th":
+			if (potions.size() > 4) {
+				L1Item temp = ItemTable.getInstance().getTemplate(potions.get(4));
+				pc.setAutoPotion(potions.get(4));
+				pc.sendPackets(String.format("%s을 선택 하였습니다.", temp.getName()));
+				showAuto(pc);
+			} else {
+				pc.sendPackets("인벤토리에 물약이 존재하지 않습니다.");
+			}
+			return true;
+		case "potion_6th":
+			if (potions.size() > 5) {
+				L1Item temp = ItemTable.getInstance().getTemplate(potions.get(5));
+				pc.setAutoPotion(potions.get(5));
+				pc.sendPackets(String.format("%s을 선택 하였습니다.", temp.getName()));
+				showAuto(pc);
+			} else {
+				pc.sendPackets("인벤토리에 물약이 존재하지 않습니다.");
+			}
+			return true;
+		case "potion_7th":
+			if (potions.size() > 6) {
+				L1Item temp = ItemTable.getInstance().getTemplate(potions.get(6));
+				pc.setAutoPotion(potions.get(6));
+				pc.sendPackets(String.format("%s을 선택 하였습니다.", temp.getName()));
+				showAuto(pc);
+			} else {
+				pc.sendPackets("인벤토리에 물약이 존재하지 않습니다.");
+			}
+			return true;
+		case "potion_8th":
+			if (potions.size() > 7) {
+				L1Item temp = ItemTable.getInstance().getTemplate(potions.get(7));
+				pc.setAutoPotion(potions.get(7));
+				pc.sendPackets(String.format("%s을 선택 하였습니다.", temp.getName()));
+				showAuto(pc);
+			} else {
+				pc.sendPackets("인벤토리에 물약이 존재하지 않습니다.");
+			}
+			return true;
+		case "potion_9th":
+			if (potions.size() > 8) {
+				L1Item temp = ItemTable.getInstance().getTemplate(potions.get(8));
+				pc.setAutoPotion(potions.get(8));
+				pc.sendPackets(String.format("%s을 선택 하였습니다.", temp.getName()));
+				showAuto(pc);
+			} else {
+				pc.sendPackets("인벤토리에 물약이 존재하지 않습니다.");
+			}
+			return true;
+		case "potion_10th":
+			if (potions.size() > 9) {
+				L1Item temp = ItemTable.getInstance().getTemplate(potions.get(9));
+				pc.setAutoPotion(potions.get(9));
+				pc.sendPackets(String.format("%s을 선택 하였습니다.", temp.getName()));
+				showAuto(pc);
+			} else {
+				pc.sendPackets("인벤토리에 물약이 존재하지 않습니다.");
+			}
+			return true;
+		case "autohunt-potion-":
+			showAutoPotionList(pc);
+			return true;
+		case "autohunt-turn_undeadon":
+			if (pc.isWizard()) {
+				pc.setAutoTurnUndead(true);
+				showAuto(pc);
+			} else {
+				pc.sendPackets("법사만 사용가능합니다.");
+				return false;
+			}
+			return true;
+		case "autohunt-turn_undeadoff":
+			pc.setAutoTurnUndead(false);
+			showAuto(pc);
+			return true;
+		case "itemlist":
+			showAutoItemList(pc);
+			return true;
+		}
+		return false;
+	}
+	
+	public static void showDropMobList(L1PcInstance gm, String itemName) {
+	    try {
+	        StringTokenizer st = new StringTokenizer(itemName);
+	        String name = st.nextToken();
+
+	        Connection con = null;
+	        PreparedStatement pstm = null;
+	        ResultSet rs = null;
+
+	        // LinkedHashSet으로 중복 제거 + 순서 유지
+	        Set<String> resultSet = new LinkedHashSet<>();
+	        resultSet.add("[" + name + "] 드랍 몬스터 리스트");
+
+	        try {
+	            con = L1DatabaseFactory.getInstance().getConnection();
+
+	            String sql =
+	                "SELECT d.mobname " +
+	                "FROM droplist d " +
+	                "JOIN ( " +
+	                "    SELECT item_id FROM weapon WHERE REPLACE(name, ' ', '') LIKE ? " +
+	                "    UNION " +
+	                "    SELECT item_id FROM armor WHERE REPLACE(name, ' ', '') LIKE ? " +
+	                "    UNION " +
+	                "    SELECT item_id FROM etcitem WHERE REPLACE(name, ' ', '') LIKE ? " +
+	                ") i ON d.itemId = i.item_id";
+
+	            pstm = con.prepareStatement(sql);
+	            // 부분 검색 → %검색어%
+	            pstm.setString(1, "%" + name + "%");
+	            pstm.setString(2, "%" + name + "%");
+	            pstm.setString(3, "%" + name + "%");
+
+	            rs = pstm.executeQuery();
+	            boolean hasMonster = false;
+	            while (rs.next()) {
+	                resultSet.add(rs.getString("mobname"));
+	                hasMonster = true;
+	            }
+
+	            if (!hasMonster) {
+	                resultSet.add("없음");
+	            }
+
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	            resultSet.add("조회 중 오류 발생");
+	        } finally {
+	            SQLUtil.close(rs);
+	            SQLUtil.close(pstm);
+	            SQLUtil.close(con);
+	        }
+
+	        // Set → ArrayList 변환
+	        ArrayList<String> result = new ArrayList<>(resultSet);
+
+	        if (!result.isEmpty()) {
+	            gm.sendPackets(new S_NPCTalkReturn(
+	                gm.getId(),
+	                "droplistmon",
+	                result.toArray(new String[result.size()])
+	            ));
+	        }
+	    } catch (Exception e) {
+	        gm.sendPackets(new S_SystemMessage("띄워쓰기하지 않고 아이템이름 입력해야됨."));
+	        gm.sendPackets(new S_SystemMessage("예시) .드랍 무관의망토 입력."));
+	    }
+	}
+	
+	public static boolean checkCraftOneDoll(L1PcInstance pc, String s) {
+		L1ItemInstance doll1 = null;
+		L1ItemInstance doll2 = null;
+		L1ItemInstance doll3 = null;
+		switch (s) {
+		case "runonelevel":
+			int rx2 = _random.nextInt(10000) + 1;
+			int rx3 = _random.nextInt(3);
+			int rx4 = _random.nextInt(5);
+			int chance = Config.인형합성확률1단계;
+			int dolls[] = { 41248, 41250, 41916 };
+			int successdolls[] = { 430000, 430002, 430004, 430003, 430505 };
+			int dollitem1 = pc.getSeletedOneDoll1();
+			int dollitem2 = pc.getSeletedOneDoll2();
+			int dollitem3 = pc.getSeletedOneDoll3();
+			int faildollitemid = dolls[rx3];
+			int successdollitemid = successdolls[rx4];
+
+			doll1 = pc.getInventory().getItem(dollitem1);
+			doll2 = pc.getInventory().getItem(dollitem2);
+			doll3 = pc.getInventory().getItem(dollitem3);
+			
+			L1ItemInstance item = null;
+			L1ItemInstance successitem = null;
+			item = ItemTable.getInstance().createItem(faildollitemid);
+			successitem = ItemTable.getInstance().createItem(successdollitemid);
+			if (!pc.getMap().isSafetyZone(pc.getLocation())) {
+				pc.sendPackets(new S_SystemMessage("안전한 지역에서만 사용할 수 있습니다."));
+				return false;
+			}
+			if (!(pc.getInventory().checkItem(40308, Config.인형합성비용1단계))) {
+				pc.sendPackets(new S_SystemMessage("합성에 필요한 아데나가 부족합니다."));
+				return false;
+			}
+			if (pc.getSeletedOneDoll1() == 0 || pc.getSeletedOneDoll2() == 0 || pc.getSeletedOneDoll3() == 0) {
+				pc.sendPackets(new S_SystemMessage("합성에 필요한 인형을 선택해주세요."));
+				return false;
+			}
+			if (rx2 < chance) {
+				pc.getInventory().deleteItem(doll1);
+				pc.getInventory().deleteItem(doll2);
+				pc.getInventory().deleteItem(doll3);
+				pc.getInventory().consumeItem(40308, Config.인형합성비용1단계);
+				pc.getInventory().storeItem(successdollitemid, 1);
+
+				ArrayList<String> result0 = new ArrayList<String>();
+				switch (successdollitemid) {
+				case 430000:
+					result0.add("1685");
+					break;
+				case 430002:
+					result0.add("1686");
+					break;
+				case 430004:
+					result0.add("1687");
+					break;
+				case 430003:
+					result0.add("1688");
+					break;
+				case 430505:
+					result0.add("1689");
+					break;
+				}
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add(Integer.toString(Config.인형합성비용1단계));
+				result0.add("1710");
+				result0.add("1709");
+				result0.add("1682");
+				result0.add("1683");
+				result0.add("1684");
+				result0.add(pc.getInventory().checkItemCount(41248) == 0 ? "[0개]"
+						: "[" + pc.getInventory().checkItemCount(41248) + "개]");
+				result0.add(pc.getInventory().checkItemCount(41250) == 0 ? "[0개]"
+						: "[" + pc.getInventory().checkItemCount(41250) + "개]");
+				result0.add(pc.getInventory().checkItemCount(41916) == 0 ? "[0개]"
+						: "[" + pc.getInventory().checkItemCount(41916) + "개]");
+
+				pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "oneleveldoll",
+						(String[]) result0.toArray(new String[result0.size()])));
+				pc.sendPackets(new S_SystemMessage(successitem.getName() + " 인형을 획득하였습니다."));
+			} else {
+				pc.getInventory().deleteItem(doll1);
+				pc.getInventory().deleteItem(doll2);
+				pc.getInventory().deleteItem(doll3);
+				pc.getInventory().consumeItem(40308, Config.인형합성비용1단계);
+				pc.getInventory().storeItem(faildollitemid, 1);
+
+				ArrayList<String> result0 = new ArrayList<String>();
+				switch (faildollitemid) {
+				case 41248:
+					result0.add("1682");
+					break;
+				case 41250:
+					result0.add("1683");
+					break;
+				case 41916:
+					result0.add("1684");
+					break;
+				}
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add(Integer.toString(Config.인형합성비용1단계));
+				result0.add("1710");
+				result0.add("1709");
+				result0.add("1682");
+				result0.add("1683");
+				result0.add("1684");
+				result0.add(pc.getInventory().checkItemCount(41248) == 0 ? "[0개]"
+						: "[" + pc.getInventory().checkItemCount(41248) + "개]");
+				result0.add(pc.getInventory().checkItemCount(41250) == 0 ? "[0개]"
+						: "[" + pc.getInventory().checkItemCount(41250) + "개]");
+				result0.add(pc.getInventory().checkItemCount(41916) == 0 ? "[0개]"
+						: "[" + pc.getInventory().checkItemCount(41916) + "개]");
+				pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "oneleveldoll",
+						(String[]) result0.toArray(new String[result0.size()])));
+				pc.sendPackets(new S_SystemMessage(item.getName() + " 인형을 획득하였습니다."));
+			}
+			pc.setSeletedOneDoll1(0);
+			pc.setSeletedOneDoll2(0);
+			pc.setSeletedOneDoll3(0);
+			break;
+		case "selectonelevel":
+			ArrayList<String> result = new ArrayList<String>();
+			int number = 0;
+			int dollcount = 0;
+			int[] oneleveldolls = new int[] { 41248, 41250, 41916 };
+			List<Integer> invendoll = new ArrayList<>();
+
+			while (number < 3) {
+				for (L1ItemInstance doll : pc.getInventory().getItems()) {
+					if (doll.getId() == pc.getusedDollId()) {
+						continue;
+					}
+					if (doll.getItemId() == oneleveldolls[number]) {
+						dollcount += 1;
+						invendoll.add(doll.getId());
+					}
+				}
+				number++;
+			}
+			if (dollcount < 2) {
+				pc.sendPackets(new S_SystemMessage("3개의 인형이 필요합니다."));
+				return false;
+			}
+
+			Collections.shuffle(invendoll); // 랜덤 섞기
+
+			result.add("1711");
+			doll1 = pc.getInventory().getItem(invendoll.get(0));
+			doll2 = pc.getInventory().getItem(invendoll.get(1));
+			doll3 = pc.getInventory().getItem(invendoll.get(2));
+			if (invendoll.size() >= 2) {
+				switch (doll1.getItemId()) {
+				case 41248:
+					result.add("1682");
+					break;
+				case 41250:
+					result.add("1683");
+					break;
+				case 41916:
+					result.add("1684");
+					break;
+				}
+				pc.setSeletedOneDoll1(invendoll.get(0));
+
+				switch (doll2.getItemId()) {
+				case 41248:
+					result.add("1682");
+					break;
+				case 41250:
+					result.add("1683");
+					break;
+				case 41916:
+					result.add("1684");
+					break;
+				}
+				pc.setSeletedOneDoll2(invendoll.get(1));
+
+				switch (doll3.getItemId()) {
+				case 41248:
+					result.add("1682");
+					break;
+				case 41250:
+					result.add("1683");
+					break;
+				case 41916:
+					result.add("1684");
+					break;
+				}
+				pc.setSeletedOneDoll3(invendoll.get(2));
+			}
+
+			result.add(Integer.toString(Config.인형합성비용1단계));
+			result.add("1710");
+			result.add("1709");
+			result.add("1682");
+			result.add("1683");
+			result.add("1684");
+			result.add(pc.getInventory().checkItemCount(41248) == 0 ? "[0개]"
+					: "[" + pc.getInventory().checkItemCount(41248) + "개]");
+			result.add(pc.getInventory().checkItemCount(41250) == 0 ? "[0개]"
+					: "[" + pc.getInventory().checkItemCount(41250) + "개]");
+			result.add(pc.getInventory().checkItemCount(41916) == 0 ? "[0개]"
+					: "[" + pc.getInventory().checkItemCount(41916) + "개]");
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "oneleveldoll",
+					(String[]) result.toArray(new String[result.size()])));
+			break;
+		}
+		return false;
+	}
+	
+	public static boolean checkCraftTwoDoll(L1PcInstance pc, String s) {
+		L1ItemInstance doll1 = null;
+		L1ItemInstance doll2 = null;
+		L1ItemInstance doll3 = null;
+		L1ItemInstance doll4 = null;
+		switch (s) {
+		case "runtwolevel":
+			int rx2 = _random.nextInt(10000) + 1;
+			int rx3 = _random.nextInt(5);
+			int rx4 = _random.nextInt(5);
+			int chance = Config.인형합성확률2단계;
+			int dolls[] = { 430000, 430002, 430004, 430003, 430505 };
+			int successdolls[] = { 743, 447016, 4370600, 4370599, 744 };
+			int dollitem1 = pc.getSeletedTwoDoll1();
+			int dollitem2 = pc.getSeletedTwoDoll2();
+			int dollitem3 = pc.getSeletedTwoDoll3();
+			int dollitem4 = pc.getSeletedTwoDoll4();
+			int faildollitemid = dolls[rx3];
+			int successdollitemid = successdolls[rx4];
+			
+			doll1 = pc.getInventory().getItem(dollitem1);
+			doll2 = pc.getInventory().getItem(dollitem2);
+			doll3 = pc.getInventory().getItem(dollitem3);
+			doll4 = pc.getInventory().getItem(dollitem4);
+			
+			L1ItemInstance item = null;
+			L1ItemInstance successitem = null;
+			item = ItemTable.getInstance().createItem(faildollitemid);
+			successitem = ItemTable.getInstance().createItem(successdollitemid);
+			if (!pc.getMap().isSafetyZone(pc.getLocation())) {
+				pc.sendPackets(new S_SystemMessage("안전한 지역에서만 사용할 수 있습니다."));
+				return false;
+			}
+			if (!(pc.getInventory().checkItem(40308, Config.인형합성비용2단계))) {
+				pc.sendPackets(new S_SystemMessage("합성에 필요한 아데나가 부족합니다."));
+				return false;
+			}
+			if (pc.getSeletedTwoDoll1() == 0 || pc.getSeletedTwoDoll2() == 0 || pc.getSeletedTwoDoll3() == 0
+					|| pc.getSeletedTwoDoll4() == 0) {
+				pc.sendPackets(new S_SystemMessage("합성에 필요한 인형을 선택해주세요."));
+				return false;
+			}
+			if (rx2 < chance) {
+				pc.getInventory().deleteItem(doll1);
+				pc.getInventory().deleteItem(doll2);
+				pc.getInventory().deleteItem(doll3);
+				pc.getInventory().deleteItem(doll4);
+				pc.getInventory().consumeItem(40308, Config.인형합성비용2단계);
+				pc.getInventory().storeItem(successdollitemid, 1);
+				ArrayList<String> result0 = new ArrayList<String>();
+				switch (successdollitemid) {
+				case 743:
+					result0.add("1690");
+					break;
+				case 447016:
+					result0.add("1691");
+					break;
+				case 4370600:
+					result0.add("1692");
+					break;
+				case 4370599:
+					result0.add("1693");
+					break;
+				case 744:
+					result0.add("1694");
+					break;
+				}
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add(Integer.toString(Config.인형합성비용2단계));
+				result0.add("1710");
+				result0.add("1709");
+				result0.add("1685");
+				result0.add("1686");
+				result0.add("1687");
+				result0.add("1688");
+				result0.add("1689");
+				result0.add(pc.getInventory().checkItemCount(430000) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430000) + "개]");
+				result0.add(pc.getInventory().checkItemCount(430002) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430002) + "개]");
+				result0.add(pc.getInventory().checkItemCount(430004) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430004) + "개]");
+				result0.add(pc.getInventory().checkItemCount(430003) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430003) + "개]");
+				result0.add(pc.getInventory().checkItemCount(430505) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430505) + "개]");
+				result0.add(pc.getInventory().checkItem(510221) ? "11170" : "11270");
+				result0.add(pc.getInventory().checkItemCount(510221) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(510221) + "개]");
+
+				pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "twoleveldoll",
+						(String[]) result0.toArray(new String[result0.size()])));
+				pc.sendPackets(new S_SystemMessage(successitem.getName() + " 인형을 획득하였습니다."));
+			} else {
+				pc.getInventory().deleteItem(doll1);
+				pc.getInventory().deleteItem(doll2);
+				pc.getInventory().deleteItem(doll3);
+				pc.getInventory().deleteItem(doll4);
+				pc.getInventory().consumeItem(40308, Config.인형합성비용2단계);
+				pc.getInventory().storeItem(faildollitemid, 1);
+				ArrayList<String> result0 = new ArrayList<String>();
+				switch (faildollitemid) {
+				case 430000:
+					result0.add("1685");
+					break;
+				case 430002:
+					result0.add("1686");
+					break;
+				case 430004:
+					result0.add("1687");
+					break;
+				case 430003:
+					result0.add("1688");
+					break;
+				case 430505:
+					result0.add("1689");
+					break;
+				case 510221:
+					result0.add("11170");
+					break;
+				}
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add(Integer.toString(Config.인형합성비용2단계));
+				result0.add("1710");
+				result0.add("1709");
+				result0.add("1685");
+				result0.add("1686");
+				result0.add("1687");
+				result0.add("1688");
+				result0.add("1689");
+				result0.add(pc.getInventory().checkItemCount(430000) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430000) + "개]");
+				result0.add(pc.getInventory().checkItemCount(430002) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430002) + "개]");
+				result0.add(pc.getInventory().checkItemCount(430004) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430004) + "개]");
+				result0.add(pc.getInventory().checkItemCount(430003) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430003) + "개]");
+				result0.add(pc.getInventory().checkItemCount(430505) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430505) + "개]");
+				pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "twoleveldoll",
+						(String[]) result0.toArray(new String[result0.size()])));
+				pc.sendPackets(new S_SystemMessage(item.getName() + " 인형을 획득하였습니다."));
+			}
+			pc.setSeletedTwoDoll1(0);
+			pc.setSeletedTwoDoll2(0);
+			pc.setSeletedTwoDoll3(0);
+			pc.setSeletedTwoDoll4(0);
+			break;
+		case "selecttwolevel":
+			ArrayList<String> result = new ArrayList<String>();
+			int number = 0;
+			int dollcount = 0;
+			int[] twoleveldolls = new int[] { 430000, 430002, 430004, 430003, 430505 };
+			List<Integer> invendoll = new ArrayList<>();
+
+			while (number < 5) {
+				for (L1ItemInstance doll : pc.getInventory().getItems()) {
+					if (doll.getId() == pc.getusedDollId()) {
+						continue;
+					}
+					if (doll.getItemId() == twoleveldolls[number]) {
+						dollcount += 1;
+						invendoll.add(doll.getId());
+					}
+				}
+				number++;
+			}
+			if (dollcount < 4) {
+				pc.sendPackets(new S_SystemMessage("4개의 인형이 필요합니다."));
+				return false;
+			}
+
+			Collections.shuffle(invendoll); // 랜덤 섞기
+
+			result.add("1711");
+			doll1 = pc.getInventory().getItem(invendoll.get(0));
+			doll2 = pc.getInventory().getItem(invendoll.get(1));
+			doll3 = pc.getInventory().getItem(invendoll.get(2));
+			doll4 = pc.getInventory().getItem(invendoll.get(3));
+			if (invendoll.size() >= 4) {
+				switch (doll1.getItemId()) {
+				case 430000:
+					result.add("1685");
+					break;
+				case 430002:
+					result.add("1686");
+					break;
+				case 430004:
+					result.add("1687");
+					break;
+				case 430003:
+					result.add("1688");
+					break;
+				case 430505:
+					result.add("1689");
+					break;
+				}
+				pc.setSeletedTwoDoll1(invendoll.get(0));
+
+				switch (doll2.getItemId()) {
+				case 430000:
+					result.add("1685");
+					break;
+				case 430002:
+					result.add("1686");
+					break;
+				case 430004:
+					result.add("1687");
+					break;
+				case 430003:
+					result.add("1688");
+					break;
+				case 430505:
+					result.add("1689");
+					break;
+				}
+				pc.setSeletedTwoDoll2(invendoll.get(1));
+
+				switch (doll3.getItemId()) {
+				case 430000:
+					result.add("1685");
+					break;
+				case 430002:
+					result.add("1686");
+					break;
+				case 430004:
+					result.add("1687");
+					break;
+				case 430003:
+					result.add("1688");
+					break;
+				case 430505:
+					result.add("1689");
+					break;
+				}
+				pc.setSeletedTwoDoll3(invendoll.get(2));
+
+				switch (doll4.getItemId()) {
+				case 430000:
+					result.add("1685");
+					break;
+				case 430002:
+					result.add("1686");
+					break;
+				case 430004:
+					result.add("1687");
+					break;
+				case 430003:
+					result.add("1688");
+					break;
+				case 430505:
+					result.add("1689");
+					break;
+				}
+				pc.setSeletedTwoDoll4(invendoll.get(3));
+			}
+
+			result.add(Integer.toString(Config.인형합성비용2단계));
+			result.add("1710");
+			result.add("1709");
+			result.add("1685");
+			result.add("1686");
+			result.add("1687");
+			result.add("1688");
+			result.add("1689");
+			result.add(pc.getInventory().checkItemCount(430000) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430000) + "개]");
+			result.add(pc.getInventory().checkItemCount(430002) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430002) + "개]");
+			result.add(pc.getInventory().checkItemCount(430004) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430004) + "개]");
+			result.add(pc.getInventory().checkItemCount(430003) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430003) + "개]");
+			result.add(pc.getInventory().checkItemCount(430505) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(430505) + "개]");
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "twoleveldoll",
+					(String[]) result.toArray(new String[result.size()])));
+			break;
+		}
+		return false;
+	}
+	
+	public static boolean checkCraftThreeDoll(L1PcInstance pc, String s) {
+		L1ItemInstance doll1 = null;
+		L1ItemInstance doll2 = null;
+		L1ItemInstance doll3 = null;
+		L1ItemInstance doll4 = null;
+		switch (s) {
+		case "runthreelevel":
+			int rx2 = _random.nextInt(10000) + 1;
+			int rx3 = _random.nextInt(5);
+			int rx4 = _random.nextInt(5);
+			int chance = Config.인형합성확률3단계;
+			int dolls[] = { 743, 447016, 4370600, 4370599, 744 };
+			int successdolls[] = { 5370600, 5370601, 5370604, 5370602, 5370603 };
+			int dollitem1 = pc.getSeletedThreeDoll1();
+			int dollitem2 = pc.getSeletedThreeDoll2();
+			int dollitem3 = pc.getSeletedThreeDoll3();
+			int dollitem4 = pc.getSeletedThreeDoll4();
+			int faildollitemid = dolls[rx3];
+			int successdollitemid = successdolls[rx4];
+			
+			doll1 = pc.getInventory().getItem(dollitem1);
+			doll2 = pc.getInventory().getItem(dollitem2);
+			doll3 = pc.getInventory().getItem(dollitem3);
+			doll4 = pc.getInventory().getItem(dollitem4);
+			
+			L1ItemInstance item = null;
+			L1ItemInstance successitem = null;
+			item = ItemTable.getInstance().createItem(faildollitemid);
+			successitem = ItemTable.getInstance().createItem(successdollitemid);
+			if (!pc.getMap().isSafetyZone(pc.getLocation())) {
+				pc.sendPackets(new S_ChatPacket(pc, "안전한 지역에서만 사용할 수 있습니다."));
+				return false;
+			}
+			if (!(pc.getInventory().checkItem(40308, Config.인형합성비용3단계))) {
+				pc.sendPackets(new S_SystemMessage("합성에 필요한 아데나가 부족합니다."));
+				return false;
+			}
+			if (pc.getSeletedThreeDoll1() == 0 || pc.getSeletedThreeDoll2() == 0 || pc.getSeletedThreeDoll3() == 0
+					|| pc.getSeletedThreeDoll4() == 0) {
+				pc.sendPackets(new S_SystemMessage("합성에 필요한 인형을 선택해주세요."));
+				return false;
+			}
+			if (rx2 < chance) {
+				pc.getInventory().deleteItem(doll1);
+				pc.getInventory().deleteItem(doll2);
+				pc.getInventory().deleteItem(doll3);
+				pc.getInventory().deleteItem(doll4);
+				pc.getInventory().consumeItem(40308, Config.인형합성비용3단계);
+				pc.getInventory().storeItem(successdollitemid, 1);
+				ArrayList<String> result0 = new ArrayList<String>();
+				switch (successdollitemid) {
+				case 5370600:
+					result0.add("1695");
+					break;
+				case 5370601:
+					result0.add("1696");
+					break;
+				case 5370604:
+					result0.add("1697");
+					break;
+				case 5370602:
+					result0.add("1698");
+					break;
+				case 5370603:
+					result0.add("1699");
+					break;
+				}
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add(Integer.toString(Config.인형합성비용3단계));
+				result0.add("1710");
+				result0.add("1709");
+				result0.add("1690");
+				result0.add("1691");
+				result0.add("1692");
+				result0.add("1693");
+				result0.add("1694");
+				result0.add(pc.getInventory().checkItemCount(743) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(743) + "개]");
+				result0.add(pc.getInventory().checkItemCount(447016) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(447016) + "개]");
+				result0.add(pc.getInventory().checkItemCount(4370600) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(4370600) + "개]");
+				result0.add(pc.getInventory().checkItemCount(4370599) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(4370599) + "개]");
+				result0.add(pc.getInventory().checkItemCount(744) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(744) + "개]");
+				S_SkillSound s_skillsound = new S_SkillSound(pc.getId(), 2028);
+				pc.sendPackets(s_skillsound);
+				pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "threelvdoll",
+						(String[]) result0.toArray(new String[result0.size()])));
+				L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE,
+						"어느 아덴 용사 님께서 " + successitem.getName() + "인형 합성에 성공하였습니다."));
+				pc.sendPackets(new S_SystemMessage(successitem.getName() + " 인형을 획득하였습니다."));
+			} else {
+				pc.getInventory().deleteItem(doll1);
+				pc.getInventory().deleteItem(doll2);
+				pc.getInventory().deleteItem(doll3);
+				pc.getInventory().deleteItem(doll4);
+				pc.getInventory().consumeItem(40308, Config.인형합성비용3단계);
+				pc.getInventory().storeItem(faildollitemid, 1);
+				ArrayList<String> result0 = new ArrayList<String>();
+				switch (faildollitemid) {
+				case 743:
+					result0.add("1690");
+					break;
+				case 447016:
+					result0.add("1691");
+					break;
+				case 4370600:
+					result0.add("1692");
+					break;
+				case 4370599:
+					result0.add("1693");
+					break;
+				case 744:
+					result0.add("1694");
+					break;
+				}
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add(Integer.toString(Config.인형합성비용3단계));
+				result0.add("1710");
+				result0.add("1709");
+				result0.add("1690");
+				result0.add("1691");
+				result0.add("1692");
+				result0.add("1693");
+				result0.add("1694");
+				result0.add(pc.getInventory().checkItemCount(743) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(743) + "개]");
+				result0.add(pc.getInventory().checkItemCount(447016) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(447016) + "개]");
+				result0.add(pc.getInventory().checkItemCount(4370600) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(4370600) + "개]");
+				result0.add(pc.getInventory().checkItemCount(4370599) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(4370599) + "개]");
+				result0.add(pc.getInventory().checkItemCount(744) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(744) + "개]");
+				S_SkillSound s_skillsound = new S_SkillSound(pc.getId(), 10);
+				pc.sendPackets(s_skillsound);
+				pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "threelvdoll",
+						(String[]) result0.toArray(new String[result0.size()])));
+				pc.sendPackets(new S_SystemMessage(item.getName() + " 인형을 획득하였습니다."));
+			}
+			pc.setSeletedThreeDoll1(0);
+			pc.setSeletedThreeDoll2(0);
+			pc.setSeletedThreeDoll3(0);
+			pc.setSeletedThreeDoll4(0);
+			break;
+		case "selectthreelevel":
+			ArrayList<String> result = new ArrayList<String>();
+			int number = 0;
+			int dollcount = 0;
+			int[] twoleveldolls = new int[] { 743, 447016, 4370600, 4370599, 744 };
+			List<Integer> invendoll = new ArrayList<>();
+
+			while (number < 5) {
+				for (L1ItemInstance doll : pc.getInventory().getItems()) {
+					if (doll.getId() == pc.getusedDollId()) {
+						continue;
+					}
+					if (doll.getItemId() == twoleveldolls[number]) {
+						dollcount += 1;
+						invendoll.add(doll.getId());
+					}
+				}
+				number++;
+			}
+			if (dollcount < 4) {
+				pc.sendPackets(new S_SystemMessage("4개의 인형이 필요합니다."));
+				return false;
+			}
+			Collections.shuffle(invendoll); // 랜덤 섞기
+
+			result.add("1711");
+			doll1 = pc.getInventory().getItem(invendoll.get(0));
+			doll2 = pc.getInventory().getItem(invendoll.get(1));
+			doll3 = pc.getInventory().getItem(invendoll.get(2));
+			doll4 = pc.getInventory().getItem(invendoll.get(3));
+			if (invendoll.size() >= 4) {
+				switch (doll1.getItemId()) {
+				case 743:
+					result.add("1690");
+					break;
+				case 447016:
+					result.add("1691");
+					break;
+				case 4370600:
+					result.add("1692");
+					break;
+				case 4370599:
+					result.add("1693");
+					break;
+				case 744:
+					result.add("1694");
+					break;
+				}
+				pc.setSeletedThreeDoll1(invendoll.get(0));
+
+				switch (doll2.getItemId()) {
+				case 743:
+					result.add("1690");
+					break;
+				case 447016:
+					result.add("1691");
+					break;
+				case 4370600:
+					result.add("1692");
+					break;
+				case 4370599:
+					result.add("1693");
+					break;
+				case 744:
+					result.add("1694");
+					break;
+				}
+				pc.setSeletedThreeDoll2(invendoll.get(1));
+
+				switch (doll3.getItemId()) {
+				case 743:
+					result.add("1690");
+					break;
+				case 447016:
+					result.add("1691");
+					break;
+				case 4370600:
+					result.add("1692");
+					break;
+				case 4370599:
+					result.add("1693");
+					break;
+				case 744:
+					result.add("1694");
+					break;
+				}
+				pc.setSeletedThreeDoll3(invendoll.get(2));
+
+				switch (doll4.getItemId()) {
+				case 743:
+					result.add("1690");
+					break;
+				case 447016:
+					result.add("1691");
+					break;
+				case 4370600:
+					result.add("1692");
+					break;
+				case 4370599:
+					result.add("1693");
+					break;
+				case 744:
+					result.add("1694");
+					break;
+				}
+				pc.setSeletedThreeDoll4(invendoll.get(3));
+			}
+
+			result.add(Integer.toString(Config.인형합성비용3단계));
+			result.add("1710");
+			result.add("1709");
+			result.add("1690");
+			result.add("1691");
+			result.add("1692");
+			result.add("1693");
+			result.add("1694");
+			result.add(pc.getInventory().checkItemCount(743) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(743) + "개]");
+			result.add(pc.getInventory().checkItemCount(447016) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(447016) + "개]");
+			result.add(pc.getInventory().checkItemCount(4370600) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(4370600) + "개]");
+			result.add(pc.getInventory().checkItemCount(4370599) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(4370599) + "개]");
+			result.add(pc.getInventory().checkItemCount(744) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(744) + "개]");
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "threelvdoll",
+					(String[]) result.toArray(new String[result.size()])));
+			break;
+		}
+		return false;
+	}
+	
+	public static boolean checkCraftFourDoll(L1PcInstance pc, String s) { // 재료 4단계, 성공인형 용인형
+		L1ItemInstance doll1 = null;
+		L1ItemInstance doll2 = null;
+		L1ItemInstance doll3 = null;
+		L1ItemInstance doll4 = null;
+		switch (s) {
+		case "runfourlevel":
+			int rx2 = _random.nextInt(10000) + 1;
+			int rx3 = _random.nextInt(5);
+			int rx4 = _random.nextInt(4);
+			int chance = Config.인형합성확률4단계;
+			int dolls[] = { 5370600, 5370601, 5370604, 5370602, 5370603 };
+			int successdolls[] = { 5370607, 5370606, 5370605, 5370608 };
+			int dollitem1 = pc.getSeletedFourDoll1();
+			int dollitem2 = pc.getSeletedFourDoll2();
+			int dollitem3 = pc.getSeletedFourDoll3();
+			int dollitem4 = pc.getSeletedFourDoll4();
+			int faildollitemid = dolls[rx3];
+			int successdollitemid = successdolls[rx4];
+			
+			doll1 = pc.getInventory().getItem(dollitem1);
+			doll2 = pc.getInventory().getItem(dollitem2);
+			doll3 = pc.getInventory().getItem(dollitem3);
+			doll4 = pc.getInventory().getItem(dollitem4);
+			
+			L1ItemInstance item = null;
+			L1ItemInstance successitem = null;
+			item = ItemTable.getInstance().createItem(faildollitemid);
+			successitem = ItemTable.getInstance().createItem(successdollitemid);
+			if (!pc.getMap().isSafetyZone(pc.getLocation())) {
+				pc.sendPackets(new S_SystemMessage("안전한 지역에서만 사용할 수 있습니다."));
+				return false;
+			}
+			if (!(pc.getInventory().checkItem(40308, Config.인형합성비용4단계))) {
+				pc.sendPackets(new S_SystemMessage("합성에 필요한 아데나가 부족합니다."));
+				return false;
+			}
+			if (pc.getSeletedFourDoll1() == 0 || pc.getSeletedFourDoll2() == 0 || pc.getSeletedFourDoll3() == 0
+					|| pc.getSeletedFourDoll4() == 0) {
+				pc.sendPackets(new S_SystemMessage("합성에 필요한 인형을 선택해주세요."));
+				return false;
+			}
+			if (rx2 < chance) {
+				pc.getInventory().deleteItem(doll1);
+				pc.getInventory().deleteItem(doll2);
+				pc.getInventory().deleteItem(doll3);
+				pc.getInventory().deleteItem(doll4);
+				pc.getInventory().consumeItem(40308, Config.인형합성비용4단계);
+				pc.getInventory().storeItem(successdollitemid, 1);
+				ArrayList<String> result0 = new ArrayList<String>();
+				switch (successdollitemid) {
+				case 5370607:
+					result0.add("1700");
+					break;
+				case 5370606:
+					result0.add("1701");
+					break;
+				case 5370605:
+					result0.add("1702");
+					break;
+				case 5370608:
+					result0.add("1703");
+					break;
+				}
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add(Integer.toString(Config.인형합성비용4단계));
+				result0.add("1710");
+				result0.add("1709");
+				result0.add("1695");
+				result0.add("1696");
+				result0.add("1697");
+				result0.add("1698");
+				result0.add("1699");
+				result0.add(pc.getInventory().checkItemCount(5370600) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370600) + "개]");
+				result0.add(pc.getInventory().checkItemCount(5370601) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370601) + "개]");
+				result0.add(pc.getInventory().checkItemCount(5370604) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370604) + "개]");
+				result0.add(pc.getInventory().checkItemCount(5370602) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370602) + "개]");
+				result0.add(pc.getInventory().checkItemCount(5370603) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370603) + "개]");
+				S_SkillSound s_skillsound = new S_SkillSound(pc.getId(), 2029);
+				pc.sendPackets(s_skillsound);
+				pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "fourlvdoll",
+						(String[]) result0.toArray(new String[result0.size()])));
+				L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE,
+						"어느 아덴 용사 님께서 " + successitem.getName() + "인형 합성에 성공하였습니다."));
+				pc.sendPackets(new S_SystemMessage(successitem.getName() + " 인형을 획득하였습니다."));
+			} else {
+				pc.getInventory().deleteItem(doll1);
+				pc.getInventory().deleteItem(doll2);
+				pc.getInventory().deleteItem(doll3);
+				pc.getInventory().deleteItem(doll4);
+				pc.getInventory().consumeItem(40308, Config.인형합성비용4단계);
+				pc.getInventory().storeItem(faildollitemid, 1);
+				ArrayList<String> result0 = new ArrayList<String>();
+				switch (faildollitemid) {
+				case 5370600:
+					result0.add("1695");
+					break;
+				case 5370601:
+					result0.add("1696");
+					break;
+				case 5370604:
+					result0.add("1697");
+					break;
+				case 5370602:
+					result0.add("1698");
+					break;
+				case 5370603:
+					result0.add("1699");
+					break;
+				}
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add("1711");
+				result0.add(Integer.toString(Config.인형합성비용4단계));
+				result0.add("1710");
+				result0.add("1709");
+				result0.add("1695");
+				result0.add("1696");
+				result0.add("1697");
+				result0.add("1698");
+				result0.add("1699");
+				result0.add(pc.getInventory().checkItemCount(5370600) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370600) + "개]");
+				result0.add(pc.getInventory().checkItemCount(5370601) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370601) + "개]");
+				result0.add(pc.getInventory().checkItemCount(5370604) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370604) + "개]");
+				result0.add(pc.getInventory().checkItemCount(5370602) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370602) + "개]");
+				result0.add(pc.getInventory().checkItemCount(5370603) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370603) + "개]");
+				S_SkillSound s_skillsound = new S_SkillSound(pc.getId(), 10);
+				pc.sendPackets(s_skillsound);
+				pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "fourlvdoll",
+						(String[]) result0.toArray(new String[result0.size()])));
+				pc.sendPackets(new S_SystemMessage(item.getName() + " 인형을 획득하였습니다."));
+			}
+			pc.setSeletedFourDoll1(0);
+			pc.setSeletedFourDoll2(0);
+			pc.setSeletedFourDoll3(0);
+			pc.setSeletedFourDoll4(0);
+			break;
+		case "selectfourlevel":
+			ArrayList<String> result = new ArrayList<String>();
+			int number = 0;
+			int dollcount = 0;
+			int[] twoleveldolls = new int[] { 5370600, 5370601, 5370604, 5370602, 5370603 };
+			List<Integer> invendoll = new ArrayList<>();
+
+			while (number < 5) {
+				for (L1ItemInstance doll : pc.getInventory().getItems()) {
+					if (doll.getId() == pc.getusedDollId()) {
+						continue;
+					}
+					if (doll.getItemId() == twoleveldolls[number]) {
+						dollcount += 1;
+						invendoll.add(doll.getId());
+					}
+				}
+				number++;
+			}
+			if (dollcount < 4) {
+				pc.sendPackets(new S_SystemMessage("4개의 인형이 필요합니다."));
+				return false;
+			}
+
+			Collections.shuffle(invendoll); // 랜덤 섞기
+
+			result.add("1711");
+			doll1 = pc.getInventory().getItem(invendoll.get(0));
+			doll2 = pc.getInventory().getItem(invendoll.get(1));
+			doll3 = pc.getInventory().getItem(invendoll.get(2));
+			doll4 = pc.getInventory().getItem(invendoll.get(3));
+			if (invendoll.size() >= 4) {
+				switch (doll1.getItemId()) {
+				case 5370600:
+					result.add("1695");
+					break;
+				case 5370601:
+					result.add("1696");
+					break;
+				case 5370604:
+					result.add("1697");
+					break;
+				case 5370602:
+					result.add("1698");
+					break;
+				case 5370603:
+					result.add("1699");
+					break;
+				}
+				pc.setSeletedFourDoll1(invendoll.get(0));
+
+				switch (doll2.getItemId()) {
+				case 5370600:
+					result.add("1695");
+					break;
+				case 5370601:
+					result.add("1696");
+					break;
+				case 5370604:
+					result.add("1697");
+					break;
+				case 5370602:
+					result.add("1698");
+					break;
+				case 5370603:
+					result.add("1699");
+					break;
+				}
+				pc.setSeletedFourDoll2(invendoll.get(1));
+
+				switch (doll3.getItemId()) {
+				case 5370600:
+					result.add("1695");
+					break;
+				case 5370601:
+					result.add("1696");
+					break;
+				case 5370604:
+					result.add("1697");
+					break;
+				case 5370602:
+					result.add("1698");
+					break;
+				case 5370603:
+					result.add("1699");
+					break;
+				}
+				pc.setSeletedFourDoll3(invendoll.get(2));
+
+				switch (doll4.getItemId()) {
+				case 5370600:
+					result.add("1695");
+					break;
+				case 5370601:
+					result.add("1696");
+					break;
+				case 5370604:
+					result.add("1697");
+					break;
+				case 5370602:
+					result.add("1698");
+					break;
+				case 5370603:
+					result.add("1699");
+					break;
+				}
+				pc.setSeletedFourDoll4(invendoll.get(3));
+			}
+
+			result.add(Integer.toString(Config.인형합성비용4단계));
+			result.add("1710");
+			result.add("1709");
+			result.add("1695");
+			result.add("1696");
+			result.add("1697");
+			result.add("1698");
+			result.add("1699");
+			result.add(pc.getInventory().checkItemCount(5370600) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370600) + "개]");
+			result.add(pc.getInventory().checkItemCount(5370601) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370601) + "개]");
+			result.add(pc.getInventory().checkItemCount(5370604) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370604) + "개]");
+			result.add(pc.getInventory().checkItemCount(5370602) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370602) + "개]");
+			result.add(pc.getInventory().checkItemCount(5370603) == 0 ? "[0개]" : "[" + pc.getInventory().checkItemCount(5370603) + "개]");
+			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "fourlvdoll",
+					(String[]) result.toArray(new String[result.size()])));
+			break;
+		}
+		return false;
+	}
+	
+	private void hold(L1PcInstance gm, String pcName) {
+		try {
+			L1PcInstance target = L1World.getInstance().getPlayer(pcName);
+			if (target != null) {
+				holdnow(gm, target);
+			} else {
+				gm.sendPackets(new S_SystemMessage("그런 캐릭터는 없습니다."));
+			}
+		} catch (Exception e) {
+			gm.sendPackets(new S_SystemMessage(".감옥 캐릭명 으로 입력해주세요."));
+		}
+	}
+	
+	private void holdnow(L1PcInstance gm, L1PcInstance target) {
+		try {
+			L1Teleport.teleport(target, 32835, 32782, (short) 701, 5, true);
+			gm.sendPackets(new S_SystemMessage(
+					(new StringBuilder()).append(target.getName()).append(" 님 감옥으로 이동됨.").toString()));
+			target.sendPackets(new S_SystemMessage("감옥에 감금 되었습니다."));
+		} catch (Exception e) {
+			_log.log(Level.SEVERE, "", e);
+		}
+	}
+	
+	public static void showAutoItemList(L1PcInstance pc) {
+	    ArrayList<String> result = new ArrayList<String>();
+	    String line;
+	    result.add("획득한 아이템");
+	    result.add(""); 
+	    
+	    // 한국 로케일 기준으로 천 단위 콤마 찍기
+	    NumberFormat numberFormat = NumberFormat.getInstance(Locale.KOREA);
+
+	    // L1PcInventory.autoHuntItems에 저장되어 있는 모든 값을 보여주는곳
+	    if (pc.getInventory() instanceof L1PcInventory) {
+	        L1PcInventory inv = (L1PcInventory) pc.getInventory();
+	        for (Map.Entry<String, Long> entry : inv.autoHuntItems.entrySet()) {
+	            if (entry.getKey().equals("아데나")) {
+	                String formatted = numberFormat.format(entry.getValue());
+	                line = entry.getKey() + " : " + formatted + " 아데나";
+	            } else {
+	                line = entry.getKey() + " : " + entry.getValue() + "개";
+	            }
+	            result.add(line);
+	        }
+	    }
+
+	    if (result.isEmpty()) {
+	        return;
+	    }
+
+	    pc.sendPackets(new S_NPCTalkReturn(
+	        pc.getId(),
+	        "autohuntItem",
+	        result.toArray(new String[result.size()])
+	    ));
+	}
+	
+	private void 자물빨(L1PcInstance pc, String potionType, String param) {
+		try {
+
+			if (pc.getAutoHunt()) {
+				pc.sendPackets(new S_SystemMessage("자동사냥중에는 사용할 수 없습니다."));
+				return;
+			}
+			if (!"끔".equals(potionType)) {
+				if ("빨".equals(potionType)) {
+					pc.setHealItemNum(40010);
+				} else if ("주".equals(potionType)) {
+					pc.setHealItemNum(40011);
+				} else if ("말".equals(potionType)) {
+					pc.setHealItemNum(40012);
+				} else {
+					pc.sendPackets(new S_SystemMessage(".빨 [자동포션사용구간]"));
+					return;
+				}
+
+				pc.setAutoPotion(true);
+				pc.setHealVal(Integer.parseInt(param));
+
+				pc.sendPackets(new S_SystemMessage("자동물약을 시작합니다."));
+				pc.sendPackets(new S_SystemMessage("물약종류 : " + potionType + " , 구간 : 최대체력의 " + param + "%"));
+			} else {
+				pc.setAutoPotion(false);
+				pc.setHealItemNum(0);
+				pc.setHealVal(0);
+				pc.sendPackets(new S_SystemMessage("자동물약을 종료합니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".빨 [자동포션사용구간]"));
+		}
+	}
+	
+	private void 자물주(L1PcInstance pc, String potionType, String param) {
+		try {
+			if (pc.getAutoHunt()) {
+				pc.sendPackets(new S_SystemMessage("자동사냥중에는 사용할 수 없습니다."));
+				return;
+			}
+			if (!"끔".equals(potionType)) {
+				if ("빨".equals(potionType)) {
+					pc.setHealItemNum(40010);
+				} else if ("주".equals(potionType)) {
+					pc.setHealItemNum(40011);
+				} else if ("말".equals(potionType)) {
+					pc.setHealItemNum(40012);
+				} else {
+					pc.sendPackets(new S_SystemMessage(".주 [자동포션사용구간]"));
+					return;
+				}
+
+				pc.setAutoPotion(true);
+				pc.setHealVal(Integer.parseInt(param));
+
+				pc.sendPackets(new S_SystemMessage("자동물약을 시작합니다."));
+				pc.sendPackets(new S_SystemMessage("물약종류 : " + potionType + " , 구간 : 최대체력의 " + param + "%"));
+			} else {
+				pc.setAutoPotion(false);
+				pc.setHealItemNum(0);
+				pc.setHealVal(0);
+				pc.sendPackets(new S_SystemMessage("자동물약을 종료합니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".주 [자동포션사용구간]"));
+		}
+	}
+	
+	private void 자물말(L1PcInstance pc, String potionType, String param) {
+		try {
+			if (pc.getAutoHunt()) {
+				pc.sendPackets(new S_SystemMessage("자동사냥중에는 사용할 수 없습니다."));
+				return;
+			}
+			if (!"끔".equals(potionType)) {
+				if ("빨".equals(potionType)) {
+					pc.setHealItemNum(40010);
+				} else if ("주".equals(potionType)) {
+					pc.setHealItemNum(40011);
+				} else if ("말".equals(potionType)) {
+					pc.setHealItemNum(40012);
+				} else {
+					pc.sendPackets(new S_SystemMessage(".말 [자동포션사용구간]"));
+					return;
+				}
+
+				pc.setAutoPotion(true);
+				pc.setHealVal(Integer.parseInt(param));
+
+				pc.sendPackets(new S_SystemMessage("자동물약을 시작합니다."));
+				pc.sendPackets(new S_SystemMessage("물약종류 : " + potionType + " , 구간 : 최대체력의 " + param + "%"));
+			} else {
+				pc.setAutoPotion(false);
+				pc.setHealItemNum(0);
+				pc.setHealVal(0);
+				pc.sendPackets(new S_SystemMessage("자동물약을 종료합니다."));
+			}
+		} catch (Exception e) {
+			pc.sendPackets(new S_SystemMessage(".말 [자동포션사용구간]"));
+		}
+	}
+}

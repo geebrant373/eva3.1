@@ -1,0 +1,839 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+
+package l1j.server.server.model.Instance;
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.concurrent.ScheduledFuture;
+
+import l1j.server.Config;
+import l1j.server.server.ActionCodes;
+import l1j.server.server.GeneralThreadPool;
+import l1j.server.server.ObjectIdFactory;
+import l1j.server.server.model.Broadcaster;
+import l1j.server.server.model.L1Character;
+import l1j.server.server.model.L1World;
+import l1j.server.server.model.poison.L1DamagePoison;
+import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.serverpackets.S_DollPack;
+import l1j.server.server.serverpackets.S_SPMR;
+import l1j.server.server.serverpackets.S_SkillSound;
+import l1j.server.server.serverpackets.S_SystemMessage;
+import l1j.server.server.serverpackets.S_UseAttackSkill;
+import l1j.server.server.templates.L1Npc;
+
+public class L1DollInstance extends L1NpcInstance {
+	private static final long serialVersionUID = 1L;
+
+	public static final int DOLLTYPE_BUGBEAR = 0;
+	public static final int DOLLTYPE_SUCCUBUS = 1;
+	public static final int DOLLTYPE_WAREWOLF = 2;
+	public static final int DOLLTYPE_STONEGOLEM = 3;
+	public static final int DOLLTYPE_ELDER = 4;
+	public static final int DOLLTYPE_CRUSTACEA = 5;
+	public static final int DOLLTYPE_SEADANCER = 6;
+	public static final int DOLLTYPE_SNOWMAN = 7;
+	public static final int DOLLTYPE_COCATRIS = 8;
+	public static final int DOLLTYPE_DRAGON_M = 9;
+	public static final int DOLLTYPE_DRAGON_W = 10;
+	public static final int DOLLTYPE_얼음여왕 = 11;
+	public static final int DOLLTYPE_타락 = 12;
+	public static final int DOLLTYPE_데몬 = 13;
+	public static final int DOLLTYPE_사이클롭스 = 14;
+	public static final int DOLLTYPE_시어 = 15;
+	public static final int DOLLTYPE_나이트발드 = 16;
+	public static final int DOLLTYPE_리치 = 17;
+	public static final int DOLLTYPE_데스나이트 = 19; // 허수아비
+	public static final int DOLLTYPE_바란카 = 20;
+	public static final int DOLLTYPE_안타라스 = 21;
+	public static final int DOLLTYPE_파푸리온 = 22;
+	public static final int DOLLTYPE_린드비오르 = 23;
+	public static final int DOLLTYPE_발라카스 = 24;
+	public static final int DOLLTYPE_스파토이 = 25;
+	public static final int DOLLTYPE_road = 26;
+	public static final int DOLLTYPE_허수아비 = 27;
+	public static final int DOLLTYPE_에티 = 28;
+	public static final int DOLLTYPE_라미아 = 29;
+	// public static final int DOLL_TIME = 1800000;
+
+	private static Random _random = new Random();
+	private int _dollType;
+	private int _itemObjId;
+	private ScheduledFuture<?> _future = null;
+
+	private static int Buff[] = { 26, 42, 43, 79 }; // 덱스, 힘, 헤이, 어벤
+
+	// 타겟이 없는 경우의 처리
+	@Override
+	public boolean noTarget() {
+		if (_master.isDead()) {
+			deleteDoll();
+			return true;
+		} else if (_master != null && _master.getMapId() == getMapId()) {
+			if (getLocation().getTileLineDistance(_master.getLocation()) > 2) {
+				int dir = moveDirection(_master.getX(), _master.getY());
+				if (dir == -1) {
+					teleport(_master.getX(), _master.getY(), getMoveState().getHeading());
+					setDirectionMove(dir);
+					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
+				} else {
+					setDirectionMove(dir);
+					setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
+				}
+			}
+		} else {
+			deleteDoll();
+			return true;
+		}
+		return false;
+	}
+
+	// 시간 계측용
+	class DollTimer implements Runnable {
+		@Override
+		public void run() {
+			if (_destroyed) { // 이미 파기되어 있지 않은가 체크
+				return;
+			}
+			deleteDoll();
+		}
+	}
+
+	class HelpTimer implements Runnable {
+		@Override
+		public void run() {
+			if (_destroyed) { // 이미 파기되어 있지 않은가 체크
+				return;
+			}
+			getHelperAction();
+		}
+	}
+
+	public double getAddExpByDoll() { // 인형 경험치추가
+		double addexp = 1;
+
+		if (getDollType() == DOLLTYPE_데스나이트) {
+			addexp = Config.데스나이트경험치; // 10%
+		} else if (getDollType() == DOLLTYPE_타락 || getDollType() == DOLLTYPE_데몬 || getDollType() == DOLLTYPE_바란카 || getDollType() == DOLLTYPE_얼음여왕) {
+			addexp = 1.25; // 2배
+		} else if (getDollType() == DOLLTYPE_안타라스 || getDollType() == DOLLTYPE_발라카스 || getDollType() == DOLLTYPE_린드비오르
+				|| getDollType() == DOLLTYPE_파푸리온) {
+			addexp = 2.52; // 2배
+		} else if (getDollType() == DOLLTYPE_SUCCUBUS) {
+			addexp = 1.05; // 2배
+		} else if (getDollType() == DOLLTYPE_road || getDollType() == DOLLTYPE_스파토이) {
+			addexp = 1.1; // 2배
+		} else if (getDollType() == DOLLTYPE_COCATRIS || getDollType() == DOLLTYPE_ELDER) {
+			addexp = 1.15; // 2배
+		} else if (getDollType() == DOLLTYPE_사이클롭스 || getDollType() == DOLLTYPE_시어 || getDollType() == DOLLTYPE_나이트발드 || getDollType() == DOLLTYPE_리치) {
+			addexp = 1.2; // 2배
+		}
+		return addexp;
+	}
+
+	public L1DollInstance(L1Npc template, L1NpcInstance npc, int dollType) {
+		super(template);
+		setId(ObjectIdFactory.getInstance().nextId());
+
+		setDollType(dollType);
+		setMasterMannequin(true);
+		setMasterMannequinName(npc);
+
+		setX(npc.getX() + _random.nextInt(5) - 2);
+		setY(npc.getY() + _random.nextInt(5) - 2);
+		setMap(npc.getMapId());
+		getMoveState().setHeading(5);
+		setLightSize(template.getLightSize());
+		npc.addDoll(this);
+
+		L1World.getInstance().storeObject(this);
+		L1World.getInstance().addVisibleObject(this);
+		for (L1PcInstance pc : L1World.getInstance().getRecognizePlayer(this)) {
+			onPerceive(pc);
+		}
+
+	}
+
+	public L1DollInstance(L1Npc template, L1PcInstance master, int dollType, int itemObjId, int dollTime) {
+		super(template);
+		setId(ObjectIdFactory.getInstance().nextId());
+
+		setDollType(dollType);
+		setItemObjId(itemObjId);
+		GeneralThreadPool.getInstance().schedule(new DollTimer(), dollTime);
+
+		setMaster(master);
+		setX(master.getX() + _random.nextInt(5) - 2);
+		setY(master.getY() + _random.nextInt(5) - 2);
+		setMap(master.getMapId());
+		getMoveState().setHeading(5);
+		setLightSize(template.getLightSize());
+
+		L1World.getInstance().storeObject(this);
+		L1World.getInstance().addVisibleObject(this);
+		for (L1PcInstance pc : L1World.getInstance().getRecognizePlayer(this)) {
+			onPerceive(pc);
+		}
+		master.setMagicDoll(this);
+		master.addDoll(this);
+		if (!isAiRunning()) {
+			startAI();
+		}
+		if (isMpRegeneration()) {
+			master.startMpRegenerationByDoll();
+		}
+		if (isHpRegeneration()) {
+			master.startHpRegenerationByDoll();
+		}
+
+		int type = getDollType();
+		switch (type) {
+		case DOLLTYPE_BUGBEAR:
+			master.addHitup(1);
+			master.addBowHitup(1);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: 명중+1"));
+			break;
+
+		case DOLLTYPE_WAREWOLF:
+			master.addMaxHp(20);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: HP+20"));
+			break;
+
+		case DOLLTYPE_허수아비:
+			master.addMaxMp(10);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: MP+10"));
+			break;
+
+		case DOLLTYPE_STONEGOLEM:
+			master.sendPackets(new S_SystemMessage("마법인형 효과: 리덕션+1"));
+			break;
+
+		case DOLLTYPE_CRUSTACEA:
+			master.addBowDmgup(1);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: 원거리대미지+1"));
+			break;
+
+		case DOLLTYPE_SEADANCER:
+			master.getAbility().addSp(1);
+			master.sendPackets(new S_SPMR(master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과: SP+1"));
+			break;
+
+		case DOLLTYPE_에티:
+			master.getAC().addAc(-2);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: AC-2"));
+			break;
+
+		case DOLLTYPE_라미아:
+			master.addDmgup(1);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: 근거리대미지+1"));
+			break;
+
+		case DOLLTYPE_사이클롭스:
+			master.getAC().addAc(-1);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: AC-1,경험치 보너스+20%,리덕션+3,엠피회복+20,마법 발동:썬버스트"));
+			break;
+
+		case DOLLTYPE_시어:
+			master.getAC().addAc(-1);
+			master.addDmgup(3);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: AC-1,경험치 보너스+20%,원거리대미지+3,엠피회복+20,마법 발동:썬버스트"));
+			break;
+
+		case DOLLTYPE_나이트발드:
+			master.getAC().addAc(-1);
+			master.addBowDmgup(3);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: AC-1,경험치 보너스+20%,근거리대미지+3,엠피회복+20,마법 발동:썬버스트"));
+			break;
+
+		case DOLLTYPE_리치:
+			master.getAC().addAc(-1);
+			master.getAbility().addSp(3);
+			master.sendPackets(new S_SPMR(master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과: AC-1,경험치 보너스+20%,SP+3,엠피회복+20,마법 발동:썬버스트"));
+			break;
+
+		case DOLLTYPE_SUCCUBUS:
+			master.addDmgup(1);
+			master.addBowDmgupByDoll(1);
+			master.getAbility().addSp(1);
+			master.sendPackets(new S_SPMR(master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과: 근거리추타+1,원거리추타+1,SP+1,엠피회복+5,경험치 보너스+5%"));
+			break;
+
+		case DOLLTYPE_COCATRIS:
+			master.addBowDmgupByDoll(1);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: 원거리추타+1,엠피회복+15,경험치 보너스+15%"));
+			break;
+
+		case DOLLTYPE_스파토이:
+			master.addDmgup(1);
+			master.addBowDmgup(1);
+			master.getAbility().addSp(1);
+			master.sendPackets(new S_SPMR(master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과: 근거리대미지+1,원거리대미지+1,SP+1,엠피회복+15,경험치 보너스+10%"));
+			break;
+
+		case DOLLTYPE_ELDER:
+			master.getAbility().addSp(1);
+			master.sendPackets(new S_SPMR(_master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과: SP+1,엠피회복+20,경험치 보너스+15%"));
+			break;
+
+		case DOLLTYPE_DRAGON_M:
+		case DOLLTYPE_DRAGON_W:
+			_master.addMpr(15);
+			_master.sendPackets(new S_SystemMessage("마법인형 효과: 스턴내성+12,정령적중+10 "));
+			break;
+
+		case DOLLTYPE_road:
+			master.getAC().addAc(-1);
+			master.addBowDmgup(2);
+			master.addDamageReductionByArmor(2);
+			master.sendPackets(new S_SystemMessage("마법인형 효과:AC-1,리덕션+2,원거리 대미지+2,엠피회복+20,경험치 보너스+20%,마법 발동:썬버스트"));
+			break;
+
+		case DOLLTYPE_데몬:
+			master.getAC().addAc(-2);
+			master.getResistance().addStun(10);
+			master.addHitup_skill(5);
+			master.addMaxHp(200);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: AC-2,엠피회복+20,경험치 보너스+30%,HP+200,스턴적중+5,스턴내성+10,마법 발동:헬파이어"));
+			break;
+
+		case DOLLTYPE_데스나이트:
+			master.getAC().addAc(-2);
+			master.sendPackets(new S_SPMR(master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과: AC-2,엠피회복+20,경험치 보너스+30%,리덕션+5,마법 발동:헬파이어"));
+			break;
+
+		case DOLLTYPE_얼음여왕:
+			master.getAC().addAc(-2);
+			master.addBowDmgup(5);
+			master.sendPackets(new S_SystemMessage("마법인형 효과: AC-2,엠피회복+20,경험치 보너스+30%,원거리대미지+5,마법 발동:헬파이어"));
+			break;
+
+		case DOLLTYPE_타락:
+			master.getAC().addAc(-2);
+			master.getAbility().addSp(5);
+			master.sendPackets(new S_SPMR(master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과:AC-2,엠피회복+20,경험치 보너스+30%,SP+5,마법 발동:헬파이어"));
+			break;
+
+		case DOLLTYPE_바란카:
+			master.getAC().addAc(-2);
+			master.addDmgup(5);
+			master.sendPackets(new S_SystemMessage("마법인형 효과:AC-2,엠피회복+20,경험치 보너스+30%,근거리대미지+5%,마법 발동:헬파이어"));
+			break;
+
+		case DOLLTYPE_안타라스:
+			master.getAC().addAc(-3);
+			master.addDamageReductionByArmor(8);//6
+			master.addHitup_skill(15);//3
+			master.getResistance().addStun(15);//8
+			master.addPVPDamage(6);
+			master.addPVPDamageReduction(10);//2
+			master.sendPackets(new S_SPMR(master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과:오토루팅,AC-3,대미지 리덕션+8,기술 적중+15,스턴 내성+15,PvP대미지+6,PvP대미지 감소+10,MP절대회복+40(15초),경험치 보너스+40%,이펙트:헬파이어"));
+			break;
+
+		case DOLLTYPE_파푸리온:
+			master.getAC().addAc(-3);
+			master.addHitup_magic(8);
+			master.getAbility().addSp(15);//4
+			master.addHitup_skill(15);//3
+			master.getResistance().addStun(15);//8
+			master.addPVPDamage(4);
+			master.addPVPDamageReduction(2);
+			master.sendPackets(new S_SPMR(_master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과:오토루팅,AC-3,마법 적중+8,SP+15,기술 적중+15,스턴 내성+15,PvP대미지+4,PvP대미지 감소+2,MP절대 회복+40(15초),경험치보너스+40%,이펙트:헬파이어"));
+			break;
+
+		case DOLLTYPE_린드비오르:
+			master.getAC().addAc(-3);
+			master.addBowDmgupByDoll(14);//3
+			master.addBowHitup(8);
+			master.addBowHitupByDoll(15);//3
+			master.addHitup_skill(15);//3
+			master.addHitup_spirit(15);//3
+			master.getResistance().addStun(15);//8
+			master.addPVPDamage(4);
+			master.addPVPDamageReduction(2);
+			master.sendPackets(new S_SPMR(master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과:오토루팅,AC-3,원거리 대미지+14,원거리 명중+8,기술 적중+15,정령 적중+15,스턴 내성+15,정령 내성+15,PvP대미지+4,PvP대미지 감소+2,MP절대회복+40(15초),경험치보너스+40%,이펙트:헬파이어"));
+			break;
+
+		case DOLLTYPE_발라카스:
+			master.getAC().addAc(-3);
+			master.addDmgup(6);
+			master.addHitup(8);
+			master.addHitup_skill(15);//3
+			master.addHitup_spirit(15);//3
+			master.getResistance().addStun(15);//8
+			master.addHitupByDoll(15);//3
+			master.addPVPDamage(4);
+			master.addPVPDamageReduction(2);
+			master.sendPackets(new S_SPMR(master));
+			master.sendPackets(new S_SystemMessage("마법인형 효과:오토루팅,AC-3,근거리 대미지+6,근거리 명중+8,기술 적중+15,정령 적중+15,스턴 내성+15,정령 내성+15,PvP대미지+4,PvP대미지 감소+2,MP절대회복+40(15초),경험치보너스+40%,이펙트:헬파이어"));
+			break;
+	}
+
+		startHelpTimer();
+	}
+
+	public void deleteDoll() {
+		L1PcInstance pc = (L1PcInstance) _master;
+		L1ItemInstance item = pc.getInventory().findItemObjId(_itemObjId);
+
+		if (isMpRegeneration()) {
+			((L1PcInstance) _master).stopMpRegenerationByDoll();
+		} else if (isHpRegeneration()) {
+			((L1PcInstance) _master).stopHpRegenerationByDoll();
+		}
+
+		int type = getDollType();
+		switch (type) {
+		case DOLLTYPE_BUGBEAR:
+			_master.addHitup(-1);
+			_master.addBowHitup(-1);
+			break;
+
+		case DOLLTYPE_WAREWOLF:
+			_master.addMaxHp(-20);
+			break;
+
+		case DOLLTYPE_허수아비:
+			_master.addMaxMp(-10);
+			break;
+
+		case DOLLTYPE_CRUSTACEA:
+			_master.addBowDmgup(-1);
+			break;
+
+		case DOLLTYPE_SEADANCER:
+			_master.getAbility().addSp(-1);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+
+		case DOLLTYPE_에티:
+			_master.getAC().addAc(2);
+			break;
+
+		case DOLLTYPE_라미아:
+			_master.addDmgup(1);
+			break;
+
+		case DOLLTYPE_사이클롭스:
+			_master.getAC().addAc(1);
+			break;
+
+		case DOLLTYPE_시어:
+			_master.getAC().addAc(1);
+			_master.addDmgup(-3);
+			break;
+
+		case DOLLTYPE_나이트발드:
+			_master.getAC().addAc(1);
+			_master.addBowDmgup(-3);
+			break;
+
+		case DOLLTYPE_리치:
+			_master.getAC().addAc(1);
+			_master.getAbility().addSp(-3);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+
+		case DOLLTYPE_SUCCUBUS:
+			_master.addDmgup(-1);
+			_master.addBowDmgupByDoll(-1);
+			_master.getAbility().addSp(-1);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+
+		case DOLLTYPE_COCATRIS:
+			_master.addBowDmgupByDoll(-1);
+			break;
+
+		case DOLLTYPE_스파토이:
+			_master.addDmgup(-1);
+			_master.addBowDmgup(-1);
+			_master.getAbility().addSp(-1);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+
+		case DOLLTYPE_ELDER:
+			_master.getAbility().addSp(-1);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+
+		case DOLLTYPE_road:
+			_master.getAC().addAc(1);
+			_master.addBowDmgup(-2);
+			_master.addDamageReductionByArmor(-2);
+			break;
+
+		case DOLLTYPE_데몬:
+			_master.getAC().addAc(2);
+			_master.getResistance().addStun(-10);
+			_master.addHitup_skill(-5);
+			_master.addMaxHp(-200);
+			break;
+
+		case DOLLTYPE_데스나이트:
+			_master.getAC().addAc(2);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+
+		case DOLLTYPE_얼음여왕:
+			_master.getAC().addAc(2);
+			_master.addBowDmgup(-5);
+			break;
+
+		case DOLLTYPE_타락:
+			_master.getAC().addAc(2);
+			_master.getAbility().addSp(-5);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+
+		case DOLLTYPE_바란카:
+			_master.getAC().addAc(2);
+			_master.addDmgup(-5);
+			break;
+
+		case DOLLTYPE_안타라스:
+			_master.getAC().addAc(3);
+			_master.addDamageReductionByArmor(-8);
+			_master.addHitup_skill(-15);
+			_master.getResistance().addStun(-15);
+			_master.addPVPDamage(-6);
+			_master.addPVPDamageReduction(-10);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+
+		case DOLLTYPE_파푸리온:
+			_master.getAC().addAc(3);
+			_master.addHitup_magic(-8);
+			_master.getAbility().addSp(-15);
+			_master.addHitup_skill(-15);
+			_master.getResistance().addStun(-15);
+			_master.addPVPDamage(-4);
+			_master.addPVPDamageReduction(-2);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+
+		case DOLLTYPE_린드비오르:
+			_master.getAC().addAc(3);
+			_master.addBowDmgupByDoll(-14);
+			_master.addBowHitup(-8);
+			_master.addBowHitupByDoll(-15);
+			_master.addHitup_skill(-15);
+			_master.addHitup_spirit(-15);
+			_master.getResistance().addStun(-15);
+			_master.addPVPDamage(-4);
+			_master.addPVPDamageReduction(-2);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+
+		case DOLLTYPE_발라카스:
+			_master.getAC().addAc(3);
+			_master.addDmgup(-6);
+			_master.addHitup(-8);
+			_master.addHitup_skill(-15);
+			_master.addHitup_spirit(-15);
+			_master.getResistance().addStun(-15);
+			_master.addHitupByDoll(-15);
+			_master.addPVPDamage(-4);
+			_master.addPVPDamageReduction(-2);
+			_master.sendPackets(new S_SPMR(_master));
+			break;
+	}
+
+		stopHelpTimer();
+		_master.sendPackets(new S_SkillSound(getId(), 5936));
+		Broadcaster.broadcastPacket(_master, new S_SkillSound(getId(), 5936));
+		_master.getDollList().remove(getId());
+		_master.setMagicDoll(null);
+		deleteMe();
+	}
+
+	@Override
+	public void onPerceive(L1PcInstance perceivedFrom) {
+		perceivedFrom.getNearObjects().addKnownObject(this);
+		perceivedFrom.sendPackets(new S_DollPack(this, perceivedFrom));
+	}
+	
+	@Override
+	public void onItemUse() {
+		if (!isActived()) {
+			// 100%의 확률로 헤이 파업 일부 사용
+			useItem(USEITEM_HASTE, 100);
+		}
+	}
+
+	@Override
+	public void onGetItem(L1ItemInstance item) {
+		if (getNpcTemplate().get_digestitem() > 0) {
+			setDigestItem(item);
+		}
+		if (Arrays.binarySearch(haestPotions, item.getItem().getItemId()) >= 0) {
+			useItem(USEITEM_HASTE, 100);
+		}
+	}
+
+	public int getDollType() {
+		return _dollType;
+	}
+
+	public void setDollType(int i) {
+		_dollType = i;
+	}
+
+	public int getItemObjId() {
+		return _itemObjId;
+	}
+
+	public void setItemObjId(int i) {
+		_itemObjId = i;
+	}
+
+	public int getDamageByDoll() {
+		int damage = 0;
+		int type = getDollType();
+		/*if (type == DOLLTYPE_CRUSTACEA) {
+			int chance = _random.nextInt(100) + 1;
+			if (chance <= 3) {
+				damage = 15;
+				if (_master instanceof L1PcInstance) {
+					L1PcInstance pc = (L1PcInstance) _master;
+					pc.sendPackets(new S_SkillSound(_master.getId(), 6319));
+				}
+				Broadcaster.broadcastPacket(_master, new S_SkillSound(_master.getId(), 6319));
+			}
+		}*/
+		return damage;
+	}
+
+	public void attackPoisonDamage(L1PcInstance pc, L1Character cha) {
+		int type = getDollType();
+	}
+
+	public int getDamageReductionByDoll() {
+		int DamageReduction = 0;
+		if (getDollType() == DOLLTYPE_STONEGOLEM) {
+			int chance = _random.nextInt(100) + 1;
+			if (chance <= 3) {
+				DamageReduction = 1;
+				if (_master instanceof L1PcInstance) {
+					L1PcInstance pc = (L1PcInstance) _master;
+					pc.sendPackets(new S_SkillSound(_master.getId(), 6320));
+				}
+				Broadcaster.broadcastPacket(_master, new S_SkillSound(_master.getId(), 6320));
+			}
+		}
+		return DamageReduction;
+	}
+
+	public boolean isMpRegeneration() {
+		boolean isMpRegeneration = false;
+		int type = getDollType();
+		switch (type) {
+		case DOLLTYPE_데스나이트:
+		case DOLLTYPE_데몬:
+		case DOLLTYPE_얼음여왕:
+		case DOLLTYPE_타락:
+		case DOLLTYPE_바란카:
+		case DOLLTYPE_안타라스:
+		case DOLLTYPE_파푸리온:
+		case DOLLTYPE_린드비오르:
+		case DOLLTYPE_발라카스:
+		case DOLLTYPE_SUCCUBUS:
+		case DOLLTYPE_COCATRIS:
+		case DOLLTYPE_스파토이:
+		case DOLLTYPE_ELDER:
+		case DOLLTYPE_사이클롭스:
+		case DOLLTYPE_시어:
+		case DOLLTYPE_나이트발드:
+		case DOLLTYPE_리치:
+		case DOLLTYPE_road:
+			isMpRegeneration = true;
+			break;
+		}
+		return isMpRegeneration;
+	}
+
+	public int isdropadd() {
+		int isdropadd = 1;
+		int type = getDollType();
+		if (type == DOLLTYPE_COCATRIS || type == DOLLTYPE_스파토이 || type == DOLLTYPE_ELDER) {
+			isdropadd = 2;
+		}
+		return isdropadd;
+	}
+
+	public boolean isHpRegeneration() {
+		boolean isHpRegeneration = false;
+		int type = getDollType();
+		/*if (type == DOLLTYPE_SEADANCER) {
+			isHpRegeneration = true;
+		}*/
+		return isHpRegeneration;
+	}
+
+	public int getWeightReductionByDoll() {
+		int weightReduction = 0;
+		int type = getDollType();
+		switch (type) {
+		case DOLLTYPE_DRAGON_M:
+		case DOLLTYPE_DRAGON_W:
+
+			weightReduction = 10;
+			break;
+		}
+		return weightReduction;
+	}
+
+	public int getMpRegenerationValues() {
+		int regenMp = 0;
+		int type = getDollType();
+		switch (type) {
+		case DOLLTYPE_SUCCUBUS:
+			regenMp = 5;
+			break;
+		case DOLLTYPE_COCATRIS:
+		case DOLLTYPE_스파토이:
+			regenMp = 15;
+			break;
+		case DOLLTYPE_데스나이트:
+		case DOLLTYPE_타락:
+		case DOLLTYPE_바란카:
+		case DOLLTYPE_데몬:
+		case DOLLTYPE_얼음여왕:
+		case DOLLTYPE_ELDER:
+		case DOLLTYPE_사이클롭스:
+		case DOLLTYPE_시어:
+		case DOLLTYPE_나이트발드:
+		case DOLLTYPE_리치:
+		case DOLLTYPE_road:
+			regenMp = 20;
+			break;
+		case DOLLTYPE_안타라스:
+		case DOLLTYPE_파푸리온:
+		case DOLLTYPE_린드비오르:
+		case DOLLTYPE_발라카스:
+			regenMp = 40;
+			break;
+		}
+		return regenMp;
+	}
+
+	private void getHelperAction() {
+		if (_master.getCurrentHp() < _master.getMaxHp() / 2) {
+			new L1SkillUse().handleCommands(null, 35, _master.getId(), _master.getX(), _master.getY(), null, 0, L1SkillUse.TYPE_NORMAL, this);
+			return;
+		}
+		for (int i = 0; i < Buff.length; i++) {
+			if (!_master.getSkillEffectTimerSet().hasSkillEffect(Buff[i])) {
+				new L1SkillUse().handleCommands(null, Buff[i], _master.getId(), _master.getX(), _master.getY(), null, 0, L1SkillUse.TYPE_NORMAL,
+						this);
+				break;
+			}
+		}
+	}
+
+	// 픽시 마법인형 [ 브레그, 레데그, 엘레그 ]
+	@SuppressWarnings("unused") // 추가 데스나이트 데미지
+	public double attackPixieDamage(L1PcInstance pc, L1Character cha) {
+		double dmg = 0;
+		int type = getDollType();
+		int effect = 0;
+		switch (type) {
+		case DOLLTYPE_사이클롭스:
+		case DOLLTYPE_road:
+		case DOLLTYPE_나이트발드:
+		case DOLLTYPE_리치:
+		case DOLLTYPE_시어:
+			effect = 1811; // 썬버스트
+			break;
+		case DOLLTYPE_데몬:
+		case DOLLTYPE_데스나이트:
+		case DOLLTYPE_얼음여왕:
+		case DOLLTYPE_타락:
+		case DOLLTYPE_바란카:
+		case DOLLTYPE_안타라스:
+		case DOLLTYPE_파푸리온:
+		case DOLLTYPE_린드비오르:
+		case DOLLTYPE_발라카스:
+			effect = 7300; // 헬파이어
+			break;
+		default:
+			break;
+		}
+		if (type == DOLLTYPE_데몬 || type == DOLLTYPE_데스나이트 || type == DOLLTYPE_얼음여왕 || type == DOLLTYPE_타락
+				|| type == DOLLTYPE_바란카 || type == DOLLTYPE_안타라스 || type == DOLLTYPE_파푸리온 || type == DOLLTYPE_린드비오르
+				|| type == DOLLTYPE_발라카스) {
+			int damage = 0;
+			int chance = _random.nextInt(100) + 1;
+			int TotalInt = cha.getAbility().getTotalInt();
+			if (chance <= Config.데스나이트헬파이어) {
+				if (cha.getCurrentWeapon() == 20) {
+					dmg = Config.원거리헬파이어대미지;
+				} else {
+					dmg = Config.근거리헬파이어대미지;
+				}
+				
+				S_UseAttackSkill packet = new S_UseAttackSkill(this, cha.getId(), effect, cha.getX(), cha.getY(),
+						ActionCodes.ACTION_SkillAttack, false);
+				pc.sendPackets(packet);
+				Broadcaster.broadcastPacket(pc, packet);
+			}
+		} else if (type == DOLLTYPE_사이클롭스 || type == DOLLTYPE_road || type == DOLLTYPE_나이트발드 || type == DOLLTYPE_리치 || type == DOLLTYPE_시어) {
+			int damage = 0;
+			int chance = _random.nextInt(100) + 1;
+			int TotalInt = cha.getAbility().getTotalInt();
+			if (chance <= Config.데스나이트선버스트) {
+				if (cha.getCurrentWeapon() == 20) {
+					dmg = Config.원거리선버스트대미지;
+				} else {
+					dmg = Config.근거리선버스트대미지;
+				}
+				S_UseAttackSkill packet = new S_UseAttackSkill(this, cha.getId(), effect, cha.getX(), cha.getY(),
+						ActionCodes.ACTION_SkillAttack, false);
+				pc.sendPackets(packet);
+				Broadcaster.broadcastPacket(pc, packet);
+			}
+		}
+		return dmg;
+	}
+
+	public void startHelpTimer() {
+		if (getDollType() != DOLLTYPE_ELDER)
+			return;
+		_future = GeneralThreadPool.getInstance().scheduleAtFixedRate(new HelpTimer(), 4000, 4000);
+	}
+
+	public void stopHelpTimer() {
+		if (getDollType() != DOLLTYPE_ELDER)
+			return;
+		if (_future != null) {
+			_future.cancel(false);
+		}
+	}
+
+}

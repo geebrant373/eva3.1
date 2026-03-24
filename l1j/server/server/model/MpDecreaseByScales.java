@@ -1,0 +1,33 @@
+package l1j.server.server.model;
+
+import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import l1j.server.server.model.Instance.L1PcInstance;
+
+public class MpDecreaseByScales extends TimerTask {
+	private static Logger _log = Logger.getLogger(MpDecreaseByScales.class
+			.getName());
+
+	private final L1PcInstance _pc;
+
+	public MpDecreaseByScales(L1PcInstance pc) {
+		_pc = pc;
+	}
+
+	@Override
+	public void run() {
+		try {
+			regenMp();
+		} catch (Throwable e) {
+			_log.log(Level.WARNING, e.getLocalizedMessage(), e);
+		}
+	}
+
+	public void regenMp() {
+		int newMp = _pc.getCurrentMp() - 4;
+
+		_pc.setCurrentMp(newMp);
+	}
+}

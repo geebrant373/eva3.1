@@ -1,0 +1,4395 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+package l1j.server.server.model;
+
+import java.util.ArrayList;
+
+import l1j.server.server.datatables.SkillsTable;
+import l1j.server.server.model.Instance.L1DollInstance;
+import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.serverpackets.S_Ability;
+import l1j.server.server.serverpackets.S_AddSkill;
+import l1j.server.server.serverpackets.S_DelSkill;
+import l1j.server.server.serverpackets.S_Invis;
+import l1j.server.server.serverpackets.S_OwnCharStatus;
+import l1j.server.server.serverpackets.S_SPMR;
+import l1j.server.server.serverpackets.S_SkillBrave;
+import l1j.server.server.serverpackets.S_SkillHaste;
+import l1j.server.server.serverpackets.S_SkillIconBlessOfEva;
+import l1j.server.server.serverpackets.S_SkillIconGFX;
+import l1j.server.server.serverpackets.S_SkillSound;
+import l1j.server.server.templates.L1Item;
+import static l1j.server.server.model.skill.L1SkillId.*;
+
+public class L1EquipmentSlot {
+
+	private L1PcInstance _owner;
+
+	private ArrayList<L1ArmorSet> _currentArmorSet;
+
+	private L1ItemInstance _weapon;
+
+	private ArrayList<L1ItemInstance> _armors;
+
+	public L1EquipmentSlot(L1PcInstance owner) {
+		_owner = owner;
+
+		_armors = new ArrayList<L1ItemInstance>();
+		_currentArmorSet = new ArrayList<L1ArmorSet>();
+	}
+
+	private void setWeapon(L1ItemInstance weapon) {
+
+		_owner.setWeapon(weapon);
+		_owner.setCurrentWeapon(weapon.getItem().getType1());
+		weapon.startEquipmentTimer(_owner);
+		_weapon = weapon;
+
+		if (weapon.getItemId() == 316 || weapon.getItemId() == 317) {
+			_owner.addHitup(3);
+		}
+		if (weapon.getItem().getType1() == 40 && weapon.getBless() == 00) {
+			_owner.getAbility().addSp(3);
+			_owner.sendPackets(new S_SPMR(_owner));
+		}
+		if (weapon.get_bless_level() != 0) {
+			if(weapon.getItemId() == 9 || weapon.getItemId() == 190 || weapon.getItemId() == 317 || weapon.getItemId() == 127
+					 || weapon.getItemId() == 54 || weapon.getItemId() == 164 || weapon.getItemId() == 205 || weapon.getItemId() == 124
+					 || weapon.getItemId() == 181|| weapon.getItemId() == 57|| weapon.getItemId() == 162|| weapon.getItemId() == 126) {
+				_owner.addDmgup(weapon.get_bless_level());
+			} else {
+				_owner.addPVPDamage(weapon.get_bless_level());
+			}
+		}
+	}
+
+	public L1ItemInstance getWeapon() {
+		return _weapon;
+	}
+
+	// 입기
+	private void setArmor(L1ItemInstance armor) {
+		L1Item item = armor.getItem();
+		int itemlvl = armor.getEnchantLevel();
+		int enchantlevel = armor.getEnchantLevel();
+		int itemtype = armor.getItem().getType();
+		int itemId = armor.getItem().getItemId();
+		int itemgrade = armor.getItem().getGrade();
+		int bless = armor.getBless();
+
+		if (bless == 0 && itemtype >= 1 && itemtype <= 7 || bless == 0 && itemId >= 420000 && itemId <= 420003) {
+			_owner.addDamageReductionByArmor(1);
+		}
+		if (bless == 0 && itemtype >= 8 && itemtype <= 12) {
+			_owner.addDamageReductionByArmor(1);
+		}
+		if (itemtype >= 8 && itemtype <= 12) {
+			_owner.getAC().addAc(item.get_ac() - armor.getAcByMagic());
+		} else {
+			_owner.getAC().addAc(item.get_ac() - armor.getEnchantLevel() - armor.getAcByMagic());
+		}
+		_owner.addDamageReductionByArmor(item.getDamageReduction());
+		_owner.addWeightReduction(item.getWeightReduction());
+		_owner.addHitupByArmor(item.getHitup());
+		_owner.addDmgupByArmor(item.getDmgup());
+		_owner.addBowHitupByArmor(item.getBowHitup());
+		_owner.addBowDmgupByArmor(item.getBowDmgup());
+		_owner.getResistance().addEarth(item.get_defense_earth());
+		_owner.getResistance().addWind(item.get_defense_wind());
+		_owner.getResistance().addWater(item.get_defense_water());
+		_owner.getResistance().addFire(item.get_defense_fire());
+		_owner.getResistance().addStun(item.get_regist_stun());
+		_owner.getResistance().addPetrifaction(item.get_regist_stone());
+		_owner.getResistance().addSleep(item.get_regist_sleep());
+		_owner.getResistance().addFreeze(item.get_regist_freeze());
+		_owner.getResistance().addHold(item.get_regist_sustain());
+		_owner.getResistance().addBlind(item.get_regist_blind());
+
+		_armors.add(armor);
+
+		for (L1ArmorSet armorSet : L1ArmorSet.getAllSet()) {
+			if (armorSet.isPartOfSet(itemId) && armorSet.isValid(_owner)) {
+				if (armor.getItem().getType2() == 2 && armor.getItem().getType() == 9) {
+					if (!armorSet.isEquippedRingOfArmorSet(_owner)) {
+						armorSet.giveEffect(_owner);
+						_currentArmorSet.add(armorSet);
+					}
+				} else {
+					armorSet.giveEffect(_owner);
+					_currentArmorSet.add(armorSet);
+				}
+			}
+		}
+		if (itemId == 423014) {
+			_owner.startAHRegeneration();
+		}
+		if (itemId == 423015) {
+			_owner.startSHRegeneration();
+		}
+		if (itemId == 20380) {
+			_owner.startHalloweenRegeneration();
+		}
+		if (itemId == 20077 || itemId == 20062 || itemId == 120077) {
+			if (!_owner.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.INVISIBILITY)) {
+				for (L1DollInstance doll : _owner.getDollList().values()) {
+					doll.deleteDoll();
+					_owner.sendPackets(new S_SkillIconGFX(56, 0));
+					_owner.sendPackets(new S_OwnCharStatus(_owner));
+				}
+				_owner.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.BLIND_HIDING);
+				_owner.getSkillEffectTimerSet().setSkillEffect(L1SkillId.INVISIBILITY, 0);
+				_owner.sendPackets(new S_Invis(_owner.getId(), 1));
+				Broadcaster.broadcastPacket(_owner, new S_Invis(_owner.getId(), 1));
+			}
+		}
+
+		if (itemId == 21157) {
+			_owner.sendPackets(new S_SkillSound(_owner.getId(), 8945));
+		}
+		if (itemId == 21158) {
+			_owner.sendPackets(new S_SkillSound(_owner.getId(), 8946));
+		}
+		if (itemId == 21159) {
+			_owner.sendPackets(new S_SkillSound(_owner.getId(), 8947));
+		}
+		if (itemId == 20288 || itemId == 120288) {
+			_owner.sendPackets(new S_Ability(1, true));
+		}
+		// 변반
+		if (itemId == 20281) {
+			_owner.sendPackets(new S_Ability(2, true));
+		}
+		if (itemId == 20036) {
+			_owner.sendPackets(new S_Ability(3, true));
+		}
+		if (itemId == 20207) {
+			_owner.sendPackets(new S_SkillIconBlessOfEva(_owner.getId(), -1));
+		}
+		if (itemId == 420003) { // 고투사
+			if (itemlvl < 5) {
+				_owner.addDmgup(1);
+			} else if (itemlvl == 5) {
+				_owner.addDmgup(2);
+			} else if (itemlvl == 6) {
+				_owner.addDmgup(3);
+			} else if (itemlvl == 7) {
+				_owner.addDmgup(4);
+			} else if (itemlvl == 8) {
+				_owner.addDmgup(5);
+			} else if (itemlvl == 9) {
+				_owner.addDmgup(6);
+			}
+		}
+		if (itemId == 20107) { // 리치로브
+			if (itemlvl > 3)
+				_owner.getAbility().addSp(armor.getEnchantLevel() - 3);
+		}
+		if (itemId == 20107 && itemlvl >= 7) {
+			int s = itemlvl - 5;
+			_owner.addDamageReductionByArmor(s);
+		}
+		if (itemId == 20383) {
+			if (armor.getChargeCount() != 0) {
+				armor.setChargeCount(armor.getChargeCount() - 1);
+				_owner.getInventory().updateItem(armor, L1PcInventory.COL_CHARGE_COUNT);
+			}
+		}
+
+		if (itemId == 21156) {
+			_owner.sendPackets(new S_SkillSound(_owner.getId(), 8944));
+		}
+		if (itemId == 21156) {
+			switch (itemlvl) {
+			case 1:
+			case 2:
+				_owner.addPVPDamage(1);
+				break;
+			case 3:
+				_owner.addPVPDamage(2);
+				break;
+			case 4:
+				_owner.addPVPDamage(3);
+				break;
+			case 5:
+				_owner.addPVPDamage(4);
+				break;
+
+			case 6:
+				_owner.addPVPDamage(5);
+				break;
+			case 7:
+				_owner.addPVPDamage(6);
+				break;
+			case 8:
+				_owner.addPVPDamage(7);
+				break;
+
+			default:
+
+				break;
+			}
+		}
+		if (itemId == 9114 || itemId == 91140) {
+			switch (itemlvl) {
+			case 5:
+				_owner.getResistance().addMr(4);
+				_owner.addDamageReductionByArmor(1);
+				break;
+			case 6:
+				_owner.getResistance().addMr(5);
+				break;
+			case 7:
+				_owner.getResistance().addMr(6);
+				break;
+			case 8:
+				_owner.getResistance().addMr(8);
+				_owner.addDamageReductionByArmor(1);
+				break;
+			case 9:
+				_owner.getResistance().addMr(11);
+				_owner.addDamageReductionByArmor(2);
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addPVPDamage(1);
+				_owner.addPVPDamageReduction(1);
+				_owner.getResistance().addMr(14);
+				_owner.addMaxHp(100);
+				_owner.addDamageReductionByArmor(2);
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (itemId == 900020 || itemId == 900022 || itemId == 900023 && itemlvl > 0) {
+			_owner.addMaxHp(itemlvl * 10);
+		}
+		
+		if (itemId == 900021 && itemlvl > 0) {
+			_owner.addMaxMp(itemlvl * 10);
+		}
+		
+		if (itemId == 9115) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addDmgupByArmor(1);
+				break;
+			case 8:
+				_owner.addDmgupByArmor(1);
+				_owner.addHitupByArmor(2);
+				break;
+			case 9:
+				_owner.addDmgupByArmor(2);
+				_owner.addHitupByArmor(4);
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addPVPDamage(1);
+				_owner.addPVPDamageReduction(1);
+				_owner.addMaxHp(100);
+				_owner.addHitupByArmor(6);
+				_owner.addDmgupByArmor(2);
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 91150) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addHitupByArmor(1);
+				_owner.addDmgupByArmor(1);
+				break;
+			case 8:
+				_owner.addHitupByArmor(3);
+				_owner.addDmgupByArmor(1);
+				break;
+			case 9:
+				_owner.addDmgupByArmor(2);
+				_owner.addHitupByArmor(5);
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addPVPDamage(1);
+				_owner.addPVPDamageReduction(1);
+				_owner.addMaxHp(100);
+				_owner.addHitupByArmor(7);
+				_owner.addDmgupByArmor(2);
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (itemId == 9116) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addBowDmgupByArmor(1);
+				break;
+			case 8:
+				_owner.addBowDmgupByArmor(1);
+				_owner.addBowHitupByArmor(2);
+				break;
+			case 9:
+				_owner.addBowDmgupByArmor(2);
+				_owner.addBowHitupByArmor(4);
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addBowHitupByArmor(6);
+				_owner.addPVPDamage(1);
+				_owner.addPVPDamageReduction(1);
+				_owner.addMaxHp(100);
+				_owner.addBowDmgupByArmor(2);
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 91160) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addBowDmgupByArmor(1);
+				_owner.addBowHitupByArmor(1);
+				break;
+			case 8:
+				_owner.addBowDmgupByArmor(1);
+				_owner.addBowHitupByArmor(3);
+				break;
+			case 9:
+				_owner.addBowDmgupByArmor(2);
+				_owner.addBowHitupByArmor(5);
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addBowHitupByArmor(7);
+				_owner.addPVPDamage(1);
+				_owner.addPVPDamageReduction(1);
+				_owner.addMaxHp(100);
+				_owner.addBowDmgupByArmor(2);
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 9117) {
+			switch (itemlvl) {
+			case 8:
+				_owner.getAbility().addSp(2);
+				_owner.addHitup_magic(1);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			case 9:
+				_owner.getAbility().addSp(2);
+				_owner.addHitup_magic(3);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addPVPDamage(1);
+				_owner.addPVPDamageReduction(1);
+				_owner.addMaxHp(100);
+				_owner.getAbility().addSp(3);
+				_owner.addHitup_magic(4);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 91170) {
+			switch (itemlvl) {
+			case 7:
+				_owner.getAbility().addSp(2);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			case 8:
+				_owner.getAbility().addSp(2);
+				_owner.addHitup_magic(3);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			case 9:
+				_owner.getAbility().addSp(3);
+				_owner.addHitup_magic(4);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addPVPDamage(3);
+				_owner.addPVPDamageReduction(3);
+				_owner.addMaxHp(100);
+				_owner.getAbility().addSp(4);
+				_owner.addHitup_magic(5);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId >= 23100 && itemId <= 23103) {
+			if (itemlvl == 1) {
+				_owner.addDamageReductionByArmor(1);
+				_owner.addMaxHp(50);
+			} else if (itemlvl == 2) {
+				_owner.addDamageReductionByArmor(2);
+				_owner.addMaxHp(70);
+			} else if (itemlvl == 3) {
+				_owner.addDamageReductionByArmor(4);
+				_owner.addMaxHp(120);
+				_owner.getResistance().addMr(3);
+			} else if (itemlvl == 4) {
+				_owner.addDamageReductionByArmor(6);
+				_owner.addMaxHp(150);
+				_owner.getResistance().addMr(7);
+			} else if (itemlvl == 5) {
+				_owner.addDamageReductionByArmor(8);
+				_owner.addMaxHp(200);
+				_owner.getResistance().addMr(11);
+			}
+		}
+		if (item.getType2() == 2) {
+			if (itemtype == 1 || itemtype == 3 || itemtype == 4 || itemtype == 5 || itemtype == 6 || itemtype == 7
+					|| itemtype == 18) {
+				if (item.get_safeenchant() == 4) {
+					if (itemlvl == 7) {
+						if (itemId == 222324 || itemId == 222325 || itemId == 222328 || itemId == 222329 || itemId == 21122 || itemId == 20049 || itemId == 20050) {
+							_owner.addDamageReductionByArmor(2);
+							_owner.addMaxHp(10);
+						} else {
+							_owner.addDamageReductionByArmor(1);
+						}
+					} else if (itemlvl == 8) {
+						if (itemId == 222324 || itemId == 222325 || itemId == 222328 || itemId == 222329 || itemId == 21122 || itemId == 20049 || itemId == 20050) {
+							_owner.addDamageReductionByArmor(3);
+							_owner.addMaxHp(20);
+						} else {
+							_owner.addDamageReductionByArmor(2);
+						}
+					} else if (itemlvl == 9) {
+						if (itemId == 222324 || itemId == 222325 || itemId == 222328 || itemId == 222329 || itemId == 21122 || itemId == 20049 || itemId == 20050) {
+							_owner.addDamageReductionByArmor(4);
+							_owner.addMaxHp(30);
+						} else {
+							_owner.addDamageReductionByArmor(3);
+						}
+					}
+				} else if (item.get_safeenchant() == 6) {
+					if (itemlvl == 8) {
+						if (itemId == 222326 || itemId == 222327 || itemId == 222328 || itemId == 20464 || itemId == 20017 || itemId == 20079 || itemId == 222317) {
+							_owner.addDamageReductionByArmor(2);
+							_owner.addMaxHp(10);
+						} else {
+							_owner.addDamageReductionByArmor(1);
+						}
+					} else if (itemlvl == 9) {
+						if (itemId == 222326 || itemId == 222327 || itemId == 222328 || itemId == 20464 || itemId == 20017 || itemId == 20079 || itemId == 222317) {
+							_owner.addDamageReductionByArmor(3);
+							_owner.addMaxHp(20);
+						} else {
+							_owner.addDamageReductionByArmor(2);
+						}
+					} else if (itemlvl == 10) {
+						if (itemId == 222326 || itemId == 222327 || itemId == 222328 || itemId == 20464 || itemId == 20017 || itemId == 20079 || itemId == 222317) {
+							_owner.addDamageReductionByArmor(4);
+							_owner.addMaxHp(30);
+						} else {
+							_owner.addDamageReductionByArmor(3);
+						}
+					}
+				}
+
+			}
+		}
+		if (itemId >= 420100 && itemId <= 420115 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.addMaxHp(70);
+				break;
+			case 8:
+				_owner.addMaxHp(150);
+				break;
+			case 9:
+				_owner.addMaxHp(200);
+				break;
+			case 10:
+				_owner.addMaxHp(250);
+				break;
+			}
+		}
+		if (itemId >= 420100 && itemId <= 420103 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.addDamageReductionByArmor(2);
+				break;
+			case 8:
+				_owner.addDamageReductionByArmor(5);
+				break;
+			case 9:
+				_owner.addDamageReductionByArmor(8);
+				break;
+			case 10:
+				_owner.addDamageReductionByArmor(11);
+				break;
+			}
+		}
+		if (itemId >= 420112 && itemId <= 420113 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.addDmgup(2);
+				break;
+			case 8:
+				_owner.addDmgup(5);
+				break;
+			case 9:
+				_owner.addDmgup(8);
+				break;
+			case 10:
+				_owner.addDmgup(11);
+				break;
+			}
+		}
+		if (itemId == 420114 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.addBowDmgup(2);
+				break;
+			case 8:
+				_owner.addBowDmgup(5);
+				break;
+			case 9:
+				_owner.addBowDmgup(8);
+				break;
+			case 10:
+				_owner.addBowDmgup(11);
+				break;
+			}
+		}
+		if (itemId == 420115 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.getAbility().addSp(2);
+				break;
+			case 8:
+				_owner.getAbility().addSp(5);
+				break;
+			case 9:
+				_owner.getAbility().addSp(8);
+				break;
+			case 10:
+				_owner.getAbility().addSp(11);
+				break;
+			}
+		}
+		if (itemId >= 420108 && itemId <= 420111 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.getResistance().addMr(10);
+				break;
+			case 8:
+				_owner.getResistance().addMr(20);
+				break;
+			case 9:
+				_owner.getResistance().addMr(30);
+				break;
+			case 10:
+				_owner.getResistance().addMr(40);
+				break;
+			}
+		}
+		if (itemId >= 420104 && itemId <= 420107 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.addMaxMp(30);
+				break;
+			case 8:
+				_owner.addMaxMp(60);
+				break;
+			case 9:
+				_owner.addMaxMp(80);
+				break;
+			case 10:
+				_owner.addMaxMp(100);
+				break;
+			}
+		}
+		// 진명셋 0306추가
+		if (itemId == 20390) {// 진명 투구 법사클래스
+			switch (itemlvl) {
+			case 5:
+				_owner.addHitup_magic(1);// 5인챈 마법적중1상승
+				_owner.setBaseMagicCritical(1);// 5인챈 마법크리컬1상승
+				break;
+			case 6:
+				_owner.addHitup_magic(2);// 6인챈 마법적중2상승
+				_owner.setBaseMagicCritical(2);// 6인챈 마법크리컬2상승
+				break;
+			case 7:
+				_owner.addHitup_magic(3);// 7인챈 마법적중3상승
+				_owner.setBaseMagicCritical(3);// 7인챈 마법크리컬3상승
+				break;
+			case 8:
+				_owner.addHitup_magic(4);// 8인챈 마법적중4상승
+				_owner.setBaseMagicCritical(4);// 8인챈 마법크리컬4상승
+				break;
+			case 9:
+				_owner.addHitup_magic(5);// 9인챈 마법적중5상승
+				_owner.setBaseMagicCritical(5);// 9인챈 마법크리컬5상승
+				break;
+			case 10:
+				_owner.addHitup_magic(7);// 10인챈 마법적중7상승
+				_owner.setBaseMagicCritical(7);// 10인챈 마법크리컬7상승
+				break;
+			case 11:
+				_owner.addHitup_magic(8);// 11인챈 마법적중8상승
+				_owner.setBaseMagicCritical(8);// 11인챈 마법크리컬8상승
+				break;
+			case 12:
+				_owner.addHitup_magic(9);// 12인챈 마법적중9상승
+				_owner.setBaseMagicCritical(9);// 12인챈 마법크리컬9상승
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (itemId == 900020) {
+			switch (itemlvl) {
+			case 5:
+				_owner.addDamageReductionByArmor(1);
+				break;
+			case 6:
+				_owner.addDamageReductionByArmor(2);
+				break;
+			case 7:
+				_owner.addDamageReductionByArmor(3);
+				break;
+			case 8:
+				_owner.addDamageReductionByArmor(4);
+				break;
+			case 9:
+			case 10:
+			case 11:
+				_owner.addDamageReductionByArmor(5);
+				break;
+			}
+		}
+		
+		if (itemId == 900021) {
+			switch (itemlvl) {
+			case 5:
+				_owner.getAbility().addSp(1);
+				break;
+			case 6:
+				_owner.getAbility().addSp(2);
+				break;
+			case 7:
+				_owner.getAbility().addSp(3);
+				break;
+			case 8:
+				_owner.getAbility().addSp(4);
+				break;
+			case 9:
+			case 10:
+			case 11:
+				_owner.getAbility().addSp(5);
+				break;
+			}
+		}
+		
+		if (itemId == 900022) {
+			switch (itemlvl) {
+			case 5:
+				_owner.addBowDmgup(1);
+				break;
+			case 6:
+				_owner.addBowDmgup(2);
+				break;
+			case 7:
+				_owner.addBowDmgup(3);
+				break;
+			case 8:
+				_owner.addBowDmgup(4);
+				break;
+			case 9:
+			case 10:
+			case 11:
+				_owner.addBowDmgup(5);
+				break;
+			}
+		}
+		
+		/** 격분의 장갑 **/
+		if (itemId == 222317) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addDmgup(4);
+				break;
+			case 8:
+				_owner.addDmgup(5);
+				_owner.getResistance().addMr(7);
+				_owner.addMaxHp(10);
+				break;
+			case 9:
+				_owner.addDmgup(6);
+				_owner.getResistance().addMr(9);
+				_owner.addMaxHp(20);
+				break;
+			case 10:
+				_owner.addDmgup(7);
+				_owner.getResistance().addMr(10);
+				_owner.addMaxHp(30);
+				break;
+			default:
+				if (itemlvl > 10) {
+					_owner.addDmgup(itemlvl - 3);
+				}
+				break;
+			}
+		}
+		
+		if (itemId == 900023) {
+			switch (itemlvl) {
+			case 5:
+				_owner.addDmgup(1);
+				break;
+			case 6:
+				_owner.addDmgup(2);
+				break;
+			case 7:
+				_owner.addDmgup(3);
+				break;
+			case 8:
+				_owner.addDmgup(4);
+				break;
+			case 9:
+			case 10:
+			case 11:
+				_owner.addDmgup(5);
+				break;
+			}
+		}
+		
+		if (armor.get_bless_level() != 0) {
+			if(armor.getItemId() == 9 || armor.getItemId() == 190 || armor.getItemId() == 317 || armor.getItemId() == 127
+					 || armor.getItemId() == 54 || armor.getItemId() == 164 || armor.getItemId() == 205 || armor.getItemId() == 124) {
+				_owner.addDamageReductionByArmor(armor.get_bless_level());
+			} else {
+				_owner.addPVPDamageReduction(armor.get_bless_level());
+			}
+		}
+		
+		if (itemId == 21122 && itemlvl >= 7) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addMaxHp(10);
+				_owner.getResistance().addMr(7);
+				break;
+			case 8:
+				_owner.addMaxHp(20);
+				_owner.getResistance().addMr(9);
+				break;
+			case 9:
+				_owner.addMaxHp(30);
+				_owner.getResistance().addMr(10);
+				break;
+			}
+		}
+		
+		if (itemId == 20049 && itemlvl >= 7) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addMaxHp(10);
+				_owner.getResistance().addMr(7);
+				break;
+			case 8:
+				_owner.addMaxHp(20);
+				_owner.getResistance().addMr(9);
+				break;
+			case 9:
+				_owner.addMaxHp(30);
+				_owner.getResistance().addMr(10);
+				break;
+			}
+		}
+		
+		if (itemId == 20050 && itemlvl >= 7) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addMaxMp(10);
+				_owner.getResistance().addMr(7);
+				break;
+			case 8:
+				_owner.addMaxMp(20);
+				_owner.getResistance().addMr(9);
+				break;
+			case 9:
+				_owner.addMaxMp(30);
+				_owner.getResistance().addMr(10);
+				break;
+			}
+		}
+		
+		if (itemId == 20464 && itemlvl >= 8) {
+			switch (itemlvl) {
+			case 8:
+				_owner.getAbility().addSp(1);
+				break;
+			case 9:
+				_owner.getAbility().addSp(2);
+				break;
+			case 10:
+				_owner.getAbility().addSp(3);
+				break;
+			}
+		}
+		
+		if (itemId == 20017 && itemlvl >= 8) {
+			switch (itemlvl) {
+			case 8:
+				_owner.addBowDmgup(1);
+				break;
+			case 9:
+				_owner.addBowDmgup(2);
+				break;
+			case 10:
+				_owner.addBowDmgup(3);
+				break;
+			}
+		}
+		
+		if (itemId == 20079 && itemlvl >= 8) {
+			switch (itemlvl) {
+			case 8:
+				_owner.addMaxHp(10);
+				break;
+			case 9:
+				_owner.addMaxHp(20);
+				break;
+			case 10:
+				_owner.addMaxHp(30);
+				break;
+			}
+		}
+		
+		if (itemId == 20395) {// 진명 갑옷
+			switch (itemlvl) {
+			case 5:
+				_owner.addDamageReductionByArmor(1);// 방어구 리덕션1상승
+				_owner.addPVPDamage(1);// pvp데미지1상승
+				_owner.addPVPDamageReduction(1);// pvp데미지리덕션1상승
+				_owner.addPVPMagicDamageReduction(1);// pvp마법데미지리덕션1상승
+				break;
+			case 6:
+				_owner.addDamageReductionByArmor(2);// 방어구 리덕션2상승
+				_owner.addPVPDamage(2);// pvp데미지2상승
+				_owner.addPVPDamageReduction(2);// pvp데미지리덕션2상승
+				_owner.addPVPMagicDamageReduction(2);// pvp마법데미지리덕션2상승
+				break;
+			case 7:
+				_owner.addDamageReductionByArmor(3);// 방어구 리덕션3상승
+				_owner.addPVPDamage(3);// pvp데미지3상승
+				_owner.addPVPDamageReduction(3);// pvp데미지리덕션3상승
+				_owner.addPVPMagicDamageReduction(3);// pvp마법데미지리덕션3상승
+				break;
+			case 8:
+				_owner.addDamageReductionByArmor(4);// 방어구 리덕션4상승
+				_owner.addPVPDamage(4);// pvp데미지4상승
+				_owner.addPVPDamageReduction(4);// pvp데미지리덕션4상승
+				_owner.addPVPMagicDamageReduction(4);// pvp마법데미지리덕션4상승
+				break;
+			case 9:
+				_owner.addDamageReductionByArmor(5);// 방어구 리덕션5상승
+				_owner.addPVPDamage(5);// pvp데미지5상승
+				_owner.addPVPDamageReduction(5);// pvp데미지리덕션5상승
+				_owner.addPVPMagicDamageReduction(5);// pvp마법데미지리덕션5상승
+				break;
+			case 10:
+				_owner.addDamageReductionByArmor(7);// 방어구 리덕션7상승
+				_owner.addPVPDamage(7);// pvp데미지7상승
+				_owner.addPVPDamageReduction(7);// pvp데미지리덕션7상승
+				_owner.addPVPMagicDamageReduction(7);// pvp마법데미지리덕션7상승
+				break;
+			case 11:
+				_owner.addDamageReductionByArmor(8);// 방어구 리덕션8상승
+				_owner.addPVPDamage(8);// pvp데미지8상승
+				_owner.addPVPDamageReduction(8);// pvp데미지리덕션8상승
+				_owner.addPVPMagicDamageReduction(8);// pvp마법데미지리덕션8상승
+				break;
+			case 12:
+				_owner.addDamageReductionByArmor(9);// 방어구 리덕션9상승
+				_owner.addPVPDamage(9);// pvp데미지9상승
+				_owner.addPVPDamageReduction(9);// pvp데미지리덕션9상승
+				_owner.addPVPMagicDamageReduction(9);// pvp마법데미지리덕션9상승
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 20402) {// 진명망토
+			switch (itemlvl) {
+			case 5:
+				_owner.addHitup_skill(1); // 스킬적중1상승
+				_owner.addHitup_spirit(1); // 정령적중1상승
+				_owner.getResistance().addStun(1);// 스턴방어
+				break;
+			case 6:
+				_owner.addHitup_skill(2); // 스킬적중2상승
+				_owner.addHitup_spirit(2); // 정령적중2상승
+				_owner.getResistance().addStun(2);// 스턴방어
+				break;
+			case 7:
+				_owner.addHitup_skill(3); // 스킬적중3상승
+				_owner.addHitup_spirit(3); // 정령적중3상승
+				_owner.getResistance().addStun(3);// 스턴방어
+				break;
+			case 8:
+				_owner.addHitup_skill(4); // 스킬적중4상승
+				_owner.addHitup_spirit(4); // 정령적중4상승
+				_owner.getResistance().addStun(4);// 스턴방어
+				break;
+			case 9:
+				_owner.addHitup_skill(5); // 스킬적중5상승
+				_owner.addHitup_spirit(5); // 정령적중5상승
+				_owner.getResistance().addStun(5);// 스턴방어
+				break;
+			case 10:
+				_owner.addHitup_skill(7); // 스킬적중7상승
+				_owner.addHitup_spirit(7); // 정령적중7상승
+				_owner.getResistance().addStun(7);// 스턴방어
+				break;
+			case 11:
+				_owner.addHitup_skill(8); // 스킬적중8상승
+				_owner.addHitup_spirit(8); // 정령적중8상승
+				_owner.getResistance().addStun(8);// 스턴방어
+				break;
+			case 12:
+				_owner.addHitup_skill(9); // 스킬적중9상승
+				_owner.addHitup_spirit(9); // 정령적중9상승
+				_owner.getResistance().addStun(9);// 스턴방어
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 20408) {// 진명 부츠 요정
+			switch (itemlvl) {
+			case 5:
+				_owner.addBowHitupByArmor(1);// 원거리데미지공격1상승
+				_owner.addBowDmgupByArmor(1);// 원거리 활의 추타율1상승
+				break;
+			case 6:
+				_owner.addBowHitupByArmor(2);// 원거리데미지공격2상승
+				_owner.addBowDmgupByArmor(2);// 원거리 활의 추타율2상승
+				break;
+			case 7:
+				_owner.addBowHitupByArmor(3);// 원거리데미지공격3상승
+				_owner.addBowDmgupByArmor(3);// 원거리 활의 추타율3상승
+				break;
+			case 8:
+				_owner.addBowHitupByArmor(4);// 원거리데미지공격4상승
+				_owner.addBowDmgupByArmor(4);// 원거리 활의 추타율4상승
+				break;
+			case 9:
+				_owner.addBowHitupByArmor(5);// 원거리데미지공격5상승
+				_owner.addBowDmgupByArmor(5);// 원거리 활의 추타율5상승
+				break;
+			case 10:
+				_owner.addBowHitupByArmor(7);// 원거리데미지공격7상승
+				_owner.addBowDmgupByArmor(7);// 원거리 활의 추타율7상승
+				break;
+			case 11:
+				_owner.addBowHitupByArmor(8);// 원거리데미지공격8상승
+				_owner.addBowDmgupByArmor(8);// 원거리 활의 추타율8상승
+				break;
+			case 12:
+				_owner.addBowHitupByArmor(9);// 원거리데미지공격9상승
+				_owner.addBowDmgupByArmor(9);// 원거리 활의 추타율9상승
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 20410) {// 진명 장갑
+			switch (itemlvl) {
+			case 5:
+				_owner.addHitupByArmor(1);// 근거리데미지공격1상승
+				_owner.addDmgupByArmor(1);// 근거리명중효율1상승
+				break;
+			case 6:
+				_owner.addHitupByArmor(2);// 근거리데미지공격2상승
+				_owner.addDmgupByArmor(2);// 근거리명중효율2상승
+				break;
+			case 7:
+				_owner.addHitupByArmor(3);// 근거리데미지공격3상승
+				_owner.addDmgupByArmor(3);// 근거리명중효율3상승
+				break;
+			case 8:
+				_owner.addHitupByArmor(4);// 근거리데미지공격4상승
+				_owner.addDmgupByArmor(4);// 근거리명중효율4상승
+				break;
+			case 9:
+				_owner.addHitupByArmor(5);// 근거리데미지공격5상승
+				_owner.addDmgupByArmor(5);// 근거리명중효율5상승
+				break;
+			case 10:
+				_owner.addHitupByArmor(7);// 근거리데미지공격7상승
+				_owner.addDmgupByArmor(7);// 근거리명중효율7상승
+				break;
+			case 11:
+				_owner.addHitupByArmor(8);// 근거리데미지공격8상승
+				_owner.addDmgupByArmor(8);// 근거리명중효율8상승
+				break;
+			case 12:
+				_owner.addHitupByArmor(9);// 근거리데미지공격9상승
+				_owner.addDmgupByArmor(9);// 근거리명중효율9상승
+				break;
+			default:
+				break;
+			}
+		}
+
+		/*
+		 * 427116 스냅퍼의 용사 반지 427117 스냅퍼의 용사 반지(축) 427118 스냅퍼의 체력 반지 427119 스냅퍼의 체력 반지(축)
+		 * 427120 스냅퍼의 지혜 반지 427121 스냅퍼의 지혜 반지(축) 427122 스냅퍼의 마법저항 반지 427123 스냅퍼의 마법저항
+		 * 반지(축)
+		 */
+
+		/** 장비 착용시 */
+		/** 스냅퍼 반지 류 반지 */
+		// if((itemtype == 9 || itemtype == 11) && itemgrade == 3) {
+		// switch (itemlvl) {
+		// case 427116:
+		if (itemgrade == 3 && itemId == 427116) {
+			switch (itemlvl) {
+			case 1:
+				_owner.getAC().addAc(-1);
+				break;
+			case 2:
+				_owner.getAC().addAc(-2);
+				break;
+			case 3:
+				_owner.addMaxHp(5);
+				_owner.getAC().addAc(-3);
+				break;
+			case 4:
+				_owner.addMaxHp(10);
+				_owner.getAC().addAc(-4);
+				break;
+			case 5:
+				_owner.addMaxHp(15);
+				_owner.addHitup(1);
+				_owner.addDmgup(1);
+				_owner.addBowHitup(1);
+				_owner.addBowDmgup(1);
+				_owner.getAC().addAc(-4);
+				break;
+			case 6:
+				_owner.addMaxHp(20);
+				_owner.addHitup(2);
+				_owner.addDmgup(2);
+				_owner.addBowHitup(2);
+				_owner.addBowDmgup(2);
+				_owner.getResistance().addStun(5);
+				_owner.getAC().addAc(-4);
+				break;
+			case 7:
+				_owner.addMaxHp(25);
+				_owner.addHitup(3);
+				_owner.addDmgup(3);
+				_owner.addBowHitup(3);
+				_owner.addBowDmgup(3);
+				_owner.getResistance().addStun(7);
+				_owner.addPVPDamage(1);
+				_owner.getAC().addAc(-4);
+				break;
+			case 8:
+				_owner.addMaxHp(30);
+				_owner.addHitup(5);
+				_owner.addDmgup(5);
+				_owner.addBowHitup(5);
+				_owner.addBowDmgup(5);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(3);
+				_owner.getAC().addAc(-6);
+				break;
+			case 9:
+				_owner.addMaxHp(40);
+				_owner.addHitup(7);
+				_owner.addDmgup(7);
+				_owner.addBowHitup(7);
+				_owner.addBowDmgup(7);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(7);
+				_owner.getAC().addAc(-8);
+				break;
+			default:
+				break;
+			}
+		} else if (itemgrade == 3 && itemId == 427117) {
+			switch (itemlvl) {
+			// case 427117:
+			// switch (enchantlevel) {
+			case 1:
+				_owner.getAC().addAc(-2);
+				break;
+			case 2:
+				_owner.getAC().addAc(-3);
+				break;
+			case 3:
+				_owner.addMaxHp(10);
+				_owner.getAC().addAc(-5);
+				break;
+			case 4:
+				_owner.addMaxHp(15);
+				_owner.getAC().addAc(-6);
+				break;
+			case 5:
+				_owner.addMaxHp(20);
+				_owner.getAC().addAc(-6);
+				_owner.addHitup(2);
+				_owner.addDmgup(2);
+				_owner.addBowHitup(2);
+				_owner.addBowDmgup(2);
+				break;
+			case 6:
+				_owner.addMaxHp(25);
+				_owner.getAC().addAc(-6);
+				_owner.addHitup(3);
+				_owner.addDmgup(3);
+				_owner.addBowHitup(3);
+				_owner.addBowDmgup(3);
+				_owner.getResistance().addStun(5);
+				break;
+			case 7:
+				_owner.addMaxHp(30);
+				_owner.getAC().addAc(-7);
+				_owner.addHitup(4);
+				_owner.addDmgup(4);
+				_owner.addBowHitup(4);
+				_owner.addBowDmgup(4);
+				_owner.getResistance().addStun(7);
+				_owner.addPVPDamage(1);
+				break;
+			case 8:
+				_owner.addMaxHp(30);
+				_owner.getAC().addAc(-9);
+				_owner.addHitup(7);
+				_owner.addDmgup(7);
+				_owner.addBowHitup(7);
+				_owner.addBowDmgup(7);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(5);
+				break;
+			case 9:
+				_owner.addMaxHp(40);
+				_owner.getAC().addAc(-12);
+				_owner.addHitup(9);
+				_owner.addDmgup(9);
+				_owner.addBowHitup(9);
+				_owner.addBowDmgup(9);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(9);
+				break;
+			default:
+				break;
+			}
+			// case 427118:
+			// switch (enchantlevel) {
+		} else if (itemgrade == 3 && itemId == 427118) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(15);
+				break;
+			case 2:
+				_owner.addMaxHp(20);
+				_owner.getAC().addAc(-1);
+				break;
+			case 3:
+				_owner.addMaxHp(25);
+				_owner.getAC().addAc(-2);
+				break;
+			case 4:
+				_owner.addMaxHp(30);
+				_owner.getAC().addAc(-3);
+				break;
+			case 5:
+				_owner.addMaxHp(35);
+				_owner.getAC().addAc(-3);
+				_owner.addHitup(1);
+				_owner.addDmgup(1);
+				_owner.addBowHitup(1);
+				_owner.addBowDmgup(1);
+				break;
+			case 6:
+				_owner.addMaxHp(40);
+				_owner.getAC().addAc(-4);
+				_owner.addHitup(2);
+				_owner.addDmgup(2);
+				_owner.addBowHitup(2);
+				_owner.addBowDmgup(2);
+				_owner.getResistance().addStun(5);
+				break;
+			case 7:
+				_owner.addMaxHp(45);
+				_owner.getAC().addAc(-4);
+				_owner.addHitup(3);
+				_owner.addDmgup(3);
+				_owner.addBowHitup(3);
+				_owner.addBowDmgup(3);
+				_owner.getResistance().addStun(7);
+				_owner.addPVPDamage(1);
+				_owner.addDamageReductionByArmor(1);
+				break;
+			case 8:
+				_owner.addMaxHp(50);
+				_owner.getAC().addAc(-6);
+				_owner.addHitup(5);
+				_owner.addDmgup(5);
+				_owner.addBowHitup(5);
+				_owner.addBowDmgup(5);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(3);
+				_owner.addDamageReductionByArmor(3);
+				break;
+			case 9:
+				_owner.addMaxHp(55);
+				_owner.getAC().addAc(-8);
+				_owner.addHitup(7);
+				_owner.addDmgup(7);
+				_owner.addBowHitup(7);
+				_owner.addBowDmgup(7);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(7);
+				_owner.addDamageReductionByArmor(5);
+				break;
+			default:
+				break;
+			}
+			// case 427119:
+			// switch (enchantlevel) {
+		} else if (itemgrade == 3 && itemId == 427119) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(15);
+				_owner.getAC().addAc(-2);
+				break;
+			case 2:
+				_owner.addMaxHp(20);
+				_owner.getAC().addAc(-3);
+				break;
+			case 3:
+				_owner.addMaxHp(30);
+				_owner.getAC().addAc(-4);
+				break;
+			case 4:
+				_owner.addMaxHp(35);
+				_owner.getAC().addAc(-5);
+				break;
+			case 5:
+				_owner.addMaxHp(40);
+				_owner.getAC().addAc(-6);
+				_owner.addHitup(2);
+				_owner.addDmgup(2);
+				_owner.addBowHitup(2);
+				_owner.addBowDmgup(2);
+				break;
+			case 6:
+				_owner.addMaxHp(45);
+				_owner.getAC().addAc(-6);
+				_owner.addHitup(3);
+				_owner.addDmgup(3);
+				_owner.addBowHitup(3);
+				_owner.addBowDmgup(3);
+				_owner.getResistance().addStun(5);
+				_owner.addDamageReductionByArmor(1);
+				break;
+			case 7:
+				_owner.addMaxHp(55);
+				_owner.getAC().addAc(-7);
+				_owner.addHitup(4);
+				_owner.addDmgup(4);
+				_owner.addBowHitup(4);
+				_owner.addBowDmgup(4);
+				_owner.getResistance().addStun(7);
+				_owner.addPVPDamage(1);
+				_owner.addDamageReductionByArmor(2);
+				break;
+			case 8:
+				_owner.addMaxHp(65);
+				_owner.getAC().addAc(-9);
+				_owner.addHitup(5);
+				_owner.addDmgup(5);
+				_owner.addBowHitup(5);
+				_owner.addBowDmgup(5);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(5);
+				_owner.addDamageReductionByArmor(5);
+				break;
+			case 9:
+				_owner.addMaxHp(75);
+				_owner.getAC().addAc(-12);
+				_owner.addHitup(9);
+				_owner.addDmgup(9);
+				_owner.addBowHitup(9);
+				_owner.addBowDmgup(9);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(7);
+				_owner.addDamageReductionByArmor(7);
+				break;
+			default:
+				break;
+			}
+			// case 427120:
+			// switch (itemlvl) {
+		} else if (itemgrade == 3 && itemId == 427120) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(5);
+				_owner.addMaxMp(15);
+				break;
+			case 2:
+				_owner.addMaxHp(10);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-1);
+				break;
+			case 3:
+				_owner.addMaxHp(15);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-2);
+				break;
+			case 4:
+				_owner.addMaxHp(20);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-3);
+				break;
+			case 5:
+				_owner.addMaxHp(25);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-3);
+				_owner.getAbility().addSp(1);
+				break;
+			case 6:
+				_owner.addMaxHp(30);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-4);
+				_owner.getAbility().addSp(2);
+				_owner.getResistance().addStun(5);
+				break;
+			case 7:
+				_owner.addMaxHp(35);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-4);
+				_owner.getAbility().addSp(3);
+				_owner.getResistance().addStun(7);
+				_owner.addPVPDamage(1);
+				_owner.addHitup_magic(1);// 마법 적중
+				break;
+			case 8:
+				_owner.addMaxHp(40);
+				_owner.addMaxMp(30);
+				_owner.getAC().addAc(-6);
+				_owner.getAbility().addSp(5);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(3);
+				_owner.addHitup_magic(3);// 마법 적중
+				break;
+			case 9:
+				_owner.addMaxHp(50);
+				_owner.addMaxMp(70);
+				_owner.getAC().addAc(-8);
+				_owner.getAbility().addSp(7);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(7);
+				_owner.addHitup_magic(5);// 마법 적중
+				break;
+			default:
+				break;
+			}
+			// case 427121:
+			// switch (itemlvl) {
+		} else if (itemgrade == 3 && itemId == 427121) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(5);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-2);
+				break;
+			case 2:
+				_owner.addMaxHp(15);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-3);
+				break;
+			case 3:
+				_owner.addMaxHp(20);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-4);
+				break;
+			case 4:
+				_owner.addMaxHp(25);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-5);
+				_owner.getAbility().addSp(1);
+				break;
+			case 5:
+				_owner.addMaxHp(30);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-5);
+				_owner.getAbility().addSp(2);
+				break;
+			case 6:
+				_owner.addMaxHp(35);
+				_owner.addMaxMp(15);
+				_owner.getAC().addAc(-5);
+				_owner.getAbility().addSp(3);
+				_owner.getResistance().addStun(5);
+				_owner.addHitup_magic(1);// 마법 적중
+				break;
+			case 7:
+				_owner.addMaxHp(40);
+				_owner.addMaxMp(30);
+				_owner.getAC().addAc(-7);
+				_owner.getAbility().addSp(4);
+				_owner.getResistance().addStun(7);
+				_owner.addPVPDamage(1);
+				_owner.addHitup_magic(2);// 마법 적중
+				break;
+			case 8:
+				_owner.addMaxHp(50);
+				_owner.addMaxMp(35);
+				_owner.getAC().addAc(-9);
+				_owner.getAbility().addSp(7);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(5);
+				_owner.addHitup_magic(5);// 마법 적중
+				break;
+			case 9:
+				_owner.addMaxHp(60);
+				_owner.addMaxMp(80);
+				_owner.getAC().addAc(-12);
+				_owner.getAbility().addSp(9);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(9);
+				_owner.addHitup_magic(7);// 마법 적중
+				break;
+			default:
+				break;
+			}
+			// case 427122:
+			// switch (enchantlevel) {
+		} else if (itemgrade == 3 && itemId == 427122) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(15);
+				break;
+			case 2:
+				_owner.addMaxHp(20);
+				_owner.getAC().addAc(-1);
+				break;
+			case 3:
+				_owner.addMaxHp(30);
+				_owner.getAC().addAc(-2);
+				break;
+			case 4:
+				_owner.addMaxHp(35);
+				_owner.getAC().addAc(-3);
+				_owner.addDmgup(1);
+				_owner.addBowDmgup(1);
+				break;
+			case 5:
+				_owner.addMaxHp(40);
+				_owner.getAC().addAc(-3);
+				_owner.addDmgup(2);
+				_owner.addBowDmgup(2);
+				break;
+			case 6:
+				_owner.addMaxHp(45);
+				_owner.getAC().addAc(-4);
+				_owner.addDmgup(3);
+				_owner.addBowDmgup(3);
+				_owner.getResistance().addStun(5);
+				break;
+			case 7:
+				_owner.addMaxHp(50);
+				_owner.getAC().addAc(-4);
+				_owner.addDmgup(4);
+				_owner.addBowDmgup(4);
+				_owner.getResistance().addStun(7);
+				_owner.addPVPDamage(1);
+				break;
+			case 8:
+				_owner.addMaxHp(50);
+				_owner.getAC().addAc(-6);
+				_owner.addDmgup(7);
+				_owner.addBowDmgup(7);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(5);
+				break;
+			case 9:
+				_owner.addMaxHp(60);
+				_owner.getAC().addAc(-8);
+				_owner.addDmgup(9);
+				_owner.addBowDmgup(9);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(9);
+				break;
+			default:
+				break;
+			}
+			// case 427123:
+			// switch (enchantlevel) {
+		} else if (itemgrade == 3 && itemId == 427123) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(15);
+				_owner.getAC().addAc(-1);
+				break;
+			case 2:
+				_owner.addMaxHp(15);
+				_owner.getAC().addAc(-2);
+				break;
+			case 3:
+				_owner.addMaxHp(25);
+				_owner.getAC().addAc(-3);
+				break;
+			case 4:
+				_owner.addMaxHp(30);
+				_owner.getAC().addAc(-4);
+				break;
+			case 5:
+				_owner.addMaxHp(35);
+				_owner.getAC().addAc(-4);
+				_owner.addDmgup(1);
+				_owner.addBowDmgup(1);
+				break;
+			case 6:
+				_owner.addMaxHp(40);
+				_owner.getAC().addAc(-5);
+				_owner.addDmgup(2);
+				_owner.addBowDmgup(2);
+				_owner.getResistance().addStun(5);
+				break;
+			case 7:
+				_owner.addMaxHp(45);
+				_owner.getAC().addAc(-5);
+				_owner.addDmgup(3);
+				_owner.addBowDmgup(3);
+				_owner.getResistance().addStun(7);
+				_owner.addPVPDamage(1);
+				break;
+			case 8:
+				_owner.addMaxHp(50);
+				_owner.getAC().addAc(-7);
+				_owner.addDmgup(5);
+				_owner.addBowDmgup(5);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(3);
+				break;
+			case 9:
+				_owner.addMaxHp(60);
+				_owner.getAC().addAc(-9);
+				_owner.addDmgup(7);
+				_owner.addBowDmgup(7);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(7);
+				break;
+			default:
+				break;
+			}
+		}
+
+		/*
+		 * 427110 룸티스의 검은빛 귀걸이 427111 룸티스의 검은빛 귀걸이(축) 427112 룸티스의 붉은빛 귀걸이 427113 룸티스의
+		 * 붉은빛 귀걸이(축) 427114 룸티스의 보라빛 귀걸이 427115 룸티스의 보라빛 귀걸이(축)
+		 */
+		/** 룸티스 귀걸이 */
+		if (itemtype == 12 && itemgrade == 3) {
+			switch (itemId) {
+			case 427110:
+				switch (enchantlevel) {
+				case 1:
+					_owner.getAC().addAc(-1);
+					break;
+				case 2:
+					_owner.getAC().addAc(-2);
+					break;
+				case 3:
+					_owner.addDmgup(1);
+					_owner.addBowDmgup(1);
+					_owner.getAC().addAc(-3);
+					break;
+				case 4:
+					_owner.addDmgup(1);
+					_owner.addBowDmgup(1);
+					_owner.getAC().addAc(-4);
+					break;
+				case 5:
+					_owner.addDmgup(2);
+					_owner.addBowDmgup(2);
+					_owner.getAC().addAc(-5);
+					break;
+				case 6:
+					_owner.addDmgup(3);
+					_owner.addBowDmgup(3);
+					_owner.getAC().addAc(-6);
+					break;
+				case 7:
+					_owner.addDmgup(4);
+					_owner.addBowDmgup(4);
+					_owner.getAC().addAc(-7);
+					break;
+				case 8:
+					_owner.addDmgup(7);
+					_owner.addBowDmgup(7);
+					_owner.getAC().addAc(-8);
+					break;
+				case 9:
+					_owner.addDmgup(9);
+					_owner.addBowDmgup(9);
+					_owner.getAC().addAc(-9);
+					break;
+				}
+				break;
+			case 427111:
+				switch (enchantlevel) {
+				case 1:
+					_owner.getAC().addAc(-1);
+					break;
+				case 2:
+					_owner.getAC().addAc(-2);
+					break;
+				case 3:
+					_owner.addDmgup(1);
+					_owner.addBowDmgup(1);
+					_owner.getAC().addAc(-5);
+					break;
+				case 4:
+					_owner.addDmgup(2);
+					_owner.addBowDmgup(2);
+					_owner.getAC().addAc(-6);
+					break;
+				case 5:
+					_owner.addDmgup(3);
+					_owner.addBowDmgup(3);
+					_owner.getAC().addAc(-7);
+					break;
+				case 6:
+					_owner.addDmgup(4);
+					_owner.addBowDmgup(4);
+					_owner.getAC().addAc(-8);
+					break;
+				case 7:
+					_owner.addDmgup(5);
+					_owner.addBowDmgup(5);
+					_owner.getAC().addAc(-9);
+					break;
+				case 8:
+					_owner.addDmgup(9);
+					_owner.addBowDmgup(9);
+					_owner.getAC().addAc(-10);
+					break;
+				case 9:
+					_owner.addDmgup(12);
+					_owner.addBowDmgup(12);
+					_owner.getAC().addAc(-11);
+					break;
+				}
+				break;
+			case 427112:
+				switch (enchantlevel) {
+				case 1:
+					_owner.addMaxHp(20);
+					break;
+				case 2:
+					_owner.addMaxHp(30);
+					break;
+				case 3:
+					_owner.addMaxHp(40);
+					_owner.addDamageReductionByArmor(1);
+					break;
+				case 4:
+					_owner.addMaxHp(50);
+					_owner.addDamageReductionByArmor(1);
+					break;
+				case 5:
+					_owner.addMaxHp(60);
+					_owner.addDamageReductionByArmor(2);
+					_owner.getAC().addAc(-7);
+					break;
+				case 6:
+
+					_owner.addMaxHp(70);
+					_owner.addDamageReductionByArmor(3);
+					_owner.getAC().addAc(-7);
+					break;
+				case 7:
+					_owner.addHitup(1);
+					_owner.addBowHitup(1);
+					_owner.addMaxHp(80);
+					_owner.addDamageReductionByArmor(4);
+					_owner.getAC().addAc(-8);
+					break;
+				case 8:
+					_owner.addHitup(5);
+					_owner.addBowHitup(5);
+					_owner.addMaxHp(100);
+					_owner.addDamageReductionByArmor(7);
+					_owner.getAC().addAc(-9);
+					break;
+				case 9:
+					_owner.addHitup(7);
+					_owner.addBowHitup(7);
+					_owner.addMaxHp(110);
+					_owner.addDamageReductionByArmor(7);
+					_owner.getAC().addAc(-10);
+					break;
+				}
+				break;
+			case 427113:
+				switch (enchantlevel) {
+				case 1:
+					_owner.addMaxHp(30);
+					_owner.addDamageReductionByArmor(1);
+					break;
+				case 2:
+
+					_owner.addMaxHp(40);
+					_owner.addDamageReductionByArmor(1);
+					break;
+				case 3:
+					_owner.addMaxHp(50);
+					_owner.addDamageReductionByArmor(1);
+					break;
+				case 4:
+					_owner.addMaxHp(60);
+					_owner.addDamageReductionByArmor(2);
+					break;
+				case 5:
+					_owner.addMaxHp(70);
+					_owner.addDamageReductionByArmor(3);
+					_owner.getAC().addAc(-7);
+					break;
+				case 6:
+					_owner.addHitup(1);
+					_owner.addBowHitup(1);
+					_owner.addMaxHp(80);
+					_owner.addDamageReductionByArmor(4);
+					_owner.getAC().addAc(-8);
+					break;
+				case 7:
+					_owner.addHitup(3);
+					_owner.addBowHitup(3);
+					_owner.addMaxHp(90);
+					_owner.addDamageReductionByArmor(5);
+					_owner.getAC().addAc(-9);
+					break;
+				case 8:
+					_owner.addHitup(5);
+					_owner.addBowHitup(5);
+					_owner.addMaxHp(140);
+					_owner.addDamageReductionByArmor(7);
+					_owner.getAC().addAc(-10);
+					break;
+				case 9:
+					_owner.addHitup(7);
+					_owner.addBowHitup(7);
+					_owner.addMaxHp(150);
+					_owner.addDamageReductionByArmor(9);
+					_owner.getAC().addAc(-11);
+					break;
+				}
+				break;
+			case 427114:
+				switch (enchantlevel) {
+				case 1: // 인첸트가 1이라면
+					_owner.addMaxMp(15); // 최대MP를 10증가시켜주고
+					_owner.getResistance().addMr(3); // 마방을 3증가시켜준다
+					break;
+				case 2:
+					_owner.addMaxMp(20);
+					_owner.getResistance().addMr(6);
+					break;
+				case 3:
+					_owner.addMaxMp(35);
+					_owner.getResistance().addMr(7);
+					_owner.getAbility().addSp(1);
+					break;
+				case 4:
+					_owner.addMaxMp(40);
+					_owner.getResistance().addMr(8);
+					_owner.getAbility().addSp(1);
+					break;
+				case 5:
+					_owner.addMaxMp(55);
+					_owner.getResistance().addMr(9);
+					_owner.getAbility().addSp(2);
+					break;
+				case 6:
+					_owner.addMaxMp(60);
+					_owner.getResistance().addMr(10);
+					_owner.getAbility().addSp(2);
+					_owner.getAC().addAc(-1);
+					break;
+				case 7:
+					_owner.addMaxMp(75);
+					_owner.getResistance().addMr(12);
+					_owner.getAbility().addSp(3);
+					_owner.getAC().addAc(-2);
+					break;
+				case 8:
+					_owner.addMaxHp(50);
+					_owner.addMaxMp(100);
+					_owner.getResistance().addMr(17);
+					_owner.getAbility().addSp(5);
+					_owner.getAC().addAc(-3);
+					break;
+				case 9:
+					_owner.addMaxHp(100);
+					_owner.addMaxMp(100);
+					_owner.getResistance().addMr(17);
+					_owner.getAbility().addSp(5);
+					_owner.getAC().addAc(-3);
+					break;
+				}
+				break;
+			case 427115:
+				switch (enchantlevel) {
+				case 1: // 인첸트가 1이라면
+					_owner.addMaxMp(15); // 최대MP를 10증가시켜주고
+					_owner.getResistance().addMr(3); // 마방을 3증가시켜준다
+					break;
+				case 2:
+					_owner.addMaxMp(20);
+					_owner.getResistance().addMr(6);
+					break;
+				case 3:
+					_owner.addMaxMp(40);
+					_owner.getResistance().addMr(7);
+					_owner.getAbility().addSp(1);
+					break;
+				case 4:
+					_owner.addMaxMp(55);
+					_owner.getResistance().addMr(8);
+					_owner.getAbility().addSp(1);
+					break;
+				case 5:
+					_owner.addMaxMp(60);
+					_owner.getResistance().addMr(9);
+					_owner.getAbility().addSp(2);
+					break;
+				case 6:
+					_owner.addMaxMp(75);
+					_owner.getResistance().addMr(10);
+					_owner.getAbility().addSp(2);
+					_owner.getAC().addAc(-1);
+					break;
+				case 7:
+
+					_owner.addMaxMp(100);
+					_owner.getResistance().addMr(13);
+					_owner.getAbility().addSp(3);
+					_owner.getAC().addAc(-3);
+					break;
+				case 8:
+					_owner.addMaxHp(150);
+
+					_owner.addMaxMp(100);
+					_owner.getResistance().addMr(18);
+					_owner.getAbility().addSp(5);
+					_owner.getAC().addAc(-3);
+					break;
+				case 9:
+					_owner.addMaxHp(150);
+					_owner.addMaxMp(120);
+					_owner.getResistance().addMr(21);
+					_owner.getAbility().addSp(9);
+					_owner.getAC().addAc(-4);
+					break;
+				}
+				break;
+			}
+		}
+		/** 일반악세 오림 반지 */
+		if ((itemtype == 9 || itemtype == 11) && itemgrade != 3) {
+			switch (enchantlevel) {
+			case 1:
+				_owner.addMaxHp(5);
+				break;
+			case 2:
+				_owner.addMaxHp(10);
+				break;
+			case 3:
+				_owner.addMaxHp(20);
+				break;
+			case 4:
+				_owner.addMaxHp(30);
+				break;
+			case 5:
+				_owner.addDmgup(1);
+				_owner.addBowDmgup(1);
+				_owner.addMaxHp(40);
+				break;
+			case 6:
+				_owner.addDmgup(2);
+				_owner.addBowDmgup(2);
+				_owner.addMaxHp(40);
+				_owner.getResistance().addMr(1);
+				_owner.addPVPDamage(1);
+				break;
+			case 7:
+				_owner.addDmgup(3);
+				_owner.addBowDmgup(3);
+				_owner.addMaxHp(50);
+				_owner.getAbility().addSp(1);
+				_owner.addPVPDamage(2);
+				_owner.getResistance().addMr(3);
+				break;
+			case 8:
+				_owner.addDmgup(4);
+				_owner.addBowDmgup(4);
+				_owner.addMaxHp(50);
+				_owner.getAbility().addSp(2);
+				_owner.addPVPDamage(3);
+				_owner.getResistance().addMr(5);
+				break;
+			case 9:
+				_owner.addDmgup(5);
+				_owner.addBowDmgup(5);
+				_owner.addMaxHp(60);
+				_owner.getAbility().addSp(3);
+				_owner.addPVPDamage(5);
+				_owner.getResistance().addMr(7);
+				break;
+			default:
+			}
+		}
+
+		/** 일반악세 오림 목걸이 */
+		if (itemtype == 8 && itemgrade != 3) {
+			switch (enchantlevel) {
+			case 1:
+				_owner.addMaxHp(5);
+				break;
+			case 2:
+				_owner.addMaxHp(10);
+				break;
+			case 3:
+				_owner.addMaxHp(20);
+				break;
+			case 4:
+				_owner.addMaxHp(30);
+				break;
+			case 5:
+				_owner.addMaxHp(40);
+				_owner.getAC().addAc(-1);
+				_owner.getResistance().addMr(1);
+				break;
+			case 6:
+				_owner.addMaxHp(40);
+				_owner.getAC().addAc(-2);
+				_owner.getResistance().addMr(2);
+				break;
+			case 7:
+				_owner.addMaxHp(50);
+				_owner.getAC().addAc(-3);
+				_owner.getResistance().addMr(5);
+				_owner.getResistance().addStun(2);
+				break;
+			case 8:
+				_owner.addMaxHp(50);
+				_owner.getAC().addAc(-4);
+				_owner.getResistance().addMr(7);
+				_owner.getResistance().addStun(3);
+				break;
+			case 9:
+				_owner.addMaxHp(60);
+				_owner.getAC().addAc(-5);
+				_owner.getResistance().addMr(10);
+				_owner.getResistance().addStun(4);
+				break;
+			default:
+			}
+		}
+
+		/** 일반악세 오림 벨트 착용 */
+		if (itemtype == 10 && itemgrade != 3) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxMp(5);
+				break;
+			case 2:
+				_owner.addMaxMp(10);
+				break;
+			case 3:
+				_owner.addMaxMp(20);
+				break;
+			case 4:
+				_owner.addMaxMp(30);
+				break;
+			case 5:
+				_owner.addDamageReductionByArmor(1);
+				_owner.addMaxMp(40);
+				break;
+			case 6:
+				_owner.addDamageReductionByArmor(2);
+				_owner.addMaxMp(40);
+				_owner.addMaxHp(20);
+				_owner.addPVPDamageReduction(1);
+				break;
+			case 7:
+				_owner.addDamageReductionByArmor(3);
+				_owner.addMaxMp(50);
+				_owner.addMaxHp(30);
+				_owner.addPVPDamageReduction(3);
+				break;
+			case 8:
+				_owner.addDamageReductionByArmor(4);
+				_owner.addMaxMp(50);
+				_owner.addMaxHp(40);
+				_owner.addPVPDamageReduction(5);
+				break;
+			case 9:
+				_owner.addDamageReductionByArmor(5);
+				_owner.addMaxMp(60);
+				_owner.addMaxHp(50);
+				_owner.addPVPDamageReduction(7);
+				break;
+			default:
+			}
+		}
+
+		/** 일반악세 오림 귀걸이 착용 */
+		if (itemtype == 12 && itemgrade != 3) {
+			switch (enchantlevel) {
+			case 1:
+				_owner.addMaxMp(5);
+				break;
+			case 2:
+				_owner.addMaxMp(10);
+				break;
+			case 3:
+				_owner.addMaxMp(20);
+				break;
+			case 4:
+				_owner.addMaxMp(30);
+				break;
+			case 5:
+				_owner.addMaxMp(40);
+				_owner.getAC().addAc(-1);
+				break;
+			case 6:
+				_owner.addMaxMp(40);
+				_owner.getAC().addAc(-2);
+				break;
+			case 7:
+				_owner.addMaxMp(50);
+				_owner.getAC().addAc(-3);
+				break;
+			case 8:
+				_owner.addMaxMp(50);
+				_owner.getAC().addAc(-4);
+				break;
+			case 9:
+				_owner.addMaxMp(60);
+				_owner.getAC().addAc(-5);
+				break;
+			default:
+			}
+		}
+		armor.startEquipmentTimer(_owner);
+	}
+
+	public ArrayList<L1ItemInstance> getArmors() {
+		return _armors;
+	}
+
+	private void removeWeapon(L1ItemInstance weapon) {
+
+		_owner.setWeapon(null);
+		_owner.setCurrentWeapon(0);
+		weapon.stopEquipmentTimer();
+		_weapon = null;
+		if (_owner.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.COUNTER_BARRIER)) {
+			_owner.getSkillEffectTimerSet().removeSkillEffect(L1SkillId.COUNTER_BARRIER);
+		}
+		if (_owner._isShowFang == true) { // 쉐도우팽 무기 해체시 버프 종료
+			weapon.setSkillWeaponEnchant(_owner, L1SkillId.SHADOW_FANG, 0);
+		}
+		if (weapon.getItemId() == 316 || weapon.getItemId() == 317) {
+			_owner.addHitup(-3);
+		}
+		if (weapon.getItem().getType1() == 40 && weapon.getBless() == 00) {
+			_owner.getAbility().addSp(-3);
+			_owner.sendPackets(new S_SPMR(_owner));
+		}
+		if (weapon.get_bless_level() != 0) {
+			if(weapon.getItemId() == 9 || weapon.getItemId() == 190 || weapon.getItemId() == 317 || weapon.getItemId() == 127
+					 || weapon.getItemId() == 54 || weapon.getItemId() == 164 || weapon.getItemId() == 205 || weapon.getItemId() == 124
+					 || weapon.getItemId() == 181|| weapon.getItemId() == 57|| weapon.getItemId() == 162|| weapon.getItemId() == 126) {
+				_owner.addDmgup(-weapon.get_bless_level());
+			} else {
+				_owner.addPVPDamage(-weapon.get_bless_level());
+			}
+		}
+	}
+
+	// 벗기
+	private void removeArmor(L1ItemInstance armor) {
+		L1Item item = armor.getItem();
+		int itemId = armor.getItem().getItemId();
+		int itemlvl = armor.getEnchantLevel();
+		int enchantlevel = armor.getEnchantLevel();
+		int itemtype = armor.getItem().getType();
+		int itemgrade = armor.getItem().getGrade();
+		int bless = armor.getBless();
+
+		if (bless == 0 && itemtype >= 1 && itemtype <= 7 || bless == 0 && itemId >= 420000 && itemId <= 420003) {
+			_owner.addDamageReductionByArmor(-1);
+		}
+		if (bless == 0 && itemtype >= 8 && itemtype <= 12) {
+			_owner.addDamageReductionByArmor(-1);
+		}
+		if (itemtype >= 8 && itemtype <= 12) {
+			_owner.getAC().addAc(-(item.get_ac() - armor.getAcByMagic()));
+		} else {
+			_owner.getAC().addAc(-(item.get_ac() - armor.getEnchantLevel() - armor.getAcByMagic()));
+		}
+		_owner.addDamageReductionByArmor(-item.getDamageReduction());
+		_owner.addWeightReduction(-item.getWeightReduction());
+		_owner.addHitupByArmor(-item.getHitup());
+		_owner.addDmgupByArmor(-item.getDmgup());
+		_owner.addBowHitupByArmor(-item.getBowHitup());
+		_owner.addBowDmgupByArmor(-item.getBowDmgup());
+		_owner.getResistance().addEarth(-item.get_defense_earth());
+		_owner.getResistance().addWind(-item.get_defense_wind());
+		_owner.getResistance().addWater(-item.get_defense_water());
+		_owner.getResistance().addFire(-item.get_defense_fire());
+		_owner.getResistance().addStun(-item.get_regist_stun());
+		_owner.getResistance().addPetrifaction(-item.get_regist_stone());
+		_owner.getResistance().addSleep(-item.get_regist_sleep());
+		_owner.getResistance().addFreeze(-item.get_regist_freeze());
+		_owner.getResistance().addHold(-item.get_regist_sustain());
+		_owner.getResistance().addBlind(-item.get_regist_blind());
+
+		for (L1ArmorSet armorSet : L1ArmorSet.getAllSet()) {
+			if (armorSet.isPartOfSet(itemId) && _currentArmorSet.contains(armorSet) && !armorSet.isValid(_owner)) {
+				armorSet.cancelEffect(_owner);
+				_currentArmorSet.remove(armorSet);
+			}
+		}
+		if (itemId == 420003) { // 고투사
+			if (itemlvl < 5) {
+				_owner.addDmgup(-1);
+			} else if (itemlvl == 5) {
+				_owner.addDmgup(-2);
+			} else if (itemlvl == 6) {
+				_owner.addDmgup(-3);
+			} else if (itemlvl == 7) {
+				_owner.addDmgup(-4);
+			} else if (itemlvl == 8) {
+				_owner.addDmgup(-5);
+			} else if (itemlvl == 9) {
+				_owner.addDmgup(-6);
+			}
+		}
+		if (itemId == 20107) { // 리치로브
+			if (itemlvl > 3)
+				_owner.getAbility().addSp(-(armor.getEnchantLevel() - 3));
+		}
+		if (itemId == 20107 && itemlvl >= 7) {
+			int s = itemlvl - 5;
+			_owner.addDamageReductionByArmor(-s);
+		}
+		if (itemId == 21156) {
+			_owner.sendPackets(new S_SkillSound(_owner.getId(), 8951));
+		}
+		if (itemId == 21157) {
+			_owner.sendPackets(new S_SkillSound(_owner.getId(), 8951));
+		}
+		if (itemId == 21158) {
+			_owner.sendPackets(new S_SkillSound(_owner.getId(), 8951));
+		}
+		if (itemId == 21159) {
+			_owner.sendPackets(new S_SkillSound(_owner.getId(), 8951));
+		}
+		if (itemId == 423014) {
+			_owner.stopAHRegeneration();
+		}
+		if (itemId == 423015) {
+			_owner.stopSHRegeneration();
+		}
+		if (itemId == 20380) {
+			_owner.stopHalloweenRegeneration();
+		}
+		if (itemId == 20077 || itemId == 20062 || itemId == 120077) {
+			_owner.delInvis();
+		}
+		if (itemId == 20288 || itemId == 120288) {
+			_owner.sendPackets(new S_Ability(1, false));
+		}
+		// 변반
+		if (itemId == 20281) {
+			_owner.sendPackets(new S_Ability(2, true));
+		}
+		if (itemId == 20036) {
+			_owner.sendPackets(new S_Ability(3, false));
+		}
+		if (itemId == 20207) {
+			_owner.sendPackets(new S_SkillIconBlessOfEva(_owner.getId(), 0));
+		}
+		if (itemId == 21156) {
+			switch (itemlvl) {
+			case 1:
+			case 2:
+				_owner.addPVPDamage(-1);
+				break;
+			case 3:
+				_owner.addPVPDamage(-2);
+				break;
+			case 4:
+				_owner.addPVPDamage(-3);
+				break;
+			case 5:
+				_owner.addPVPDamage(-4);
+				break;
+			case 6:
+				_owner.addPVPDamage(-5);
+				break;
+			case 7:
+				_owner.addPVPDamage(-6);
+				break;
+			case 8:
+				_owner.addPVPDamage(-7);
+				break;
+
+			default:
+
+				break;
+			}
+		}
+		if (itemId == 9114 || itemId == 91140) {
+			switch (itemlvl) {
+			case 5:
+				_owner.getResistance().addMr(-4);
+				_owner.addDamageReductionByArmor(-1);
+				break;
+			case 6:
+				_owner.getResistance().addMr(-5);
+				break;
+			case 7:
+				_owner.getResistance().addMr(-6);
+				break;
+			case 8:
+				_owner.getResistance().addMr(-8);
+				_owner.addDamageReductionByArmor(-1);
+				break;
+			case 9:
+				_owner.getResistance().addMr(-11);
+				_owner.addDamageReductionByArmor(-2);
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addPVPDamage(1);
+				_owner.addPVPDamageReduction(1);
+				_owner.getResistance().addMr(-14);
+				_owner.addMaxHp(-100);
+				_owner.addDamageReductionByArmor(-2);
+				break;
+			default:
+				break;
+			}
+		}
+		
+		if (itemId == 900020 || itemId == 900022 || itemId == 900023 && itemlvl > 0) {
+			_owner.addMaxHp(itemlvl * -10);
+		}
+		
+		if (itemId == 900021 && itemlvl > 0) {
+			_owner.addMaxMp(itemlvl * -10);
+		}
+		
+		if (itemId == 9115) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addDmgupByArmor(-1);
+				break;
+			case 8:
+				_owner.addDmgupByArmor(-1);
+				_owner.addHitupByArmor(-2);
+				break;
+			case 9:
+				_owner.addDmgupByArmor(-2);
+				_owner.addHitupByArmor(-4);
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addPVPDamage(-1);
+				_owner.addPVPDamageReduction(-1);
+				_owner.addMaxHp(-100);
+				_owner.addHitupByArmor(-6);
+				_owner.addDmgupByArmor(-2);
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 91150) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addDmgupByArmor(-1);
+				_owner.addHitupByArmor(-1);
+				break;
+			case 8:
+				_owner.addDmgupByArmor(-1);
+				_owner.addHitupByArmor(-3);
+				break;
+			case 9:
+				_owner.addDmgupByArmor(-2);
+				_owner.addHitupByArmor(-5);
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addPVPDamage(-1);
+				_owner.addPVPDamageReduction(-1);
+				_owner.addMaxHp(-100);
+				_owner.addHitupByArmor(-7);
+				_owner.addDmgupByArmor(-2);
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 9116) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addBowDmgupByArmor(-1);
+				break;
+			case 8:
+				_owner.addBowDmgupByArmor(-1);
+				_owner.addBowHitupByArmor(-2);
+				break;
+			case 9:
+				_owner.addBowDmgupByArmor(-2);
+				_owner.addBowHitupByArmor(-4);
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addBowHitupByArmor(-6);
+				_owner.addPVPDamage(-1);
+				_owner.addPVPDamageReduction(-1);
+				_owner.addMaxHp(-100);
+				_owner.addBowDmgupByArmor(-2);
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 91160) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addBowDmgupByArmor(-1);
+				_owner.addBowHitupByArmor(-1);
+				break;
+			case 8:
+				_owner.addBowDmgupByArmor(-1);
+				_owner.addBowHitupByArmor(-3);
+				break;
+			case 9:
+				_owner.addBowDmgupByArmor(-2);
+				_owner.addBowHitupByArmor(-5);
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addBowHitupByArmor(-7);
+				_owner.addPVPDamage(-1);
+				_owner.addPVPDamageReduction(-1);
+				_owner.addMaxHp(-100);
+				_owner.addBowDmgupByArmor(-2);
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 9117) {
+			switch (itemlvl) {
+			case 8:
+				_owner.getAbility().addSp(-2);
+				_owner.addHitup_magic(-1);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			case 9:
+				_owner.getAbility().addSp(-2);
+				_owner.addHitup_magic(-3);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addPVPDamage(-1);
+				_owner.addPVPDamageReduction(-1);
+				_owner.addMaxHp(-100);
+				_owner.getAbility().addSp(-3);
+				_owner.addHitup_magic(-4);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 91170) {
+			switch (itemlvl) {
+			case 7:
+				_owner.getAbility().addSp(-2);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			case 8:
+				_owner.getAbility().addSp(-2);
+				_owner.addHitup_magic(-3);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			case 9:
+				_owner.getAbility().addSp(-3);
+				_owner.addHitup_magic(-4);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			case 10:
+			case 11:
+			case 12:
+				_owner.addPVPDamage(-3);
+				_owner.addPVPDamageReduction(-3);
+				_owner.addMaxHp(-100);
+				_owner.getAbility().addSp(-4);
+				_owner.addHitup_magic(-5);
+				_owner.sendPackets(new S_SPMR(_owner));
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId >= 23100 && itemId <= 23103) {
+			if (itemlvl == 1) {
+				_owner.addDamageReductionByArmor(-1);
+				_owner.addMaxHp(-50);
+			} else if (itemlvl == 2) {
+				_owner.addDamageReductionByArmor(-2);
+				_owner.addMaxHp(-70);
+			} else if (itemlvl == 3) {
+				_owner.addDamageReductionByArmor(-4);
+				_owner.addMaxHp(-120);
+				_owner.getResistance().addMr(-3);
+			} else if (itemlvl == 4) {
+				_owner.addDamageReductionByArmor(-6);
+				_owner.addMaxHp(-150);
+				_owner.getResistance().addMr(-7);
+			} else if (itemlvl == 5) {
+				_owner.addDamageReductionByArmor(-8);
+				_owner.addMaxHp(-200);
+				_owner.getResistance().addMr(-11);
+			}
+		}
+		if (item.getType2() == 2) {
+			if (itemtype == 1 || itemtype == 3 || itemtype == 4 || itemtype == 5 || itemtype == 6 || itemtype == 7
+					|| itemtype == 18) {
+				if (item.get_safeenchant() == 4) {
+					if (itemlvl == 7) {
+						if (itemId == 222324 || itemId == 222325 || itemId == 222328 || itemId == 222329 || itemId == 21122 || itemId == 20049 || itemId == 20050) {
+							_owner.addDamageReductionByArmor(-2);
+							_owner.addMaxHp(-10);
+						} else {
+							_owner.addDamageReductionByArmor(-1);
+						}
+					} else if (itemlvl == 8) {
+						if (itemId == 222324 || itemId == 222325 || itemId == 222328 || itemId == 222329 || itemId == 21122 || itemId == 20049 || itemId == 20050) {
+							_owner.addDamageReductionByArmor(-3);
+							_owner.addMaxHp(-20);
+						} else {
+							_owner.addDamageReductionByArmor(-2);
+						}
+					} else if (itemlvl == 9) {
+						if (itemId == 222324 || itemId == 222325 || itemId == 222328 || itemId == 222329 || itemId == 21122 || itemId == 20049 || itemId == 20050) {
+							_owner.addDamageReductionByArmor(-4);
+							_owner.addMaxHp(-30);
+						} else {
+							_owner.addDamageReductionByArmor(-3);
+						}
+					}
+				} else if (item.get_safeenchant() == 6) {
+					if (itemlvl == 8) {
+						if (itemId == 222326 || itemId == 222327 || itemId == 222328 || itemId == 20464 || itemId == 20017 || itemId == 20079 || itemId == 222317) {
+							_owner.addDamageReductionByArmor(-2);
+							_owner.addMaxHp(-10);
+						} else {
+							_owner.addDamageReductionByArmor(-1);
+						}
+					} else if (itemlvl == 9) {
+						if (itemId == 222326 || itemId == 222327 || itemId == 222328 || itemId == 20464 || itemId == 20017 || itemId == 20079 || itemId == 222317) {
+							_owner.addDamageReductionByArmor(-3);
+							_owner.addMaxHp(-20);
+						} else {
+							_owner.addDamageReductionByArmor(-2);
+						}
+					} else if (itemlvl == 10) {
+						if (itemId == 222326 || itemId == 222327 || itemId == 222328 || itemId == 20464 || itemId == 20017 || itemId == 20079 || itemId == 222317) {
+							_owner.addDamageReductionByArmor(-4);
+							_owner.addMaxHp(-30);
+						} else {
+							_owner.addDamageReductionByArmor(-3);
+						}
+					}
+				}
+			}
+		}
+		if (itemId >= 420100 && itemId <= 420115 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.addMaxHp(-70);
+				break;
+			case 8:
+				_owner.addMaxHp(-150);
+				break;
+			case 9:
+				_owner.addMaxHp(-200);
+				break;
+			case 10:
+				_owner.addMaxHp(-250);
+				break;
+			}
+		}
+		if (itemId >= 420100 && itemId <= 420103 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.addDamageReductionByArmor(-2);
+				break;
+			case 8:
+				_owner.addDamageReductionByArmor(-5);
+				break;
+			case 9:
+				_owner.addDamageReductionByArmor(-8);
+				break;
+			case 10:
+				_owner.addDamageReductionByArmor(-11);
+				break;
+			}
+		}
+		if (itemId >= 420112 && itemId <= 420113 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.addDmgup(-2);
+				break;
+			case 8:
+				_owner.addDmgup(-5);
+				break;
+			case 9:
+				_owner.addDmgup(-8);
+				break;
+			case 10:
+				_owner.addDmgup(-11);
+				break;
+			}
+		}
+		if (itemId == 420114 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.addBowDmgup(-2);
+				break;
+			case 8:
+				_owner.addBowDmgup(-5);
+				break;
+			case 9:
+				_owner.addBowDmgup(-8);
+				break;
+			case 10:
+				_owner.addBowDmgup(-11);
+				break;
+			}
+		}
+		if (itemId == 420115 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.getAbility().addSp(-2);
+				break;
+			case 8:
+				_owner.getAbility().addSp(-5);
+				break;
+			case 9:
+				_owner.getAbility().addSp(-8);
+				break;
+			case 10:
+				_owner.getAbility().addSp(-11);
+				break;
+			}
+		}
+		if (itemId >= 420108 && itemId <= 420111 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.getResistance().addMr(-10);
+				break;
+			case 8:
+				_owner.getResistance().addMr(-20);
+				break;
+			case 9:
+				_owner.getResistance().addMr(-30);
+				break;
+			case 10:
+				_owner.getResistance().addMr(-40);
+				break;
+			}
+		}
+		if (itemId >= 420104 && itemId <= 420107 && itemlvl >= 7) {
+			switch(itemlvl) {
+			case 7:
+				_owner.addMaxMp(-30);
+				break;
+			case 8:
+				_owner.addMaxMp(-60);
+				break;
+			case 9:
+				_owner.addMaxMp(-80);
+				break;
+			case 10:
+				_owner.addMaxMp(-100);
+				break;
+			}
+		}
+		// 진명셋 0306추가
+		if (itemId == 20390) {// 진명 투구 법사클래스
+			switch (itemlvl) {
+			case 5:
+				_owner.addHitup_magic(-1);// 5인챈 마법적중1상승
+				_owner.setBaseMagicCritical(-1);// 5인챈 마법크리컬1상승
+				break;
+			case 6:
+				_owner.addHitup_magic(-2);// 6인챈 마법적중2상승
+				_owner.setBaseMagicCritical(-2);// 6인챈 마법크리컬2상승
+				break;
+			case 7:
+				_owner.addHitup_magic(-3);// 7인챈 마법적중3상승
+				_owner.setBaseMagicCritical(-3);// 7인챈 마법크리컬3상승
+				break;
+			case 8:
+				_owner.addHitup_magic(-4);// 8인챈 마법적중4상승
+				_owner.setBaseMagicCritical(-4);// 8인챈 마법크리컬4상승
+				break;
+			case 9:
+				_owner.addHitup_magic(-5);// 9인챈 마법적중5상승
+				_owner.setBaseMagicCritical(-5);// 9인챈 마법크리컬5상승
+				break;
+			case 10:
+				_owner.addHitup_magic(-7);// 10인챈 마법적중7상승
+				_owner.setBaseMagicCritical(-7);// 10인챈 마법크리컬7상승
+				break;
+			case 11:
+				_owner.addHitup_magic(-8);// 11인챈 마법적중8상승
+				_owner.setBaseMagicCritical(-8);// 11인챈 마법크리컬8상승
+				break;
+			case 12:
+				_owner.addHitup_magic(-9);// 12인챈 마법적중9상승
+				_owner.setBaseMagicCritical(-9);// 12인챈 마법크리컬9상승
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (itemId == 900020) {
+			switch (itemlvl) {
+			case 5:
+				_owner.addDamageReductionByArmor(-1);
+				break;
+			case 6:
+				_owner.addDamageReductionByArmor(-2);
+				break;
+			case 7:
+				_owner.addDamageReductionByArmor(-3);
+				break;
+			case 8:
+				_owner.addDamageReductionByArmor(-4);
+				break;
+			case 9:
+			case 10:
+			case 11:
+				_owner.addDamageReductionByArmor(-5);
+				break;
+			}
+		}
+		
+		if (itemId == 900021) {
+			switch (itemlvl) {
+			case 5:
+				_owner.getAbility().addSp(-1);
+				break;
+			case 6:
+				_owner.getAbility().addSp(-2);
+				break;
+			case 7:
+				_owner.getAbility().addSp(-3);
+				break;
+			case 8:
+				_owner.getAbility().addSp(-4);
+				break;
+			case 9:
+			case 10:
+			case 11:
+				_owner.getAbility().addSp(-5);
+				break;
+			}
+		}
+		
+		if (itemId == 900022) {
+			switch (itemlvl) {
+			case 5:
+				_owner.addBowDmgup(-1);
+				break;
+			case 6:
+				_owner.addBowDmgup(-2);
+				break;
+			case 7:
+				_owner.addBowDmgup(-3);
+				break;
+			case 8:
+				_owner.addBowDmgup(-4);
+				break;
+			case 9:
+			case 10:
+			case 11:
+				_owner.addBowDmgup(-5);
+				break;
+			}
+		}
+		
+		/** 격분의 장갑 **/
+		if (itemId == 222317) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addDmgup(-4);
+				break;
+			case 8:
+				_owner.addDmgup(-5);
+				_owner.getResistance().addMr(-7);
+				_owner.addMaxHp(-10);
+				break;
+			case 9:
+				_owner.addDmgup(-6);
+				_owner.getResistance().addMr(-9);
+				_owner.addMaxHp(-20);
+				break;
+			case 10:
+				_owner.addDmgup(-7);
+				_owner.getResistance().addMr(-10);
+				_owner.addMaxHp(-30);
+				break;
+			default:
+				if (itemlvl > 10) {
+					_owner.addDmgup(-(itemlvl - 3));
+				}
+				break;
+			}
+		}
+		
+		if (itemId == 900023) {
+			switch (itemlvl) {
+			case 5:
+				_owner.addDmgup(-1);
+				break;
+			case 6:
+				_owner.addDmgup(-2);
+				break;
+			case 7:
+				_owner.addDmgup(-3);
+				break;
+			case 8:
+				_owner.addDmgup(-4);
+				break;
+			case 9:
+			case 10:
+			case 11:
+				_owner.addDmgup(-5);
+				break;
+			}
+		}
+		
+		if (armor.get_bless_level() != 0) {
+			if(armor.getItemId() == 9 || armor.getItemId() == 190 || armor.getItemId() == 317 || armor.getItemId() == 127
+					 || armor.getItemId() == 54 || armor.getItemId() == 164 || armor.getItemId() == 205 || armor.getItemId() == 124) {
+				_owner.addDamageReductionByArmor(-armor.get_bless_level());
+			} else {
+				_owner.addPVPDamageReduction(-armor.get_bless_level());
+			}
+		}
+		
+		if (itemId == 21122 && itemlvl >= 7) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addMaxHp(-10);
+				_owner.getResistance().addMr(-7);
+				break;
+			case 8:
+				_owner.addMaxHp(-20);
+				_owner.getResistance().addMr(-9);
+				break;
+			case 9:
+				_owner.addMaxHp(-30);
+				_owner.getResistance().addMr(-10);
+				break;
+			}
+		}
+		
+		if (itemId == 20049 && itemlvl >= 7) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addMaxHp(-10);
+				_owner.getResistance().addMr(-7);
+				break;
+			case 8:
+				_owner.addMaxHp(-20);
+				_owner.getResistance().addMr(9);
+				break;
+			case 9:
+				_owner.addMaxHp(-30);
+				_owner.getResistance().addMr(-10);
+				break;
+			}
+		}
+		
+		if (itemId == 20050 && itemlvl >= 7) {
+			switch (itemlvl) {
+			case 7:
+				_owner.addMaxMp(-10);
+				_owner.getResistance().addMr(-7);
+				break;
+			case 8:
+				_owner.addMaxMp(-20);
+				_owner.getResistance().addMr(-9);
+				break;
+			case 9:
+				_owner.addMaxMp(-30);
+				_owner.getResistance().addMr(-10);
+				break;
+			}
+		}
+		
+		if (itemId == 20464 && itemlvl >= 8) {
+			switch (itemlvl) {
+			case 8:
+				_owner.getAbility().addSp(-1);
+				break;
+			case 9:
+				_owner.getAbility().addSp(-2);
+				break;
+			case 10:
+				_owner.getAbility().addSp(-3);
+				break;
+			}
+		}
+		
+		if (itemId == 20017 && itemlvl >= 8) {
+			switch (itemlvl) {
+			case 8:
+				_owner.addBowDmgup(-1);
+				break;
+			case 9:
+				_owner.addBowDmgup(-2);
+				break;
+			case 10:
+				_owner.addBowDmgup(-3);
+				break;
+			}
+		}
+		
+		if (itemId == 20079 && itemlvl >= 8) {
+			switch (itemlvl) {
+			case 8:
+				_owner.addMaxHp(-10);
+				break;
+			case 9:
+				_owner.addMaxHp(-20);
+				break;
+			case 10:
+				_owner.addMaxHp(-30);
+				break;
+			}
+		}
+		
+		if (itemId == 20395) {// 진명 갑옷
+			switch (itemlvl) {
+			case 5:
+				_owner.addDamageReductionByArmor(-1);// 방어구 리덕션1상승
+				_owner.addPVPDamage(-1);// pvp데미지1상승
+				_owner.addPVPDamageReduction(-1);// pvp데미지리덕션1상승
+				_owner.addPVPMagicDamageReduction(-1);// pvp마법데미지리덕션1상승
+				break;
+			case 6:
+				_owner.addDamageReductionByArmor(-2);// 방어구 리덕션2상승
+				_owner.addPVPDamage(-2);// pvp데미지2상승
+				_owner.addPVPDamageReduction(-2);// pvp데미지리덕션2상승
+				_owner.addPVPMagicDamageReduction(-2);// pvp마법데미지리덕션2상승
+				break;
+			case 7:
+				_owner.addDamageReductionByArmor(-3);// 방어구 리덕션3상승
+				_owner.addPVPDamage(-3);// pvp데미지3상승
+				_owner.addPVPDamageReduction(-3);// pvp데미지리덕션3상승
+				_owner.addPVPMagicDamageReduction(-3);// pvp마법데미지리덕션3상승
+				break;
+			case 8:
+				_owner.addDamageReductionByArmor(-4);// 방어구 리덕션4상승
+				_owner.addPVPDamage(-4);// pvp데미지4상승
+				_owner.addPVPDamageReduction(-4);// pvp데미지리덕션4상승
+				_owner.addPVPMagicDamageReduction(-4);// pvp마법데미지리덕션4상승
+				break;
+			case 9:
+				_owner.addDamageReductionByArmor(-5);// 방어구 리덕션5상승
+				_owner.addPVPDamage(-5);// pvp데미지5상승
+				_owner.addPVPDamageReduction(-5);// pvp데미지리덕션5상승
+				_owner.addPVPMagicDamageReduction(-5);// pvp마법데미지리덕션5상승
+				break;
+			case 10:
+				_owner.addDamageReductionByArmor(-7);// 방어구 리덕션7상승
+				_owner.addPVPDamage(-7);// pvp데미지7상승
+				_owner.addPVPDamageReduction(-7);// pvp데미지리덕션7상승
+				_owner.addPVPMagicDamageReduction(-7);// pvp마법데미지리덕션7상승
+				break;
+			case 11:
+				_owner.addDamageReductionByArmor(-8);// 방어구 리덕션8상승
+				_owner.addPVPDamage(-8);// pvp데미지8상승
+				_owner.addPVPDamageReduction(-8);// pvp데미지리덕션8상승
+				_owner.addPVPMagicDamageReduction(-8);// pvp마법데미지리덕션8상승
+				break;
+			case 12:
+				_owner.addDamageReductionByArmor(-9);// 방어구 리덕션9상승
+				_owner.addPVPDamage(-9);// pvp데미지9상승
+				_owner.addPVPDamageReduction(-9);// pvp데미지리덕션9상승
+				_owner.addPVPMagicDamageReduction(-9);// pvp마법데미지리덕션9상승
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 20402) {// 진명망토
+			switch (itemlvl) {
+			case 5:
+				_owner.addHitup_skill(-1); // 스킬적중1상승
+				_owner.addHitup_spirit(-1); // 정령적중1상승
+				_owner.getResistance().addStun(-1);// 스턴방어
+				break;
+			case 6:
+				_owner.addHitup_skill(-2); // 스킬적중2상승
+				_owner.addHitup_spirit(-2); // 정령적중2상승
+				_owner.getResistance().addStun(-2);// 스턴방어
+				break;
+			case 7:
+				_owner.addHitup_skill(-3); // 스킬적중3상승
+				_owner.addHitup_spirit(-3); // 정령적중3상승
+				_owner.getResistance().addStun(-3);// 스턴방어
+				break;
+			case 8:
+				_owner.addHitup_skill(-4); // 스킬적중4상승
+				_owner.addHitup_spirit(-4); // 정령적중4상승
+				_owner.getResistance().addStun(-4);// 스턴방어
+				break;
+			case 9:
+				_owner.addHitup_skill(-5); // 스킬적중5상승
+				_owner.addHitup_spirit(-5); // 정령적중5상승
+				_owner.getResistance().addStun(-5);// 스턴방어
+				break;
+			case 10:
+				_owner.addHitup_skill(-7); // 스킬적중7상승
+				_owner.addHitup_spirit(-7); // 정령적중7상승
+				_owner.getResistance().addStun(-7);// 스턴방어
+				break;
+			case 11:
+				_owner.addHitup_skill(-8); // 스킬적중8상승
+				_owner.addHitup_spirit(-8); // 정령적중8상승
+				_owner.getResistance().addStun(-8);// 스턴방어
+				break;
+			case 12:
+				_owner.addHitup_skill(-9); // 스킬적중9상승
+				_owner.addHitup_spirit(-9); // 정령적중9상승
+				_owner.getResistance().addStun(-9);// 스턴방어
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 20408) {// 진명 부츠 요정
+			switch (itemlvl) {
+			case 5:
+				_owner.addBowHitupByArmor(-1);// 원거리데미지공격1상승
+				_owner.addBowDmgupByArmor(-1);// 원거리 활의 추타율1상승
+				break;
+			case 6:
+				_owner.addBowHitupByArmor(-2);// 원거리데미지공격2상승
+				_owner.addBowDmgupByArmor(-2);// 원거리 활의 추타율2상승
+				break;
+			case 7:
+				_owner.addBowHitupByArmor(-3);// 원거리데미지공격3상승
+				_owner.addBowDmgupByArmor(-3);// 원거리 활의 추타율3상승
+				break;
+			case 8:
+				_owner.addBowHitupByArmor(-4);// 원거리데미지공격4상승
+				_owner.addBowDmgupByArmor(-4);// 원거리 활의 추타율4상승
+				break;
+			case 9:
+				_owner.addBowHitupByArmor(-5);// 원거리데미지공격5상승
+				_owner.addBowDmgupByArmor(-5);// 원거리 활의 추타율5상승
+				break;
+			case 10:
+				_owner.addBowHitupByArmor(-7);// 원거리데미지공격7상승
+				_owner.addBowDmgupByArmor(-7);// 원거리 활의 추타율7상승
+				break;
+			case 11:
+				_owner.addBowHitupByArmor(-8);// 원거리데미지공격8상승
+				_owner.addBowDmgupByArmor(-8);// 원거리 활의 추타율8상승
+				break;
+			case 12:
+				_owner.addBowHitupByArmor(-9);// 원거리데미지공격9상승
+				_owner.addBowDmgupByArmor(-9);// 원거리 활의 추타율9상승
+				break;
+			default:
+				break;
+			}
+		}
+		if (itemId == 20410) {// 진명 장갑
+			switch (itemlvl) {
+			case 5:
+				_owner.addHitupByArmor(-1);// 근거리데미지공격1상승
+				_owner.addDmgupByArmor(-1);// 근거리명중효율1상승
+				break;
+			case 6:
+				_owner.addHitupByArmor(-2);// 근거리데미지공격2상승
+				_owner.addDmgupByArmor(-2);// 근거리명중효율2상승
+				break;
+			case 7:
+				_owner.addHitupByArmor(-3);// 근거리데미지공격3상승
+				_owner.addDmgupByArmor(-3);// 근거리명중효율3상승
+				break;
+			case 8:
+				_owner.addHitupByArmor(-4);// 근거리데미지공격4상승
+				_owner.addDmgupByArmor(-4);// 근거리명중효율4상승
+				break;
+			case 9:
+				_owner.addHitupByArmor(-5);// 근거리데미지공격5상승
+				_owner.addDmgupByArmor(-5);// 근거리명중효율5상승
+				break;
+			case 10:
+				_owner.addHitupByArmor(-7);// 근거리데미지공격7상승
+				_owner.addDmgupByArmor(-7);// 근거리명중효율7상승
+				break;
+			case 11:
+				_owner.addHitupByArmor(-8);// 근거리데미지공격8상승
+				_owner.addDmgupByArmor(-8);// 근거리명중효율8상승
+				break;
+			case 12:
+				_owner.addHitupByArmor(-9);// 근거리데미지공격9상승
+				_owner.addDmgupByArmor(-9);// 근거리명중효율9상승
+				break;
+			default:
+				break;
+			}
+		}
+
+		/*
+		 * 427116 스냅퍼의 용사 반지 427117 스냅퍼의 용사 반지(축) 427118 스냅퍼의 체력 반지 427119 스냅퍼의 체력 반지(축)
+		 * 427120 스냅퍼의 지혜 반지 427121 스냅퍼의 지혜 반지(축) 427122 스냅퍼의 마법저항 반지 427123 스냅퍼의 마법저항
+		 * 반지(축)
+		 */
+		/** 장비 벗을시 */
+		/** 스냅퍼 반지 류 반지 */
+		// if((itemtype == 9 || itemtype == 11) && itemgrade == 3) {
+		// switch(itemId) {
+		// case 427116:
+		// switch (enchantlevel) {
+		if (itemgrade == 3 && itemId == 427116) {
+			switch (itemlvl) {
+			case 1:
+				_owner.getAC().addAc(1);
+				break;
+			case 2:
+				_owner.getAC().addAc(2);
+				break;
+			case 3:
+				_owner.addMaxHp(-5);
+				_owner.getAC().addAc(3);
+				break;
+			case 4:
+				_owner.addMaxHp(-10);
+				_owner.getAC().addAc(4);
+				break;
+			case 5:
+				_owner.addMaxHp(-15);
+				_owner.addHitup(-1);
+				_owner.addDmgup(-1);
+				_owner.addBowHitup(-1);
+				_owner.addBowDmgup(-1);
+				_owner.getAC().addAc(4);
+				break;
+			case 6:
+				_owner.addMaxHp(-20);
+				_owner.addHitup(-2);
+				_owner.addDmgup(-2);
+				_owner.addBowHitup(-2);
+				_owner.addBowDmgup(-2);
+				_owner.getResistance().addStun(-5);
+				_owner.getAC().addAc(4);
+				break;
+			case 7:
+				_owner.addMaxHp(-25);
+				_owner.addHitup(-3);
+				_owner.addDmgup(-3);
+				_owner.addBowHitup(-3);
+				_owner.addBowDmgup(-3);
+				_owner.getResistance().addStun(-7);
+				_owner.addPVPDamage(-1);
+				_owner.getAC().addAc(4);
+				break;
+			case 8:
+				_owner.addMaxHp(-30);
+				_owner.addHitup(-5);
+				_owner.addDmgup(-5);
+				_owner.addBowHitup(-5);
+				_owner.addBowDmgup(-5);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-3);
+				_owner.getAC().addAc(6);
+				break;
+			case 9:
+				_owner.addMaxHp(-40);
+				_owner.addHitup(-7);
+				_owner.addDmgup(-7);
+				_owner.addBowHitup(-7);
+				_owner.addBowDmgup(-7);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(8);
+				break;
+
+			}
+			// case 427117:
+			// switch (enchantlevel) {
+		} else if (itemgrade == 3 && itemId == 427117) {
+			switch (itemlvl) {
+			case 1:
+				_owner.getAC().addAc(2);
+				break;
+			case 2:
+				_owner.getAC().addAc(3);
+				break;
+			case 3:
+				_owner.addMaxHp(-10);
+				_owner.getAC().addAc(5);
+				break;
+			case 4:
+				_owner.addMaxHp(-15);
+				_owner.getAC().addAc(6);
+				break;
+			case 5:
+				_owner.addMaxHp(-20);
+				_owner.getAC().addAc(6);
+				_owner.addHitup(-2);
+				_owner.addDmgup(-2);
+				_owner.addBowHitup(-2);
+				_owner.addBowDmgup(-2);
+				break;
+			case 6:
+				_owner.addMaxHp(-25);
+				_owner.getAC().addAc(6);
+				_owner.addHitup(-3);
+				_owner.addDmgup(-3);
+				_owner.addBowHitup(-3);
+				_owner.addBowDmgup(-3);
+				_owner.getResistance().addStun(-5);
+				break;
+			case 7:
+				_owner.addMaxHp(-30);
+				_owner.getAC().addAc(7);
+				_owner.addHitup(-4);
+				_owner.addDmgup(-4);
+				_owner.addBowHitup(-4);
+				_owner.addBowDmgup(-4);
+				_owner.getResistance().addStun(-7);
+				_owner.addPVPDamage(-1);
+				break;
+			case 8:
+				_owner.addMaxHp(-30);
+				_owner.getAC().addAc(9);
+				_owner.addHitup(-7);
+				_owner.addDmgup(-7);
+				_owner.addBowHitup(-7);
+				_owner.addBowDmgup(-7);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-5);
+				break;
+			case 9:
+				_owner.addMaxHp(-40);
+				_owner.getAC().addAc(12);
+				_owner.addHitup(-9);
+				_owner.addDmgup(-9);
+				_owner.addBowHitup(-9);
+				_owner.addBowDmgup(-9);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-9);
+				break;
+			}
+			// case 427118:
+			// switch (enchantlevel) {
+		} else if (itemgrade == 3 && itemId == 427118) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(-15);
+				break;
+			case 2:
+				_owner.addMaxHp(-20);
+				_owner.getAC().addAc(1);
+				break;
+			case 3:
+				_owner.addMaxHp(25);
+				_owner.getAC().addAc(2);
+				break;
+			case 4:
+				_owner.addMaxHp(30);
+				_owner.getAC().addAc(3);
+				break;
+			case 5:
+				_owner.addMaxHp(35);
+				_owner.getAC().addAc(3);
+				_owner.addHitup(1);
+				_owner.addDmgup(1);
+				_owner.addBowHitup(1);
+				_owner.addBowDmgup(1);
+				break;
+			case 6:
+				_owner.addMaxHp(40);
+				_owner.getAC().addAc(4);
+				_owner.addHitup(2);
+				_owner.addDmgup(2);
+				_owner.addBowHitup(2);
+				_owner.addBowDmgup(2);
+				_owner.getResistance().addStun(5);
+				break;
+			case 7:
+				_owner.addMaxHp(45);
+				_owner.getAC().addAc(4);
+				_owner.addHitup(3);
+				_owner.addDmgup(3);
+				_owner.addBowHitup(3);
+				_owner.addBowDmgup(3);
+				_owner.getResistance().addStun(7);
+				_owner.addPVPDamage(1);
+				_owner.addDamageReductionByArmor(1);
+				break;
+			case 8:
+				_owner.addMaxHp(50);
+				_owner.getAC().addAc(6);
+				_owner.addHitup(5);
+				_owner.addDmgup(5);
+				_owner.addBowHitup(5);
+				_owner.addBowDmgup(5);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(3);
+				_owner.addDamageReductionByArmor(3);
+				break;
+			case 9:
+				_owner.addMaxHp(55);
+				_owner.getAC().addAc(8);
+				_owner.addHitup(7);
+				_owner.addDmgup(7);
+				_owner.addBowHitup(7);
+				_owner.addBowDmgup(7);
+				_owner.getResistance().addStun(9);
+				_owner.addPVPDamage(7);
+				_owner.addDamageReductionByArmor(5);
+				break;
+			default:
+				break;
+			}
+			// case 427119:
+			// switch (enchantlevel) {
+		} else if (itemgrade == 3 && itemId == 427119) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(-15);
+				_owner.getAC().addAc(2);
+				break;
+			case 2:
+				_owner.addMaxHp(-20);
+				_owner.getAC().addAc(3);
+				break;
+			case 3:
+				_owner.addMaxHp(-30);
+				_owner.getAC().addAc(4);
+				break;
+			case 4:
+				_owner.addMaxHp(-35);
+				_owner.getAC().addAc(5);
+				break;
+			case 5:
+				_owner.addMaxHp(-40);
+				_owner.getAC().addAc(6);
+				_owner.addHitup(-2);
+				_owner.addDmgup(-2);
+				_owner.addBowHitup(-2);
+				_owner.addBowDmgup(-2);
+				break;
+			case 6:
+				_owner.addMaxHp(-45);
+				_owner.getAC().addAc(6);
+				_owner.addHitup(-3);
+				_owner.addDmgup(-3);
+				_owner.addBowHitup(-3);
+				_owner.addBowDmgup(-3);
+				_owner.getResistance().addStun(-5);
+				_owner.addDamageReductionByArmor(-1);
+				break;
+			case 7:
+				_owner.addMaxHp(-55);
+				_owner.getAC().addAc(7);
+				_owner.addHitup(-4);
+				_owner.addDmgup(-4);
+				_owner.addBowHitup(-4);
+				_owner.addBowDmgup(-4);
+				_owner.getResistance().addStun(-7);
+				_owner.addPVPDamage(-1);
+				_owner.addDamageReductionByArmor(-2);
+				break;
+			case 8:
+				_owner.addMaxHp(-65);
+				_owner.getAC().addAc(9);
+				_owner.addHitup(-5);
+				_owner.addDmgup(-5);
+				_owner.addBowHitup(-5);
+				_owner.addBowDmgup(-5);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-5);
+				_owner.addDamageReductionByArmor(-5);
+				break;
+			case 9:
+				_owner.addMaxHp(-75);
+				_owner.getAC().addAc(12);
+				_owner.addHitup(-9);
+				_owner.addDmgup(-9);
+				_owner.addBowHitup(-9);
+				_owner.addBowDmgup(-9);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-7);
+				_owner.addDamageReductionByArmor(-7);
+				break;
+			default:
+				break;
+			}
+			// case 427120:
+			// switch (itemlvl) {
+		} else if (itemgrade == 3 && itemId == 427120) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(-5);
+				_owner.addMaxMp(-15);
+				break;
+			case 2:
+				_owner.addMaxHp(-10);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(1);
+				break;
+			case 3:
+				_owner.addMaxHp(-15);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(2);
+				break;
+			case 4:
+				_owner.addMaxHp(-20);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(3);
+				break;
+			case 5:
+				_owner.addMaxHp(-25);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(3);
+				_owner.getAbility().addSp(-1);
+				break;
+			case 6:
+				_owner.addMaxHp(-30);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(4);
+				_owner.getAbility().addSp(-2);
+				_owner.getResistance().addStun(-5);
+				break;
+			case 7:
+				_owner.addMaxHp(-35);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(4);
+				_owner.getAbility().addSp(-3);
+				_owner.getResistance().addStun(-7);
+				_owner.addPVPDamage(-1);
+				_owner.addHitup_magic(-1);// 마법 적중
+				break;
+			case 8:
+				_owner.addMaxHp(-40);
+				_owner.addMaxMp(-30);
+				_owner.getAC().addAc(6);
+				_owner.getAbility().addSp(-5);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-3);
+				_owner.addHitup_magic(-3);// 마법 적중
+				break;
+			case 9:
+				_owner.addMaxHp(-50);
+				_owner.addMaxMp(-70);
+				_owner.getAC().addAc(8);
+				_owner.getAbility().addSp(-7);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-7);
+				_owner.addHitup_magic(-5);// 마법 적중
+				break;
+			default:
+				break;
+			}
+			// case 427121:
+			// switch (itemlvl) {
+		} else if (itemgrade == 3 && itemId == 427121) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(-5);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(2);
+				break;
+			case 2:
+				_owner.addMaxHp(-15);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(3);
+				break;
+			case 3:
+				_owner.addMaxHp(-20);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(4);
+				break;
+			case 4:
+				_owner.addMaxHp(-25);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(5);
+				_owner.getAbility().addSp(-1);
+				break;
+			case 5:
+				_owner.addMaxHp(-30);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(5);
+				_owner.getAbility().addSp(-2);
+				break;
+			case 6:
+				_owner.addMaxHp(-35);
+				_owner.addMaxMp(-15);
+				_owner.getAC().addAc(5);
+				_owner.getAbility().addSp(-3);
+				_owner.getResistance().addStun(-5);
+				_owner.addHitup_magic(-1);// 마법 적중
+				break;
+			case 7:
+				_owner.addMaxHp(-40);
+				_owner.addMaxMp(-30);
+				_owner.getAC().addAc(7);
+				_owner.getAbility().addSp(-4);
+				_owner.getResistance().addStun(-7);
+				_owner.addPVPDamage(-1);
+				_owner.addHitup_magic(-2);// 마법 적중
+				break;
+			case 8:
+				_owner.addMaxHp(-50);
+				_owner.addMaxMp(-35);
+				_owner.getAC().addAc(9);
+				_owner.getAbility().addSp(-7);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-5);
+				_owner.addHitup_magic(-5);// 마법 적중
+				break;
+			case 9:
+				_owner.addMaxHp(-60);
+				_owner.addMaxMp(-80);
+				_owner.getAC().addAc(12);
+				_owner.getAbility().addSp(-9);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-9);
+				_owner.addHitup_magic(-7);// 마법 적중
+				break;
+			default:
+				break;
+			}
+			// case 427122:
+			// switch (enchantlevel) {
+		} else if (itemgrade == 3 && itemId == 427122) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(-15);
+				break;
+			case 2:
+				_owner.addMaxHp(-20);
+				break;
+			case 3:
+				_owner.addMaxHp(-30);
+				_owner.getAC().addAc(1);
+				break;
+			case 4:
+				_owner.addMaxHp(-35);
+				_owner.getAC().addAc(3);
+				_owner.addDmgup(-1);
+				_owner.addBowDmgup(-1);
+				break;
+			case 5:
+				_owner.addMaxHp(-40);
+				_owner.getAC().addAc(3);
+				_owner.addDmgup(-2);
+				_owner.addBowDmgup(-2);
+				break;
+			case 6:
+				_owner.addMaxHp(-45);
+				_owner.getAC().addAc(4);
+				_owner.addDmgup(-3);
+				_owner.addBowDmgup(-3);
+				_owner.getResistance().addStun(-5);
+				break;
+			case 7:
+				_owner.addMaxHp(-50);
+				_owner.getAC().addAc(4);
+				_owner.addDmgup(-4);
+				_owner.addBowDmgup(-4);
+				_owner.getResistance().addStun(-7);
+				_owner.addPVPDamage(-1);
+				break;
+			case 8:
+				_owner.addMaxHp(-50);
+				_owner.getAC().addAc(6);
+				_owner.addDmgup(-7);
+				_owner.addBowDmgup(-7);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-5);
+				break;
+			case 9:
+				_owner.addMaxHp(-60);
+				_owner.getAC().addAc(8);
+				_owner.addDmgup(-9);
+				_owner.addBowDmgup(-9);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-9);
+				break;
+			default:
+				break;
+			}
+			// case 427123:
+			// switch (enchantlevel) {
+		} else if (itemgrade == 3 && itemId == 427123) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxHp(-15);
+				_owner.getAC().addAc(1);
+				break;
+			case 2:
+				_owner.addMaxHp(-15);
+				_owner.getAC().addAc(2);
+				break;
+			case 3:
+				_owner.addMaxHp(-25);
+				_owner.getAC().addAc(3);
+				break;
+			case 4:
+				_owner.addMaxHp(-30);
+				_owner.getAC().addAc(4);
+				break;
+			case 5:
+				_owner.addMaxHp(-35);
+				_owner.getAC().addAc(4);
+				_owner.addDmgup(-1);
+				_owner.addBowDmgup(-1);
+				break;
+			case 6:
+				_owner.addMaxHp(-40);
+				_owner.getAC().addAc(5);
+				_owner.addDmgup(-2);
+				_owner.addBowDmgup(-2);
+				_owner.getResistance().addStun(-5);
+				break;
+			case 7:
+				_owner.addMaxHp(-45);
+				_owner.getAC().addAc(5);
+				_owner.addDmgup(-3);
+				_owner.addBowDmgup(-3);
+				_owner.getResistance().addStun(-7);
+				_owner.addPVPDamage(-1);
+				break;
+			case 8:
+				_owner.addMaxHp(-50);
+				_owner.getAC().addAc(7);
+				_owner.addDmgup(-5);
+				_owner.addBowDmgup(-5);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-3);
+				break;
+			case 9:
+				_owner.addMaxHp(-60);
+				_owner.getAC().addAc(9);
+				_owner.addDmgup(-7);
+				_owner.addBowDmgup(-7);
+				_owner.getResistance().addStun(-9);
+				_owner.addPVPDamage(-7);
+				break;
+			default:
+				break;
+			}
+		}
+
+		/*
+		 * 427110 룸티스의 검은빛 귀걸이 427111 룸티스의 검은빛 귀걸이(축) 427112 룸티스의 붉은빛 귀걸이 427113 룸티스의
+		 * 붉은빛 귀걸이(축) 427114 룸티스의 보라빛 귀걸이 427115 룸티스의 보라빛 귀걸이(축)
+		 */
+		/** 룸티스 귀걸이 */
+		if (itemtype == 12 && itemgrade == 3) {
+			switch (itemId) {
+			case 427110:
+				switch (enchantlevel) {
+				case 1:
+					_owner.getAC().addAc(1);
+					break;
+				case 2:
+					_owner.getAC().addAc(2);
+					break;
+				case 3:
+					_owner.addDmgup(-1);
+					_owner.addBowDmgup(-1);
+					_owner.getAC().addAc(3);
+					break;
+				case 4:
+					_owner.addDmgup(-1);
+					_owner.addBowDmgup(-1);
+					_owner.getAC().addAc(4);
+					break;
+				case 5:
+					_owner.addDmgup(-2);
+					_owner.addBowDmgup(-2);
+					_owner.getAC().addAc(5);
+					break;
+				case 6:
+					_owner.addDmgup(-3);
+					_owner.addBowDmgup(-3);
+					_owner.getAC().addAc(6);
+					break;
+				case 7:
+					_owner.addDmgup(-4);
+					_owner.addBowDmgup(-4);
+					_owner.getAC().addAc(7);
+					break;
+				case 8:
+					_owner.addDmgup(-7);
+					_owner.addBowDmgup(-7);
+					_owner.getAC().addAc(8);
+					break;
+				case 9:
+					_owner.addDmgup(-9);
+					_owner.addBowDmgup(-9);
+					_owner.getAC().addAc(9);
+					break;
+				}
+				break;
+			case 427111:
+				switch (enchantlevel) {
+				case 1:
+					_owner.getAC().addAc(1);
+					break;
+				case 2:
+					_owner.getAC().addAc(2);
+					break;
+				case 3:
+					_owner.addDmgup(-1);
+					_owner.addBowDmgup(-1);
+					_owner.getAC().addAc(5);
+					break;
+				case 4:
+					_owner.addDmgup(-2);
+					_owner.addBowDmgup(-2);
+					_owner.getAC().addAc(6);
+					break;
+				case 5:
+					_owner.addDmgup(-3);
+					_owner.addBowDmgup(-3);
+					_owner.getAC().addAc(7);
+					break;
+				case 6:
+					_owner.addDmgup(-4);
+					_owner.addBowDmgup(-4);
+					_owner.getAC().addAc(8);
+					break;
+				case 7:
+					_owner.addDmgup(-5);
+					_owner.addBowDmgup(-5);
+					_owner.getAC().addAc(9);
+					break;
+				case 8:
+					_owner.addDmgup(-9);
+					_owner.addBowDmgup(-9);
+					_owner.getAC().addAc(10);
+					break;
+				case 9:
+					_owner.addDmgup(-12);
+					_owner.addBowDmgup(-12);
+					_owner.getAC().addAc(11);
+					break;
+				}
+				break;
+			case 427112:
+				switch (enchantlevel) {
+				case 1:
+					_owner.addMaxHp(-20);
+					break;
+				case 2:
+					_owner.addMaxHp(-30);
+					break;
+				case 3:
+					_owner.addMaxHp(-40);
+					_owner.addDamageReductionByArmor(-1);
+					break;
+				case 4:
+					_owner.addMaxHp(-50);
+					_owner.addDamageReductionByArmor(-1);
+					break;
+				case 5:
+					_owner.addMaxHp(-60);
+					_owner.addDamageReductionByArmor(-2);
+					_owner.getAC().addAc(7);
+					break;
+				case 6:
+
+					_owner.addMaxHp(-70);
+					_owner.addDamageReductionByArmor(-3);
+					_owner.getAC().addAc(7);
+					break;
+				case 7:
+					_owner.addHitup(-1);
+					_owner.addBowHitup(-1);
+					_owner.addMaxHp(-80);
+					_owner.addDamageReductionByArmor(-4);
+					_owner.getAC().addAc(8);
+					break;
+				case 8:
+					_owner.addHitup(-5);
+					_owner.addBowHitup(-5);
+					_owner.addMaxHp(-100);
+					_owner.addDamageReductionByArmor(-7);
+					_owner.getAC().addAc(9);
+					break;
+				case 9:
+					_owner.addHitup(-7);
+					_owner.addBowHitup(-7);
+					_owner.addMaxHp(-110);
+					_owner.addDamageReductionByArmor(-7);
+					_owner.getAC().addAc(10);
+					break;
+				}
+				break;
+			case 427113:
+				switch (enchantlevel) {
+				case 1:
+					_owner.addMaxHp(-30);
+					_owner.addDamageReductionByArmor(-1);
+					break;
+				case 2:
+
+					_owner.addMaxHp(-40);
+					_owner.addDamageReductionByArmor(-1);
+					break;
+				case 3:
+					_owner.addMaxHp(-50);
+					_owner.addDamageReductionByArmor(-1);
+					break;
+				case 4:
+					_owner.addMaxHp(-60);
+					_owner.addDamageReductionByArmor(-2);
+					break;
+				case 5:
+					_owner.addMaxHp(-70);
+					_owner.addDamageReductionByArmor(-3);
+					_owner.getAC().addAc(7);
+					break;
+				case 6:
+					_owner.addHitup(-1);
+					_owner.addBowHitup(-1);
+					_owner.addMaxHp(-80);
+					_owner.addDamageReductionByArmor(-4);
+					_owner.getAC().addAc(8);
+					break;
+				case 7:
+					_owner.addHitup(-3);
+					_owner.addBowHitup(-3);
+					_owner.addMaxHp(-90);
+					_owner.addDamageReductionByArmor(-5);
+					_owner.getAC().addAc(9);
+					break;
+				case 8:
+					_owner.addHitup(-5);
+					_owner.addBowHitup(-5);
+					_owner.addMaxHp(-140);
+					_owner.addDamageReductionByArmor(-7);
+					_owner.getAC().addAc(10);
+					break;
+				case 9:
+					_owner.addHitup(-7);
+					_owner.addBowHitup(-7);
+					_owner.addMaxHp(-150);
+					_owner.addDamageReductionByArmor(-9);
+					_owner.getAC().addAc(11);
+					break;
+				}
+				break;
+			case 427114:
+				switch (enchantlevel) {
+				case 1: // 인첸트가 1이라면
+					_owner.addMaxMp(-15); // 최대MP를 10증가시켜주고
+					_owner.getResistance().addMr(-3); // 마방을 3증가시켜준다
+					break;
+				case 2:
+					_owner.addMaxMp(-20);
+					_owner.getResistance().addMr(-6);
+					break;
+				case 3:
+					_owner.addMaxMp(-35);
+					_owner.getResistance().addMr(-7);
+					_owner.getAbility().addSp(-1);
+					break;
+				case 4:
+					_owner.addMaxMp(-40);
+					_owner.getResistance().addMr(-8);
+					_owner.getAbility().addSp(-1);
+					break;
+				case 5:
+					_owner.addMaxMp(-55);
+					_owner.getResistance().addMr(-9);
+					_owner.getAbility().addSp(-2);
+					break;
+				case 6:
+					_owner.addMaxMp(-60);
+					_owner.getResistance().addMr(-10);
+					_owner.getAbility().addSp(-2);
+					_owner.getAC().addAc(1);
+					break;
+				case 7:
+					_owner.addMaxMp(-75);
+					_owner.getResistance().addMr(-12);
+					_owner.getAbility().addSp(-3);
+					_owner.getAC().addAc(2);
+					break;
+				case 8:
+					_owner.addMaxHp(-50);
+					_owner.addMaxMp(-100);
+					_owner.getResistance().addMr(-17);
+					_owner.getAbility().addSp(-5);
+					_owner.getAC().addAc(3);
+					break;
+				case 9:
+					_owner.addMaxHp(-100);
+					_owner.addMaxMp(-100);
+					_owner.getResistance().addMr(-17);
+					_owner.getAbility().addSp(-5);
+					_owner.getAC().addAc(3);
+					break;
+				}
+				break;
+			case 427115:
+				switch (enchantlevel) {
+				case 1: // 인첸트가 1이라면
+					_owner.addMaxMp(-15); // 최대MP를 10증가시켜주고
+					_owner.getResistance().addMr(-3); // 마방을 3증가시켜준다
+					break;
+				case 2:
+					_owner.addMaxMp(-20);
+					_owner.getResistance().addMr(-6);
+					break;
+				case 3:
+					_owner.addMaxMp(-40);
+					_owner.getResistance().addMr(-7);
+					_owner.getAbility().addSp(-1);
+					break;
+				case 4:
+					_owner.addMaxMp(-55);
+					_owner.getResistance().addMr(-8);
+					_owner.getAbility().addSp(-1);
+					break;
+				case 5:
+					_owner.addMaxMp(-60);
+					_owner.getResistance().addMr(-9);
+					_owner.getAbility().addSp(-2);
+					break;
+				case 6:
+					_owner.addMaxMp(-75);
+					_owner.getResistance().addMr(-10);
+					_owner.getAbility().addSp(-2);
+					_owner.getAC().addAc(1);
+					break;
+				case 7:
+
+					_owner.addMaxMp(-100);
+					_owner.getResistance().addMr(-13);
+					_owner.getAbility().addSp(-3);
+					_owner.getAC().addAc(3);
+					break;
+				case 8:
+					_owner.addMaxHp(-150);
+
+					_owner.addMaxMp(-100);
+					_owner.getResistance().addMr(-18);
+					_owner.getAbility().addSp(-5);
+					_owner.getAC().addAc(3);
+					break;
+				case 9:
+					_owner.addMaxHp(-150);
+					_owner.addMaxMp(-120);
+					_owner.getResistance().addMr(-21);
+					_owner.getAbility().addSp(-9);
+					_owner.getAC().addAc(4);
+					break;
+				}
+				break;
+			}
+		}
+
+		/** 일반악세 오림 반지 */
+		if ((itemtype == 9 || itemtype == 11) && itemgrade != 3) {
+			switch (enchantlevel) {
+			case 1:
+				_owner.addMaxHp(-5);
+				break;
+			case 2:
+				_owner.addMaxHp(-10);
+				break;
+			case 3:
+				_owner.addMaxHp(-20);
+				break;
+			case 4:
+				_owner.addMaxHp(-30);
+				break;
+			case 5:
+				_owner.addDmgup(-1);
+				_owner.addBowDmgup(-1);
+				_owner.addMaxHp(-40);
+				break;
+			case 6:
+				_owner.addDmgup(-2);
+				_owner.addBowDmgup(-2);
+				_owner.addMaxHp(-40);
+				_owner.getResistance().addMr(-1);
+				_owner.addPVPDamage(-1);
+				break;
+			case 7:
+				_owner.addDmgup(-3);
+				_owner.addBowDmgup(-3);
+				_owner.addMaxHp(-50);
+				_owner.getAbility().addSp(-1);
+				_owner.addPVPDamage(-2);
+				_owner.getResistance().addMr(-3);
+				break;
+			case 8:
+				_owner.addDmgup(-4);
+				_owner.addBowDmgup(-4);
+				_owner.addMaxHp(-50);
+				_owner.getAbility().addSp(-2);
+				_owner.addPVPDamage(-3);
+				_owner.getResistance().addMr(-5);
+				break;
+			case 9:
+				_owner.addDmgup(-5);
+				_owner.addBowDmgup(-5);
+				_owner.addMaxHp(-60);
+				_owner.getAbility().addSp(-3);
+				_owner.addPVPDamage(-5);
+				_owner.getResistance().addMr(-7);
+				break;
+			default:
+			}
+		}
+
+		/** 일반악세 오림 목걸이 */
+		if (itemtype == 8 && itemgrade != 3) {
+			switch (enchantlevel) {
+			case 1:
+				_owner.addMaxHp(-5);
+				break;
+			case 2:
+				_owner.addMaxHp(-10);
+				break;
+			case 3:
+				_owner.addMaxHp(-20);
+				break;
+			case 4:
+				_owner.addMaxHp(-30);
+				break;
+			case 5:
+				_owner.addMaxHp(-40);
+				_owner.getAC().addAc(1);
+				_owner.getResistance().addMr(-1);
+				break;
+			case 6:
+				_owner.addMaxHp(-40);
+				_owner.getAC().addAc(2);
+				_owner.getResistance().addMr(-2);
+				break;
+			case 7:
+				_owner.addMaxHp(-50);
+				_owner.getAC().addAc(3);
+				_owner.getResistance().addMr(-5);
+				_owner.getResistance().addStun(-2);
+				break;
+			case 8:
+				_owner.addMaxHp(-50);
+				_owner.getAC().addAc(4);
+				_owner.getResistance().addMr(-7);
+				_owner.getResistance().addStun(-3);
+				break;
+			case 9:
+				_owner.addMaxHp(-60);
+				_owner.getAC().addAc(5);
+				_owner.getResistance().addMr(-10);
+				_owner.getResistance().addStun(-4);
+				break;
+			default:
+			}
+		}
+
+		/** 일반악세 오림 벨트 */
+		if (itemtype == 10 && itemgrade != 3) {
+			switch (itemlvl) {
+			case 1:
+				_owner.addMaxMp(-5);
+				break;
+			case 2:
+				_owner.addMaxMp(-10);
+				break;
+			case 3:
+				_owner.addMaxMp(-20);
+				break;
+			case 4:
+				_owner.addMaxMp(-30);
+				break;
+			case 5:
+				_owner.addDamageReductionByArmor(-1);
+				_owner.addMaxMp(-40);
+				break;
+			case 6:
+				_owner.addDamageReductionByArmor(-2);
+				_owner.addMaxMp(-40);
+				_owner.addMaxHp(-20);
+				_owner.addPVPDamageReduction(-1);
+				break;
+			case 7:
+				_owner.addDamageReductionByArmor(-3);
+				_owner.addMaxMp(-50);
+				_owner.addMaxHp(-30);
+				_owner.addPVPDamageReduction(-3);
+				break;
+			case 8:
+				_owner.addDamageReductionByArmor(-4);
+				_owner.addMaxMp(-50);
+				_owner.addMaxHp(-40);
+				_owner.addPVPDamageReduction(-5);
+				break;
+			case 9:
+				_owner.addDamageReductionByArmor(-5);
+				_owner.addMaxMp(-60);
+				_owner.addMaxHp(-50);
+				_owner.addPVPDamageReduction(-7);
+				break;
+			default:
+			}
+		}
+
+		/** 일반악세 오림 귀걸이 */
+		if (itemtype == 12 && itemgrade != 3) {
+			switch (enchantlevel) {
+			case 1:
+				_owner.addMaxMp(-5);
+				break;
+			case 2:
+				_owner.addMaxMp(-10);
+				break;
+			case 3:
+				_owner.addMaxMp(-20);
+				break;
+			case 4:
+				_owner.addMaxMp(-30);
+				break;
+			case 5:
+				_owner.addMaxMp(-40);
+				_owner.getAC().addAc(1);
+				break;
+			case 6:
+				_owner.addMaxMp(-40);
+				_owner.getAC().addAc(2);
+				break;
+			case 7:
+				_owner.addMaxMp(-50);
+				_owner.getAC().addAc(3);
+				break;
+			case 8:
+				_owner.addMaxMp(-50);
+				_owner.getAC().addAc(4);
+				break;
+			case 9:
+				_owner.addMaxMp(-60);
+				_owner.getAC().addAc(5);
+				break;
+			default:
+			}
+		}
+
+		armor.stopEquipmentTimer();
+
+		_armors.remove(armor);
+	}
+
+	public void set(L1ItemInstance equipment) {
+		L1Item item = equipment.getItem();
+
+		if (item.getType2() == 0) {
+			return;
+		}
+
+		if (item.get_addhp() != 0) {
+			_owner.addMaxHp(item.get_addhp());
+		}
+		if (item.get_addmp() != 0) {
+			_owner.addMaxMp(item.get_addmp());
+		}
+
+		_owner.getAbility().addAddedStr(item.get_addstr());
+		_owner.getAbility().addAddedCon(item.get_addcon());
+		_owner.getAbility().addAddedDex(item.get_adddex());
+		_owner.getAbility().addAddedInt(item.get_addint());
+		_owner.getAbility().addAddedWis(item.get_addwis());
+
+		if (item.get_addwis() != 0) {
+			_owner.resetBaseMr();
+		}
+		_owner.getAbility().addAddedCha(item.get_addcha());
+
+		int addMr = 0;
+		addMr += equipment.getMr();
+		if (item.getItemId() == 20236 && _owner.isElf()) {
+			addMr += 5;
+		}
+		if (addMr != 0) {
+			_owner.getResistance().addMr(addMr);
+			_owner.sendPackets(new S_SPMR(_owner));
+		}
+		if (item.get_addsp() != 0) {
+			_owner.getAbility().addSp(item.get_addsp());
+			_owner.sendPackets(new S_SPMR(_owner));
+		}
+		if (item.isHasteItem()) {
+			_owner.addHasteItemEquipped(1);
+			_owner.removeHasteSkillEffect();
+			if (_owner.getMoveState().getMoveSpeed() != 1) {
+				_owner.getMoveState().setMoveSpeed(1);
+				_owner.sendPackets(new S_SkillHaste(_owner.getId(), 1, -1));
+				Broadcaster.broadcastPacket(_owner, new S_SkillHaste(_owner.getId(), 1, 0));
+			}
+		}
+		if (equipment.getTechniqueHit() != 0) {
+			_owner.addHitup_skill(equipment.getTechniqueHit());
+		}
+
+		if (equipment.getSpiritHit() != 0) {
+			_owner.addHitup_spirit(equipment.getSpiritHit());
+		}
+		if (item.getItemId() == 20383) {
+			if (_owner.getSkillEffectTimerSet().hasSkillEffect(STATUS_BRAVE)) {
+				_owner.getSkillEffectTimerSet().killSkillEffectTimer(STATUS_BRAVE);
+				_owner.sendPackets(new S_SkillBrave(_owner.getId(), 0, 0));
+				Broadcaster.broadcastPacket(_owner, new S_SkillBrave(_owner.getId(), 0, 0));
+				_owner.getMoveState().setBraveSpeed(0);
+			}
+		}
+		_owner.getEquipSlot().setMagicHelm(equipment);
+
+		if (item.getType2() == 1) {
+			setWeapon(equipment);
+		} else if (item.getType2() == 2) {
+			setArmor(equipment);
+			_owner.sendPackets(new S_SPMR(_owner));
+		}
+	}
+
+	public void remove(L1ItemInstance equipment) {
+		L1Item item = equipment.getItem();
+		if (item.getType2() == 0) {
+			return;
+		}
+
+		if (item.get_addhp() != 0) {
+			_owner.addMaxHp(-item.get_addhp());
+		}
+		if (item.get_addmp() != 0) {
+			_owner.addMaxMp(-item.get_addmp());
+		}
+
+		_owner.getAbility().addAddedStr((byte) -item.get_addstr());
+		_owner.getAbility().addAddedCon((byte) -item.get_addcon());
+		_owner.getAbility().addAddedDex((byte) -item.get_adddex());
+		_owner.getAbility().addAddedInt((byte) -item.get_addint());
+		_owner.getAbility().addAddedWis((byte) -item.get_addwis());
+		if (item.get_addwis() != 0) {
+			_owner.resetBaseMr();
+		}
+		_owner.getAbility().addAddedCha((byte) -item.get_addcha());
+
+		int addMr = 0;
+		addMr -= equipment.getMr();
+		if (item.getItemId() == 20236 && _owner.isElf()) {
+			addMr -= 5;
+		}
+		if (addMr != 0) {
+			_owner.getResistance().addMr(addMr);
+			_owner.sendPackets(new S_SPMR(_owner));
+		}
+		if (item.get_addsp() != 0) {
+			_owner.getAbility().addSp(-item.get_addsp());
+			_owner.sendPackets(new S_SPMR(_owner));
+		}
+		if (item.isHasteItem()) {
+			_owner.addHasteItemEquipped(-1);
+			if (_owner.getHasteItemEquipped() == 0) {
+				_owner.getMoveState().setMoveSpeed(0);
+				_owner.sendPackets(new S_SkillHaste(_owner.getId(), 0, 0));
+				Broadcaster.broadcastPacket(_owner, new S_SkillHaste(_owner.getId(), 0, 0));
+			}
+		}
+		if (equipment.getTechniqueHit() != 0) {
+			_owner.addHitup_skill(-equipment.getTechniqueHit());
+		}
+
+		if (equipment.getSpiritHit() != 0) {
+			_owner.addHitup_spirit(-equipment.getSpiritHit());
+		}
+		_owner.getEquipSlot().removeMagicHelm(_owner.getId(), equipment);
+
+		if (item.getType2() == 1) {
+			removeWeapon(equipment);
+		} else if (item.getType2() == 2) {
+			removeArmor(equipment);
+		}
+	}
+
+	public void setMagicHelm(L1ItemInstance item) {
+		switch (item.getItemId()) {
+		case 20008:
+			_owner.setSkillMastery(HASTE);
+			_owner.sendPackets(
+					new S_AddSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			break;
+		case 20013:
+			_owner.setSkillMastery(PHYSICAL_ENCHANT_DEX);
+			_owner.setSkillMastery(HASTE);
+			_owner.sendPackets(
+					new S_AddSkill(0, 0, 0, 2, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			break;
+		case 20014:
+			_owner.setSkillMastery(HEAL);
+			_owner.setSkillMastery(EXTRA_HEAL);
+			_owner.sendPackets(
+					new S_AddSkill(1, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0));
+			break;
+		case 20015:
+			_owner.setSkillMastery(ENCHANT_WEAPON);
+			_owner.setSkillMastery(DETECTION);
+			_owner.setSkillMastery(PHYSICAL_ENCHANT_STR);
+			_owner.sendPackets(new S_AddSkill(0, 24, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					0, 0, 0, 0));
+			break;
+		case 20023:
+			_owner.setSkillMastery(GREATER_HASTE);
+			_owner.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+					0, 0, 0, 0));
+			break;
+		}
+	}
+
+	public void removeMagicHelm(int objectId, L1ItemInstance item) {
+		switch (item.getItemId()) {
+		case 20008:
+			if (!SkillsTable.getInstance().spellCheck(objectId, HASTE)) {
+				_owner.removeSkillMastery(HASTE);
+				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0));
+			}
+			break;
+		case 20013:
+			if (!SkillsTable.getInstance().spellCheck(objectId, PHYSICAL_ENCHANT_DEX)) {
+				_owner.removeSkillMastery(PHYSICAL_ENCHANT_DEX);
+				_owner.sendPackets(new S_DelSkill(0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0));
+			}
+			if (!SkillsTable.getInstance().spellCheck(objectId, HASTE)) {
+				_owner.removeSkillMastery(HASTE);
+				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0));
+			}
+			break;
+		case 20014:
+			if (!SkillsTable.getInstance().spellCheck(objectId, HEAL)) {
+				_owner.removeSkillMastery(HEAL);
+				_owner.sendPackets(new S_DelSkill(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0));
+			}
+			if (!SkillsTable.getInstance().spellCheck(objectId, EXTRA_HEAL)) {
+				_owner.removeSkillMastery(EXTRA_HEAL);
+				_owner.sendPackets(new S_DelSkill(0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0));
+			}
+			break;
+		case 20015:
+			if (!SkillsTable.getInstance().spellCheck(objectId, ENCHANT_WEAPON)) {
+				_owner.removeSkillMastery(ENCHANT_WEAPON);
+				_owner.sendPackets(new S_DelSkill(0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0));
+			}
+			if (!SkillsTable.getInstance().spellCheck(objectId, DETECTION)) {
+				_owner.removeSkillMastery(DETECTION);
+				_owner.sendPackets(new S_DelSkill(0, 16, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0));
+			}
+			if (!SkillsTable.getInstance().spellCheck(objectId, PHYSICAL_ENCHANT_STR)) {
+				_owner.removeSkillMastery(PHYSICAL_ENCHANT_STR);
+				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0));
+			}
+			break;
+		case 20023:
+			if (!SkillsTable.getInstance().spellCheck(objectId, GREATER_HASTE)) {
+				_owner.removeSkillMastery(GREATER_HASTE);
+				_owner.sendPackets(new S_DelSkill(0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+						0, 0, 0, 0, 0));
+			}
+			break;
+		}
+	}
+
+}

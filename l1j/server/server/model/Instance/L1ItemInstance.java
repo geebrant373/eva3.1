@@ -1,0 +1,4715 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+
+package l1j.server.server.model.Instance;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.Timer;
+import java.util.TimerTask;
+
+import l1j.server.L1DatabaseFactory;
+import l1j.server.GameSystem.CrockSystem;
+import l1j.server.server.clientpackets.ClientBasePacket;
+import l1j.server.server.datatables.ExpTable;
+import l1j.server.server.datatables.NpcTable;
+import l1j.server.server.datatables.PetTable;
+import l1j.server.server.model.L1Character;
+import l1j.server.server.model.L1EquipmentTimer;
+import l1j.server.server.model.L1ItemOwnerTimer;
+import l1j.server.server.model.L1Object;
+import l1j.server.server.model.L1PcInventory;
+import l1j.server.server.model.item.L1ItemId;
+import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.serverpackets.S_OwnCharStatus;
+import l1j.server.server.serverpackets.S_ServerMessage;
+import l1j.server.server.serverpackets.S_SkillSound;
+import l1j.server.server.templates.L1Armor;
+import l1j.server.server.templates.L1Item;
+import l1j.server.server.templates.L1Npc;
+import l1j.server.server.templates.L1Pet;
+import l1j.server.server.utils.BinaryOutputStream;
+import l1j.server.server.utils.SQLUtil;
+
+//Referenced classes of package l1j.server.server.model:
+//L1Object, L1PcInstance
+
+public class L1ItemInstance extends L1Object {
+
+	private static final long serialVersionUID = 1L;
+	private static final SimpleDateFormat sdf = new SimpleDateFormat("MM-dd HH:mm", Locale.KOREA);
+
+	private int _count;
+	private int _itemId;
+	private L1Item _item;
+	private boolean _isEquipped = false;
+	private int _enchantLevel;
+	private int _attrenchantLevel;
+	private boolean _isIdentified = false;
+	private int _durability;
+	private int _chargeCount;
+	private int _remainingTime;
+	private Timestamp _lastUsed = null;
+	private int bless = 1; // 기본상태 일반으로 정의
+	private int _tradeCha;
+	private int pvpDmg;
+	private int _lastWeight;
+	private final LastStatus _lastStatus = new LastStatus();
+	private L1PcInstance _pc;
+	public boolean _isRunningArmor = false;
+	public boolean _isRunningWeapon = false;
+	private EnchantTimer _timer;
+	private Timestamp _buyTime = null;
+	private Timestamp _endTime = null;
+	private Timestamp _LimitTime = null;
+
+	public L1ItemInstance() {
+		_count = 1;
+		_enchantLevel = 0;
+	}
+
+	public L1ItemInstance(L1Item item, int count) {
+		this();
+		setItem(item);
+		setCount(count);
+	}
+
+	public L1ItemInstance(L1Item item) {
+		this(item, 1);
+	}
+
+	public void clickItem(L1Character cha, ClientBasePacket packet) {
+	}
+
+	public void clickItem1(L1Character cha, ClientBasePacket packet) {
+	}
+
+	public boolean isIdentified() {
+		return _isIdentified;
+	}
+
+	public void setIdentified(boolean identified) {
+		_isIdentified = identified;
+	}
+
+	public String getName() {
+		return _item.getName();
+	}
+
+	public int getCount() {
+		return _count;
+	}
+
+	public void setCount(int count) {
+		_count = count;
+	}
+
+	public boolean isEquipped() {
+		return _isEquipped;
+	}
+
+	public void setEquipped(boolean equipped) {
+		_isEquipped = equipped;
+	}
+
+	public L1Item getItem() {
+		return _item;
+	}
+
+	public void setItem(L1Item item) {
+		_item = item;
+		_itemId = item.getItemId();
+	}
+
+	// 아이템을 분당체크해서 삭제하기 위해서 추가!!
+	private long _itemdelay3;
+
+	public long getItemdelay3() {
+		return _itemdelay3;
+	}
+
+	public void setItemdelay3(long itemdelay3) {
+		_itemdelay3 = itemdelay3;
+	}
+
+	public int getItemId() {
+		return _itemId;
+	}
+
+	public void setItemId(int itemId) {
+		_itemId = itemId;
+	}
+
+	public boolean isStackable() {
+		return _item.isStackable();
+	}
+
+	@Override
+	public void onAction(L1PcInstance player) {
+	}
+
+	public int getEnchantLevel() {
+		return _enchantLevel;
+	}
+
+	public void setEnchantLevel(int enchantLevel) {
+		_enchantLevel = enchantLevel;
+	}
+
+	public int getAttrEnchantLevel() {
+		return _attrenchantLevel;
+	}
+
+	public void setAttrEnchantLevel(int attrenchantLevel) {
+		_attrenchantLevel = attrenchantLevel;
+	}
+
+	public int get_gfxid() {
+		return _item.getGfxId();
+	}
+
+	public int get_durability() {
+		return _durability;
+	}
+
+	public int getChargeCount() {
+		return _chargeCount;
+	}
+
+	public void setChargeCount(int i) {
+		_chargeCount = i;
+	}
+
+	public int getRemainingTime() {
+		return _remainingTime;
+	}
+
+	public void setRemainingTime(int i) {
+		_remainingTime = i;
+	}
+
+	public void setLastUsed(Timestamp t) {
+		_lastUsed = t;
+	}
+
+	public Timestamp getLastUsed() {
+		return _lastUsed;
+	}
+
+	public int getBless() {
+		return bless;
+	}
+
+	public void setBless(int i) {
+		bless = i;
+	}
+
+	private int bless_level;
+
+	public int get_bless_level() {
+		return bless_level;
+	}
+
+	public void set_bless_level(int i) {
+		this.bless_level = i;
+	}
+	
+	public int getTradeCha() {
+		return _tradeCha;
+	}
+
+	public void setTradeCha(int i) {
+		_tradeCha = i;
+	}
+
+	public int getPvPdmg() {
+		return pvpDmg;
+	}
+
+	public void setPvPdmg(int i) {
+		pvpDmg = i;
+	}
+
+	public int getLastWeight() {
+		return _lastWeight;
+	}
+
+	public void setLastWeight(int weight) {
+		_lastWeight = weight;
+	}
+
+	public Timestamp getBuyTime() {
+		return _buyTime;
+	}
+
+	public void setBuyTime(Timestamp t) {
+		_buyTime = t;
+	}
+
+	public Timestamp getEndTime() {
+		return _endTime;
+	}
+
+	public void setEndTime(Timestamp t) {
+		_endTime = t;
+	}
+
+	public Timestamp getLimitTime() {
+		return _LimitTime;
+	}
+
+	public void setLimitTime(Timestamp t) {
+		_LimitTime = t;
+	}
+
+	public int getMr() {
+		int mr = _item.get_mdef();
+		int itemid = getItemId();
+		if (itemid == 20011 || itemid == 20110 || itemid == 120011 || itemid == 420108 || itemid == 420109 || itemid == 420110
+				|| itemid == 420111 || itemid == 425108) {
+			mr += getEnchantLevel();
+		}
+		if (itemid == 20056 || itemid == 120056 || itemid == 220056 || itemid == 20049 || itemid == 20050 || itemid == 222324) {
+			mr += getEnchantLevel() * 2;
+		}
+		if (itemid == 20078 || itemid == 20079 || itemid == 20402 || itemid == 222325) {// 진명망토 인챈*3mr상승 0221
+			mr += getEnchantLevel() * 3;
+		}
+		return mr;
+	}
+
+	public void set_durability(int i) {
+		if (i < 0) {
+			i = 0;
+		}
+
+		if (i > 127) {
+			i = 127;
+		}
+		_durability = i;
+	}
+
+	public int getWeight() {
+		if (getItem().getWeight() == 0) {
+			return 0;
+		} else {
+			return Math.max(getCount() * getItem().getWeight() / 1000, 1);
+		}
+	}
+
+	public class LastStatus {
+		public int count;
+		public int itemId;
+		public boolean isEquipped = false;
+		public int enchantLevel;
+		public boolean isIdentified = true;
+		public int durability;
+		public int chargeCount;
+		public int remainingTime;
+		public Timestamp lastUsed = null;
+		public int bless;
+		public int bless_level;
+		public int attrenchantLevel;
+		public int tradeCha;
+		public Timestamp endTime = null;
+
+		public void updateAll() {
+			count = getCount();
+			itemId = getItemId();
+			isEquipped = isEquipped();
+			isIdentified = isIdentified();
+			enchantLevel = getEnchantLevel();
+			durability = get_durability();
+			chargeCount = getChargeCount();
+			remainingTime = getRemainingTime();
+			lastUsed = getLastUsed();
+			bless = getBless();
+			bless_level = get_bless_level();
+			attrenchantLevel = getAttrEnchantLevel();
+			tradeCha = getTradeCha();
+			endTime = getEndTime();
+		}
+
+		public void updateCount() {
+			count = getCount();
+		}
+
+		public void updateItemId() {
+			itemId = getItemId();
+		}
+
+		public void updateEquipped() {
+			isEquipped = isEquipped();
+		}
+
+		public void updateIdentified() {
+			isIdentified = isIdentified();
+		}
+
+		public void updateEnchantLevel() {
+			enchantLevel = getEnchantLevel();
+		}
+
+		public void updateDuraility() {
+			durability = get_durability();
+		}
+
+		public void updateChargeCount() {
+			chargeCount = getChargeCount();
+		}
+
+		public void updateRemainingTime() {
+			remainingTime = getRemainingTime();
+		}
+
+		public void updateLastUsed() {
+			lastUsed = getLastUsed();
+		}
+
+		public void updateBless() {
+			bless = getBless();
+		}
+
+		public void update_bless_level() {
+			bless_level = get_bless_level();
+		}
+		
+		public void updateAttrEnchantLevel() {
+			attrenchantLevel = getAttrEnchantLevel();
+		}
+
+		public void updateTradeCha() {
+			tradeCha = getTradeCha();
+		}
+
+		public void updateEndTime() {
+			endTime = getEndTime();
+		}
+	}
+
+	public LastStatus getLastStatus() {
+		return _lastStatus;
+	}
+
+	public int getRecordingColumns() {
+		int column = 0;
+
+		if (getCount() != _lastStatus.count) {
+			column += L1PcInventory.COL_COUNT;
+		}
+		if (getItemId() != _lastStatus.itemId) {
+			column += L1PcInventory.COL_ITEMID;
+		}
+		if (isEquipped() != _lastStatus.isEquipped) {
+			column += L1PcInventory.COL_EQUIPPED;
+		}
+		if (getEnchantLevel() != _lastStatus.enchantLevel) {
+			column += L1PcInventory.COL_ENCHANTLVL;
+		}
+		if (get_durability() != _lastStatus.durability) {
+			column += L1PcInventory.COL_DURABILITY;
+		}
+		if (getChargeCount() != _lastStatus.chargeCount) {
+			column += L1PcInventory.COL_CHARGE_COUNT;
+		}
+		if (getLastUsed() != _lastStatus.lastUsed) {
+			column += L1PcInventory.COL_DELAY_EFFECT;
+		}
+		if (isIdentified() != _lastStatus.isIdentified) {
+			column += L1PcInventory.COL_IS_ID;
+		}
+		if (getRemainingTime() != _lastStatus.remainingTime) {
+			column += L1PcInventory.COL_REMAINING_TIME;
+		}
+		if (getBless() != _lastStatus.bless) {
+			column += L1PcInventory.COL_BLESS;
+		}
+		if (get_bless_level() != _lastStatus.bless_level) {
+			column += L1PcInventory.COL_BLESS_LEVEL;
+		}
+		if (getAttrEnchantLevel() != _lastStatus.attrenchantLevel) {
+			column += L1PcInventory.COL_ATTRENCHANTLVL;
+		}
+		if (getTradeCha() != _lastStatus.tradeCha) {
+			column += L1PcInventory.COL_TRADE_CHA;
+		}
+		return column;
+	}
+
+	public String getNumberedViewName(int count) {
+		StringBuilder name = new StringBuilder(getNumberedName(count));
+		int itemType2 = getItem().getType2();
+		int itemId = getItem().getItemId();
+
+		if (itemId == 40314 || itemId == 40316) {
+			L1Pet pet = PetTable.getInstance().getTemplate(getId());
+			if (pet != null) {
+				L1Npc npc = NpcTable.getInstance().getTemplate(pet.get_npcid());
+				// name.append("[Lv." + pet.get_level() + " "
+				// + npc.get_nameid() + "]");
+				name.append("[Lv." + pet.get_level() + " " + pet.get_name() + "]HP" + pet.get_hp() + " "
+						+ npc.get_nameid());
+			}
+		}
+
+		if (getItem().getType2() == 0 && getItem().getType() == 2) { // light
+			if (isNowLighting()) {
+				name.append(" ($10)");
+			}
+			if (itemId == 40001 || itemId == 40002) {
+				if (getRemainingTime() <= 0) {
+					name.append(" ($11)");
+				}
+			}
+		}
+
+		if (getItem().getItemId() == L1ItemId.TEBEOSIRIS_KEY || getItem().getItemId() == L1ItemId.TIKAL_KEY) {
+			name.append(" [" + CrockSystem.getInstance().OpenTime() + "]");
+		}
+
+		if (getItem().getItemId() == L1ItemId.DRAGON_KEY) {// 드래곤 키
+			name.append(" [" + sdf.format(getEndTime().getTime()) + "]");
+		}
+
+		if (getItem().getItemId() == 40309) {
+			name.append(" " + getRoundId() + "-" + (getTicketId() + 1));
+		}
+
+		if (isEquipped()) {
+			if (itemType2 == 1) {
+				name.append(" ($9)");
+			} else if (itemType2 == 2 && !getItem().isUseHighPet()) {
+				name.append(" ($117)");
+			}
+		}
+		return name.toString();
+	}
+
+	public String getViewName() {
+		return getNumberedViewName(_count);
+	}
+
+	public String getLogName() {
+		return getNumberedName(_count);
+	}
+
+	public String getNumberedName(int count) {
+		StringBuilder name = new StringBuilder();
+
+		if (isIdentified()) {
+			if (getItem().getType2() == 1 || getItem().getType2() == 2) {
+				switch (getAttrEnchantLevel()) {
+				// 화령 1~5
+				case 1:
+					name.append("$6115");
+					break;
+				case 2:
+					name.append("$6116");
+					break;
+				case 3:
+					name.append("$6117");
+					break;
+				case 4:
+					name.append("$14361");
+					break;
+				case 5:
+					name.append("$14365 ");
+					break;
+				// 수령 1~5
+				case 6:
+					name.append("$6118");
+					break;
+				case 7:
+					name.append("$6119");
+					break;
+				case 8:
+					name.append("$6120");
+					break;
+				case 9:
+					name.append("$14362");
+					break;
+				case 10:
+					name.append("$14366 ");
+					break;
+				// 풍령 1~5
+				case 11:
+					name.append("$6121");
+					break;
+				case 12:
+					name.append("$6122");
+					break;
+				case 13:
+					name.append("$6123");
+					break;
+				case 14:
+					name.append("$14363");
+					break;
+				case 15:
+					name.append("$14367 ");
+					break;
+				// 지령 1~5
+				case 16:
+					name.append("$6124");
+					break;
+				case 17:
+					name.append("$6125");
+					break;
+				case 18:
+					name.append("$6126");
+					break;
+				case 19:
+					name.append("$14364");
+					break;
+				case 20:
+					name.append("$14368 ");
+					break;
+				default:
+					break;
+				}
+				if (getEnchantLevel() >= 0) {
+					name.append("+" + getEnchantLevel() + " ");
+				} else if (getEnchantLevel() < 0) {
+					name.append(String.valueOf(getEnchantLevel()) + " ");
+				}
+			}
+		}
+		if (getTradeCha() != 0) {
+			name.append("캐릭터 인형[" + getTradeCha() + "]");
+		} else {
+			name.append(_item.getNameId());
+		}
+
+		if (isIdentified()) {
+			if (getItem().getMaxChargeCount() > 0) {
+				name.append(" (" + getChargeCount() + ")");
+			}
+			if (getItem().getItemId() == 20383) {
+				name.append(" (" + getChargeCount() + ")");
+			}
+			if (getItem().getMaxUseTime() > 0 && getItem().getType2() != 0) {
+				name.append(" [" + getRemainingTime() + "]");
+			}
+		}
+
+		if (count > 1) {
+			name.append(" (" + count + ")");
+		}
+
+		return name.toString();
+	}
+
+	public byte[] getStatusBytes() {
+		int itemType2 = getItem().getType2();
+		int itemType1 = getItem().getType1();
+		int amortype = getItem().getType();
+		int enchantlevel = getEnchantLevel();
+		int itemId = getItemId();
+		BinaryOutputStream os = new BinaryOutputStream();
+
+		if (itemType2 == 0) { // etcitem
+			switch (getItem().getType()) {
+			case 2: // light
+				os.writeC(22);
+				os.writeH(getItem().getLightRange());
+				break;
+			case 7: // food
+				os.writeC(21);
+				os.writeH(getItem().getFoodVolume());
+				break;
+			case 0: // arrow
+			case 15: // sting
+				os.writeC(1);
+				os.writeC(getItem().getDmgSmall());
+				os.writeC(getItem().getDmgLarge());
+				break;
+			default:
+
+				os.writeC(23);
+				break;
+			}
+			os.writeC(getItem().getMaterial());
+			os.writeD(getWeight());
+
+			try {
+				if (itemId == 50111) {
+					if (getTradeCha() != 0) {
+						String[] info = getTradeChaInfo(getTradeCha());
+						os.writeC(39);
+						os.writeS(" Lv : " + info[0]);
+						os.writeC(39);
+						os.writeS("Exp : " + info[1] + "%");
+						os.writeC(39);
+						os.writeS("클래스 : " + info[2]);
+					}
+				}
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			if (itemId == 5370600) { // 데몬
+				os.writeC(39);
+				os.writeS(" \\fRAC-2");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복+20");
+				os.writeC(39);
+				os.writeS("\\fR경험치 보너스+30%");
+				os.writeC(39);
+				os.writeS("\\fRHP+200");
+				os.writeC(39);
+				os.writeS("\\fR스턴적중+5");
+				os.writeC(39);
+				os.writeS("\\fR스턴내성+10");
+				os.writeC(39);
+				os.writeS("\\fR마법 발동:헬파이어");
+			} else if (itemId == 41248) {
+				os.writeC(39);
+				os.writeS(" \\fR명중+1");
+			} else if (itemId == 41250) {
+				os.writeC(39);
+				os.writeS(" \\fRHP+20");
+			} else if (itemId == 41916) {
+				os.writeC(39);
+				os.writeS(" \\fRMP+10");
+			} else if (itemId == 430000) {
+				os.writeC(39);
+				os.writeS(" \\fR리덕션+1");
+			} else if (itemId == 430002) {
+				os.writeC(39);
+				os.writeS(" \\fR원거리 대미지+1");
+			} else if (itemId == 430003) {
+				os.writeC(39);
+				os.writeS(" \\fRSP+1");
+			} else if (itemId == 430004) {
+				os.writeC(39);
+				os.writeS(" \\fRAC-2");
+			} else if (itemId == 430505) {
+				os.writeC(39);
+				os.writeS(" \\fR근거리 대미지+1");
+			} else if (itemId == 4370599) {
+				os.writeC(39);
+				os.writeS(" \\fRAC:-1");
+				os.writeC(39);
+				os.writeS("\\fRMP회복:+20");
+				os.writeC(39);
+				os.writeS("\\fR리덕션:+3");
+				os.writeC(39);
+				os.writeS("\\fR경험치:20%");
+				os.writeC(39);
+				os.writeS("\\fR마법 발동:썬버스트");
+			} else if (itemId == 4370600) {
+				os.writeC(39);
+				os.writeS(" \\fRAC:-1");
+				os.writeC(39);
+				os.writeS("\\fRMP회복:+20");
+				os.writeC(39);
+				os.writeS("\\fR리덕션:+2");
+				os.writeC(39);
+				os.writeS("\\fR원거리 대미지:+2");
+				os.writeC(39);
+				os.writeS("\\fR경험치:20%");
+				os.writeC(39);
+				os.writeS("\\fR마법 발동:썬버스트");
+			} else if (itemId == 744) {
+				os.writeC(39);
+				os.writeS(" \\fRAC:-1");
+				os.writeC(39);
+				os.writeS("\\fRMP회복:+20");
+				os.writeC(39);
+				os.writeS("\\fR원거리 대미지:+3");
+				os.writeC(39);
+				os.writeS("\\fR경험치:20%");
+				os.writeC(39);
+				os.writeS("\\fR마법 발동:썬버스트");
+			} else if (itemId == 743) {
+				os.writeC(39);
+				os.writeS(" \\fRAC:-1");
+				os.writeC(39);
+				os.writeS("\\fRMP회복:+20");
+				os.writeC(39);
+				os.writeS("\\fR근거리 대미지:+3");
+				os.writeC(39);
+				os.writeS("\\fR경험치:20%");
+				os.writeC(39);
+				os.writeS("\\fR마법 발동:썬버스트");
+			} else if (itemId == 447016) {
+				os.writeC(39);
+				os.writeS(" \\fRAC:-1");
+				os.writeC(39);
+				os.writeS("\\fRMP회복:+20");
+				os.writeC(39);
+				os.writeS("\\fRSP:+3");
+				os.writeC(39);
+				os.writeS("\\fR경험치:20%");
+				os.writeC(39);
+				os.writeS("\\fR마법 발동:썬버스트");
+			} else if (itemId == 5370601) { // 마법인형 옵션 데스나이트
+				os.writeC(39);
+				os.writeS(" \\fRAC-2");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복+20");
+				os.writeC(39);
+				os.writeS("\\fR경험치 보너스+30%");
+				os.writeC(39);
+				os.writeS("\\fR리덕션+5");
+				os.writeC(39);
+				os.writeS("\\fR아데나 두배 습득");
+				os.writeC(39);
+				os.writeS("\\fR마법 발동:헬파이어");
+			} else if (itemId == 5370602) { // 얼음여왕
+				os.writeC(39);
+				os.writeS(" \\fRAC-2");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복+20");
+				os.writeC(39);
+				os.writeS("\\fR경험치 보너스+30%");
+				os.writeC(39);
+				os.writeS("\\fR원거리 대미지+5");
+				os.writeC(39);
+				os.writeS("\\fR마법 발동:헬파이어");
+			} else if (itemId == 5370603) { // 타락
+				os.writeC(39);
+				os.writeS(" \\fRAC-2");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복+20");
+				os.writeC(39);
+				os.writeS("\\fR경험치 보너스+30%");
+				os.writeC(39);
+				os.writeS("\\fRSP+5");
+				os.writeC(39);
+				os.writeS("\\fR마법 발동:헬파이어");
+			} else if (itemId == 5370604) { // 바란카
+				os.writeC(39);
+				os.writeS(" \\fRAC-2");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복+20");
+				os.writeC(39);
+				os.writeS("\\fR경험치 보너스+30%");
+				os.writeC(39);
+				os.writeS("\\fR근거리 대미지+5%");
+				os.writeC(39);
+				os.writeS("\\fR마법 발동:헬파이어");
+			} else if (itemId == 5370605) { // 안타라스
+				os.writeC(39);
+				os.writeS(" \\fRAC:-3");
+				os.writeC(39);
+				os.writeS("\\fR대미지리덕션:+8");
+				os.writeC(39);
+				os.writeS("\\fR기술적중:+15");
+				os.writeC(39);
+				os.writeS("\\fR스턴내성:+15");
+				os.writeC(39);
+				os.writeS("\\fRPVP대미지:+6");
+				os.writeC(39);
+				os.writeS("\\fRPVP대미지감소:+10");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복:+40");
+				os.writeC(39);
+				os.writeS("\\fR경험치:+40%");
+				os.writeC(39);
+				os.writeS("\\fR이펙트:미티어");
+			} else if (itemId == 5370606) { // 발라카스
+				os.writeC(39);
+				os.writeS(" \\fRAC:-3");
+				os.writeC(39);
+				os.writeS("\\fR근거리 대미지:+6");
+				os.writeC(39);
+				os.writeS("\\fR근거리 명중:+8");
+				os.writeC(39);
+				os.writeS("\\fR기술 적중:+15");
+				os.writeC(39);
+				os.writeS("\\fR정령 적중:+15");
+				os.writeC(39);
+				os.writeS("\\fR스턴 내성:+15");
+				os.writeC(39);
+				os.writeS("\\fR정령 내성:+15");
+				os.writeC(39);
+				os.writeS("\\fRPVP대미지:+4");
+				os.writeC(39);
+				os.writeS("\\fRPVP대미지감소:+2");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복:+40");
+				os.writeC(39);
+				os.writeS("\\fR경험치:+40%");
+				os.writeC(39);
+				os.writeS("\\fR이펙트:미티어");
+			} else if (itemId == 5370607) { // 린드비오르
+				os.writeC(39);
+				os.writeS(" \\fRAC:-3");
+				os.writeC(39);
+				os.writeS("\\fR원거리 대미지:+14");
+				os.writeC(39);
+				os.writeS("\\fR원거리 명중:+8");
+				os.writeC(39);
+				os.writeS("\\fR기술 적중:+15");
+				os.writeC(39);
+				os.writeS("\\fR정령 적중:+15");
+				os.writeC(39);
+				os.writeS("\\fR스턴 내성:+15");
+				os.writeC(39);
+				os.writeS("\\fR정령 내성:+15");
+				os.writeC(39);
+				os.writeS("\\fRPVP대미지:+4");
+				os.writeC(39);
+				os.writeS("\\fRPVP대미지감소:+2");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복:+40");
+				os.writeC(39);
+				os.writeS("\\fR경험치:+40%");
+				os.writeC(39);
+				os.writeS("\\fR이펙트:미티어");
+			} else if (itemId == 5370608) { // 파푸리온
+				os.writeC(39);
+				os.writeS(" \\fRAC:-3");
+				os.writeC(39);
+				os.writeS("\\fR마법적중:+8");
+				os.writeC(39);
+				os.writeS("\\fRSP:+15");
+				os.writeC(39);
+				os.writeS("\\fR기술적중:+15");
+				os.writeC(39);
+				os.writeS("\\fR스턴내성:+15");
+				os.writeC(39);
+				os.writeS("\\fRPVP대미지:+4");
+				os.writeC(39);
+				os.writeS("\\fRPVP대미지감소:+2");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복:+40");
+				os.writeC(39);
+				os.writeS("\\fR경험치:+40%");
+				os.writeC(39);
+				os.writeS("\\fR이펙트:미티어");
+			} else if (itemId == 41249) {
+				os.writeC(39);
+				os.writeS("\\fR근거리 대미지:+1");
+				os.writeC(39);
+				os.writeS("\\fR원거리 대미지:+1");
+				os.writeC(39);
+				os.writeS("\\fRSP:+1");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복:+5");
+				os.writeC(39);
+				os.writeS("\\fR경험치:+5%");
+			} else if (itemId == 430506) {
+				os.writeC(39);
+				os.writeS("\\fR 근거리 대미지:+1");
+				os.writeC(39);
+				os.writeS("\\fR원거리 대미지:+1");
+				os.writeC(39);
+				os.writeS("\\fRSP:+1");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복:+15");
+				os.writeC(39);
+				os.writeS("\\fR경험치:+10%");
+			} else if (itemId == 430500) {
+				os.writeC(39);
+				os.writeS("\\fR원거리 대미지:+1");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복:+15");
+				os.writeC(39);
+				os.writeS("\\fR경험치:+15%");
+			} else if (itemId == 430001) {
+				os.writeC(39);
+				os.writeS("\\fRSP:+1");
+				os.writeC(39);
+				os.writeS("\\fR엠피회복:+20");
+				os.writeC(39);
+				os.writeS("\\fR경험치:+15%");
+			} else if (itemId == 46172) {
+				os.writeC(39);
+				os.writeS(" AC-3");
+				os.writeC(39);
+				os.writeS("HP+50");
+				os.writeC(39);
+				os.writeS("MP+50");
+				os.writeC(39);
+				os.writeS("Sp+2");
+				os.writeC(39);
+				os.writeS("MR+10");
+				os.writeC(39);
+				os.writeS("추가 데미지 +5");
+			} else if (itemId == 88888897) { // 통합 불 스킬북(요정)
+				os.writeC(39);
+				os.writeS(" 습득 제외 스킬");
+				os.writeC(39);
+				os.writeS("- 소울 오브 프레임");
+			} else if (itemId == 88888898) { // 통합 바람 스킬북(요정)
+				os.writeC(39);
+				os.writeS(" 습득 제외 스킬");
+				os.writeC(39);
+				os.writeS("- 스트라이커 게일");
+			} else if (itemId == 88888899) { // 통합 물 스킬북(요정)
+				os.writeC(39);
+				os.writeS(" 습득 제외 스킬");
+				os.writeC(39);
+				os.writeS("- 네이쳐스 블레싱");
+			} else if (itemId == 88888900) { // 통합 땅 스킬북(요정)
+				os.writeC(39);
+				os.writeS(" 습득 제외 스킬");
+				os.writeC(39);
+				os.writeS("- 어스 바인드");
+			} else if (itemId == 88888889) { // 통합 스킬북(기사)
+				os.writeC(39);
+				os.writeS(" 습득 제외 스킬");
+				os.writeC(39);
+				os.writeS("- 카운터 배리어");
+			} else if (itemId == 88888891) { // 통합 스킬북(다크엘프)
+				os.writeC(39);
+				os.writeS(" 습득 제외 스킬");
+				os.writeC(39);
+				os.writeS("- 아머 브레이크");
+			} else if (itemId == 88888889) { // 통합 스킬북(기사)
+				os.writeC(39);
+				os.writeS(" 습득 제외 스킬");
+				os.writeC(39);
+				os.writeS("- 카운터 배리어");
+			} else if (itemId == 88888893) { // 통합 스킬북(마법사)
+				os.writeC(39);
+				os.writeS(" 습득 제외 스킬");
+				os.writeC(39);
+				os.writeS("- 인비지블리티");
+				os.writeC(39);
+				os.writeS("- 셰이프 체인지");
+				os.writeC(39);
+				os.writeS("- 이뮨 투 함");
+				os.writeC(39);
+				os.writeS("- 미티어 스트라이크");
+				os.writeC(39);
+				os.writeS("- 디스인티그레이트");
+				os.writeC(39);
+				os.writeS("- 앱솔루트 배리어");
+			} else if (itemId == 430633) {
+				os.writeC(39);
+				os.writeS("\\fT+9 무기에만 인첸 가능");
+			} else if (itemId == 1430633) {
+				os.writeC(39);
+				os.writeS("\\fT+8 방어구에만 인첸 가능");
+			}
+		} else if (itemType2 == 1 || itemType2 == 2) { // weapon | armor
+			/** 아이템 안전인챈 표시 추가 **/
+			int SafeEnchant = getItem().get_safeenchant();
+			os.writeC(39);
+			if (SafeEnchant < 0) {
+				SafeEnchant = 0;
+			}
+			  os.writeS("\\fT[안전인챈:+" + SafeEnchant + "]");
+			if (itemType2 == 1) { // weapon
+				os.writeC(1);
+				os.writeC(getItem().getDmgSmall());
+				os.writeC(getItem().getDmgLarge());
+				os.writeC(getItem().getMaterial());
+				os.writeD(getWeight());
+			} else if (itemType2 == 2) { // armor
+				// AC
+				os.writeC(19);
+				int ac = ((L1Armor) getItem()).get_ac();
+				if (ac < 0) {
+					ac = ac - ac - ac;
+				} else {
+					ac *= -1;
+				}
+				os.writeC(ac);
+				os.writeC(getItem().getMaterial());
+				os.writeC(getItem().getGrade());
+				os.writeD(getWeight());
+			}
+
+			if (getEnchantLevel() != 0 && !(itemType2 == 2 && getItem().getGrade() >= 0)) {
+				os.writeC(2);
+				os.writeC(getEnchantLevel());
+			}
+
+			if ((getItem().getType() == 8 /** || getItem().getType() == 12 */
+			) && getItem().getGrade() != 3) {
+				switch (getEnchantLevel()) {
+				case 5:
+					os.writeC(2);
+					os.writeC(1);
+					break;
+				case 6:
+					os.writeC(2);
+					os.writeC(2);
+					break;
+				case 7:
+					os.writeC(2);
+					os.writeC(3);
+					break;
+				case 8:
+					os.writeC(2);
+					os.writeC(4);
+					break;
+				case 9:
+					os.writeC(2);
+					os.writeC(5);
+					break;
+				case 10:
+					os.writeC(2);
+					os.writeC(6);
+					break;
+				}
+			}
+			if (getItem().getItemId() == 427110 || getItem().getItemId() == 427111) { /// 검귀 축검귀 아이템 번호 넣어주시면됩니다
+				switch (getEnchantLevel()) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+				case 6:
+				case 7:
+				case 8:
+				case 9:
+				case 10:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(getEnchantLevel());
+					} else {
+						if (getEnchantLevel() >= 3) {
+							os.writeC(2);
+							os.writeC(getEnchantLevel() + 1);
+						} else {
+							os.writeC(2);
+							os.writeC(getEnchantLevel());
+						}
+					}
+					break;
+				}
+			}
+
+			if (getItem().getItemId() == 427112 || getItem().getItemId() == 427113) {
+				switch (getEnchantLevel()) {
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(7);
+					} else {
+						os.writeC(2);
+						os.writeC(7);
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(7);
+					} else {
+						os.writeC(2);
+						os.writeC(8);
+					}
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(8);
+					} else {
+						os.writeC(2);
+						os.writeC(9);
+					}
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(9);
+					} else {
+						os.writeC(2);
+						os.writeC(10);
+					}
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(10);
+					} else {
+						os.writeC(2);
+						os.writeC(11);
+					}
+					break;
+				}
+			}
+
+			if (getItem().getItemId() == 427114 || getItem().getItemId() == 427115) {
+				switch (getEnchantLevel()) {
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(1);
+					} else {
+						os.writeC(2);
+						os.writeC(1);
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(1);
+					} else {
+						os.writeC(2);
+						os.writeC(2);
+					}
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(2);
+					} else {
+						os.writeC(2);
+						os.writeC(3);
+					}
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(3);
+					} else {
+						os.writeC(2);
+						os.writeC(4);
+					}
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(3);
+					} else {
+						os.writeC(2);
+						os.writeC(4);
+					}
+					break;
+				}
+			}
+
+			if (getItem().getItemId() == 427116 || getItem().getItemId() == 427117) {
+				switch (getEnchantLevel()) {
+				case 1:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(1);
+					} else {
+						os.writeC(2);
+						os.writeC(1);
+					}
+					break;
+				case 2:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(2);
+					} else {
+						os.writeC(2);
+						os.writeC(2);
+					}
+					break;
+				case 3:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(3);
+					} else {
+						os.writeC(2);
+						os.writeC(3);
+					}
+					break;
+				case 4:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(4);
+					} else {
+						os.writeC(2);
+						os.writeC(4);
+					}
+					break;
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(4);
+					} else {
+						os.writeC(2);
+						os.writeC(4);
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(4);
+					} else {
+						os.writeC(2);
+						os.writeC(4);
+					}
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(4);
+					} else {
+						os.writeC(2);
+						os.writeC(5);
+					}
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(6);
+					} else {
+						os.writeC(2);
+						os.writeC(7);
+					}
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(8);
+					} else {
+						os.writeC(2);
+						os.writeC(10);
+					}
+					break;
+				}
+			}
+
+			if (getItem().getItemId() == 427118 || getItem().getItemId() == 427119) {
+				switch (getEnchantLevel()) {
+				case 2:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(1);
+					} else {
+						os.writeC(2);
+						os.writeC(1);
+					}
+					break;
+				case 3:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(2);
+					} else {
+						os.writeC(2);
+						os.writeC(2);
+					}
+					break;
+				case 4:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(3);
+					} else {
+						os.writeC(2);
+						os.writeC(3);
+					}
+					break;
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(3);
+					} else {
+						os.writeC(2);
+						os.writeC(4);
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(4);
+					} else {
+						os.writeC(2);
+						os.writeC(4);
+					}
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(4);
+					} else {
+						os.writeC(2);
+						os.writeC(5);
+					}
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(6);
+					} else {
+						os.writeC(2);
+						os.writeC(7);
+					}
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(8);
+					} else {
+						os.writeC(2);
+						os.writeC(10);
+					}
+					break;
+				}
+			}
+
+			if (getItem().getItemId() == 427120 || getItem().getItemId() == 427121 || getItem().getItemId() == 427122
+					|| getItem().getItemId() == 427123) {
+				switch (getEnchantLevel()) {
+				case 2:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(1);
+					} else {
+						os.writeC(2);
+						os.writeC(1);
+					}
+					break;
+				case 3:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(2);
+					} else {
+						os.writeC(2);
+						os.writeC(2);
+					}
+					break;
+				case 4:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(3);
+					} else {
+						os.writeC(2);
+						os.writeC(3);
+					}
+					break;
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(3);
+					} else {
+						os.writeC(2);
+						os.writeC(4);
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(4);
+					} else {
+						os.writeC(2);
+						os.writeC(4);
+					}
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(4);
+					} else {
+						os.writeC(2);
+						os.writeC(5);
+					}
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(6);
+					} else {
+						os.writeC(2);
+						os.writeC(7);
+					}
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(2);
+						os.writeC(8);
+					} else {
+						os.writeC(2);
+						os.writeC(10);
+					}
+					break;
+				}
+			}
+			if (get_durability() != 0) {
+				os.writeC(3);
+				os.writeC(get_durability());
+			}
+			if (getItem().isTwohandedWeapon()) {
+				os.writeC(4);
+			}
+			// 공격 성공
+			if (getItem().getHitModifier() != 0) {
+				if (itemType1 == 20 || itemType1 == 66) {
+					os.writeC(24);
+					os.writeC(getItem().getHitModifier());
+				} else {
+					os.writeC(5);
+					os.writeC(getItem().getHitModifier());
+				}
+			}
+			// 추가 타격
+			if (getItem().getDmgModifier() != 0) {
+				os.writeC(6);
+				os.writeC(getItem().getDmgModifier());
+			}
+			
+			if (getItem().getHitup() != 0) {
+				os.writeC(5);
+				os.writeC(getItem().getHitup());
+			}
+
+			if (itemId == 900023) {
+				if (getEnchantLevel() >= 0 && getEnchantLevel() <= 4) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + getItem().getDmgup());
+				} else if (getEnchantLevel() == 5) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + (1 + getItem().getDmgup()));
+				} else if (getEnchantLevel() == 6) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + (2 + getItem().getDmgup()));
+				} else if (getEnchantLevel() == 7) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + (3 + getItem().getDmgup()));
+				} else if (getEnchantLevel() == 8) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + (4 + getItem().getDmgup()));
+				} else if (getEnchantLevel() >= 9) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + (5 + getItem().getDmgup()));
+				}
+			} else if (itemId >= 420112 && itemId <= 420113 && getEnchantLevel() >= 7) {
+				os.writeC(39);
+				switch(getEnchantLevel()) {
+				case 7:
+					os.writeS("근거리 대미지 +" + (getItem().getDmgup() + 2));
+					break;
+				case 8:
+					os.writeS("근거리 대미지 +" + (getItem().getDmgup() + 5));
+					break;
+				case 9:
+					os.writeS("근거리 대미지 +" + (getItem().getDmgup() + 8));
+					break;
+				case 10:
+					os.writeS("근거리 대미지 +" + (getItem().getDmgup() + 11));
+					break;
+				}
+			} else if (getItem().getDmgup() != 0 && itemId != 420003) {
+				os.writeC(39);
+				os.writeS("근거리 대미지 +" + getItem().getDmgup());
+			}
+			if (itemId == 9114 || itemId == 91140) {
+				if (getEnchantLevel() == 5) {
+					os.writeC(15);
+					os.writeH(4);
+				} else if (getEnchantLevel() == 6) {
+					os.writeC(15);
+					os.writeH(5);
+				} else if (getEnchantLevel() == 7) {
+					os.writeC(15);
+					os.writeH(6);
+				} else if (getEnchantLevel() == 8) {
+					os.writeC(15);
+					os.writeH(8);
+					os.writeC(39);
+					os.writeS("리덕션대미지:+1");
+				} else if (getEnchantLevel() == 9) {
+					os.writeC(15);
+					os.writeH(11);
+					os.writeC(39);
+					os.writeS("리덕션대미지:+2");
+				} else if (getEnchantLevel() >= 10) {
+					os.writeC(15);
+					os.writeH(14);
+					os.writeC(39);
+					os.writeS("PVP리덕션:+1");
+					os.writeC(39);
+					os.writeS("리덕션대미지:+2");
+					os.writeC(39);
+					os.writeS(" HP:+100");
+				}
+			}
+			if (itemId == 9115) {
+				if (getEnchantLevel() == 7) {
+					os.writeC(39);
+					os.writeS("근거리 대미지:+1");
+				} else if (getEnchantLevel() == 8) {
+					os.writeC(39);
+					os.writeS("근거리 대미지:+1");
+					os.writeC(39);
+					os.writeS("근거리 명중:+2");
+				} else if (getEnchantLevel() == 9) {
+					os.writeC(39);
+					os.writeS("근거리 대미지:+2");
+					os.writeC(39);
+					os.writeS("근거리 명중:+4");
+				} else if (getEnchantLevel() >= 10) {
+					os.writeC(39);
+					os.writeS("PVP대미지:+1");
+					os.writeC(39);
+					os.writeS("PVP대미지리덕션:+1");
+					os.writeC(39);
+					os.writeS("근거리 대미지:+2");
+					os.writeC(39);
+					os.writeS("근거리 명중:+6");
+					os.writeC(39);
+					os.writeS(" HP:+100");
+				}
+			}
+			if (itemId == 91150) {
+				if (getEnchantLevel() == 7) {
+					os.writeC(39);
+					os.writeS("근거리 대미지:+1");
+					os.writeC(39);
+					os.writeS("근거리 명중:+1");
+				} else if (getEnchantLevel() == 8) {
+					os.writeC(39);
+					os.writeS("근거리 대미지:+1");
+					os.writeC(39);
+					os.writeS("근거리 명중:+3");
+				} else if (getEnchantLevel() == 9) {
+					os.writeC(39);
+					os.writeS("근거리 대미지:+2");
+					os.writeC(39);
+					os.writeS("근거리 명중:+5");
+				} else if (getEnchantLevel() >= 10) {
+					os.writeC(39);
+					os.writeS("PVP대미지:+1");
+					os.writeC(39);
+					os.writeS("PVP대미지리덕션:+1");
+					os.writeC(39);
+					os.writeS("근거리 대미지:+2");
+					os.writeC(39);
+					os.writeS("근거리 명중:+7");
+					os.writeC(39);
+					os.writeS(" HP:+100");
+				}
+			}
+
+			if (itemId == 9116) {
+				if (getEnchantLevel() == 7) {
+					os.writeC(39);
+					os.writeS("원거리 대미지:+1");
+				} else if (getEnchantLevel() == 8) {
+					os.writeC(39);
+					os.writeS("원거리 대미지:+1");
+					os.writeC(39);
+					os.writeS("원거리 명중:+2");
+				} else if (getEnchantLevel() == 9) {
+					os.writeC(39);
+					os.writeS("원거리 대미지:+2");
+					os.writeC(39);
+					os.writeS("원거리 명중:+4");
+				} else if (getEnchantLevel() >= 10) {
+					os.writeC(39);
+					os.writeS("PVP대미지:+1");
+					os.writeC(39);
+					os.writeS("PVP대미지리덕션:+1");
+					os.writeC(39);
+					os.writeS("원거리 대미지:+2");
+					os.writeC(39);
+					os.writeS("원거리 명중:+6");
+					os.writeC(39);
+					os.writeS(" HP:+100");
+				}
+			}
+			if (itemId == 91160) {
+				if (getEnchantLevel() == 7) {
+					os.writeC(39);
+					os.writeS("원거리 대미지:+1");
+					os.writeC(39);
+					os.writeS("원거리 명중:+1");
+				} else if (getEnchantLevel() == 8) {
+					os.writeC(39);
+					os.writeS("원거리 대미지:+1");
+					os.writeC(39);
+					os.writeS("원거리 명중:+3");
+				} else if (getEnchantLevel() == 9) {
+					os.writeC(39);
+					os.writeS("원거리 대미지:+2");
+					os.writeC(39);
+					os.writeS("원거리 명중:+5");
+				} else if (getEnchantLevel() >= 10) {
+					os.writeC(39);
+					os.writeS("PVP대미지:+1");
+					os.writeC(39);
+					os.writeS("PVP대미지리덕션:+1");
+					os.writeC(39);
+					os.writeS("원거리 대미지:+2");
+					os.writeC(39);
+					os.writeS("원거리 명중:+7");
+					os.writeC(39);
+					os.writeS(" HP:+100");
+				}
+			}
+
+			if (itemId == 9117) {
+				if (getEnchantLevel() == 8) {
+					os.writeC(39);
+					os.writeS("SP:+2");
+					os.writeC(39);
+					os.writeS("마법적중:+1");
+				} else if (getEnchantLevel() == 9) {
+					os.writeC(39);
+					os.writeS("SP:+2");
+					os.writeC(39);
+					os.writeS("마법적중:+3");
+				} else if (getEnchantLevel() >= 10) {
+					os.writeC(39);
+					os.writeS("SP:+3");
+					os.writeC(39);
+					os.writeS("마법적중:+4");
+					os.writeC(39);
+					os.writeS("PVP대미지:+1");
+					os.writeC(39);
+					os.writeS("PVP대미지리덕션:+1");
+					os.writeC(39);
+					os.writeS(" HP:+100");
+				}
+			}
+			if (itemId == 91170) {
+				if (getEnchantLevel() == 7) {
+					os.writeC(39);
+					os.writeS("SP:+2");
+				} else if (getEnchantLevel() == 8) {
+					os.writeC(39);
+					os.writeS("SP:+2");
+					os.writeC(39);
+					os.writeS("마법적중:+3");
+				} else if (getEnchantLevel() == 9) {
+					os.writeC(39);
+					os.writeS("SP:+3");
+					os.writeC(39);
+					os.writeS("마법적중:+4");
+				} else if (getEnchantLevel() >= 10) {
+					os.writeC(39);
+					os.writeS("SP:+4");
+					os.writeC(39);
+					os.writeS("마법적중:+5");
+					os.writeC(39);
+					os.writeS("PVP대미지:3");
+					os.writeC(39);
+					os.writeS("PVP대미지리덕션:+3");
+					os.writeC(39);
+					os.writeS(" HP:+100");
+				}
+			}
+
+			if (itemId == 420003) {
+				if (getEnchantLevel() < 5) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + getItem().getDmgup());
+				} else if (getEnchantLevel() == 5) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + (getItem().getDmgup() + 1));
+				} else if (getEnchantLevel() == 6) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + (getItem().getDmgup() + 2));
+				} else if (getEnchantLevel() == 7) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + (getItem().getDmgup() + 3));
+				} else if (getEnchantLevel() == 8) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + (getItem().getDmgup() + 4));
+				} else if (getEnchantLevel() == 9) {
+					os.writeC(39);
+					os.writeS("근거리 대미지 +" + (getItem().getDmgup() + 5));
+				}
+			}
+
+			if (getItem().getBowHitup() != 0) {
+				os.writeC(24);
+				os.writeC(getItem().getBowHitup());
+			}
+
+			if (itemId == 900022) {
+				if (getEnchantLevel() >= 0 && getEnchantLevel() <= 4) {
+					os.writeC(39);
+					os.writeS("원거리 대미지 +" + getItem().getBowDmgup());
+				} else if (getEnchantLevel() == 5) {
+					os.writeC(39);
+					os.writeS("원거리 대미지 +" + (1 + getItem().getBowDmgup()));
+				} else if (getEnchantLevel() == 6) {
+					os.writeC(39);
+					os.writeS("원거리 대미지 +" + (2 + getItem().getBowDmgup()));
+				} else if (getEnchantLevel() == 7) {
+					os.writeC(39);
+					os.writeS("원거리 대미지 +" + (3 + getItem().getBowDmgup()));
+				} else if (getEnchantLevel() == 8) {
+					os.writeC(39);
+					os.writeS("원거리 대미지 +" + (4 + getItem().getBowDmgup()));
+				} else if (getEnchantLevel() >= 9) {
+					os.writeC(39);
+					os.writeS("원거리 대미지 +" + (5 + getItem().getBowDmgup()));
+				}
+			} else if (itemId == 420114 && getEnchantLevel() >= 7) {
+				os.writeC(39);
+				switch(getEnchantLevel()) {
+				case 7:
+					os.writeS("원거리 대미지 +" + (getItem().getBowDmgup() + 2));
+					break;
+				case 8:
+					os.writeS("원거리 대미지 +" + (getItem().getBowDmgup() + 5));
+					break;
+				case 9:
+					os.writeS("원거리 대미지 +" + (getItem().getBowDmgup() + 8));
+					break;
+				case 10:
+					os.writeS("원거리 대미지 +" + (getItem().getBowDmgup() + 11));
+					break;
+				}
+			} else if (itemId == 20017 && getEnchantLevel() >= 8) {
+				int s = getEnchantLevel() - 7;
+				os.writeC(39);
+				os.writeS("원거리 대미지 +" + (getItem().getBowDmgup() + s));
+			} else if (getItem().getBowDmgup() != 0) {
+				os.writeC(39);
+				os.writeS("원거리 대미지 +" + getItem().getBowDmgup());
+			}
+			if (itemId == 126 || itemId == 127) {
+				os.writeC(16);
+			}
+			if (itemId == 412001) {
+				os.writeC(34);
+			}
+
+			if (getItem().getItemId() == 427110 || getItem().getItemId() == 427111) { /// 검귀 축검귀 아이템 번호 넣어주시면됩니다
+				switch (getEnchantLevel()) {
+				case 3:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +1");
+					os.writeC(39);
+					os.writeS("원거리 대미지 +1");
+					break;
+				case 4:
+					if (getItem().getBless() != 0) {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +1");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +1");
+					} else {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +2");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +2");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +20(2%)");
+					}
+					break;
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +2");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +2");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +20(2%)");
+					} else {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +3");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +3");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +20(3%)");
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +3");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +3");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +20(3%)");
+					} else {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +4");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +4");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +20(4%)");
+					}
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +4");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +4");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +20(4%)");
+					} else {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +5");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +5");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +20(5%)");
+					}
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +7");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +7");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +25(5%)");
+					} else {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +9");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +9");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +30(6%)");
+					}
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +9");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +9");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +25(7%)");
+					} else {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +12");
+						os.writeC(39);
+						os.writeS("원거리 대미지 +12");
+						os.writeC(39);
+						os.writeS("근거리 추가 대미지 확률 +30(8%)");
+					}
+					break;
+				}
+			}
+			if (getItem().getType() == 10) {
+				if (getItem().getType2() == 2) {
+					switch (getEnchantLevel()) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+						if (getItem().getDamageReduction() != 0) {
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction()));
+						}
+						break;
+					case 5:
+						os.writeC(39);
+						os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 1));
+						break;
+					case 6:
+						os.writeC(39);
+						os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 2));
+						os.writeC(39);
+						os.writeS("PVP대미지 감소 +" + (getItem().getDamageReduction() + 1));
+						break;
+					case 7:
+						os.writeC(39);
+						os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 3));
+						os.writeC(39);
+						os.writeS("PVP대미지 감소 +" + (getItem().getDamageReduction() + 3));
+						break;
+					case 8:
+						os.writeC(39);
+						os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 4));
+						os.writeC(39);
+						os.writeS("PVP대미지 감소 +" + (getItem().getDamageReduction() + 5));
+						break;
+					case 9:
+						os.writeC(39);
+						os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 5));
+						os.writeC(39);
+						os.writeS("PVP대미지 감소 +" + (getItem().getDamageReduction() + 7));
+						break;
+					case 10:
+						os.writeC(39);
+						os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 6));
+						os.writeC(39);
+						os.writeS("PVP대미지 감소 +" + (getItem().getDamageReduction() + 9));
+						break;
+					}
+				}
+			} else if (itemId >= 420100 && itemId <= 420103 && getEnchantLevel() >= 7) {
+				os.writeC(39);
+				switch (getEnchantLevel()) {
+				case 7:
+					os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 2));
+					break;
+				case 8:
+					os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 5));
+					break;
+				case 9:
+					os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 8));
+					break;
+				case 10:
+					os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 11));
+					break;
+				}
+			} else if (getItem().getItemId() == 900020) {
+				switch (getEnchantLevel()) {
+				case 0:
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+					os.writeC(39);
+					os.writeS("대미지 감소 +" + getItem().getDamageReduction());
+					break;
+				case 5:
+					os.writeC(39);
+					os.writeS("대미지 감소 +" + (1 + getItem().getDamageReduction()));
+					break;
+				case 6:
+					os.writeC(39);
+					os.writeS("대미지 감소 +" + (2 + getItem().getDamageReduction()));
+					break;
+				case 7:
+					os.writeC(39);
+					os.writeS("대미지 감소 +" + (3 + getItem().getDamageReduction()));
+					break;
+				case 8:
+					os.writeC(39);
+					os.writeS("대미지 감소 +" + (4 + getItem().getDamageReduction()));
+					break;
+				case 9:
+				case 10:
+				case 11:
+				case 12:
+					os.writeC(39);
+					os.writeS("대미지 감소 +" + (5 + getItem().getDamageReduction()));
+					break;
+				}
+			} else if (itemId == 20107) {
+				switch(getEnchantLevel()) {
+				case 7:
+					os.writeC(39);
+					os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 2));
+					break;
+				case 8:
+					os.writeC(39);
+					os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 3));
+					break;
+				case 9:
+					os.writeC(39);
+					os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 4));
+					break;
+				default:
+					if (getItem().getDamageReduction() != 0) {
+						os.writeC(39);
+						os.writeS("대미지 감소 +" + getItem().getDamageReduction());
+					}
+				}
+			} else if (itemId >= 23100 && itemId <= 23103) {
+				switch (getEnchantLevel()) {
+				case 1:
+					os.writeC(39);
+					os.writeS("대미지감소 +" + (getItem().getDamageReduction() + 1));
+					break;
+				case 2:
+					os.writeC(39);
+					os.writeS("대미지감소 +" + (getItem().getDamageReduction() + 2));
+					break;
+				case 3:
+					os.writeC(39);
+					os.writeS("대미지감소 +" + (getItem().getDamageReduction() + 4));
+					break;
+				case 4:
+					os.writeC(39);
+					os.writeS("대미지감소 +" + (getItem().getDamageReduction() + 6));
+					break;
+				case 5:
+					os.writeC(39);
+					os.writeS("대미지감소 +" + (getItem().getDamageReduction() + 8));
+					break;
+				}
+			} else if (getItem().getType2() == 2 && (amortype == 1 || amortype == 3 || amortype == 4 || amortype == 5 || amortype == 6 || amortype == 7 || amortype == 18)) {
+				if (getItem().get_safeenchant() == 4) {
+					if (itemId == 222324 || itemId == 222325 || itemId == 222328 || itemId == 222329 || itemId == 21122 
+							|| itemId == 20049 || itemId == 20050) {
+						switch(getEnchantLevel()) {
+						case 7:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 2));
+							break;
+						case 8:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 3));
+							break;
+						case 9:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 4));
+							break;
+						default:
+							if (getItem().getDamageReduction() != 0) {
+								os.writeC(39);
+								os.writeS("대미지 감소 +" + getItem().getDamageReduction());
+							}
+						}
+					} else {
+						switch(getEnchantLevel()) {
+						case 7:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 1));
+							break;
+						case 8:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 2));
+							break;
+						case 9:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 3));
+							break;
+						default:
+							if (getItem().getDamageReduction() != 0) {
+								os.writeC(39);
+								os.writeS("대미지 감소 +" + getItem().getDamageReduction());
+							}
+						}
+					}
+				} else if (getItem().get_safeenchant() == 6) {
+					if (itemId == 222326 || itemId == 222327 || itemId == 222328 || itemId == 20464 || itemId == 20017 || itemId == 20079 || itemId == 222317) {
+						switch(getEnchantLevel()) {
+						case 8:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 2));
+							break;
+						case 9:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 3));
+							break;
+						case 10:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 4));
+							break;
+						default:
+							if (getItem().getDamageReduction() != 0) {
+								os.writeC(39);
+								os.writeS("대미지 감소 +" + getItem().getDamageReduction());
+							}
+						}
+					} else {
+						switch(getEnchantLevel()) {
+						case 8:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 1));
+							break;
+						case 9:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 2));
+							break;
+						case 10:
+							os.writeC(39);
+							os.writeS("대미지 감소 +" + (getItem().getDamageReduction() + 3));
+							break;
+						default:
+							if (getItem().getDamageReduction() != 0) {
+								os.writeC(39);
+								os.writeS("대미지 감소 +" + getItem().getDamageReduction());
+							}
+						}
+					}
+				}
+			} else {
+				if (getItem().getDamageReduction() != 0) {
+					os.writeC(39);
+					os.writeS("대미지 감소 +" + getItem().getDamageReduction());
+				}
+			}
+			
+			// STR~CHA
+			if (getItem().get_addstr() != 0) {
+				os.writeC(8);
+				os.writeC(getItem().get_addstr());
+			}
+			if (getItem().get_adddex() != 0) {
+				os.writeC(9);
+				os.writeC(getItem().get_adddex());
+			}
+			if (getItem().get_addcon() != 0) {
+				os.writeC(10);
+				os.writeC(getItem().get_addcon());
+			}
+			if (getItem().get_addwis() != 0) {
+				os.writeC(11);
+				os.writeC(getItem().get_addwis());
+			}
+			if (getItem().get_addint() != 0) {
+				os.writeC(12);
+				os.writeC(getItem().get_addint());
+			}
+			if (getItem().get_addcha() != 0) {
+				os.writeC(13);
+				os.writeC(getItem().get_addcha());
+			}
+			// HP, MP
+			if ((getItem().getType() >= 8 && getItem().getType() <= 9
+					|| getItem().getType() >= 11 && getItem().getType() <= 12) && getItem().getGrade() != 3) {
+				if (getItem().getType2() == 2) {
+					switch (getEnchantLevel()) {
+					case 0:
+						if (getItem().get_addhp() != 0) {
+							os.writeC(14);
+							os.writeH(getItem().get_addhp());
+						}
+						break;
+					case 1:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 5);
+						break;
+					case 2:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 10);
+						break;
+					case 3:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 20);
+						break;
+					case 4:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+						break;
+					case 5:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						break;
+					case 6:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						break;
+					case 7:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 50);
+						break;
+					case 8:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 50);
+						break;
+					case 9:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 60);
+						break;
+					case 10:
+						if (getItem().getType() == 8) {
+							os.writeC(14);
+							os.writeH(getItem().get_addhp() + 100);
+						} else {
+							os.writeC(14);
+							os.writeH(getItem().get_addhp() + 70);
+						}
+						break;
+					}
+				}
+			} else if (getItem().getType() == 10 && getItem().getGrade() != 3) {
+				if (getItem().getType2() == 2) {
+					switch (getEnchantLevel()) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+					case 6:
+						if (getItem().get_addhp() != 0) {
+							os.writeC(14);
+							os.writeH(getItem().get_addhp() + 20);
+						}
+						break;
+					case 7:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+						break;
+					case 8:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						break;
+					case 9:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 50);
+						break;
+					case 10:
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 100);
+						break;
+					}
+				}
+			} else if (itemId >= 420100 && itemId <= 420115 && getEnchantLevel() >= 7) {
+				os.writeC(14);
+				switch (getEnchantLevel()) {
+				case 7:
+					os.writeH(getItem().get_addhp() + 70);
+					break;
+				case 8:
+					os.writeH(getItem().get_addhp() + 150);
+					break;
+				case 9:
+					os.writeH(getItem().get_addhp() + 200);
+					break;
+				case 10:
+					os.writeH(getItem().get_addhp() + 250);
+					break;
+				}
+			} else if (itemId == 900020 || itemId == 900022 || itemId == 900023) {
+				os.writeC(14);
+				os.writeH(getItem().get_addhp() + getEnchantLevel() * 10);
+			} else if (itemId >= 23100 && itemId <= 23103) {
+				switch(getEnchantLevel()) {
+				case 1:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 50);
+					break;
+				case 2:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 70);
+					break;
+				case 3:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 120);
+					break;
+				case 4:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 150);
+					break;
+				case 5:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 200);
+					break;
+				}
+			} else if (amortype == 1 || amortype == 3 || amortype == 4 || amortype == 5 || amortype == 6 || amortype == 7 || amortype == 18) {
+				if (getItem().get_safeenchant() == 4) {
+					if (itemId == 222324 || itemId == 222325 || itemId == 222328 || itemId == 222329 || itemId == 21122 || itemId == 20049 || itemId == 20050) {
+						switch(getEnchantLevel()) {
+						case 7:
+							os.writeC(14);
+							os.writeH(getItem().get_addhp() + 10);
+							break;
+						case 8:
+							os.writeC(14);
+							os.writeH(getItem().get_addhp() + 20);
+							break;
+						case 9:
+							os.writeC(14);
+							os.writeH(getItem().get_addhp() + 30);
+							break;
+						default:
+							if (getItem().get_addhp() != 0) {
+								os.writeC(14);
+								os.writeH(getItem().get_addhp());
+							}
+						}
+					}
+				} else if (getItem().get_safeenchant() == 6) {
+					if (itemId == 222326 || itemId == 222327 || itemId == 222328 || itemId == 20079 || itemId == 222317) {
+						switch(getEnchantLevel()) {
+						case 8:
+							os.writeC(14);
+							os.writeH(getItem().get_addhp() + 10);
+							break;
+						case 9:
+							os.writeC(14);
+							os.writeH(getItem().get_addhp() + 20);
+							break;
+						case 10:
+							os.writeC(14);
+							os.writeH(getItem().get_addhp() + 30);
+							break;
+						default:
+							if (getItem().get_addhp() != 0) {
+								os.writeC(14);
+								os.writeH(getItem().get_addhp());
+							}
+						}
+					}
+				}
+			} else {
+				if (getItem().get_addhp() != 0) {
+					os.writeC(14);
+					os.writeH(getItem().get_addhp());
+				}
+			}
+			if (getItem().getType() == 10) {
+				os.writeC(38);
+				os.writeC(getItem().get_addmpr());
+				os.writeC(39);
+				os.writeS("스턴내성 " + getItem().get_regist_stun());
+			}
+			if (getItem().getType() == 10) {
+				if (getItem().getType2() == 2) {
+					switch (getEnchantLevel()) {
+					case 0:
+						if (getItem().get_addmp() != 0) {
+							os.writeC(32);
+							os.writeH(getItem().get_addmp());
+						}
+						break;
+					case 1:
+						os.writeC(32);
+						os.writeH(getItem().get_addmp() + 5);
+						break;
+					case 2:
+						os.writeC(32);
+						os.writeH(getItem().get_addmp() + 10);
+						break;
+					case 3:
+						os.writeC(32);
+						os.writeH(getItem().get_addmp() + 20);
+						break;
+					case 4:
+						os.writeC(32);
+						os.writeH(getItem().get_addmp() + 30);
+						break;
+					case 5:
+						os.writeC(32);
+						os.writeH(getItem().get_addmp() + 40);
+						break;
+					case 6:
+						os.writeC(32);
+						os.writeH(getItem().get_addmp() + 40);
+						break;
+					case 7:
+						os.writeC(32);
+						os.writeH(getItem().get_addmp() + 50);
+						break;
+					case 8:
+						os.writeC(32);
+						os.writeH(getItem().get_addmp() + 50);
+						break;
+					case 9:
+						os.writeC(32);
+						os.writeH(getItem().get_addmp() + 60);
+						break;
+					case 10:
+						os.writeC(32);
+						os.writeH(getItem().get_addmp() + 70);
+						break;
+					}
+				}
+			} else if (itemId >= 420104 && itemId <= 420107 && getEnchantLevel() >= 7) {
+				os.writeC(32);
+				switch(getEnchantLevel()) {
+				case 7:
+					os.writeC(getItem().get_addmp() + 30);
+					break;
+				case 8:
+					os.writeC(getItem().get_addmp() + 60);
+					break;
+				case 9:
+					os.writeC(getItem().get_addmp() + 80);
+					break;
+				case 10:
+					os.writeC(getItem().get_addmp() + 100);
+					break;
+				}
+			} else if (itemId == 900021) {
+				os.writeC(32);
+				os.writeC(getItem().get_addmp() + getEnchantLevel() * 10);
+			} else if (itemId == 20050 && getEnchantLevel() >= 7) {
+				int s = getEnchantLevel() - 6;
+				os.writeC(32);
+				os.writeC(getItem().get_addmp() + s * 10);
+			} else {
+				if (getItem().get_addmp() != 0) {
+					os.writeC(32);
+					os.writeC(getItem().get_addmp());
+				}
+			}
+			if (getItem().get_addmpr() != 0) {
+				if (itemId == 329) { // 명지처리
+					os.writeC(38);
+					os.writeC(getItem().get_addmpr() + getEnchantLevel() * 1);
+				} else {
+					os.writeC(38);
+					os.writeC(getItem().get_addmpr());
+				}
+			}
+			// MR
+			if ((getItem().getType() == 9 || getItem().getType() == 11 || getItem().getType() == 10)
+					&& getItem().getGrade() != 3) {
+				if (getItem().getType2() == 2) {
+					switch (getEnchantLevel()) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+					case 5:
+						if (getMr() != 0) {
+							os.writeC(15);
+							os.writeH(getMr());
+						}
+						break;
+					case 6:
+						os.writeC(15);
+						os.writeH(getMr() + 1);
+						break;
+					case 7:
+						os.writeC(15);
+						os.writeH(getMr() + 3);
+						break;
+					case 8:
+						os.writeC(15);
+						os.writeH(getMr() + 5);
+						break;
+					case 9:
+						os.writeC(15);
+						os.writeH(getMr() + 7);
+						break;
+					case 10:
+						os.writeC(15);
+						os.writeH(getMr() + 9);
+						break;
+					}
+				}
+			} else if (getItem().getType() == 8 && getItem().getGrade() != 3) {
+				if (getItem().getType2() == 2) {
+					switch (getEnchantLevel()) {
+					case 0:
+					case 1:
+					case 2:
+					case 3:
+					case 4:
+						if (getMr() != 0) {
+							os.writeC(15);
+							os.writeH(getMr());
+						}
+						break;
+					case 5:
+						os.writeC(15);
+						os.writeH(getMr() + 1);
+						break;
+					case 6:
+						os.writeC(15);
+						os.writeH(getMr() + 3);
+						break;
+					case 7:
+						os.writeC(15);
+						os.writeH(getMr() + 5);
+						break;
+					case 8:
+						os.writeC(15);
+						os.writeH(getMr() + 7);
+						break;
+					case 9:
+						os.writeC(15);
+						os.writeH(getMr() + 10);
+						break;
+					case 10:
+						os.writeC(15);
+						os.writeH(getMr() + 12);
+						break;
+					}
+				}
+			} else if (itemId >= 420108 && itemId <= 420111 && getEnchantLevel() >= 7) {
+				os.writeC(15);
+				switch(getEnchantLevel()) {
+				case 7:
+					os.writeH(getMr() + 10);
+					break;
+				case 8:
+					os.writeH(getMr() + 20);
+					break;
+				case 9:
+					os.writeH(getMr() + 30);
+					break;
+				case 10:
+					os.writeH(getMr() + 40);
+					break;
+				}
+			} else if ((getItem().getItemId() == 427122 || getItem().getItemId() == 427123) && getEnchantLevel() >= 8) {
+				switch (getEnchantLevel()) {
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(15);
+						os.writeH(getMr() + 2);
+					} else {
+						os.writeC(15);
+						os.writeH(getMr() + 5);
+					}
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(15);
+						os.writeH(getMr() + 5);
+					} else {
+						os.writeC(15);
+						os.writeH(getMr() + 8);
+					}
+					break;
+				}
+			} else if (itemId >= 23100 && itemId <= 23103 && getEnchantLevel() >= 3) {
+				switch (getEnchantLevel()) {
+				case 3 :
+					os.writeC(15);
+					os.writeH(getMr() + 3);
+					break;
+				case 4 :
+					os.writeC(15);
+					os.writeH(getMr() + 7);
+					break;
+				case 5 :
+					os.writeC(15);
+					os.writeH(getMr() + 11);
+					break;
+				}
+			} else if (itemId == 21122 && getEnchantLevel() >= 7) {
+				switch (getEnchantLevel()) {
+				case 7 :
+					os.writeC(15);
+					os.writeH(getMr() + 7);
+					break;
+				case 8 :
+					os.writeC(15);
+					os.writeH(getMr() + 9);
+					break;
+				case 9 :
+					os.writeC(15);
+					os.writeH(getMr() + 10);
+					break;
+				}
+			} else if (itemId == 222317 && getEnchantLevel() >= 8) {
+				switch (getEnchantLevel()) {
+				case 8 :
+					os.writeC(15);
+					os.writeH(getMr() + 7);
+					break;
+				case 9 :
+					os.writeC(15);
+					os.writeH(getMr() + 9);
+					break;
+				case 10 :
+					os.writeC(15);
+					os.writeH(getMr() + 10);
+					break;
+				}
+			} else if (getMr() != 0) {
+				os.writeC(15);
+				os.writeH(getMr());
+			}
+			// SP
+			if (itemId == 20107) { // 리치로브
+				if (getEnchantLevel() > 3) {
+					os.writeC(17);
+					os.writeC(getEnchantLevel() - 3);
+				}
+			} else if (itemId == 420115 && getEnchantLevel() >= 7) {
+				os.writeC(17);
+				switch(getEnchantLevel()) {
+				case 7:
+					os.writeC(getItem().get_addsp() + 2);
+					break;
+				case 8:
+					os.writeC(getItem().get_addsp() + 5);
+					break;
+				case 9:
+					os.writeC(getItem().get_addsp() + 8);
+					break;
+				case 10:
+					os.writeC(getItem().get_addsp() + 11);
+					break;
+				}
+			} else {
+				if ((amortype == 9 || amortype == 11) && getItem().getGrade() != 3) {
+					if (getItem().getType2() == 2) {
+						switch (getEnchantLevel()) {
+						case 0:
+						case 1:
+						case 2:
+						case 3:
+						case 4:
+						case 5:
+						case 6:
+							if (getItem().get_addsp() != 0) {
+								os.writeC(17);
+								os.writeC(getItem().get_addsp());
+							}
+							break;
+						case 7:
+							os.writeC(17);
+							os.writeC(getItem().get_addsp() + 1);
+							break;
+						case 8:
+							os.writeC(17);
+							os.writeC(getItem().get_addsp() + 2);
+							break;
+						case 9:
+							os.writeC(17);
+							os.writeC(getItem().get_addsp() + 3);
+							break;
+						case 10:
+							os.writeC(17);
+							os.writeC(getItem().get_addsp() + 4);
+							break;
+						}
+					}
+				} else if (itemId == 900021) {
+					if (getEnchantLevel() >= 0 && getEnchantLevel() <= 4) {
+						os.writeC(17);
+						os.writeC(getItem().get_addsp());
+					} else if (getEnchantLevel() == 5) {
+						os.writeC(17);
+						os.writeC(1 + getItem().get_addsp());
+					} else if (getEnchantLevel() == 6) {
+						os.writeC(17);
+						os.writeC(2 + getItem().get_addsp());
+					} else if (getEnchantLevel() == 7) {
+						os.writeC(17);
+						os.writeC(3 + getItem().get_addsp());
+					} else if (getEnchantLevel() == 8) {
+						os.writeC(17);
+						os.writeC(4 + getItem().get_addsp());
+					} else if (getEnchantLevel() >= 9) {
+						os.writeC(17);
+						os.writeC(5 + getItem().get_addsp());
+					}
+				} else if (itemId == 20464 && getEnchantLevel() >= 8) {
+					int s = getEnchantLevel() - 7;
+					os.writeC(17);
+					os.writeC(getItem().get_addsp() + s);
+				} else {
+					if (getItem().get_addsp() != 0) {
+						os.writeC(17);
+						os.writeC(getItem().get_addsp());
+					}
+				}
+			}
+			/** 격분의 장갑 **/
+			if (itemId == 222317) {
+				switch (getEnchantLevel()) {
+				case 7:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +4");
+					break;
+				case 8:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +5");
+					break;
+				case 9:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +6");
+					break;
+				case 10:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +7");
+					break;
+				default:
+					if (getEnchantLevel() > 10) {
+						os.writeC(39);
+						os.writeS("근거리 대미지 +" + (getEnchantLevel() - 3));
+					}
+					break;
+				}
+			}
+			if (getItem().getItemId() == 21156) {
+				switch (getEnchantLevel()) {
+
+				case 1:
+
+					os.writeC(39);
+					os.writeS("추가 경험치:1%");
+					break;
+				case 2:
+					os.writeC(39);
+					os.writeS("PVP 대미지 +1");
+					os.writeC(39);
+					os.writeS("추가 경험치:2%");
+					break;
+				case 3:
+					os.writeC(39);
+					os.writeS("PVP 대미지 +2");
+					os.writeC(39);
+					os.writeS("추가 경험치:3%");
+					break;
+				case 4:
+					os.writeC(39);
+					os.writeS("PVP 대미지 +3");
+					os.writeC(39);
+					os.writeS("추가 경험치:4%");
+					break;
+				case 5:
+					os.writeC(39);
+					os.writeS("PVP 대미지 +4");
+					os.writeC(39);
+					os.writeS("추가 경험치:5%");
+					break;
+				case 6:
+					os.writeC(39);
+					os.writeS("PVP 대미지 +5");
+					os.writeC(39);
+					os.writeS("추가 경험치:6%");
+					break;
+				case 7:
+					os.writeC(39);
+					os.writeS("PVP 대미지 +6");
+					os.writeC(39);
+					os.writeS("추가 경험치:7%");
+					break;
+				case 8:
+					os.writeC(39);
+					os.writeS("PVP 대미지 +7");
+					os.writeC(39);
+					os.writeS("추가 경험치:8%");
+					break;
+
+				}
+			}
+
+			// 진명갑옷 0306
+			if (getItem().getItemId() == 20395) {
+				switch (getEnchantLevel()) {
+				case 0:
+					os.writeC(39);
+					os.writeS("진명황의 가호+5");
+					break;
+				case 1:
+					os.writeC(39);
+					os.writeS("진명황의 가호+10");
+					break;
+				case 2:
+					os.writeC(39);
+					os.writeS("진명황의 가호+20");
+					break;
+				case 3:
+					os.writeC(39);
+					os.writeS("진명황의 가호+30");
+					break;
+				case 4:
+					os.writeC(39);
+					os.writeS("진명황의 가호+40");
+					break;
+				case 5:
+					os.writeC(39);
+					os.writeS("리덕션+1");
+					os.writeC(39);
+					os.writeS("pvp데미지+1");
+					os.writeC(39);
+					os.writeS("pvp리덕션+1");
+					os.writeC(39);
+					os.writeS("pvp마법리덕션+1");
+					os.writeC(39);
+					os.writeS("진명황의 가호+50");
+					break;
+				case 6:
+					os.writeC(39);
+					os.writeS("리덕션+2");
+					os.writeC(39);
+					os.writeS("pvp데미지+2");
+					os.writeC(39);
+					os.writeS("pvp리덕션+2");
+					os.writeC(39);
+					os.writeS("pvp마법리덕션+2");
+					os.writeC(39);
+					os.writeS("진명황의 가호+60");
+					break;
+				case 7:
+					os.writeC(39);
+					os.writeS("리덕션+3");
+					os.writeC(39);
+					os.writeS("pvp데미지+3");
+					os.writeC(39);
+					os.writeS("pvp리덕션+3");
+					os.writeC(39);
+					os.writeS("pvp마법리덕션+3");
+					os.writeC(39);
+					os.writeS("진명황의 가호+70");
+					break;
+				case 8:
+					os.writeC(39);
+					os.writeS("리덕션+4");
+					os.writeC(39);
+					os.writeS("pvp데미지+4");
+					os.writeC(39);
+					os.writeS("pvp리덕션+4");
+					os.writeC(39);
+					os.writeS("pvp마법리덕션+4");
+					os.writeC(39);
+					os.writeS("진명황의 가호+80");
+					break;
+				case 9:
+					os.writeC(39);
+					os.writeS("리덕션+5");
+					os.writeC(39);
+					os.writeS("pvp데미지+5");
+					os.writeC(39);
+					os.writeS("pvp리덕션+5");
+					os.writeC(39);
+					os.writeS("pvp마법리덕션+5");
+					os.writeC(39);
+					os.writeS("진명황의 가호+100");
+					break;
+				case 10:
+					os.writeC(39);
+					os.writeS("리덕션+7");
+					os.writeC(39);
+					os.writeS("pvp데미지+7");
+					os.writeC(39);
+					os.writeS("pvp리덕션+7");
+					os.writeC(39);
+					os.writeS("pvp마법리덕션+7");
+					os.writeC(39);
+					os.writeS("진명황의 가호+150");
+					break;
+
+				}
+			}
+
+			// 진명부츠 0306
+			if (getItem().getItemId() == 20408) {
+				switch (getEnchantLevel()) {
+
+				case 5:
+					os.writeC(39);
+					os.writeS("원거리 명중+1");
+					os.writeC(39);
+					os.writeS("원거리 대미지+1");
+					break;
+				case 6:
+					os.writeC(39);
+					os.writeS("원거리 명중+2");
+					os.writeC(39);
+					os.writeS("원거리 대미지+2");
+					break;
+				case 7:
+					os.writeC(39);
+					os.writeS("원거리 명중+3");
+					os.writeC(39);
+					os.writeS("원거리 대미지+3");
+					break;
+				case 8:
+					os.writeC(39);
+					os.writeS("원거리 명중+4");
+					os.writeC(39);
+					os.writeS("원거리 대미지+4");
+					break;
+				case 9:
+					os.writeC(39);
+					os.writeS("원거리 명중+5");
+					os.writeC(39);
+					os.writeS("원거리 대미지+5");
+					break;
+				case 10:
+					os.writeC(39);
+					os.writeS("원거리 명중+7");
+					os.writeC(39);
+					os.writeS("원거리 대미지+7");
+					break;
+
+				}
+			}
+			// 진명장갑 0306
+			if (getItem().getItemId() == 20410) {
+				switch (getEnchantLevel()) {
+
+				case 5:
+					os.writeC(39);
+					os.writeS("근거리 명중+1");
+					os.writeC(39);
+					os.writeS("추가 대미지+1");
+					break;
+				case 6:
+					os.writeC(39);
+					os.writeS("근거리 명중+2");
+					os.writeC(39);
+					os.writeS("추가 대미지+2");
+					break;
+				case 7:
+					os.writeC(39);
+					os.writeS("근거리 명중+3");
+					os.writeC(39);
+					os.writeS("추가 대미지+3");
+					break;
+				case 8:
+					os.writeC(39);
+					os.writeS("근거리 명중+4");
+					os.writeC(39);
+					os.writeS("추가 대미지+4");
+					break;
+				case 9:
+					os.writeC(39);
+					os.writeS("근거리 명중+5");
+					os.writeC(39);
+					os.writeS("추가 대미지+5");
+					break;
+				case 10:
+					os.writeC(39);
+					os.writeS("근거리 명중+7");
+					os.writeC(39);
+					os.writeS("추가 대미지+7");
+					break;
+
+				}
+			}
+			// 진명투구 0306
+			if (getItem().getItemId() == 20390) {
+				switch (getEnchantLevel()) {
+
+				case 5:
+					os.writeC(39);
+					os.writeS("마법 명중+1");
+					os.writeC(39);
+					os.writeS("마법 치명타+1");
+					break;
+				case 6:
+					os.writeC(39);
+					os.writeS("마법 명중+2");
+					os.writeC(39);
+					os.writeS("마법 치명타+2");
+					break;
+				case 7:
+					os.writeC(39);
+					os.writeS("마법 명중+3");
+					os.writeC(39);
+					os.writeS("마법 치명타+3");
+					break;
+				case 8:
+					os.writeC(39);
+					os.writeS("마법 명중+4");
+					os.writeC(39);
+					os.writeS("마법 치명타+4");
+					break;
+				case 9:
+					os.writeC(39);
+					os.writeS("마법 명중+5");
+					os.writeC(39);
+					os.writeS("마법 치명타+5");
+					break;
+				case 10:
+					os.writeC(39);
+					os.writeS("마법 명중+7");
+					os.writeC(39);
+					os.writeS("마법 치명타+7");
+					break;
+
+				}
+			}
+			// 진명망토 0306
+			if (getItem().getItemId() == 20402) {
+				switch (getEnchantLevel()) {
+
+				case 5:
+					os.writeC(39);
+					os.writeS("스킬적중+1");
+					os.writeC(39);
+					os.writeS("정령적중+1");
+					os.writeC(39);
+					os.writeS("스턴방어+1");
+					break;
+				case 6:
+					os.writeC(39);
+					os.writeS("스킬적중+2");
+					os.writeC(39);
+					os.writeS("정령적중+2");
+					os.writeC(39);
+					os.writeS("스턴방어+2");
+					break;
+				case 7:
+					os.writeC(39);
+					os.writeS("스킬적중+3");
+					os.writeC(39);
+					os.writeS("정령적중+3");
+					os.writeC(39);
+					os.writeS("스턴방어+3");
+					break;
+				case 8:
+					os.writeC(39);
+					os.writeS("스킬적중+4");
+					os.writeC(39);
+					os.writeS("정령적중+4");
+					os.writeC(39);
+					os.writeS("스턴방어+4");
+					break;
+				case 9:
+					os.writeC(39);
+					os.writeS("스킬적중+5");
+					os.writeC(39);
+					os.writeS("정령적중+5");
+					os.writeC(39);
+					os.writeS("스턴방어+5");
+					break;
+				case 10:
+					os.writeC(39);
+					os.writeS("스킬적중+7");
+					os.writeC(39);
+					os.writeS("정령적중+7");
+					os.writeC(39);
+					os.writeS("스턴방어+7");
+					break;
+
+				}
+			}
+			if (getItem().getItemId() == 427112 || getItem().getItemId() == 427113) {
+				switch (getEnchantLevel()) {
+				case 0:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp());
+					os.writeC(39);
+					os.writeS("대미지 감소 +1");
+					break;
+				case 1:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 20);
+					os.writeC(39);
+					os.writeS("대미지 감소 +1");
+					break;
+				case 2:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 30);
+					os.writeC(39);
+					os.writeS("대미지 감소 +1");
+					break;
+				case 3:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + (getItem().getBless() == 0 ? 50 : 40));
+					os.writeC(39);
+					os.writeS("대미지 감소 +1");
+					break;
+				case 4:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 50);
+						os.writeC(39);
+						os.writeS("대미지 감소 +1");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 60);
+						os.writeC(39);
+						os.writeS("대미지 감소 +2");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +20(2%)");
+					}
+					break;
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 60);
+						os.writeC(39);
+						os.writeS("대미지 감소 +2");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +20(2%)");
+					} else {
+
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 70);
+						os.writeC(39);
+						os.writeS("대미지 감소 +3");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +20(3%)");
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 70);
+						os.writeC(39);
+						os.writeS("대미지 감소 +3");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +20(3%)");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 80);
+						os.writeC(39);
+						os.writeS("근거리 명중 +1");
+						os.writeC(39);
+						os.writeS("원거리 명중 +1");
+						os.writeC(39);
+						os.writeS("대미지 감소 +4");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +20(4%)");
+					}
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 80);
+						os.writeC(39);
+						os.writeS("근거리 명중 +1");
+						os.writeC(39);
+						os.writeS("원거리 명중 +1");
+						os.writeC(39);
+						os.writeS("대미지 감소 +4");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +20(4%)");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 90);
+						os.writeC(39);
+						os.writeS("근거리 명중 +3");
+						os.writeC(39);
+						os.writeS("원거리 명중 +3");
+						os.writeC(39);
+						os.writeS("대미지 감소 +5");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +20(5%)");
+					}
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 90);
+						os.writeC(39);
+						os.writeS("근거리 명중 +3");
+						os.writeC(39);
+						os.writeS("원거리 명중 +3");
+						os.writeC(39);
+						os.writeS("대미지 감소 +7");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +25(5%)");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 140);
+						os.writeC(39);
+						os.writeS("근거리 명중 +5");
+						os.writeC(39);
+						os.writeS("원거리 명중 +5");
+						os.writeC(39);
+						os.writeS("대미지 감소 +7");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +30(6%)");
+					}
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 100);
+						os.writeC(39);
+						os.writeS("근거리 명중 +5");
+						os.writeC(39);
+						os.writeS("원거리 명중 +5");
+						os.writeC(39);
+						os.writeS("대미지 감소 +7");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +25(7%)");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 150);
+						os.writeC(39);
+						os.writeS("근거리 명중 +7");
+						os.writeC(39);
+						os.writeS("원거리 명중 +7");
+						os.writeC(39);
+						os.writeS("대미지 감소 +9");
+						os.writeC(39);
+						os.writeS("대미지 감소 확률 +30(8%)");
+					}
+					break;
+				}
+			}
+
+			if (getItem().getItemId() == 427114 || getItem().getItemId() == 427115) {
+				switch (getEnchantLevel()) {
+				case 0:
+					os.writeC(15);
+					os.writeH(getMr());
+					os.writeC(32);
+					os.writeC(getItem().get_addmp());
+					break;
+				case 1:
+					os.writeC(15);
+					os.writeH(getMr() + 3);
+					os.writeC(32);
+					os.writeC(getItem().get_addmp() + 10);
+					break;
+				case 2:
+					os.writeC(15);
+					os.writeH(getMr() + 4);
+					os.writeC(32);
+					os.writeC(getItem().get_addmp() + 15);
+					break;
+				case 3:
+					if (getItem().getBless() != 0) {
+						os.writeC(15);
+						os.writeH(getMr() + 5);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 1);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 30);
+					} else {
+						os.writeC(15);
+						os.writeH(getMr() + 6);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 1);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 35);
+					}
+					break;
+				case 4:
+					if (getItem().getBless() != 0) {
+						os.writeC(15);
+						os.writeH(getMr() + 6);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 1);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 35);
+					} else {
+						os.writeC(15);
+						os.writeH(getMr() + 7);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 2);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 50);
+					}
+					break;
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(15);
+						os.writeH(getMr() + 7);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 2);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 50);
+					} else {
+
+						os.writeC(15);
+						os.writeH(getMr() + 8);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 2);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 55);
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+
+						os.writeC(15);
+						os.writeH(getMr() + 8);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 2);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 55);
+					} else {
+
+						os.writeC(15);
+						os.writeH(getMr() + 10);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 3);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 70);
+					}
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+
+						os.writeC(15);
+						os.writeH(getMr() + 10);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 3);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 70);
+					} else {
+
+						os.writeC(15);
+						os.writeH(getMr() + 13);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 3);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 95);
+					}
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 50);
+						os.writeC(15);
+						os.writeH(getMr() + 15);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 5);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 95);
+					} else {
+
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 100);
+						os.writeC(15);
+						os.writeH(getMr() + 18);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 5);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 110);
+					}
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 100);
+						os.writeC(15);
+						os.writeH(getMr() + 18);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 7);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 100);
+					} else {
+
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 150);
+						os.writeC(15);
+						os.writeH(getMr() + 21);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 9);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 120);
+					}
+					break;
+				}
+			}
+
+			if (getItem().getItemId() == 427116 || getItem().getItemId() == 427117) {
+				switch (getEnchantLevel()) {
+				case 3:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 5);
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 10);
+					}
+					break;
+				case 4:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 10);
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 15);
+						os.writeC(39);
+						os.writeS("추가 대미지 +1");
+						os.writeC(39);
+						os.writeS("공격 성공 +1");
+					}
+					break;
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 15);
+						os.writeC(39);
+						os.writeS("추가 대미지 +1");
+						os.writeC(39);
+						os.writeS("공격 성공 +1");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 20);
+						os.writeC(39);
+						os.writeS("추가 대미지 +2");
+						os.writeC(39);
+						os.writeS("공격 성공 +2");
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 20);
+						os.writeC(39);
+						os.writeS("추가 대미지 +2");
+						os.writeC(39);
+						os.writeS("공격 성공 +2");
+						os.writeC(39);
+						os.writeS("스턴 내성 +5");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 25);
+						os.writeC(39);
+						os.writeS("추가 대미지 +3");
+						os.writeC(39);
+						os.writeS("공격 성공 +3");
+						os.writeC(39);
+						os.writeS("스턴 내성 +5");
+					}
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 25);
+						os.writeC(39);
+						os.writeS("추가 대미지 +3");
+						os.writeC(39);
+						os.writeS("공격 성공 +3");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +1");
+						os.writeC(39);
+						os.writeS("스턴 내성 +7");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+						os.writeC(39);
+						os.writeS("추가 대미지 +5");
+						os.writeC(39);
+						os.writeS("공격 성공 +5");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +1");
+						os.writeC(39);
+						os.writeS("스턴 내성 +7");
+					}
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+						os.writeC(39);
+						os.writeS("추가 대미지 +5");
+						os.writeC(39);
+						os.writeS("공격 성공 +5");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +3");
+						os.writeC(39);
+						os.writeS("스턴 내성 +9");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+						os.writeC(39);
+						os.writeS("추가 대미지 +7");
+						os.writeC(39);
+						os.writeS("공격 성공 +7");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +5");
+						os.writeC(39);
+						os.writeS("스턴 내성 +9");
+					}
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						os.writeC(39);
+						os.writeS("추가 대미지 +7");
+						os.writeC(39);
+						os.writeS("공격 성공 +7");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +7");
+						os.writeC(39);
+						os.writeS("스턴 내성 +9");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						os.writeC(39);
+						os.writeS("추가 대미지 +9");
+						os.writeC(39);
+						os.writeS("공격 성공 +9");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +9");
+						os.writeC(39);
+						os.writeS("스턴 내성 +9");
+					}
+					break;
+				}
+			}
+
+			if (getItem().getItemId() == 427118 || getItem().getItemId() == 427119) {
+				switch (getEnchantLevel()) {
+				case 1:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 15);
+					break;
+				case 2:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 20);
+					break;
+				case 3:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 25);
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+					}
+					break;
+				case 4:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 35);
+						os.writeC(39);
+						os.writeS("추가 대미지 +1");
+					}
+					break;
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 35);
+						os.writeC(39);
+						os.writeS("추가 대미지 +1");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						os.writeC(39);
+						os.writeS("추가 대미지 +2");
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						os.writeC(39);
+						os.writeS("추가 대미지 +2");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 45);
+						os.writeC(39);
+						os.writeS("추가 대미지 +3");
+						os.writeC(39);
+						os.writeS("대미지 감소 +1");
+						os.writeC(39);
+						os.writeS("확률 대미지 감소 +20(1%)");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +5");
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 45);
+						os.writeC(39);
+						os.writeS("추가 대미지 +3");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +1");
+						os.writeC(39);
+						os.writeS("대미지 감소 +1");
+						os.writeC(39);
+						os.writeS("확률 대미지 감소 +20(1%)");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 55);
+						os.writeC(39);
+						os.writeS("추가 대미지 +5");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +1");
+						os.writeC(39);
+						os.writeS("대미지 감소 +2");
+						os.writeC(39);
+						os.writeS("확률 대미지 감소 +20(2%)");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +7");
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 50);
+						os.writeC(39);
+						os.writeS("추가 대미지 +5");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +3");
+						os.writeC(39);
+						os.writeS("대미지 감소 +3");
+						os.writeC(39);
+						os.writeS("확률 대미지 감소 +20(2%)");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 65);
+						os.writeC(39);
+						os.writeS("추가 대미지 +7");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +5");
+						os.writeC(39);
+						os.writeS("대미지 감소 +5");
+						os.writeC(39);
+						os.writeS("확률 대미지 감소 +20(3%)");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +9");
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 55);
+						os.writeC(39);
+						os.writeS("추가 대미지 +7");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +7");
+						os.writeC(39);
+						os.writeS("대미지 감소 +5");
+						os.writeC(39);
+						os.writeS("확률 대미지 감소 +20(4%)");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 75);
+						os.writeC(39);
+						os.writeS("추가 대미지 +9");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +9");
+						os.writeC(39);
+						os.writeS("대미지 감소 +7");
+						os.writeC(39);
+						os.writeS("확률 대미지 감소 +20(5%)");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +9");
+					break;
+				}
+			}
+
+			if (getItem().getItemId() == 427120 || getItem().getItemId() == 427121) {
+				switch (getEnchantLevel()) {
+				case 1:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 5);
+					break;
+				case 2:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 10);
+					break;
+				case 3:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 15);
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 20);
+					}
+					break;
+				case 4:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 20);
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 25);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 1);
+					}
+					break;
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 25);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 1);
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 2);
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 2);
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 35);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 3);
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +5");
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 35);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 3);
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +1");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 4);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 15);
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +1");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +7");
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 5);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 15);
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +3");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 50);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 7);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 20);
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +5");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +9");
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 50);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 7);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 55);
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +7");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 60);
+						os.writeC(17);
+						os.writeC(getItem().get_addsp() + 9);
+						os.writeC(32);
+						os.writeC(getItem().get_addmp() + 65);
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +9");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +9");
+					break;
+				}
+			}
+
+			// 축복 수치
+			if (get_bless_level() != 0) {
+				if (getItem().getItemId() == 9 || getItem().getItemId() == 190 || getItem().getItemId() == 317 || getItem().getItemId() == 127 ||
+					getItem().getItemId() == 54 || getItem().getItemId() == 164 || getItem().getItemId() == 205 || getItem().getItemId() == 124 || 
+					getItem().getItemId() == 181 || getItem().getItemId() == 57 || getItem().getItemId() == 162 || getItem().getItemId() == 126) {
+					if (getItem().getType2() == 1) {
+						os.writeC(39);
+						os.writeS("PVE추가 대미지 +" + get_bless_level());
+					} else if (getItem().getType2() == 2) {
+						os.writeC(39);
+						os.writeS("PVE대미지 감소 +" + get_bless_level());
+					}
+				} else {
+					if (getItem().getType2() == 1) {
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +" + get_bless_level());
+					} else if (getItem().getType2() == 2) {
+						os.writeC(39);
+						os.writeS("PVP대미지 감소 +" + get_bless_level());
+					}
+				}
+			}
+			
+			if (getItem().getItemId() == 427122 || getItem().getItemId() == 427123) {
+				switch (getEnchantLevel()) {
+				case 1:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 15);
+					break;
+				case 2:
+					os.writeC(14);
+					os.writeH(getItem().get_addhp() + 20);
+					break;
+				case 3:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 25);
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+					}
+					break;
+				case 4:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 30);
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 35);
+						os.writeC(39);
+						os.writeS("추가 대미지 +1");
+					}
+					break;
+				case 5:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 35);
+						os.writeC(39);
+						os.writeS("추가 대미지 +1");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						os.writeC(39);
+						os.writeS("추가 대미지 +2");
+					}
+					break;
+				case 6:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 40);
+						os.writeC(39);
+						os.writeS("추가 대미지 +2");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 45);
+						os.writeC(15);
+						os.writeH(getMr() + 1);
+						os.writeC(39);
+						os.writeS("추가 대미지 +3");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +5");
+					break;
+				case 7:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 45);
+						os.writeC(39);
+						os.writeS("추가 대미지 +3");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +1");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 55);
+						os.writeC(15);
+						os.writeH(getMr() + 2);
+						os.writeC(39);
+						os.writeS("추가 대미지 +5");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +1");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +7");
+					break;
+				case 8:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 50);
+						os.writeC(39);
+						os.writeS("추가 대미지 +5");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +3");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 65);
+						os.writeC(39);
+						os.writeS("추가 대미지 +7");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +5");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +9");
+					break;
+				case 9:
+					if (getItem().getBless() != 0) {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 55);
+						os.writeC(39);
+						os.writeS("추가 대미지 +7");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +7");
+					} else {
+						os.writeC(14);
+						os.writeH(getItem().get_addhp() + 75);
+						os.writeC(39);
+						os.writeS("추가 대미지 +9");
+						os.writeC(39);
+						os.writeS("PVP추가 대미지 +9");
+					}
+					os.writeC(39);
+					os.writeS("스턴 내성 +9");
+					break;
+				}
+			}
+
+			if (itemType2 == 2 && (amortype == 9 || amortype == 11) && getItem().getGrade() != 3) {// 악세관련
+				switch (enchantlevel) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+				case 5:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +1");
+					os.writeC(39);
+					os.writeS("원거리 대미지 +1");
+					break;
+				case 6:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +2");
+					os.writeC(39);
+					os.writeS("원거리 대미지 +2");
+					os.writeC(39);
+					os.writeS("PvP 추가 대미지 +1");
+					break;
+				case 7:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +3");
+					os.writeC(39);
+					os.writeS("원거리 대미지 +3");
+					os.writeC(39);
+					os.writeS("PvP 추가 대미지 +2");
+					break;
+				case 8:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +4");
+					os.writeC(39);
+					os.writeS("원거리 대미지 +4");
+					os.writeC(39);
+					os.writeS("PvP 추가 대미지 +3");
+					break;
+				case 9:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +5");
+					os.writeC(39);
+					os.writeS("원거리 대미지 +5");
+					os.writeC(39);
+					os.writeS("PvP 추가 대미지 +4");
+					break;
+				case 10:
+					os.writeC(39);
+					os.writeS("근거리 대미지 +6");
+					os.writeC(39);
+					os.writeS("원거리 대미지 +6");
+					os.writeC(39);
+					os.writeS("PvP 추가 대미지 +7");
+					break;
+				}
+			}
+			if (getTechniqueHit() != 0) {
+				os.writeC(39);
+				os.writeS("\\fY스턴 적중+" + getTechniqueHit());
+			}
+			if (getSpiritHit() != 0) {
+				os.writeC(39);
+				os.writeS("\\fY정령 적중+" + getSpiritHit());
+			}
+			if (getHitup_magic() != 0) {
+				os.writeC(39);
+				os.writeS("\\fY마법 적중+" + getHitup_magic());
+			}
+			if (getItem().isHasteItem()) {
+				os.writeC(18);
+			}
+			/** 교환 삭제 표기 **/
+			if (getItem().isTradable()) {// 교환
+				os.writeC(39);
+				os.writeS("\\fS교환 가능");
+			} else {
+				os.writeC(39);
+				os.writeS("\\fY교환 불가");
+			}
+			/** 교환 삭제 표기 **/
+
+			int bit = 0;
+			bit |= getItem().isUseRoyal() ? 1 : 0;
+			bit |= getItem().isUseKnight() ? 2 : 0;
+			bit |= getItem().isUseElf() ? 4 : 0;
+			bit |= getItem().isUseMage() ? 8 : 0;
+			bit |= getItem().isUseDarkelf() ? 16 : 0;
+			bit |= getItem().isUseDragonKnight() ? 32 : 0;
+			bit |= getItem().isUseBlackwizard() ? 64 : 0;
+			bit |= getItem().isUseHighPet() ? 128 : 0;
+			os.writeC(7);
+			os.writeC(bit);
+
+			if (getItem().get_defense_fire() != 0) {
+				os.writeC(27);
+				os.writeC(getItem().get_defense_fire());
+			}
+			if (getItem().get_defense_water() != 0) {
+				os.writeC(28);
+				os.writeC(getItem().get_defense_water());
+			}
+			if (getItem().get_defense_wind() != 0) {
+				os.writeC(29);
+				os.writeC(getItem().get_defense_wind());
+			}
+			if (getItem().get_defense_earth() != 0) {
+				os.writeC(30);
+				os.writeC(getItem().get_defense_earth());
+			}
+			// //writeS스트링으로 변경할것
+			if (getItem().get_regist_freeze() != 0) {
+				os.writeC(39);
+				os.writeS("동빙내성 " + getItem().get_regist_freeze());
+				// os.writeC(15);
+				// os.writeH(getItem().get_regist_freeze());
+				// os.writeC(33);
+				// os.writeC(1);
+			}
+			if (getItem().get_regist_stone() != 0) {
+				os.writeC(39);
+				os.writeS("석화내성 " + getItem().get_regist_stone());
+				// os.writeC(15);
+				// os.writeH(getItem().get_regist_stone());
+				// os.writeC(33);
+				// os.writeC(2);
+			}
+			if (getItem().get_regist_sleep() != 0) {
+				os.writeC(39);
+				os.writeS("수면내성 " + getItem().get_regist_sleep());
+				// os.writeC(15);
+				// os.writeH(getItem().get_regist_sleep());
+				// os.writeC(33);
+				// os.writeC(3);
+			}
+			if (getItem().get_regist_blind() != 0) {
+				os.writeC(39);
+				os.writeS("암흑내성 " + getItem().get_regist_blind());
+			}
+			// os.writeC(15);
+			// os.writeH(getItem().get_regist_blind());
+			// os.writeC(33);
+			// os.writeC(4);
+			// }
+			if (getItem().get_regist_stun() != 0) {
+				os.writeC(39);
+				os.writeS("스턴내성 " + getItem().get_regist_stun());
+
+			}
+			// os.writeC(15);
+			// os.writeH(getItem().get_regist_stun());
+			// os.writeC(33);
+			// os.writeC(5);
+			// }
+			if (getItem().get_regist_sustain() != 0) {
+				os.writeC(39);
+				os.writeS("홀드내성 " + getItem().get_regist_sustain());
+				// os.writeC(15);
+				// os.writeH(getItem().get_regist_sustain());
+				// os.writeC(33);
+				// os.writeC(6);
+			}
+			// writeS스트링으로 변경할것
+			// if (getItem.getLuck() != 0) {
+			// os.writeC(20);
+			// os.writeC(val);
+			// }
+			// if (getItem.getDesc() != 0) {
+			// os.writeC(25);
+			// os.writeH(val); // desc.tbl ID
+			// }
+			// if (getItem.getLevel() != 0) {
+			// os.writeC(26);
+			// os.writeH(val);
+			// }
+		}
+		if (itemId == 1136) {
+			os.writeC(39);
+			os.writeS("발동:악몽");
+		}
+		if (getLimitTime() != null) {
+			if (getLimitTime() != null) {
+				SimpleDateFormat formatter = new SimpleDateFormat("MM월dd일HH시mm분");
+				os.writeC(39);
+				os.writeS(formatter.format(getLimitTime()));
+				os.writeC(39);
+				os.writeS("이후 자동 삭제");
+			}
+		}
+		return os.getBytes();
+	}
+
+	class EnchantTimer extends TimerTask {
+
+		public EnchantTimer() {
+		}
+
+		@Override
+		public void run() {
+			try {
+				int type = getItem().getType();
+				int type2 = getItem().getType2();
+				int itemId = getItem().getItemId();
+				if (_pc != null && _pc.getInventory().checkItem(itemId)) {
+					if (type == 2 && type2 == 2 && isEquipped()) {
+						_pc.getAC().addAc(3);
+						_pc.sendPackets(new S_OwnCharStatus(_pc));
+					}
+				}
+				setAcByMagic(0);
+				setDmgByMagic(0);
+				setHolyDmgByMagic(0);
+				setHitByMagic(0);
+				if (_pc._isShowFang == true) {
+					_pc._isShowFang = false;
+					_pc.sendPackets(new S_SkillSound(_pc.getId(), 8956)); // 종료
+				} else {
+					_pc.sendPackets(new S_ServerMessage(308, getLogName()));
+				}
+				_isRunningArmor = false;
+				_isRunningWeapon = false;
+				_timer = null;
+			} catch (Exception e) {
+			}
+		}
+	}
+
+	private int _acByMagic = 0;
+	private int _hitByMagic = 0;
+	private int _holyDmgByMagic = 0;
+	private int _dmgByMagic = 0;
+
+	public int getAcByMagic() {
+		return _acByMagic;
+	}
+
+	public void setAcByMagic(int i) {
+		_acByMagic = i;
+	}
+
+	public int getDmgByMagic() {
+		return _dmgByMagic;
+	}
+
+	public void setDmgByMagic(int i) {
+		_dmgByMagic = i;
+	}
+
+	public int getHolyDmgByMagic() {
+		return _holyDmgByMagic;
+	}
+
+	public void setHolyDmgByMagic(int i) {
+		_holyDmgByMagic = i;
+	}
+
+	public int getHitByMagic() {
+		return _hitByMagic;
+	}
+
+	public void setHitByMagic(int i) {
+		_hitByMagic = i;
+	}
+
+	public void setSkillArmorEnchant(L1PcInstance pc, int skillId, int skillTime) {
+		int type = getItem().getType();
+		int type2 = getItem().getType2();
+		if (_isRunningArmor) {
+			_timer.cancel();
+			int itemId = getItem().getItemId();
+			if (pc != null && pc.getInventory().checkItem(itemId)) {
+				if (type == 2 && type2 == 2 && isEquipped()) {
+					pc.getAC().addAc(3);
+					pc.sendPackets(new S_OwnCharStatus(pc));
+
+				}
+			}
+			setAcByMagic(0);
+			_isRunningArmor = false;
+			_timer = null;
+		}
+
+		if (type == 2 && type2 == 2 && isEquipped()) {
+			pc.getAC().addAc(-3);
+			pc.sendPackets(new S_OwnCharStatus(pc));
+		}
+		setAcByMagic(3);
+		_pc = pc;
+		_timer = new EnchantTimer();
+		(new Timer()).schedule(_timer, skillTime);
+		_isRunningArmor = true;
+	}
+
+	public void setSkillWeaponEnchant(L1PcInstance pc, int skillId, int skillTime) {
+		if (getItem().getType2() != 1) {
+			return;
+		}
+		if (_isRunningWeapon) {
+			_timer.cancel();
+			setDmgByMagic(0);
+			setHolyDmgByMagic(0);
+			setHitByMagic(0);
+			_isRunningWeapon = false;
+			_timer = null;
+		}
+
+		switch (skillId) {
+		case L1SkillId.HOLY_WEAPON:
+			setHolyDmgByMagic(1);
+			setHitByMagic(1);
+			break;
+
+		case L1SkillId.ENCHANT_WEAPON:
+			setDmgByMagic(2);
+			break;
+
+		case L1SkillId.BLESS_WEAPON:
+			setDmgByMagic(2);
+			setHitByMagic(2);
+			break;
+
+		case L1SkillId.SHADOW_FANG:
+			setDmgByMagic(5);
+			break;
+
+		default:
+			break;
+		}
+
+		_pc = pc;
+		_timer = new EnchantTimer();
+		(new Timer()).schedule(_timer, skillTime);
+		_isRunningWeapon = true;
+	}
+
+	public void startItemOwnerTimer(L1PcInstance pc) {
+		setItemOwner(pc);
+		L1ItemOwnerTimer timer = new L1ItemOwnerTimer(this, 10000);
+		timer.begin();
+	}
+
+	private L1EquipmentTimer _equipmentTimer;
+
+	public void startEquipmentTimer(L1PcInstance pc) {
+		if (getRemainingTime() > 0) {
+			_equipmentTimer = new L1EquipmentTimer(pc, this);
+			Timer timer = new Timer(true);
+			timer.scheduleAtFixedRate(_equipmentTimer, 1000, 1000);
+		}
+	}
+
+	public void stopEquipmentTimer() {
+		if (getRemainingTime() > 0) {
+			_equipmentTimer.cancel();
+			_equipmentTimer = null;
+		}
+	}
+
+	private L1PcInstance _itemOwner;
+
+	public L1PcInstance getItemOwner() {
+		return _itemOwner;
+	}
+
+	public void setItemOwner(L1PcInstance pc) {
+		_itemOwner = pc;
+	}
+
+	private boolean _isNowLighting = false;
+
+	public boolean isNowLighting() {
+		return _isNowLighting;
+	}
+
+	public void setNowLighting(boolean flag) {
+		_isNowLighting = flag;
+	}
+
+	private int _secondId;
+
+	public int getSecondId() {
+		return _secondId;
+	}
+
+	public void setSecondId(int i) {
+		_secondId = i;
+	}
+
+	private int _roundId;
+
+	public int getRoundId() {
+		return _roundId;
+	}
+
+	public void setRoundId(int i) {
+		_roundId = i;
+	}
+
+	private int _ticketId = -1; // 티겟 번호
+
+	public int getTicketId() {
+		return _ticketId;
+	}
+
+	public void setTicketId(int i) {
+		_ticketId = i;
+	}
+
+	private int _DropMobId = 0;
+
+	public int isDropMobId() {
+		return _DropMobId;
+	}
+
+	public void setDropMobId(int i) {
+		_DropMobId = i;
+	}
+
+	private boolean _isWorking = false;
+
+	public boolean isWorking() {
+		return _isWorking;
+	}
+
+	public void setWorking(boolean flag) {
+		_isWorking = flag;
+	}
+
+	// 아이템을 분당체크해서 삭제하기 위해서 추가!!
+	private int _deleteItemTime = 0;
+
+	public int get_DeleteItemTime() {
+		return _deleteItemTime;
+	}
+
+	public void add_DeleteItemTime() {
+		_deleteItemTime++;
+	}
+
+	public void init_DeleteItemTime() {
+		_deleteItemTime = 0;
+	}
+
+	public byte[] getStatusBytes1() {
+		int itemType2 = getItem().getType2();
+		int itemType1 = getItem().getType1();
+		int itemId = getItemId();
+		BinaryOutputStream os = new BinaryOutputStream();
+
+		if (itemType2 == 0) { // etcitem
+			switch (getItem().getType()) {
+			case 2: // light
+				os.writeC(22);
+				os.writeH(getItem().getLightRange());
+				break;
+			case 7: // food
+				os.writeC(21);
+				os.writeH(getItem().getFoodVolume());
+				break;
+			case 0: // arrow
+			case 15: // sting
+				os.writeC(1);
+				os.writeC(getItem().getDmgSmall());
+				os.writeC(getItem().getDmgLarge());
+				break;
+			default:
+				os.writeC(23);
+				break;
+			}
+			os.writeC(getItem().getMaterial());
+			os.writeD(getWeight());
+
+		} else if (itemType2 == 1 || itemType2 == 2) { // weapon | armor
+			if (itemType2 == 1) { // weapon
+				os.writeC(1);
+				os.writeC(getItem().getDmgSmall());
+				os.writeC(getItem().getDmgLarge());
+				os.writeC(getItem().getMaterial());
+				os.writeD(getWeight());
+			} else if (itemType2 == 2) { // armor
+				// AC
+				os.writeC(19);
+				int ac = ((L1Armor) getItem()).get_ac();
+				if (ac < 0)
+					ac = ac - ac - ac;
+				os.writeC(ac);
+				os.writeC(getItem().getMaterial());
+				os.writeC(getItem().getGrade());
+				os.writeD(getWeight());
+			}
+
+			if (getEnchantLevel() != 0 && !(itemType2 == 2 && getItem().getGrade() >= 0)) {
+				os.writeC(2);
+				os.writeC(getEnchantLevel());
+			}
+			if (get_durability() != 0) {
+				os.writeC(3);
+				os.writeC(get_durability());
+			}
+			if (getItem().isTwohandedWeapon()) {
+				os.writeC(4);
+			}
+			// 공격 성공
+			if (getItem().getHitModifier() != 0) {
+				if (itemType1 == 20 || itemType1 == 66) {
+					os.writeC(24);
+					os.writeC(getItem().getHitModifier());
+				} else {
+					os.writeC(5);
+					os.writeC(getItem().getHitModifier());
+				}
+			}
+			// 추가 타격
+			if (getItem().getDmgModifier() != 0) {
+				os.writeC(39);
+				os.writeS("추가 대미지 +" + getItem().getDmgup());
+			}
+			if (getItem().getHitup() != 0) {
+				os.writeC(5);
+				os.writeC(getItem().getHitup());
+			}
+			if (getItem().getDmgup() != 0) {
+				os.writeC(39);
+				os.writeS("근거리 대미지 +" + getItem().getDmgup());
+			}
+			if (getItem().getBowHitup() != 0) {
+				os.writeC(24);
+				os.writeC(getItem().getBowHitup());
+			}
+
+			if (getItem().getBowDmgup() != 0) {
+				os.writeC(39);
+				os.writeS("원거리 대미지 +" + getItem().getBowDmgup());
+			}
+			if (itemId == 126 || itemId == 127) {
+				os.writeC(16);
+			}
+			if (itemId == 412001) {
+				os.writeC(34);
+			}
+
+			if (getItem().getDamageReduction() != 0) {
+				os.writeC(39);
+				os.writeS("대미지 감소 +" + getItem().getDamageReduction());
+			}
+
+			// STR~CHA
+			if (getItem().get_addstr() != 0) {
+				os.writeC(8);
+				os.writeC(getItem().get_addstr());
+			}
+			if (getItem().get_adddex() != 0) {
+				os.writeC(9);
+				os.writeC(getItem().get_adddex());
+			}
+			if (getItem().get_addcon() != 0) {
+				os.writeC(10);
+				os.writeC(getItem().get_addcon());
+			}
+			if (getItem().get_addwis() != 0) {
+				os.writeC(11);
+				os.writeC(getItem().get_addwis());
+			}
+			if (getItem().get_addint() != 0) {
+				os.writeC(12);
+				os.writeC(getItem().get_addint());
+			}
+			if (getItem().get_addcha() != 0) {
+				os.writeC(13);
+				os.writeC(getItem().get_addcha());
+			}
+			// HP, MP
+			if (getItem().get_addhp() != 0) {
+				os.writeC(14);
+				os.writeH(getItem().get_addhp());
+			}
+			if (getItem().get_addmp() != 0) {
+				os.writeC(32);
+				os.writeC(getItem().get_addmp());
+			}
+			if (getItem().get_addmpr() != 0) {
+				if (itemId == 329) { // 명지처리
+					os.writeC(38);
+					os.writeC(getItem().get_addmpr() + getEnchantLevel() * 1);
+				} else {
+					os.writeC(38);
+					os.writeC(getItem().get_addmpr());
+				}
+			}
+			// MR
+			if (getMr() != 0) {
+				os.writeC(15);
+				os.writeH(getMr());
+			}
+			// SP
+			if (getItem().get_addsp() != 0) {
+				os.writeC(17);
+				os.writeC(getItem().get_addsp());
+			}
+
+			if (getItem().isHasteItem()) {
+				os.writeC(18);
+			}
+
+			int bit = 0;
+			bit |= getItem().isUseRoyal() ? 1 : 0;
+			bit |= getItem().isUseKnight() ? 2 : 0;
+			bit |= getItem().isUseElf() ? 4 : 0;
+			bit |= getItem().isUseMage() ? 8 : 0;
+			bit |= getItem().isUseDarkelf() ? 16 : 0;
+			bit |= getItem().isUseDragonKnight() ? 32 : 0;
+			bit |= getItem().isUseBlackwizard() ? 64 : 0;
+			bit |= getItem().isUseHighPet() ? 128 : 0;
+			os.writeC(7);
+			os.writeC(bit);
+
+			if (getItem().get_defense_fire() != 0) {
+				os.writeC(27);
+				os.writeC(getItem().get_defense_fire());
+			}
+			if (getItem().get_defense_water() != 0) {
+				os.writeC(28);
+				os.writeC(getItem().get_defense_water());
+			}
+			if (getItem().get_defense_wind() != 0) {
+				os.writeC(29);
+				os.writeC(getItem().get_defense_wind());
+			}
+			if (getItem().get_defense_earth() != 0) {
+				os.writeC(30);
+				os.writeC(getItem().get_defense_earth());
+			}
+
+			if (getItem().get_regist_freeze() != 0) {
+				os.writeC(15);
+				os.writeH(getItem().get_regist_freeze());
+				os.writeC(33);
+				os.writeC(1);
+			}
+			if (getItem().get_regist_stone() != 0) {
+				os.writeC(15);
+				os.writeH(getItem().get_regist_stone());
+				os.writeC(33);
+				os.writeC(2);
+			}
+			if (getItem().get_regist_sleep() != 0) {
+				os.writeC(15);
+				os.writeH(getItem().get_regist_sleep());
+				os.writeC(33);
+				os.writeC(3);
+			}
+			if (getItem().get_regist_blind() != 0) {
+				os.writeC(15);
+				os.writeH(getItem().get_regist_blind());
+				os.writeC(33);
+				os.writeC(4);
+			}
+			if (getItem().get_regist_stun() != 0) {
+				os.writeC(15);
+				os.writeH(getItem().get_regist_stun());
+				os.writeC(33);
+				os.writeC(5);
+			}
+			if (getItem().get_regist_sustain() != 0) {
+				os.writeC(15);
+				os.writeH(getItem().get_regist_sustain());
+				os.writeC(33);
+				os.writeC(6);
+			}
+			// if (getItem.getLuck() != 0) {
+			// os.writeC(20);
+			// os.writeC(val);
+			// }
+			// if (getItem.getDesc() != 0) {
+			// os.writeC(25);
+			// os.writeH(val); // desc.tbl ID
+			// }
+			// if (getItem.getLevel() != 0) {
+			// os.writeC(26);
+			// os.writeH(val);
+			// }
+		}
+		return os.getBytes();
+	}
+
+	public int getTechniqueHit() {
+		int result = getItem().getTechniqueHit();
+		int enchantLevel = getEnchantLevel();
+
+		if (getItemId() == 61) {
+			result += enchantLevel > 0 ? enchantLevel : 0;
+		}
+
+		/*
+		 * if (getItem().getType2() == 2 && (getItem().getType() == 8 ||
+		 * getItem().getType() == 12)) { result += enchantLevel > 6 ? enchantLevel - 5 :
+		 * 0; }
+		 */
+
+		return result;
+	}
+
+	public int getHitup_magic() {
+		int result = getItem().getHitup_magic();
+		int enchantLevel = getEnchantLevel();
+
+		if (getItemId() == 20107) {
+			result += enchantLevel > 0 ? enchantLevel : 0;
+		}
+
+		/*
+		 * if (getItem().getType2() == 2 && (getItem().getType() == 8 ||
+		 * getItem().getType() == 12)) { result += enchantLevel > 6 ? enchantLevel - 5 :
+		 * 0; }
+		 */
+
+		return result;
+	}
+
+	public int getSpiritHit() {
+		int result = getItem().getSpiritHit();
+		int enchantLevel = getEnchantLevel();
+
+		if (getItem().getItemId() == 86 || getItem().getItemId() == 30082) {
+			result += enchantLevel > 0 ? enchantLevel - 1 : 0;
+		}
+
+		if (getItemId() == 292) { // 진노 정령적중
+			result += enchantLevel > 7 ? enchantLevel - 7 : 0;
+			if (result > 3) {
+				result = 3;
+			}
+		}
+
+		return result;
+	}
+
+	private boolean m_is_give = false;
+
+	public boolean isGiveItem() {
+		return m_is_give;
+	}
+
+	public void setGiveItem(boolean is_give) {
+		m_is_give = is_give;
+	}
+
+	public static NumberFormat nf = NumberFormat.getInstance();
+
+	private String[] getTradeChaInfo(int objid) {
+		String[] info = new String[3];
+		nf.setMaximumFractionDigits(2);
+		nf.setMinimumFractionDigits(2);
+		Connection con = null;
+		PreparedStatement pstm = null;
+		ResultSet rs = null;
+
+		try {
+			con = L1DatabaseFactory.getInstance().getConnection();
+			pstm = con.prepareStatement("SELECT * FROM characters WHERE objid=?");
+			pstm.setInt(1, objid);
+			rs = pstm.executeQuery();
+
+			if (rs.next()) {
+				info[0] = String.valueOf(rs.getInt("level"));
+				info[1] = nf.format(ExpTable.getExpPercentage(rs.getInt("level"), rs.getInt("Exp"))) + "%";
+				info[2] = getClassType(rs.getInt("type"));
+			}
+			return info;
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			SQLUtil.close(rs, pstm, con);
+		}
+
+		return info;
+	}
+
+	private String getClassType(int i) {
+		switch (i) {
+		case 0:
+			return "군주";
+		case 1:
+			return "기사";
+		case 2:
+			return "요정";
+		case 3:
+			return "마법사";
+		case 4:
+			return "다크엘프";
+		}
+
+		return "";
+	}
+}
