@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/17/trunk/src/l1j/server/server/model/item/function
+END
+PolyWand.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/PolyWand.java
+END
+PolyItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/PolyItem.java
+END
+PolyScroll.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/PolyScroll.java
+END
+SealScroll.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/SealScroll.java
+END
+TreasureBox.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/TreasureBox.java
+END
+DefiniteScroll.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/DefiniteScroll.java
+END
+Choiceitem.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Choiceitem.java
+END
+TeleportScroll.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/TeleportScroll.java
+END
+BluePotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/BluePotion.java
+END
+Firecracker.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Firecracker.java
+END
+Armor.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Armor.java
+END
+Resolvent.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Resolvent.java
+END
+BlindPotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/BlindPotion.java
+END
+Food.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/17/trunk/src/l1j/server/server/model/item/function/Food.java
+END
+MakeCooking.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/MakeCooking.java
+END
+Arrow.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Arrow.java
+END
+WisdomPotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/WisdomPotion.java
+END
+Elixir.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Elixir.java
+END
+MobSpawnWand.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/MobSpawnWand.java
+END
+HealingPotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/HealingPotion.java
+END
+FurnitureItem.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/FurnitureItem.java
+END
+ResurrectionScroll.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/ResurrectionScroll.java
+END
+BlankScroll.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/BlankScroll.java
+END
+Light.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Light.java
+END
+Enchant.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Enchant.java
+END
+EnchantArmor.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/EnchantArmor.java
+END
+BlessOfEvaPotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/BlessOfEvaPotion.java
+END
+ThunderWand.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/ThunderWand.java
+END
+Sting.java
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Sting.java
+END
+Fishing.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Fishing.java
+END
+BravePotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/BravePotion.java
+END
+GreenPotion.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/GreenPotion.java
+END
+Weapon.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Weapon.java
+END
+Spellbook.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/Spellbook.java
+END
+EnchantWeapon.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/EnchantWeapon.java
+END
+MagicDoll.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/item/function/MagicDoll.java
+END

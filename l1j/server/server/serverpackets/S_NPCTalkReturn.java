@@ -1,0 +1,110 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+package l1j.server.server.serverpackets;
+
+import java.util.List;
+
+import l1j.server.server.Opcodes;
+import l1j.server.server.model.L1NpcTalkData;
+import l1j.server.server.model.L1Object;
+import l1j.server.server.model.npc.L1NpcHtml;
+
+public class S_NPCTalkReturn extends ServerBasePacket {
+	private static final String _S__25_TalkReturn = "[S] _S__25_TalkReturn";
+	private byte[] _byte = null;
+
+	public S_NPCTalkReturn(L1NpcTalkData npc, int objid, int action,
+			String[] data) {
+
+		String htmlid = "";
+		
+		if (action == 1) {
+			htmlid = npc.getNormalAction();
+		} else if (action == 2) {
+			htmlid = npc.getCaoticAction();
+		} else {
+			throw new IllegalArgumentException();
+		}
+		//System.out.println("액션HTML : "+htmlid);
+		buildPacket(objid, htmlid, data);
+	}
+
+	public S_NPCTalkReturn(L1NpcTalkData npc, int objid, int action) {
+		this(npc, objid, action, null);
+	}
+
+	public S_NPCTalkReturn(int objid, String htmlid, String[] data) {
+		buildPacket(objid, htmlid, data);
+	}
+
+	public S_NPCTalkReturn(int objid, String htmlid) {
+		buildPacket(objid, htmlid, null);
+	}
+
+	public S_NPCTalkReturn(int objid, L1NpcHtml html) {
+		buildPacket(objid, html.getName(), html.getArgs());
+	}
+	public S_NPCTalkReturn(int objid, L1NpcHtml html, String[] data) {
+		buildPacket(objid, html.getName(), data);
+	}
+	public S_NPCTalkReturn(L1Object o, String html, String request, List<?> list) {
+		clone(o, html, request, list);
+	}
+	private void buildPacket(int objid, String htmlid, String[] data) {
+
+		writeC(Opcodes.S_OPCODE_SHOWHTML);
+		writeD(objid);
+		writeS(htmlid);
+		if (data != null && 1 <= data.length) {
+			writeH(0x01); // 불명 바이트 아는 사람 있으면(자) 수정 바랍니다
+			writeH(data.length); // 인수의 수
+			for (String datum : data) {
+				writeS(datum);
+			}
+		} else {
+			writeH(0x00);
+			writeH(0x00);
+		}
+	}
+	public void clone(L1Object o, String html, String request, List<?> list){
+		writeC(Opcodes.S_OPCODE_SHOWHTML);
+		writeD(o.getId());
+		writeS(html);
+		if(list == null){
+			writeH(0);
+			writeH(0x00);
+		}else{
+			writeH(list.size());
+			for(Object obj : list){
+				writeS(String.valueOf(obj));
+			}
+		}
+	}
+	@Override
+	public byte[] getContent() {
+		if (_byte == null) {
+			_byte = _bao.toByteArray();
+		}
+		return _byte;
+	}
+	@Override
+	public String getType() {
+		return _S__25_TalkReturn;
+	}
+}

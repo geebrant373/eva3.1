@@ -1,0 +1,197 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/17/trunk/src/l1j/server/server/model/Instance
+END
+L1PetInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1PetInstance.java
+END
+L1ScarecrowInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1ScarecrowInstance.java
+END
+L1RequestInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1RequestInstance.java
+END
+L1DollInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1DollInstance.java
+END
+L1GuardianInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1GuardianInstance.java
+END
+L1LittleBugInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1LittleBugInstance.java
+END
+L1EffectInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1EffectInstance.java
+END
+L1ItemInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1ItemInstance.java
+END
+L1TowerInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1TowerInstance.java
+END
+L1GuardInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1GuardInstance.java
+END
+L1DoorInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1DoorInstance.java
+END
+L1SignboardInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1SignboardInstance.java
+END
+L1FieldObjectInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1FieldObjectInstance.java
+END
+L1SummonInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1SummonInstance.java
+END
+L1NpcInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1NpcInstance.java
+END
+L1BuffNpcInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1BuffNpcInstance.java
+END
+L1TeleporterInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1TeleporterInstance.java
+END
+L1MonsterInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1MonsterInstance.java
+END
+L1BoardInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1BoardInstance.java
+END
+L1CrownInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1CrownInstance.java
+END
+L1FollowerInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1FollowerInstance.java
+END
+L1CastleGuardInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1CastleGuardInstance.java
+END
+L1ModelInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1ModelInstance.java
+END
+L1QuestInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1QuestInstance.java
+END
+L1MerchantInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1MerchantInstance.java
+END
+L1PcInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/17/trunk/src/l1j/server/server/model/Instance/L1PcInstance.java
+END
+L1DwarfInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1DwarfInstance.java
+END
+L1TrapInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1TrapInstance.java
+END
+L1AuctionBoardInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1AuctionBoardInstance.java
+END
+L1HousekeeperInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 85
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1HousekeeperInstance.java
+END
+L1FurnitureInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1FurnitureInstance.java
+END
+L1PeopleInstance.java
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/7/trunk/src/l1j/server/server/model/Instance/L1PeopleInstance.java
+END

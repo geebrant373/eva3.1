@@ -1,0 +1,1662 @@
+/*
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA
+ * 02111-1307, USA.
+ *
+ * http://www.gnu.org/copyleft/gpl.html
+ */
+package l1j.server.server.model;
+
+import static l1j.server.server.model.skill.L1SkillId.ABSOLUTE_BARRIER;
+import static l1j.server.server.model.skill.L1SkillId.AREA_OF_SILENCE;
+import static l1j.server.server.model.skill.L1SkillId.ARMOR_BRAKE;
+import static l1j.server.server.model.skill.L1SkillId.BLIZZARD;
+import static l1j.server.server.model.skill.L1SkillId.CALL_LIGHTNING;
+import static l1j.server.server.model.skill.L1SkillId.CANCELLATION;
+import static l1j.server.server.model.skill.L1SkillId.CONE_OF_COLD;
+import static l1j.server.server.model.skill.L1SkillId.COUNTER_BARRIER;
+import static l1j.server.server.model.skill.L1SkillId.COUNTER_MIRROR;
+import static l1j.server.server.model.skill.L1SkillId.CURSE_BLIND;
+import static l1j.server.server.model.skill.L1SkillId.CURSE_PARALYZE;
+import static l1j.server.server.model.skill.L1SkillId.CURSE_POISON;
+import static l1j.server.server.model.skill.L1SkillId.DARKNESS;
+import static l1j.server.server.model.skill.L1SkillId.DECAY_POTION;
+import static l1j.server.server.model.skill.L1SkillId.DISEASE;
+import static l1j.server.server.model.skill.L1SkillId.DISINTEGRATE;
+import static l1j.server.server.model.skill.L1SkillId.EARTH_BIND;
+import static l1j.server.server.model.skill.L1SkillId.EMPIER;
+import static l1j.server.server.model.skill.L1SkillId.ELEMENTAL_FALL_DOWN;
+import static l1j.server.server.model.skill.L1SkillId.ENTANGLE;
+import static l1j.server.server.model.skill.L1SkillId.ERASE_MAGIC;
+import static l1j.server.server.model.skill.L1SkillId.ERUPTION;
+import static l1j.server.server.model.skill.L1SkillId.FEATHER_BUFF_A;
+import static l1j.server.server.model.skill.L1SkillId.FEATHER_BUFF_B;
+import static l1j.server.server.model.skill.L1SkillId.FINAL_BURN;
+import static l1j.server.server.model.skill.L1SkillId.FIREBALL;
+import static l1j.server.server.model.skill.L1SkillId.FIRE_STORM;
+import static l1j.server.server.model.skill.L1SkillId.FIRE_WALL;
+import static l1j.server.server.model.skill.L1SkillId.FOG_OF_SLEEPING;
+import static l1j.server.server.model.skill.L1SkillId.FREEZING_BLIZZARD;
+import static l1j.server.server.model.skill.L1SkillId.FROZEN_CLOUD;
+import static l1j.server.server.model.skill.L1SkillId.ICE_LANCE;
+import static l1j.server.server.model.skill.L1SkillId.IMMUNE_TO_HARM;
+import static l1j.server.server.model.skill.L1SkillId.LIGHTNING_STORM;
+import static l1j.server.server.model.skill.L1SkillId.MANA_DRAIN;
+import static l1j.server.server.model.skill.L1SkillId.MASS_SLOW;
+import static l1j.server.server.model.skill.L1SkillId.METEOR_STRIKE;
+import static l1j.server.server.model.skill.L1SkillId.MOB_BASILL;
+import static l1j.server.server.model.skill.L1SkillId.MOB_COCA;
+import static l1j.server.server.model.skill.L1SkillId.POLLUTE_WATER;
+import static l1j.server.server.model.skill.L1SkillId.REDUCTION_ARMOR;
+import static l1j.server.server.model.skill.L1SkillId.RETURN_TO_NATURE;
+import static l1j.server.server.model.skill.L1SkillId.SHAPE_CHANGE;
+import static l1j.server.server.model.skill.L1SkillId.SHOCK_STUN;
+import static l1j.server.server.model.skill.L1SkillId.SILENCE;
+import static l1j.server.server.model.skill.L1SkillId.SLOW;
+import static l1j.server.server.model.skill.L1SkillId.SPECIAL_COOKING;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_CURSE_BARLOG;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_CURSE_YAHEE;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_MITHRIL_POWDER;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER;
+import static l1j.server.server.model.skill.L1SkillId.STATUS_HOLY_WATER_OF_EVA;
+import static l1j.server.server.model.skill.L1SkillId.STRIKER_GALE;
+import static l1j.server.server.model.skill.L1SkillId.SUNBURST;
+import static l1j.server.server.model.skill.L1SkillId.TAMING_MONSTER;
+import static l1j.server.server.model.skill.L1SkillId.TURN_UNDEAD;
+import static l1j.server.server.model.skill.L1SkillId.WEAKNESS;
+import static l1j.server.server.model.skill.L1SkillId.WEAPON_BREAK;
+import static l1j.server.server.model.skill.L1SkillId.WIND_SHACKLE;
+
+import java.util.Random;
+
+import l1j.server.Config;
+import l1j.server.server.ActionCodes;
+import l1j.server.server.TimeController.WarTimeController;
+import l1j.server.server.datatables.AccessoryBalanceTable;
+import l1j.server.server.datatables.CharacterBalance;
+import l1j.server.server.datatables.CharactersMrTable;
+import l1j.server.server.datatables.CharactersMrTable.CharactersMr;
+import l1j.server.server.datatables.MonsterBalance;
+import l1j.server.server.datatables.SkillsDmgTable;
+import l1j.server.server.datatables.SkillsDmgTable.SkillsDmgTemp;
+import l1j.server.server.datatables.SkillsProbabilityDetailTable;
+import l1j.server.server.datatables.SkillsProbabilityDetailTable.SkillsProbabilityDetail;
+import l1j.server.server.datatables.SkillsTable;
+import l1j.server.server.datatables.SpecialMapTable;
+import l1j.server.server.datatables.WeaponMagicNpcBalanceTable;
+import l1j.server.server.datatables.WeaponMagicPcBalanceTable;
+import l1j.server.server.datatables.WeaponPcBalanceTable;
+import l1j.server.server.model.Instance.L1DollInstance;
+import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.model.Instance.L1NpcInstance;
+import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.Instance.L1PetInstance;
+import l1j.server.server.model.Instance.L1SummonInstance;
+import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.serverpackets.S_DoActionGFX;
+import l1j.server.server.serverpackets.S_ServerMessage;
+import l1j.server.server.serverpackets.S_SkillSound;
+import l1j.server.server.serverpackets.S_SystemMessage;
+import l1j.server.server.templates.L1Skills;
+import l1j.server.server.templates.L1SpecialMap;
+import l1j.server.server.utils.CalcStat;
+
+public class L1Magic {
+
+	private int _calcType;
+
+	private final int PC_PC = 1;
+
+	private final int PC_NPC = 2;
+
+	private final int NPC_PC = 3;
+
+	private final int NPC_NPC = 4;
+
+	private L1PcInstance _pc = null;
+
+	private L1PcInstance _targetPc = null;
+
+	private L1NpcInstance _npc = null;
+
+	private L1NpcInstance _targetNpc = null;
+
+	private L1Character _target = null;
+
+	private int _leverage = 13;
+
+	private L1Skills _skill;
+
+	private static Random _random = new Random();
+
+	public void setLeverage(int i) {
+		_leverage = i;
+	}
+
+	private int getLeverage() {
+		return _leverage;
+	}
+
+	public L1Magic(L1Character attacker, L1Character target) {
+		_target = target;
+		if (attacker instanceof L1PcInstance) {
+			if (target instanceof L1PcInstance) {
+				_calcType = PC_PC;
+				_pc = (L1PcInstance) attacker;
+				_targetPc = (L1PcInstance) target;
+			} else {
+				_calcType = PC_NPC;
+				_pc = (L1PcInstance) attacker;
+				_targetNpc = (L1NpcInstance) target;
+			}
+		} else {
+			if (target instanceof L1PcInstance) {
+				_calcType = NPC_PC;
+				_npc = (L1NpcInstance) attacker;
+				_targetPc = (L1PcInstance) target;
+			} else {
+				_calcType = NPC_NPC;
+				_npc = (L1NpcInstance) attacker;
+				_targetNpc = (L1NpcInstance) target;
+			}
+		}
+	}
+
+	@SuppressWarnings("unused")
+	private int getSpellPower() {
+		int spellPower = 0;
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			spellPower = _pc.getAbility().getSp();
+		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+			spellPower = _npc.getAbility().getSp();
+		}
+		return spellPower;
+	}
+
+	private int getMagicLevel() {
+		int magicLevel = 0;
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			magicLevel = _pc.getAbility().getMagicLevel();
+		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+			magicLevel = _npc.getAbility().getMagicLevel();
+		}
+		return magicLevel;
+	}
+
+	private int getMagicBonus() {
+		int magicBonus = 0;
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			magicBonus = _pc.getAbility().getMagicBonus();
+		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+			magicBonus = _npc.getAbility().getMagicBonus();
+		}
+		return magicBonus;
+	}
+
+	private int getLawful() {
+		int lawful = 0;
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			lawful = _pc.getLawful();
+		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+			lawful = _npc.getLawful();
+		}
+		return lawful;
+	}
+
+	private int getTargetMr() {
+		int mr = 0;
+		if (_calcType == PC_PC || _calcType == NPC_PC) {
+			mr = _targetPc.getResistance().getEffectedMrBySkill();
+		} else {
+			mr = _targetNpc.getResistance().getEffectedMrBySkill();
+		}
+		return mr;
+	}
+
+	/* ■■■■■■■■■■■■■■ 성공 판정 ■■■■■■■■■■■■■ */
+	// ●●●● 확률계 마법의 성공 판정 ●●●●
+	// 계산방법
+	// 공격측 포인트：LV + ((MagicBonus * 3) * 마법 고유 계수)
+	// 방어측 포인트：((LV / 2) + (MR * 3)) / 2
+	// 공격 성공율：공격측 포인트 - 방어측 포인트
+	public boolean calcProbabilityMagic(int skillId) {
+
+		int probability = 0;
+		boolean isSuccess = false;
+
+		if (_pc != null && _pc.isGm()) {
+			return true;
+		}
+		if (_calcType == PC_PC) {
+			if (skillId == ICE_LANCE) {
+				int rprobability = _random.nextInt(100) + 1;
+				if (_targetPc.getResistance().getEffectedMrBySkill() >= Config.아이스면역수치) {
+					return false;
+				} else {
+					if (rprobability >= 50) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			}
+			if (skillId == DISEASE) {
+				int rprobability = _random.nextInt(100) + 1;
+				if (_targetPc.getResistance().getEffectedMrBySkill() >= Config.디지즈면역수치) {
+					return false;
+				} else {
+					if (rprobability >= 50) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			}
+			if (skillId == FOG_OF_SLEEPING) {
+				int rprobability = _random.nextInt(100) + 1;
+				if (_targetPc.getResistance().getEffectedMrBySkill() >= Config.포그면역수치) {
+					return false;
+				} else {
+					if (rprobability >= 50) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			}
+			if (skillId == CURSE_BLIND) {
+				int rprobability = _random.nextInt(100) + 1;
+				if (_targetPc.getResistance().getEffectedMrBySkill() >= Config.커스블라인드면역수치) {
+					return false;
+				} else {
+					if (rprobability >= 50) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			}
+			if (skillId == WEAPON_BREAK) {
+				int rprobability = _random.nextInt(100) + 1;
+				if (_targetPc.getResistance().getEffectedMrBySkill() >= Config.웨폰브레이크면역수치) {
+					return false;
+				} else {
+					if (rprobability >= 50) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			}
+			if (skillId == EMPIER) {
+				int rprobability = _random.nextInt(100) + 1;
+				if (_targetPc.getResistance().getEffectedMrBySkill() >= Config.커스면역수치) {
+					return false;
+				} else {
+					if (rprobability >= 50) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+			}
+		}
+		if (_calcType == PC_NPC && _targetNpc != null) {
+			int npcId = _targetNpc.getNpcTemplate().get_npcId();
+			if (npcId >= 45912 && npcId <= 45915 && !_pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_HOLY_WATER)) {
+				return false;
+			}
+			if (npcId == 45916 && !_pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) {
+				return false;
+			}
+			if (npcId == 45941 && !_pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) {
+				return false;
+			}
+			if (!_pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_CURSE_BARLOG)
+					&& (npcId == 45752 || npcId == 45753)) {
+				return false;
+			}
+			if (!_pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_CURSE_YAHEE)
+					&& (npcId == 45675 || npcId == 81082 || npcId == 45625 || npcId == 45674 || npcId == 45685)) {
+				return false;
+			}
+			if (npcId >= 46068 && npcId <= 46091 && _pc.getGfxId().getTempCharGfx() == 6035) {
+				return false;
+			}
+			if (npcId >= 46092 && npcId <= 46106 && _pc.getGfxId().getTempCharGfx() == 6034) {
+				return false;
+			}
+		}
+
+		if (!checkZone(skillId)) {
+			return false;
+		}
+
+		if (skillId == CANCELLATION) {
+			if (_calcType == PC_PC && _pc != null && _targetPc != null) {
+				if (_pc.getId() == _targetPc.getId()) {
+					return true;
+				}
+				if (_pc.get_DuelLine() != 0 && _pc.get_DuelLine() == _targetPc.get_DuelLine()) {
+					return false;
+				}
+				if (_pc.getClanid() > 0 && (_pc.getClanid() == _targetPc.getClanid())) {
+					return true;
+				}
+				if (_pc.isInParty()) {
+					if (_pc.getParty().isMember(_targetPc)) {
+						return true;
+					}
+				}
+
+				if (CharPosUtil.getZoneType(_pc) == 1 || CharPosUtil.getZoneType(_targetPc) == 1) {
+					return false;
+				}
+			}
+			if (_calcType == PC_NPC || _calcType == NPC_PC || _calcType == NPC_NPC) {
+				return true;
+			}
+		}
+
+		if (_calcType == PC_NPC && _targetNpc.getNpcTemplate().isCantResurrect()) { // 50렙
+																					// 이상
+																					// npc
+																					// 에게
+																					// 아래
+																					// 마법
+																					// 안걸림:즉
+																					// 보스몬스터에게
+																					// 사용불가
+			if (skillId == WEAPON_BREAK || skillId == SLOW || skillId == CURSE_PARALYZE || skillId == WEAKNESS
+					|| skillId == SILENCE || skillId == DISEASE || skillId == DECAY_POTION || skillId == MASS_SLOW
+					|| skillId == ENTANGLE || skillId == ERASE_MAGIC || skillId == AREA_OF_SILENCE
+					|| skillId == WIND_SHACKLE || skillId == STRIKER_GALE || skillId == SHOCK_STUN
+					|| skillId == FOG_OF_SLEEPING || skillId == ICE_LANCE || skillId == FREEZING_BLIZZARD
+					|| skillId == POLLUTE_WATER || skillId == RETURN_TO_NATURE
+					|| skillId == EMPIER) {
+				return false;
+			}
+		}
+
+		// 아스바인드중은 WB, 왈가닥 세레이션 이외 무효
+		if (_calcType == PC_PC || _calcType == NPC_PC) {
+			if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)) {
+				_skill = SkillsTable.getInstance().getTemplate(skillId);
+				if (skillId != WEAPON_BREAK && skillId != CANCELLATION // 확률계
+						&& _skill.getType() != L1Skills.TYPE_HEAL // 힐 계
+						&& _skill.getType() != L1Skills.TYPE_CHANGE) { // 버프계
+					return false;
+				}
+			}
+		} else {
+			if (_targetNpc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)) {
+				if (skillId != WEAPON_BREAK && skillId != CANCELLATION) {
+					return false;
+				}
+			}
+		}
+
+		// 100% 확률을 가지는 스킬
+		probability = calcProbability(skillId);
+		
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			SkillsProbabilityDetail ss = SkillsProbabilityDetailTable.getInstance().getSkillProb(skillId);
+			if (ss != null) {
+				if (_calcType == PC_PC) {
+					return ss.skillProbResult(_pc, _targetPc);
+				} else if (_calcType == PC_NPC) {
+					return ss.skillProbResult(_pc, _targetNpc);
+				}
+			}
+		}
+
+		int rnd = 0;
+
+		switch (skillId) {
+		case DECAY_POTION:
+		case SILENCE:
+		case CURSE_PARALYZE:
+		case CANCELLATION:
+		case SLOW:
+		case DARKNESS:
+		case WEAKNESS:
+		case CURSE_POISON:
+		case CURSE_BLIND:
+		case WEAPON_BREAK:
+		case MANA_DRAIN:
+			if (_calcType == PC_PC) {
+				rnd = _random.nextInt(_targetPc.getResistance().getEffectedMrBySkill()) + 1;
+			} else if (_calcType == PC_NPC) {
+				rnd = _random.nextInt(_targetNpc.getResistance().getEffectedMrBySkill()) + 1;
+			} else {
+				rnd = _random.nextInt(100) + 1;
+			}
+			break;
+		default:
+			rnd = _random.nextInt(100) + 1;
+			if (probability > 90)
+				probability = 90;
+			break;
+		}
+
+		if (_calcType == PC_PC) {
+			probability += CharacterBalance.getInstance().getMagicHit(_pc.getType(), _targetPc.getType());
+		} else if (_calcType == PC_NPC) {
+			probability += CharacterBalance.getInstance().getMagicHit(_pc.getType(), 10);
+		} else if (_calcType == NPC_PC) {
+			probability += CharacterBalance.getInstance().getMagicHit(10, _targetPc.getType());
+		} else if (_calcType == NPC_NPC) {
+			probability += CharacterBalance.getInstance().getMagicHit(10, 10);
+		}
+
+		CharactersMr cm = CharactersMrTable.getInstance()
+				.getCharactersMr(_target.getResistance().getEffectedMrBySkill());
+		if (cm != null) {
+			probability -= cm.getDodge();
+		}
+		if (_calcType == PC_PC && skillId == L1SkillId.CANCELLATION) {
+			if (_targetPc.getResistance().getEffectedMrBySkill() >= 100) {
+				probability = 0;
+			}
+		}
+		if (probability >= rnd) {
+			isSuccess = true;
+		} else {
+			isSuccess = false;
+		}
+
+		if (!Config.ALT_ATKMSG) {
+			return isSuccess;
+		}
+		if (Config.ALT_ATKMSG) {
+			if ((_calcType == PC_PC || _calcType == PC_NPC) && !_pc.isGm()) {
+				return isSuccess;
+			}
+			if ((_calcType == PC_PC || _calcType == NPC_PC) && !_targetPc.isGm()) {
+				return isSuccess;
+			}
+		}
+
+		String msg0 = "";
+		String msg1 = "";
+		String msg2 = "";
+		String msg3 = "";
+		String msg4 = "";
+
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			msg0 = _pc.getName();
+		} else if (_calcType == NPC_PC) {
+			msg0 = _npc.getName();
+		}
+
+		msg2 = "probability:" + probability + "%";
+		if (_calcType == NPC_PC || _calcType == PC_PC) {
+			msg4 = _targetPc.getName();
+		} else if (_calcType == PC_NPC) {
+			msg4 = _targetNpc.getName();
+		}
+		if (isSuccess == true) {
+			msg3 = "성공";
+		} else {
+			msg3 = "실패";
+		}
+
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			_pc.sendPackets(new S_ServerMessage(166, msg0, msg1, msg2, msg3, msg4));
+		}
+		if (_calcType == NPC_PC || _calcType == PC_PC) {
+			_targetPc.sendPackets(new S_ServerMessage(166, msg0, msg1, msg2, msg3, msg4));
+		}
+
+		return isSuccess;
+	}
+
+	private boolean checkZone(int skillId) {
+		if (_pc != null && _targetPc != null) {
+			if (CharPosUtil.getZoneType(_pc) == 1 || CharPosUtil.getZoneType(_targetPc) == 1) {
+				if (skillId == WEAPON_BREAK || skillId == SLOW || skillId == CURSE_PARALYZE || skillId == MANA_DRAIN
+						|| skillId == DARKNESS || skillId == WEAKNESS || skillId == DISEASE || skillId == DECAY_POTION
+						|| skillId == MASS_SLOW || skillId == ENTANGLE || skillId == ERASE_MAGIC
+						|| skillId == EARTH_BIND || skillId == AREA_OF_SILENCE || skillId == WIND_SHACKLE
+						|| skillId == STRIKER_GALE || skillId == SHOCK_STUN || skillId == FOG_OF_SLEEPING
+						|| skillId == ICE_LANCE || skillId == FREEZING_BLIZZARD
+						|| skillId == POLLUTE_WATER || skillId == ELEMENTAL_FALL_DOWN
+						|| skillId == RETURN_TO_NATURE || skillId == SILENCE
+						|| skillId == CURSE_POISON || skillId == EMPIER) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
+	private int calcProbability(int skillId) {
+		if (skillId <= 0) return 0;
+		L1Skills l1skills = SkillsTable.getInstance().getTemplate(skillId);
+		
+		if (l1skills == null) {
+		    System.out.println("스킬 템플릿 없음 skillId=" + skillId);
+		    return 0;
+		}
+
+		if (_calcType != NPC_NPC && _pc == null) {
+		    return 0;
+		}
+		
+		int attackLevel = 0;
+		int defenseLevel = 0;
+		int probability = 0;
+		int attackInt = 0;
+		int defenseMr = 0;
+		
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			attackLevel = _pc.getLevel();
+			attackInt = _pc.getAbility().getTotalInt();
+		} else {
+			attackLevel = _npc.getLevel();
+			attackInt = _npc.getAbility().getTotalInt();
+		}
+
+		if (_calcType == PC_PC || _calcType == NPC_PC) {
+			defenseLevel = _targetPc.getLevel();
+			defenseMr = _targetPc.getResistance().getEffectedMrBySkill();
+		} else {
+			defenseLevel = _targetNpc.getLevel();
+			defenseMr = _targetNpc.getResistance().getEffectedMrBySkill();
+			if (skillId == RETURN_TO_NATURE) {
+				if (_targetNpc instanceof L1SummonInstance) {
+					L1SummonInstance summon = (L1SummonInstance) _targetNpc;
+					defenseLevel = summon.getMaster().getLevel();
+				}
+			}
+		}
+
+		switch (skillId) {
+		case ARMOR_BRAKE:
+			probability = (int) (Config.아머브레이크 + ((attackLevel - defenseLevel) * 3));
+
+			if (_calcType == PC_PC) {
+				probability -= (int) _targetPc.getResistance().getSpirit();
+				probability += (int) _pc.getHitup_spirit();
+				;
+			} else if (_calcType == PC_NPC) {
+				probability += (int) _pc.getHitup_spirit();
+				;
+			} else if (_calcType == NPC_PC) {
+				probability -= (int) _targetPc.getResistance().getSpirit();
+			}
+
+			break;
+
+		case EARTH_BIND:
+			int levelbonus = 0;
+			int dlevel = _target.getLevel() * 10;
+			int alevel = _pc.getLevel() * 10;
+			probability = (int) l1skills.getProbabilityValue();
+			if (alevel >= dlevel) {
+				levelbonus = (alevel - dlevel) * 2;
+			} else {
+				levelbonus = -(alevel - dlevel) * 2;
+			}
+			probability = levelbonus / 2;
+
+			if (probability >= 20) {
+				probability = 15 + _pc.getHitup_skill();
+			} else if (dlevel > alevel) {
+				probability = 5 + _pc.getHitup_skill();
+			} else if (dlevel == alevel) {
+				probability = 13 + _pc.getHitup_skill();
+				;
+			}
+			// System.out.println("확률 " + probability);
+			break;
+		case ERASE_MAGIC:
+			probability = (int) l1skills.getProbabilityValue();
+			if (attackLevel >= defenseLevel) {
+				levelbonus = (attackLevel - defenseLevel) / 2;// 인트18기준 확률20%
+																// 인트35에비래하고
+																// 공격자레벨65-당하는자60
+																// /2 5/2=2
+																// 18+2.4=20%
+																// 5*2
+																// 220128수정겜블
+			} else {
+				levelbonus = -(defenseLevel - attackLevel) / 2;//
+			}
+			probability += levelbonus + _pc.getHitup_spirit();
+			;
+			break;
+		case ELEMENTAL_FALL_DOWN:
+		case RETURN_TO_NATURE:
+		case ENTANGLE:
+		case AREA_OF_SILENCE:
+		case WIND_SHACKLE:
+		case STRIKER_GALE:
+		case POLLUTE_WATER:
+			probability = (int) (30 + (attackLevel - defenseLevel) * 2);
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				probability += 2 * _pc.getBaseMagicHitUp() + _pc.getHitup_spirit();
+			}
+			break;
+		case EMPIER:
+		case SHOCK_STUN:
+			int probabilityByLevel = 0;
+			int diffLevel = attackLevel - defenseLevel;
+			if (diffLevel >= 7) {
+			    probabilityByLevel = 100;
+			} else if (diffLevel >= 5) {
+			    probabilityByLevel = 80;
+			} else if (diffLevel == 4) {
+			    probabilityByLevel = 70;
+			} else if (diffLevel == 3) {
+			    probabilityByLevel = Config.낮은3렙캐릭;
+			} else if (diffLevel == 2) {
+			    probabilityByLevel = Config.낮은2렙캐릭;
+			} else if (diffLevel == 1) {
+			    probabilityByLevel = Config.낮은1렙캐릭;
+			} else if (diffLevel == 0) {
+			    probabilityByLevel = Config.동렙캐릭;
+			} else if (diffLevel == -1) {
+			    probabilityByLevel = Config.높은1렙캐릭;
+			} else if (diffLevel == -2) {
+			    probabilityByLevel = Config.높은2렙캐릭;
+			} else if (diffLevel == -3) {
+			    probabilityByLevel = Config.높은3렙캐릭;
+			} else if (diffLevel == -4) {
+			    probabilityByLevel = 30;
+			} else if (diffLevel >= -6) {
+			    probabilityByLevel = 20;
+			} else {
+			    probabilityByLevel = 0;
+			}
+			
+			probability = (int) Config.SHOCK_STUN + probabilityByLevel;
+			//System.out.println("스턴probability="+probability);
+			break;
+		case COUNTER_BARRIER:
+			probability = Config.카운터배리어; // 19
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				probability += 2 * _pc.getBaseMagicHitUp();
+
+			}
+			break;
+		case TURN_UNDEAD:
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				probability = (int) ((attackInt * 2 + (attackLevel * Config.TURN_UNDEAD) + _pc.getBaseMagicHitUp())
+						- (defenseMr + (defenseLevel / 2)) - 84); // (attackLevel
+																	// * 1.9))
+				// 32 x 2 + 60 x 1.9
+				if (!_pc.isWizard()) {
+					probability -= 50;// 50;
+				}
+			} else
+				probability = (int) ((attackInt * 2 + (attackLevel * Config.TURN_UNDEAD))
+						- (defenseMr + (defenseLevel / 2)) - 84); // (attackLevel
+																	// *
+																	// 1.9))
+			if (attackInt >= 35) {
+				int addpro = 1;
+				if (attackInt == 35)
+					addpro += 2;
+				if (attackInt == 40)
+					addpro += 2;
+				if (attackInt == 45)
+					addpro += 2;
+				if (attackInt == 50)
+					addpro += 2;
+				if (attackInt == 55)
+					addpro += 3;
+				if (attackInt == 60)
+					addpro += 3;
+				probability += addpro;
+			}
+
+			/*
+			 * if(_pc.getLevel() >= 75){ int addpro = (_pc.getLevel() - 74) * 2; if(addpro >
+			 * 16)addpro = 16; probability += addpro; }
+			 */
+			if (_calcType == PC_PC || _calcType == PC_NPC) { // 아이템에 따른 마법 확률 증가
+				int 마법적중 = _pc.getHitup_magic();
+				probability += 마법적중;
+			}
+			if (probability > 0) {
+			}
+
+			break;
+		case CANCELLATION:
+			if (attackInt > 25)
+				attackInt = 25;
+			probability = (int) ((attackInt - (defenseMr / 7.95)) * l1skills.getProbabilityValue()); // skills테이블에 확률이 2로 되어있어야 20프로임
+			probability += _pc.getHitup_magic() / 2;
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				if (_pc.isElf())
+					probability /= 3;
+			}
+			if (defenseMr >= 100) {
+				probability = 0;
+			}
+			if (probability < 0)
+				probability = 0;
+			break;
+		case DISEASE:
+		case CURSE_PARALYZE:
+		case WEAPON_BREAK:
+		case CURSE_BLIND:
+			if (attackInt > 25)
+				attackInt = 25;
+			probability = (int) ((attackInt - (defenseMr / 7.95)) * l1skills.getProbabilityValue());
+			probability += _pc.getHitup_magic() / 2;
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				if (_pc.isElf())
+					probability /= 3;
+			}
+			
+			if (probability < 0)
+				probability = 0;
+			//System.out.println("probability="+probability);
+			break;
+			
+		case DECAY_POTION:
+		case SILENCE:
+		case SLOW:
+		case DARKNESS:
+		case WEAKNESS:
+		case CURSE_POISON:
+		case SHAPE_CHANGE:
+			if (attackInt > 25)
+				attackInt = 25;
+			probability = (int) ((attackInt - (defenseMr / 7.95)) * l1skills.getProbabilityValue());
+			probability += _pc.getHitup_magic() / 2;
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				if (_pc.isElf())
+					probability /= 3;
+			}
+			//System.out.println("probability="+probability);
+			if (probability < 0)
+				probability = 0;
+			
+			break;
+		case MANA_DRAIN:
+			if (attackInt > 25)
+				attackInt = 25;
+			probability = (int) (attackInt - (defenseMr / 6.7)) * l1skills.getProbabilityValue();
+			if (probability < 0)
+				probability = 3;
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				probability += _pc.getBaseMagicHitUp() + _pc.getHitup_magic();
+				;
+
+			}
+			break;
+		default: {
+			int dice1 = l1skills.getProbabilityDice();
+			int diceCount1 = 0;
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				if (_pc.isWizard()) {
+					diceCount1 = getMagicBonus() + getMagicLevel() + 1;
+				} else if (_pc.isElf()) {
+					diceCount1 = getMagicBonus() + getMagicLevel() - 1;
+				} else {
+					diceCount1 = getMagicBonus() + getMagicLevel() - 1;
+				}
+			} else {
+				diceCount1 = getMagicBonus() + getMagicLevel();
+			}
+			if (diceCount1 < 1) {
+				diceCount1 = 1;
+			}
+			for (int i = 0; i < diceCount1; i++) {
+				probability += (_random.nextInt(dice1) + 1);
+			}
+			probability = probability * getLeverage() / 10;
+			probability -= getTargetMr() * 0.7;
+
+			if (skillId == TAMING_MONSTER) {
+				double probabilityRevision = 1;
+				if ((_targetNpc.getMaxHp() * 1 / 4) > _targetNpc.getCurrentHp()) {
+					probabilityRevision = 1.3;
+				} else if ((_targetNpc.getMaxHp() * 2 / 4) > _targetNpc.getCurrentHp()) {
+					probabilityRevision = 1.2;
+				} else if ((_targetNpc.getMaxHp() * 3 / 4) > _targetNpc.getCurrentHp()) {
+					probabilityRevision = 1.1;
+				}
+				probability *= probabilityRevision;
+			}
+			 //System.out.println("오솔레미오="+probability);
+		}
+			break;
+		}
+
+		switch (skillId) {
+		case EARTH_BIND:
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getResistance().getHold();
+			}
+			break;
+		case 30081:
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= 2 * _targetPc.getResistance().getStun();
+			}
+			break;
+		case CURSE_PARALYZE:
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getResistance().getPetrifaction();
+			}
+			break;
+		case FOG_OF_SLEEPING:
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getResistance().getSleep();
+			}
+			break;
+		case ICE_LANCE:
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getResistance().getFreeze();
+			}
+			break;
+		case FREEZING_BLIZZARD:
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getResistance().getFreeze();
+			}
+			break;
+		case CURSE_BLIND:
+		case DARKNESS:
+		case ARMOR_BRAKE:
+			if (_calcType == PC_PC || _calcType == NPC_PC) {
+				probability -= _targetPc.getResistance().getBlind();
+			}
+			break;
+		default:
+			break;
+		}
+
+		//System.out.println("최종="+probability);
+		if (_pc != null) {
+			probability += _pc.get_private_probability(skillId);
+		}
+
+		return probability;
+	}
+
+	public int calcMagicDamage(int skillId) {
+		int damage = 0;
+
+		if (_calcType == PC_PC || _calcType == NPC_PC) {
+			damage = calcPcMagicDamage(skillId);
+			if (_targetPc.getGfxId().getTempCharGfx() == 16074 || _targetPc.getGfxId().getTempCharGfx() == 16053
+					|| _targetPc.getGfxId().getTempCharGfx() == 14491 || _targetPc.getGfxId().getTempCharGfx() == 16056
+					|| _targetPc.getGfxId().getTempCharGfx() == 16284 || _targetPc.getGfxId().getTempCharGfx() == 16002
+					|| _targetPc.getGfxId().getTempCharGfx() == 16040 || _targetPc.getGfxId().getTempCharGfx() == 16027
+					|| _targetPc.getGfxId().getTempCharGfx() == 16014 || _targetPc.getGfxId().getTempCharGfx() == 16008
+					|| _targetPc.getGfxId().getTempCharGfx() == 15986) {
+				_targetPc.sendPackets(new S_DoActionGFX(_targetPc.getId(), ActionCodes.ACTION_Damage));
+				Broadcaster.broadcastPacket(_targetPc, new S_DoActionGFX(_targetPc.getId(), ActionCodes.ACTION_Damage));
+			}
+		} else if (_calcType == PC_NPC || _calcType == NPC_NPC) {
+			damage = calcNpcMagicDamage(skillId);
+
+		}
+
+		/** 파번은 마방 공식 제외 (임시) */
+		if (skillId != FINAL_BURN) {
+			damage = calcMrDefense(damage);
+		} else if (skillId == FINAL_BURN && _targetPc != null) { // final burn's
+																	// temporary
+																	// damage
+			if (_targetPc.getResistance().getEffectedMrBySkill() <= 50)
+				damage = _pc.getCurrentMp() + _random.nextInt(_pc.getCurrentMp() / 2 + 1);
+			else if (_targetPc.getResistance().getEffectedMrBySkill() > 50
+					&& _targetPc.getResistance().getEffectedMrBySkill() < 100)
+				damage = _pc.getCurrentMp() - _random.nextInt(_pc.getCurrentMp() / 2 + 1);
+			else if (_targetPc.getResistance().getEffectedMrBySkill() > 100)
+				damage = _random.nextInt(_pc.getCurrentMp() / 2 + 1);
+		}
+
+		if (_calcType == PC_PC || _calcType == NPC_PC) {
+			if (damage > _targetPc.getCurrentHp()) {
+				damage = _targetPc.getCurrentHp();
+			}
+		} else {
+			if (damage > _targetNpc.getCurrentHp()) {
+				damage = _targetNpc.getCurrentHp();
+			}
+		}
+
+		// 무 , 유 방향 피격 처리를 위해
+		if (_calcType == PC_NPC) {
+			if (skillId == FIREBALL || skillId == FROZEN_CLOUD || skillId == FIRE_STORM || skillId == BLIZZARD
+					|| skillId == LIGHTNING_STORM || skillId == FREEZING_BLIZZARD) {
+				Broadcaster.broadcastPacket(_target, new S_DoActionGFX(_target.getId(), ActionCodes.ACTION_Damage));
+			}
+		}
+
+		if (_calcType == PC_PC) {
+			if (skillId == SUNBURST || skillId == CONE_OF_COLD || skillId == CALL_LIGHTNING || skillId == ERUPTION) {
+				damage += _pc.getAbility().getSp();
+			}
+		}
+
+		if (_calcType == PC_PC) {
+			if (skillId == METEOR_STRIKE) {
+				damage += _pc.getAbility().getSp() * 3;
+			}
+		}
+
+		if (_calcType == PC_PC) {
+			if (skillId == DISINTEGRATE) {
+				damage += _pc.getAbility().getSp() * 4;
+			}
+		}
+
+		if (_calcType == PC_PC) {
+			for (L1DollInstance doll : _pc.getDollList().values()) {
+				damage += doll.attackPixieDamage(_pc, _targetPc);
+			}
+		}
+		
+		if (_calcType == PC_NPC) {
+			for (L1DollInstance doll : _pc.getDollList().values()) {
+				damage += doll.attackPixieDamage(_pc, _targetNpc);
+			}
+		}
+		
+		if (_calcType == PC_PC) {
+			damage += CharacterBalance.getInstance().getMagicDmg(_pc.getType(), _targetPc.getType());
+			damage *= CharacterBalance.getInstance().getMagicDmgRate(_pc.getType(), _targetPc.getType());
+		} else if (_calcType == PC_NPC) {
+			damage += CharacterBalance.getInstance().getMagicDmg(_pc.getType(), 10);
+			damage *= CharacterBalance.getInstance().getMagicDmgRate(_pc.getType(), 10);
+		} else if (_calcType == NPC_PC) {
+			damage += CharacterBalance.getInstance().getMagicDmg(10, _targetPc.getType());
+			damage *= CharacterBalance.getInstance().getMagicDmgRate(10, _targetPc.getType());
+			damage += MonsterBalance.getInstance().getCharacterMagicDmg(_npc.getNpcTemplate().get_npcId());
+		} else if (_calcType == NPC_NPC) {
+			damage += CharacterBalance.getInstance().getMagicDmg(10, 10);
+			damage *= CharacterBalance.getInstance().getMagicDmgRate(10, 10);
+		}
+
+		if (_calcType == NPC_PC) {
+			if (_targetPc != null && _targetPc.isGm()) {
+				_targetPc.sendPackets(new S_SystemMessage("몹스킬뎀 [" + damage + "]"));
+			}
+			if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL)
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(FREEZING_BLIZZARD)
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)) {
+				return 0;
+			}
+		}
+
+		if (damage < 0) {
+			damage = 0;
+		}
+		
+		if (_calcType == PC_PC) {
+			if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(IMMUNE_TO_HARM)) {
+				damage /= Config.IMMUNE_TO_HARM_PC;
+			}
+		}
+		
+		if (_calcType == NPC_PC) {
+			if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(IMMUNE_TO_HARM)) {
+				damage /= Config.IMMUNE_TO_HARM_NPC;
+			}
+		}
+		
+		return damage;
+	}
+
+	public int calcPcFireWallDamage() {
+		int dmg = 0;
+		double attrDeffence = calcAttrResistance(L1Skills.ATTR_FIRE);
+		L1Skills l1skills = SkillsTable.getInstance().getTemplate(FIRE_WALL);
+		dmg = (int) ((1.0 - attrDeffence) * l1skills.getDamageValue());
+
+		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER)
+				|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
+				|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(FREEZING_BLIZZARD)
+				|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)
+				|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL)
+				|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) {
+			dmg = 0;
+		}
+
+		if (dmg < 0) {
+			dmg = 0;
+		}
+
+		return dmg;
+	}
+
+	public int calcNpcFireWallDamage() {
+		int dmg = 0;
+		double attrDeffence = calcAttrResistance(L1Skills.ATTR_FIRE);
+		L1Skills l1skills = SkillsTable.getInstance().getTemplate(FIRE_WALL);
+		dmg = (int) ((1.0 - attrDeffence) * l1skills.getDamageValue());
+
+		if (_targetNpc.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
+				|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(FREEZING_BLIZZARD)
+				|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)
+				|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL)
+				|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) {
+			dmg = 0;
+		}
+
+		if (dmg < 0) {
+			dmg = 0;
+		}
+
+		return dmg;
+	}
+
+	private int calcPcMagicDamage(int skillId) {
+		int dmg = 0;
+		if (skillId == FINAL_BURN) {
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				dmg = _pc.getCurrentMp();
+			} else {
+				dmg = _npc.getCurrentMp();
+			}
+		} else {
+			if (_calcType == PC_PC && SkillsDmgTable.getInstance().isSkills(skillId)) {
+				SkillsDmgTemp temp = SkillsDmgTable.getInstance().getskills(skillId);
+				if (temp == null) {
+					_pc.sendPackets(new S_SystemMessage("해당마법은 스킬대미지 테이블에 등록되어있지 않습니다."));
+					return 0;
+				}
+
+				int PcSkillDmg = temp.dmg;
+				int PcSkillRndDmg = _random.nextInt(temp.rnd_dmg);
+				int SpDmg = (_pc.getAbility().getSp() - temp.Sp_stan) * temp.Sp_dmg;
+				int MrDmg = -1 * ((_targetPc.getResistance().getMr() - temp.Mr_stan) * temp.Mr_dmg);
+				dmg = PcSkillDmg + PcSkillRndDmg + SpDmg + MrDmg;
+				if (dmg < 0) {
+					dmg = 0;
+				}
+
+				if (_pc.isGm()) {
+					_pc.sendPackets(new S_SystemMessage("기본대미지: " + PcSkillDmg + ", 랜덤대미지: " + PcSkillRndDmg));
+					_pc.sendPackets(new S_SystemMessage("스펠대미지: " + SpDmg + ", 마방대미지: " + MrDmg));
+					_pc.sendPackets(new S_SystemMessage("최종마법대미지: " + dmg));
+				}
+
+			} else {
+				dmg = calcMagicDiceDamage(skillId);
+				dmg = dmg * getLeverage() / 10; // ???
+
+				if (dmg > 0) {
+					// npc가 유저 공격시 마방
+					double reducMR = getReducMR(_targetPc);
+					dmg *= reducMR;
+				}
+			}
+		}
+
+		dmg -= _targetPc.getDamageReductionByArmor();
+
+		if (_calcType == PC_PC) {
+			if (_targetPc.getPVPMagicDamageReduction() > 0) {
+				dmg -= _targetPc.getPVPMagicDamageReduction();
+			}
+		}
+		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(SPECIAL_COOKING)) { // 스페셜요리에
+																					// 의한
+																					// 데미지
+																					// 경감
+			dmg -= 5;
+		}
+
+		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(REDUCTION_ARMOR)) {
+			int targetPcLvl = _targetPc.getLevel();
+			if (targetPcLvl < 50) {
+				targetPcLvl = 50;
+			}
+			dmg -= (targetPcLvl - 50) / 5 + 1;
+		}
+
+		if (_calcType == NPC_PC) {
+			boolean isNowWar = false;
+			int castleId = L1CastleLocation.getCastleIdByArea(_targetPc);
+			if (castleId > 0) {
+				isNowWar = WarTimeController.getInstance().isNowWar(castleId);
+			}
+			if (!isNowWar) {
+				if (_npc instanceof L1PetInstance) {
+					dmg /= 8;
+				}
+				if (_npc instanceof L1SummonInstance) {
+					L1SummonInstance summon = (L1SummonInstance) _npc;
+					if (summon.isExsistMaster()) {
+						dmg /= 8;
+					}
+				}
+			}
+			// Object[] dollList = _targetPc.getDollList().values().toArray();
+			// // 마법 인형에 의한 추가 방어
+			// L1DollInstance doll = null;
+			for (L1DollInstance doll : _targetPc.getDollList().values()) {
+				// doll = (L1DollInstance) dollObject;
+				dmg -= doll.getDamageReductionByDoll();
+			}
+		}
+		
+		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL)
+				|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)
+				|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
+				|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(FREEZING_BLIZZARD)
+				|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)) {
+			return 0;
+		}
+		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(COUNTER_MIRROR)) {
+			if (_calcType == PC_PC) {
+				if (_targetPc.getAbility().getTotalWis() >= _random.nextInt(100)) {
+					_pc.sendPackets(new S_DoActionGFX(_pc.getId(), ActionCodes.ACTION_Damage));
+					Broadcaster.broadcastPacket(_pc, new S_DoActionGFX(_pc.getId(), ActionCodes.ACTION_Damage));
+					_targetPc.sendPackets(new S_SkillSound(_targetPc.getId(), 4395));
+					Broadcaster.broadcastPacket(_targetPc, new S_SkillSound(_targetPc.getId(), 4395));
+					_pc.receiveDamage(_targetPc, dmg, false);
+					dmg = 0;
+					_targetPc.getSkillEffectTimerSet().killSkillEffectTimer(COUNTER_MIRROR);
+				}
+			} else if (_calcType == NPC_PC) {
+				int npcId = _npc.getNpcTemplate().get_npcId();
+				if (npcId == 45681 || npcId == 45682 || npcId == 45683 || npcId == 45684) {
+				} else if (!_npc.getNpcTemplate().get_IsErase()) {
+				} else {
+					if (_targetPc.getAbility().getTotalWis() >= _random.nextInt(100)) {
+						Broadcaster.broadcastPacket(_npc, new S_DoActionGFX(_npc.getId(), ActionCodes.ACTION_Damage));
+						_targetPc.sendPackets(new S_SkillSound(_targetPc.getId(), 4395));
+						Broadcaster.broadcastPacket(_targetPc, new S_SkillSound(_targetPc.getId(), 4395));
+						_npc.receiveDamage(_targetPc, dmg);
+						dmg = 0;
+						_targetPc.getSkillEffectTimerSet().killSkillEffectTimer(COUNTER_MIRROR);
+					}
+				}
+			}
+		}
+		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(FEATHER_BUFF_A)) {
+			dmg -= 3;
+		}
+		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(FEATHER_BUFF_B)) {
+			dmg -= 2;
+		}
+		if (_calcType == PC_PC && _pc.getWeapon() != null) {
+			dmg += WeaponMagicPcBalanceTable.getInstance().getItemBalanceDmg(_pc.getWeapon().getItemId(), _pc.getWeapon().getEnchantLevel());
+		}
+		if (_calcType == PC_PC) {
+			for (L1ItemInstance armor : _pc.getEquipSlot().getArmors()) {
+				if (AccessoryBalanceTable.getInstance().getItemBalanceMagicdmg(armor.getItemId(), armor.getEnchantLevel()) != 0) {
+					//_pc.sendPackets(new S_SystemMessage("악세사리 = " + armor.getName() + ", 적용전 대미지 = " + dmg));
+					dmg += AccessoryBalanceTable.getInstance().getItemBalanceMagicdmg(armor.getItemId(), armor.getEnchantLevel());
+					//_pc.sendPackets(new S_SystemMessage("악세사리 = " + armor.getName() + ", 적용후 대미지 = " + dmg));
+				}
+			}
+		}
+
+		if (dmg < 0) {
+			dmg = 0;
+		}
+
+		return dmg;
+	}
+
+	private int calcNpcMagicDamage(int skillId) {
+		int dmg = 0;
+		
+		if (_calcType == PC_NPC) {
+			if (_pc.getClanid() == 0) {
+				return 0;
+			}
+		}
+		
+		if (skillId == FINAL_BURN) {
+			if (_calcType == PC_PC || _calcType == PC_NPC) {
+				dmg = _pc.getCurrentMp();
+			} else {
+				dmg = _npc.getCurrentMp();
+			}
+		} else {
+			if (_calcType == PC_NPC && SkillsDmgTable.getInstance().isSkills(skillId)) {
+				SkillsDmgTemp temp = SkillsDmgTable.getInstance().getskills(skillId);
+				if (temp == null) {
+					_pc.sendPackets(new S_SystemMessage("해당마법은 스킬대미지 테이블에 등록되어있지 않습니다."));
+					return 0;
+				}
+				int MonSkillDmg = temp.mon_dmg;
+				int MonSkillRndDmg = _random.nextInt(temp.mon_rnd_dmg);
+				int SpDmg = (_pc.getAbility().getSp() - temp.Sp_stan) * temp.Sp_dmg;
+				// int MrDmg = -1 * ((_targetPc.getMr() - temp.Mr_stan) *
+				// temp.Mr_dmg);
+				dmg = MonSkillDmg + MonSkillRndDmg + SpDmg;
+				if (dmg < 0) {
+					dmg = 0;
+				}
+				if (_pc.isGm()) {
+					_pc.sendPackets(new S_SystemMessage("기본대미지: " + MonSkillDmg + ", 랜덤대미지: " + MonSkillRndDmg));
+					_pc.sendPackets(new S_SystemMessage("스펠대미지: " + SpDmg));
+					_pc.sendPackets(new S_SystemMessage("최종마법대미지: " + dmg));
+				}
+
+			} else {
+				dmg = calcMagicDiceDamage(skillId);
+				dmg = (dmg * getLeverage()) / 10;
+			}
+		}
+		if (_targetNpc.getNpcId() == 45640) {
+			dmg /= 2;
+		}
+		if (_calcType == PC_NPC) {
+			boolean isNowWar = false;
+			int castleId = L1CastleLocation.getCastleIdByArea(_targetNpc);
+			if (castleId > 0) {
+				isNowWar = WarTimeController.getInstance().isNowWar(castleId);
+			}
+			if (!isNowWar) {
+				if (_targetNpc instanceof L1PetInstance) {
+					dmg /= 8;
+				}
+				if (_targetNpc instanceof L1SummonInstance) {
+					L1SummonInstance summon = (L1SummonInstance) _targetNpc;
+					if (summon.isExsistMaster()) {
+						dmg /= 8;
+					}
+				}
+			}
+		}
+
+		if (_calcType == PC_NPC && _targetNpc != null) {
+			int npcId = _targetNpc.getNpcTemplate().get_npcId();
+			if (npcId >= 45912 && npcId <= 45915 && !_pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_HOLY_WATER)) {
+				dmg = 0;
+			}
+			if (npcId == 45916 && !_pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_HOLY_MITHRIL_POWDER)) {
+				dmg = 0;
+			}
+			if (npcId == 45941 && !_pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_HOLY_WATER_OF_EVA)) {
+				dmg = 0;
+			}
+			if (!_pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_CURSE_BARLOG)
+					&& (npcId == 45752 || npcId == 45753)) {
+				dmg = 0;
+			}
+			if (!_pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_CURSE_YAHEE)
+					&& (npcId == 45675 || npcId == 81082 || npcId == 45625 || npcId == 45674 || npcId == 45685)) {
+				dmg = 0;
+			}
+			if (npcId >= 46068 && npcId <= 46091 && _pc.getGfxId().getTempCharGfx() == 6035) {
+				dmg = 0;
+			}
+			if (npcId >= 46092 && npcId <= 46106 && _pc.getGfxId().getTempCharGfx() == 6034) {
+				dmg = 0;
+			}
+			L1SpecialMap sm = SpecialMapTable.getInstance().getSpecialMap(_pc.getMapId());
+			if (sm != null) {
+				dmg *= (sm.getMdmgReduction() * 0.01);
+				if (dmg <= 0)
+					dmg = 1;
+			}
+			for (L1ItemInstance armor : _pc.getEquipSlot().getArmors()) {
+				if (AccessoryBalanceTable.getInstance().getItemBalanceMagicdmg(armor.getItemId(), armor.getEnchantLevel()) != 0) {
+					//_pc.sendPackets(new S_SystemMessage("악세사리 = " + armor.getName() + ", 적용전 대미지 = " + dmg));
+					dmg += AccessoryBalanceTable.getInstance().getItemBalanceMagicdmg(armor.getItemId(), armor.getEnchantLevel());
+					//_pc.sendPackets(new S_SystemMessage("악세사리 = " + armor.getName() + ", 적용후 대미지 = " + dmg));
+				}
+			}
+		}
+		if (_calcType == PC_NPC && _pc.getWeapon() != null) {
+			dmg += WeaponMagicNpcBalanceTable.getInstance().getItemBalanceDmg(_pc.getWeapon().getItemId(), _pc.getWeapon().getEnchantLevel());
+		}
+		if (_pc.getMap().isSafetyZone(_pc.getLocation())) {
+			dmg = 0;
+		}
+		return dmg;
+	}
+
+	private int calcMagicDiceDamage(int skillId) {
+		L1Skills l1skills = SkillsTable.getInstance().getTemplate(skillId);
+		int dice = l1skills.getDamageDice();
+		int diceCount = l1skills.getDamageDiceCount();
+		int value = l1skills.getDamageValue();
+		int magicDamage = 0;
+		int charaIntelligence = 0;
+		Random random = new Random();
+
+		for (int i = 0; i < diceCount; i++) {
+			magicDamage += (_random.nextInt(dice) + 1);
+		}
+		magicDamage += value;
+
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			int weaponAddDmg = 0;
+			L1ItemInstance weapon = _pc.getWeapon();
+			if (weapon != null) {
+				weaponAddDmg = weapon.getItem().getMagicDmgModifier();
+			}
+			magicDamage += weaponAddDmg;
+			magicDamage += random.nextInt(_pc.ability.getInt()) * 0.5;
+		}
+
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			// int spByItem = _pc.getAbility().getSp() -
+			// _pc.getAbility().getTrueSp();
+			charaIntelligence = _pc.getAbility().getSp();
+		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+			int spByItem = _npc.getAbility().getSp() - _npc.getAbility().getTrueSp();
+			charaIntelligence = _npc.getAbility().getTotalInt() + spByItem - 12;
+		}
+		if (charaIntelligence < 1) {
+			charaIntelligence = 1;
+		}
+
+		double attrDeffence = calcAttrResistance(l1skills.getAttr());
+
+		double coefficient = (1.0 - attrDeffence + charaIntelligence * 3.2 / 32.0);
+		if (coefficient < 0) {
+			coefficient = 0;
+		}
+
+		magicDamage *= coefficient;
+
+		/** 치명타 발생 부분 추가 - By 시니 - */
+
+		double criticalCoefficient = 1.5;
+		int rnd = random.nextInt(100) + 1;
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			int propCritical = CalcStat.calcBaseMagicCritical(_pc.getType(), _pc.ability.getBaseInt());
+			if (criticalOccur(propCritical)) {
+				magicDamage *= 1.5;
+			}
+			if (_pc.MaanMagicDmg) {
+				if (rnd <= 10)
+					magicDamage *= 1.1;
+			}
+		} else if (_calcType == NPC_PC || _calcType == NPC_NPC) {
+			if (rnd <= 15) {
+				magicDamage *= criticalCoefficient;
+			}
+		}
+
+		if (_calcType == PC_PC || _calcType == PC_NPC) {
+			magicDamage += _pc.getBaseMagicDmg();
+		}
+		return magicDamage;
+	}
+
+	public int calcHealing(int skillId) {
+		L1Skills l1skills = SkillsTable.getInstance().getTemplate(skillId);
+		int dice = l1skills.getDamageDice();
+		int value = l1skills.getDamageValue();
+		int magicDamage = 0;
+
+		int magicBonus = getMagicBonus();
+		if (magicBonus > 10) {
+			magicBonus = 10;
+		}
+
+		int diceCount = value + magicBonus;
+		for (int i = 0; i < diceCount; i++) {
+			magicDamage += (_random.nextInt(dice) + 1);
+		}
+
+		double alignmentRevision = 1.0;
+		if (getLawful() > 0) {
+			alignmentRevision += (getLawful() / 32768.0);
+		}
+
+		magicDamage *= alignmentRevision;
+
+		magicDamage = (magicDamage * getLeverage()) / 10;
+
+		return magicDamage;
+	}
+
+	/**
+	 * MR에 의한 마법 데미지 감소를 처리 한다 수정일자 : 2009.04.15 수정자 : 손영신
+	 * 
+	 * @param dmg
+	 * @return dmg
+	 */
+
+	public int calcMrDefense(int dmg) {
+
+		int MagicResistance = 0; // 마법저항
+		int RealMagicResistance = 0; // 적용되는 마법저항값
+		double calMr = 0.00D; // 마방계산
+		double baseMr = 0.00D;
+		if (_calcType == PC_PC || _calcType == NPC_PC) {
+			MagicResistance = _targetPc.getResistance().getEffectedMrBySkill();
+			MagicResistance *= Config.MR_MAGIC_DMG;
+		} else {
+			MagicResistance = _targetNpc.getResistance().getEffectedMrBySkill();
+		}
+
+		RealMagicResistance = MagicResistance - _random.nextInt(5) + 1;
+
+		if (_calcType == PC_PC) {
+			baseMr = (_random.nextInt(1000) + 98000) / 100000D;
+
+			if (MagicResistance <= 100) {
+				calMr = baseMr - (MagicResistance * 470) / 100000D;
+			} else if (MagicResistance > 100) {
+				calMr = baseMr - (MagicResistance * 470) / 100000D + ((MagicResistance - 100) * 0.004);
+			}
+		} else {
+			calMr = (200 - RealMagicResistance) / 250.00D;
+		}
+
+		dmg *= calMr;
+
+		CharactersMr cm = CharactersMrTable.getInstance().getCharactersMr(_target.getResistance().getMr());
+		if (cm != null) {
+			dmg -= (dmg * cm.getDmgDecrease());
+		}
+
+		if (dmg < 0) {
+			dmg = 0;
+		}
+
+		return dmg;
+	}
+
+	private boolean criticalOccur(int prop) {
+		boolean ok = false;
+		int num = _random.nextInt(100) + 1;
+
+		if (prop == 0) {
+			return false;
+		}
+		if (num <= prop) {
+			ok = true;
+		}
+		return ok;
+	}
+
+	private double calcAttrResistance(int attr) {
+		int resist = 0;
+		if (_calcType == PC_PC || _calcType == NPC_PC) {
+			switch (attr) {
+			case L1Skills.ATTR_EARTH:
+				resist = _targetPc.getResistance().getEarth();
+				break;
+			case L1Skills.ATTR_FIRE:
+				resist = _targetPc.getResistance().getFire();
+				break;
+			case L1Skills.ATTR_WATER:
+				resist = _targetPc.getResistance().getWater();
+				break;
+			case L1Skills.ATTR_WIND:
+				resist = _targetPc.getResistance().getWind();
+				break;
+			}
+		} else if (_calcType == PC_NPC || _calcType == NPC_NPC) {
+		}
+
+		int resistFloor = (int) (0.32 * Math.abs(resist));
+		if (resist >= 0) {
+			resistFloor *= 1;
+		} else {
+			resistFloor *= -1;
+		}
+
+		double attrDeffence = resistFloor / 32.0;
+
+		return attrDeffence;
+	}
+
+	public void commit(int damage, int drainMana) {
+		if (_calcType == PC_PC || _calcType == NPC_PC) {
+			commitPc(damage, drainMana);
+		} else if (_calcType == PC_NPC || _calcType == NPC_NPC) {
+			commitNpc(damage, drainMana);
+		}
+
+		if (!Config.ALT_ATKMSG) {
+			return;
+		}
+		if (Config.ALT_ATKMSG) {
+			if ((_calcType == PC_PC || _calcType == PC_NPC) && !_pc.isGm()) {
+				return;
+			}
+			if ((_calcType == PC_PC || _calcType == NPC_PC) && !_targetPc.isGm()) {
+				return;
+			}
+		}
+
+		// String msg0 = "";
+		// String msg1 = "왜";
+		// String msg2 = "";
+		// String msg3 = "";
+		// String msg4 = "";
+		//
+		// if (_calcType == PC_PC || _calcType == PC_NPC) {
+		// msg0 = _pc.getName();
+		// } else if (_calcType == NPC_PC) {
+		// msg0 = _npc.getName();
+		// }
+		//
+		// if (_calcType == NPC_PC || _calcType == PC_PC) {
+		// msg4 = _targetPc.getName();
+		// msg2 = "THP" + _targetPc.getCurrentHp();
+		// } else if (_calcType == PC_NPC) {
+		// msg4 = _targetNpc.getName();
+		// msg2 = "THp" + _targetNpc.getCurrentHp();
+		// }
+		//
+		// msg3 = damage + "주었다";
+		//
+		// if (_calcType == PC_PC || _calcType == PC_NPC) {
+		// _pc.sendPackets(new S_ServerMessage(166, msg0, msg1, msg2, msg3,
+		// msg4));
+		// }
+		// if (_calcType == NPC_PC || _calcType == PC_PC) {
+		// _targetPc.sendPackets(new S_ServerMessage(166, msg0, msg1, msg2,
+		// msg3, msg4));
+		// }
+	}
+
+	private void commitPc(int damage, int drainMana) {
+		if (_calcType == PC_PC) {
+			if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER)
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(FREEZING_BLIZZARD)
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL)
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) {
+				damage = 0;
+				drainMana = 0;
+			}
+			if (drainMana > 0 && _targetPc.getCurrentMp() > 0) {
+				if (drainMana > _targetPc.getCurrentMp()) {
+					drainMana = _targetPc.getCurrentMp();
+				}
+				int newMp = _pc.getCurrentMp() + drainMana;
+				_pc.setCurrentMp(newMp);
+			}
+			_targetPc.receiveManaDamage(_pc, drainMana);
+			_targetPc.receiveDamage(_pc, damage, true);
+		} else if (_calcType == NPC_PC) {
+			_targetPc.receiveDamage(_npc, damage, true);
+		}
+	}
+
+	private void commitNpc(int damage, int drainMana) {
+		if (_calcType == PC_NPC) {
+			if (_targetNpc.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
+					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(FREEZING_BLIZZARD)
+					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)
+					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL)
+					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) {
+				damage = 0;
+				drainMana = 0;
+			}
+			if (drainMana > 0) {
+				int drainValue = _targetNpc.drainMana(drainMana);
+				int newMp = _pc.getCurrentMp() + drainValue;
+				_pc.setCurrentMp(newMp);
+			}
+			_targetNpc.ReceiveManaDamage(_pc, drainMana);
+			_targetNpc.receiveDamage(_pc, damage);
+		} else if (_calcType == NPC_NPC) {
+			_targetNpc.receiveDamage(_npc, damage);
+		}
+	}
+
+	private double getReducMR(L1PcInstance pc) {
+		double reducMR = 1.0;
+		if (pc.getResistance().getMr() >= 200) {
+			reducMR = Config.MR_SKILL_REDUC200;
+		} else if (pc.getResistance().getMr() >= 190) {
+			reducMR = Config.MR_SKILL_REDUC190;
+		} else if (pc.getResistance().getMr() >= 180) {
+			reducMR = Config.MR_SKILL_REDUC180;
+		} else if (pc.getResistance().getMr() >= 170) {
+			reducMR = Config.MR_SKILL_REDUC170;
+		} else if (pc.getResistance().getMr() >= 160) {
+			reducMR = Config.MR_SKILL_REDUC160;
+		} else if (pc.getResistance().getMr() >= 150) {
+			reducMR = Config.MR_SKILL_REDUC150;
+		} else if (pc.getResistance().getMr() >= 140) {
+			reducMR = Config.MR_SKILL_REDUC140;
+		} else if (pc.getResistance().getMr() >= 130) {
+			reducMR = Config.MR_SKILL_REDUC130;
+		} else if (pc.getResistance().getMr() >= 120) {
+			reducMR = Config.MR_SKILL_REDUC120;
+		} else if (pc.getResistance().getMr() >= 110) {
+			reducMR = Config.MR_SKILL_REDUC110;
+		} else if (pc.getResistance().getMr() >= 100) {
+			reducMR = Config.MR_SKILL_REDUC100;
+		} else if (pc.getResistance().getMr() >= 90) {
+			reducMR = Config.MR_SKILL_REDUC90;
+		} else if (pc.getResistance().getMr() >= 80) {
+			reducMR = Config.MR_SKILL_REDUC80;
+		} else if (pc.getResistance().getMr() >= 70) {
+			reducMR = Config.MR_SKILL_REDUC70;
+		} else if (pc.getResistance().getMr() >= 60) {
+			reducMR = Config.MR_SKILL_REDUC60;
+		} else if (pc.getResistance().getMr() >= 50) {
+			reducMR = Config.MR_SKILL_REDUC50;
+		} else if (pc.getResistance().getMr() >= 40) {
+			reducMR = Config.MR_SKILL_REDUC40;
+		} else if (pc.getResistance().getMr() >= 30) {
+			reducMR = Config.MR_SKILL_REDUC30;
+		} else if (pc.getResistance().getMr() >= 20) {
+			reducMR = Config.MR_SKILL_REDUC20;
+		} else if (pc.getResistance().getMr() >= 10) {
+			reducMR = Config.MR_SKILL_REDUC10;
+		} else {
+			reducMR = 1;
+		}
+		return reducMR;
+	}
+}

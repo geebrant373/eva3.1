@@ -1,0 +1,296 @@
+package l1j.server.AutoHuntSystem;
+
+import static l1j.server.server.model.skill.L1SkillId.DETECTION;
+import static l1j.server.server.model.skill.L1SkillId.ENCHANT_WEAPON;
+import static l1j.server.server.model.skill.L1SkillId.EXTRA_HEAL;
+import static l1j.server.server.model.skill.L1SkillId.GREATER_HASTE;
+import static l1j.server.server.model.skill.L1SkillId.HASTE;
+import static l1j.server.server.model.skill.L1SkillId.HEAL;
+import static l1j.server.server.model.skill.L1SkillId.PHYSICAL_ENCHANT_DEX;
+import static l1j.server.server.model.skill.L1SkillId.PHYSICAL_ENCHANT_STR;
+
+import l1j.server.MJ3SEx.EActionCodes;
+import l1j.server.MJ3SEx.Loader.SpriteInformationLoader;
+import l1j.server.server.SkillCheck;
+import l1j.server.server.datatables.SkillsTable;
+import l1j.server.server.model.L1Character;
+import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.model.skill.L1SkillUse;
+import l1j.server.server.templates.L1Skills;
+
+public class AutoHuntSkillUse {
+	private L1PcInstance owner = null;
+	private static final int MAGIC_PENALTY = 1000;
+	
+	public AutoHuntSkillUse(L1PcInstance pc) {
+		owner = pc;
+	}
+	
+	public void toUseSkills() {
+		int[] skillIds = null;
+		if(owner.isCrown()) {
+			skillIds = new int[]{L1SkillId.SHIELD};
+		} else if(owner.isKnight()) {
+			skillIds = new int[]{L1SkillId.SHIELD, L1SkillId.REDUCTION_ARMOR, L1SkillId.BOUNCE_ATTACK, L1SkillId.COUNTER_BARRIER};
+		} else if(owner.isElf()) {
+			if(owner.getWeapon() == null) {
+				return;
+			}
+			if(owner.getWeapon().getItem().getType1() == 20) {//활
+				skillIds = new int[] { L1SkillId.PHYSICAL_ENCHANT_STR, L1SkillId.PHYSICAL_ENCHANT_DEX, L1SkillId.SHIELD };
+			} else {// 검요정
+				skillIds = new int[]{L1SkillId.BURNING_WEAPON, 
+						L1SkillId.ELEMENTAL_FIRE, L1SkillId.ADDITIONAL_FIRE, L1SkillId.SOUL_OF_FLAME, 
+						L1SkillId.PHYSICAL_ENCHANT_STR, L1SkillId.PHYSICAL_ENCHANT_DEX,
+						L1SkillId.BLESS_WEAPON, L1SkillId.SHIELD };
+			}
+		} else if(owner.isDarkelf()) {
+			skillIds = new int[]{L1SkillId.DRESS_MIGHTY, L1SkillId.SHADOW_ARMOR, L1SkillId.ENCHANT_VENOM, L1SkillId.MOVING_ACCELERATION,
+					L1SkillId.DRESS_DEXTERITY, L1SkillId.BURNING_SPIRIT, L1SkillId.DOUBLE_BRAKE, L1SkillId.DRESS_EVASION, L1SkillId.UNCANNY_DODGE};
+		} else if(owner.isWizard()) {
+			skillIds = new int[]{L1SkillId.HOLY_WALK, L1SkillId.SHIELD, L1SkillId.BLESS_WEAPON,
+					L1SkillId.PHYSICAL_ENCHANT_STR, L1SkillId.PHYSICAL_ENCHANT_DEX, L1SkillId.ADVANCE_SPIRIT};
+		}
+
+		L1SkillUse _skilluse;
+		L1Skills _skill;
+		for(int i = 0; i < skillIds.length; i++) {
+			try {	
+				long current = System.currentTimeMillis();
+				long interval = getInterval(skillIds[i]);
+				long delay = SpriteInformationLoader.getInstance().getUseSpellInterval(owner, skillIds[i]) + interval;
+				
+				if(current - owner.getAutoSkillDelay() < 0)
+					break;
+				
+				if(!SkillCheck.getInstance().CheckSkill(owner, skillIds[i])) 
+					continue;
+				
+				if(owner.getSkillEffectTimerSet().hasSkillEffect(skillIds[i])) continue;				
+				_skill = SkillsTable.getInstance().getTemplate(skillIds[i]);
+				
+				if(!isHPMPConsume(_skill, skillIds[i])) {
+					return;
+				} else if(!isItemConsume(_skill)){
+					return;
+				}
+				
+				if(skillIds[i] == L1SkillId.BLESS_WEAPON) {
+					if(owner.getWeapon() == null) continue;
+				}
+				
+				if(skillIds[i] == L1SkillId.COUNTER_BARRIER) {
+					if (owner.getWeapon() == null || owner.getWeapon().getItem().getType() != 3) {
+						continue;
+					}
+				}
+
+				_skilluse = new L1SkillUse();
+				_skilluse.handleCommands(owner, skillIds[i], owner.getId(), owner.getX(), owner.getY(), null, 0, L1SkillUse.TYPE_NORMAL);				
+				owner.setAutoSkillDelay(System.currentTimeMillis() + delay + MAGIC_PENALTY);
+			}catch(Exception e) {
+				e.printStackTrace();
+				break;
+			}
+		}
+	}
+	
+	public void toUseHealingMagic() {
+		if(!SkillCheck.getInstance().CheckSkill(owner, L1SkillId.GREATER_HEAL)) 
+			return;
+		
+		if(!owner.isWizard()) return;
+		int _hp = (int) (((double) owner.getCurrentHp() / (double) owner.getMaxHp()) * 100);
+		L1SkillUse _skilluse;
+		long interval = getInterval(L1SkillId.GREATER_HEAL);
+		long delay = SpriteInformationLoader.getInstance().getUseSpellInterval(owner, L1SkillId.GREATER_HEAL) + interval;
+		
+		if(_hp <= 70) {
+			int _mp = (int) (((double) owner.getCurrentMp() / (double) owner.getMaxMp()) * 100);
+			if(_mp <= 30) return;
+			long current = System.currentTimeMillis();
+			if (current - owner.getAutoSkillDelay() < 0) 
+				return;
+			
+			_skilluse = new L1SkillUse();
+			_skilluse.handleCommands(owner, L1SkillId.GREATER_HEAL, owner.getId(), owner.getX(), owner.getY(), null, 0, L1SkillUse.TYPE_NORMAL);
+			owner.setAutoSkillDelay(System.currentTimeMillis() + delay + MAGIC_PENALTY);
+		}
+	}
+	
+	public void toTripleArrow(L1Character target) {			
+		if(!SkillCheck.getInstance().CheckSkill(owner, L1SkillId.TRIPLE_ARROW)) 
+			return;
+		
+		L1Skills _skill = SkillsTable.getInstance().getTemplate(L1SkillId.TRIPLE_ARROW);
+		long interval = getInterval(L1SkillId.TRIPLE_ARROW);
+		long delay = SpriteInformationLoader.getInstance().getUseSpellInterval(owner, L1SkillId.TRIPLE_ARROW) + interval;
+		
+		long current = System.currentTimeMillis();
+		if(current - owner.getAutoSkillDelay() < 0) 
+			return;
+		
+		if(!isHPMPConsume(_skill, L1SkillId.TRIPLE_ARROW)) {
+			return;
+		}
+		L1SkillUse _skilluse = new L1SkillUse();
+		_skilluse.handleCommands(owner, L1SkillId.TRIPLE_ARROW, target.getId(), target.getX(), target.getY(), null, 0, L1SkillUse.TYPE_NORMAL);
+		owner.setAutoSkillDelay(System.currentTimeMillis() + delay + MAGIC_PENALTY);
+	}
+	
+	private boolean isItemConsume(L1Skills _skill) {
+		int itemConsume = _skill.getItemConsumeId();
+		int itemConsumeCount = _skill.getItemConsumeCount();
+		if (itemConsume == 0) {
+			return true;
+		}
+		if (itemConsume == 40318) { 
+			if (owner.getInventory().checkItem(30079, itemConsumeCount)) {
+				return true;
+			}
+		} else if (itemConsume == 40321) { 
+			if (owner.getInventory().checkItem(30080, itemConsumeCount)) {
+				return true;
+			}
+		} else if (itemConsume == 210035) { 
+			if (owner.getInventory().checkItem(30081, itemConsumeCount)) {
+				return true;
+			}
+		} else if (itemConsume == 210038) { 
+			if (owner.getInventory().checkItem(30082, itemConsumeCount)) {
+				return true;
+			}
+		} else if (itemConsume == 40319) { 
+			if (owner.getInventory().checkItem(30078, itemConsumeCount)) {
+				return true;
+			}
+		}
+		if (!owner.getInventory().checkItem(itemConsume, itemConsumeCount)) {
+			return false;
+		}
+		return true;
+	}
+	
+	private boolean isHPMPConsume(L1Skills _skill, int _skillId) {		
+		int _hpConsume;
+		int _mpConsume;
+		_mpConsume = _skill.getMpConsume();
+		_hpConsume = _skill.getHpConsume();
+		int currentMp = 0;
+		int currentHp = 0;
+
+		currentMp = owner.getCurrentMp();
+		currentHp = owner.getCurrentHp();
+
+		if (owner.getAbility().getTotalInt() > 12
+				&& _skillId > L1SkillId.HOLY_WEAPON && _skillId <= L1SkillId.FREEZING_BLIZZARD) {
+			_mpConsume--;
+		}
+		if (owner.getAbility().getTotalInt() > 13 && _skillId > L1SkillId.STALAC
+				&& _skillId <= L1SkillId.FREEZING_BLIZZARD) {
+			_mpConsume--;
+		}
+		if (owner.getAbility().getTotalInt() > 14
+				&& _skillId > L1SkillId.WEAK_ELEMENTAL
+				&& _skillId <= L1SkillId.FREEZING_BLIZZARD) {
+			_mpConsume--;
+		}
+		if (owner.getAbility().getTotalInt() > 15
+				&& _skillId > L1SkillId.MEDITATION && _skillId <= L1SkillId.FREEZING_BLIZZARD) {
+			_mpConsume--;
+		}
+		if (owner.getAbility().getTotalInt() > 16 && _skillId > L1SkillId.DARKNESS
+				&& _skillId <= L1SkillId.FREEZING_BLIZZARD) {
+			_mpConsume--;
+		}
+		if (owner.getAbility().getTotalInt() > 17
+				&& _skillId > L1SkillId.BLESS_WEAPON && _skillId <= L1SkillId.FREEZING_BLIZZARD) {
+			_mpConsume--;
+		}
+		if (owner.getAbility().getTotalInt() > 18 && _skillId > L1SkillId.DISEASE
+				&& _skillId <= L1SkillId.FREEZING_BLIZZARD) {
+			_mpConsume--;
+		}
+
+		if (owner.getAbility().getTotalInt() > 12
+				&& _skillId >= L1SkillId.SHOCK_STUN && _skillId <= L1SkillId.COUNTER_BARRIER) {
+			_mpConsume -= (owner.getAbility().getTotalInt() - 12);
+		}
+		
+		if (owner.isCrown()) {
+			if (owner.getAbility().getBaseInt() >= 11) {
+				_mpConsume--;
+			}
+			if (owner.getAbility().getBaseInt() >= 13) {
+				_mpConsume--;
+			}
+		} else if (owner.isKnight()) {
+			if (owner.getAbility().getBaseInt() >= 9) {
+				_mpConsume--;
+			}
+			if (owner.getAbility().getBaseInt() >= 11) {
+				_mpConsume--;
+			}
+		} else if (owner.isDarkelf()) {
+			if (owner.getAbility().getBaseInt() >= 13) {
+				_mpConsume--;
+			}
+			if (owner.getAbility().getBaseInt() >= 15) {
+				_mpConsume--;
+			}
+		}
+
+		if (_skillId == PHYSICAL_ENCHANT_DEX
+				&& owner.getInventory().checkEquipped(20013)) {
+			_mpConsume /= 2;
+		}
+		if (_skillId == HASTE
+				&& owner.getInventory().checkEquipped(20013)) {
+			_mpConsume /= 2;
+		}
+		if (_skillId == HEAL && owner.getInventory().checkEquipped(20014)) {
+			_mpConsume /= 2;
+		}
+		if (_skillId == EXTRA_HEAL
+				&& owner.getInventory().checkEquipped(20014)) {
+			_mpConsume /= 2;
+		}
+		if (_skillId == ENCHANT_WEAPON
+				&& owner.getInventory().checkEquipped(20015)) {
+			_mpConsume /= 2;
+		}
+		if (_skillId == DETECTION
+				&& owner.getInventory().checkEquipped(20015)) {
+			_mpConsume /= 2;
+		}
+		if (_skillId == PHYSICAL_ENCHANT_STR
+				&& owner.getInventory().checkEquipped(20015)) {
+			_mpConsume /= 2;
+		}
+		if (_skillId == HASTE
+				&& owner.getInventory().checkEquipped(20008)) {
+			_mpConsume /= 2;
+		}
+		if (_skillId == GREATER_HASTE
+				&& owner.getInventory().checkEquipped(20023)) {
+			_mpConsume /= 2;
+		}
+
+		if (0 < _skill.getMpConsume()) {
+			_mpConsume = Math.max(_mpConsume, 1);
+		}
+
+		if (currentHp < _hpConsume + 1) {
+			return false;
+		} else if (currentMp < _mpConsume) {
+			return false;
+		}
+		return true;
+	}
+	
+	public long getInterval(int skillId) {
+		L1Skills skill = SkillsTable.getInstance().getTemplate(skillId);
+		return owner.getCurrentSpriteInterval(skill.getTarget().equals("buff") || skill.getTarget().equals("attack") ? EActionCodes.spell_dir : EActionCodes.spell_nodir);
+	}
+}

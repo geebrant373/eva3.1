@@ -1,0 +1,849 @@
+package l1j.server.AutoHuntSystem;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
+import l1j.server.Config;
+import l1j.server.MJ3SEx.EActionCodes;
+import l1j.server.server.datatables.SprTable;
+import l1j.server.server.model.L1Character;
+import l1j.server.server.model.L1Object;
+import l1j.server.server.model.L1World;
+import l1j.server.server.model.Instance.L1ItemInstance;
+import l1j.server.server.model.Instance.L1MonsterInstance;
+import l1j.server.server.model.Instance.L1PcInstance;
+import l1j.server.server.model.monitor.L1PcMonitor;
+import l1j.server.server.model.skill.L1SkillId;
+import l1j.server.server.model.trap.L1WorldTraps;
+import l1j.server.server.serverpackets.S_MoveCharPacket;
+import l1j.server.server.serverpackets.S_SystemMessage;
+
+public class AutoHuntController extends L1PcMonitor {
+	public AutoHuntController(int oId) {
+		super(oId);
+	}
+
+	@Override
+	public void execTask(L1PcInstance pc) {
+		try {
+			if (owner != pc) {
+				owner = pc;
+			}
+			getSource(owner);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private Random _rnd = new Random(System.nanoTime());
+
+	public final int AUTO_STATUS_NONE = -1;
+	public final int AUTO_STATUS_WALK = 0;
+	public final int AUTO_STATUS_ATTACK = 1;
+	public final int AUTO_STATUS_PICKUP_ITEM = 2;
+	private int moveDelayCount = 0;
+	private final java.util.Map<L1Character, Integer> attackCountMap = new java.util.concurrent.ConcurrentHashMap<>();
+	private L1PcInstance owner;
+
+	// 클래스 상단에 추가
+	private long lastCleanupTime = System.currentTimeMillis();
+
+	private void cleanupAttackCountMap() {
+		long now = System.currentTimeMillis();
+		// 1분마다 정리
+		if (now - lastCleanupTime > 60000) {
+			attackCountMap.entrySet()
+					.removeIf(entry -> entry.getKey().isDead() || entry.getKey().getMapId() != owner.getMapId());
+			lastCleanupTime = now;
+		}
+	}
+
+	private void getSource(L1PcInstance pc) {
+		if (owner == null) {
+			removeAuto("자동 사냥을 종료 합니다.");
+			return;
+		}
+
+		cleanupAttackCountMap(); // 추가
+
+		// 왜 자동이 멈추는지 체크해보기
+		// System.out.println("========================================");
+		// System.out.println("AutoStatus: " + owner.getAutoStatus());
+		// System.out.println("AutoTarget: " + (owner.getAutoTarget() != null ?
+		// owner.getAutoTarget().getName() : "null"));
+		// System.out.println("TargetList: " +
+		// owner.getAutoTargetList().toTargetArrayList().size());
+		// System.out.println("========================================");
+
+		int percent = (int) Math.round(((double) owner.getCurrentHp() / (double) owner.getMaxHp()) * 100);
+		if (percent < owner.get_자동귀환퍼센트()) {
+			removeAuto("HP부족으로 자동 사냥을 종료 합니다.");
+			AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
+			itemuse.toUseScroll(46175);
+			return;
+		}
+
+		if (owner != null && owner.isElf()) {
+			if (owner.getWeapon() != null && owner.getWeapon().getItem() != null
+					&& owner.getWeapon().getItem().getType1() == 20) {
+				if (owner.getInventory().getArrow() == null) {
+					AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
+					itemuse.toUseScroll(46175);
+					removeAuto("화살이 떨어져서 자동 사냥을 종료 합니다.");
+					return;
+				}
+			}
+		}
+
+		if (!owner.getInventory().checkItem(40100)) {
+			removeAuto("순간이동 주문서가 부족하여 자동사냥을 종료 합니다.");
+			AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
+			itemuse.toUseScroll(46175);
+			return;
+		}
+
+		if (!owner.getInventory().checkItem(40024) && !owner.getInventory().checkItem(40021)) {
+			removeAuto("무한 신속 체력 회복제 또는 신속 강력 체력 회복제가 부족하여 자동사냥을 종료 합니다.");
+			AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
+			itemuse.toUseScroll(46175);
+			return;
+		}
+
+		if (owner.isNonAction(owner)) {
+			return;
+		}
+		
+		if (owner.getAutoDropTime() != 0) {
+			if (System.currentTimeMillis() < owner.getAutoDropTime() + 1000) {
+				return;
+			} else {
+				owner.setAutoDropTime(0);
+			}
+		}
+
+		if ((owner.getAutoStatus() != AUTO_STATUS_WALK && owner.getAutoStatus() != AUTO_STATUS_ATTACK
+				&& owner.getAutoStatus() != AUTO_STATUS_PICKUP_ITEM)) {
+			owner.setAutoStatus(AUTO_STATUS_WALK);
+		}
+
+		if (owner.isDead()) {
+			removeAuto("캐릭터가 사망하여 자동사냥을 종료 합니다.");
+			return;
+
+		}
+
+		else {
+			AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
+			itemuse.toUseItem();
+			itemuse.toPolyScroll();
+
+			AutoHuntSkillUse skilluse = new AutoHuntSkillUse(owner);
+			skilluse.toUseSkills();
+			skilluse.toUseHealingMagic();
+		}
+		//System.out.println("status = "+ owner.getAutoStatus());
+		switch (owner.getAutoStatus()) {
+		case AUTO_STATUS_WALK:
+			// System.out.println(">>> WALK 모드 진입"); //텔타는가? 체크중
+			searchTarget();
+			if (owner.getAutoTarget() == null) {
+				toRandomWalk(pc); // 바로텔타면 불필요함! WALK모드 진입시 바로 텔타기는거 확인
+			}
+			if (pc.getAutoTell()) {
+				if (pc.getMap().isTeleportable()) {
+					noTargetTeleport(pc);
+				} else {
+					if (pc.getMapId() == 101
+							&& (pc.getInventory().checkItem(830022) || pc.getInventory().checkItem(560028))) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() == 102
+							&& (pc.getInventory().checkItem(830023) || pc.getInventory().checkItem(560028))) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() == 103
+							&& (pc.getInventory().checkItem(830024) || pc.getInventory().checkItem(560028))) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() == 104
+							&& (pc.getInventory().checkItem(830025) || pc.getInventory().checkItem(560028))) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() == 105
+							&& (pc.getInventory().checkItem(830026) || pc.getInventory().checkItem(560028))) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() == 106
+							&& (pc.getInventory().checkItem(830027) || pc.getInventory().checkItem(560028))) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() == 107
+							&& (pc.getInventory().checkItem(830028) || pc.getInventory().checkItem(560028))) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() == 108
+							&& (pc.getInventory().checkItem(830029) || pc.getInventory().checkItem(560028))) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() == 109
+							&& (pc.getInventory().checkItem(830030) || pc.getInventory().checkItem(560028))) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() == 110
+							&& (pc.getInventory().checkItem(830031) || pc.getInventory().checkItem(560028))) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() >= 12852 && pc.getMapId() <= 12862
+							&& pc.getInventory().checkItem(560028)) {
+						noTargetTeleport(pc);
+					} else if (pc.getMapId() >= 15410 && pc.getMapId() <= 15440
+							&& pc.getInventory().checkItem(900111)) {
+						noTargetTeleport(pc);
+					}
+				}
+			}
+			if (owner.getAutoTargetList().toTargetArrayList().size() > 0) {
+				owner.setAutoStatus(AUTO_STATUS_ATTACK);
+			}
+			break;
+		case AUTO_STATUS_ATTACK:
+			if (owner.getAutoTargetList().toTargetArrayList().size() == 0) {
+				owner.getAutoTargetList().clear();
+				owner.setAutoTarget(null);
+				owner.setAutoStatus(AUTO_STATUS_WALK);
+			}
+			toAttackMonster(pc);
+			break;
+		default:
+			break;
+		}
+	}
+
+	// 클래스 상단
+	private int lastStuckTargetId = 0; // ← 객체가 아닌 ID!
+	private long stuckStartTime = 0;
+
+	private void toAttackMonster(L1PcInstance pc) {
+		try {
+			L1Character target = owner.getAutoTarget();
+			if (target == null) {
+	            lastStuckTargetId = 0;
+	            stuckStartTime = 0;
+	            owner.setAutoStatus(AUTO_STATUS_WALK);
+	            return;
+	        }
+			if (!owner.glanceCheck(target.getX(), target.getY())) {
+				owner.getAutoTargetList().clear();
+				owner.setAutoTarget(null);
+				owner.setAutoStatus(AUTO_STATUS_WALK);
+				return;
+			}
+			
+			// ★ ID로 비교!
+			if (target != null) {
+				int currentTargetId = target.getId(); // 몬스터 고유 ID
+
+				if (currentTargetId == lastStuckTargetId && lastStuckTargetId != 0) {
+					if (stuckStartTime == 0) {
+						stuckStartTime = System.currentTimeMillis();
+						// System.out.println("DEBUG: 타이머 시작! ID=" + currentTargetId);
+					} else {
+						long elapsed = System.currentTimeMillis() - stuckStartTime;
+						// System.out.println("DEBUG: 경과 시간=" + elapsed + "ms");
+
+						if (elapsed > 10000) {
+							owner.removeAutoTargetList(target);
+							owner.setAutoTarget(null);
+							attackCountMap.remove(target);
+							noTargetTeleport(owner);
+							lastStuckTargetId = 0;
+							stuckStartTime = 0;
+							System.out.println("타겟 유지: 10 경과! 텔레포트!");
+							return;
+						}
+						//System.out.println("target="+elapsed);
+					}
+				} else {
+					// System.out.println("DEBUG: 타겟 변경! " + lastStuckTargetId + " → " +
+					// currentTargetId);
+					lastStuckTargetId = currentTargetId;
+					stuckStartTime = 0;
+				}
+			} else {
+				lastStuckTargetId = 0;
+				stuckStartTime = 0;
+			}
+
+			if (target != null && target.isDead()) {
+				owner.removeAutoTargetList(target);
+				owner.setAutoTarget(null);
+				attackCountMap.remove(target); // 추가!
+
+				searchTarget();
+				return;
+			}
+
+			if (owner.getAutoTarget() == null) {
+				searchTarget();
+
+				// 타겟 못 찾으면 WALK
+				if (owner.getAutoTarget() == null) {
+					owner.setAutoStatus(AUTO_STATUS_WALK);
+				}
+				return;
+			}
+
+			if (!isAttack(target)) {
+				owner.removeAutoTargetList(target);
+				owner.setAutoTarget(null);
+				// lastStuckTarget = null; // 벽뒤 인식 리셋
+				// stuckStartTime = 0; // 벽뒤 인식 리셋
+				searchTarget(); // 추가
+				return; // 추가
+			}
+
+			if (!isAutoAttackTime()) {
+				return;
+			}
+
+			if (owner.getAutoTarget() == null) {
+				owner.setAutoStatus(AUTO_STATUS_WALK);
+				searchTarget(); // 추가
+				return;
+			}
+
+			L1Character newTarget = getTarget(); // 변수에 먼저 저장 추가
+			if (newTarget != null && target != null) { // 추가
+				if (owner.getLocation().getTileLineDistance(newTarget.getLocation()) < owner.getLocation()
+						.getTileLineDistance(target.getLocation())) {
+					owner.removeAutoTargetList(target);
+					owner.setAutoTarget(newTarget);
+					target = newTarget;
+				}
+			}
+
+			// checkTargetHpWithTimeout(owner, target); // 여기가 원위치 (사거리 밑으로 내렸음)
+
+			if (pc.isElf()) {
+				if (pc.getWeapon().getItem().getType1() == 20) {
+					pc.setAttackRang(8);
+				} else {
+					pc.setAttackRang(1);
+				}
+			} else if (pc.isWizard()) { // 용기사 마법사 환술사 두칸 공격
+				pc.setAttackRang(2);
+			} else {
+				pc.setAttackRang(1);
+			}
+
+			// checkTargetHpWithTimeout(owner, target); // 주석을 하나 안하나 멈추는건 마찬가지 불필요 하여 주석
+
+			if (isDistance(owner.getX(), owner.getY(), owner.getMapId(), target.getX(), target.getY(),
+					target.getMapId(), owner.getAttackRang())) {
+				if (owner.glanceCheck(target.getX(), target.getY())) {
+					toAttack();
+					moveDelayCount = 0; // 어택성공시 리셋 불필요한 텔하지않도록 추가
+				} else {
+					toMoving(target.getX(), target.getY(), 0, true);
+					moveDelayCount++;
+					if (moveDelayCount >= 10) {
+						AutoHuntItemUse autoitem = new AutoHuntItemUse(owner);
+						autoitem.toUseScroll(40100);
+						moveDelayCount = 0;
+					}
+				}
+			} else {
+				if (owner.getAutoAiTime() == 0) {
+					owner.setAutoAiTime(System.currentTimeMillis());
+				} else {
+					if (System.currentTimeMillis() >= owner.getAutoAiTime() + 10000) {
+						owner.setAutoAiTime(0);
+						owner.removeAutoTargetList(target);
+						owner.setAutoTarget(null);
+						return; // 추가
+					}
+				}
+				toMoving(target.getX(), target.getY(), 0, true);
+				moveDelayCount++;
+				if (moveDelayCount >= 10) {
+					owner.toCharacterRefresh();
+					moveDelayCount = 0;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace(); // 에러 로그 출력
+			owner.removeAutoTargetList(owner.getAutoTarget());
+			owner.setAutoTarget(null);
+			searchTarget(); // 에러 발생해도 타겟 재검색 추가
+		}
+	}
+
+	private boolean isAttack(L1Character cha) {
+		try {
+			if (cha == null) {
+				return false;
+			}
+
+			if (cha.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.EARTH_BIND)) {
+				return false;
+			}
+
+			if (cha.getMap().isSafetyZone(cha.getLocation())) {
+				// 특정 맵에서는 안전지대 체크 무시
+				int mapId = cha.getMapId();
+				if (mapId != 813 && mapId != 2 && mapId != 1700 && mapId != 785) {
+					return false;
+				}
+			}
+
+			if (cha.isDead())
+				return false;
+
+			if (cha.isInvisble())
+				return false;
+			// HP 10만 이상 몬스터 공격하지 않음
+			if (cha.getMaxHp() >= 100000) {
+				return false;
+			}
+
+			if (!isDistance(owner.getX(), owner.getY(), owner.getMapId(), cha.getX(), cha.getY(), cha.getMapId(), 12))
+				return false;
+
+			if (!owner.glanceCheck(cha.getX(), cha.getY()))
+				return false;
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	private void toAttack() {
+		try {
+			L1Character target = owner.getAutoTarget();
+			if (target == null) {
+				owner.getAutoTargetList().clear();
+				owner.setAutoStatus(AUTO_STATUS_WALK);
+				return;
+			}
+
+			attackCountMap.put(target, attackCountMap.getOrDefault(target, 0) + 1);
+
+			if (attackCountMap.get(target) >= 30) {
+				attackCountMap.remove(target); // 카운트 초기화
+				owner.removeAutoTargetList(target);
+				owner.setAutoTarget(null);
+				AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
+				itemuse.toUseScroll(40100);
+				return;
+			}
+
+			if (owner.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.MEDITATION)) {
+				owner.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.MEDITATION);
+			}
+
+			owner.delInvis();
+			if (owner.isElf() && owner.getWeapon().getItem().getType1() == 20) {
+				int chance = _rnd.nextInt(100) + 1;
+				if (chance <= Config.자동사냥트리플발동확률) {
+					AutoHuntSkillUse skilluse = new AutoHuntSkillUse(owner);
+					skilluse.toTripleArrow(target);
+				} else {
+					target.onAction(owner);
+				}
+			} else {
+				AutoHuntSkillUse skilluse = new AutoHuntSkillUse(owner);
+				int skillchance = _rnd.nextInt(100) + 1;
+				List<String> activeSkills = new ArrayList<>();
+				if (owner.getCurrentMpPercent() > owner.get_자동귀환퍼센트()) {
+					if (owner.getAutoskill1()) {
+						activeSkills.add("아이스스파이크");
+					}
+					if (owner.getAutoskill2()) {
+						activeSkills.add("미티어");
+					}
+					if (!activeSkills.isEmpty()) {
+						Random random = new Random();
+						int randomIndex = random.nextInt(activeSkills.size());
+						String skillToUse = activeSkills.get(randomIndex);
+						if (skillchance <= Config.자동사냥법사공격스킬발동확률) {
+							switch (skillToUse) {
+							case "아이스스파이크":
+								skilluse.toIceSpike(owner, target);
+								break;
+							case "미티어":
+								skilluse.toMeteorStrike(owner, target);
+								break;
+							}
+						}
+					}
+				}
+				target.onAction(owner);
+			}
+		} catch (Exception e) {
+			owner.setAutoTarget(null);
+			owner.getAutoTargetList().clear();
+		}
+	}
+
+	private L1Character getTarget() {
+		L1Character realTarget = null;
+		try {
+			for (int i = 0; i < owner.getAutoTargetList().toTargetArrayList().size(); i++) {
+				L1Character target = owner.getAutoTargetList().toTargetArrayList().get(i);
+				if (target.isDead()) {
+					owner.removeAutoTargetList(target);
+					attackCountMap.remove(target); // 추가
+					i--; // ← 반복문에서 리스트를 지울 때 인덱스 문제 방지
+					owner.setAutoTarget(null);
+					continue;
+				}
+				if (!owner.glanceCheck(target.getX(), target.getY())) {
+					owner.removeAutoTargetList(target);
+					i--; // ← 반복문에서 리스트를 지울 때 인덱스 문제 방지
+					owner.setAutoTarget(null);
+					continue;
+				}
+
+				if (realTarget == null) {
+					realTarget = target;
+				} else if (!target.isDead()
+						&& getDistance(owner.getX(), owner.getY(), target.getX(), target.getY()) < getDistance(
+								owner.getX(), owner.getY(), realTarget.getX(), realTarget.getY())) {
+					realTarget = target;
+				}
+			}
+			// 리스트에서 못 찾았으면 searchTarget() 호출 추가
+			if (realTarget == null) {
+				searchTarget();
+				if (owner.getAutoTarget() != null) {
+					realTarget = owner.getAutoTarget();
+				}
+			}
+			return realTarget;
+		} catch (Exception e) {
+			e.printStackTrace();
+			owner.getAutoTargetList().clear();
+			owner.setAutoTarget(null);
+			return realTarget;
+		}
+	}
+
+	private boolean isDistance(int x, int y, int m, int tx, int ty, int tm, int loc) {
+		int distance = getDistance(x, y, tx, ty);
+		if (loc < distance)
+			return false;
+		if (m != tm)
+			return false;
+		return true;
+	}
+
+	private int getDistance(int x, int y, int tx, int ty) {
+		long dx = tx - x;
+		long dy = ty - y;
+		return (int) Math.sqrt(dx * dx + dy * dy);
+	}
+
+	private void searchTarget() {
+		if (owner.getWeapon() != null && owner.getWeapon().getItem().getType1() == 20) {
+			AutoHuntSkillUse skilluse = new AutoHuntSkillUse(owner);
+			skilluse.toBloodSoul(owner);
+		}
+		checkTarget();
+		for (L1Object obj : L1World.getInstance().getVisibleObjects(owner)) {
+			if (obj == null) {
+				continue;
+			}
+			if (obj instanceof L1MonsterInstance) {
+				L1MonsterInstance mon = (L1MonsterInstance) obj;
+				if (mon.isDead()) {
+					continue;
+				}
+				if (mon.getHiddenStatus() >= 1) {
+					continue;
+				}
+				// HP 10만 이상 몬스터 건너뛰기
+				if (mon.getMaxHp() >= 100000) {
+					continue;
+				}
+
+				if (!owner.glanceCheck(mon.getX(), mon.getY())) {
+					continue;
+				}
+				owner.addAutoTargetList(mon);
+
+				if (owner.getAutoTarget() == null) {
+					owner.setAutoTarget(mon);
+				}
+			}
+		}
+	}
+
+	private void checkTarget() {
+		try {
+			L1Character target = owner.getAutoTarget();
+			if (target == null || target.getMapId() != owner.getMapId() || target.isDead() || target.getCurrentHp() <= 0
+					|| (target.isInvisble() && !owner.getAutoTargetList().containsKey(target))
+					|| target.getMaxHp() >= 100000) { // HP 10만 이상 몬스터 건너뛰기
+				if (target != null) {
+					tagertClear();
+				}
+
+				if (!owner.getAutoTargetList().isEmpty()) {
+					owner.setAutoTarget(owner.getAutoTargetList().getMaxHateCharacter());
+					checkTarget();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void tagertClear() {
+		L1Character target = owner.getAutoTarget();
+		if (target == null) {
+			return;
+		}
+		owner.getAutoTargetList().remove(target);
+		owner.setAutoTarget(null);
+		attackCountMap.remove(target); // 카운트 초기화
+	}
+
+	private void toRandomWalk(L1PcInstance pc) {
+		if (!isAutoMoveTime()) {
+			return;
+		}
+
+		if (owner.getAutoMoveCount() == 0) {
+			int randomLocX = (int) ((Math.random() * 10) - 5);
+			int randomLocY = (int) ((Math.random() * 10) - 5);
+			int _locX = owner.getX() + randomLocX;
+			int _locY = owner.getY() + randomLocY;
+			owner.setAutoLocX(_locX);
+			owner.setAutoLocY(_locY);
+		}
+		if (pc.getWeapon() != null && pc.getWeapon().getItem().getType1() == 20) {
+			AutoHuntSkillUse skilluse = new AutoHuntSkillUse(owner);
+			skilluse.toBloodSoul(pc);
+		}
+		int dir = owner.targetDirection(owner.getAutoLocX(), owner.getAutoLocY());
+		toMoving(owner.getAutoLocX(), owner.getAutoLocY(), dir, true);
+	}
+
+	private void toMoving(int x, int y, int h, boolean astar) {
+		try {
+			if (astar) {
+				owner.getAutoAstar().ResetPath();
+				owner.setAutoTail(owner.getAutoAstar().FindPath(owner, x, y, owner.getMapId(), null));
+				// 추가
+				if (owner.getAutoTail() == null) {
+					owner.setAutoMoveCount(0);
+					return;
+				}
+				// 추가
+				if (owner.getAutoTail() != null) {
+					owner._autoCurrentPath = -1;
+					owner.getAutoPath().clear();
+					while (owner.getAutoTail() != null) {
+						if (owner.getAutoTail().x == owner.getX() && owner.getAutoTail().y == owner.getY()) {
+							break;
+						}
+						owner.getAutoPath().add(new int[] { owner.getAutoTail().x, owner.getAutoTail().y });
+						owner.setAutoTail(owner.getAutoTail().prev);
+					}
+					if (owner.getAutoPath().isEmpty()) {
+						owner.setAutoMoveCount(0);
+						return;
+					}
+					owner._autoCurrentPath = owner.getAutoPath().size() - 1;
+					int[] step = owner.getAutoPath().get(owner._autoCurrentPath);
+					toMoving(step[0], step[1], calcheading(owner.getX(), owner.getY(), step[0], step[1]));
+				}
+			} else {
+				toMoving(x, y, h);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void toMoving(final int x, final int y, final int h) {
+		try {
+
+			if (owner.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_FREEZE)) {
+				return;
+			}
+			owner.getMap().setPassable(owner.getLocation(), true);
+			owner.getLocation().set(x, y);
+			owner.getMoveState().setHeading(h);
+			L1WorldTraps.getInstance().onPlayerMoved(owner);
+			owner.getMap().setPassable(owner.getLocation(), false);
+			owner.sendPackets(new S_MoveCharPacket(owner));
+			owner.broadcastPacket(new S_MoveCharPacket(owner));
+			owner.setAutoMoveCount(owner.getAutoMoveCount() + 1);
+			if (owner.getAutoMoveCount() >= 8) { // 자동 화면 변경하기 카시님 기본 8
+				owner.setAutoMoveCount(0);
+				owner.toCharacterRefresh();
+			}
+		} catch (Exception e) {
+			// e.printStackTrace();
+		}
+	}
+
+	private int calcheading(int myx, int myy, int tx, int ty) {
+		if (tx > myx && ty > myy) {
+			return 3;
+		} else if (tx < myx && ty < myy) {
+			return 7;
+		} else if (tx > myx && ty == myy) {
+			return 2;
+		} else if (tx < myx && ty == myy) {
+			return 6;
+		} else if (tx == myx && ty < myy) {
+			return 0;
+		} else if (tx == myx && ty > myy) {
+			return 4;
+		} else if (tx < myx && ty > myy) {
+			return 5;
+		} else {
+			return 1;
+		}
+	}
+
+	private boolean isAutoAttackTime() {
+		long temp = System.currentTimeMillis() - owner.getAutoTimeAttack();
+  
+		if (owner.isNonAction(owner))
+			return false;
+		
+		
+		long interval = SprTable.getInstance().getAttackSpeed(owner.getGfxId().getTempCharGfx(), owner.getCurrentWeapon() + 1);
+		if (owner.isHaste()) {
+			interval *= 0.745;
+		}
+		
+		if (owner.isBrave()) {
+			interval *= 0.745;
+		}		
+		if (owner.isElfBrave()) {
+			interval *= 0.874;
+		}
+		
+		if (owner.isDragonPearl()) {
+			interval *= 0.87;
+		}
+		
+		interval *= Config.ATTACK_SPEED_VALUE;
+		
+		if (temp < interval) {
+			return false;
+		}
+		if (temp >= interval) {
+			owner.setAutoTimeAttack(System.currentTimeMillis());
+			return true;
+		}
+		return false;
+	}
+
+	private boolean isAutoMoveTime() {
+		long temp = System.currentTimeMillis() - owner.getAutoTimeMove();
+		if (owner.isNonAction(owner))
+			return false;
+		long interval = SprTable.getInstance().getMoveSpeed(owner.getGfxId().getTempCharGfx(), owner.getCurrentWeapon());
+		if (owner.isHaste()) {
+			interval *= 0.745;
+		}
+		
+		if (owner.isBrave()) {
+			interval *= 0.745;
+		}		
+		if (owner.isElfBrave()) {
+			interval *= 0.874;
+		}
+		
+		if (owner.isDragonPearl()) {
+			interval *= 0.87;
+		}
+		
+		interval *= Config.MOVE_SPEED_VALUE;
+		if (temp < interval) {
+			return false;
+		}
+		if (temp >= interval) {
+			owner.setAutoTimeMove(System.currentTimeMillis());
+			return true;
+		}
+		return false;
+	}
+
+	protected L1ItemInstance _targetItem = null;
+	protected List<L1ItemInstance> _targetItemList = new ArrayList<L1ItemInstance>();
+
+	public void removeAuto(String ment) {
+		owner.toCharacterRefresh();
+		if (owner != null) {
+			owner.resetAuto();
+			owner.sendPackets(new S_SystemMessage(String.format("%s", ment)));
+		}
+		// 종료시 정리 추가
+		attackCountMap.clear();
+		owner.EndAutoController();
+	}
+
+	private void noTargetTeleport(L1PcInstance pc) {
+		AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
+		if (pc.getAutoAiTime() == 0) {
+			pc.setAutoAiTime(System.currentTimeMillis());
+		} else {
+			if (pc.getAutoTargetList().toTargetArrayList().size() == 0
+					&& System.currentTimeMillis() >= pc.getAutoAiTime() + 3000) {
+				itemuse.toUseScroll(40100);
+				pc.setAutoAiTime(System.currentTimeMillis());
+			}
+		}
+	}
+
+	public void checkItemCountWithTimeout(L1PcInstance pc, L1Character cha) {
+		int arrowid = owner.getInventory().getArrow().getItemId();
+		int initialCount = pc.getInventory().checkItemCount(arrowid);
+		ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
+		scheduler.schedule(new Runnable() {
+			@Override
+			public void run() {
+				int newCount = pc.getInventory().checkItemCount(arrowid);
+				if (newCount == initialCount) {
+					pc.removeAutoTargetList(cha);
+					pc.setAutoTarget(null);
+					searchTarget();
+				}
+				scheduler.shutdown();
+			}
+		}, 3, TimeUnit.SECONDS);
+	}
+
+	private static final ScheduledExecutorService scheduler = Executors.newSingleThreadScheduledExecutor();
+
+	public void checkTargetHpWithTimeout(L1PcInstance pc, L1Character cha) {
+		if (pc == null || cha == null || cha.isDead()) {
+			return;
+		}
+		final int initialHp = cha.getCurrentHp();
+		scheduler.schedule(() -> {
+			try {
+				if (pc.isDead() || cha.isDead()) {
+					return;
+				}
+				if (pc == null || cha == null) {
+					return;
+				}
+
+				int currentHp = cha.getCurrentHp();
+				if (currentHp == initialHp) {
+					pc.removeAutoTargetList(cha);
+					pc.setAutoTarget(null);
+					if (!pc.isDead()) {
+						searchTarget();
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}, 3, TimeUnit.SECONDS);
+	}
+
+}
