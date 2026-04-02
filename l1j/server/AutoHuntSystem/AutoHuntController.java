@@ -106,13 +106,6 @@ public class AutoHuntController extends L1PcMonitor {
 			return;
 		}
 
-		if (!owner.getInventory().checkItem(40024) && !owner.getInventory().checkItem(40021)) {
-			removeAuto("무한 신속 체력 회복제 또는 신속 강력 체력 회복제가 부족하여 자동사냥을 종료 합니다.");
-			AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
-			itemuse.toUseScroll(46175);
-			return;
-		}
-
 		if (owner.isNonAction(owner)) {
 			return;
 		}
@@ -157,41 +150,27 @@ public class AutoHuntController extends L1PcMonitor {
 				if (pc.getMap().isTeleportable()) {
 					noTargetTeleport(pc);
 				} else {
-					if (pc.getMapId() == 101
-							&& (pc.getInventory().checkItem(830022) || pc.getInventory().checkItem(560028))) {
+					if (pc.getMapId() == 101 && pc.getInventory().checkItem(5370617)) {
 						noTargetTeleport(pc);
-					} else if (pc.getMapId() == 102
-							&& (pc.getInventory().checkItem(830023) || pc.getInventory().checkItem(560028))) {
+					} else if (pc.getMapId() == 102 && pc.getInventory().checkItem(5370618)) {
 						noTargetTeleport(pc);
-					} else if (pc.getMapId() == 103
-							&& (pc.getInventory().checkItem(830024) || pc.getInventory().checkItem(560028))) {
+					} else if (pc.getMapId() == 103 && pc.getInventory().checkItem(5370619)) {
 						noTargetTeleport(pc);
-					} else if (pc.getMapId() == 104
-							&& (pc.getInventory().checkItem(830025) || pc.getInventory().checkItem(560028))) {
+					} else if (pc.getMapId() == 104 && pc.getInventory().checkItem(5370620)) {
 						noTargetTeleport(pc);
-					} else if (pc.getMapId() == 105
-							&& (pc.getInventory().checkItem(830026) || pc.getInventory().checkItem(560028))) {
+					} else if (pc.getMapId() == 105 && pc.getInventory().checkItem(5370621)) {
 						noTargetTeleport(pc);
-					} else if (pc.getMapId() == 106
-							&& (pc.getInventory().checkItem(830027) || pc.getInventory().checkItem(560028))) {
+					} else if (pc.getMapId() == 106 && pc.getInventory().checkItem(5370622)) {
 						noTargetTeleport(pc);
-					} else if (pc.getMapId() == 107
-							&& (pc.getInventory().checkItem(830028) || pc.getInventory().checkItem(560028))) {
+					} else if (pc.getMapId() == 107 && pc.getInventory().checkItem(5370623)) {
 						noTargetTeleport(pc);
-					} else if (pc.getMapId() == 108
-							&& (pc.getInventory().checkItem(830029) || pc.getInventory().checkItem(560028))) {
+					} else if (pc.getMapId() == 108 && pc.getInventory().checkItem(5370624)) {
 						noTargetTeleport(pc);
-					} else if (pc.getMapId() == 109
-							&& (pc.getInventory().checkItem(830030) || pc.getInventory().checkItem(560028))) {
+					} else if (pc.getMapId() == 109 && pc.getInventory().checkItem(5370625)) {
 						noTargetTeleport(pc);
-					} else if (pc.getMapId() == 110
-							&& (pc.getInventory().checkItem(830031) || pc.getInventory().checkItem(560028))) {
+					} else if (pc.getMapId() == 110 && pc.getInventory().checkItem(5370626)) {
 						noTargetTeleport(pc);
-					} else if (pc.getMapId() >= 12852 && pc.getMapId() <= 12862
-							&& pc.getInventory().checkItem(560028)) {
-						noTargetTeleport(pc);
-					} else if (pc.getMapId() >= 15410 && pc.getMapId() <= 15440
-							&& pc.getInventory().checkItem(900111)) {
+					} else if (pc.getMapId() >= 15410 && pc.getMapId() <= 15440 && pc.getInventory().checkItem(900111)) {
 						noTargetTeleport(pc);
 					}
 				}
