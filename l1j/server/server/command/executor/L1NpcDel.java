@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -51,16 +51,16 @@ public class L1NpcDel implements L1CommandExecutor {
 			String name = st.nextToken();
 			GameServerSetting num = GameServerSetting.getInstance();
 
-			if (param.equalsIgnoreCase("¹«ÀÎ")) {
+			if (param.equalsIgnoreCase("ë¬´ì¸")) {
 				ShopNpc = ShopNpcSystem.getInstance().getShopNpc(name);
 				if (ShopNpc != null){
 					ShopNpc.deleteMe();
 					num.set_fakePlayerNum(num.get_fakePlayerNum() -1);
-					pc.sendPackets(new S_SystemMessage("¹«ÀÎNPC " +ShopNpc.getNameId()+" »èÁ¦ µÇ¾ú½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ë¬´ì¸NPC " +ShopNpc.getNameId()+" ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤."));
 				} else {
-					pc.sendPackets(new S_SystemMessage("Á¸Àç ÇÏÁö ¾Ê´Â ¹«ÀÎNPC ÀÌ¸§ÀÔ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ì¡´ì¬ í•˜ì§€ ì•ŠëŠ” ë¬´ì¸NPC ì´ë¦„ì…ë‹ˆë‹¤."));
 				}
-			} else if(param.equalsIgnoreCase("¸¶³×Å·")) {
+			} else if(param.equalsIgnoreCase("ë§ˆë„¤í‚¹")) {
 				npc = MannequinSystem.getInstance().getMannequin(name);
 				if (npc != null){
 					npc.deleteMe();
@@ -72,13 +72,13 @@ public class L1NpcDel implements L1CommandExecutor {
 					}
 
 					num.set_fakePlayerNum(num.get_fakePlayerNum() -1);
-					pc.sendPackets(new S_SystemMessage("¸¶³×Å· "+npc.getNameId()+" »èÁ¦ µÇ¾ú½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ë§ˆë„¤í‚¹ "+npc.getNameId()+" ì‚­ì œ ë˜ì—ˆìŠµë‹ˆë‹¤."));
 				} else {
-					pc.sendPackets(new S_SystemMessage("Á¸Àç ÇÏÁö ¾Ê´Â ¸¶³×Å·NPC ÀÌ¸§ÀÔ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ì¡´ì¬ í•˜ì§€ ì•ŠëŠ” ë§ˆë„¤í‚¹NPC ì´ë¦„ì…ë‹ˆë‹¤."));
 				}
 			}
 		}catch(Exception e){
-			pc.sendPackets(new S_SystemMessage(cmdName+" [¹«ÀÎ or ¸¶³×Å·] [NPCÀÌ¸§] ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä."));
+			pc.sendPackets(new S_SystemMessage(cmdName+" [ë¬´ì¸ or ë§ˆë„¤í‚¹] [NPCì´ë¦„] ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”."));
 		}
 	}
 }

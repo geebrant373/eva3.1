@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -124,12 +124,12 @@ public class PetMatch {
 			}
 		}
 		
-	    // PC°¡ ½ÃÇÕÀå¿¡ 2¸í ÀÖ´Â °æ¿ì
+	    // PCê°€ ì‹œí•©ì¥ì— 2ëª… ìˆëŠ” ê²½ìš°
 		if (pc1.getMapId() == PET_MATCH_MAPID[petMatchNo] && pc2.getMapId() == PET_MATCH_MAPID[petMatchNo]) {
 			return STATUS_PLAYING;
 		}
 
-		// PC°¡ ½ÃÇÕÀå¿¡ 1¸í ÀÖ´Â °æ¿ì
+		// PCê°€ ì‹œí•©ì¥ì— 1ëª… ìˆëŠ” ê²½ìš°
 		if (pc1.getMapId() == PET_MATCH_MAPID[petMatchNo]) {
 			_pc2Name[petMatchNo] = null;
 			_pet2[petMatchNo] = null;
@@ -144,14 +144,14 @@ public class PetMatch {
 	}
 
 	private int decidePetMatchNo() {
-		// »ó´ë°¡ ´ë±âÁßÀÇ ½ÃÇÕÀ» Ã£´Â´Ù
+		// ìƒëŒ€ê°€ ëŒ€ê¸°ì¤‘ì˜ ì‹œí•©ì„ ì°¾ëŠ”ë‹¤
 		for (int i = 0; i < MAX_PET_MATCH; i++) {
 			int status = getPetMatchStatus(i);
 			if (status == STATUS_READY1 || status == STATUS_READY2) {
 				return i;
 			}
 		}
-		// ´ë±âÁßÀÇ ½ÃÇÕÀÌ ¾øÀ¸¸é ºñ¾î ÀÖ´Â ½ÃÇÕÀ» Ã£´Â´Ù
+		// ëŒ€ê¸°ì¤‘ì˜ ì‹œí•©ì´ ì—†ìœ¼ë©´ ë¹„ì–´ ìˆëŠ” ì‹œí•©ì„ ì°¾ëŠ”ë‹¤
 		for (int i = 0; i < MAX_PET_MATCH; i++) {
 			int status = getPetMatchStatus(i);
 			if (status == STATUS_NONE) {
@@ -234,7 +234,7 @@ public class PetMatch {
 			_pet2[petMatchNo].setCurrentPetStatus(3);
 			giveMedal(pc1, petMatchNo, false);
 			giveMedal(pc2, petMatchNo, true);
-		} else if (winNo == 3) { // ¹«½ÂºÎ
+		} else if (winNo == 3) { // ë¬´ìŠ¹ë¶€
 			_pet1[petMatchNo].setCurrentPetStatus(3);
 			_pet2[petMatchNo].setCurrentPetStatus(3);
 			giveMedal(pc1, petMatchNo, false);
@@ -252,7 +252,7 @@ public class PetMatch {
 		if (pc.getMapId() != PET_MATCH_MAPID[petMatchNo]) return;
 		
 		if (isWin) {
-			pc.sendPackets(new S_ServerMessage(1166, pc.getName()));  // %0%sÆê ¸ÅÄ¡·Î ½Â¸®¸¦ °ÅµÎ¾ú½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(1166, pc.getName()));  // %0%sí« ë§¤ì¹˜ë¡œ ìŠ¹ë¦¬ë¥¼ ê±°ë‘ì—ˆìŠµë‹ˆë‹¤.
 			L1ItemInstance item = ItemTable.getInstance().createItem(41309);
 			int count = 3;
 			if (item != null) {
@@ -403,7 +403,7 @@ public class PetMatch {
 						return;
 					}
 	
-					if (_counter == 100) { // 5ºĞ Áö³ªµµ ³¡³ªÁö ¾Ê´Â °æ¿ì´Â ¹«½ÂºÎ
+					if (_counter == 100) { // 5ë¶„ ì§€ë‚˜ë„ ëë‚˜ì§€ ì•ŠëŠ” ê²½ìš°ëŠ” ë¬´ìŠ¹ë¶€
 						PetMatch.getInstance().endPetMatch(_petMatchNo, 3);
 						this.cancel();
 						return;

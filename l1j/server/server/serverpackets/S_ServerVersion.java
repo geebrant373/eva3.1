@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -34,10 +34,10 @@ public class S_ServerVersion extends ServerBasePacket {
 		writeD(0x000189c5); // cache version
 		writeD(0x77cef9f0); // auth ver
 		writeD(0x000189d4); // npc ver
-		writeD(time); // ·Î±×ÀÎ½ÃÀÇ ½Ã°£ ¼³Á¤ b2 c7 d4 4d
+		writeD(time); // ë¡œê·¸ì¸ì‹œì˜ ì‹œê°„ ì„¤ì • b2 c7 d4 4d
 		writeC(0x00); // unk 1
 		writeC(0x00); // unk 2
-		writeC(0x00); // 0:¿µ¾î 8:ÀÏº»¾î //writeC(0x00);
+		writeC(0x00); // 0:ì˜ì–´ 8:ì¼ë³¸ì–´ //writeC(0x00);
 		//writeH(0xab2e);
 		//writeH(0x8806);
 		//writeH(0x0002);

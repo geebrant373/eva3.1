@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -80,15 +80,15 @@ public class C_GiveItem extends ClientBasePacket {
 		}
 		
 		if (item.isEquipped()) {
-			pc.sendPackets(new S_ServerMessage(141)); // \f1Àåºñ ÇÏ°í ÀÖ´Â °ÍÀº, »ç¶÷¿¡°Ô °Ç³×ÁÙ ¼ö°¡ ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(141)); // \f1ì¥ë¹„ í•˜ê³  ìˆëŠ” ê²ƒì€, ì‚¬ëŒì—ê²Œ ê±´ë„¤ì¤„ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
-		if (item.getBless() >= 128) {// ºÀÀÎ
+		if (item.getBless() >= 128) {// ë´‰ì¸
 			pc.sendPackets(new S_ServerMessage(141));
 			return;
 		}
-		if (item.getItem().getItemId() == 40308) {// ¾Æµ¥³ª
-			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0Àº ¹ö¸®°Å³ª ¶Ç´Â Å¸ÀÎ¿¡°Ô ¾çÀÏÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù.
+		if (item.getItem().getItemId() == 40308) {// ì•„ë°ë‚˜
+			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0ì€ ë²„ë¦¬ê±°ë‚˜ ë˜ëŠ” íƒ€ì¸ì—ê²Œ ì–‘ì¼ì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 		
 			return;
 		}
@@ -111,14 +111,14 @@ public class C_GiveItem extends ClientBasePacket {
 			count = item.getCount();
 		}
 		
-		if (item.getItem().getItemId() == 423012 || item.getItem().getItemId() == 423013){	// 10ÁÖ³âÆ¼
-			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0Àº ¹ö¸®°Å³ª ¶Ç´Â Å¸ÀÎ¿¡°Ô ¾çÀÏÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù.
+		if (item.getItem().getItemId() == 423012 || item.getItem().getItemId() == 423013){	// 10ì£¼ë…„í‹°
+			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0ì€ ë²„ë¦¬ê±°ë‚˜ ë˜ëŠ” íƒ€ì¸ì—ê²Œ ì–‘ì¼ì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 		
 			return;
 		}
 		
 		if (!item.getItem().isTradable()) {
-			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0Àº ¹ö¸®°Å³ª ¶Ç´Â Å¸ÀÎ¿¡°Ô ¾çÀÏÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0ì€ ë²„ë¦¬ê±°ë‚˜ ë˜ëŠ” íƒ€ì¸ì—ê²Œ ì–‘ì¼ì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 		
@@ -127,7 +127,7 @@ public class C_GiveItem extends ClientBasePacket {
 			if (petObject instanceof L1PetInstance) {
 				pet = (L1PetInstance) petObject;
 				if (item.getId() == pet.getItemObjId()) {
-					// \f1%0Àº ¹ö¸®°Å³ª ¶Ç´Â Å¸ÀÎ¿¡°Ô ¾çÀÏÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù.
+					// \f1%0ì€ ë²„ë¦¬ê±°ë‚˜ ë˜ëŠ” íƒ€ì¸ì—ê²Œ ì–‘ì¼ì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(210, item.getItem()
 							.getName()));
 					return;
@@ -136,7 +136,7 @@ public class C_GiveItem extends ClientBasePacket {
 		}
 		
 		if (!pc.isGm() && targetInv.checkAddItem(item, count) != L1Inventory.OK) {
-			pc.sendPackets(new S_ServerMessage(942)); // »ó´ëÀÇ ¾ÆÀÌÅÛÀÌ ³Ê¹« ¹«°Ì±â (À§ÇØ)¶§¹®¿¡, ´õ ÀÌ»ó ÁÙ ¼ö ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(942)); // ìƒëŒ€ì˜ ì•„ì´í…œì´ ë„ˆë¬´ ë¬´ê²ê¸° (ìœ„í•´)ë•Œë¬¸ì—, ë” ì´ìƒ ì¤„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 		L1PetType petType = PetTypeTable.getInstance().get(target.getNpcTemplate().get_npcId());
@@ -158,23 +158,23 @@ public class C_GiveItem extends ClientBasePacket {
 			tamePet(pc, target);
 		}
 
-		if (item.getItemId() == 40070 && petType.canEvolve() // ÁøÈ­ÀÇ¿­¸Å(´ç±Ù)
+		if (item.getItemId() == 40070 && petType.canEvolve() // ì§„í™”ì˜ì—´ë§¤(ë‹¹ê·¼)
 				&& petType.getItemIdForTaming() == 40060) {
 			evolvePet(pc, target);
 		}
 
-		if (item.getItemId() == 40070 && petType.canEvolve() // ÁøÈ­ÀÇ¿­¸Å(±«°í±â)
+		if (item.getItemId() == 40070 && petType.canEvolve() // ì§„í™”ì˜ì—´ë§¤(ê´´ê³ ê¸°)
 				&& petType.getItemIdForTaming() == 40057) {
 			evolvePet(pc, target);
 		}
 
-		if (item.getItemId() == 41310 && petType.canEvolve() // ½Â¸®ÀÇ ¿­¸Å
+		if (item.getItemId() == 41310 && petType.canEvolve() // ìŠ¹ë¦¬ì˜ ì—´ë§¤
 				&& petType.getItemIdForTaming() == 0) {
 			evolvePet(pc, target);
 		}
 
 		if ((item.getItem().getMaterial() == 4 || item.getItemId() == 40060)
-				&& item.getItem().getType() == 7) {// µ¿¹°¼º À½½Ä·ù
+				&& item.getItem().getType() == 7) {// ë™ë¬¼ì„± ìŒì‹ë¥˜
 			petfoodgive(pc, target, item);
 		}
 		
@@ -190,9 +190,9 @@ public class C_GiveItem extends ClientBasePacket {
 
 	private final static String receivableImpls[] = new String[] { "L1Npc", // NPC
 		"L1Monster", // monster
-		"L1Guardian", // ¿äÁ¤ ½£ÀÇ ¼öÈ£ÀÚ
-		"L1Teleporter", // ÅÚ·¹ Æ÷ÅÍ
-		"L1Guard" }; // °¡ÀÌµå
+		"L1Guardian", // ìš”ì • ìˆ²ì˜ ìˆ˜í˜¸ì
+		"L1Teleporter", // í…”ë ˆ í¬í„°
+		"L1Guard" }; // ê°€ì´ë“œ
 
 	private boolean isNpcItemReceivable(L1Npc npc) {
 		for (String impl : receivableImpls) {
@@ -214,13 +214,13 @@ public class C_GiveItem extends ClientBasePacket {
 			petcost += ((L1NpcInstance) pet).getPetcost();
 		}
 		int charisma = pc.getAbility().getTotalCha();
-		if (pc.isCrown()) { // ±ºÁÖ
+		if (pc.isCrown()) { // êµ°ì£¼
 			charisma += 6;
-		} else if (pc.isElf()) { // ¿äÁ¤
+		} else if (pc.isElf()) { // ìš”ì •
 			charisma += 12;
-		} else if (pc.isWizard()) { // ¸¶¹ı»ç
+		} else if (pc.isWizard()) { // ë§ˆë²•ì‚¬
 			charisma += 6;
-		} else if (pc.isDarkelf()) { // ´ÙÅ©¿¤ÇÁ
+		} else if (pc.isDarkelf()) { // ë‹¤í¬ì—˜í”„
 			charisma += 6;
 		}
 		charisma -= petcost;
@@ -228,13 +228,13 @@ public class C_GiveItem extends ClientBasePacket {
 		L1PcInventory inv = pc.getInventory();
 		if (charisma >= 6 && inv.getSize() < 180) {
 			if (isTamePet(pc, target)) {
-				L1ItemInstance petamu = inv.storeItem(40314, 1); // ÆêÀÇ ¾Æ¹Â·¿Æ®
+				L1ItemInstance petamu = inv.storeItem(40314, 1); // í«ì˜ ì•„ë®¤ë ›íŠ¸
 				if (petamu != null) {
 					new L1PetInstance(target, pc, petamu.getId());
 					pc.sendPackets(new S_ItemName(petamu));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(324)); // ±æµéÀÌ´Âµ¥ ½ÇÆĞÇß½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(324)); // ê¸¸ë“¤ì´ëŠ”ë° ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 			}
 		}
 	}
@@ -246,12 +246,12 @@ public class C_GiveItem extends ClientBasePacket {
 		L1PcInventory inv = pc.getInventory();
 		L1PetInstance pet = (L1PetInstance) target;
 		L1ItemInstance petamu = inv.getItem(pet.getItemObjId());
-		if (pet.getLevel() >= 30 && // Lv30 ÀÌ»ó
-				pc == pet.getMaster() && // ÀÚ½ÅÀÇ ¾Ö¿Ïµ¿¹°
+		if (pet.getLevel() >= 30 && // Lv30 ì´ìƒ
+				pc == pet.getMaster() && // ìì‹ ì˜ ì• ì™„ë™ë¬¼
 				petamu != null) {
 			L1ItemInstance highpetamu = inv.storeItem(40316, 1);
 			if (highpetamu != null) {
-				pet.evolvePet(highpetamu.getId()); // ÁøÈ­½ÃÅ²´Ù
+				pet.evolvePet(highpetamu.getId()); // ì§„í™”ì‹œí‚¨ë‹¤
 				pc.sendPackets(new S_ItemName(highpetamu));
 				inv.removeItem(petamu, 1);
 			}
@@ -261,8 +261,8 @@ public class C_GiveItem extends ClientBasePacket {
 	private boolean isTamePet(L1PcInstance pc, L1NpcInstance npc) {
 		boolean isSuccess = false;
 		int npcId = npc.getNpcTemplate().get_npcId();
-		if (npcId == 45313 || npcId == 45711) { // È£¶ûÀÌ, ¾Æ±âÁøµ¾°³
-			if (npc.getMaxHp() / 3 > npc.getCurrentHp() // HP°¡1/4¹Ì¸¸À¸·Î1/16ÀÇ È®·ü
+		if (npcId == 45313 || npcId == 45711) { // í˜¸ë‘ì´, ì•„ê¸°ì§„ë—ê°œ
+			if (npc.getMaxHp() / 3 > npc.getCurrentHp() // HPê°€1/4ë¯¸ë§Œìœ¼ë¡œ1/16ì˜ í™•ë¥ 
 					&& _random.nextInt(100) + _random.nextInt(pc.getAbility().getTotalCha()) >= 30) {
 				isSuccess = true;
 			}
@@ -272,8 +272,8 @@ public class C_GiveItem extends ClientBasePacket {
 			}
 		}
 
-		if (npcId == 45313 || npcId == 45044 || npcId == 45711) { // È£¶ûÀÌ, ¶óÄï, ¾Æ±â Áøµ¾°³
-			if (npc.isResurrect()) { // ºÎÈ° ÈÄ´Â ±æµéÀÌ±â ºÒ°¡
+		if (npcId == 45313 || npcId == 45044 || npcId == 45711) { // í˜¸ë‘ì´, ë¼ì¿¤, ì•„ê¸° ì§„ë—ê°œ
+			if (npc.isResurrect()) { // ë¶€í™œ í›„ëŠ” ê¸¸ë“¤ì´ê¸° ë¶ˆê°€
 				isSuccess = false;
 			}
 		}
@@ -289,11 +289,11 @@ public class C_GiveItem extends ClientBasePacket {
 		L1Inventory inv = target.getInventory();
 
 		if ((target.getNpcId() == 46042 || target.getNpcId() == 46043)
-				&& item.getItemId() == 41423) {// Ä»°Å·ç ¸ÔÀÌ
+				&& item.getItemId() == 41423) {// ìº¥ê±°ë£¨ ë¨¹ì´
 			pet.setFood(0);
 			target.getSkillEffectTimerSet().setSkillEffect(L1SkillId.STATUS_PET_FOOD, pet.getFoodTime()*1000);
 		} else if ((target.getNpcId() == 46044 || target.getNpcId() == 46045)
-				&& item.getItemId() == 41424) {// ÆÇ´Ù°õ ¸ÔÀÌ
+				&& item.getItemId() == 41424) {// íŒë‹¤ê³° ë¨¹ì´
 			inv.removeItem(item, 1);
 			pet.setFood(0);
 			target.getSkillEffectTimerSet().setSkillEffect(L1SkillId.STATUS_PET_FOOD, pet.getFoodTime()*1000);
@@ -309,7 +309,7 @@ public class C_GiveItem extends ClientBasePacket {
 		}
 	}
 
-	private boolean isTwoLogin(L1PcInstance c) {// Áßº¹Ã¼Å© º¯°æ
+	private boolean isTwoLogin(L1PcInstance c) {// ì¤‘ë³µì²´í¬ ë³€ê²½
 		boolean bool = false;
 		for (L1PcInstance target : L1World.getInstance().getAllPlayers()) {
 			if (target.noPlayerCK)

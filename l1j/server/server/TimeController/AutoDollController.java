@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import java.util.ArrayList;
 import l1j.server.server.model.L1World;
@@ -23,19 +23,19 @@ public class AutoDollController extends Thread {
 
     @Override
     public void run() {
-        System.out.println("ÀÚµ¿ÀÎÇü ÄÁÆ®·Ñ·¯ ½ÃÀÛ");
+        System.out.println("ìë™ì¸í˜• ì»¨íŠ¸ë¡¤ëŸ¬ ì‹œì‘");
         try {
             while (true) {
                 try {
                     Thread.sleep(2000);
-                    ÀÚµ¿ÀÎÇü();
+                    ìë™ì¸í˜•();
                 } catch (Exception innerEx) {
-                    System.err.println("¿À·ù ¹ß»ı:");
+                    System.err.println("ì˜¤ë¥˜ ë°œìƒ:");
                     innerEx.printStackTrace();
                 }
             }
         } catch (Throwable t) {
-            System.err.println("Ä¡¸íÀû ¿À·ù ¹ß»ı  ½º·¹µå Àç½ÃÀÛ ½Ãµµ");
+            System.err.println("ì¹˜ëª…ì  ì˜¤ë¥˜ ë°œìƒ  ìŠ¤ë ˆë“œ ì¬ì‹œì‘ ì‹œë„");
             t.printStackTrace();
             try {
                 Thread.sleep(5000);
@@ -44,14 +44,14 @@ public class AutoDollController extends Thread {
         }
     }
 
-    private void ÀÚµ¿ÀÎÇü() {
+    private void ìë™ì¸í˜•() {
         for (L1PcInstance pc : new ArrayList<>(L1World.getInstance().getAllPlayers())) {
             try {
                 if (pc != null && pc.isAutoDollFlag()) {
                     MagicDoll.checkAutoDoll(pc);
                 }
             } catch (Exception e) {
-                System.err.println("Æ¯Á¤ Ä³¸¯ÅÍ ÀÎÇü Ã³¸® ¿À·ù: " + (pc != null ? pc.getName() : "null"));
+                System.err.println("íŠ¹ì • ìºë¦­í„° ì¸í˜• ì²˜ë¦¬ ì˜¤ë¥˜: " + (pc != null ? pc.getName() : "null"));
                 e.printStackTrace();
             }
         }

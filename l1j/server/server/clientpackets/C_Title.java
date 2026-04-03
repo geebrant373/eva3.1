@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,7 +47,7 @@ public class C_Title extends ClientBasePacket {
 		String title = readS();		
 
 		if (charName.isEmpty() || title.isEmpty()) {
-			// \f1 ´ÙÀ½°ú °°ÀÌ ÀÔ·ÂÇØ ÁÖ¼¼¿ä£º¡¸/title \f0Ä³¸¯ÅÍ¸í È£Äª\f1¡¹
+			// \f1 ë‹¤ìŒê³¼ ê°™ì´ ì…ë ¥í•´ ì£¼ì„¸ìš”ï¼šã€Œ/title \f0ìºë¦­í„°ëª… í˜¸ì¹­\f1ã€
 			pc.sendPackets(new S_ServerMessage(196));
 			return;
 		}
@@ -60,22 +60,22 @@ public class C_Title extends ClientBasePacket {
 			return;
 		}
 
-		if (isClanLeader(pc)) { // Ç÷¸ÍÁÖ
-			if (pc.getId() == target.getId()) { // ÀÚ½Å
+		if (isClanLeader(pc)) { // í˜ˆë§¹ì£¼
+			if (pc.getId() == target.getId()) { // ìì‹ 
 				if (pc.getLevel() < 10) {
-					// \f1Ç÷¸Í¿øÀÇ °æ¿ì, È£ÄªÀ» °¡Áö·Á¸é  ·¹º§ 10ÀÌ»óÀÌ ¾Æ´Ï¸é ¾ÈµË´Ï´Ù.
+					// \f1í˜ˆë§¹ì›ì˜ ê²½ìš°, í˜¸ì¹­ì„ ê°€ì§€ë ¤ë©´  ë ˆë²¨ 10ì´ìƒì´ ì•„ë‹ˆë©´ ì•ˆë©ë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(197));
 					return;
 				}
 				changeTitle(pc, title);
 			} else { 
 				if (pc.getClanid() != target.getClanid()) {
-					// \f1Ç÷¸Í¿øÀÌ ¾Æ´Ï¸é Å¸ÀÎ¿¡°Ô È£ÄªÀ» ÁÙ ¼ö ¾ø½À´Ï´Ù.
+					// \f1í˜ˆë§¹ì›ì´ ì•„ë‹ˆë©´ íƒ€ì¸ì—ê²Œ í˜¸ì¹­ì„ ì¤„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(199));
 					return;
 				}
 				if (target.getLevel() < 10) {
-					// \f1%0ÀÇ ·¹º§ÀÌ 10 ¹Ì¸¸ÀÌ¹Ç·Î È£ÄªÀ» ÁÙ ¼ö ¾ø½À´Ï´Ù.
+					// \f1%0ì˜ ë ˆë²¨ì´ 10 ë¯¸ë§Œì´ë¯€ë¡œ í˜¸ì¹­ì„ ì¤„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(202, charName));
 					return;
 				}
@@ -83,28 +83,28 @@ public class C_Title extends ClientBasePacket {
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 				if (clan != null) {
 					for (L1PcInstance clanPc : clan.getOnlineClanMember()) {
-						// \f1%0ÀÌ%1¿¡ ¡¸%2¶ó°í ÇÏ´Â È£ÄªÀ» ÁÖ¾ú½À´Ï´Ù.
+						// \f1%0ì´%1ì— ã€Œ%2ë¼ê³  í•˜ëŠ” í˜¸ì¹­ì„ ì£¼ì—ˆìŠµë‹ˆë‹¤.
 						clanPc.sendPackets(new S_ServerMessage(203, pc.getName(), charName, title));
 					}
 				}
 			}
 		} else {
-			if (pc.getId() == target.getId()) { // ÀÚ½Å
+			if (pc.getId() == target.getId()) { // ìì‹ 
 				if (pc.getClanid() != 0 && !Config.CHANGE_TITLE_BY_ONESELF) {
-					// \f1Ç÷¸Í¿ø¿¡°Ô È£ÄªÀÌ ÁÖ¾îÁö´Â °ÍÀº ÇÁ¸°½º¿Í ÇÁ¸°¼¼½º »ÓÀÔ´Ï´Ù.
+					// \f1í˜ˆë§¹ì›ì—ê²Œ í˜¸ì¹­ì´ ì£¼ì–´ì§€ëŠ” ê²ƒì€ í”„ë¦°ìŠ¤ì™€ í”„ë¦°ì„¸ìŠ¤ ë¿ì…ë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(198));
 					return;
 				}
 				if (target.getLevel() < 40) {
-					// \f1Ç÷¸Í¿øÀº ¾Æ´Ñµ¥ È£ÄªÀ» °¡Áö·Á¸é , ·¹º§ 40ÀÌ»óÀÌ ¾Æ´Ï¸é ¾ÈµË´Ï´Ù.
+					// \f1í˜ˆë§¹ì›ì€ ì•„ë‹Œë° í˜¸ì¹­ì„ ê°€ì§€ë ¤ë©´ , ë ˆë²¨ 40ì´ìƒì´ ì•„ë‹ˆë©´ ì•ˆë©ë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(200));
 					return;
 				}
 				changeTitle(pc, title);
-			} else { // Å¸ÀÎ
-				if (pc.isCrown()) { // ¿¬ÇÕ¿¡ ¼Ò¼ÓÇÑ ±ºÁÖ
+			} else { // íƒ€ì¸
+				if (pc.isCrown()) { // ì—°í•©ì— ì†Œì†í•œ êµ°ì£¼
 					if (pc.getClanid() == target.getClanid()) {
-						// \f1%0Àº ´ç½ÅÀÇ Ç÷¸ÍÀÌ ¾Æ´Õ´Ï´Ù.
+						// \f1%0ì€ ë‹¹ì‹ ì˜ í˜ˆë§¹ì´ ì•„ë‹™ë‹ˆë‹¤.
 						pc.sendPackets(new S_ServerMessage(201, pc.getClanname()));
 						return;
 					}
@@ -119,7 +119,7 @@ public class C_Title extends ClientBasePacket {
 		pc.sendPackets(new S_CharTitle(objectId, title));
 		Broadcaster.broadcastPacket(pc, new S_CharTitle(objectId, title));
 		try {
-			pc.save(); // DB¿¡ Ä³¸¯ÅÍ Á¤º¸¸¦ ½á ¿ì
+			pc.save(); // DBì— ìºë¦­í„° ì •ë³´ë¥¼ ì¨ ìš°
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
@@ -127,10 +127,10 @@ public class C_Title extends ClientBasePacket {
 
 	private boolean isClanLeader(L1PcInstance pc) {
 		boolean isClanLeader = false;
-		if (pc.getClanid() != 0) { // Å©¶õ ¼Ò¼Ó
+		if (pc.getClanid() != 0) { // í¬ë€ ì†Œì†
 			L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 			if (clan != null) {
-				if (pc.isCrown() && pc.getId() == clan.getLeaderId()) { // ±ºÁÖ, ÇÑÆí, Ç÷¸ÍÁÖ
+				if (pc.isCrown() && pc.getId() == clan.getLeaderId()) { // êµ°ì£¼, í•œí¸, í˜ˆë§¹ì£¼
 					isClanLeader = true;
 				}
 			}

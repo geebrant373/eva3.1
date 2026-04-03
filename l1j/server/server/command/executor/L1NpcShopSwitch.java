@@ -1,5 +1,5 @@
-/**
- * ¹«ÀÎ ¿£ÇÇ¾¾ »óÁ¡ ½ÃÀÛ ¸í·É¾î
+ï»¿/**
+ * ë¬´ì¸ ì—”í”¼ì”¨ ìƒì  ì‹œì‘ ëª…ë ¹ì–´
  * by - Eva Team.
  */
 package l1j.server.server.command.executor;
@@ -27,15 +27,15 @@ public class L1NpcShopSwitch implements L1CommandExecutor {
 			boolean power = ShopNpcSystem.getInstance().isPower();
 
 			if(power)
-				pc.sendPackets(new S_SystemMessage("¿£ÇÇ¾¾ »óÁ¡À» ÀÌ¹Ì ½ÇÇàÁßÀÔ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì—”í”¼ì”¨ ìƒì ì„ ì´ë¯¸ ì‹¤í–‰ì¤‘ì…ë‹ˆë‹¤."));
 			
 			else
-				pc.sendPackets(new S_SystemMessage("¿£ÇÇ¾¾ ¹«ÀÎ»óÁ¡ ½ÃÀÛÇÕ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì—”í”¼ì”¨ ë¬´ì¸ìƒì  ì‹œì‘í•©ë‹ˆë‹¤."));
 			
 				ShopNpcSystem.getInstance().npcShopStart();
 			
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("¿µÀÚ»óÁ¡ Ä¿¸àµå ¿¡·¯"));
+			pc.sendPackets(new S_SystemMessage("ì˜ììƒì  ì»¤ë©˜ë“œ ì—ëŸ¬"));
 		}
 	}
 }

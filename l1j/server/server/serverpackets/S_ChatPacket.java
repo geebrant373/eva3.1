@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -37,7 +37,7 @@ public class S_ChatPacket extends ServerBasePacket {
 		writeS("-> (" + targetname + ") " + chat);
 	}
 	
-	// ¸Å´ÏÀú¿ë ±Ó¸»
+	// ë§¤ë‹ˆì €ìš© ê·“ë§
 	public S_ChatPacket(String from , String chat) {
 		writeC(Opcodes.S_OPCODE_WHISPERCHAT);
 		writeS(from);
@@ -71,14 +71,14 @@ public class S_ChatPacket extends ServerBasePacket {
 		case 3:
 			if (pc.isGm()) {
 				writeC(type);
-				if(pc.getName().equalsIgnoreCase("¸ŞÆ¼½º")){
+				if(pc.getName().equalsIgnoreCase("ë©”í‹°ìŠ¤")){
 					writeS("\\fY[******] " + chat);
 				}else{
 					writeS("[******] " + chat);
 				}
 			} else if (pc.getAccessLevel() == 1) {
 				writeC(type);
-				writeS("\\fY[È«º¸¿ä¿ø] " + chat);
+				writeS("\\fY[í™ë³´ìš”ì›] " + chat);
 			} else {
 				writeC(type);
 				writeS("[" + pc.getName() + "] " + chat);
@@ -86,8 +86,8 @@ public class S_ChatPacket extends ServerBasePacket {
 			break;
 		case 4:
 			writeC(type);
-			//Ãß°¡  /** ÇÁ¸®¼·¿¡ ¸Â°Ô ¼öÁ¤ (³ªÀÌ, Á·º¸ ¼³Á¤À¸·Î ÁÖ¼®) By µµ¿ì³Ê **/
-			if (pc.getAge() == 0){ // ³ªÀÌ
+			//ì¶”ê°€  /** í”„ë¦¬ì„­ì— ë§ê²Œ ìˆ˜ì • (ë‚˜ì´, ì¡±ë³´ ì„¤ì •ìœ¼ë¡œ ì£¼ì„) By ë„ìš°ë„ˆ **/
+			if (pc.getAge() == 0){ // ë‚˜ì´
 				   writeS("{" + pc.getName() +"} " + chat);
 			   }else{
 				if (pc.getClanRank() == 4) {
@@ -98,7 +98,7 @@ public class S_ChatPacket extends ServerBasePacket {
 
 				}	writeS("{" + pc.getName() + "(" + pc.getAge() + ")" + "} " + chat);
 			}
-			 //Ãß°¡  /** ÇÁ¸®¼·¿¡ ¸Â°Ô ¼öÁ¤ (³ªÀÌ, Á·º¸ ¼³Á¤À¸·Î ÁÖ¼®) By µµ¿ì³Ê **/
+			 //ì¶”ê°€  /** í”„ë¦¬ì„­ì— ë§ê²Œ ìˆ˜ì • (ë‚˜ì´, ì¡±ë³´ ì„¤ì •ìœ¼ë¡œ ì£¼ì„) By ë„ìš°ë„ˆ **/
 			break;
 		case 9:
 			writeC(type);
@@ -132,7 +132,7 @@ public class S_ChatPacket extends ServerBasePacket {
 			break;
 		}
 		/*
-		// ¸ğ´ÏÅÍ¸µÀ» À§ÇØ Ãß°¡
+		// ëª¨ë‹ˆí„°ë§ì„ ìœ„í•´ ì¶”ê°€
 		switch (type) {
 		case ChatMonitorChannel.CHAT_MONITOR_CLAN: 
 			writeC(opcode);
@@ -153,7 +153,7 @@ public class S_ChatPacket extends ServerBasePacket {
 			writeC(opcode);
 			writeC(type);
 			if(pc != null)
-				writeS(pc.getName() + "¿¡°Ô : " + chat);
+				writeS(pc.getName() + "ì—ê²Œ : " + chat);
 			else
 				writeS(chat);
 			break;

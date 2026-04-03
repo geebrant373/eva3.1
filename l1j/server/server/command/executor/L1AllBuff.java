@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -60,7 +60,7 @@ public class L1AllBuff implements L1CommandExecutor {
 			String name = st.nextToken();
 			L1PcInstance target = L1World.getInstance(). getPlayer(name);
 			if (target == null) {
-				pc.sendPackets(new S_ServerMessage(73, name)); // \f1%0Àº °ÔÀÓÀ» ÇÏ°í ÀÖÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(73, name)); // \f1%0ì€ ê²Œì„ì„ í•˜ê³  ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 				return;
 			}
 
@@ -73,9 +73,9 @@ public class L1AllBuff implements L1CommandExecutor {
 				new L1SkillUse().handleCommands(target, allBuffSkill[i], target.getId(), 
 						target.getX(), target.getY(), null, skill.getBuffDuration(), L1SkillUse.TYPE_GMBUFF);
 			}
-			pc.sendPackets(new S_SystemMessage(cmdName + "¿¡°Ô ¿Ã¹öÇÁ¸¦ Áá½À´Ï´Ù. "));
+			pc.sendPackets(new S_SystemMessage(cmdName + "ì—ê²Œ ì˜¬ë²„í”„ë¥¼ ì¤¬ìŠµë‹ˆë‹¤. "));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".¿Ã¹öÇÁ [Ä³¸¯ÅÍ¸í]À¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(".ì˜¬ë²„í”„ [ìºë¦­í„°ëª…]ìœ¼ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

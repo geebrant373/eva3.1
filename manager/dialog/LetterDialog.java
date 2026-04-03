@@ -1,4 +1,4 @@
-package manager.dialog;
+ï»¿package manager.dialog;
 
 import java.sql.Timestamp;
 
@@ -75,7 +75,7 @@ public class LetterDialog extends Dialog {
 		shell = new Shell(getParent(), getStyle());
 		shell.setSize(450, 473);
 		shell.setText("\uD3B8\uC9C0\uBCF4\uAE30");
-		//È­¸éÁß¾ÓÀ¸·Î
+		//í™”ë©´ì¤‘ì•™ìœ¼ë¡œ
 		display = Display.getDefault();
 		shell.setBounds((display.getBounds().width / 2) - (shell.getBounds().width / 2),
 				(display.getBounds().height / 2) - (shell.getBounds().height / 2),
@@ -123,9 +123,9 @@ public class LetterDialog extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				MessageBox messageBox = new MessageBox(shell, SWT.ICON_QUESTION |SWT.YES | SWT.NO);
-			    messageBox.setMessage("Á¤¸» »èÁ¦ ÇÏ½Ã°Ú½À´Ï±î?");
+			    messageBox.setMessage("ì •ë§ ì‚­ì œ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 			    if(messageBox.open() == SWT.YES) {
-					// »èÁ¦ÇÏ±â.
+					// ì‚­ì œí•˜ê¸°.
 			    	LinAllManager.getInstance().getLetterComposite().delete(item);
 					//
 					close();
@@ -186,7 +186,7 @@ public class LetterDialog extends Dialog {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				MessageBox messageBox = new MessageBox(shell, SWT.ICON_QUESTION |SWT.YES | SWT.NO);
-			    messageBox.setMessage("ÆíÁö¸¦ ¹ß¼Û ÇÏ½Ã°Ú½À´Ï±î?");
+			    messageBox.setMessage("í¸ì§€ë¥¼ ë°œì†¡ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 			    if(messageBox.open() == SWT.YES) {
 			    	//
 			    	L1PcInstance receiver = L1World.getInstance().getPlayer(text_4.getText());
@@ -204,9 +204,9 @@ public class LetterDialog extends Dialog {
 	}
 	
 	private void close() {
-		// Å¬¸°.
+		// í´ë¦°.
 		LinAllManager.getInstance().getLetterComposite().clear();
-		// ¸®·Îµå.
+		// ë¦¬ë¡œë“œ.
 		LinAllManager.getInstance().getLetterComposite().reload();
 		//
 		shell.dispose();
@@ -243,7 +243,7 @@ public class LetterDialog extends Dialog {
 		if (receiver != null && receiver.getOnlineStatus() != 0) {
 			LetterList(receiver, type, MAILBOX_SIZE);
 			receiver.sendPackets(new S_SkillSound(receiver.getId(), 1091));
-			receiver.sendPackets(new S_ServerMessage(428)); // ÆíÁö°¡ µµÂøÇß½À´Ï´Ù.
+			receiver.sendPackets(new S_ServerMessage(428)); // í¸ì§€ê°€ ë„ì°©í–ˆìŠµë‹ˆë‹¤.
 		}
 	}
 	

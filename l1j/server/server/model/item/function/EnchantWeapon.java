@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -49,7 +49,7 @@ public class EnchantWeapon extends Enchant {
 			
 			if(Config.KEYWORD_USE) {
 				if(!pc.getNetConnection().keyword) {
-					pc.sendPackets("Å°¿öµå ÀÎÁõ ÈÄ¿¡ »ç¿ëÀÌ °¡´ÉÇÕ´Ï´Ù.");
+					pc.sendPackets("í‚¤ì›Œë“œ ì¸ì¦ í›„ì— ì‚¬ìš©ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 					return;
 				}
 			}
@@ -62,16 +62,16 @@ public class EnchantWeapon extends Enchant {
 				return;
 			}
 			if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 1) {
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
-			if (l1iteminstance1.getBless() >= 128) { // ºÀÀÎÅÛ
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+			if (l1iteminstance1.getBless() >= 128) { // ë´‰ì¸í…œ
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
 			int safe_enchant = l1iteminstance1.getItem().get_safeenchant();
-			if (safe_enchant < 0) { // °­È­ ºÒ°¡
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+			if (safe_enchant < 0) { // ê°•í™” ë¶ˆê°€
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
 			int weaponId = l1iteminstance1.getItem().getItemId();
@@ -83,44 +83,44 @@ public class EnchantWeapon extends Enchant {
 				return;
 			}
 
-			if (weaponId >= 246 && weaponId <= 249) { // °­È­ ºÒ°¡
-				if (itemId == L1ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON) {// ½Ã·ÃÀÇ
-																		// ½ºÅ©·Ñ
+			if (weaponId >= 246 && weaponId <= 249) { // ê°•í™” ë¶ˆê°€
+				if (itemId == L1ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON) {// ì‹œë ¨ì˜
+																		// ìŠ¤í¬ë¡¤
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö
-																// ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€
+																// ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			}
 			if (itemId == L1ItemId.SCROLL_OF_ENCHANT_QUEST_WEAPON) {
-				// ½Ã·ÃÀÇ ½ºÅ©·Ñ
-				if (weaponId >= 246 && weaponId <= 249) { // °­È­ ºÒ°¡
+				// ì‹œë ¨ì˜ ìŠ¤í¬ë¡¤
+				if (weaponId >= 246 && weaponId <= 249) { // ê°•í™” ë¶ˆê°€
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö
-																// ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€
+																// ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			}
-			/** È¯»óÀÇ ¹«±â ¸¶¹ı ÁÖ¹®¼­ **/
-			if (weaponId >= 413000 && weaponId <= 413007) { // ÀÌ¿Ü¿¡ °­È­ ºÒ°¡
-				if (itemId == L1ItemId.SCROLL_OF_ENCHANT_FANTASY_WEAPON) {// È¯»óÀÇ¹«±â¸¶¹ıÁÖ¹®¼­
+			/** í™˜ìƒì˜ ë¬´ê¸° ë§ˆë²• ì£¼ë¬¸ì„œ **/
+			if (weaponId >= 413000 && weaponId <= 413007) { // ì´ì™¸ì— ê°•í™” ë¶ˆê°€
+				if (itemId == L1ItemId.SCROLL_OF_ENCHANT_FANTASY_WEAPON) {// í™˜ìƒì˜ë¬´ê¸°ë§ˆë²•ì£¼ë¬¸ì„œ
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö
-																// ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€
+																// ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			}
-			if (itemId == L1ItemId.SCROLL_OF_ENCHANT_FANTASY_WEAPON) {// È¯»óÀÇ¹«±â¸¶¹ıÁÖ¹®¼­
-				if (weaponId >= 413000 && weaponId <= 413007) { // ÀÌ¿Ü¿¡ °­È­ ºÒ°¡
+			if (itemId == L1ItemId.SCROLL_OF_ENCHANT_FANTASY_WEAPON) {// í™˜ìƒì˜ë¬´ê¸°ë§ˆë²•ì£¼ë¬¸ì„œ
+				if (weaponId >= 413000 && weaponId <= 413007) { // ì´ì™¸ì— ê°•í™” ë¶ˆê°€
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö
-																// ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€
+																// ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			}
-			/** È¯»óÀÇ ¹«±â ¸¶¹ı ÁÖ¹®¼­ **/
+			/** í™˜ìƒì˜ ë¬´ê¸° ë§ˆë²• ì£¼ë¬¸ì„œ **/
 
-			/** Ã¢Ãµ ¹«±â ¸¶¹ı ÁÖ¹®¼­ **/
+			/** ì°½ì²œ ë¬´ê¸° ë§ˆë²• ì£¼ë¬¸ì„œ **/
 			if (weaponId >= 411000 && weaponId <= 411035) {
 				if (itemId == L1ItemId.CHANGCHUN_ENCHANT_WEAPON_SCROLL) {
 				} else {
@@ -135,52 +135,52 @@ public class EnchantWeapon extends Enchant {
 					return;
 				}
 			}
-			/** Ã¢Ãµ ¹«±â ¸¶¹ı ÁÖ¹®¼­ **/
+			/** ì°½ì²œ ë¬´ê¸° ë§ˆë²• ì£¼ë¬¸ì„œ **/
 			int enchant_level = l1iteminstance1.getEnchantLevel();
 
 			if (Config.GAME_SERVER_TYPE == 1 && enchant_level >= safe_enchant + 3
 					&& (itemId != L1ItemId.WIND_ENCHANT_WEAPON_SCROLL || itemId != L1ItemId.EARTH_ENCHANT_WEAPON_SCROLL
 							|| itemId != L1ItemId.WATER_ENCHANT_WEAPON_SCROLL || itemId != L1ItemId.FIRE_ENCHANT_WEAPON_SCROLL)) {
-				pc.sendPackets(new S_SystemMessage("Å×½ºÆ®¼­¹ö¿¡¼­´Â ¾ÈÀüÀÎÃ¦+3 ÀÌ»óÀº ÀÎÃ¦ÇÏ½Ç¼ö ¾ø½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("í…ŒìŠ¤íŠ¸ì„œë²„ì—ì„œëŠ” ì•ˆì „ì¸ì±ˆ+3 ì´ìƒì€ ì¸ì±ˆí•˜ì‹¤ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
 
-			if (enchant_level >= Config.MAX_WEAPON) { // ÀÎÃ¦Æ® Á¦ÇÑ
-				pc.sendPackets(new S_SystemMessage("\\fW¹«±â´Â ÇöÀç +" + Config.MAX_WEAPON + "ÀÌ»óÀº ÀÎÃ¦ÇÒ¼ö ¾ø½À´Ï´Ù."));
+			if (enchant_level >= Config.MAX_WEAPON) { // ì¸ì±ˆíŠ¸ ì œí•œ
+				pc.sendPackets(new S_SystemMessage("\\fWë¬´ê¸°ëŠ” í˜„ì¬ +" + Config.MAX_WEAPON + "ì´ìƒì€ ì¸ì±ˆí• ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
 
 			if (itemId == L1ItemId.C_SCROLL_OF_ENCHANT_WEAPON) { // c-dai
 				pc.getInventory().removeItem(useItem, 1);
 				if (enchant_level < -6) {
-					// -7ÀÌ»óÀº ÇÒ ¼ö ¾ø´Ù.
+					// -7ì´ìƒì€ í•  ìˆ˜ ì—†ë‹¤.
 					FailureEnchant(pc, l1iteminstance1);
 				} else {
 					SuccessEnchant(pc, l1iteminstance1, -1);
 				}
-			} else if (itemId == 430633) { // ÀåÀÎÀÇ ¹«±â ¸¶¹ı ÁÖ¹®¼­
+			} else if (itemId == 430633) { // ì¥ì¸ì˜ ë¬´ê¸° ë§ˆë²• ì£¼ë¬¸ì„œ
 				if (!(l1iteminstance1.getItem().getMaterial() == 9 || l1iteminstance1.getItem().getMaterial() == 18)) {
 					if (enchant_level == 9) {
 						int rnd = _random.nextInt(100);
 						if (rnd <= Config.Master_Enchant) {
 							SuccessEnchant(pc, l1iteminstance1, 1);
-							if (enchant_level >= 9) { // ¹«±â +10 ¼º°øÇÏ¿´À»¶§ ¾Ë¸²
-								L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("¾î´À ¾Æµ§ ¿ë»ç ´Ô²²¼­ [" + l1iteminstance1.getLogName() + "] ÀÎÃ¾Æ®¿¡ ¼º°øÇÏ¿´½À´Ï´Ù."));
-								L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE,"¾î´À ¾Æµ§ ¿ë»ç ´Ô²²¼­ [" + l1iteminstance1.getLogName() + "] ÀÎÃ¾Æ®¿¡ ¼º°øÇÏ¿´½À´Ï´Ù"));
+							if (enchant_level >= 9) { // ë¬´ê¸° +10 ì„±ê³µí•˜ì˜€ì„ë•Œ ì•Œë¦¼
+								L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ì–´ëŠ ì•„ë´ ìš©ì‚¬ ë‹˜ê»˜ì„œ [" + l1iteminstance1.getLogName() + "] ì¸ì²¸íŠ¸ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤."));
+								L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE,"ì–´ëŠ ì•„ë´ ìš©ì‚¬ ë‹˜ê»˜ì„œ [" + l1iteminstance1.getLogName() + "] ì¸ì²¸íŠ¸ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤"));
 							}
 						} else {
 							pc.sendPackets(new S_ServerMessage(1310));
-						// ÀÎÃ¦Æ®: °­·ÄÇÏ°Ô ºû³µÁö¸¸ ¾Æ¹« ÀÏµµ ¾ø¾ú½À´Ï´Ù.
+						// ì¸ì±ˆíŠ¸: ê°•ë ¬í•˜ê²Œ ë¹›ë‚¬ì§€ë§Œ ì•„ë¬´ ì¼ë„ ì—†ì—ˆìŠµë‹ˆë‹¤.
 						}
 						pc.getInventory().removeItem(useItem, 1);
 					} else {
 						pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "$18299"));
 						pc.sendPackets(new S_SystemMessage("$18299"));
-						// ÀÎÃ¦Æ® +9 ¹«±â¸¸ »ç¿ë °¡´É
+						// ì¸ì±ˆíŠ¸ +9 ë¬´ê¸°ë§Œ ì‚¬ìš© ê°€ëŠ¥
 					}
 				} else {
 					pc.sendPackets(new S_ServerMessage(1294));
-					// ÀÎÃ¦Æ®: ÇØ´ç °­È­ ÁÖ¹®¼­ »ç¿ë ºÒ°¡
+					// ì¸ì±ˆíŠ¸: í•´ë‹¹ ê°•í™” ì£¼ë¬¸ì„œ ì‚¬ìš© ë¶ˆê°€
 				}
 			} else if (enchant_level < safe_enchant) {
 				pc.getInventory().removeItem(useItem, 1);
@@ -192,70 +192,70 @@ public class EnchantWeapon extends Enchant {
 				int enchant_chance_wepon = 0;
 
 				if (l1iteminstance1.getItem().get_safeenchant() != 0 && enchant_level >= 5 && enchant_level < 6) {
-					enchant_chance_wepon = Config.¹«±â5;
+					enchant_chance_wepon = Config.ë¬´ê¸°5;
 				} else if (l1iteminstance1.getItem().get_safeenchant() != 0 && enchant_level >= 6 && enchant_level < 7) {
-					enchant_chance_wepon = Config.¹«±â6;
+					enchant_chance_wepon = Config.ë¬´ê¸°6;
 				} else if (l1iteminstance1.getItem().get_safeenchant() != 0 && enchant_level >= 7 && enchant_level < 8) {
-					enchant_chance_wepon = Config.¹«±â7;
+					enchant_chance_wepon = Config.ë¬´ê¸°7;
 				} else if (l1iteminstance1.getItem().get_safeenchant() != 0 && enchant_level >= 8 && enchant_level < 9) {
-					enchant_chance_wepon = Config.¹«±â8;
+					enchant_chance_wepon = Config.ë¬´ê¸°8;
 				} else if (l1iteminstance1.getItem().get_safeenchant() != 0 && enchant_level >= 9 && enchant_level <= 10) {
-					enchant_chance_wepon = Config.¹«±â9;
+					enchant_chance_wepon = Config.ë¬´ê¸°9;
 				} else if (l1iteminstance1.getItem().get_safeenchant() != 0 && enchant_level >= 10 && enchant_level <= 11) {
-					enchant_chance_wepon = Config.¹«±â10;
+					enchant_chance_wepon = Config.ë¬´ê¸°10;
 				} else if (l1iteminstance1.getItem().get_safeenchant() != 0 && enchant_level >= 11 && enchant_level <= 12) {
-					enchant_chance_wepon = Config.¹«±â11;
+					enchant_chance_wepon = Config.ë¬´ê¸°11;
 				} else if (l1iteminstance1.getItem().get_safeenchant() != 0 && enchant_level >= 12 && enchant_level <= 13) {
-					enchant_chance_wepon = Config.¹«±â12;
+					enchant_chance_wepon = Config.ë¬´ê¸°12;
 				} else if (l1iteminstance1.getItem().get_safeenchant() != 0 && enchant_level >= 13 && enchant_level <= 14) {
-					enchant_chance_wepon = Config.¹«±â13;
+					enchant_chance_wepon = Config.ë¬´ê¸°13;
 				} else if (l1iteminstance1.getItem().get_safeenchant() != 0 && enchant_level >= 14 && enchant_level <= 15) {
-					enchant_chance_wepon = Config.¹«±â14;
+					enchant_chance_wepon = Config.ë¬´ê¸°14;
 				} else {
 					if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 0 && enchant_level < 1) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü0;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „0;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 1 && enchant_level < 2) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü1;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „1;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 2 && enchant_level < 3) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü2;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „2;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 3 && enchant_level < 4) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü3;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „3;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 4 && enchant_level < 5) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü4;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „4;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 5 && enchant_level < 6) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü5;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „5;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 6 && enchant_level < 7) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü6;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „6;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 7 && enchant_level < 8) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü7;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „7;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 8 && enchant_level < 9) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü8;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „8;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 9 && enchant_level < 10) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü9;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „9;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 10 && enchant_level < 11) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü10;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „10;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 11 && enchant_level < 12) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü11;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „11;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 12 && enchant_level < 13) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü12;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „12;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 13 && enchant_level < 14) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü13;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „13;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 14 && enchant_level < 15) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü14;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „14;
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 15 && enchant_level < 16) {
-						enchant_chance_wepon = Config.¹«±â¾ÈÀü15;
+						enchant_chance_wepon = Config.ë¬´ê¸°ì•ˆì „15;
 					} else {
 						enchant_chance_wepon = 90 / ((enchant_level - safe_enchant + 1) * 2) / (enchant_level / 9 != 0 ? 1 * 2 : 1)
 								+ Config.ENCHANT_CHANCE_WEAPON;
 					}
 				}
 				if (pc.isGm()) {
-					pc.sendPackets(new S_SystemMessage("\\fY¼º°øÈ®·ü: [ " + enchant_chance_wepon + " ]"));
-					pc.sendPackets(new S_SystemMessage("\\fYÂù½º: [ " + rnd + " ]"));
+					pc.sendPackets(new S_SystemMessage("\\fYì„±ê³µí™•ë¥ : [ " + enchant_chance_wepon + " ]"));
+					pc.sendPackets(new S_SystemMessage("\\fYì°¬ìŠ¤: [ " + rnd + " ]"));
 					if (enchant_chance_wepon < rnd) {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:¼º°ø"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì„±ê³µ"));
 					}
 				}
 
@@ -268,7 +268,7 @@ public class EnchantWeapon extends Enchant {
 					int randomEnchantLevel = RandomELevel(l1iteminstance1, itemId);
 					SuccessEnchant(pc, l1iteminstance1, randomEnchantLevel);
 				} else if (enchant_level >= 9 && rnd < (enchant_chance_wepon * 2)) {
-					// \f1%0ÀÌ%2°ú °­·ÄÇÏ°Ô%1 ºû³µ½À´Ï´Ù¸¸, ´ÙÇàÈ÷ ¹«»çÇÏ°Ô »ì¾Ò½À´Ï´Ù.
+					// \f1%0ì´%2ê³¼ ê°•ë ¬í•˜ê²Œ%1 ë¹›ë‚¬ìŠµë‹ˆë‹¤ë§Œ, ë‹¤í–‰íˆ ë¬´ì‚¬í•˜ê²Œ ì‚´ì•˜ìŠµë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(160, l1iteminstance1.getLogName(), "$245", "$248"));
 				} else {
 					FailureEnchant(pc, l1iteminstance1);

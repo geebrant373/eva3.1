@@ -1,11 +1,11 @@
-package server.message;
+ï»¿package server.message;
 
 public class ServerMessage {
-	public final static int LEAVE_CLAN = 178;// \f1%0%s %1 Ç÷¸ÍÀ» Å»ÅğÇß½À´Ï´Ù.
-	public final static int CANNOT_DROP_OR_TRADE = 210; // \f1%0Àº ¹ö¸®°Å³ª ¶Ç´Â Å¸ÀÎ¿¡°Ô ¾çµµ ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	public final static int CANNOT_BREAK_CLAN = 302; // \f1ÇØ»êÇÒ ¼ö ¾ø½À´Ï´Ù.
+	public final static int LEAVE_CLAN = 178;// \f1%0%s %1 í˜ˆë§¹ì„ íƒˆí‡´í–ˆìŠµë‹ˆë‹¤.
+	public final static int CANNOT_DROP_OR_TRADE = 210; // \f1%0ì€ ë²„ë¦¬ê±°ë‚˜ ë˜ëŠ” íƒ€ì¸ì—ê²Œ ì–‘ë„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	public final static int CANNOT_BREAK_CLAN = 302; // \f1í•´ì‚°í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 	public final static int DUPLICATED_IP_CONNECTION = 357;
-	public final static int HAVING_NEST_OF_CLAN = 665; // \f1¼ºÀÌ³ª ¾ÆÁöÆ®¸¦ ¼ÒÀ¯ÇÑ »óÅÂ¿¡¼­´Â Ç÷¸ÍÀ» ÇØ»êÇÒ ¼ö ¾ø½À´Ï´Ù.
-	public final static int CANNOT_WAR_FROM_ALLIANCECLAN = 1205; // µ¿¸ÍÇ÷¸Í°ú´Â ÀüÀïÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù.
-	public final static int CANNOT_BREAK_CLAN_HAVING_ALLIANCE = 1235; // µ¿¸ÍÀÌ ÀÖ´Â °æ¿ì Ç÷¸ÍÀ» ÇØ»êÇÒ ¼ö ¾ø½À´Ï´Ù.
+	public final static int HAVING_NEST_OF_CLAN = 665; // \f1ì„±ì´ë‚˜ ì•„ì§€íŠ¸ë¥¼ ì†Œìœ í•œ ìƒíƒœì—ì„œëŠ” í˜ˆë§¹ì„ í•´ì‚°í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	public final static int CANNOT_WAR_FROM_ALLIANCECLAN = 1205; // ë™ë§¹í˜ˆë§¹ê³¼ëŠ” ì „ìŸì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
+	public final static int CANNOT_BREAK_CLAN_HAVING_ALLIANCE = 1235; // ë™ë§¹ì´ ìˆëŠ” ê²½ìš° í˜ˆë§¹ì„ í•´ì‚°í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 }

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -25,11 +25,11 @@ import java.util.stream.Stream;
 
 public class CleanListFile {
     public static void main(String[] args) {
-    	Path input = Paths.get("C:\\Users\\kim\\Desktop\\listÆÄÀÏ¼öÁ¤\\list.txt");
-        Path output = Paths.get("C:\\Users\\kim\\Desktop\\listÆÄÀÏ¼öÁ¤\\output.txt");
+    	Path input = Paths.get("C:\\Users\\kim\\Desktop\\listíŒŒì¼ìˆ˜ì •\\list.txt");
+        Path output = Paths.get("C:\\Users\\kim\\Desktop\\listíŒŒì¼ìˆ˜ì •\\output.txt");
 
         if (!Files.exists(input)) {
-            System.err.println("ÀÔ·Â ÆÄÀÏÀÌ ¾ø½À´Ï´Ù: " + input.toAbsolutePath());
+            System.err.println("ì…ë ¥ íŒŒì¼ì´ ì—†ìŠµë‹ˆë‹¤: " + input.toAbsolutePath());
             return;
         }
 
@@ -45,37 +45,37 @@ public class CleanListFile {
                     }
                 });
             }
-            System.out.println("Ã³¸® ¿Ï·á. °á°ú ÆÄÀÏ: " + output.toAbsolutePath());
+            System.out.println("ì²˜ë¦¬ ì™„ë£Œ. ê²°ê³¼ íŒŒì¼: " + output.toAbsolutePath());
         } catch (UncheckedIOException uio) {
-            System.err.println("ÆÄÀÏ ¾²±â Áß ¿À·ù: " + uio.getCause().getMessage());
+            System.err.println("íŒŒì¼ ì“°ê¸° ì¤‘ ì˜¤ë¥˜: " + uio.getCause().getMessage());
         } catch (IOException e) {
-            System.err.println("I/O ¿À·ù: " + e.getMessage());
+            System.err.println("I/O ì˜¤ë¥˜: " + e.getMessage());
         }
     }
 
     /**
-     * ÁÖ¾îÁø ÁÙÀ» ´ÙÀ½ ±ÔÄ¢À¸·Î Á¤¸®ÇØ¼­ ¹İÈ¯ÇÑ´Ù:
-     *  - ¿µ¾î ¾ËÆÄºª(A-Z, a-z) ¸ğµÎ »èÁ¦
-     *  - ¹®ÀÚ '.', '(', ':', ')' »èÁ¦
-     *  - ¼ıÀÚ¿Í '<', ']', '!' ¸¸ Çã¿ëÇÏ°í ±× ¹ÛÀÇ ¿¬¼ÓµÈ ¹®ÀÚµéÀº ÇÑ Ä­À¸·Î Ä¡È¯
-     *  - ¾ç ³¡ °ø¹é Á¦°Å ¹× ¿©·¯ °ø¹éÀº ´ÜÀÏ °ø¹éÀ¸·Î Ãà¼Ò
+     * ì£¼ì–´ì§„ ì¤„ì„ ë‹¤ìŒ ê·œì¹™ìœ¼ë¡œ ì •ë¦¬í•´ì„œ ë°˜í™˜í•œë‹¤:
+     *  - ì˜ì–´ ì•ŒíŒŒë²³(A-Z, a-z) ëª¨ë‘ ì‚­ì œ
+     *  - ë¬¸ì '.', '(', ':', ')' ì‚­ì œ
+     *  - ìˆ«ìì™€ '<', ']', '!' ë§Œ í—ˆìš©í•˜ê³  ê·¸ ë°–ì˜ ì—°ì†ëœ ë¬¸ìë“¤ì€ í•œ ì¹¸ìœ¼ë¡œ ì¹˜í™˜
+     *  - ì–‘ ë ê³µë°± ì œê±° ë° ì—¬ëŸ¬ ê³µë°±ì€ ë‹¨ì¼ ê³µë°±ìœ¼ë¡œ ì¶•ì†Œ
      *
-     *  (»ç¿ëÀÚ ¿ä±¸: '<', ']' ¹× '!'´Â »èÁ¦ÇÏÁö ¾ÊÀ½)
+     *  (ì‚¬ìš©ì ìš”êµ¬: '<', ']' ë° '!'ëŠ” ì‚­ì œí•˜ì§€ ì•ŠìŒ)
      */
     private static String cleanLine(String s) {
         if (s == null || s.isEmpty()) return "";
 
-        // 1) ¿µ¾î Á¦°Å
+        // 1) ì˜ì–´ ì œê±°
         String t = s.replaceAll("[A-Za-z]+", "");
 
-        // 2) »èÁ¦ÇÒ ±âÈ£µé »èÁ¦: . ( : )
+        // 2) ì‚­ì œí•  ê¸°í˜¸ë“¤ ì‚­ì œ: . ( : )
         t = t.replaceAll("[\\.():]", "");
 
-        // 3) ¼ıÀÚ, '<', ']', '!' ¿ÜÀÇ ¸ğµç ¿¬¼Ó ¹®ÀÚ¸¦ °ø¹é ÇÏ³ª·Î Ä¡È¯
-        //    (ÄŞ¸¶, ´ë°ıÈ£ '[', ÅÇ, ±âÅ¸ ¹®ÀÚ µîÀº ÀÌ ´Ü°è¿¡¼­ °ø¹éÀ¸·Î ¹Ù²ï´Ù)
+        // 3) ìˆ«ì, '<', ']', '!' ì™¸ì˜ ëª¨ë“  ì—°ì† ë¬¸ìë¥¼ ê³µë°± í•˜ë‚˜ë¡œ ì¹˜í™˜
+        //    (ì½¤ë§ˆ, ëŒ€ê´„í˜¸ '[', íƒ­, ê¸°íƒ€ ë¬¸ì ë“±ì€ ì´ ë‹¨ê³„ì—ì„œ ê³µë°±ìœ¼ë¡œ ë°”ë€ë‹¤)
         t = t.replaceAll("[^0-9<>\\]!]+", " ");
 
-        // 4) ¾ÕµÚ °ø¹é Á¦°Å ¹× ¿©·¯ °ø¹éÀ» ÇÑ Ä­À¸·Î ÁÙÀÓ
+        // 4) ì•ë’¤ ê³µë°± ì œê±° ë° ì—¬ëŸ¬ ê³µë°±ì„ í•œ ì¹¸ìœ¼ë¡œ ì¤„ì„
         t = t.trim().replaceAll("\\s+", " ");
 
         return t;

@@ -1,4 +1,4 @@
-package l1j.server.AutoHuntSystem;
+ï»¿package l1j.server.AutoHuntSystem;
 
 import static l1j.server.server.model.skill.L1SkillId.ABSOLUTE_BARRIER;
 import static l1j.server.server.model.skill.L1SkillId.DECAY_POTION;
@@ -63,15 +63,15 @@ public class AutoHuntItemUse {
 	}
 
 	public void toUseItem() {
-		È¯»óÅ©·¯½ºÆ®Áı°Ô¹ß±¸ÀÌ(owner);
-		È¯»óÄÚÄ«(owner);
-		È¯»óµå·¹ÀÌÅ©±¸ÀÌ(owner);
-		È¯»ó¹ö¼¸½ºÇÁ(owner);
-		ºí·¹½ºÆ®¾Æ¸Ó(owner);
-		µå´Ù(owner);
-		±Ù°Å¸®¹öÇÁ(owner);
-		¿ø°Å¸®¹öÇÁ(owner);
-		ÀüÅõ°­È­ÁÖ¹®¼­(owner);
+		í™˜ìƒí¬ëŸ¬ìŠ¤íŠ¸ì§‘ê²Œë°œêµ¬ì´(owner);
+		í™˜ìƒì½”ì¹´(owner);
+		í™˜ìƒë“œë ˆì´í¬êµ¬ì´(owner);
+		í™˜ìƒë²„ì„¯ìŠ¤í”„(owner);
+		ë¸”ë ˆìŠ¤íŠ¸ì•„ë¨¸(owner);
+		ë“œë‹¤(owner);
+		ê·¼ê±°ë¦¬ë²„í”„(owner);
+		ì›ê±°ë¦¬ë²„í”„(owner);
+		ì „íˆ¬ê°•í™”ì£¼ë¬¸ì„œ(owner);
 		useCurePotion(owner);
 		useHealPotion();
 		useGreenPotion();
@@ -124,8 +124,8 @@ public class AutoHuntItemUse {
 	}
 
 	private void useHealPotion() {
-		if (owner.getSkillEffectTimerSet().hasSkillEffect(DECAY_POTION)) { // µğÄÉÀÌÆ÷¼Ç »óÅÂ
-			owner.sendPackets(new S_ServerMessage(698)); // ¸¶·Â¿¡ ÀÇÇØ ¾Æ¹«°Íµµ ¸¶½Ç ¼ö°¡ ¾ø½À´Ï´Ù.
+		if (owner.getSkillEffectTimerSet().hasSkillEffect(DECAY_POTION)) { // ë””ì¼€ì´í¬ì…˜ ìƒíƒœ
+			owner.sendPackets(new S_ServerMessage(698)); // ë§ˆë ¥ì— ì˜í•´ ì•„ë¬´ê²ƒë„ ë§ˆì‹¤ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 
@@ -137,16 +137,16 @@ public class AutoHuntItemUse {
 		if (!isUseCheck(item))
 			return;
 
-		if (owner.getCurrentHpPercent() > owner.get_ÀÚµ¿ÇÇÆÛ¼¾Æ®()) {
+		if (owner.getCurrentHpPercent() > owner.get_ìë™í”¼í¼ì„¼íŠ¸()) {
 			return;
 		}
 
 		if (itemId == 40010) {
-			UseHeallingPotion(owner, Config.»¡°»ÀÌÈ¸º¹·®, 189);
+			UseHeallingPotion(owner, Config.ë¹¨ê°±ì´íšŒë³µëŸ‰, 189);
 		} else if (itemId == 40011) {
-			UseHeallingPotion(owner, Config.ÁÖÈ«ÀÌÈ¸º¹·®, 194);
+			UseHeallingPotion(owner, Config.ì£¼í™ì´íšŒë³µëŸ‰, 194);
 		} else if (itemId == 40012) {
-			UseHeallingPotion(owner, Config.¸¼°»ÀÌÈ¸º¹·®, 197);
+			UseHeallingPotion(owner, Config.ë§‘ê°±ì´íšŒë³µëŸ‰, 197);
 		}
 
 		owner.getInventory().removeItem(item, 1);
@@ -154,17 +154,17 @@ public class AutoHuntItemUse {
 	}
 
 	private void UseHeallingPotion(L1PcInstance pc, int healHp, int gfxid) {
-		// ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+		// ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 		cancelAbsoluteBarrier(pc);
 		pc.sendPackets(new S_SkillSound(pc.getId(), gfxid));
 		pc.broadcastPacket(new S_SkillSound(pc.getId(), gfxid));
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(POLLUTE_WATER)) { // Æ÷¸£Æ®¿öÅ¸ÁßÀº È¸º¹·®1/2¹è
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(POLLUTE_WATER)) { // í¬ë¥´íŠ¸ì›Œíƒ€ì¤‘ì€ íšŒë³µëŸ‰1/2ë°°
 			healHp /= 2;
 		}
 		pc.setCurrentHp(pc.getCurrentHp() + healHp); 
 	}
 
-	private void cancelAbsoluteBarrier(L1PcInstance pc) { // ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+	private void cancelAbsoluteBarrier(L1PcInstance pc) { // ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 		if (pc.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER)) {
 			pc.getSkillEffectTimerSet().killSkillEffectTimer(ABSOLUTE_BARRIER);
 		}
@@ -178,7 +178,7 @@ public class AutoHuntItemUse {
 	    
 	    if (owner.getMoveState().getMoveSpeed() != 0)
 	        return;
-	    if (item == null) { // µÑ ´Ù ¾øÀ» °æ¿ì Á¾·á
+	    if (item == null) { // ë‘˜ ë‹¤ ì—†ì„ ê²½ìš° ì¢…ë£Œ
 	        return;
 	    }
 	    if (!isUseCheck(item))
@@ -232,7 +232,7 @@ public class AutoHuntItemUse {
 			return;
 		}
 		if (item == null) {
-			// ¿ë±âÀÇ ¹°¾àÀÌ ¾ø´Ù
+			// ìš©ê¸°ì˜ ë¬¼ì•½ì´ ì—†ë‹¤
 			return;
 		}
 		if (!isUseCheck(item))
@@ -277,7 +277,7 @@ public class AutoHuntItemUse {
 				owner.getMoveState().setBraveSpeed(0);
 			}
 		}
-		if (item.getItemId() == 40068 || item.getItemId() == 140068) { // ¿¤ºì ¿ÍÆÛ
+		if (item.getItemId() == 40068 || item.getItemId() == 140068) { // ì—˜ë¸ ì™€í¼
 			owner.sendPackets(new S_SkillBrave(owner.getId(), 1, time));
 			owner.broadcastPacket(new S_SkillBrave(owner.getId(), 1, 0));
 			owner.getSkillEffectTimerSet().setSkillEffect(STATUS_ELFBRAVE, time * 1000);
@@ -382,7 +382,7 @@ public class AutoHuntItemUse {
 				owner.getMoveState().setBraveSpeed(0);
 			}
 		}
-		if (item.getItemId() == 40068 || item.getItemId() == 140068) { // ¿¤ºì ¿ÍÆÛ
+		if (item.getItemId() == 40068 || item.getItemId() == 140068) { // ì—˜ë¸ ì™€í¼
 			owner.sendPackets(new S_SkillBrave(owner.getId(), 1, time));
 			owner.broadcastPacket(new S_SkillBrave(owner.getId(), 1, 0));
 			owner.getSkillEffectTimerSet().setSkillEffect(STATUS_ELFBRAVE, time * 1000);
@@ -405,13 +405,13 @@ public class AutoHuntItemUse {
 
 		L1ItemInstance item = owner.getInventory().findItemId(437011);
 		if (item == null) {
-			// µå·¡°ïÀÇ ÁøÁÖ°¡ ¾ø´Ù
+			// ë“œë˜ê³¤ì˜ ì§„ì£¼ê°€ ì—†ë‹¤
 			return;
 		}
 		if (!isUseCheck(item))
 			return;
 
-		if (owner.getSkillEffectTimerSet().hasSkillEffect(DECAY_POTION) == true) { // µğÄÉÀÌÆ÷¼Ç »óÅÂ
+		if (owner.getSkillEffectTimerSet().hasSkillEffect(DECAY_POTION) == true) { // ë””ì¼€ì´í¬ì…˜ ìƒíƒœ
 			owner.sendPackets(new S_ServerMessage(698));
 			return;
 		}
@@ -442,7 +442,7 @@ public class AutoHuntItemUse {
 			return;
 		L1ItemInstance item = owner.getInventory().findItemId(210113);
 		if (item == null) {
-			// ÁöÇıÀÇ ¹°¾àÀÌ ¾ø´Ù
+			// ì§€í˜œì˜ ë¬¼ì•½ì´ ì—†ë‹¤
 			return;
 		}
 		if (!isUseCheck(item))
@@ -470,7 +470,7 @@ public class AutoHuntItemUse {
 			return;
 		L1ItemInstance item = owner.getInventory().findItemId(210114);
 		if (item == null) {
-			// ÆÄ¶õ¹°¾àÀÌ ¾ø´Ù
+			// íŒŒë€ë¬¼ì•½ì´ ì—†ë‹¤
 			return;
 		}
 		if (!isUseCheck(item))
@@ -518,7 +518,7 @@ public class AutoHuntItemUse {
 		}
 	}
 
-	public void È¯»óÅ©·¯½ºÆ®Áı°Ô¹ß±¸ÀÌ(L1PcInstance pc) {
+	public void í™˜ìƒí¬ëŸ¬ìŠ¤íŠ¸ì§‘ê²Œë°œêµ¬ì´(L1PcInstance pc) {
 		L1ItemInstance item = owner.getInventory().findItemId(436017);
 		if (item == null) {
 			return;
@@ -531,7 +531,7 @@ public class AutoHuntItemUse {
 		}
 	}
 	
-	public void È¯»óÄÚÄ«(L1PcInstance pc) {
+	public void í™˜ìƒì½”ì¹´(L1PcInstance pc) {
 		L1ItemInstance item = owner.getInventory().findItemId(436019);
 		if (item == null) {
 			return;
@@ -544,7 +544,7 @@ public class AutoHuntItemUse {
 		}
 	}
 	
-	public void È¯»óµå·¹ÀÌÅ©±¸ÀÌ(L1PcInstance pc) {
+	public void í™˜ìƒë“œë ˆì´í¬êµ¬ì´(L1PcInstance pc) {
 		L1ItemInstance item = owner.getInventory().findItemId(436022);
 		if (item == null) {
 			return;
@@ -557,7 +557,7 @@ public class AutoHuntItemUse {
 		}
 	}
 	
-	public void È¯»ó¹ö¼¸½ºÇÁ(L1PcInstance pc) {
+	public void í™˜ìƒë²„ì„¯ìŠ¤í”„(L1PcInstance pc) {
 		L1ItemInstance item = owner.getInventory().findItemId(41292);
 		if (item == null) {
 			return;
@@ -567,7 +567,7 @@ public class AutoHuntItemUse {
 		}
 	}
 	
-	public void ºí·¹½ºÆ®¾Æ¸Ó(L1PcInstance pc) {
+	public void ë¸”ë ˆìŠ¤íŠ¸ì•„ë¨¸(L1PcInstance pc) {
 		L1Skills skill = SkillsTable.getInstance().getTemplate(21);
 		L1ItemInstance item = owner.getInventory().findItemId(40879);
 		if (item == null) {
@@ -594,7 +594,7 @@ public class AutoHuntItemUse {
 		}
 	}
 	
-	public void µå´Ù(L1PcInstance pc) {
+	public void ë“œë‹¤(L1PcInstance pc) {
 		L1ItemInstance item = owner.getInventory().findItemId(437010);
 		if (item == null) {
 			return;
@@ -602,13 +602,13 @@ public class AutoHuntItemUse {
 		if (pc.getAinHasad() < 1000000) {
 			pc.calAinHasad(1000000);
 			pc.sendPackets(new S_PacketBox(S_PacketBox.AINHASAD, pc.getAinHasad()));
-			pc.sendPackets(new S_SystemMessage("\\fTµå·¡°ïÀÇ ´ÙÀÌ¾Æ¸óµå(1)°¡ ÀÚµ¿ º¹¿ëµÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("\\fTë“œë˜ê³¤ì˜ ë‹¤ì´ì•„ëª¬ë“œ(1)ê°€ ìë™ ë³µìš©ë˜ì—ˆìŠµë‹ˆë‹¤."));
 			pc.getInventory().removeItem(item, 1);
-			L1ItemDelay.onItemUse(pc, item); // ¾ÆÀÌÅÛ Áö¿¬ °³½Ã
+			L1ItemDelay.onItemUse(pc, item); // ì•„ì´í…œ ì§€ì—° ê°œì‹œ
 		}
 	}
 	
-	public void ±Ù°Å¸®¹öÇÁ(L1PcInstance pc) {
+	public void ê·¼ê±°ë¦¬ë²„í”„(L1PcInstance pc) {
 		L1ItemInstance item = owner.getInventory().findItemId(31117);
 		if (item == null) {
 			return;
@@ -624,13 +624,13 @@ public class AutoHuntItemUse {
 		}
 	}
 	
-	public void ¿ø°Å¸®¹öÇÁ(L1PcInstance pc) {
+	public void ì›ê±°ë¦¬ë²„í”„(L1PcInstance pc) {
 		L1ItemInstance item = owner.getInventory().findItemId(31118);
 		if (item == null) {
 			return;
 		}
 		if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STORM_SHOT)) {
-			int[] allBuffSkill = {  26, 42,54, 48, 166 };//½ºÅè¼¦
+			int[] allBuffSkill = {  26, 42,54, 48, 166 };//ìŠ¤í†°ìƒ·
 			L1SkillUse l1skilluse = new L1SkillUse();
 			for (int i = 0; i < allBuffSkill.length; i++) {
 				l1skilluse.handleCommands(pc, allBuffSkill[i], pc.getId(), pc.getX(), pc.getY(), null, 0,
@@ -640,7 +640,7 @@ public class AutoHuntItemUse {
 		}
 	}
 	
-	public void ÀüÅõ°­È­ÁÖ¹®¼­(L1PcInstance pc) {
+	public void ì „íˆ¬ê°•í™”ì£¼ë¬¸ì„œ(L1PcInstance pc) {
 		L1ItemInstance item = owner.getInventory().findItemId(437004);
 		if (item == null) {
 			return;

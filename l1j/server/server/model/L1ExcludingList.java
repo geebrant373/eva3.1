@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -29,11 +29,11 @@ public class L1ExcludingList {
 	}
 
 	/**
-	 * ÁöÁ¤ÇÑ ÀÌ¸§ÀÇ Ä³¸¯ÅÍ¸¦ Â÷´Ü ¸®½ºÆ®·ÎºÎÅÍ »èÁ¦ÇÑ´Ù
+	 * ì§€ì •í•œ ì´ë¦„ì˜ ìºë¦­í„°ë¥¼ ì°¨ë‹¨ ë¦¬ìŠ¤íŠ¸ë¡œë¶€í„° ì‚­ì œí•œë‹¤
 	 * 
 	 * @param name
-	 *            ´ë»óÀÇ Ä³¸¯ÅÍ¸í
-	 * @return ½ÇÁ¦·Î »èÁ¦µÈ, Å¬¶óÀÌ¾ğÆ®ÀÇ Â÷´Ü ¸®½ºÆ®»óÀÇ Ä³¸¯ÅÍ¸í.  ÁöÁ¤ÇÑ ÀÌ¸§ÀÌ ¸®½ºÆ®¿¡ ¹ß°ßµÇÁö ¾Ê¾Ò´ø °æ¿ì´Â null¸¦ µ¹·ÁÁØ´Ù.
+	 *            ëŒ€ìƒì˜ ìºë¦­í„°ëª…
+	 * @return ì‹¤ì œë¡œ ì‚­ì œëœ, í´ë¼ì´ì–¸íŠ¸ì˜ ì°¨ë‹¨ ë¦¬ìŠ¤íŠ¸ìƒì˜ ìºë¦­í„°ëª….  ì§€ì •í•œ ì´ë¦„ì´ ë¦¬ìŠ¤íŠ¸ì— ë°œê²¬ë˜ì§€ ì•Šì•˜ë˜ ê²½ìš°ëŠ” nullë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public String remove(String name) {
 		for (String each : _nameList) {
@@ -46,7 +46,7 @@ public class L1ExcludingList {
 	}
 
 	/**
-	 * ÁöÁ¤ÇÑ ÀÌ¸§ÀÇ Ä³¸¯ÅÍ¸¦ Â÷´ÜÇÏ°í ÀÖ´Â °æ¿ì true¸¦ µ¹·ÁÁØ´Ù
+	 * ì§€ì •í•œ ì´ë¦„ì˜ ìºë¦­í„°ë¥¼ ì°¨ë‹¨í•˜ê³  ìˆëŠ” ê²½ìš° trueë¥¼ ëŒë ¤ì¤€ë‹¤
 	 */
 	public boolean contains(String name) {
 		for (String each : _nameList) {
@@ -58,7 +58,7 @@ public class L1ExcludingList {
 	}
 
 	/**
-	 * Â÷´Ü ¸®½ºÆ®°¡ »óÇÑÀÇ 16¸í¿¡ ÀÌ¸£°í ÀÖÀ»±î¸¦ µ¹·ÁÁØ´Ù
+	 * ì°¨ë‹¨ ë¦¬ìŠ¤íŠ¸ê°€ ìƒí•œì˜ 16ëª…ì— ì´ë¥´ê³  ìˆì„ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤
 	 */
 	public boolean isFull() {
 		return (_nameList.size() >= 16) ?  true : false;

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -63,10 +63,10 @@ public class L1Move implements L1CommandExecutor {
 				locy = startY + (endY - startY) / 2;
 			}
 			L1Teleport.teleport(pc, locx, locy, mapId, 5, false);
-			pc.sendPackets(new S_SystemMessage("ÁÂÇ¥ " + locx + ", " + locy	+ ", " + mapId + "·Î ÀÌµ¿Çß½À´Ï´Ù. "));
+			pc.sendPackets(new S_SystemMessage("ì¢Œí‘œ " + locx + ", " + locy	+ ", " + mapId + "ë¡œ ì´ë™í–ˆìŠµë‹ˆë‹¤. "));
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(cmdName
-					+ " [XÁÂÇ¥] [YÁÂÇ¥] [¸ÊID] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+					+ " [Xì¢Œí‘œ] [Yì¢Œí‘œ] [ë§µID] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

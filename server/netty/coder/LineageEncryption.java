@@ -1,4 +1,4 @@
-package server.netty.coder;
+ï»¿package server.netty.coder;
 
 import l1j.server.server.encryptions.LineageBlowfish;
 import server.netty.coder.type.UByte8;
@@ -56,11 +56,11 @@ public class LineageEncryption{
 	}
 
 	public char[] decrypt(char ac[], int size){
-		//System.out.println("Àü1 :"+ac[0]+", "+ac[1]+", "+ac[2]+", "+ac[3]+", "+ac[4]+", "+ac[5]);
+		//System.out.println("ì „1 :"+ac[0]+", "+ac[1]+", "+ac[2]+", "+ac[3]+", "+ac[4]+", "+ac[5]);
 		_decrypt(ac, size);
-		//System.out.println("Àü2 :"+ac[0]+", "+ac[1]+", "+ac[2]+", "+ac[3]+", "+ac[4]+", "+ac[5]);
+		//System.out.println("ì „2 :"+ac[0]+", "+ac[1]+", "+ac[2]+", "+ac[3]+", "+ac[4]+", "+ac[5]);
 		long l = ul32.fromArray(ac);
-		//System.out.println("ÈÄ1 :"+ac[0]+", "+ac[1]+", "+ac[2]+", "+ac[3]+", "+ac[4]+", "+ac[5]);
+		//System.out.println("í›„1 :"+ac[0]+", "+ac[1]+", "+ac[2]+", "+ac[3]+", "+ac[4]+", "+ac[5]);
 		
 		decodeKey[0] ^= l;
 		decodeKey[1] = ul32.add(decodeKey[1], 0x287effc3L);

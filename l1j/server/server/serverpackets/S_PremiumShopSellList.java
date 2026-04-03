@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -39,7 +39,7 @@ public class S_PremiumShopSellList extends ServerBasePacket {
 
 
 	/**
-	 * °¡°ÔÀÇ ¹°°Ç ¸®½ºÆ®¸¦ Ç¥½ÃÇÑ´Ù. Ä³¸¯ÅÍ°¡ BUY ¹öÆ°À» ´­·¶À» ¶§¿¡ º¸³½´Ù.
+	 * ê°€ê²Œì˜ ë¬¼ê±´ ë¦¬ìŠ¤íŠ¸ë¥¼ í‘œì‹œí•œë‹¤. ìºë¦­í„°ê°€ BUY ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œì— ë³´ë‚¸ë‹¤.
 	 */
 	public S_PremiumShopSellList(int objId) {
 		writeC(Opcodes.S_OPCODE_SHOWSHOPBUYLIST);
@@ -82,10 +82,10 @@ public class S_PremiumShopSellList extends ServerBasePacket {
 			}
 			else {
 				if (item.getItemId() >= 140074 && item.getItemId() <= 140100)
-					writeS("[Ãàº¹ ¹ÞÀº]"+""+item.getNameId());
+					writeS("[ì¶•ë³µ ë°›ì€]"+""+item.getNameId());
 				
 				else if (item.getItemId() >= 240074 && item.getItemId() <= 240087)
-					writeS("[ÀúÁÖ ¹ÞÀº]"+""+item.getNameId());
+					writeS("[ì €ì£¼ ë°›ì€]"+""+item.getNameId());
 				else
 					
 				writeS(item.getNameId());

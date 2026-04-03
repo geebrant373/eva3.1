@@ -1,4 +1,4 @@
-package l1j.server.channel;
+﻿package l1j.server.channel;
 
 import java.util.ArrayList;
 

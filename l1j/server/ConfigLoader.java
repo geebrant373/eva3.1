@@ -1,4 +1,4 @@
-package l1j.server;
+﻿package l1j.server;
 
 import java.io.File;
 import java.io.IOException;

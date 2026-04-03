@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -23,18 +23,18 @@ import java.util.Date;
 
 public class SystemUtil {
 	/**
-	 * ½Ã½ºÅÛÀÌ ÀÌ¿ëÁßÀÇ heap »çÀÌÁî¸¦ ¸Ş°¡¹ÙÀÌÆ® ´ÜÀ§·Î µ¹·ÁÁØ´Ù.<br>
-	 * ÀÌ °ª¿¡ ½ºÅÃÀÇ »çÀÌÁî´Â Æ÷ÇÔµÇÁö ¾Ê´Â´Ù.
+	 * ì‹œìŠ¤í…œì´ ì´ìš©ì¤‘ì˜ heap ì‚¬ì´ì¦ˆë¥¼ ë©”ê°€ë°”ì´íŠ¸ ë‹¨ìœ„ë¡œ ëŒë ¤ì¤€ë‹¤.<br>
+	 * ì´ ê°’ì— ìŠ¤íƒì˜ ì‚¬ì´ì¦ˆëŠ” í¬í•¨ë˜ì§€ ì•ŠëŠ”ë‹¤.
 	 * 
-	 * @return ÀÌ¿ëÁßÀÇ heap »çÀÌÁî
+	 * @return ì´ìš©ì¤‘ì˜ heap ì‚¬ì´ì¦ˆ
 	 */
 	public static long getUsedMemoryMB() {
 		return (Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024L / 1024L;
 	}
 	static private Date	date = new Date(0);
-	static private String[] weekDay = {"ÀÏ", "¿ù", "È­", "¼ö", "¸ñ", "±İ", "Åä"};
+	static private String[] weekDay = {"ì¼", "ì›”", "í™”", "ìˆ˜", "ëª©", "ê¸ˆ", "í† "};
 	/**
-	 * ½Ã°£¿¡ ÇØ´çÇÏ´Â ¿äÀÏÀ» ¸®ÅÏ.
+	 * ì‹œê°„ì— í•´ë‹¹í•˜ëŠ” ìš”ì¼ì„ ë¦¬í„´.
 	 * @param time
 	 * @return
 	 */

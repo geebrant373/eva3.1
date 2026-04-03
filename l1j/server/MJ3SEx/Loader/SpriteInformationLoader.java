@@ -1,4 +1,4 @@
-package l1j.server.MJ3SEx.Loader;
+ï»¿package l1j.server.MJ3SEx.Loader;
 
 import java.io.File;
 import java.sql.Connection;
@@ -32,7 +32,7 @@ public class SpriteInformationLoader {
 
 	public static int levelToIndex(int level, int sprId) {
 		/*
-		 * TODO ÀÌº¥Æ® º¯½Å Ãß°¡ ·¹º§»ó°ü¾øÀÌ µ¿ÀÏÇÑ ¼Óµµ ³ª¿Àµµ·Ï »ç¿ë½Ã ÁÖ¼®ÇØÁ¦ ¼Óµµ ·¹º§ÁöÁ¤
+		 * TODO ì´ë²¤íŠ¸ ë³€ì‹  ì¶”ê°€ ë ˆë²¨ìƒê´€ì—†ì´ ë™ì¼í•œ ì†ë„ ë‚˜ì˜¤ë„ë¡ ì‚¬ìš©ì‹œ ì£¼ì„í•´ì œ ì†ë„ ë ˆë²¨ì§€ì •
 		 */
 		MJSprBoundary boundary = MJSprBoundary.get_boundary(sprId);
 		if(boundary != null)

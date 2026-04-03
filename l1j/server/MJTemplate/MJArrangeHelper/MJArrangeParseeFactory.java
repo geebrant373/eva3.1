@@ -1,4 +1,4 @@
-package l1j.server.MJTemplate.MJArrangeHelper;
+﻿package l1j.server.MJTemplate.MJArrangeHelper;
 
 import l1j.server.MJTemplate.Frame.MJFrameElement;
 

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -86,7 +86,7 @@ class GlobalChatCommand implements TelnetCommand {
 		String text = args.substring(name.length() + 1);
 		L1PcInstance pc = new MySqlCharacterStorage().loadCharacter(name);
 		if (pc == null) {
-			return new TelnetCommandResult(CMD_INTERNAL_ERROR, "Ä³¸¯ÅÍ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+			return new TelnetCommandResult(CMD_INTERNAL_ERROR, "ìºë¦­í„°ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 		pc.getLocation().set(-1, -1, 0);
 		ChatLogTable.getInstance().storeChat(pc, null, text, 3);

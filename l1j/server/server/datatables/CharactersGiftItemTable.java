@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -33,7 +33,7 @@ public class CharactersGiftItemTable {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		// ¾ÆÀÌÅÛ
+		// ì•„ì´í…œ
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("select level from levelup_quests_item group by level order by level");
@@ -52,7 +52,7 @@ public class CharactersGiftItemTable {
 
 	private void readItem(int level) {
 		ArrayList<Item> list = new ArrayList<CharactersGiftItemTable.Item>();
-		// ¾ÆÀÌÅÛ
+		// ì•„ì´í…œ
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;

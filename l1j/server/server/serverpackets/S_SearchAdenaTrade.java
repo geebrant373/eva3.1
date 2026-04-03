@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -30,7 +30,7 @@ public class S_SearchAdenaTrade extends ServerBasePacket {
 		writeS("searchtrade");
 		writeC(0);
 		writeH(6);
-		//¹°Ç°¹øÈ£ ÀúÀå¿¡ ÇÊ¿äÇÑ ¹è¿­.
+		//ë¬¼í’ˆë²ˆí˜¸ ì €ì¥ì— í•„ìš”í•œ ë°°ì—´.
 		pc.trade_ids = new int[6];
 		for(int i = 0; i < 6; i++) {
 			pc.trade_ids[i] = 0;
@@ -41,17 +41,17 @@ public class S_SearchAdenaTrade extends ServerBasePacket {
 			if(board == null) {
 				continue;
 			}
-			if(board.getType() == 2) { //ÆÇ¸Å¿Ï·á ¹°Ç° Á¦¿Ü
+			if(board.getType() == 2) { //íŒë§¤ì™„ë£Œ ë¬¼í’ˆ ì œì™¸
 				continue;
 			}
 			if(pc.getId() == board.getChaId()) {
 				pc.trade_ids[count] = board.getTradeNumber();
 				count++;
-				if(count > 4) { //ÆÇ¸Å ¹°Ç°Ç¥ÇöÀº ÃÖ´ë 5°³ 0~4
+				if(count > 4) { //íŒë§¤ ë¬¼í’ˆí‘œí˜„ì€ ìµœëŒ€ 5ê°œ 0~4
 					break;
 				}
 			}
-			if(pc.getId() == board.getTradeId()) { //±¸¸ÅÁøÇà¹°Ç°
+			if(pc.getId() == board.getTradeId()) { //êµ¬ë§¤ì§„í–‰ë¬¼í’ˆ
 				pc.trade_ids[5] = board.getTradeNumber();
 			}
 		}
@@ -62,8 +62,8 @@ public class S_SearchAdenaTrade extends ServerBasePacket {
 			if(board == null) {
 				writeS(" ");
 			}else {
-				String type = board.getType() == 0 ? "ÆÇ¸ÅÁß" : board.getType() == 1 ? "°Å·¡Áß" : "";
-				writeS("¹°Ç°¹øÈ£:" + tradenumber + "[" + type + "]");
+				String type = board.getType() == 0 ? "íŒë§¤ì¤‘" : board.getType() == 1 ? "ê±°ë˜ì¤‘" : "";
+				writeS("ë¬¼í’ˆë²ˆí˜¸:" + tradenumber + "[" + type + "]");
 			}
 		}
 	}

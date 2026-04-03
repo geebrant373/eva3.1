@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -54,16 +54,16 @@ public class L1PartyRecall implements L1CommandExecutor {
 						L1Teleport.teleport(pc2, x, y, map, 5, true);
 						pc2
 								. sendPackets(new S_SystemMessage(
-										"°ÔÀÓ ¸¶½ºÅÍ¿¡ ¼ÒÈ¯µÇ¾ú½À´Ï´Ù. "));
+										"ê²Œì„ ë§ˆìŠ¤í„°ì— ì†Œí™˜ë˜ì—ˆìŠµë‹ˆë‹¤. "));
 					} catch (Exception e) {
 						_log.log(Level.SEVERE, "", e);
 					}
 				}
 			} else {
-				pc.sendPackets(new S_SystemMessage("ÆÄÆ¼ ¸â¹ö°¡ ¾Æ´Õ´Ï´Ù. "));
+				pc.sendPackets(new S_SystemMessage("íŒŒí‹° ë©¤ë²„ê°€ ì•„ë‹™ë‹ˆë‹¤. "));
 			}
 		} else {
-			pc.sendPackets(new S_SystemMessage("±×·¯ÇÑ Ä³¸¯ÅÍ´Â ¾ø½À´Ï´Ù. "));
+			pc.sendPackets(new S_SystemMessage("ê·¸ëŸ¬í•œ ìºë¦­í„°ëŠ” ì—†ìŠµë‹ˆë‹¤. "));
 		}
 	}
 }

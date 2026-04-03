@@ -1,6 +1,6 @@
-package server;
+ï»¿package server;
 /**
- * ¹è¿­À» ÀÌ¿ëÇÑ ¿øÇüQueue
+ * ë°°ì—´ì„ ì´ìš©í•œ ì›í˜•Queue
  * @author Leaf
  */
 import l1j.server.server.utils.IntRange;
@@ -18,7 +18,7 @@ public class CircleArray {
 		data = new byte[_size];
 	}
 	/**
-	 * ÆĞÅ¶ µ¥ÀÌÅÍ »ğÀÔ
+	 * íŒ¨í‚· ë°ì´í„° ì‚½ì…
 	 * @param packet
 	 */
 	public void insert(byte[] packet,int _size){
@@ -33,7 +33,7 @@ public class CircleArray {
 	}
 	
 	/**
-	 * length ¸¸Å­ ÆĞÅ¶ Ãëµæ
+	 * length ë§Œí¼ íŒ¨í‚· ì·¨ë“
 	 * @param length
 	 * @return
 	 */
@@ -51,7 +51,7 @@ public class CircleArray {
 	}
 	
 	/**
-	 * ´ÙÀ½ ÆĞÅ¶ Á¸Àç ¹× ¿Ï¼º ¿©ºÎ
+	 * ë‹¤ìŒ íŒ¨í‚· ì¡´ì¬ ë° ì™„ì„± ì—¬ë¶€
 	 * @return
 	 */
 	public int isPacketPull(){
@@ -63,7 +63,7 @@ public class CircleArray {
 	}
 	
 	/**
-	 * ÀĞ¾î¾ßÇÒ ÆĞÅ¶ ±æÀÌ
+	 * ì½ì–´ì•¼í•  íŒ¨í‚· ê¸¸ì´
 	 * @return
 	 */
 	public int PacketSize() {
@@ -75,7 +75,7 @@ public class CircleArray {
 	
 	
 	/**
-	 * ´ÙÀ½ ÆĞÅ¶ Á¸Àç ¹× ¿Ï¼º ¿©ºÎ
+	 * ë‹¤ìŒ íŒ¨í‚· ì¡´ì¬ ë° ì™„ì„± ì—¬ë¶€
 	 * @return
 	 */
 	public int isPacketPull2(){
@@ -87,7 +87,7 @@ public class CircleArray {
 	}
 	
 	/**
-	 * ÀĞ¾î¾ßÇÒ ÆĞÅ¶ ±æÀÌ
+	 * ì½ì–´ì•¼í•  íŒ¨í‚· ê¸¸ì´
 	 * @return
 	 */
 	public int PacketSize2() {

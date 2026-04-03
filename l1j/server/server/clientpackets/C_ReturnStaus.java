@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -223,7 +223,7 @@ public class C_ReturnStaus extends ClientBasePacket {
                 }
                 break;
             }
-        } else if(type == 3) { // ½ºÅİ ÃÊ±âÈ­½Ã ¿¤¸¯¼­ Ã³¸®
+        } else if(type == 3) { // ìŠ¤í…Ÿ ì´ˆê¸°í™”ì‹œ ì—˜ë¦­ì„œ ì²˜ë¦¬
         	try{
             int str = readC();
             int intel = readC();
@@ -272,8 +272,8 @@ public class C_ReturnStaus extends ClientBasePacket {
         pc.addBaseMaxMp((short) Statmp);
 	}
 	private static void Restar_World(final L1PcInstance pc) {
-		pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE,"\\f3ÇÇ»½ ¹æÁö¸¦ À§ÇØ Àá½Ã ÈÄ Á¾·á µË´Ï´Ù.(½ºÅİ,ÇÇ»½ ÀÓ½Ã)"));
-		pc.sendPackets(new S_SystemMessage("\\f3ÇÇ»½ ¹æÁö¸¦ À§ÇØ Àá½Ã ÈÄ Á¾·á µË´Ï´Ù.(½ºÅİ,ÇÇ»½ ÀÓ½Ã)"));
+		pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE,"\\f3í”¼ë»¥ ë°©ì§€ë¥¼ ìœ„í•´ ì ì‹œ í›„ ì¢…ë£Œ ë©ë‹ˆë‹¤.(ìŠ¤í…Ÿ,í”¼ë»¥ ì„ì‹œ)"));
+		pc.sendPackets(new S_SystemMessage("\\f3í”¼ë»¥ ë°©ì§€ë¥¼ ìœ„í•´ ì ì‹œ í›„ ì¢…ë£Œ ë©ë‹ˆë‹¤.(ìŠ¤í…Ÿ,í”¼ë»¥ ì„ì‹œ)"));
 		
 		pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_FREEZE, true));
 		
@@ -294,7 +294,7 @@ public class C_ReturnStaus extends ClientBasePacket {
 				
 				
 			}
-		}, 2500);//1.5ÃÊ
+		}, 2500);//1.5ì´ˆ
 	}
 	
 }

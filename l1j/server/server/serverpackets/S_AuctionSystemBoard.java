@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+ï»¿package l1j.server.server.serverpackets;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -9,7 +9,7 @@ import l1j.server.server.Opcodes;
 import l1j.server.server.model.Instance.L1NpcInstance;
 import l1j.server.server.utils.SQLUtil;
 
-//TODO Áß°³ °Å·¡ °Ô½ÃÆÇ
+//TODO ì¤‘ê°œ ê±°ë˜ ê²Œì‹œíŒ
 public class S_AuctionSystemBoard extends ServerBasePacket {
 
 	private static final String S_AuctionSystemBoard = "[S] S_AuctionSystemBoard";
@@ -30,7 +30,7 @@ public class S_AuctionSystemBoard extends ServerBasePacket {
 		buildPacket(number);
 	}
 	
-	/**±¸¹öÀü¿¡ ¸Â°Ô ÆĞÅ¶ º¯°æ by ¸í¿ùÀÌ*/
+	/**êµ¬ë²„ì „ì— ë§ê²Œ íŒ¨í‚· ë³€ê²½ by ëª…ì›”ì´*/
 	private void buildPacket(L1NpcInstance board, int number) {
 		int count = 0;
 		String[][] db = null;
@@ -74,7 +74,7 @@ public class S_AuctionSystemBoard extends ServerBasePacket {
 			writeD(id[i]);
 			writeS(db[i][0]);
 			writeS(db[i][1]);
-			writeS(db[i][3]+"¾Æµ¥³ª "+db[i][2]);
+			writeS(db[i][3]+"ì•„ë°ë‚˜ "+db[i][2]);
 		}
 	}
 	private void buildPacket(int number) {
@@ -92,12 +92,12 @@ public class S_AuctionSystemBoard extends ServerBasePacket {
 				writeS(rs.getString(2));
 				writeS("" + rs.getString(5) + " " + rs.getString(4));
 				writeS(rs.getString(8));
-				writeS("¢Ã³»¿ë Å¬¸¯½Ã ÆÃ±æ¼ö ÀÖ½À´Ï´Ù¢Ã"
-						+ "\n\n" + rs.getString(4) + " : " + rs.getString(5) + " °³"
-						+ "\nÆÇ¸Å ±İ¾× : " + rs.getString(6) + " ¿ø" + ""
-						+ "\n\n¢Ã±¸¸Å ¹æ¹ı¢Ã"
-						+ "\n\n.±¸¸Å½ÅÃ» (°Ô½Ã¹øÈ£) ÀÔ·ÂÈÄ"
-						+ "\nÆíÁö ³»¿ë È®ÀÎ.");
+				writeS("â–£ë‚´ìš© í´ë¦­ì‹œ íŒ…ê¸¸ìˆ˜ ìˆìŠµë‹ˆë‹¤â–£"
+						+ "\n\n" + rs.getString(4) + " : " + rs.getString(5) + " ê°œ"
+						+ "\níŒë§¤ ê¸ˆì•¡ : " + rs.getString(6) + " ì›" + ""
+						+ "\n\nâ–£êµ¬ë§¤ ë°©ë²•â–£"
+						+ "\n\n.êµ¬ë§¤ì‹ ì²­ (ê²Œì‹œë²ˆí˜¸) ì…ë ¥í›„"
+						+ "\ní¸ì§€ ë‚´ìš© í™•ì¸.");
 			}
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -122,12 +122,12 @@ public class S_AuctionSystemBoard extends ServerBasePacket {
 //				writeS(rs.getString(2));
 //				writeS("" + rs.getString(5) + " " + rs.getString(4));
 //				writeS(rs.getString(15));
-//				writeS("¢Ã³»¿ë Å¬¸¯½Ã ÆÃ±æ¼ö ÀÖ½À´Ï´Ù¢Ã"
-//						+ "\n\n" + rs.getString(4) + " : " + rs.getString(5) + " °³"
-//						+ "\nÆÇ¸Å ±İ¾× : " + rs.getString(6) + " ¿ø" + ""
-//						+ "\n\n¢Ã±¸¸Å ¹æ¹ı¢Ã"
-//						+ "\n\n.±¸¸Å½ÅÃ» (°Ô½Ã¹øÈ£) ÀÔ·ÂÈÄ"
-//						+ "\nÆíÁö ³»¿ë È®ÀÎ.");
+//				writeS("â–£ë‚´ìš© í´ë¦­ì‹œ íŒ…ê¸¸ìˆ˜ ìˆìŠµë‹ˆë‹¤â–£"
+//						+ "\n\n" + rs.getString(4) + " : " + rs.getString(5) + " ê°œ"
+//						+ "\níŒë§¤ ê¸ˆì•¡ : " + rs.getString(6) + " ì›" + ""
+//						+ "\n\nâ–£êµ¬ë§¤ ë°©ë²•â–£"
+//						+ "\n\n.êµ¬ë§¤ì‹ ì²­ (ê²Œì‹œë²ˆí˜¸) ì…ë ¥í›„"
+//						+ "\ní¸ì§€ ë‚´ìš© í™•ì¸.");
 //				System.out.println(rs.getString(3));
 //			}
 //		} catch (SQLException e) {
@@ -138,7 +138,7 @@ public class S_AuctionSystemBoard extends ServerBasePacket {
 //			SQLUtil.close(con);
 		
 	
-	/**±¸¹öÀü¿¡ ¸Â°Ô ÆĞÅ¶ º¯°æ by ¸í¿ùÀÌ*/
+	/**êµ¬ë²„ì „ì— ë§ê²Œ íŒ¨í‚· ë³€ê²½ by ëª…ì›”ì´*/
 
 	@Override
 	public byte[] getContent() {

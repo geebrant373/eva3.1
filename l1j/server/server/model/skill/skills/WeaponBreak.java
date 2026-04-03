@@ -1,4 +1,4 @@
-package l1j.server.server.model.skill.skills;
+﻿package l1j.server.server.model.skill.skills;
 
 import java.util.Random;
 

@@ -1,4 +1,4 @@
-package server.threads.pc;
+Ôªøpackage server.threads.pc;
 
 import java.util.Random;
 import java.util.logging.Level;
@@ -31,7 +31,7 @@ public class HpMpRegenThread extends Thread{
 	}
 	
 	public void run(){
-		System.out.println(HpMpRegenThread.class.getName()  + " Ω√¿€");
+		System.out.println(HpMpRegenThread.class.getName()  + " ÏãúÏûë");
 		while(true){
 			try {
 				for(L1PcInstance pc : L1World.getInstance().getAllPlayers()){
@@ -42,7 +42,7 @@ public class HpMpRegenThread extends Thread{
 						if(pc.isDead() || pc.isPrivateShop() || pc.isAutoClanjoin()){
 							continue;
 						}else{
-							//HP ∫ŒπÆ ∏’¿˙ √ƒ∏Æ
+							//HP Î∂ÄÎ¨∏ Î®ºÏ†Ä Ï≥êÎ¶¨
 							pc.updateLevel();
 							pc.addHpregenPoint(pc.getHpcurPoint());
 							pc.setHpcurPoint(4);
@@ -79,7 +79,7 @@ public class HpMpRegenThread extends Thread{
 			baseMpr = 3;
 		}
 		
-		// ∫£¿ÃΩ∫ WIS »∏∫π ∫∏≥ Ω∫
+		// Î≤†Ïù¥Ïä§ WIS ÌöåÎ≥µ Î≥¥ÎÑàÏä§
 		int baseStatMpr = CalcStat.calcBaseMpr(_pc.getType(), _pc.getAbility().getBaseWis());
 		
 		if (_pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_BLUE_POTION) == true) { 
@@ -135,14 +135,14 @@ public class HpMpRegenThread extends Thread{
 
 		int maxBonus = 1;
 
-		// CON ∫∏≥ Ω∫
+		// CON Î≥¥ÎÑàÏä§
 		if (11 < _pc.getLevel() && 14 <= _pc.getAbility().getTotalCon()) {
 			maxBonus = _pc.getAbility().getTotalCon() - 12;
 			if (25 < _pc.getAbility().getTotalCon()) {
 				maxBonus = 14;
 			}
 		}
-		// ∫£¿ÃΩ∫ CON ∫∏≥ Ω∫
+		// Î≤†Ïù¥Ïä§ CON Î≥¥ÎÑàÏä§
 		int basebonus = CalcStat.calcBaseHpr(_pc.getType(), _pc.getAbility().getBaseCon());
 		
 		int equipHpr = _pc.getInventory().hpRegenPerTick();
@@ -165,16 +165,16 @@ public class HpMpRegenThread extends Thread{
 		boolean inLifeStream = false;
 		if (isPlayerInLifeStream(_pc)) {
 			inLifeStream = true;
-			// ∞Ì¥Î¿« ∞¯∞£, ∏∂¡∑¿« Ω≈¿¸ø°º≠¥¬ HPR+3¿∫ æ¯æÓ¡Æ?
+			// Í≥†ÎåÄÏùò Í≥µÍ∞Ñ, ÎßàÏ°±Ïùò Ïã†Ï†ÑÏóêÏÑúÎäî HPR+3ÏùÄ ÏóÜÏñ¥Ï†∏?
 			bonus += 3;
 		}
 
-		// ∞¯∫π∞˙ ¡ﬂ∑Æ¿« √º≈©
+		// Í≥µÎ≥µÍ≥º Ï§ëÎüâÏùò Ï≤¥ÌÅ¨
 		if (_pc.get_food() < 24 || isOverWeight(_pc)
 				|| _pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.BERSERKERS)) {
 			bonus = 0;
 			basebonus = 0;
-			// ¿Â∫Òø° ¿««— HPR ¡ı∞°¥¬ ∏∏∫πµµ, ¡ﬂ∑Æø° ¿««ÿ æ¯æÓ¡ˆ¡ˆ∏∏, ∞®º“¿Œ ∞ÊøÏ¥¬ ∏∏∫πµµ, ¡ﬂ∑Æø° ∞¸∞Ëæ¯¿Ã »ø∞˙∞° ≥≤¥¬¥Ÿ
+			// Ïû•ÎπÑÏóê ÏùòÌïú HPR Ï¶ùÍ∞ÄÎäî ÎßåÎ≥µÎèÑ, Ï§ëÎüâÏóê ÏùòÌï¥ ÏóÜÏñ¥ÏßÄÏßÄÎßå, Í∞êÏÜåÏù∏ Í≤ΩÏö∞Îäî ÎßåÎ≥µÎèÑ, Ï§ëÎüâÏóê Í¥ÄÍ≥ÑÏóÜÏù¥ Ìö®Í≥ºÍ∞Ä ÎÇ®ÎäîÎã§
 			if (equipHpr > 0) {
 				equipHpr = 0;
 			}
@@ -184,39 +184,39 @@ public class HpMpRegenThread extends Thread{
 		newHp += bonus + equipHpr + basebonus;
 
 		if (newHp < 1) {
-			newHp = 1; // HPR ∞®º“ ¿Â∫Òø° ¿««ÿ ªÁ∏¡¿∫ «œ¡ˆ æ ¥¬¥Ÿ
+			newHp = 1; // HPR Í∞êÏÜå Ïû•ÎπÑÏóê ÏùòÌï¥ ÏÇ¨ÎßùÏùÄ ÌïòÏßÄ ÏïäÎäîÎã§
 		}
-		// ºˆ¡ﬂø°º≠¿« ∞®º“ √≥∏Æ
-		// ∂Û¿Ã«¡ Ω√≥¡π∞∑Œ ∞®º“∏¶ æ¯æŸ ºˆ ¿÷¿ª±Ó ∫“∏Ì
+		// ÏàòÏ§ëÏóêÏÑúÏùò Í∞êÏÜå Ï≤òÎ¶¨
+		// ÎùºÏù¥ÌîÑ ÏãúÎÉáÎ¨ºÎ°ú Í∞êÏÜåÎ•º ÏóÜÏï® Ïàò ÏûàÏùÑÍπå Î∂àÎ™Ö
 		if (isUnderwater(_pc)) {
 			newHp -= 20;
 			if (newHp < 1) {
 				if (_pc.isGm()) {
 					newHp = 1;
 				} else {
-					_pc.death(null); // HP∞° 0¿Ã µ«æ˙¿ª ∞ÊøÏ¥¬ ªÁ∏¡«—¥Ÿ.
+					_pc.death(null); // HPÍ∞Ä 0Ïù¥ ÎêòÏóàÏùÑ Í≤ΩÏö∞Îäî ÏÇ¨ÎßùÌïúÎã§.
 				}
 			}
 		}
-		// Lv50 ƒ˘Ω∫∆Æ¿« ∞Ì¥Î¿« ∞¯∞£ 1 F2Fø°º≠¿« ∞®º“ √≥∏Æ
+		// Lv50 ÌÄòÏä§Ìä∏Ïùò Í≥†ÎåÄÏùò Í≥µÍ∞Ñ 1 F2FÏóêÏÑúÏùò Í∞êÏÜå Ï≤òÎ¶¨
 		if (isLv50Quest(_pc) && !inLifeStream) {
 			newHp -= 10;
 			if (newHp < 1) {
 				if (_pc.isGm()) {
 					newHp = 1;
 				} else {
-					_pc.death(null); // HP∞° 0¿Ã µ«æ˙¿ª ∞ÊøÏ¥¬ ªÁ∏¡«—¥Ÿ.
+					_pc.death(null); // HPÍ∞Ä 0Ïù¥ ÎêòÏóàÏùÑ Í≤ΩÏö∞Îäî ÏÇ¨ÎßùÌïúÎã§.
 				}
 			}
 		}
-		// ∏∂¡∑¿« Ω≈¿¸ø°º≠¿« ∞®º“ √≥∏Æ
+		// ÎßàÏ°±Ïùò Ïã†Ï†ÑÏóêÏÑúÏùò Í∞êÏÜå Ï≤òÎ¶¨
 		if (_pc.getMapId() == 410 && !inLifeStream) {
 			newHp -= 10;
 			if (newHp < 1) {
 				if (_pc.isGm()) {
 					newHp = 1;
 				} else {
-					_pc.death(null); // HP∞° 0¿Ã µ«æ˙¿ª ∞ÊøÏ¥¬ ªÁ∏¡«—¥Ÿ.
+					_pc.death(null); // HPÍ∞Ä 0Ïù¥ ÎêòÏóàÏùÑ Í≤ΩÏö∞Îäî ÏÇ¨ÎßùÌïúÎã§.
 				}
 			}
 		}
@@ -227,7 +227,7 @@ public class HpMpRegenThread extends Thread{
 	}
 
 	private boolean isUnderwater(L1PcInstance pc) {
-		// øˆ≈Õ ∫Œ√˜ ¿Â∫ÒΩ√¿Œ∞°, ø°πŸ¿« √‡∫π ªÛ≈¬¿Ã∏È, ºˆ¡ﬂ¿∫ æ∆¥œ∏È ∞£¡÷«—¥Ÿ.
+		// ÏõåÌÑ∞ Î∂ÄÏ∏† Ïû•ÎπÑÏãúÏù∏Í∞Ä, ÏóêÎ∞îÏùò Ï∂ïÎ≥µ ÏÉÅÌÉúÏù¥Î©¥, ÏàòÏ§ëÏùÄ ÏïÑÎãàÎ©¥ Í∞ÑÏ£ºÌïúÎã§.
 		if (pc.getInventory().checkEquipped(20207)) {
 			return false;
 		}
@@ -244,8 +244,8 @@ public class HpMpRegenThread extends Thread{
 	}
 
 	private boolean isOverWeight(L1PcInstance pc) {
-		// ø°≈∞¡∂∆Ω≈©πŸ¿Ã≈∏∂Û¿Ã¡Ó ªÛ≈¬, æ∆µºÓ≥™∏£∆ƒ¿Ãæ∆ ªÛ≈¬¿Œ∞°
-		// ∞ÒµÁ ¿Æ ¿Â∫ÒΩ√¿Ã∏È, ¡ﬂ∑Æ ø¿πˆ¿Ã¡ˆ æ ¿∏∏È ∞£¡÷«—¥Ÿ.
+		// ÏóêÌÇ§Ï°∞Ìã±ÌÅ¨Î∞îÏù¥ÌÉÄÎùºÏù¥Ï¶à ÏÉÅÌÉú, ÏïÑÎîîÏáºÎÇòÎ•¥ÌååÏù¥ÏïÑ ÏÉÅÌÉúÏù∏Í∞Ä
+		// Í≥®Îì† Ïúô Ïû•ÎπÑÏãúÏù¥Î©¥, Ï§ëÎüâ Ïò§Î≤ÑÏù¥ÏßÄ ÏïäÏúºÎ©¥ Í∞ÑÏ£ºÌïúÎã§.
 		if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.EXOTIC_VITALIZE)
 				|| pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ADDITIONAL_FIRE)) {
 			return false;
@@ -266,11 +266,11 @@ public class HpMpRegenThread extends Thread{
 	}
 
 	/**
-	 * ¡ˆ¡§«— PC∞° ∂Û¿Ã«¡ Ω√≥¡π∞¿« π¸¿ß≥ªø° ¿÷¥¬¡ˆ √º≈©«—¥Ÿ
+	 * ÏßÄÏ†ïÌïú PCÍ∞Ä ÎùºÏù¥ÌîÑ ÏãúÎÉáÎ¨ºÏùò Î≤îÏúÑÎÇ¥Ïóê ÏûàÎäîÏßÄ Ï≤¥ÌÅ¨ÌïúÎã§
 	 * 
 	 * @param pc
 	 *            PC
-	 * @return true PC∞° ∂Û¿Ã«¡ Ω√≥¡π∞¿« π¸¿ß≥ªø° ¿÷¥¬ ∞ÊøÏ
+	 * @return true PCÍ∞Ä ÎùºÏù¥ÌîÑ ÏãúÎÉáÎ¨ºÏùò Î≤îÏúÑÎÇ¥Ïóê ÏûàÎäî Í≤ΩÏö∞
 	 */
 	private static boolean isPlayerInLifeStream(L1PcInstance pc) {
 		L1EffectInstance effect = null;

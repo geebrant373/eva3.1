@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_HPUpdate;
@@ -20,7 +20,7 @@ public class PcBasicProperty extends BasicProperty {
 		if (pc.isInParty()) 
 			pc.getParty().updateMiniHP(pc);
 		
-		System.out.println("ÇÇ :" + getCurrentHp());
+		System.out.println("í”¼ :" + getCurrentHp());
 	}
 	
 	@Override

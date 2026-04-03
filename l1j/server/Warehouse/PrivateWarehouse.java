@@ -1,4 +1,4 @@
-package l1j.server.Warehouse;
+ï»¿package l1j.server.Warehouse;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -226,7 +226,7 @@ private static void present(ArrayList<String> accountList, int itemid,
 
 	L1Item temp = ItemTable.getInstance().getTemplate(itemid);
 	if (temp == null) {
-		throw new Exception("Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌÅÛ ID");
+		throw new Exception("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´í…œ ID");
 	}
 	Connection con = null;
 	PreparedStatement pstm = null;
@@ -286,7 +286,7 @@ private static void present(ArrayList<String> accountList, int itemid,
 			// ignore
 		}
 		_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-		throw new Exception(".present Ã³¸®Áß¿¡ ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù.");
+		throw new Exception(".present ì²˜ë¦¬ì¤‘ì— ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 	} finally {
 		SQLUtil.close(pstm);
 		SQLUtil.close(con);

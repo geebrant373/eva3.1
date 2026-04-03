@@ -1,4 +1,4 @@
-package server.netty.coder.manager;
+﻿package server.netty.coder.manager;
 
 import l1j.server.Config;
 import l1j.server.server.GeneralThreadPool;

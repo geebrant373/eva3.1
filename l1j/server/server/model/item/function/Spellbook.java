@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -49,15 +49,15 @@ public class Spellbook extends L1ItemInstance{
 			L1ItemInstance useItem = pc.getInventory().getItem(this.getId());
 			int itemId = useItem.getItemId();
 			int delay_id = 0;
-			if (useItem.getItem().getType2() == 0) { // Á¾º°£º±× ¿ÜÀÇ ¾ÆÀÌÅÛ
+			if (useItem.getItem().getType2() == 0) { // ì¢…ë³„ï¼šê·¸ ì™¸ì˜ ì•„ì´í…œ
 				delay_id = ((L1EtcItem) useItem.getItem()).get_delayid();
 			}
-			if (delay_id != 0) { // Áö¿¬ ¼³Á¤ ÀÖ¾î
+			if (delay_id != 0) { // ì§€ì—° ì„¤ì • ìˆì–´
 				if (pc.hasItemDelay(delay_id) == true) {
 					return;
 				}
 			}
-			if (itemId > 40169 && itemId < 40226 || itemId >= 45000 && itemId <= 45022) { // ¸¶¹ı¼­
+			if (itemId > 40169 && itemId < 40226 || itemId >= 45000 && itemId <= 45022) { // ë§ˆë²•ì„œ
 				useSpellBook(pc, useItem, itemId);
 			} else if ((itemId > 40225 && itemId < 40232) || itemId == 42000) {
 				if (pc.isCrown() || pc.isGm()) {
@@ -77,20 +77,20 @@ public class Spellbook extends L1ItemInstance{
 					} else if (itemId == 40229 && pc.getLevel() >= 55) {
 						SpellBook4(pc, useItem);
 					} else {
-						pc.sendPackets(new S_ServerMessage(312)); // LV°¡ ³·¾Æ¼­
+						pc.sendPackets(new S_ServerMessage(312)); // LVê°€ ë‚®ì•„ì„œ
 					}
 				} else {
 					pc.sendPackets(new S_ServerMessage(79));
 				}
-			} else if (itemId >= 40232 && itemId <= 40264 // Á¤·ÉÀÇ ¼öÁ¤
+			} else if (itemId >= 40232 && itemId <= 40264 // ì •ë ¹ì˜ ìˆ˜ì •
 					|| itemId >= 41149 && itemId <= 41153) {
 				useElfSpellBook(pc, useItem, itemId);
 			} else if (itemId > 40264 && itemId < 40280) {
 				if (pc.isDarkelf() || pc.isGm()) {
-					if (itemId >= 40265 && itemId <= 40269 // ¾îµÒ Á¤·ÉÀÇ ¼öÁ¤
+					if (itemId >= 40265 && itemId <= 40269 // ì–´ë‘  ì •ë ¹ì˜ ìˆ˜ì •
 							&& pc.getLevel() >= 15) {
 						SpellBook1(pc, useItem);
-					} else if (itemId >= 40270 && itemId <= 40274 /// ¾îµÒ Á¤·ÉÀÇ ¼öÁ¤
+					} else if (itemId >= 40270 && itemId <= 40274 /// ì–´ë‘  ì •ë ¹ì˜ ìˆ˜ì •
 							&& pc.getLevel() >= 30) {
 						SpellBook1(pc, useItem);
 					} else if (itemId >= 40275 && itemId <= 40279
@@ -100,16 +100,16 @@ public class Spellbook extends L1ItemInstance{
 						pc.sendPackets(new S_ServerMessage(312));
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // (¿ø¹®:¾îµÒ Á¤·ÉÀÇ ¼öÁ¤Àº ´ÙÅ© ¿¡¸£ÇÁ¸¸À» ½ÀµæÇÒ ¼ö ÀÖ½À´Ï´Ù. )
+					pc.sendPackets(new S_ServerMessage(79)); // (ì›ë¬¸:ì–´ë‘  ì •ë ¹ì˜ ìˆ˜ì •ì€ ë‹¤í¬ ì—ë¥´í”„ë§Œì„ ìŠµë“í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. )
 				}
 			} else if (itemId >= 40164 && itemId <= 40166 || itemId >= 41147 && itemId <= 41148) {
 				if (pc.isKnight() || pc.isGm()) {
 					if (itemId >= 40164 && itemId <= 40165 && pc.getLevel() >= 50) {
 						SpellBook3(pc, useItem);
-					} else if (itemId >= 41147 && itemId <= 41148 // ¼Ö¸®µå ¿Õº¹´ë, Ä«¿îÅÍ ¹Ù¸®¾î
+					} else if (itemId >= 41147 && itemId <= 41148 // ì†”ë¦¬ë“œ ì™•ë³µëŒ€, ì¹´ìš´í„° ë°”ë¦¬ì–´
 							&& pc.getLevel() >= 50) {
 						SpellBook3(pc, useItem);
-					} else if (itemId == 40166 && pc.getLevel() >= 60) { // ¹Ù¿î½º¾ÆÅ¹Å©
+					} else if (itemId == 40166 && pc.getLevel() >= 60) { // ë°”ìš´ìŠ¤ì•„íƒí¬
 						SpellBook3(pc, useItem);
 					} else {
 						pc.sendPackets(new S_ServerMessage(312));
@@ -118,7 +118,7 @@ public class Spellbook extends L1ItemInstance{
 					pc.sendPackets(new S_ServerMessage(79));
 				}
 			} 
-			L1ItemDelay.onItemUse(pc, useItem); // ¾ÆÀÌÅÛ Áö¿¬ °³½Ã
+			L1ItemDelay.onItemUse(pc, useItem); // ì•„ì´í…œ ì§€ì—° ê°œì‹œ
 		}
 	}
 	
@@ -286,7 +286,7 @@ public class Spellbook extends L1ItemInstance{
 		L1Skills l1skills = null;
 		for (int skillId = 1; skillId < 81; skillId++) {
 			l1skills = SkillsTable.getInstance().getTemplate(skillId);
-			String s1 = "¸¶¹ı¼­ (" + l1skills.getName() + ")";
+			String s1 = "ë§ˆë²•ì„œ (" + l1skills.getName() + ")";
 			if (item.getItem().getName().equalsIgnoreCase(s1)) {
 				int skillLevel = l1skills.getSkillLevel();
 				int i7 = l1skills.getId();
@@ -370,7 +370,7 @@ public class Spellbook extends L1ItemInstance{
 		L1Skills l1skills = null;
 		for (int j6 = 97; j6 < 112; j6++) {
 			l1skills = SkillsTable.getInstance().getTemplate(j6);
-			String s1 = "ÈæÁ¤·ÉÀÇ ¼öÁ¤ (" + l1skills.getName() + ")";
+			String s1 = "í‘ì •ë ¹ì˜ ìˆ˜ì • (" + l1skills.getName() + ")";
 			if (l1iteminstance.getItem().getName().equalsIgnoreCase(s1)) {
 				int l6 = l1skills.getSkillLevel();
 				int i7 = l1skills.getId();
@@ -453,13 +453,13 @@ public class Spellbook extends L1ItemInstance{
 		L1Skills l1skills = null;
 		for (int j6 = 129; j6 <= 176; j6++) {
 			l1skills = SkillsTable.getInstance().getTemplate(j6);
-			String s1 = "Á¤·ÉÀÇ ¼öÁ¤ (" + l1skills.getName() + ")";
+			String s1 = "ì •ë ¹ì˜ ìˆ˜ì • (" + l1skills.getName() + ")";
 			if (l1iteminstance.getItem().getName().equalsIgnoreCase(s1)) {
 				if (!pc.isGm() && l1skills.getAttr() != 0
 						&& pc.getElfAttr() != l1skills.getAttr()) {
 					if (pc.getElfAttr() == 0 || pc.getElfAttr() == 1
 							|| pc.getElfAttr() == 2 || pc.getElfAttr() == 4
-							|| pc.getElfAttr() == 8) { // ¼Ó¼ºÄ¡°¡ ÀÌ»óÇÑ °æ¿ì´Â Àü¼Ó¼ºÀ» ±â¾ïÇÒ ¼ö ÀÖµµ·Ï(µíÀÌ) ÇØ µĞ´Ù
+							|| pc.getElfAttr() == 8) { // ì†ì„±ì¹˜ê°€ ì´ìƒí•œ ê²½ìš°ëŠ” ì „ì†ì„±ì„ ê¸°ì–µí•  ìˆ˜ ìˆë„ë¡(ë“¯ì´) í•´ ë‘”ë‹¤
 						pc.sendPackets(new S_ServerMessage(79));
 						return;
 					}
@@ -546,7 +546,7 @@ public class Spellbook extends L1ItemInstance{
 		L1Skills l1skills = null;
 		for (int j6 = 87; j6 <= 91; j6++) {
 			l1skills = SkillsTable.getInstance().getTemplate(j6);
-			String s1 = (new StringBuilder()).append("±â¼ú¼­ (").append(
+			String s1 = (new StringBuilder()).append("ê¸°ìˆ ì„œ (").append(
 					l1skills.getName()).append(")").toString();
 			if (l1iteminstance.getItem().getName().equalsIgnoreCase(s1)) {
 				int l6 = l1skills.getSkillLevel();
@@ -631,7 +631,7 @@ public class Spellbook extends L1ItemInstance{
 		L1Skills l1skills = null;
 		for (int j6 = 113; j6 < 121; j6++) {
 			l1skills = SkillsTable.getInstance().getTemplate(j6);
-			String s1 = "¸¶¹ı¼­ (" + l1skills.getName() + ")";
+			String s1 = "ë§ˆë²•ì„œ (" + l1skills.getName() + ")";
 			if (l1iteminstance.getItem().getName().equalsIgnoreCase(s1)) {
 				int l6 = l1skills.getSkillLevel();
 				int i7 = l1skills.getId();

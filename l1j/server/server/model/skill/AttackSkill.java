@@ -1,4 +1,4 @@
-package l1j.server.server.model.skill;
+ï»¿package l1j.server.server.model.skill;
 
 import static l1j.server.server.model.skill.L1SkillId.AREA_OF_SILENCE;
 import static l1j.server.server.model.skill.L1SkillId.CHILL_TOUCH;
@@ -87,11 +87,11 @@ public class AttackSkill {
 			_calcType = PC_NPC;
 		}
 
-		// Á¸Àç¹ö±× °ü·Ã Ãß°¡
+		// ì¡´ì¬ë²„ê·¸ ê´€ë ¨ ì¶”ê°€
 		if (_player instanceof L1PcInstance) {
 			L1PcInstance jonje = L1World.getInstance().getPlayer(_player.getName());
 			if (jonje == null && player.getAccessLevel() != Config.GMCODE) {
-				player.sendPackets(new S_SystemMessage("Á¸Àç¹ö±× °­Á¦Á¾·á! ÀçÁ¢¼ÓÇÏ¼¼¿ä"));
+				player.sendPackets(new S_SystemMessage("ì¡´ì¬ë²„ê·¸ ê°•ì œì¢…ë£Œ! ì¬ì ‘ì†í•˜ì„¸ìš”"));
 				player.sendPackets(new S_Disconnect());
 				return;
 			}
@@ -107,7 +107,7 @@ public class AttackSkill {
 		if (_player.isInvisble() || _player.isInvisDelay()) {
 			return false;
 		}
-		if (_player.getInventory().getWeight240() >= 200) { // Áß·® ¿À¹öÀÌ¸é ½ºÅ³À» »ç¿ëÇÒ ¼ö ¾ø´Ù
+		if (_player.getInventory().getWeight240() >= 200) { // ì¤‘ëŸ‰ ì˜¤ë²„ì´ë©´ ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ë‹¤
 			_player.sendPackets(new S_ServerMessage(316));
 			return false;
 		}
@@ -153,7 +153,7 @@ public class AttackSkill {
 
 		int intmpNum = _player.getAbility().getTotalInt() - 12;
 		int skilllev = _skill.getSkillLevel() - 1;
-		// int°ª¿¡µû¸¥ mp¼Ò¸ğ·® °¨¼Ò
+		// intê°’ì—ë”°ë¥¸ mpì†Œëª¨ëŸ‰ ê°ì†Œ
 		if (intmpNum > 7) {
 			intmpNum = 7;
 		} else if (intmpNum <= 0) {
@@ -290,7 +290,7 @@ public class AttackSkill {
 
 			dmg = _magic.calcMagicDamage(_skillId);
 
-			// °ø°İ ½ºÅ³ÀÏ¶§!! ÀÌ·¹ÀÌÁî ¿©ºÎ ÆÇ¸êÈÄ Á¦°Å
+			// ê³µê²© ìŠ¤í‚¬ì¼ë•Œ!! ì´ë ˆì´ì¦ˆ ì—¬ë¶€ íŒë©¸í›„ ì œê±°
 			if (_target.getSkillEffectTimerSet().hasSkillEffect(ERASE_MAGIC)) {
 				_target.getSkillEffectTimerSet().removeSkillEffect(ERASE_MAGIC);
 			}
@@ -341,9 +341,9 @@ public class AttackSkill {
 
 			_magic = null;
 		} catch (Exception e) {
-			// ½ºÅ³ ¿À·ù ¹ß»ı ºÎºĞ¿¡ ÄÉ¸¯ÅÍ¸í, ¸÷¸í, Å¸ÄÏ¸í¼øÀ¸·Î Ãâ·Â
+			// ìŠ¤í‚¬ ì˜¤ë¥˜ ë°œìƒ ë¶€ë¶„ì— ì¼€ë¦­í„°ëª…, ëª¹ëª…, íƒ€ì¼“ëª…ìˆœìœ¼ë¡œ ì¶œë ¥
 
-			// System.out.println("¿À·ù ¹ß»ı : " + _player.getAccountName() + " | " +
+			// System.out.println("ì˜¤ë¥˜ ë°œìƒ : " + _player.getAccountName() + " | " +
 			// _npc.getName() + " | " + _target.getName());
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}

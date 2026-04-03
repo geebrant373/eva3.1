@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -18,7 +18,7 @@
  */
 package l1j.server.server.utils;
 
-// ÀüºÎ static·Î ÇØµµ ±¦ÂúÀ»Áöµµ ¸ğ¸¥´Ù
+// ì „ë¶€ staticë¡œ í•´ë„ ê´œì°®ì„ì§€ë„ ëª¨ë¥¸ë‹¤
 public class ByteArrayUtil {
 	private final byte[] _byteArray;
 

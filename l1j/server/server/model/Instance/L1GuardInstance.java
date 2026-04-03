@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -294,7 +294,7 @@ public class L1GuardInstance extends L1NpcInstance {
 	}
 	@Override
 	public void checkTarget(){
-		//System.out.println("¿À¹ö¶óÀÌµå Çß´Âµ¥ ¿©±â ÁøÀÔÇÒ±î?");
+		//System.out.println("ì˜¤ë²„ë¼ì´ë“œ í–ˆëŠ”ë° ì—¬ê¸° ì§„ìž…í• ê¹Œ?");
 		if (_target == null
 				|| 	(Math.abs(this.getX() - this.getHomeX())) > 20 
 				||  (Math.abs(this.getY() - this.getHomeY())) > 20

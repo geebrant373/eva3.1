@@ -1,4 +1,4 @@
-
+ï»¿
 package l1j.server.server.clientpackets;
 
 import server.LineageClient;
@@ -24,22 +24,22 @@ public class C_HorunOK extends ClientBasePacket {
 		int level1 = 0;
 		int level2 = 0;
 		int level3 = 0;
-		int level1_cost = 0; //¾Æ¶óÅ©³×ÀÇ °Å¹ÌÁÙ10Å¸·¡
-		int level1_cost2 = 0; // ¹Ì½º¸±50°³
-		int level1_cost3 = 0; //Æä¾î¸®´õ½ºÆ® 100°³
-		int level1_cost4 = 0; //ÆÇÀÇ°¥±âÅĞ 10¹¶Ä¡
-		int level2_cost = 0;  //¹Ì½º¸±½Ç10°³
-		int level2_cost2 = 0; //¹ö¼¸Æ÷ÀÚÀÇÁó 8°³
-		int level2_cost3 = 0;// ¿£Æ®ÀÇ²®Áú3°³ (ÆÇÀÇ»ÔÀº ¾øÀ½)
-		int level3_cost = 0; //¿À¸®ÇÏ·çÄÜ 45°³
-		int level3_cost2 = 0; //¾Æ¶óÅ©³×ÀÇÇã¹°3°³
-		int level3_cost3 = 0; //Æä¾î¸®ÀÇ³¯°³3°³
+		int level1_cost = 0; //ì•„ë¼í¬ë„¤ì˜ ê±°ë¯¸ì¤„10íƒ€ë˜
+		int level1_cost2 = 0; // ë¯¸ìŠ¤ë¦´50ê°œ
+		int level1_cost3 = 0; //í˜ì–´ë¦¬ë”ìŠ¤íŠ¸ 100ê°œ
+		int level1_cost4 = 0; //íŒì˜ê°ˆê¸°í„¸ 10ë­‰ì¹˜
+		int level2_cost = 0;  //ë¯¸ìŠ¤ë¦´ì‹¤10ê°œ
+		int level2_cost2 = 0; //ë²„ì„¯í¬ìì˜ì¦™ 8ê°œ
+		int level2_cost3 = 0;// ì—”íŠ¸ì˜ê»ì§ˆ3ê°œ (íŒì˜ë¿”ì€ ì—†ìŒ)
+		int level3_cost = 0; //ì˜¤ë¦¬í•˜ë£¨ì½˜ 45ê°œ
+		int level3_cost2 = 0; //ì•„ë¼í¬ë„¤ì˜í—ˆë¬¼3ê°œ
+		int level3_cost3 = 0; //í˜ì–´ë¦¬ì˜ë‚ ê°œ3ê°œ
 		String skill_name = null;
 		int skill_id = 0;
 		/*
-		<p>1·¹º§ ¸¶¹ıÀ» ¹è¿ì´Â °ÍÀÌ¶ó¸é <font fg=ffffaf>¾Æ¶óÅ©³×ÀÇ °Å¹ÌÁÙ 10Å¸·¡</font>³ª <font fg=ffffaf>¹Ì½º¸± 50°³</font>, <font fg=ffffaf>Æä¾î¸® ´õ½ºÆ® 100°³</font>, <font fg=ffffaf>ÆÇÀÇ °¥±âÅĞ 10¹¶Ä¡</font> Áß ÇÑÁ¾·ù¸¸ °¡Á®´Ù ÁÖ½Ã¸é µÇ¿ä.</p>
-		<p>2·¹º§ ¸¶¹ıÀ» ¹è¿ì´Â °ÍÀÌ¶ó¸é <font fg=ffffaf>¹Ì½º¸± ½Ç 10°³</font>³ª <font fg=ffffaf>¹ö¼¸ Æ÷ÀÚÀÇ Áó 8°³</font>, <font fg=ffffaf>ÆÇÀÇ »Ô 1°³</font>, <font fg=ffffaf>¿£Æ®ÀÇ ²®Áú 3°³</font> Áß ÇÑÁ¾·ù¸¸ °¡Á®´Ù ÁÖ½Ã¸é µÇ°í¿ä.</p>
-		<p>3·¹º§ ¸¶¹ıÀ» ¹è¿ì´Â °ÍÀÌ¶ó¸é <font fg=ffffaf>¿À¸®ÇÏ·çÄÜ 45°³</font>³ª <font fg=ffffaf>¾Æ¶óÅ©³×ÀÇ Çã¹° 3°³</font>, <font fg=ffffaf>Æä¾î¸®ÀÇ ³¯°³ 3°³</font>, <font fg=ffffaf>ÆÇÀÇ »Ô 3°³</font> Áß ÇÑÁ¾·ù¸¸ °¡Á®´Ù ÁÖ½Ã¸é µÇÁö¿ä.</p>
+		<p>1ë ˆë²¨ ë§ˆë²•ì„ ë°°ìš°ëŠ” ê²ƒì´ë¼ë©´ <font fg=ffffaf>ì•„ë¼í¬ë„¤ì˜ ê±°ë¯¸ì¤„ 10íƒ€ë˜</font>ë‚˜ <font fg=ffffaf>ë¯¸ìŠ¤ë¦´ 50ê°œ</font>, <font fg=ffffaf>í˜ì–´ë¦¬ ë”ìŠ¤íŠ¸ 100ê°œ</font>, <font fg=ffffaf>íŒì˜ ê°ˆê¸°í„¸ 10ë­‰ì¹˜</font> ì¤‘ í•œì¢…ë¥˜ë§Œ ê°€ì ¸ë‹¤ ì£¼ì‹œë©´ ë˜ìš”.</p>
+		<p>2ë ˆë²¨ ë§ˆë²•ì„ ë°°ìš°ëŠ” ê²ƒì´ë¼ë©´ <font fg=ffffaf>ë¯¸ìŠ¤ë¦´ ì‹¤ 10ê°œ</font>ë‚˜ <font fg=ffffaf>ë²„ì„¯ í¬ìì˜ ì¦™ 8ê°œ</font>, <font fg=ffffaf>íŒì˜ ë¿” 1ê°œ</font>, <font fg=ffffaf>ì—”íŠ¸ì˜ ê»ì§ˆ 3ê°œ</font> ì¤‘ í•œì¢…ë¥˜ë§Œ ê°€ì ¸ë‹¤ ì£¼ì‹œë©´ ë˜ê³ ìš”.</p>
+		<p>3ë ˆë²¨ ë§ˆë²•ì„ ë°°ìš°ëŠ” ê²ƒì´ë¼ë©´ <font fg=ffffaf>ì˜¤ë¦¬í•˜ë£¨ì½˜ 45ê°œ</font>ë‚˜ <font fg=ffffaf>ì•„ë¼í¬ë„¤ì˜ í—ˆë¬¼ 3ê°œ</font>, <font fg=ffffaf>í˜ì–´ë¦¬ì˜ ë‚ ê°œ 3ê°œ</font>, <font fg=ffffaf>íŒì˜ ë¿” 3ê°œ</font> ì¤‘ í•œì¢…ë¥˜ë§Œ ê°€ì ¸ë‹¤ ì£¼ì‹œë©´ ë˜ì§€ìš”.</p>
 		*/
 		L1PcInstance pc = clientthread.getActiveChar();
 		if (pc.isGhost()) {
@@ -53,7 +53,7 @@ public class C_HorunOK extends ClientBasePacket {
 			} 
 
 			switch (sid[i]) {
-			// Lv1 ¸¶¹ı
+			// Lv1 ë§ˆë²•
 			case 0:
 				level1 += 1;
 				if(pc.getInventory().checkItem(40503, 10)){
@@ -239,7 +239,7 @@ public class C_HorunOK extends ClientBasePacket {
 				}
 				break;
 
-			// Lv2 ¸¶¹ı
+			// Lv2 ë§ˆë²•
 			case 8:
 				level2 += 1;
 				if(pc.getInventory().checkItem(40495, 10)){
@@ -393,7 +393,7 @@ public class C_HorunOK extends ClientBasePacket {
 				}
 				break;
 
-			// Lv3 ¸¶¹ı
+			// Lv3 ë§ˆë²•
 			case 16:
 				level3 += 1;
 				if(pc.getInventory().checkItem(40508, 45)){
@@ -553,7 +553,7 @@ public class C_HorunOK extends ClientBasePacket {
 		}
 
 		switch (pc.getType()) {
-		case 0: // ±ºÁÖ
+		case 0: // êµ°ì£¼
 			if (pc.getLevel() < 10) {
 				level1 = 0;
 				level2 = 0;
@@ -585,7 +585,7 @@ public class C_HorunOK extends ClientBasePacket {
 			}
 			break;
 
-		case 1: // ±â»ç
+		case 1: // ê¸°ì‚¬
 			if (pc.getLevel() < 50) {
 				level1 = 0;
 				level2 = 0;

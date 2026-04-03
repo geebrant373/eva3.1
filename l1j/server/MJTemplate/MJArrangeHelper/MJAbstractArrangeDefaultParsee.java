@@ -1,4 +1,4 @@
-package l1j.server.MJTemplate.MJArrangeHelper;
+﻿package l1j.server.MJTemplate.MJArrangeHelper;
 
 import java.lang.reflect.Array;
 

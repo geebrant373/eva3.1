@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Boss;
+ï»¿package l1j.server.GameSystem.Boss;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -92,7 +92,7 @@ public class BossSpawnTimeController implements Runnable {
 		}
 	}
 
-	/** º¸½º ½ºÆù Ã³¸® */
+	/** ë³´ìŠ¤ ìŠ¤í° ì²˜ë¦¬ */
 	class BossThread implements Runnable {
 		BossTemp temp;
 
@@ -113,8 +113,8 @@ public class BossSpawnTimeController implements Runnable {
 							if (obj instanceof L1PcInstance) {
 								L1PcInstance pc = (L1PcInstance) obj;
 								L1Teleport.teleport(pc, 33435, 32800, (short) 4, pc.getMoveState().getHeading(), true);
-								pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "¸¶À»·Î °­Á¦ ÀÌµ¿ µË´Ï´Ù."));
-								pc.sendPackets(new S_SystemMessage("¸¶À»·Î °­Á¦ ÀÌµ¿ µË´Ï´Ù."));
+								pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "ë§ˆì„ë¡œ ê°•ì œ ì´ë™ ë©ë‹ˆë‹¤."));
+								pc.sendPackets(new S_SystemMessage("ë§ˆì„ë¡œ ê°•ì œ ì´ë™ ë©ë‹ˆë‹¤."));
 							}
 						}
 					}
@@ -123,15 +123,15 @@ public class BossSpawnTimeController implements Runnable {
 							if (obj instanceof L1PcInstance) {
 								L1PcInstance pc = (L1PcInstance) obj;
 								L1Teleport.teleport(pc, 33435, 32800, (short) 4, pc.getMoveState().getHeading(), true);
-								pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "¸¶À»·Î °­Á¦ ÀÌµ¿ µË´Ï´Ù."));
-								pc.sendPackets(new S_SystemMessage("¸¶À»·Î °­Á¦ ÀÌµ¿ µË´Ï´Ù."));
+								pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "ë§ˆì„ë¡œ ê°•ì œ ì´ë™ ë©ë‹ˆë‹¤."));
+								pc.sendPackets(new S_SystemMessage("ë§ˆì„ë¡œ ê°•ì œ ì´ë™ ë©ë‹ˆë‹¤."));
 							}
 						}
 					}
 				}
 				if (temp.npcid == 9000014) {
 					TebeController.getInstance().isgameStart = true;
-					TebeController.getInstance().Å×º£½Ã°£ = temp.DeleteTime;
+					TebeController.getInstance().í…Œë² ì‹œê°„ = temp.DeleteTime;
 				}
 				StoreBoss(temp.npcid, temp.SpawnLoc, temp.rndTime, temp.rndLoc, temp.Groupid, temp.isMent, temp.Ment,
 						temp.DeleteTime);
@@ -149,7 +149,7 @@ public class BossSpawnTimeController implements Runnable {
 			L1Npc template = NpcTable.getInstance().getTemplate(npcid);
 			if (template == null) {
 				_log.warning("Boss mob data for id:" + npcid + " missing in npc table");
-				System.out.println("º¸½º½ºÆù ÄÁÆ®·Ñ·¯ º¸½º npcid " + npcid + "°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				System.out.println("ë³´ìŠ¤ìŠ¤í° ì»¨íŠ¸ë¡¤ëŸ¬ ë³´ìŠ¤ npcid " + npcid + "ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 				return;
 			}
 			L1NpcInstance npc = NpcTable.getInstance().newNpcInstance(npcid);
@@ -197,7 +197,7 @@ public class BossSpawnTimeController implements Runnable {
 		}
 	}
 	
-	/** º¸½º°¡ ½ºÆù À§Ä¡¿¡¼­ ÁöÁ¤ ¹İ°æ ¹ÛÀ¸·Î ³ª°¬À» ¶§ °­Á¦ º¹±Í½ÃÅ°´Â °Ë»ç±â */
+	/** ë³´ìŠ¤ê°€ ìŠ¤í° ìœ„ì¹˜ì—ì„œ ì§€ì • ë°˜ê²½ ë°–ìœ¼ë¡œ ë‚˜ê°”ì„ ë•Œ ê°•ì œ ë³µê·€ì‹œí‚¤ëŠ” ê²€ì‚¬ê¸° */
 	class BossRangeGuard implements Runnable {
 	    private final L1NpcInstance npc;
 	    private final int spawnX;

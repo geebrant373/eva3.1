@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -44,25 +44,25 @@ public class L1NpcStart implements L1CommandExecutor {
 			StringTokenizer st = new StringTokenizer(arg);
 			String param = st.nextToken();
 
-			if (param.equalsIgnoreCase("¹«ÀÎ")) {
+			if (param.equalsIgnoreCase("ë¬´ì¸")) {
 				boolean power = ShopNpcSystem.getInstance().isPower();
 				if(power) {
-					pc.sendPackets(new S_SystemMessage("\\fWÀÌ¹Ì ½ÇÇàÁß ÀÔ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("\\fWì´ë¯¸ ì‹¤í–‰ì¤‘ ì…ë‹ˆë‹¤."));
 				} else {
 					ShopNpcSystem.getInstance().npcShopStart();
-					pc.sendPackets(new S_SystemMessage("\\fWNPC »óÁ¡ ½ºÆùÀ» ½ÃÀÛÇÕ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("\\fWNPC ìƒì  ìŠ¤í°ì„ ì‹œì‘í•©ë‹ˆë‹¤."));
 				}
-			} else if(param.equalsIgnoreCase("¸¶³×Å·")) {
+			} else if(param.equalsIgnoreCase("ë§ˆë„¤í‚¹")) {
 				boolean power = MannequinSystem.getInstance().isPower();
 				if(power) {
-					pc.sendPackets(new S_SystemMessage("\\fYÀÌ¹Ì ½ÇÇàÁß ÀÔ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("\\fYì´ë¯¸ ì‹¤í–‰ì¤‘ ì…ë‹ˆë‹¤."));
 				} else {
 					MannequinSystem.getInstance().MannequinStart();
-					pc.sendPackets(new S_SystemMessage("\\fY¸¶³×Å· ½ºÆùÀ» ½ÃÀÛÇÕ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("\\fYë§ˆë„¤í‚¹ ìŠ¤í°ì„ ì‹œì‘í•©ë‹ˆë‹¤."));
 				}
 			}
 		}catch(Exception e){
-			pc.sendPackets(new S_SystemMessage(".½ÃÀÛ [¹«ÀÎ or ¸¶³×Å·] ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä."));
+			pc.sendPackets(new S_SystemMessage(".ì‹œì‘ [ë¬´ì¸ or ë§ˆë„¤í‚¹] ë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”."));
 		}
 	}
 }

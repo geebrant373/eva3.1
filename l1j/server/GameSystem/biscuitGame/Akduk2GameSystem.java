@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -45,18 +45,18 @@ public class Akduk2GameSystem {
 					L1BuffNpcInstance Npc = (L1BuffNpcInstance) l1object;
 					if (Npc.getNpcTemplate().get_npcId() == 41922) {
 						
-						// ºñ½ºÅ¶ Ãß°¡, ºñ½ºÅ¶ ¼öÁ¤ µô·¯ µÚ·Î ÀÌµ¿
+						// ë¹„ìŠ¤í‚· ì¶”ê°€, ë¹„ìŠ¤í‚· ìˆ˜ì • ë”œëŸ¬ ë’¤ë¡œ ì´ë™
 						L1Teleport.teleport(player, 33437, 32821, (short) 4, 5, true);
 						
 						L1BuffNpcInstance dealer = Npc;
-						String chat = player.getName() + "´Ô " + bettingmoney
-								+ "¿ø ¹èÆÃÇÏ¼Ì½À´Ï´Ù.";
+						String chat = player.getName() + "ë‹˜ " + bettingmoney
+								+ "ì› ë°°íŒ…í•˜ì…¨ìŠµë‹ˆë‹¤.";
 						player.sendPackets(new S_NpcChatPacket(dealer, chat, 0));
 						Broadcaster.broadcastPacket(player,
 								new S_NpcChatPacket(dealer, chat, 0));
 						
 						Thread.sleep(3000);
-						String chat2 = "È¦orÂ¦ 2¹è 56Àº ²ÎÀÔ´Ï´Ù. 1~6 ¼ıÀÚ 3¹èÀÔ´Ï´Ù. È¦Â¦or¼ıÀÚ¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä";
+						String chat2 = "í™€orì§ 2ë°° 56ì€ ê½ì…ë‹ˆë‹¤. 1~6 ìˆ«ì 3ë°°ì…ë‹ˆë‹¤. í™€ì§orìˆ«ìë¥¼ ì…ë ¥í•´ì£¼ì„¸ìš”";
 						player.sendPackets(new S_NpcChatPacket(dealer, chat2, 0));
 						Broadcaster.broadcastPacket(player,
 								new S_NpcChatPacket(dealer, chat2, 0));
@@ -89,15 +89,15 @@ public class Akduk2GameSystem {
 					L1BuffNpcInstance Npc = (L1BuffNpcInstance) l1object;
 					if (Npc.getNpcTemplate().get_npcId() == 41922) {
 						L1BuffNpcInstance dealer = Npc;
-						String chat9 = pc.getName() + "´Ô ¸ÂÃß¼Ë½À´Ï´Ù. "
-								+ pc.getGamblingMoney() * 2 + "¿ø ÀÔ±İÇß½À´Ï´Ù.2¹è´ç¼º°ø.";
-						String chat10 = pc.getName() + "´Ô ¸ÂÃß¼Ë½À´Ï´Ù."
-								+ pc.getGamblingMoney() * 3 + "¿ø ÀÔ±İÇß½À´Ï´Ù.3¹è´ç¼º°ø";
-						String chat11 = pc.getName() + "´Ô Æ²¸®¼Ë½À´Ï´Ù.ÇÑ¹ø´õÇØ¿ä";
+						String chat9 = pc.getName() + "ë‹˜ ë§ì¶”ì…§ìŠµë‹ˆë‹¤. "
+								+ pc.getGamblingMoney() * 2 + "ì› ì…ê¸ˆí–ˆìŠµë‹ˆë‹¤.2ë°°ë‹¹ì„±ê³µ.";
+						String chat10 = pc.getName() + "ë‹˜ ë§ì¶”ì…§ìŠµë‹ˆë‹¤."
+								+ pc.getGamblingMoney() * 3 + "ì› ì…ê¸ˆí–ˆìŠµë‹ˆë‹¤.3ë°°ë‹¹ì„±ê³µ";
+						String chat11 = pc.getName() + "ë‹˜ í‹€ë¦¬ì…§ìŠµë‹ˆë‹¤.í•œë²ˆë”í•´ìš”";
 						String chat12 = pc.getName()
-								+ "´Ô Æ²¸®¼Ë½À´Ï´Ù. 5,6µµ ²ÎÀÎ°Å ¾Æ½ÃÁÒ?";
+								+ "ë‹˜ í‹€ë¦¬ì…§ìŠµë‹ˆë‹¤. 5,6ë„ ê½ì¸ê±° ì•„ì‹œì£ ?";
 						String chat13 = pc.getName()
-								+ "´Ô Æ²¸®¼Ë½À´Ï´Ù. 5,6µµ ²ÎÀÎ°Å ¾Æ½ÃÁÒ?";
+								+ "ë‹˜ í‹€ë¦¬ì…§ìŠµë‹ˆë‹¤. 5,6ë„ ê½ì¸ê±° ì•„ì‹œì£ ?";
 
 						int gfxid = 3204 + random.nextInt(6);
 
@@ -105,7 +105,7 @@ public class Akduk2GameSystem {
 						case 1:
 							Thread.sleep(500);
 							String chat = pc.getName()
-									+ "´Ô È¦À» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù. ¸Ö¸®°¡½Ã¸é °ÔÀÓÀÌ Ãë¼ÒµË´Ï´Ù.";
+									+ "ë‹˜ í™€ì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤. ë©€ë¦¬ê°€ì‹œë©´ ê²Œì„ì´ ì·¨ì†Œë©ë‹ˆë‹¤.";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat, 0));
 							Broadcaster.broadcastPacket(pc,
 									new S_NpcChatPacket(dealer, chat, 0));
@@ -135,7 +135,7 @@ public class Akduk2GameSystem {
 						case 2:
 							Thread.sleep(500);
 							String chat2 = pc.getName()
-									+ "´Ô Â¦À» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù. ¸Ö¸®°¡½Ã¸é °ÔÀÓÀÌ Ãë¼ÒµË´Ï´Ù.";
+									+ "ë‹˜ ì§ì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤. ë©€ë¦¬ê°€ì‹œë©´ ê²Œì„ì´ ì·¨ì†Œë©ë‹ˆë‹¤.";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat2, 0));
 							Broadcaster.broadcastPacket(pc,
 									new S_NpcChatPacket(dealer, chat2, 0));
@@ -164,7 +164,7 @@ public class Akduk2GameSystem {
 						case 3:
 							Thread.sleep(500);
 							String chat3 = pc.getName()
-									+ "´Ô 1À» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù. ¸Ö¸®°¡½Ã¸é °ÔÀÓÀÌ Ãë¼ÒµË´Ï´Ù.";
+									+ "ë‹˜ 1ì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤. ë©€ë¦¬ê°€ì‹œë©´ ê²Œì„ì´ ì·¨ì†Œë©ë‹ˆë‹¤.";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat3, 0));
 							Broadcaster.broadcastPacket(pc,
 									new S_NpcChatPacket(dealer, chat3, 0));
@@ -191,7 +191,7 @@ public class Akduk2GameSystem {
 						case 4:
 							Thread.sleep(500);
 							String chat4 = pc.getName()
-									+ "´Ô 2À» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù. ¸Ö¸®°¡½Ã¸é °ÔÀÓÀÌ Ãë¼ÒµË´Ï´Ù.";
+									+ "ë‹˜ 2ì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤. ë©€ë¦¬ê°€ì‹œë©´ ê²Œì„ì´ ì·¨ì†Œë©ë‹ˆë‹¤.";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat4, 0));
 							Broadcaster.broadcastPacket(pc,
 									new S_NpcChatPacket(dealer, chat4, 0));
@@ -218,7 +218,7 @@ public class Akduk2GameSystem {
 						case 5:
 							Thread.sleep(500);
 							String chat5 = pc.getName()
-									+ "´Ô 3À» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù. ¸Ö¸®°¡½Ã¸é °ÔÀÓÀÌ Ãë¼ÒµË´Ï´Ù.";
+									+ "ë‹˜ 3ì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤. ë©€ë¦¬ê°€ì‹œë©´ ê²Œì„ì´ ì·¨ì†Œë©ë‹ˆë‹¤.";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat5, 0));
 							Broadcaster.broadcastPacket(pc,
 									new S_NpcChatPacket(dealer, chat5, 0));
@@ -245,7 +245,7 @@ public class Akduk2GameSystem {
 						case 6:
 							Thread.sleep(500);
 							String chat6 = pc.getName()
-									+ "´Ô 4À» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù. ¸Ö¸®°¡½Ã¸é °ÔÀÓÀÌ Ãë¼ÒµË´Ï´Ù.";
+									+ "ë‹˜ 4ì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤. ë©€ë¦¬ê°€ì‹œë©´ ê²Œì„ì´ ì·¨ì†Œë©ë‹ˆë‹¤.";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat6, 0));
 							Broadcaster.broadcastPacket(pc,
 									new S_NpcChatPacket(dealer, chat6, 0));
@@ -272,7 +272,7 @@ public class Akduk2GameSystem {
 						case 7:
 							Thread.sleep(500);
 							String chat7 = pc.getName()
-									+ "´Ô 5À» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù. ¸Ö¸®°¡½Ã¸é °ÔÀÓÀÌ Ãë¼ÒµË´Ï´Ù.";
+									+ "ë‹˜ 5ì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤. ë©€ë¦¬ê°€ì‹œë©´ ê²Œì„ì´ ì·¨ì†Œë©ë‹ˆë‹¤.";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat7, 0));
 							Broadcaster.broadcastPacket(pc,
 									new S_NpcChatPacket(dealer, chat7, 0));
@@ -299,7 +299,7 @@ public class Akduk2GameSystem {
 						case 8:
 							Thread.sleep(500);
 							String chat8 = pc.getName()
-									+ "´Ô 6À» ¼±ÅÃÇÏ¼Ì½À´Ï´Ù. ¸Ö¸®°¡½Ã¸é °ÔÀÓÀÌ Ãë¼ÒµË´Ï´Ù.";
+									+ "ë‹˜ 6ì„ ì„ íƒí•˜ì…¨ìŠµë‹ˆë‹¤. ë©€ë¦¬ê°€ì‹œë©´ ê²Œì„ì´ ì·¨ì†Œë©ë‹ˆë‹¤.";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat8, 0));
 							Broadcaster.broadcastPacket(pc,
 									new S_NpcChatPacket(dealer, chat8, 0));

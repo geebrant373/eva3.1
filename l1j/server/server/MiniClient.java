@@ -1,4 +1,4 @@
-/**SimpleFirewall ¿¬µ¿Å¬·¡½º**/
+ï»¿/**SimpleFirewall ì—°ë™í´ë˜ìŠ¤**/
 package l1j.server.server;
 
 import java.io.BufferedWriter;
@@ -7,17 +7,17 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 public class MiniClient extends Thread{
-	/** ³»ÄÄÇ»ÅÍÀÇ ·ÎÄÃÈ£½ºÆ®**/
+	/** ë‚´ì»´í“¨í„°ì˜ ë¡œì»¬í˜¸ìŠ¤íŠ¸**/
 	private String serverIP = "118.38.92.240";
-	/**½ÉÇÃ ÆÄÀÌ¾î¿ù Æ÷Æ®**/
+	/**ì‹¬í”Œ íŒŒì´ì–´ì›” í¬íŠ¸**/
 	private final int serverPort = 2009;
-	/** Ãâ·Â ½ºÆ®¸² **/ 
+	/** ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ **/ 
 	private PrintWriter printWriter = null;
 	boolean listenFlag = true;
 
-	/**MiniClient Å¬·¡½º°´Ã¼°¡ ´ã±ä ÀÎ½ºÅÏ½º**/
+	/**MiniClient í´ë˜ìŠ¤ê°ì²´ê°€ ë‹´ê¸´ ì¸ìŠ¤í„´ìŠ¤**/
 	private static MiniClient _instance;
-	/**ÆÄ¿ù Â÷´ÜÁßÀÎÁö °Ë»ç**/
+	/**íŒŒì›” ì°¨ë‹¨ì¤‘ì¸ì§€ ê²€ì‚¬**/
 
 	public static MiniClient getInstance() {
 		if (_instance == null) {
@@ -32,7 +32,7 @@ public class MiniClient extends Thread{
 		boolean isInitEnv = this.initEnv();  
 	}
 
-	/**¾²·¹µå ·±**/
+	/**ì“°ë ˆë“œ ëŸ°**/
 	public void run() {  
 		try{
 			while(listenFlag == true) {
@@ -44,12 +44,12 @@ public class MiniClient extends Thread{
 		}   
 	}
 
-	/** ¼ÒÄÏ¿¬°á ¹× Ãâ·Â ½ºÆ®¸² Ãëµæ**/
+	/** ì†Œì¼“ì—°ê²° ë° ì¶œë ¥ ìŠ¤íŠ¸ë¦¼ ì·¨ë“**/
 	private boolean initEnv() {
 		try {
 			Socket clientSocket = new Socket(serverIP,serverPort);  
 			printWriter = new PrintWriter(new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream())));
-			System.out.println( "[MiniClient] SimpleFirewall ¿¬°á ¿Ï·á!" );
+			System.out.println( "[MiniClient] SimpleFirewall ì—°ê²° ì™„ë£Œ!" );
 			return true;
 		}
 		catch(Exception e) {
@@ -65,12 +65,12 @@ public class MiniClient extends Thread{
 		}
 	}
 
-	/** Â÷´ÜÇÒ IP Àü¼Û **/
+	/** ì°¨ë‹¨í•  IP ì „ì†¡ **/
 	public void MessageToServer(String IP){
 		try {
 			printWriter.println("L@"+IP);
 			printWriter.flush();   
-			System.out.println("[MiniClient] ("+ IP +")  SimpleFirewall Â÷´Ü¿Ï·á!" );
+			System.out.println("[MiniClient] ("+ IP +")  SimpleFirewall ì°¨ë‹¨ì™„ë£Œ!" );
 		} catch (Exception e){   
 			e.printStackTrace();
 		}finally{   

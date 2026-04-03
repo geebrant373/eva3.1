@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import l1j.server.Config;
 
@@ -9,7 +9,7 @@ import l1j.server.server.serverpackets.S_SystemMessage;
 
 public class PremiumTimeController2 implements Runnable {
 
-	public static final int SLEEP_TIME = Config.USERITEM1_TIME * 60000; // ¿øº» 600ÃÊ
+	public static final int SLEEP_TIME = Config.USERITEM1_TIME * 60000; // ì›ë³¸ 600ì´ˆ
 
 	private static PremiumTimeController2 _instance;
 
@@ -28,13 +28,13 @@ public class PremiumTimeController2 implements Runnable {
 		}
 	}
 
-	private void checkPremiumTime() {// ÀÏÁ¤½Ã°£ ±êÅĞÁö±Ş
+	private void checkPremiumTime() {// ì¼ì •ì‹œê°„ ê¹ƒí„¸ì§€ê¸‰
 		for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 			if (!pc.isAutoClanjoin() && !pc.isPrivateShop() && !pc.noPlayerCK && pc != null && !pc.isDead()) {
-				int FN4 = Config.useritem1;// ¾ÆÀÌÅÛ¹øÈ£
-				int FN5 = Config.usercount1;// °¹¼ö
+				int FN4 = Config.useritem1;// ì•„ì´í…œë²ˆí˜¸
+				int FN5 = Config.usercount1;// ê°¯ìˆ˜
 				pc.getInventory().storeItem(FN4, FN5);
-				pc.sendPackets(new S_SystemMessage("¾Ë¸²: µå·¡°ïÀÇ ´ÙÀÌ¾Æ¸óµå (" + FN5 + ") È¹µæ ÇÏ¼Ì½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì•Œë¦¼: ë“œë˜ê³¤ì˜ ë‹¤ì´ì•„ëª¬ë“œ (" + FN5 + ") íšë“ í•˜ì…¨ìŠµë‹ˆë‹¤."));
 			}
 		}
 	}

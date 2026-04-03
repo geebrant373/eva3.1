@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -41,12 +41,12 @@ public class C_SoldierGiveOK extends ClientBasePacket {
 	public C_SoldierGiveOK(byte abyte0[], LineageClient clientthread) {
 		super(abyte0);
 
-		int objid = readD(); // ¸» °Ç npc id
-		int index = readH(); // ¼±ÅÃ¸ñ·Ï ¼ø¹ø
+		int objid = readD(); // ë§ ê±´ npc id
+		int index = readH(); // ì„ íƒëª©ë¡ ìˆœë²ˆ
 		@SuppressWarnings("unused")
 		int unknow = readH(); // ????
 		int t_obj = readD(); // pc.getId
-		int count = readH(); // ¼±ÅÃ°¹¼ö
+		int count = readH(); // ì„ íƒê°¯ìˆ˜
 
 		L1PcInstance pc = clientthread.getActiveChar();
 

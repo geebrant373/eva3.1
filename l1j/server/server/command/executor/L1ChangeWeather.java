@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,7 +47,7 @@ public class L1ChangeWeather implements L1CommandExecutor {
 		} catch (Exception e) {
 			pc
 					. sendPackets(new S_SystemMessage(cmdName
-							+ " 0~3(´«), 16~19(ºñ)¶ó°í ÀÔ·Â ÇØÁÖ¼¼¿ä."));
+							+ " 0~3(ëˆˆ), 16~19(ë¹„)ë¼ê³  ì…ë ¥ í•´ì£¼ì„¸ìš”."));
 		}
 	}
 }

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -24,7 +24,7 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 		return ac / 4;
 	}
 	public String getClassName() {
-		return "´ÙÅ©¿¤ÇÁ";
+		return "ë‹¤í¬ì—˜í”„";
 	}
 
 	public String getClassInitial() {
@@ -32,7 +32,7 @@ class L1DarkElfClassFeature extends L1ClassFeature {
 	}
 
 	public String getClassAbbr() {
-		return "´Ù";
+		return "ë‹¤";
 	}
 	@Override
 	public int getMagicLevel(int playerLevel) {

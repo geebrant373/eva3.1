@@ -1,4 +1,4 @@
-package l1j.server.ParseHelper;
+﻿package l1j.server.ParseHelper;
 
 public interface ArrangeParsee<T>{
 	public ArrangeParsee<T> init(Class<T> cls);

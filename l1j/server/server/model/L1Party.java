@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -107,10 +107,10 @@ public class L1Party {
 			if (pc.getId() == getLeader().getId() && getNumOfMembers() == 1){
 				continue;
 			}
-			// ¸¸¾à 2¸íÀÌ»óÀÏ°æ¿ì ¸®´õÀÌ¸é 69¾Æ´Ï¸é 68			
+			// ë§Œì•½ 2ëª…ì´ìƒì¼ê²½ìš° ë¦¬ë”ì´ë©´ 69ì•„ë‹ˆë©´ 68			
 			if (pc.getId() == member.getId()){
 				pc.sendPackets(new S_Party(0x68, pc));
-			}else{//¸®´õ°¡ ¾Æ´Ñ°æ¿ì				
+			}else{//ë¦¬ë”ê°€ ì•„ë‹Œê²½ìš°				
 				member.sendPackets(new S_Party(0x69, pc));
 			}
 			member.sendPackets(new S_Party(0x6e, member));

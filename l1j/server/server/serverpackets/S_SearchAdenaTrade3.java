@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -67,9 +67,9 @@ public class S_SearchAdenaTrade3 extends ServerBasePacket {
 		DecimalFormat priceformat = new DecimalFormat("#,###,###,###");
 		int count = 0;
 		for(L1BoardAdena board : sellitemlist) {
-			writeS("¹°Ç°¹øÈ£:" + board.getTradeNumber());
-			writeS("ÆÇ¸Å±İ¾×:" + priceformat.format(board.getSellCount()));
-			writeS("¾Æµ§¼ö·®:" + priceformat.format(board.getAdenaCount()));
+			writeS("ë¬¼í’ˆë²ˆí˜¸:" + board.getTradeNumber());
+			writeS("íŒë§¤ê¸ˆì•¡:" + priceformat.format(board.getSellCount()));
+			writeS("ì•„ë´ìˆ˜ëŸ‰:" + priceformat.format(board.getAdenaCount()));
 			count++;
 			if(count >= 10) {
 				break;

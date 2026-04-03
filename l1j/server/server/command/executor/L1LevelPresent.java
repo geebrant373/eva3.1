@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -58,15 +58,15 @@ public class L1LevelPresent implements L1CommandExecutor {
 
 			L1Item temp = ItemTable.getInstance(). getTemplate(itemid);
 			if (temp == null) {
-				pc.sendPackets(new S_SystemMessage("Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌÅÛ IDÀÔ´Ï´Ù. "));
+				pc.sendPackets(new S_SystemMessage("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´í…œ IDì…ë‹ˆë‹¤. "));
 				return;
 			}
 
 			present(minlvl, maxlvl, itemid, enchant, count);
-			pc.sendPackets(new S_SystemMessage(temp.getName() + "¸¦ " + count
-					+ " °³ ¼±¹° Çß½À´Ï´Ù. (Lv" + minlvl + "~" + maxlvl + ")"));
+			pc.sendPackets(new S_SystemMessage(temp.getName() + "ë¥¼ " + count
+					+ " ê°œ ì„ ë¬¼ í–ˆìŠµë‹ˆë‹¤. (Lv" + minlvl + "~" + maxlvl + ")"));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".·¾¼±¹° [ÃÖÀú·¹º§] [ÃÖ°í·¹º§] [¾ÆÀÌÅÛID] [ÀÎÃ¦Æ®] [°¹¼ö]·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(".ë ™ì„ ë¬¼ [ìµœì €ë ˆë²¨] [ìµœê³ ë ˆë²¨] [ì•„ì´í…œID] [ì¸ì±ˆíŠ¸] [ê°¯ìˆ˜]ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 
@@ -146,7 +146,7 @@ public class L1LevelPresent implements L1CommandExecutor {
 	private static void present(ArrayList<String> accountList, int itemid, int enchant, int count) throws Exception {
 		L1Item temp = ItemTable.getInstance().getTemplate(itemid);
 		if (temp == null) {
-			throw new Exception("Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌÅÛ ID");
+			throw new Exception("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´í…œ ID");
 		}
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -203,7 +203,7 @@ public class L1LevelPresent implements L1CommandExecutor {
 				// ignore
 			}
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			throw new Exception(".present Ã³¸®Áß¿¡ ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù.");
+			throw new Exception(".present ì²˜ë¦¬ì¤‘ì— ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.");
 		} finally {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);

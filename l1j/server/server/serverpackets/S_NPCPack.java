@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -46,7 +46,7 @@ public class S_NPCPack extends ServerBasePacket {
 	public S_NPCPack(L1NpcInstance npc) {
 
 		/**
-		 * ¼¼ÆÃ - 0:mob,item(atk pointer), 1:poisoned(), 2:invisable(), 4:pc,
+		 * ì„¸íŒ… - 0:mob,item(atk pointer), 1:poisoned(), 2:invisable(), 4:pc,
 		 * 8:cursed(), 16:brave(), 32:??, 64:??(??), 128:invisable but name
 		 */
 		int status = 0;
@@ -60,7 +60,7 @@ public class S_NPCPack extends ServerBasePacket {
 			status |= STATUS_BRAVE;
 
 		if (npc.getNpcTemplate().is_doppel()) {
-			// PC¼Ó¼ºÀÌ¶ó¸é ¿¡¹ÙÀÇ Ãàº¹À» °Ç³×ÁÙ ¼ö ¾ø±â ¶§¹®¿¡ WIZ Äù½ºÆ®ÀÇ µ½ÆçÀº ¿¹¿Ü
+			// PCì†ì„±ì´ë¼ë©´ ì—ë°”ì˜ ì¶•ë³µì„ ê±´ë„¤ì¤„ ìˆ˜ ì—†ê¸° ë•Œë¬¸ì— WIZ í€˜ìŠ¤íŠ¸ì˜ ë•íŽ ì€ ì˜ˆì™¸
 			if (npc.getNpcTemplate().get_npcId() != 81069) {
 				status |= STATUS_PC;
 			}
@@ -78,13 +78,13 @@ public class S_NPCPack extends ServerBasePacket {
 		} else {
 			writeH(npc.getGfxId().getTempCharGfx());
 		}
-		if ((npc.getNpcTemplate().is_doppel() && npc.getGfxId().getGfxId() != 31)	// ½½¶óÀÓÀÇ ¸ð½ÀÀ» ÇÏ°í ÀÖÁö ¾ÊÀ¸¸é µ½Æç
-				|| npc.getGfxId().getGfxId() == 6632 || npc.getGfxId().getGfxId() == 6634		// ¾óÀ½´øÀü
-				|| npc.getGfxId().getGfxId() == 6636 || npc.getGfxId().getGfxId() == 6638) {	// ¾óÀ½´øÀü
-			writeC(4); // Àå°Ë
-		} else if (npc.getGfxId().getGfxId() == 51 || npc.getNpcId() == 60519) { // Ã¢ °æºñº´ , Ã»»ó¾î´Ü
+		if ((npc.getNpcTemplate().is_doppel() && npc.getGfxId().getGfxId() != 31)	// ìŠ¬ë¼ìž„ì˜ ëª¨ìŠµì„ í•˜ê³  ìžˆì§€ ì•Šìœ¼ë©´ ë•íŽ 
+				|| npc.getGfxId().getGfxId() == 6632 || npc.getGfxId().getGfxId() == 6634		// ì–¼ìŒë˜ì „
+				|| npc.getGfxId().getGfxId() == 6636 || npc.getGfxId().getGfxId() == 6638) {	// ì–¼ìŒë˜ì „
+			writeC(4); // ìž¥ê²€
+		} else if (npc.getGfxId().getGfxId() == 51 || npc.getNpcId() == 60519) { // ì°½ ê²½ë¹„ë³‘ , ì²­ìƒì–´ë‹¨
 			writeC (24);
-		} else if (npc.getGfxId().getGfxId() == 816) { // ¿À¼º ¿ÀÅ©½ºÄ«¿ìÆ®
+		} else if (npc.getGfxId().getGfxId() == 816) { // ì˜¤ì„± ì˜¤í¬ìŠ¤ì¹´ìš°íŠ¸
 			writeC (20);
 		} else {
 			writeC(npc.getActionStatus());
@@ -92,21 +92,21 @@ public class S_NPCPack extends ServerBasePacket {
 		writeC(npc.getMoveState().getHeading());
 		writeC(npc.getLight().getChaLightSize());
 		writeC(npc.getMoveState().getMoveSpeed());
-		writeD(1);// npc.getExp Áö¸¸ ÀÌÁ¦ º¸³»Áö ¾Ê´Â´Ù.
+		writeD(1);// npc.getExp ì§€ë§Œ ì´ì œ ë³´ë‚´ì§€ ì•ŠëŠ”ë‹¤.
 		writeH(npc.getTempLawful());
 		if (npcId == 770642 || npcId == 9000018 || npcId == 9000019 || npcId == 9000020 || npcId == 82006
 				|| npcId == 82007 || npcId == 82008 || npcId == 77777 || npcId == 70004 || npcId == 4220000
 				|| npcId == 4200100 || npcId == 4200101 || npcId == 4200102 || npcId >= 4500162 && npcId <= 4500169
 				|| npcId == 4220012 || npcId == 46199 || npcId >= 4510001 && npcId <= 4510004 || npcId == 777835
 				|| npcId == 9000012 || npcId == 9000013 || npcId == 70742 || npcId == 4500173 || npcId == 82009) {
-			writeS(Config.¼­¹öÀÌ¸§ + "^" + npc.getNameId());
+			writeS(Config.ì„œë²„ì´ë¦„ + "^" + npc.getNameId());
 		} else {
 			writeS(npc.getNameId());
 		}
-		if (npc instanceof L1FieldObjectInstance) { // SICÀÇ º®ÀÚ, °£ÆÇ µî
+		if (npc instanceof L1FieldObjectInstance) { // SICì˜ ë²½ìž, ê°„íŒ ë“±
 			L1NpcTalkData talkdata = NPCTalkDataTable.getInstance().getTemplate(npc.getNpcTemplate().get_npcId());
 			if (talkdata != null) {
-				writeS(talkdata.getNormalAction()); // Å¸ÀÌÆ²ÀÌ HTML¸íÀ¸·Î¼­ ÇØ¼®µÈ´Ù
+				writeS(talkdata.getNormalAction()); // íƒ€ì´í‹€ì´ HTMLëª…ìœ¼ë¡œì„œ í•´ì„ëœë‹¤
 			} else {
 				writeS(null);
 			}
@@ -121,7 +121,7 @@ public class S_NPCPack extends ServerBasePacket {
 			writeD(0);
 		}
 		writeS(null);
-		writeS(null); // ¸¶½ºÅÍ¸í?
+		writeS(null); // ë§ˆìŠ¤í„°ëª…?
 		writeC(0);		
 		writeC(0xFF); // HP
 		writeC(0);

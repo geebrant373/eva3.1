@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Auto;
+ï»¿package l1j.server.GameSystem.Auto;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -68,11 +68,11 @@ public class AutoSellItemController implements Runnable {
 	}
 
 	private void doAutoSellAction(L1PcInstance pc) {
-		ArrayList<Integer> _ÆÇ¸Å¸®½ºÆ® = pc.get_ÀÚµ¿ÆÇ¸Å¸®½ºÆ®();
-		if (!pc.is_ÀÚµ¿ÆÇ¸Å»ç¿ë()) {
+		ArrayList<Integer> _íŒë§¤ë¦¬ìŠ¤íŠ¸ = pc.get_ìë™íŒë§¤ë¦¬ìŠ¤íŠ¸();
+		if (!pc.is_ìë™íŒë§¤ì‚¬ìš©()) {
 			return;
 		}
-		if (_ÆÇ¸Å¸®½ºÆ® == null || _ÆÇ¸Å¸®½ºÆ®.isEmpty()) {
+		if (_íŒë§¤ë¦¬ìŠ¤íŠ¸ == null || _íŒë§¤ë¦¬ìŠ¤íŠ¸.isEmpty()) {
 			return;
 		}
 		if (pc.isDead()) {
@@ -93,18 +93,18 @@ public class AutoSellItemController implements Runnable {
 
 	private boolean sell_items(L1PcInstance pc) {
 	    L1ShopItem shopItem;
-	    L1Shop shop = ShopTable.getInstance().get(70037); // ¸¸¹°»óÀÎ
+	    L1Shop shop = ShopTable.getInstance().get(70037); // ë§Œë¬¼ìƒì¸
 	    List<Integer> autoSellItem = new ArrayList<>();
-	    ArrayList<Integer> _ÆÇ¸Å¸®½ºÆ® = pc.get_ÀÚµ¿ÆÇ¸Å¸®½ºÆ®();
+	    ArrayList<Integer> _íŒë§¤ë¦¬ìŠ¤íŠ¸ = pc.get_ìë™íŒë§¤ë¦¬ìŠ¤íŠ¸();
 	    ArrayList<SimpleSellingItemFormat> selling_formats = new ArrayList<SimpleSellingItemFormat>();
 	    L1PcInventory inv = pc.getInventory();
 
 	    int totalPrice = 0;
 
-	    for (int i = 0; i < _ÆÇ¸Å¸®½ºÆ®.size(); i++) {
-	        int itemId = _ÆÇ¸Å¸®½ºÆ®.get(i);
+	    for (int i = 0; i < _íŒë§¤ë¦¬ìŠ¤íŠ¸.size(); i++) {
+	        int itemId = _íŒë§¤ë¦¬ìŠ¤íŠ¸.get(i);
 
-	        // ÀÎÃ¦Æ® 0Â¥¸®¸¸ °³¼ö Ã¼Å©
+	        // ì¸ì±ˆíŠ¸ 0ì§œë¦¬ë§Œ ê°œìˆ˜ ì²´í¬
 	        int count = inv.countItems(itemId, 0); 
 	        if (count <= 0) {
 	            continue;
@@ -115,18 +115,18 @@ public class AutoSellItemController implements Runnable {
 	            f.needCount = count;
 	            f.itemId = itemId;
 	            shopItem = shop.getBuyExceptionEnchantItem(itemId);
-	            f.enchant = 0; // ÀÎÃ¦Æ® 0 °íÁ¤
+	            f.enchant = 0; // ì¸ì±ˆíŠ¸ 0 ê³ ì •
 	            try {
 	            	 f.price = shopItem.getPrice() * f.needCount;
 	            } catch (Exception e) {
 	            	
 	            }
 
-	            // ÀÎÃ¦Æ® 0ÀÎ °Í¸¸ ¼Òºñ
+	            // ì¸ì±ˆíŠ¸ 0ì¸ ê²ƒë§Œ ì†Œë¹„
 	            boolean consumed = inv.consumeItem(f.itemId, f.needCount, 0);
 	            if (!consumed) {
-	            	System.out.println("½ÇÆĞÇÏ¸é ´ÙÀ½ ¾ÆÀÌÅÛÀ¸·Î ³Ñ¾î°¡±â");
-	                // ½ÇÆĞÇÏ¸é ´ÙÀ½ ¾ÆÀÌÅÛÀ¸·Î ³Ñ¾î°¡±â
+	            	System.out.println("ì‹¤íŒ¨í•˜ë©´ ë‹¤ìŒ ì•„ì´í…œìœ¼ë¡œ ë„˜ì–´ê°€ê¸°");
+	                // ì‹¤íŒ¨í•˜ë©´ ë‹¤ìŒ ì•„ì´í…œìœ¼ë¡œ ë„˜ì–´ê°€ê¸°
 	                continue;
 	            }
 
@@ -137,15 +137,15 @@ public class AutoSellItemController implements Runnable {
 	            NumberFormat nf = NumberFormat.getInstance(Locale.KOREA);
 	            pc.sendPackets(new S_SystemMessage(
 	                shopItem.getItem().getName()
-	                + " (" + f.needCount + ") ÀÚµ¿ÆÇ¸Å µÇ¾ú½À´Ï´Ù. "));
-	            pc.sendPackets(new S_SystemMessage("ÆÇ¸Å ±İ¾×: " + nf.format(f.price) + " ¾Æµ¥³ª"));
+	                + " (" + f.needCount + ") ìë™íŒë§¤ ë˜ì—ˆìŠµë‹ˆë‹¤. "));
+	            pc.sendPackets(new S_SystemMessage("íŒë§¤ ê¸ˆì•¡: " + nf.format(f.price) + " ì•„ë°ë‚˜"));
 
 	        } catch (Exception e) {
 	            e.printStackTrace();
 	        }
 	    }
 
-	    // ¸ğµç ¾ÆÀÌÅÛ Ã³¸® ÈÄ ¾Æµ¥³ª Áö±Ş
+	    // ëª¨ë“  ì•„ì´í…œ ì²˜ë¦¬ í›„ ì•„ë°ë‚˜ ì§€ê¸‰
 	    if (totalPrice > 0) {
 	        inv.storeItem(L1ItemId.ADENA, totalPrice);
 	    }

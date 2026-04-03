@@ -1,4 +1,4 @@
-package l1j.server.ParseHelper;
+﻿package l1j.server.ParseHelper;
 
 import java.lang.reflect.Array;
 

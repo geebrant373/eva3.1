@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -113,10 +113,10 @@ public class ThunderWand extends L1ItemInstance{
 	private void doWandAction(L1PcInstance user, L1Object target) {
 
 		if (CharPosUtil.glanceCheck(user, target.getX(), target.getY()) == false) {
-			return; // Á÷¼±»ó¿¡ Àå¾Ö¹°ÀÌ ÀÖ´Ù
+			return; // ì§ì„ ìƒì— ì¥ì• ë¬¼ì´ ìˆë‹¤
 		}
 		
-		// XXX Àû´çÇÑ µ¥¹ÌÁö °è»ê, ¿äÁ¡ ¼öÁ¤
+		// XXX ì ë‹¹í•œ ë°ë¯¸ì§€ ê³„ì‚°, ìš”ì  ìˆ˜ì •
 		int dmg = ((_random.nextInt(10) - 5) + user.getAbility().getTotalStr() / 5);
 		dmg = Math.max(1, dmg);
 		
@@ -124,7 +124,7 @@ public class ThunderWand extends L1ItemInstance{
 			L1PcInstance pc = (L1PcInstance) target;
 			if (CharPosUtil.getZoneType(pc) == 1 || user.checkNonPvP(user, pc)
 					|| CharPosUtil.getZoneType(user) == 1) {
-				user.sendPackets(new S_UseAttackSkill(user, 0, 10, pc.getX(), pc.getY(), 17));//¿Ó¾î¿ä
+				user.sendPackets(new S_UseAttackSkill(user, 0, 10, pc.getX(), pc.getY(), 17));//ì™“ì–´ìš”
 				
 				Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, 0, 10, pc.getX(), pc.getY(), 17));
 				return;
@@ -138,7 +138,7 @@ public class ThunderWand extends L1ItemInstance{
 			}
 
 //			if (user.getId() == target.getId()) {
-//				return; // ÀÚ±â ÀÚ½Å¿¡°Ô ¸ÂÇû´Ù
+//				return; // ìê¸° ìì‹ ì—ê²Œ ë§í˜”ë‹¤
 //			}
 
 			if (pc.getGfxId().getTempCharGfx() == 16074

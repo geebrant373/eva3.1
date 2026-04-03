@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -35,7 +35,7 @@ public class S_OwnCharStatus extends ServerBasePacket {
 		int time = GameTimeClock.getInstance().getGameTime().getSeconds();
 		time = time - (time % 300);
 		// _log.warning((new
-		// StringBuilder()).append("¼Û½Å ½Ã°£:").append(i).toString());
+		// StringBuilder()).append("ì†¡ì‹  ì‹œê°„:").append(i).toString());
 		writeC(Opcodes.S_OPCODE_OWNCHARSTATUS);
 		writeD(pc.getId());
 

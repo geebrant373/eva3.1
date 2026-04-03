@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -87,7 +87,7 @@ public class L1FollowerInstance extends L1NpcInstance {
 				case 71062:
 					if (getLocation(). getTileLineDistance(_master.getLocation()) < 3) {
 						pc = (L1PcInstance) _master;	
-						if((pc.getX() >= 32448 && pc.getX() <= 32452) // ¸ðÅüÀÌ ¸ð½º ÁÖº¯ ÁÂÇ¥
+						if((pc.getX() >= 32448 && pc.getX() <= 32452) // ëª¨í‰ì´ ëª¨ìŠ¤ ì£¼ë³€ ì¢Œí‘œ
 								&& (pc.getY() >= 33048 && pc.getY() <= 33052)
 								&& (pc.getMapId() == 440)) {						
 							setParalyzed(true);
@@ -104,7 +104,7 @@ public class L1FollowerInstance extends L1NpcInstance {
 				case 71075:
 					if (getLocation().getTileLineDistance(_master.getLocation()) < 3) {
 						pc = (L1PcInstance) _master;	
-						if((pc.getX() >= 32731 && pc.getX() <= 32735) // ¸®ÀÚµå¸¸ Àå·Î ÁÖº¯ ÁÂÇ¥
+						if((pc.getX() >= 32731 && pc.getX() <= 32735) // ë¦¬ìžë“œë§Œ ìž¥ë¡œ ì£¼ë³€ ì¢Œí‘œ
 								&& (pc.getY() >= 32854 && pc.getY() <= 32858)
 								&& (pc.getMapId() == 480)) {
 							setParalyzed(true);
@@ -121,7 +121,7 @@ public class L1FollowerInstance extends L1NpcInstance {
 				case 70957:
 					if (getLocation(). getTileLineDistance(_master.getLocation()) < 3){
 						pc = (L1PcInstance) _master;	
-						if((pc.getX() >= 32917 && pc.getX() <= 32921) // ¹å½´ ÁÖº¯ ÁÂÇ¥
+						if((pc.getX() >= 32917 && pc.getX() <= 32921) // ë°§ìŠˆ ì£¼ë³€ ì¢Œí‘œ
 								&& (pc.getY() >= 32974 && pc.getY() <= 32978)
 								&& (pc.getMapId() == 410)) {
 							setParalyzed(true);
@@ -254,7 +254,7 @@ public class L1FollowerInstance extends L1NpcInstance {
 				L1QuestInstance newnpc = (L1QuestInstance) object;
 				newnpc.onNpcAI();
 				newnpc.getLight().turnOnOffLight();
-				newnpc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // Ã¤ÆÃ °³½Ã
+				newnpc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // ì±„íŒ… ê°œì‹œ
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

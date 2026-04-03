@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -60,19 +60,19 @@ public final class MapsTable {
 	private static MapsTable _instance;
 
 	/**
-	 * Key¿¡ MAP ID, Value¿¡ ÅÚ·¹Æ÷Æ® °¡ºÎ ÇÃ·¡±×°¡ °İ³³µÇ´Â HashMap
+	 * Keyì— MAP ID, Valueì— í…”ë ˆí¬íŠ¸ ê°€ë¶€ í”Œë˜ê·¸ê°€ ê²©ë‚©ë˜ëŠ” HashMap
 	 */
 	private final Map<Integer, MapData> _maps = new HashMap<Integer, MapData>();
 
 	/**
-	 * »õ·Ó°í MapsTable ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇØ, MAPÀÇ ÅÚ·¹Æ÷Æ® °¡ºÎ ÇÃ·¡±×¸¦ ÀĞ¾îµéÀÎ´Ù.
+	 * ìƒˆë¡­ê³  MapsTable ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•´, MAPì˜ í…”ë ˆí¬íŠ¸ ê°€ë¶€ í”Œë˜ê·¸ë¥¼ ì½ì–´ë“¤ì¸ë‹¤.
 	 */
 	private MapsTable() {
 		loadMapsFromDatabase();
 	}
 
 	/**
-	 * MAPÀÇ ÅÚ·¹Æ÷Æ® °¡ºÎ ÇÃ·¡±×¸¦ µ¥ÀÌÅ¸º£ÀÌ½º·ÎºÎÅÍ ÀĞ¾îµé¿©, HashMap _maps¿¡ °İ³³ÇÑ´Ù.
+	 * MAPì˜ í…”ë ˆí¬íŠ¸ ê°€ë¶€ í”Œë˜ê·¸ë¥¼ ë°ì´íƒ€ë² ì´ìŠ¤ë¡œë¶€í„° ì½ì–´ë“¤ì—¬, HashMap _mapsì— ê²©ë‚©í•œë‹¤.
 	 */
 	
 	public String locationname(int mapId) {
@@ -167,9 +167,9 @@ public final class MapsTable {
 		}
 	}
 	/**
-	 * MapsTableÀÇ ÀÎ½ºÅÏ½º¸¦ µ¹·ÁÁØ´Ù.
+	 * MapsTableì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return MapsTableÀÇ ÀÎ½ºÅÏ½º
+	 * @return MapsTableì˜ ì¸ìŠ¤í„´ìŠ¤
 	 */
 	public static MapsTable getInstance() {
 		if (_instance == null) {
@@ -179,11 +179,11 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡ÀÇ X°³½Ã ÁÂÇ¥¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€ì˜ Xê°œì‹œ ì¢Œí‘œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
-	 * @return X°³½Ã ÁÂÇ¥
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
+	 * @return Xê°œì‹œ ì¢Œí‘œ
 	 */
 	public int getStartX(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -194,11 +194,11 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡ÀÇ XÁ¾·á ÁÂÇ¥¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€ì˜ Xì¢…ë£Œ ì¢Œí‘œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
-	 * @return XÁ¾·á ÁÂÇ¥
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
+	 * @return Xì¢…ë£Œ ì¢Œí‘œ
 	 */
 	public int getEndX(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -209,11 +209,11 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡ÀÇ Y°³½Ã ÁÂÇ¥¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€ì˜ Yê°œì‹œ ì¢Œí‘œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
-	 * @return Y°³½Ã ÁÂÇ¥
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
+	 * @return Yê°œì‹œ ì¢Œí‘œ
 	 */
 	public int getStartY(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -224,11 +224,11 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡ÀÇ YÁ¾·á ÁÂÇ¥¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€ì˜ Yì¢…ë£Œ ì¢Œí‘œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
-	 * @return YÁ¾·á ÁÂÇ¥
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
+	 * @return Yì¢…ë£Œ ì¢Œí‘œ
 	 */
 	public int getEndY(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -239,11 +239,11 @@ public final class MapsTable {
 	}
 
 	/**
-	 * ¸ÊÀÇ monster·® ¹èÀ²À» µ¹·ÁÁØ´Ù
+	 * ë§µì˜ monsterëŸ‰ ë°°ìœ¨ì„ ëŒë ¤ì¤€ë‹¤
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â ¸ÊÀÇ ¸Ê ID
-	 * @return monster·®ÀÇ ¹èÀ²
+	 *            ì¡°ì‚¬í•˜ëŠ” ë§µì˜ ë§µ ID
+	 * @return monsterëŸ‰ì˜ ë°°ìœ¨
 	 */
 	public double getMonsterAmount(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -265,11 +265,11 @@ public final class MapsTable {
 	//	System.out.println("OK! " + timer.elapsedTimeMillis() + "ms");
 	}
 	/**
-	 * ¸ÊÀÇ µå·Ó ¹èÀ²À» µ¹·ÁÁØ´Ù
+	 * ë§µì˜ ë“œë¡­ ë°°ìœ¨ì„ ëŒë ¤ì¤€ë‹¤
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â ¸ÊÀÇ ¸Ê ID
-	 * @return µå·Ó ¹èÀ²
+	 *            ì¡°ì‚¬í•˜ëŠ” ë§µì˜ ë§µ ID
+	 * @return ë“œë¡­ ë°°ìœ¨
 	 */
 	public double getDropRate(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -280,12 +280,12 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡, ¼öÁßÀÏ±î¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€, ìˆ˜ì¤‘ì¼ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
 	 * 
-	 * @return ¼öÁßÀÌ¸é true
+	 * @return ìˆ˜ì¤‘ì´ë©´ true
 	 */
 	public boolean isUnderwater(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -296,11 +296,11 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡, ºÏ¸¶Å© °¡´ÉÇÑ°¡¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€, ë¶ë§ˆí¬ ê°€ëŠ¥í•œê°€ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
-	 * @return ºÏ¸¶Å© °¡´ÉÇÏ¸é true
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
+	 * @return ë¶ë§ˆí¬ ê°€ëŠ¥í•˜ë©´ true
 	 */
 	public boolean isMarkable(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -311,11 +311,11 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡, ·£´ı ÅÚ·¹Æ÷Æ® °¡´ÉÇÑ°¡¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€, ëœë¤ í…”ë ˆí¬íŠ¸ ê°€ëŠ¥í•œê°€ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
-	 * @return °¡´ÉÇÏ¸é true
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
+	 * @return ê°€ëŠ¥í•˜ë©´ true
 	 */
 	public boolean isTeleportable(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -326,11 +326,11 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡, MAP¸¦ ³ÑÀº ÅÚ·¹Æ÷Æ® °¡´ÉÇÑ°¡¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€, MAPë¥¼ ë„˜ì€ í…”ë ˆí¬íŠ¸ ê°€ëŠ¥í•œê°€ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
-	 * @return °¡´ÉÇÏ¸é true
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
+	 * @return ê°€ëŠ¥í•˜ë©´ true
 	 */
 	public boolean isEscapable(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -341,12 +341,12 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡, restore °¡´ÉÇÑ°¡¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€, restore ê°€ëŠ¥í•œê°€ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
 	 * 
-	 * @return restore °¡´ÉÇÏ¸é true
+	 * @return restore ê°€ëŠ¥í•˜ë©´ true
 	 */
 	public boolean isUseResurrection(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -357,12 +357,12 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡, ÆÄÀÎÁê½º wand »ç¿ë °¡´ÉÇÑ°¡¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€, íŒŒì¸ì¥¬ìŠ¤ wand ì‚¬ìš© ê°€ëŠ¥í•œê°€ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
 	 * 
-	 * @return ÆÄÀÎÁê½º wand »ç¿ë °¡´ÉÇÏ¸é true
+	 * @return íŒŒì¸ì¥¬ìŠ¤ wand ì‚¬ìš© ê°€ëŠ¥í•˜ë©´ true
 	 */
 	public boolean isUsePainwand(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -373,12 +373,12 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡, µ¥½ºÆä³ª¸£Æ¼°¡ ÀÖÀ»±î¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€, ë°ìŠ¤í˜ë‚˜ë¥´í‹°ê°€ ìˆì„ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
 	 * 
-	 * @return µ¥½ºÆä³ª¸£Æ¼ÀÌ¸é true
+	 * @return ë°ìŠ¤í˜ë‚˜ë¥´í‹°ì´ë©´ true
 	 */
 	public boolean isEnabledDeathPenalty(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -389,12 +389,12 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡, ¾Ö¿Ïµ¿¹°¡¤»ç¸óÀ» µ¥¸®°í °¥ ¼ö ÀÖÀ»±î¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€, ì• ì™„ë™ë¬¼Â·ì‚¬ëª¬ì„ ë°ë¦¬ê³  ê°ˆ ìˆ˜ ìˆì„ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
 	 * 
-	 * @return Æê¡¤»ç¸óÀ» µ¥¸®°í °¥ ¼ö ÀÖ´Ù¸é true
+	 * @return í«Â·ì‚¬ëª¬ì„ ë°ë¦¬ê³  ê°ˆ ìˆ˜ ìˆë‹¤ë©´ true
 	 */
 	public boolean isTakePets(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -405,12 +405,12 @@ public final class MapsTable {
 	}
 
 	/**
-	 * MAP°¡, ¾Ö¿Ïµ¿¹°¡¤»ç¸óÀ» È£ÃâÇÒ ¼ö ÀÖÀ»±î¸¦ µ¹·ÁÁØ´Ù.
+	 * MAPê°€, ì• ì™„ë™ë¬¼Â·ì‚¬ëª¬ì„ í˜¸ì¶œí•  ìˆ˜ ìˆì„ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â MAPÀÇ MAP ID
+	 *            ì¡°ì‚¬í•˜ëŠ” MAPì˜ MAP ID
 	 * 
-	 * @return Æê¡¤»ç¸óÀ» È£ÃâÇÒ ¼ö ÀÖ´Ù¸é true
+	 * @return í«Â·ì‚¬ëª¬ì„ í˜¸ì¶œí•  ìˆ˜ ìˆë‹¤ë©´ true
 	 */
 	public boolean isRecallPets(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -421,12 +421,12 @@ public final class MapsTable {
 	}
 	
 	/**
-	 * ¸ÊÀÌ, ¾ÆÀÌÅÛÀ» »ç¿ëÇÒ ¼ö ÀÖÀ»±î¸¦ µ¹·ÁÁØ´Ù.
+	 * ë§µì´, ì•„ì´í…œì„ ì‚¬ìš©í•  ìˆ˜ ìˆì„ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â ¸ÊÀÇ ¸Ê ID
+	 *            ì¡°ì‚¬í•˜ëŠ” ë§µì˜ ë§µ ID
 	 * 
-	 * @return ¾ÆÀÌÅÛÀ» »ç¿ëÇÒ ¼ö ÀÖ´Ù¸é true
+	 * @return ì•„ì´í…œì„ ì‚¬ìš©í•  ìˆ˜ ìˆë‹¤ë©´ true
 	 */
 	public boolean isUsableItem(int mapId) {
 		MapData map = _maps.get(mapId);
@@ -437,12 +437,12 @@ public final class MapsTable {
 	}
 
 	/**
-	 * ¸ÊÀÌ, ½ºÅ³À» »ç¿ëÇÒ ¼ö ÀÖÀ»±î¸¦ µ¹·ÁÁØ´Ù.
+	 * ë§µì´, ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ìˆì„ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â ¸ÊÀÇ ¸Ê ID
+	 *            ì¡°ì‚¬í•˜ëŠ” ë§µì˜ ë§µ ID
 	 * 
-	 * @return ½ºÅ³À» »ç¿ëÇÒ ¼ö ÀÖ´Ù¸é true
+	 * @return ìŠ¤í‚¬ì„ ì‚¬ìš©í•  ìˆ˜ ìˆë‹¤ë©´ true
 	 */
 	public boolean isUsableSkill(int mapId) {
 		MapData map = _maps.get(mapId);

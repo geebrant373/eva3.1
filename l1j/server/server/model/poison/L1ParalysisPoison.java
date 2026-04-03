@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -125,7 +125,7 @@ public class L1ParalysisPoison extends L1Poison {
 		if (_timer != null) {
 			_timer.interrupt();
 		}
-		((L1PcInstance) _target).sendPackets(new S_SystemMessage("¸ö¿¡¼­ µ¶±â¿îÀÌ ºüÁ®³ª°©´Ï´Ù."));
+		((L1PcInstance) _target).sendPackets(new S_SystemMessage("ëª¸ì—ì„œ ë…ê¸°ìš´ì´ ë¹ ì ¸ë‚˜ê°‘ë‹ˆë‹¤."));
 		((L1PcInstance) _target).sendPackets(new S_SkillIconAura(227, 0.1));
 		_target.setPoisonEffect(0);
 		_target.setPoison(null);

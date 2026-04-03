@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -75,11 +75,11 @@ public class MakeCooking extends L1ItemInstance{
 			}
 		}
 		if (!isNearFire) {
-			pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®¿¡´Â ¸ğ´ÚºÒÀÌ ÇÊ¿äÇÕ´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ì—ëŠ” ëª¨ë‹¥ë¶ˆì´ í•„ìš”í•©ë‹ˆë‹¤.
 			return;
 		}
 		if (pc.getMaxWeight() <= pc.getInventory().getWeight()) {
-			pc.sendPackets(new S_ServerMessage(1103)); // ¾ÆÀÌÅÛÀÌ ³Ê¹« ¹«°Å¿ö, ¿ä¸®ÇÒ ¼ö ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(1103)); // ì•„ì´í…œì´ ë„ˆë¬´ ë¬´ê±°ì›Œ, ìš”ë¦¬í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 		if (pc.getSkillEffectTimerSet().hasSkillEffect(COOKING_NOW)) {
@@ -88,7 +88,7 @@ public class MakeCooking extends L1ItemInstance{
 		pc.getSkillEffectTimerSet().setSkillEffect(COOKING_NOW, 3 * 1000);		
 		int chance = _random.nextInt(100) + 1;
 		switch(cookNo){
-		case 0: // ±«¹°´« ½ºÅ×ÀÌÅ©
+		case 0: // ê´´ë¬¼ëˆˆ ìŠ¤í…Œì´í¬
 			if (pc.getInventory().checkItem(40057, 1)) {
 				pc.getInventory().consumeItem(40057, 1);
 				if (chance >= 1 && chance <= 90) {
@@ -103,10 +103,10 @@ public class MakeCooking extends L1ItemInstance{
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 1: // °õ°í±â ±¸ÀÌ
+		case 1: // ê³°ê³ ê¸° êµ¬ì´
 			if (pc.getInventory().checkItem(41275, 1)) {
 				pc.getInventory().consumeItem(41275, 1);
 				if (chance >= 1 && chance <= 90) {
@@ -117,14 +117,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 2: // ¾¾È£¶±
+		case 2: // ì”¨í˜¸ë–¡
 			if (pc.getInventory().checkItem(41263, 1)
 					&& pc.getInventory().checkItem(41265, 1)) {
 				pc.getInventory().consumeItem(41263, 1);
@@ -137,14 +137,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 3: // °³¹Ì´Ù¸® Ä¡Áî±¸ÀÌ
+		case 3: // ê°œë¯¸ë‹¤ë¦¬ ì¹˜ì¦ˆêµ¬ì´
 			if (pc.getInventory().checkItem(41274, 1)
 					&& pc.getInventory().checkItem(41267, 1)) {
 				pc.getInventory().consumeItem(41274, 1);
@@ -157,14 +157,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 4: // °úÀÏ»ø·¯µå
+		case 4: // ê³¼ì¼ìƒëŸ¬ë“œ
 			if (pc.getInventory().checkItem(40062, 1)
 					&& pc.getInventory().checkItem(40069, 1)
 					&& pc.getInventory().checkItem(40064, 1)) {
@@ -179,14 +179,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 5: // °úÀÏ ÅÁ¼öÀ°
+		case 5: // ê³¼ì¼ íƒ•ìˆ˜ìœ¡
 			if (pc.getInventory().checkItem(40056, 1)
 					&& pc.getInventory().checkItem(40060, 1)
 					&& pc.getInventory().checkItem(40061, 1)) {
@@ -201,14 +201,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 6: // ¸äµÅÁö ²¿Ä¡ ±¸ÀÌ
+		case 6: // ë©§ë¼ì§€ ê¼¬ì¹˜ êµ¬ì´
 			if (pc.getInventory().checkItem(41276, 1)) {
 				pc.getInventory().consumeItem(41276, 1);
 				if (chance >= 1 && chance <= 90) {
@@ -219,14 +219,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 7: // ¹ö¼¸ ½ºÇÁ
+		case 7: // ë²„ì„¯ ìŠ¤í”„
 			if (pc.getInventory().checkItem(40499, 1)
 					&& pc.getInventory().checkItem(40060, 1)) {
 				pc.getInventory().consumeItem(40499, 1);
@@ -239,14 +239,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 8: // Ä³ºñ¾î Ä«³ªÆä
+		case 8: // ìºë¹„ì–´ ì¹´ë‚˜í˜
 			if (pc.getInventory().checkItem(49040, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
 				pc.getInventory().consumeItem(49040, 1);
@@ -259,14 +259,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 9: // ¾Ç¾î ½ºÅ×ÀÌÅ©
+		case 9: // ì•…ì–´ ìŠ¤í…Œì´í¬
 			if (pc.getInventory().checkItem(49041, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
 				pc.getInventory().consumeItem(49041, 1);
@@ -279,14 +279,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 10: // ÅÍÆ²µå·¡°ï °úÀÚ
+		case 10: // í„°í‹€ë“œë˜ê³¤ ê³¼ì
 			if (pc.getInventory().checkItem(49042, 1)
 					&& pc.getInventory().checkItem(41265, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
@@ -301,14 +301,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 11: // Å°À§ ÆĞ·Ô ±¸ÀÌ
+		case 11: // í‚¤ìœ„ íŒ¨ë¡¯ êµ¬ì´
 			if (pc.getInventory().checkItem(49043, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
 				pc.getInventory().consumeItem(49043, 1);
@@ -321,14 +321,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 12: // ½ºÄİÇÇ¿Â ±¸ÀÌ
+		case 12: // ìŠ¤ì½œí”¼ì˜¨ êµ¬ì´
 			if (pc.getInventory().checkItem(49044, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
 				pc.getInventory().consumeItem(49044, 1);
@@ -341,14 +341,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 13: // ÀÏ·ºÄ«µÒ ½ºÆ©
+		case 13: // ì¼ë ‰ì¹´ë‘  ìŠ¤íŠœ
 			if (pc.getInventory().checkItem(49045, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
 				pc.getInventory().consumeItem(49045, 1);
@@ -361,14 +361,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 14: // °Å¹Ì´Ù¸® ²¿Ä¡ ±¸ÀÌ
+		case 14: // ê±°ë¯¸ë‹¤ë¦¬ ê¼¬ì¹˜ êµ¬ì´
 			if (pc.getInventory().checkItem(49046, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
 				pc.getInventory().consumeItem(49046, 1);
@@ -381,14 +381,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 15: // Å©·¦»ì ½ºÇÁ
+		case 15: // í¬ë©ì‚´ ìŠ¤í”„
 			if (pc.getInventory().checkItem(49047, 1)
 					&& pc.getInventory().checkItem(40499, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
@@ -403,14 +403,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 16: // Å©·¯½ºÆ®½Ã¾È Áı°Ô¹ß ±¸ÀÌ
+		case 16: // í¬ëŸ¬ìŠ¤íŠ¸ì‹œì•ˆ ì§‘ê²Œë°œ êµ¬ì´
 			if(pc.getInventory().checkItem(49048, 1)
 					&& pc.getInventory().checkItem(L1ItemId.COOK_HUB, 1)					
 					&& pc.getInventory().checkItem(L1ItemId.COOKSTUFF_CRUSTCEA_CLAW, 1)) {							
@@ -425,14 +425,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 17: // ±×¸®Æù ±¸ÀÌ
+		case 17: // ê·¸ë¦¬í° êµ¬ì´
 			if(pc.getInventory().checkItem(L1ItemId.COOK_HUB, 1)
 					&& pc.getInventory().checkItem(L1ItemId.COOKSTUFF_GRIFFON_FOOD, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
@@ -447,14 +447,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 18: // ÄÚÄ«Æ®¸®½º ½ºÅ×ÀÌÅ©
+		case 18: // ì½”ì¹´íŠ¸ë¦¬ìŠ¤ ìŠ¤í…Œì´í¬
 			if(pc.getInventory().checkItem(L1ItemId.COOK_HUB, 1)
 					&& pc.getInventory().checkItem(L1ItemId.COOKSTUFF_COCKATRICE_TAIL, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
@@ -469,14 +469,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 19: // ´ë¿Õ°ÅºÏ ±¸ÀÌ
+		case 19: // ëŒ€ì™•ê±°ë¶ êµ¬ì´
 			if(pc.getInventory().checkItem(L1ItemId.COOK_HUB, 1)
 					&& pc.getInventory().checkItem(L1ItemId.COOKSTUFF_TURTLEKING_FLESH, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
@@ -491,14 +491,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 20: // ·¹¼­ µå·¡°ï ³¯°³²¿Ä¡
+		case 20: // ë ˆì„œ ë“œë˜ê³¤ ë‚ ê°œê¼¬ì¹˜
 			if(pc.getInventory().checkItem(L1ItemId.COOK_HUB, 1)
 					&& pc.getInventory().checkItem(L1ItemId.COOKSTUFF_LESSERDRAGON_WING, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
@@ -513,14 +513,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 21: // µå·¹ÀÌÅ© ±¸ÀÌ
+		case 21: // ë“œë ˆì´í¬ êµ¬ì´
 			if(pc.getInventory().checkItem(L1ItemId.COOK_HUB, 1)
 					&& pc.getInventory().checkItem(L1ItemId.COOKSTUFF_DRAKE_FOOD, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
@@ -535,14 +535,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 22: // ½ÉÇØ¾î ½ºÆ©
+		case 22: // ì‹¬í•´ì–´ ìŠ¤íŠœ
 			if(pc.getInventory().checkItem(L1ItemId.COOK_HUB, 1)
 					&& pc.getInventory().checkItem(L1ItemId.COOKSTUFF_DEEP_SEA_FISH_FLESH, 1)
 					&& pc.getInventory().checkItem(49048, 1)) {
@@ -557,14 +557,14 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
-		case 23: // ¹Ù½Ç¸®½ºÅ© ¾Ë ½ºÇÁ
+		case 23: // ë°”ì‹¤ë¦¬ìŠ¤í¬ ì•Œ ìŠ¤í”„
 			if(pc.getInventory().checkItem(40499, 1) 
 					&& pc.getInventory().checkItem(49048, 1)
 					&& pc.getInventory().checkItem(L1ItemId.COOK_HUB, 1)
@@ -581,11 +581,11 @@ public class MakeCooking extends L1ItemInstance{
 					pc.sendPackets(new S_SkillSound(pc.getId(), 6390));
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6390));
 				} else if (chance >= 96 && chance <= 100) {
-					pc.sendPackets(new S_ServerMessage(1101)); // ¿ä¸®°¡ ½ÇÆĞÇß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(1101)); // ìš”ë¦¬ê°€ ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.
 					Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 6394));
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(1102)); // ¿ä¸®ÀÇ Àç·á°¡ ÃæºĞÇÏÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1102)); // ìš”ë¦¬ì˜ ì¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 			}
 			break;
 		default:
@@ -599,11 +599,11 @@ public class MakeCooking extends L1ItemInstance{
 		if (item != null) {
 			if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 				pc.getInventory().storeItem(item);
-			} else { // °¡Áú ¼ö  ¾ø´Â °æ¿ì´Â Áö¸é¿¡ ¶³¾î¶ß¸®´Â Ã³¸®ÀÇ Äµ½½Àº ÇÏÁö ¾Ê´Â´Ù(ºÎÁ¤ ¹æÁö)
+			} else { // ê°€ì§ˆ ìˆ˜  ì—†ëŠ” ê²½ìš°ëŠ” ì§€ë©´ì— ë–¨ì–´ëœ¨ë¦¬ëŠ” ì²˜ë¦¬ì˜ ìº”ìŠ¬ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤(ë¶€ì • ë°©ì§€)
 				L1World.getInstance().getInventory(pc.getX(), pc.getY(),
 						pc.getMapId()).storeItem(item);
 			}
-			pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0¸¦ ¼Õ¿¡ ³Ö¾ú½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0ë¥¼ ì†ì— ë„£ì—ˆìŠµë‹ˆë‹¤.
 			return true;
 		} else {
 			return false;

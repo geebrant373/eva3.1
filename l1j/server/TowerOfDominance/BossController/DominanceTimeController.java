@@ -1,4 +1,4 @@
-package l1j.server.TowerOfDominance.BossController;
+ï»¿package l1j.server.TowerOfDominance.BossController;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -33,8 +33,8 @@ public class DominanceTimeController implements Runnable {
 				for (DominanceBoss b : list) {
 					if (b.isSpawnTime(hour, min, time) && sec == 0) {
 						if (!MJRnd.isWinning(1000000, b.getRandomSpawn())) {
-							// System.out.println("¸ÛÅ½ º¸½º : " + b.getBossName());
-							// System.out.println("¸ÛÅ½ ¹ßµ¿È®·ü : " + b.getRandomSpawn());
+							// System.out.println("ë©íƒ ë³´ìŠ¤ : " + b.getBossName());
+							// System.out.println("ë©íƒ ë°œë™í™•ë¥  : " + b.getRandomSpawn());
 							continue;
 						}
 
@@ -74,20 +74,20 @@ public class DominanceTimeController implements Runnable {
 							riper.Start();
 						}
 						else if (b.getBossNum() == 12) {
-							DominanceFloorLv12 ÀØÇôÁø¼¶ = new DominanceFloorLv12(b.getNpcId(), b.getMapX(), b.getMapY(), b.getMapId(), b.isMentuse(), b.getMent(), b.isAllEffect(), b.getEffectNum());
-							ÀØÇôÁø¼¶.Start();
+							DominanceFloorLv12 ìŠí˜€ì§„ì„¬ = new DominanceFloorLv12(b.getNpcId(), b.getMapX(), b.getMapY(), b.getMapId(), b.isMentuse(), b.getMent(), b.isAllEffect(), b.getEffectNum());
+							ìŠí˜€ì§„ì„¬.Start();
 						}
 						else if (b.getBossNum() == 13) {
-							DominanceFloorLv13 Å×º£¾Æ´©ºñ½º = new DominanceFloorLv13(b.getNpcId(), b.getMapX(), b.getMapY(), b.getMapId(), b.isMentuse(), b.getMent(), b.isAllEffect(), b.getEffectNum());
-							Å×º£¾Æ´©ºñ½º.Start();
+							DominanceFloorLv13 í…Œë² ì•„ëˆ„ë¹„ìŠ¤ = new DominanceFloorLv13(b.getNpcId(), b.getMapX(), b.getMapY(), b.getMapId(), b.isMentuse(), b.getMent(), b.isAllEffect(), b.getEffectNum());
+							í…Œë² ì•„ëˆ„ë¹„ìŠ¤.Start();
 						}
 						else if (b.getBossNum() == 14) {
-							DominanceFloorLv14 Å×º£È£·ç½º = new DominanceFloorLv14(b.getNpcId(), b.getMapX(), b.getMapY(), b.getMapId(), b.isMentuse(), b.getMent(), b.isAllEffect(), b.getEffectNum());
-							Å×º£È£·ç½º.Start();
+							DominanceFloorLv14 í…Œë² í˜¸ë£¨ìŠ¤ = new DominanceFloorLv14(b.getNpcId(), b.getMapX(), b.getMapY(), b.getMapId(), b.isMentuse(), b.getMent(), b.isAllEffect(), b.getEffectNum());
+							í…Œë² í˜¸ë£¨ìŠ¤.Start();
 						}
 						else if (b.getBossNum() == 15) {
-							DominanceFloorLv15 Å×º£Á¦´Ü = new DominanceFloorLv15(b.getNpcId(), b.getMapX(), b.getMapY(), b.getMapId(), b.isMentuse(), b.getMent(), b.isAllEffect(), b.getEffectNum());
-							Å×º£Á¦´Ü.Start();
+							DominanceFloorLv15 í…Œë² ì œë‹¨ = new DominanceFloorLv15(b.getNpcId(), b.getMapX(), b.getMapY(), b.getMapId(), b.isMentuse(), b.getMent(), b.isAllEffect(), b.getEffectNum());
+							í…Œë² ì œë‹¨.Start();
 						}
 						//MJUIAdapter.on_boss_append(b.getNpcId(), b.getBossName(), b.getMapX(), b.getMapY(), b.getMapId());
 					}
@@ -119,7 +119,7 @@ public class DominanceTimeController implements Runnable {
 		int hour = oCalendar.get(Calendar.HOUR_OF_DAY);
 		int min = oCalendar.get(Calendar.MINUTE);
 		int sec = oCalendar.get(Calendar.SECOND);
-		// TODO 24:00½Ã¿¡ ¸®½ºÆ®¿¡ ´ã´Â´Ù(¸Å´ÏÀúÃ¢¿¡ Ãâ·ÂµÊ)
+		// TODO 24:00ì‹œì— ë¦¬ìŠ¤íŠ¸ì— ë‹´ëŠ”ë‹¤(ë§¤ë‹ˆì €ì°½ì— ì¶œë ¥ë¨)
 		if (hour == 0 && min == 0 && sec == 0) {
 			return true;
 		}

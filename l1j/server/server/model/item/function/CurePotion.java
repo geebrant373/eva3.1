@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -45,8 +45,8 @@ public class CurePotion extends L1ItemInstance {
 	}
 	
 	private static void useCurePotion(L1PcInstance pc, int item_id) {
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(DECAY_POTION)) { // µğÄÉÀÌÆ÷¼Ç »óÅÂ
-			pc.sendPackets(new S_ServerMessage(698), true); // \f1¸¶·Â¿¡ ÀÇÇØ ¾Æ¹«°Íµµ ¸¶½Ç¼ö°¡ ¾ø½À´Ï´Ù.
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(DECAY_POTION)) { // ë””ì¼€ì´í¬ì…˜ ìƒíƒœ
+			pc.sendPackets(new S_ServerMessage(698), true); // \f1ë§ˆë ¥ì— ì˜í•´ ì•„ë¬´ê²ƒë„ ë§ˆì‹¤ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 		

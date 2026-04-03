@@ -1,4 +1,4 @@
-package l1j.server.MJ3SEx;
+﻿package l1j.server.MJ3SEx;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

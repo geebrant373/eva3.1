@@ -1,4 +1,4 @@
-package l1j.server.DollBonusEventSystem;
+﻿package l1j.server.DollBonusEventSystem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

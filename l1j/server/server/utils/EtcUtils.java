@@ -1,4 +1,4 @@
-package l1j.server.server.utils;
+ï»¿package l1j.server.server.utils;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -7,7 +7,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_PacketBox;
 import l1j.server.server.serverpackets.S_SystemMessage;
 
-// -- TYUTIL -- ÀÚÁÖ¾²´Â À¯Æ¿À» ¸ğ¾ÆµÎ´Â °÷^¤Ñ^
+// -- TYUTIL -- ìì£¼ì“°ëŠ” ìœ í‹¸ì„ ëª¨ì•„ë‘ëŠ” ê³³^ã…¡^
 
 public class EtcUtils {
 	public static ArrayList<Integer> GetIntTokenizeArrayList( String str ) {

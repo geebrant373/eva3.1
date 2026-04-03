@@ -1,4 +1,4 @@
-package l1j.server.server.model.skill.skills;
+﻿package l1j.server.server.model.skill.skills;
 
 import static l1j.server.server.model.skill.L1SkillId.EARTH_BIND;
 import static l1j.server.server.model.skill.L1SkillId.FREEZING_BLIZZARD;

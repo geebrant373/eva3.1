@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -26,7 +26,7 @@ import l1j.server.server.model.map.L1Map;
 
 public abstract class MapReader {
 	/**
-	 * ¸ğµç ÅØ½ºÆ® ¸ÊÀ» ÀĞ¾îµéÀÎ´Ù(Ãß»ó Å¬·¡½º)
+	 * ëª¨ë“  í…ìŠ¤íŠ¸ ë§µì„ ì½ì–´ë“¤ì¸ë‹¤(ì¶”ìƒ í´ë˜ìŠ¤)
 	 *
 	 * @return Map
 	 * @throws IOException
@@ -34,17 +34,17 @@ public abstract class MapReader {
 	public abstract Map<Integer, L1Map> read() throws IOException;
 
 	/**
-	 * ÁöÁ¤ÀÇ ¸Ê ¹øÈ£ÀÇ ÅØ½ºÆ® ¸ÊÀ» ÀĞ¾îµéÀÎ´Ù.
+	 * ì§€ì •ì˜ ë§µ ë²ˆí˜¸ì˜ í…ìŠ¤íŠ¸ ë§µì„ ì½ì–´ë“¤ì¸ë‹¤.
 	 *
 	 * @param id
-	 *            ¸Ê ID
+	 *            ë§µ ID
 	 * @return L1Map
 	 * @throws IOException
 	 */
 	public abstract L1Map read(int id) throws IOException;
 
 	/**
-	 * ÀĞ¾îµéÀÌ´Â ¸Ê ÆÄÀÏÀ» ÆÇ´ÜÇÑ´Ù(ÅØ½ºÆ® ¸Ê or Ä³½¬ ¸Ê or V2ÅØ½ºÆ® ¸Ê).
+	 * ì½ì–´ë“¤ì´ëŠ” ë§µ íŒŒì¼ì„ íŒë‹¨í•œë‹¤(í…ìŠ¤íŠ¸ ë§µ or ìºì‰¬ ë§µ or V2í…ìŠ¤íŠ¸ ë§µ).
 	 *
 	 * @return MapReader
 	 */

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -23,7 +23,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat; //## A1 war_time ¿À·ù ¼öÁ¤ À§ÇØ ÀÓÆ÷Æ® Ãß°¡ 
+import java.text.SimpleDateFormat; //## A1 war_time ì˜¤ë¥˜ ìˆ˜ì • ìœ„í•´ ì„í¬íŠ¸ ì¶”ê°€ 
 import java.util.Calendar;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -137,7 +137,7 @@ public class CastleTable {
 			pstm.setString(1, castle.getName());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 			String fm = sdf.format(castle.getWarTime().getTime());
-//			String fm = DateFormat.getDateTimeInstance().format( //## A1 ¿øº» 
+//			String fm = DateFormat.getDateTimeInstance().format( //## A1 ì›ë³¸ 
 //					castle.getWarTime().getTime()); //#
 			pstm.setString(2, fm);
 			pstm.setInt(3, castle.getTaxRate());

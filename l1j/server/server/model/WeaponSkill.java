@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -308,12 +308,12 @@ public class WeaponSkill {
 	    int diseaseChance = 0;
 
 	    switch (enchantLevel) {
-	        case 9: diseaseChance = Config.¹«±âµğÁöÁîÈ®·ü1; break;
-	        case 10: diseaseChance = Config.¹«±âµğÁöÁîÈ®·ü2; break;
-	        case 11: diseaseChance = Config.¹«±âµğÁöÁîÈ®·ü3; break;
-	        case 12: diseaseChance = Config.¹«±âµğÁöÁîÈ®·ü4; break;
-	        case 13: diseaseChance = Config.¹«±âµğÁöÁîÈ®·ü5; break;
-	        case 14: diseaseChance = Config.¹«±âµğÁöÁîÈ®·ü6; break;
+	        case 9: diseaseChance = Config.ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 1; break;
+	        case 10: diseaseChance = Config.ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 2; break;
+	        case 11: diseaseChance = Config.ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 3; break;
+	        case 12: diseaseChance = Config.ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 4; break;
+	        case 13: diseaseChance = Config.ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 5; break;
+	        case 14: diseaseChance = Config.ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 6; break;
 	        default: return;
 	    }
 
@@ -431,7 +431,7 @@ public class WeaponSkill {
 		}
 		return dmg;
 	}
-	public static double get¾Ç¸ùÀÇÀå±Ã(L1PcInstance pc, L1Character cha, int enchant) {
+	public static double getì•…ëª½ì˜ì¥ê¶(L1PcInstance pc, L1Character cha, int enchant) {
 		double dmg = 0;
 		int chance = _random.nextInt(100) + 1;
 		if (15 >= chance) {
@@ -514,7 +514,7 @@ public class WeaponSkill {
 		}
 		return dmg;
 	}
-	public static double get4Â÷StaffDamage(L1PcInstance pc, L1Character cha) {
+	public static double get4ì°¨StaffDamage(L1PcInstance pc, L1Character cha) {
 		double dmg = 0;
 		int chance = _random.nextInt(100) + 1;
 		if (15 >= chance) {
@@ -652,9 +652,9 @@ public class WeaponSkill {
 		if (isFreeze(cha)) {
 			return 0;
 		}
-		int MagicResistance = 0 ;			//¸¶¹ıÀúÇ×
-		int RealMagicResistance = 0; 		//Àû¿ëµÇ´Â ¸¶¹ıÀúÇ×°ª
-		double calMr = 0.00D;				//¸¶¹æ°è»ê
+		int MagicResistance = 0 ;			//ë§ˆë²•ì €í•­
+		int RealMagicResistance = 0; 		//ì ìš©ë˜ëŠ” ë§ˆë²•ì €í•­ê°’
+		double calMr = 0.00D;				//ë§ˆë°©ê³„ì‚°
 		double baseMr = 0.00D;
 		if(cha instanceof L1PcInstance){
 			baseMr = (_random.nextInt(1000) + 98000) / 100000D;

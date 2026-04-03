@@ -1,4 +1,4 @@
-package l1j.server.server.model.map;
+﻿package l1j.server.server.model.map;
 
 import l1j.server.server.types.Point;
 import l1j.server.server.ActionCodes;

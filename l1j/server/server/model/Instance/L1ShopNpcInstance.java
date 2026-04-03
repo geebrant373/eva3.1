@@ -1,4 +1,4 @@
-package l1j.server.server.model.Instance;
+﻿package l1j.server.server.model.Instance;
 
 import l1j.server.server.ActionCodes;
 import l1j.server.server.model.Broadcaster;

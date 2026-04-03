@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Lastabard;
+ï»¿package l1j.server.GameSystem.Lastabard;
 
 import java.util.Random;
 import java.util.logging.Level;
@@ -178,9 +178,9 @@ public class LastabardSpawn extends L1Spawn {
 			if (/* mob.getNpcId() == 45955 || */ mob.getNpcId() == 45956 || mob.getNpcId() == 45957
 					|| mob.getNpcId() == 45958 || mob.getNpcId() == 45959 || mob.getNpcId() == 45960
 					|| mob.getNpcId() == 45962 || mob.getNpcId() == 45962) {
-				L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("\\fYº¸½ºµîÀå : <\\fY"+mob.getName()+"\\fY>ÀÌ(°¡) ÃâÇöÇÏ¿´½À´Ï´Ù."));
-				L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, " º¸½º¾Ë¸²: <" + mob.getName() +"> ÀÌ(°¡) ½ºÆù µÇ¾ú½À´Ï´Ù."));
-				L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(" º¸½º¾Ë¸²: <" + mob.getName() +"> ÀÌ(°¡) ½ºÆù µÇ¾ú½À´Ï´Ù."));
+				L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("\\fYë³´ìŠ¤ë“±ì¥ : <\\fY"+mob.getName()+"\\fY>ì´(ê°€) ì¶œí˜„í•˜ì˜€ìŠµë‹ˆë‹¤."));
+				L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, " ë³´ìŠ¤ì•Œë¦¼: <" + mob.getName() +"> ì´(ê°€) ìŠ¤í° ë˜ì—ˆìŠµë‹ˆë‹¤."));
+				L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(" ë³´ìŠ¤ì•Œë¦¼: <" + mob.getName() +"> ì´(ê°€) ìŠ¤í° ë˜ì—ˆìŠµë‹ˆë‹¤."));
 			}
 		} catch (Exception e) {
 			System.out.println("[LastabardSpawn - Exception] NpcID: "+ mob.getNpcId() + " MapId: " + mob.getMapId());

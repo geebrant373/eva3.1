@@ -1,4 +1,4 @@
-package manager.dialog;
+ï»¿package manager.dialog;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -59,8 +59,8 @@ public class PlayerPoly extends Dialog {
 
 		shell = new Shell(getParent(), getStyle());
 		shell.setSize(251, 70);
-		shell.setText("ÇÃ·¹ÀÌ¾î º¯½Å");
-		// È­¸éÁß¾ÓÀ¸·Î
+		shell.setText("í”Œë ˆì´ì–´ ë³€ì‹ ");
+		// í™”ë©´ì¤‘ì•™ìœ¼ë¡œ
 		display = Display.getDefault();
 		shell.setBounds((display.getBounds().width / 2) - (shell.getBounds().width / 2),
 				(display.getBounds().height / 2) - (shell.getBounds().height / 2), shell.getBounds().width,
@@ -72,7 +72,7 @@ public class PlayerPoly extends Dialog {
 		shell.setLayout(gl_shell);
 
 		Label lblNewLabel_2 = new Label(shell, SWT.NONE);
-		lblNewLabel_2.setText("º¯½Å¹øÈ£");
+		lblNewLabel_2.setText("ë³€ì‹ ë²ˆí˜¸");
 
 		text_1 = new Text(shell, SWT.BORDER);
 		text_1.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
@@ -82,12 +82,12 @@ public class PlayerPoly extends Dialog {
 		GridData gd_lblNewButton = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_lblNewButton.widthHint = 65;
 		lblNewButton.setLayoutData(gd_lblNewButton);
-		lblNewButton.setText("½Ç Çà");
+		lblNewButton.setText("ì‹¤ í–‰");
 		lblNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				L1PolyMorph.doPoly(pc, Integer.valueOf(text_1.getText()), 1800, L1PolyMorph.MORPH_BY_GM);
-				pc.sendPackets(new S_SystemMessage("¿î¿µÀÚ´Ô¿¡°Ô º¯½Å¹öÇÁ¸¦ ¹Ş¾Ò½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ìš´ì˜ìë‹˜ì—ê²Œ ë³€ì‹ ë²„í”„ë¥¼ ë°›ì•˜ìŠµë‹ˆë‹¤."));
 				close();
 			}
 		});

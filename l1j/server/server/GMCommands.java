@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -148,10 +148,10 @@ public class GMCommands {
 			}
 			
 			if (pc.getAccessLevel() < command.getLevel()) {
-				pc.sendPackets(new S_ServerMessage(74, "[Command] Ä¿¸àµå " + name)); // \f1%0Àº
-																					// »ç¿ëÇÒ
-																					// ¼ö
-																					// ¾ø½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(74, "[Command] ì»¤ë©˜ë“œ " + name)); // \f1%0ì€
+																					// ì‚¬ìš©í• 
+																					// ìˆ˜
+																					// ì—†ìŠµë‹ˆë‹¤.
 				return true;
 			}
 			
@@ -159,8 +159,8 @@ public class GMCommands {
 			L1CommandExecutor exe = (L1CommandExecutor) cls.getMethod("getInstance").invoke(null);
 			exe.execute(pc, name, arg);
 			LinAllManager.getInstance().GmAppend(pc.getName(), name, arg);
-			// _log.info('('+ pc.getName() + ")°¡ " + name + " " + arg + "¿î¿µÀÚ
-			// ¸í·É¾î¸¦ »ç¿ëÇß½À´Ï´Ù. ");
+			// _log.info('('+ pc.getName() + ")ê°€ " + name + " " + arg + "ìš´ì˜ì
+			// ëª…ë ¹ì–´ë¥¼ ì‚¬ìš©í–ˆìŠµë‹ˆë‹¤. ");
 			return true;
 		} catch (Exception e) {
 			// _log.log(Level.SEVERE, "error gm command", e);
@@ -170,7 +170,7 @@ public class GMCommands {
 
 	public void handleCommands(L1PcInstance gm, String cmdLine) {
 		StringTokenizer token = new StringTokenizer(cmdLine);
-		// ÃÖÃÊÀÇ °ø¹é±îÁö°¡ Ä¿¸Çµå, ±× ÀÌÈÄ´Â °ø¹éÀ» ´Ü¶ôÀ¸·Î ÇÑ ÆÄ¶ó¹ÌÅÍ·Î¼­ Ãë±ŞÇÑ´Ù
+		// ìµœì´ˆì˜ ê³µë°±ê¹Œì§€ê°€ ì»¤ë§¨ë“œ, ê·¸ ì´í›„ëŠ” ê³µë°±ì„ ë‹¨ë½ìœ¼ë¡œ í•œ íŒŒë¼ë¯¸í„°ë¡œì„œ ì·¨ê¸‰í•œë‹¤
 		String cmd = token.nextToken();
 		String param = "";
 		while (token.hasMoreTokens()) {
@@ -178,73 +178,73 @@ public class GMCommands {
 		}
 		param = param.trim();
 
-		// µ¥ÀÌÅ¸º£ÀÌ½ºÈ­ µÈ Ä¿¸àµå
+		// ë°ì´íƒ€ë² ì´ìŠ¤í™” ëœ ì»¤ë©˜ë“œ
 		if (executeDatabaseCommand(gm, cmd, param)) {
-			if (!cmd.equalsIgnoreCase("Àç½ÇÇà")) {
+			if (!cmd.equalsIgnoreCase("ì¬ì‹¤í–‰")) {
 				_lastCommands.put(gm.getId(), cmdLine);
 			}
 			return;
 		}
 
 		if (gm.getAccessLevel() < 200) {
-			gm.sendPackets(new S_ServerMessage(74, "[Command] Ä¿¸Çµå " + cmd));
+			gm.sendPackets(new S_ServerMessage(74, "[Command] ì»¤ë§¨ë“œ " + cmd));
 			return;
 		}
 		//System.out.println("cmdLine="+cmdLine);
 		LinAllManager.getInstance().GmAppend(gm.getName(), cmd, param);
-		// GM¿¡ °³¹æÇÏ´Â Ä¿¸Çµå´Â ¿©±â¿¡ ¾´´Ù
-		if (cmd.equalsIgnoreCase("µµ¿ò¸»")) {
+		// GMì— ê°œë°©í•˜ëŠ” ì»¤ë§¨ë“œëŠ” ì—¬ê¸°ì— ì“´ë‹¤
+		if (cmd.equalsIgnoreCase("ë„ì›€ë§")) {
 			showHelp(gm);
-		} else if (cmd.equalsIgnoreCase("¤Ñ")) {
+		} else if (cmd.equalsIgnoreCase("ã…¡")) {
 			System.out.println(SystemUtil.getUsedMemoryMB());
-		} else if (cmd.equalsIgnoreCase("ÀÌº¥Æ®")) {
+		} else if (cmd.equalsIgnoreCase("ì´ë²¤íŠ¸")) {
 			Event_System(gm, param);
-		} else if (cmd.equalsIgnoreCase("ÀÚµ¿µå´Ù")) {
-			ÀÚµ¿µå´Ù(gm, param);
-		} else if (cmd.equalsIgnoreCase("È®·üÃÊ±âÈ­")) {
+		} else if (cmd.equalsIgnoreCase("ìë™ë“œë‹¤")) {
+			ìë™ë“œë‹¤(gm, param);
+		} else if (cmd.equalsIgnoreCase("í™•ë¥ ì´ˆê¸°í™”")) {
 			initialize_user_private_probability(new MJCommandArgs().setOwner(gm).setParam(param));
-		} else if (cmd.equalsIgnoreCase("È®·ü")) {
+		} else if (cmd.equalsIgnoreCase("í™•ë¥ ")) {
 			update_user_private_probability(new MJCommandArgs().setOwner(gm).setParam(param));
-		} else if (cmd.equalsIgnoreCase("È®·üÈ®ÀÎ")) {
+		} else if (cmd.equalsIgnoreCase("í™•ë¥ í™•ì¸")) {
 			show_user_private_probability(new MJCommandArgs().setOwner(gm).setParam(param));
-		} else if (cmd.equalsIgnoreCase("ÅÚ")) {
+		} else if (cmd.equalsIgnoreCase("í…”")) {
 			tell(gm);
-		} else if (cmd.equalsIgnoreCase("Ä³¸¯µî·Ï")) {
+		} else if (cmd.equalsIgnoreCase("ìºë¦­ë“±ë¡")) {
 			chaTrade(gm, param);
-		} else if (cmd.equalsIgnoreCase("ÆÇ¸Å")) {
+		} else if (cmd.equalsIgnoreCase("íŒë§¤")) {
 			L1Object boss = L1World.getInstance().findNpc(70037);
 			gm.sendPackets(new S_ShopSellList(boss.getId()));
-		} else if (cmd.equalsIgnoreCase("Ä³¸¯Á¶È¸")) {
+		} else if (cmd.equalsIgnoreCase("ìºë¦­ì¡°íšŒ")) {
 			chaTrade2(gm, param);
-		} else if (cmd.equalsIgnoreCase("ÀÌ¹ÌÁö»èÁ¦")) {
+		} else if (cmd.equalsIgnoreCase("ì´ë¯¸ì§€ì‚­ì œ")) {
 			get_delete_gfx(gm);
-		} else if (cmd.equalsIgnoreCase("¹Ú½º")) {
+		} else if (cmd.equalsIgnoreCase("ë°•ìŠ¤")) {
 			packetbox(gm, param);
-		} else if (cmd.equalsIgnoreCase("°èÁ¤Ãß°¡")) {
+		} else if (cmd.equalsIgnoreCase("ê³„ì •ì¶”ê°€")) {
 			addaccount(gm, param);
-		} else if (cmd.equalsIgnoreCase("È®ÀÎ")) {
-			System.out.println("pvpÃßÅ¸="+gm.getMoveState().getHeading());
-		} else if (cmd.equalsIgnoreCase("¹ö°æ")) {
+		} else if (cmd.equalsIgnoreCase("í™•ì¸")) {
+			System.out.println("pvpì¶”íƒ€="+gm.getMoveState().getHeading());
+		} else if (cmd.equalsIgnoreCase("ë²„ê²½")) {
 			SpecialEventHandler.getInstance().doBugRace();
-		} else if (cmd.equalsIgnoreCase("ÀüÃ¼¹öÇÁ")) {
+		} else if (cmd.equalsIgnoreCase("ì „ì²´ë²„í”„")) {
 			SpecialEventHandler.getInstance().doAllBuf();
-		} else if (cmd.equalsIgnoreCase("ÄÚ¸¶¹öÇÁ")) {
+		} else if (cmd.equalsIgnoreCase("ì½”ë§ˆë²„í”„")) {
 			SpecialEventHandler.getInstance().doAllCOMA();
-		} else if (cmd.equalsIgnoreCase("ºñ¹øº¯°æ")) {
+		} else if (cmd.equalsIgnoreCase("ë¹„ë²ˆë³€ê²½")) {
 			changepassword(gm, param);
-		} else if (cmd.equalsIgnoreCase("Å×½ºÆ®")) {
+		} else if (cmd.equalsIgnoreCase("í…ŒìŠ¤íŠ¸")) {
 			gm.sendPackets(new S_NPCTalkReturn(gm.getId(), "testtest"));
-		} else if (cmd.equalsIgnoreCase("¼öÇ¥")) {
+		} else if (cmd.equalsIgnoreCase("ìˆ˜í‘œ")) {
 			checksearch(gm, param);
-		} else if (cmd.equalsIgnoreCase("ÃÊ±âÈ­")) {
-			¾ÆÁöÆ®Á¤º¸ÃÊ±âÈ­();
-			Å¬·£Á¤º¸ÃÊ±âÈ­();
-			¼­¹öÃÊ±âÈ­();
-		} else if (cmd.equalsIgnoreCase("³¬½Ã·Îº¿")) {
+		} else if (cmd.equalsIgnoreCase("ì´ˆê¸°í™”")) {
+			ì•„ì§€íŠ¸ì •ë³´ì´ˆê¸°í™”();
+			í´ëœì •ë³´ì´ˆê¸°í™”();
+			ì„œë²„ì´ˆê¸°í™”();
+		} else if (cmd.equalsIgnoreCase("ë‚šì‹œë¡œë´‡")) {
 			autobot(gm);
-		} else if (cmd.equalsIgnoreCase("ÄÚµå")) {
+		} else if (cmd.equalsIgnoreCase("ì½”ë“œ")) {
 			CodeTest(gm, param);
-		} else if (cmd.equalsIgnoreCase("·Îº¿»ç³É")) {
+		} else if (cmd.equalsIgnoreCase("ë¡œë´‡ì‚¬ëƒ¥")) {
 			huntBot = true;
 			TimerTask task = new TimerTask() {
 				@Override
@@ -254,104 +254,104 @@ public class GMCommands {
 			};
 			Timer timer = new Timer();
 			timer.schedule(task, 2000);
-		} else if (cmd.equalsIgnoreCase("Á¤¸®")) {
+		} else if (cmd.equalsIgnoreCase("ì •ë¦¬")) {
 			Clear(gm);
-		} else if (cmd.equalsIgnoreCase("ºÒ")) {
+		} else if (cmd.equalsIgnoreCase("ë¶ˆ")) {
 			spawnmodel(gm, param);
-			// } else if (cmd.equalsIgnoreCase("º¸½º")){
+			// } else if (cmd.equalsIgnoreCase("ë³´ìŠ¤")){
 			// BossSpawnTimeController.getBossTime(gm);
-		} else if (cmd.equalsIgnoreCase("°Ë»ö")) {
+		} else if (cmd.equalsIgnoreCase("ê²€ìƒ‰")) {
 			searchDatabase(gm, param);
-		} else if (cmd.equalsIgnoreCase("Á¶»ç")) {
+		} else if (cmd.equalsIgnoreCase("ì¡°ì‚¬")) {
 			josa(gm, param);
-		} else if (cmd.equalsIgnoreCase("¿ÀÇÂ´ë±â")) {
+		} else if (cmd.equalsIgnoreCase("ì˜¤í”ˆëŒ€ê¸°")) {
 			standBy(gm, param);
-		} else if (cmd.equalsIgnoreCase("°ø¼ÓÃ¼Å©")) {
+		} else if (cmd.equalsIgnoreCase("ê³µì†ì²´í¬")) {
 			gm.AttackSpeedCheck2 = 1;
-			gm.sendPackets(new S_SystemMessage("\\fYÇã¼ö¾Æºñ¸¦ 10È¸°ø°İÇØÁÖ¼¼¿ä."));
-		} else if (cmd.equalsIgnoreCase("ÀüÃ¼¼ÒÈ¯")) {
+			gm.sendPackets(new S_SystemMessage("\\fYí—ˆìˆ˜ì•„ë¹„ë¥¼ 10íšŒê³µê²©í•´ì£¼ì„¸ìš”."));
+		} else if (cmd.equalsIgnoreCase("ì „ì²´ì†Œí™˜")) {
 			allrecall(gm);
-		} else if (cmd.equalsIgnoreCase("°Ë")) { // #### ÄÉ¸¯°Ë»ç
+		} else if (cmd.equalsIgnoreCase("ê²€")) { // #### ì¼€ë¦­ê²€ì‚¬
 			chainfo(gm, param);
-		} else if (cmd.equals("°ø¼º½ÃÀÛ")) {
+		} else if (cmd.equals("ê³µì„±ì‹œì‘")) {
 			castleWarStart(gm, param);
-		} else if (cmd.equalsIgnoreCase("·¾ÀÛ")) {
+		} else if (cmd.equalsIgnoreCase("ë ™ì‘")) {
 			levelup3(gm, param);
-		} else if (cmd.equalsIgnoreCase("»óÁ¡Å±")) {
+		} else if (cmd.equalsIgnoreCase("ìƒì í‚¥")) {
 			ShopKick(gm, param);
-		} else if (cmd.equalsIgnoreCase("¶óÀÌÆ®")) {
+		} else if (cmd.equalsIgnoreCase("ë¼ì´íŠ¸")) {
 			maphack(gm, param);
-		} else if (cmd.equalsIgnoreCase("°¡¶ó")) {
+		} else if (cmd.equalsIgnoreCase("ê°€ë¼")) {
 			nocall(gm, param);
-		} else if (cmd.equalsIgnoreCase("ÀüÃ¼¼±¹°")) {
+		} else if (cmd.equalsIgnoreCase("ì „ì²´ì„ ë¬¼")) {
 			allpresent(gm, param);
-		} else if (cmd.equalsIgnoreCase("°íÁ¤¹öÇÁ")) {
+		} else if (cmd.equalsIgnoreCase("ê³ ì •ë²„í”„")) {
 			membership(gm, param);
-		} else if (cmd.equalsIgnoreCase("¼­¹öÁ¤º¸")) {
+		} else if (cmd.equalsIgnoreCase("ì„œë²„ì •ë³´")) {
 			neoinfo(gm);
-		} else if (cmd.equalsIgnoreCase("»óÁ¡°Ë»ç")) {
-			»óÁ¡°Ë»ç(gm);
-		} else if (cmd.equalsIgnoreCase("±â¿îÃàº¹")) {
-			±â¿îÃàº¹(gm, param);
-		} else if (cmd.equalsIgnoreCase("¹èÆ²Á¸")) {
+		} else if (cmd.equalsIgnoreCase("ìƒì ê²€ì‚¬")) {
+			ìƒì ê²€ì‚¬(gm);
+		} else if (cmd.equalsIgnoreCase("ê¸°ìš´ì¶•ë³µ")) {
+			ê¸°ìš´ì¶•ë³µ(gm, param);
+		} else if (cmd.equalsIgnoreCase("ë°°í‹€ì¡´")) {
 			if (BattleZone.getInstance().getDuelStart()) {
-				gm.sendPackets(new S_SystemMessage("¹èÆ²Á¸ÀÌ ½ÇÇà Áß ÀÔ´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("ë°°í‹€ì¡´ì´ ì‹¤í–‰ ì¤‘ ì…ë‹ˆë‹¤."));
 			} else {
 				BattleZone.getInstance().setGmStart(true);
-				gm.sendPackets(new S_SystemMessage("¹èÆ²Á¸ÀÌ ½ÇÇà µÇ¾ú½À´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("ë°°í‹€ì¡´ì´ ì‹¤í–‰ ë˜ì—ˆìŠµë‹ˆë‹¤."));
 			}
-		} else if (cmd.equalsIgnoreCase("½ºÅÏÃàº¹")) {
-			½ºÅÏÃàº¹(gm, param);
-		} else if (cmd.equalsIgnoreCase("°³ÀÎ¹ë·±½º")) {
+		} else if (cmd.equalsIgnoreCase("ìŠ¤í„´ì¶•ë³µ")) {
+			ìŠ¤í„´ì¶•ë³µ(gm, param);
+		} else if (cmd.equalsIgnoreCase("ê°œì¸ë°¸ëŸ°ìŠ¤")) {
 			CharacterBalance(gm, param);
-		} else if (cmd.equalsIgnoreCase("°æÇèÄ¡")) {
+		} else if (cmd.equalsIgnoreCase("ê²½í—˜ì¹˜")) {
 			ExpTable.expPenaltyReLoad();
 			effect(gm, param);
-			gm.sendPackets(new S_SystemMessage("¼­¹ö °æÇèÄ¡ ¸®·Îµå ¿Ï·á"));
-		} else if (cmd.equalsIgnoreCase("ÀÌÆÑÆ®")) {
+			gm.sendPackets(new S_SystemMessage("ì„œë²„ ê²½í—˜ì¹˜ ë¦¬ë¡œë“œ ì™„ë£Œ"));
+		} else if (cmd.equalsIgnoreCase("ì´íŒ©íŠ¸")) {
 			effect(gm, param);
-		} else if (cmd.equalsIgnoreCase("µå¶ø")) {
+		} else if (cmd.equalsIgnoreCase("ë“œë")) {
 			showDropMobList(gm, param);
-		} else if (cmd.equalsIgnoreCase("ÀÎº¥»èÁ¦")) {
+		} else if (cmd.equalsIgnoreCase("ì¸ë²¤ì‚­ì œ")) {
 			removeInventory(gm, param);
-		} else if (cmd.equalsIgnoreCase("°èÁÂµî·Ï")) {
+		} else if (cmd.equalsIgnoreCase("ê³„ì¢Œë“±ë¡")) {
 			addBank(gm, param);
-		} else if (cmd.equalsIgnoreCase("°èÁÂÈ®ÀÎ")) {
+		} else if (cmd.equalsIgnoreCase("ê³„ì¢Œí™•ì¸")) {
 			checkBank(gm, param);
-		} else if (cmd.equalsIgnoreCase("ÆÇ¸Åµî·Ï")) {
+		} else if (cmd.equalsIgnoreCase("íŒë§¤ë“±ë¡")) {
 			addSell(gm, param);
-		} else if (cmd.equalsIgnoreCase("±¸¸Å½ÅÃ»")) {
+		} else if (cmd.equalsIgnoreCase("êµ¬ë§¤ì‹ ì²­")) {
 			requestAdena(gm, param);
-		} else if (cmd.equalsIgnoreCase("ÆÇ¸Å¿Ï·á")) {
+		} else if (cmd.equalsIgnoreCase("íŒë§¤ì™„ë£Œ")) {
 			adenaSellDone(gm, param);
-		} else if (cmd.equalsIgnoreCase("ÆÇ¸ÅÃë¼Ò")) {
+		} else if (cmd.equalsIgnoreCase("íŒë§¤ì·¨ì†Œ")) {
 			deleteAdenaSell(gm, param);
-		} else if (cmd.equalsIgnoreCase("´Ğ³×ÀÓ")) {
+		} else if (cmd.equalsIgnoreCase("ë‹‰ë„¤ì„")) {
 			GmCharacterNameChange(gm, param);
-		} else if (cmd.equalsIgnoreCase("ÀÎº¥»èÁ¦")) {
+		} else if (cmd.equalsIgnoreCase("ì¸ë²¤ì‚­ì œ")) {
 			InventoryDelete(gm, param);
-		} else if (cmd.equalsIgnoreCase("µ¥¹ÌÁöÃ¼Å©")) {
+		} else if (cmd.equalsIgnoreCase("ë°ë¯¸ì§€ì²´í¬")) {
 			if (Config.ALT_ATKMSG) {
 				Config.ALT_ATKMSG = false;
-				gm.sendPackets(new S_SystemMessage("µ¥¹ÌÁöÃ¼Å© OFF"));
+				gm.sendPackets(new S_SystemMessage("ë°ë¯¸ì§€ì²´í¬ OFF"));
 			} else {
 				Config.ALT_ATKMSG = true;
-				gm.sendPackets(new S_SystemMessage("µ¥¹ÌÁöÃ¼Å© ON"));
+				gm.sendPackets(new S_SystemMessage("ë°ë¯¸ì§€ì²´í¬ ON"));
 			}
 		} else if (cmd.equalsIgnoreCase(".")) {
 			if (!_lastCommands.containsKey(gm.getId())) {
-				gm.sendPackets(new S_ServerMessage(74, "[Command] Ä¿¸Çµå " + cmd));
+				gm.sendPackets(new S_ServerMessage(74, "[Command] ì»¤ë§¨ë“œ " + cmd));
 				return;
 			}
 			redo(gm, param);
 			return;
 		} else {
-			gm.sendPackets(new S_SystemMessage("¿î¿µÀÚ Ä¿¸àµå " + cmd + " ´Â Á¸ÀçÇÏÁö ¾Ê¾Æ À¯ÀúÄ¿¸àµå·Î ¿¬°áÇÕ´Ï´Ù. "));
+			gm.sendPackets(new S_SystemMessage("ìš´ì˜ì ì»¤ë©˜ë“œ " + cmd + " ëŠ” ì¡´ì¬í•˜ì§€ ì•Šì•„ ìœ ì €ì»¤ë©˜ë“œë¡œ ì—°ê²°í•©ë‹ˆë‹¤. "));
 			UserCommands.getInstance().handleCommands(gm, cmdLine);
 		}
 	}
 
-	private static void Å¬·£Á¤º¸ÃÊ±âÈ­() {
+	private static void í´ëœì •ë³´ì´ˆê¸°í™”() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
@@ -366,12 +366,12 @@ public class GMCommands {
 		}
 	}
 	
-	private static void ¾ÆÁöÆ®Á¤º¸ÃÊ±âÈ­() {
+	private static void ì•„ì§€íŠ¸ì •ë³´ì´ˆê¸°í™”() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("delete FROM clan_data WHERE clan_name != 'Áß¸³'");
+			pstm = con.prepareStatement("delete FROM clan_data WHERE clan_name != 'ì¤‘ë¦½'");
 			pstm.executeUpdate();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -381,7 +381,7 @@ public class GMCommands {
 		}
 	}
 	
-	private void ¼­¹öÃÊ±âÈ­() {
+	private void ì„œë²„ì´ˆê¸°í™”() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		String[] list = { "accounts", "board_adena", "board_adena_user", "board_character", "character_auto_hunt",
@@ -395,7 +395,7 @@ public class GMCommands {
 				con = L1DatabaseFactory.getInstance().getConnection();
 				pstm = con.prepareStatement("TRUNCATE " + list[i]);
 				pstm.executeUpdate();
-				System.out.println("ÃÊ±âÈ­ = " + list[i].toString());
+				System.out.println("ì´ˆê¸°í™” = " + list[i].toString());
 			}
 			
 			File emblemDir = new File("emblem");
@@ -403,11 +403,11 @@ public class GMCommands {
 	            File[] files = emblemDir.listFiles();
 	            if (files != null) {
 	                for (File f : files) {
-	                    if (!f.getName().equals(String.valueOf(Config.Áß¸³Ç÷¿¥ºí·³))) {
+	                    if (!f.getName().equals(String.valueOf(Config.ì¤‘ë¦½í˜ˆì— ë¸”ëŸ¼))) {
 	                        if (f.delete()) {
-	                            System.out.println("»èÁ¦µÊ = " + f.getName());
+	                            System.out.println("ì‚­ì œë¨ = " + f.getName());
 	                        } else {
-	                            System.out.println("»èÁ¦ ½ÇÆĞ = " + f.getName());
+	                            System.out.println("ì‚­ì œ ì‹¤íŒ¨ = " + f.getName());
 	                        }
 	                    }
 	                }
@@ -431,9 +431,9 @@ public class GMCommands {
 	        PreparedStatement pstm = null;
 	        ResultSet rs = null;
 
-	        // LinkedHashSetÀ¸·Î Áßº¹ Á¦°Å + ¼ø¼­ À¯Áö
+	        // LinkedHashSetìœ¼ë¡œ ì¤‘ë³µ ì œê±° + ìˆœì„œ ìœ ì§€
 	        Set<String> resultSet = new LinkedHashSet<>();
-	        resultSet.add("[" + name + "] µå¶ø ¸ó½ºÅÍ ¸®½ºÆ®");
+	        resultSet.add("[" + name + "] ë“œë ëª¬ìŠ¤í„° ë¦¬ìŠ¤íŠ¸");
 
 	        try {
 	            con = L1DatabaseFactory.getInstance().getConnection();
@@ -450,7 +450,7 @@ public class GMCommands {
 	                ") i ON d.itemId = i.item_id";
 
 	            pstm = con.prepareStatement(sql);
-	            // ºÎºĞ °Ë»ö ¡æ %°Ë»ö¾î%
+	            // ë¶€ë¶„ ê²€ìƒ‰ â†’ %ê²€ìƒ‰ì–´%
 	            pstm.setString(1, "%" + name + "%");
 	            pstm.setString(2, "%" + name + "%");
 	            pstm.setString(3, "%" + name + "%");
@@ -463,19 +463,19 @@ public class GMCommands {
 	            }
 
 	            if (!hasMonster) {
-	                resultSet.add("¾øÀ½");
+	                resultSet.add("ì—†ìŒ");
 	            }
 
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	            resultSet.add("Á¶È¸ Áß ¿À·ù ¹ß»ı");
+	            resultSet.add("ì¡°íšŒ ì¤‘ ì˜¤ë¥˜ ë°œìƒ");
 	        } finally {
 	            SQLUtil.close(rs);
 	            SQLUtil.close(pstm);
 	            SQLUtil.close(con);
 	        }
 
-	        // Set ¡æ ArrayList º¯È¯
+	        // Set â†’ ArrayList ë³€í™˜
 	        ArrayList<String> result = new ArrayList<>(resultSet);
 
 	        if (!result.isEmpty()) {
@@ -486,8 +486,8 @@ public class GMCommands {
 	            ));
 	        }
 	    } catch (Exception e) {
-	        gm.sendPackets(new S_SystemMessage("¶ç¿ö¾²±âÇÏÁö ¾Ê°í ¾ÆÀÌÅÛÀÌ¸§ ÀÔ·ÂÇØ¾ßµÊ."));
-	        gm.sendPackets(new S_SystemMessage("¿¹½Ã) .µå¶ø ¹«°üÀÇ¸ÁÅä ÀÔ·Â."));
+	        gm.sendPackets(new S_SystemMessage("ë„ì›Œì“°ê¸°í•˜ì§€ ì•Šê³  ì•„ì´í…œì´ë¦„ ì…ë ¥í•´ì•¼ë¨."));
+	        gm.sendPackets(new S_SystemMessage("ì˜ˆì‹œ) .ë“œë ë¬´ê´€ì˜ë§í†  ì…ë ¥."));
 	    }
 	}
 	
@@ -500,7 +500,7 @@ public class GMCommands {
 
 			if (target == null) {
 
-				gm.sendPackets(new S_SystemMessage(target + "Á¢¼Ó ÁßÀÌ ¾Æ´Õ´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage(target + "ì ‘ì† ì¤‘ì´ ì•„ë‹™ë‹ˆë‹¤."));
 				return;
 			}
 
@@ -509,11 +509,11 @@ public class GMCommands {
 				target.getInventory().removeItem(item);
 				cnt++;
 			}
-			gm.sendPackets(new S_SystemMessage(target.getName() + "ÀÇ ¾ÆÀÌÅÛ " + cnt + "°³¸¦ »èÁ¦Çß½À´Ï´Ù."));
+			gm.sendPackets(new S_SystemMessage(target.getName() + "ì˜ ì•„ì´í…œ " + cnt + "ê°œë¥¼ ì‚­ì œí–ˆìŠµë‹ˆë‹¤."));
 
 		} catch (Exception e) {
 
-			gm.sendPackets(new S_SystemMessage(".ÀÎº¥»èÁ¦ [Á¢¼ÓÁßÀÎ Ä³¸¯¸í] ÀÔ·Â."));
+			gm.sendPackets(new S_SystemMessage(".ì¸ë²¤ì‚­ì œ [ì ‘ì†ì¤‘ì¸ ìºë¦­ëª…] ì…ë ¥."));
 		}
 	}
 
@@ -521,27 +521,27 @@ public class GMCommands {
 		try {
 			StringTokenizer st = new StringTokenizer(param);
 			String status = st.nextToken();
-			if (status.equalsIgnoreCase("ÄÔ")) {
+			if (status.equalsIgnoreCase("ì¼¬")) {
 				if (Config.STANDBY_SERVER) {
-					gm.sendPackets(new S_SystemMessage("ÀÌ¹Ì ´ë±â »óÅÂ·Î µ¹ÀÔÇÏ¿´½À´Ï´Ù."));
+					gm.sendPackets(new S_SystemMessage("ì´ë¯¸ ëŒ€ê¸° ìƒíƒœë¡œ ëŒì…í•˜ì˜€ìŠµë‹ˆë‹¤."));
 					return;
 				}
 				Config.STANDBY_SERVER = true;
-				Config.RATE_XP = 0;// ¿ÀÇÂ´ë±â¶§ °æÇèÄ¡ °­Á¦ 0À¸·Î¸¸µë
+				Config.RATE_XP = 0;// ì˜¤í”ˆëŒ€ê¸°ë•Œ ê²½í—˜ì¹˜ ê°•ì œ 0ìœ¼ë¡œë§Œë“¬
 				Config.RATE_FISHING_EXP = 0;
-				gm.sendPackets(new S_SystemMessage("¿ÀÇÂ´ë±â »óÅÂ·Î ÀüÈ¯µË´Ï´Ù."));
-			} else if (status.equalsIgnoreCase("²û")) {
+				gm.sendPackets(new S_SystemMessage("ì˜¤í”ˆëŒ€ê¸° ìƒíƒœë¡œ ì „í™˜ë©ë‹ˆë‹¤."));
+			} else if (status.equalsIgnoreCase("ë”")) {
 				if (!Config.STANDBY_SERVER) {
-					gm.sendPackets(new S_SystemMessage("´ë±â »óÅÂ°¡ ¾Æ´Õ´Ï´Ù."));
+					gm.sendPackets(new S_SystemMessage("ëŒ€ê¸° ìƒíƒœê°€ ì•„ë‹™ë‹ˆë‹¤."));
 					return;
 				}
-				Config.load();// ±âÁ¸ÄÁÇÇ±× °æÇèÄ¡ ¸®·Îµå½ÃÄÑ¹ö¸²
+				Config.load();// ê¸°ì¡´ì»¨í”¼ê·¸ ê²½í—˜ì¹˜ ë¦¬ë¡œë“œì‹œì¼œë²„ë¦¼
 				Config.STANDBY_SERVER = false;
-				gm.sendPackets(new S_SystemMessage("¿ÀÇÂ´ë±â »óÅÂ°¡ ÇØÁ¦µË´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("ì˜¤í”ˆëŒ€ê¸° ìƒíƒœê°€ í•´ì œë©ë‹ˆë‹¤."));
 			}
 		} catch (Exception eee) {
-			gm.sendPackets(new S_SystemMessage(".¿ÀÇÂ´ë±â [ÄÔ/²û] À¸·Î ÀÔ·ÂÇÏ¼¼¿ä."));
-			gm.sendPackets(new S_SystemMessage("ÄÔ - ¿ÀÇÂ´ë±â »óÅÂ·Î ÀüÈ¯ | ²û - ÀÏ¹İ¸ğµå·Î °ÔÀÓ½ÃÀÛ"));
+			gm.sendPackets(new S_SystemMessage(".ì˜¤í”ˆëŒ€ê¸° [ì¼¬/ë”] ìœ¼ë¡œ ì…ë ¥í•˜ì„¸ìš”."));
+			gm.sendPackets(new S_SystemMessage("ì¼¬ - ì˜¤í”ˆëŒ€ê¸° ìƒíƒœë¡œ ì „í™˜ | ë” - ì¼ë°˜ëª¨ë“œë¡œ ê²Œì„ì‹œì‘"));
 		}
 	}
 
@@ -554,15 +554,15 @@ public class GMCommands {
 		try {
 			StringTokenizer st = new StringTokenizer(param);
 			String on = st.nextToken();
-			if (on.equalsIgnoreCase("ÄÔ")) {
+			if (on.equalsIgnoreCase("ì¼¬")) {
 				gm.sendPackets(new S_Ability(3, true));
-				gm.sendPackets(new S_SystemMessage("¶óÀÌÆ® : [ÄÔ]"));
-			} else if (on.equals("²û")) {
+				gm.sendPackets(new S_SystemMessage("ë¼ì´íŠ¸ : [ì¼¬]"));
+			} else if (on.equals("ë”")) {
 				gm.sendPackets(new S_Ability(3, false));
-				gm.sendPackets(new S_SystemMessage("¶óÀÌÆ® : [²û]"));
+				gm.sendPackets(new S_SystemMessage("ë¼ì´íŠ¸ : [ë”]"));
 			}
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage(".¶óÀÌÆ®  [ÄÔ, ²û]"));
+			gm.sendPackets(new S_SystemMessage(".ë¼ì´íŠ¸  [ì¼¬, ë”]"));
 		}
 	}
 
@@ -574,9 +574,9 @@ public class GMCommands {
 			L1PcInstance target = null;
 			target = L1World.getInstance().getPlayer(s);
 			target.getInventory().storeItem(46176, 1);
-			gm.sendPackets(new S_SystemMessage(target.getName() + "´Ô ¾ÆÀÌÅÛ Áö±Ş ¿Ï·á ."));
+			gm.sendPackets(new S_SystemMessage(target.getName() + "ë‹˜ ì•„ì´í…œ ì§€ê¸‰ ì™„ë£Œ ."));
 		} catch (Exception exception21) {
-			gm.sendPackets(new S_SystemMessage(".°íÁ¤¹öÇÁ [Ä³¸¯ÅÍ¸í]À» ÀÔ·Â ÇØÁÖ¼¼¿ä."));
+			gm.sendPackets(new S_SystemMessage(".ê³ ì •ë²„í”„ [ìºë¦­í„°ëª…]ì„ ì…ë ¥ í•´ì£¼ì„¸ìš”."));
 		}
 	}
 
@@ -600,14 +600,14 @@ public class GMCommands {
 							target.getInventory().storeItem(item);
 						}
 					}
-					target.sendPackets(new S_SkillSound(target.getId(), 1091));// ºñµÑ±â¾×¼Ç
-					target.sendPackets(new S_SkillSound(target.getId(), 4856));// ÇÏÆ®¾×¼Ç
-					target.sendPackets(new S_SystemMessage("¿î¿µÀÚ°¡ ÀüÃ¼À¯Àú¿¡°Ô ¼±¹°À» ÁÖ¾ú½À´Ï´Ù."));
-					target.sendPackets(new S_SystemMessage("¾ÆÀÌÅÛ :  [" + item.getViewName() + "]"));
+					target.sendPackets(new S_SkillSound(target.getId(), 1091));// ë¹„ë‘˜ê¸°ì•¡ì…˜
+					target.sendPackets(new S_SkillSound(target.getId(), 4856));// í•˜íŠ¸ì•¡ì…˜
+					target.sendPackets(new S_SystemMessage("ìš´ì˜ìê°€ ì „ì²´ìœ ì €ì—ê²Œ ì„ ë¬¼ì„ ì£¼ì—ˆìŠµë‹ˆë‹¤."));
+					target.sendPackets(new S_SystemMessage("ì•„ì´í…œ :  [" + item.getViewName() + "]"));
 				}
 			}
 		} catch (Exception exception) {
-			gm.sendPackets(new S_SystemMessage(".ÀüÃ¼¼±¹° ¾ÆÀÌÅÛID ÀÎÃ¾Æ®¼ö ¾ÆÀÌÅÛ¼ö·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä."));
+			gm.sendPackets(new S_SystemMessage(".ì „ì²´ì„ ë¬¼ ì•„ì´í…œID ì¸ì²¸íŠ¸ìˆ˜ ì•„ì´í…œìˆ˜ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”."));
 		}
 	}
 
@@ -622,10 +622,10 @@ public class GMCommands {
 			if (target != null) {
 				L1Teleport.teleport(target, 33440, 32795, (short) 4, 5, true);
 			} else {
-				gm.sendPackets(new S_SystemMessage("Á¢¼ÓÁßÀÌÁö ¾Ê´Â À¯Àú ID ÀÔ´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("ì ‘ì†ì¤‘ì´ì§€ ì•ŠëŠ” ìœ ì € ID ì…ë‹ˆë‹¤."));
 			}
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage(".°¡¶ó (º¸³¾ÄÉ¸¯ÅÍ¸í) À¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä."));
+			gm.sendPackets(new S_SystemMessage(".ê°€ë¼ (ë³´ë‚¼ì¼€ë¦­í„°ëª…) ìœ¼ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”."));
 		}
 	}
 
@@ -640,12 +640,12 @@ public class GMCommands {
 				shopManager.remove(shopPlayer);
 				shopPlayer = null;
 			} else {
-				gm.sendPackets(new S_SystemMessage("¹«ÀÎ»óÁ¡ °¡µ¿ ÄÉ¸¯ÀÌ ¾Æ´Õ´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("ë¬´ì¸ìƒì  ê°€ë™ ì¼€ë¦­ì´ ì•„ë‹™ë‹ˆë‹¤."));
 			}
 			stringtokenizer = null;
 			s = null;
 		} catch (Exception exception21) {
-			gm.sendPackets(new S_SystemMessage(".»óÁ¡Å± [»óÁ¡Ä³¸¯ÅÍ¸í]À» ÀÔ·Â ÇØÁÖ¼¼¿ä."));
+			gm.sendPackets(new S_SystemMessage(".ìƒì í‚¥ [ìƒì ìºë¦­í„°ëª…]ì„ ì…ë ¥ í•´ì£¼ì„¸ìš”."));
 		}
 	}
 
@@ -653,13 +653,13 @@ public class GMCommands {
 		try {
 			StringTokenizer tok = new StringTokenizer(arg);
 			String type = tok.nextToken();
-			if (type.equalsIgnoreCase("ÀÎº¥")) {
+			if (type.equalsIgnoreCase("ì¸ë²¤")) {
 				gm.sendPackets(new S_CheckRanking(gm, 1));
-			} else if (type.equalsIgnoreCase("Ã¢°í")) {
+			} else if (type.equalsIgnoreCase("ì°½ê³ ")) {
 				gm.sendPackets(new S_CheckRanking(gm, 2));
 			}
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage(".¼öÇ¥ [ÀÎº¥,Ã¢°í]"));
+			gm.sendPackets(new S_SystemMessage(".ìˆ˜í‘œ [ì¸ë²¤,ì°½ê³ ]"));
 		}
 	}
 		
@@ -673,13 +673,13 @@ public class GMCommands {
 				return;
 			}
 			if (!IntRange.includes(level, 1, 99)) {
-				gm.sendPackets(new S_SystemMessage("1-99ÀÇ ¹üÀ§¿¡¼­ ÁöÁ¤ÇØ ÁÖ¼¼¿ä"));
+				gm.sendPackets(new S_SystemMessage("1-99ì˜ ë²”ìœ„ì—ì„œ ì§€ì •í•´ ì£¼ì„¸ìš”"));
 				return;
 			}
 			target.setExp(ExpTable.getExpByLevel(level));
-			gm.sendPackets(new S_SystemMessage(target.getName() + "´ÔÀÇ ·¹º§ÀÌ º¯°æµÊ! .°Ë [ÄÉ¸¯¸í]À¸·Î È®ÀÎ¿ä¸Á"));
+			gm.sendPackets(new S_SystemMessage(target.getName() + "ë‹˜ì˜ ë ˆë²¨ì´ ë³€ê²½ë¨! .ê²€ [ì¼€ë¦­ëª…]ìœ¼ë¡œ í™•ì¸ìš”ë§"));
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage(".·¾ÀÛ [ÄÉ¸¯¸í] [·¹º§] ÀÔ·Â"));
+			gm.sendPackets(new S_SystemMessage(".ë ™ì‘ [ì¼€ë¦­ëª…] [ë ˆë²¨] ì…ë ¥"));
 		}
 	}
 
@@ -689,7 +689,7 @@ public class GMCommands {
 			String s = stringtokenizer.nextToken();
 			gm.sendPackets(new S_Chainfo(1, s));
 		} catch (Exception exception21) {
-			gm.sendPackets(new S_SystemMessage(".°Ë [Ä³¸¯ÅÍ¸í]À» ÀÔ·Â ÇØÁÖ¼¼¿ä."));
+			gm.sendPackets(new S_SystemMessage(".ê²€ [ìºë¦­í„°ëª…]ì„ ì…ë ¥ í•´ì£¼ì„¸ìš”."));
 		}
 	}
 
@@ -706,9 +706,9 @@ public class GMCommands {
 			WarTimeController.getInstance().setWarStartTime(name, cal);
 
 			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-			gm.sendPackets(new S_SystemMessage(String.format(".°ø¼º½Ã°£ÀÌ %s·Î º¯°æ µÇ¾ú½À´Ï´Ù.", formatter.format(cal))));
+			gm.sendPackets(new S_SystemMessage(String.format(".ê³µì„±ì‹œê°„ì´ %së¡œ ë³€ê²½ ë˜ì—ˆìŠµë‹ˆë‹¤.", formatter.format(cal))));
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage(".°ø¼º½ÃÀÛ ¼ºÀÌ¸§µÎ±ÛÀÚ(ÄËÆ®,¿ÀÅ©,À©´Ù,±â¶õ,ÇÏÀÌ,µå¿ö,¾Æµ§,µğ¾Æ) ºĞ"));
+			gm.sendPackets(new S_SystemMessage(".ê³µì„±ì‹œì‘ ì„±ì´ë¦„ë‘ê¸€ì(ì¼„íŠ¸,ì˜¤í¬,ìœˆë‹¤,ê¸°ë€,í•˜ì´,ë“œì›Œ,ì•„ë´,ë””ì•„) ë¶„"));
 		}
 	}
 
@@ -720,7 +720,7 @@ public class GMCommands {
 				}
 			}
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage(".ÀüÃ¼¼ÒÈ¯ Ä¿¸àµå ¿¡·¯"));
+			gm.sendPackets(new S_SystemMessage(".ì „ì²´ì†Œí™˜ ì»¤ë©˜ë“œ ì—ëŸ¬"));
 		}
 
 	}
@@ -729,8 +729,8 @@ public class GMCommands {
 		try {
 			L1Teleport.teleportToTargetFront(target, gm, 2);
 
-			gm.sendPackets(new S_SystemMessage((new StringBuilder()).append(target.getName()).append("´ÔÀ» ¼ÒÈ¯Çß½À´Ï´Ù.").toString()));
-			target.sendPackets(new S_SystemMessage("°ÔÀÓ ¸¶½ºÅÍ¿¡°Ô ¼ÒÈ¯µÇ¾ú½À´Ï´Ù."));
+			gm.sendPackets(new S_SystemMessage((new StringBuilder()).append(target.getName()).append("ë‹˜ì„ ì†Œí™˜í–ˆìŠµë‹ˆë‹¤.").toString()));
+			target.sendPackets(new S_SystemMessage("ê²Œì„ ë§ˆìŠ¤í„°ì—ê²Œ ì†Œí™˜ë˜ì—ˆìŠµë‹ˆë‹¤."));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "", e);
 		}
@@ -742,7 +742,7 @@ public class GMCommands {
 			String type = tok.nextToken();
 			L1PcInstance pcc[] = new L1PcInstance[5];
 
-			if (type.equalsIgnoreCase("Ã¼·Â")) {
+			if (type.equalsIgnoreCase("ì²´ë ¥")) {
 				for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 					for (int i = 0; i < 5; i++) {
 						if (pcc[i] == null) {
@@ -757,12 +757,12 @@ public class GMCommands {
 						}
 					}
 				}
-				gm.sendPackets(new S_SystemMessage("1À§ . ÀÌ¸§ :" + pcc[0].getName() + " Ã¼·Â :" + pcc[0].getMaxHp() + " ¸¶³ª :" + pcc[0].getMaxMp() + ""));
-				gm.sendPackets(new S_SystemMessage("2À§ . ÀÌ¸§ :" + pcc[1].getName() + " Ã¼·Â :" + pcc[1].getMaxHp() + " ¸¶³ª :" + pcc[1].getMaxMp() + ""));
-				gm.sendPackets(new S_SystemMessage("3À§ . ÀÌ¸§ :" + pcc[2].getName() + " Ã¼·Â :" + pcc[2].getMaxHp() + " ¸¶³ª :" + pcc[2].getMaxMp() + ""));
-				gm.sendPackets(new S_SystemMessage("4À§ . ÀÌ¸§ :" + pcc[3].getName() + " Ã¼·Â :" + pcc[3].getMaxHp() + " ¸¶³ª :" + pcc[3].getMaxMp() + ""));
-				gm.sendPackets(new S_SystemMessage("5À§ . ÀÌ¸§ :" + pcc[4].getName() + " Ã¼·Â :" + pcc[4].getMaxHp() + " ¸¶³ª :" + pcc[4].getMaxMp() + ""));
-			} else if (type.equalsIgnoreCase("¸¶³ª")) {
+				gm.sendPackets(new S_SystemMessage("1ìœ„ . ì´ë¦„ :" + pcc[0].getName() + " ì²´ë ¥ :" + pcc[0].getMaxHp() + " ë§ˆë‚˜ :" + pcc[0].getMaxMp() + ""));
+				gm.sendPackets(new S_SystemMessage("2ìœ„ . ì´ë¦„ :" + pcc[1].getName() + " ì²´ë ¥ :" + pcc[1].getMaxHp() + " ë§ˆë‚˜ :" + pcc[1].getMaxMp() + ""));
+				gm.sendPackets(new S_SystemMessage("3ìœ„ . ì´ë¦„ :" + pcc[2].getName() + " ì²´ë ¥ :" + pcc[2].getMaxHp() + " ë§ˆë‚˜ :" + pcc[2].getMaxMp() + ""));
+				gm.sendPackets(new S_SystemMessage("4ìœ„ . ì´ë¦„ :" + pcc[3].getName() + " ì²´ë ¥ :" + pcc[3].getMaxHp() + " ë§ˆë‚˜ :" + pcc[3].getMaxMp() + ""));
+				gm.sendPackets(new S_SystemMessage("5ìœ„ . ì´ë¦„ :" + pcc[4].getName() + " ì²´ë ¥ :" + pcc[4].getMaxHp() + " ë§ˆë‚˜ :" + pcc[4].getMaxMp() + ""));
+			} else if (type.equalsIgnoreCase("ë§ˆë‚˜")) {
 
 				for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 					for (int i = 0; i < 5; i++) {
@@ -778,13 +778,13 @@ public class GMCommands {
 						}
 					}
 				}
-				gm.sendPackets(new S_SystemMessage("1À§ . ÀÌ¸§ :" + pcc[0].getName() + " Ã¼·Â :" + pcc[0].getMaxHp() + " ¸¶³ª :" + pcc[0].getMaxMp() + ""));
-				gm.sendPackets(new S_SystemMessage("2À§ . ÀÌ¸§ :" + pcc[1].getName() + " Ã¼·Â :" + pcc[1].getMaxHp() + " ¸¶³ª :" + pcc[1].getMaxMp() + ""));
-				gm.sendPackets(new S_SystemMessage("3À§ . ÀÌ¸§ :" + pcc[2].getName() + " Ã¼·Â :" + pcc[2].getMaxHp() + " ¸¶³ª :" + pcc[2].getMaxMp() + ""));
-				gm.sendPackets(new S_SystemMessage("4À§ . ÀÌ¸§ :" + pcc[3].getName() + " Ã¼·Â :" + pcc[3].getMaxHp() + " ¸¶³ª :" + pcc[3].getMaxMp() + ""));
-				gm.sendPackets(new S_SystemMessage("5À§ . ÀÌ¸§ :" + pcc[4].getName() + " Ã¼·Â :" + pcc[4].getMaxHp() + " ¸¶³ª :" + pcc[4].getMaxMp() + ""));
+				gm.sendPackets(new S_SystemMessage("1ìœ„ . ì´ë¦„ :" + pcc[0].getName() + " ì²´ë ¥ :" + pcc[0].getMaxHp() + " ë§ˆë‚˜ :" + pcc[0].getMaxMp() + ""));
+				gm.sendPackets(new S_SystemMessage("2ìœ„ . ì´ë¦„ :" + pcc[1].getName() + " ì²´ë ¥ :" + pcc[1].getMaxHp() + " ë§ˆë‚˜ :" + pcc[1].getMaxMp() + ""));
+				gm.sendPackets(new S_SystemMessage("3ìœ„ . ì´ë¦„ :" + pcc[2].getName() + " ì²´ë ¥ :" + pcc[2].getMaxHp() + " ë§ˆë‚˜ :" + pcc[2].getMaxMp() + ""));
+				gm.sendPackets(new S_SystemMessage("4ìœ„ . ì´ë¦„ :" + pcc[3].getName() + " ì²´ë ¥ :" + pcc[3].getMaxHp() + " ë§ˆë‚˜ :" + pcc[3].getMaxMp() + ""));
+				gm.sendPackets(new S_SystemMessage("5ìœ„ . ì´ë¦„ :" + pcc[4].getName() + " ì²´ë ¥ :" + pcc[4].getMaxHp() + " ë§ˆë‚˜ :" + pcc[4].getMaxMp() + ""));
 
-			} else if (type.equalsIgnoreCase("Èû")) {
+			} else if (type.equalsIgnoreCase("í˜")) {
 
 				for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 					for (int i = 0; i < 5; i++) {
@@ -800,13 +800,13 @@ public class GMCommands {
 						}
 					}
 				}
-				gm.sendPackets(new S_SystemMessage("1À§ . ÀÌ¸§ :" + pcc[0].getName() + " Èû:" + pcc[0].getAbility().getTotalStr()));
-				gm.sendPackets(new S_SystemMessage("2À§ . ÀÌ¸§ :" + pcc[1].getName() + " Èû :" + pcc[1].getAbility().getTotalStr()));
-				gm.sendPackets(new S_SystemMessage("3À§ . ÀÌ¸§ :" + pcc[2].getName() + " Èû :" + pcc[2].getAbility().getTotalStr()));
-				gm.sendPackets(new S_SystemMessage("4À§ . ÀÌ¸§ :" + pcc[3].getName() + " Èû :" + pcc[3].getAbility().getTotalStr()));
-				gm.sendPackets(new S_SystemMessage("5À§ . ÀÌ¸§ :" + pcc[4].getName() + " Èû :" + pcc[4].getAbility().getTotalStr()));
+				gm.sendPackets(new S_SystemMessage("1ìœ„ . ì´ë¦„ :" + pcc[0].getName() + " í˜:" + pcc[0].getAbility().getTotalStr()));
+				gm.sendPackets(new S_SystemMessage("2ìœ„ . ì´ë¦„ :" + pcc[1].getName() + " í˜ :" + pcc[1].getAbility().getTotalStr()));
+				gm.sendPackets(new S_SystemMessage("3ìœ„ . ì´ë¦„ :" + pcc[2].getName() + " í˜ :" + pcc[2].getAbility().getTotalStr()));
+				gm.sendPackets(new S_SystemMessage("4ìœ„ . ì´ë¦„ :" + pcc[3].getName() + " í˜ :" + pcc[3].getAbility().getTotalStr()));
+				gm.sendPackets(new S_SystemMessage("5ìœ„ . ì´ë¦„ :" + pcc[4].getName() + " í˜ :" + pcc[4].getAbility().getTotalStr()));
 
-			} else if (type.equalsIgnoreCase("µ¦½º")) {
+			} else if (type.equalsIgnoreCase("ë±ìŠ¤")) {
 
 				for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 					for (int i = 0; i < 5; i++) {
@@ -822,15 +822,15 @@ public class GMCommands {
 						}
 					}
 				}
-				gm.sendPackets(new S_SystemMessage("1À§ . ÀÌ¸§ :" + pcc[0].getName() + " µ¦½º :" + pcc[0].getAbility().getTotalDex()));
-				gm.sendPackets(new S_SystemMessage("2À§ . ÀÌ¸§ :" + pcc[1].getName() + " µ¦½º :" + pcc[1].getAbility().getTotalDex()));
-				gm.sendPackets(new S_SystemMessage("3À§ . ÀÌ¸§ :" + pcc[2].getName() + " µ¦½º :" + pcc[2].getAbility().getTotalDex()));
-				gm.sendPackets(new S_SystemMessage("4À§ . ÀÌ¸§ :" + pcc[3].getName() + " µ¦½º :" + pcc[3].getAbility().getTotalDex()));
-				gm.sendPackets(new S_SystemMessage("5À§ . ÀÌ¸§ :" + pcc[4].getName() + " µ¦½º :" + pcc[4].getAbility().getTotalDex()));
+				gm.sendPackets(new S_SystemMessage("1ìœ„ . ì´ë¦„ :" + pcc[0].getName() + " ë±ìŠ¤ :" + pcc[0].getAbility().getTotalDex()));
+				gm.sendPackets(new S_SystemMessage("2ìœ„ . ì´ë¦„ :" + pcc[1].getName() + " ë±ìŠ¤ :" + pcc[1].getAbility().getTotalDex()));
+				gm.sendPackets(new S_SystemMessage("3ìœ„ . ì´ë¦„ :" + pcc[2].getName() + " ë±ìŠ¤ :" + pcc[2].getAbility().getTotalDex()));
+				gm.sendPackets(new S_SystemMessage("4ìœ„ . ì´ë¦„ :" + pcc[3].getName() + " ë±ìŠ¤ :" + pcc[3].getAbility().getTotalDex()));
+				gm.sendPackets(new S_SystemMessage("5ìœ„ . ì´ë¦„ :" + pcc[4].getName() + " ë±ìŠ¤ :" + pcc[4].getAbility().getTotalDex()));
 			}
 
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage("[Command] .Á¶»ç [Ã¼·Â, ¸¶³ª, Èû, µ¦½º] "));
+			gm.sendPackets(new S_SystemMessage("[Command] .ì¡°ì‚¬ [ì²´ë ¥, ë§ˆë‚˜, í˜, ë±ìŠ¤] "));
 		}
 	}
 
@@ -841,10 +841,10 @@ public class GMCommands {
 			String name = tok.nextToken();
 			searchObject(gm, type, "%" + name + "%");
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage(".°Ë»ö [0~4] [name]À» ÀÔ·Â ÇØÁÖ¼¼¿ä."));
-			gm.sendPackets(new S_SystemMessage("0=ÀâÅÛ, 1=¹«±â, 2=¹æ¾î±¸, 3=¿£ÇÇ¾¾, 4=º¯½Å, 5=¿£ÇÇ¾¾ÀÌ¹ÌÁö"));
-			gm.sendPackets(new S_SystemMessage("nameÀ» Á¤È®È÷ ¸ğ¸£°Å³ª ¶ç¿ö¾²±â µÇ¾îÀÖ´Â °æ¿ì´Â"));
-			gm.sendPackets(new S_SystemMessage("'%'¸¦ ¾ÕÀÌ³ª µÚ¿¡ ºÙ¿© ¾²½Ê½Ã¿À."));
+			gm.sendPackets(new S_SystemMessage(".ê²€ìƒ‰ [0~4] [name]ì„ ì…ë ¥ í•´ì£¼ì„¸ìš”."));
+			gm.sendPackets(new S_SystemMessage("0=ì¡í…œ, 1=ë¬´ê¸°, 2=ë°©ì–´êµ¬, 3=ì—”í”¼ì”¨, 4=ë³€ì‹ , 5=ì—”í”¼ì”¨ì´ë¯¸ì§€"));
+			gm.sendPackets(new S_SystemMessage("nameì„ ì •í™•íˆ ëª¨ë¥´ê±°ë‚˜ ë„ì›Œì“°ê¸° ë˜ì–´ìˆëŠ” ê²½ìš°ëŠ”"));
+			gm.sendPackets(new S_SystemMessage("'%'ë¥¼ ì•ì´ë‚˜ ë’¤ì— ë¶™ì—¬ ì“°ì‹­ì‹œì˜¤."));
 		}
 	}
 
@@ -889,7 +889,7 @@ public class GMCommands {
 			rs.close();
 			statement.close();
 			con.close();
-			gm.sendPackets(new S_SystemMessage("ÃÑ [" + count + "]°³ÀÇ µ¥ÀÌÅÍ°¡ °Ë»öµÇ¾ú½À´Ï´Ù."));
+			gm.sendPackets(new S_SystemMessage("ì´ [" + count + "]ê°œì˜ ë°ì´í„°ê°€ ê²€ìƒ‰ë˜ì—ˆìŠµë‹ˆë‹¤."));
 		} catch (Exception e) {
 		}
 	}
@@ -898,22 +898,22 @@ public class GMCommands {
 		StringTokenizer st = new StringTokenizer(param);
 		int type = Integer.parseInt(st.nextToken(), 10);
 		ModelSpawnTable.getInstance().insertmodel(gm, type);
-		gm.sendPackets(new S_SystemMessage("[Command] ºÒ ³Ö¾ú´Ù"));
+		gm.sendPackets(new S_SystemMessage("[Command] ë¶ˆ ë„£ì—ˆë‹¤"));
 	}
 
 	private void showHelp(L1PcInstance pc) {
-		pc.sendPackets(new S_SystemMessage("-------------------<GM ¸í·É¾î>--------------------"));
-		pc.sendPackets(new S_SystemMessage(".Á¾·á .¿µ±¸Ãß¹æ .Ãß¹æ .°èÁ¤¾Ğ·ù .¹ê¾ÆÀÌÇÇ .Å³"));
-		pc.sendPackets(new S_SystemMessage(".¿£ÇÇ¾¾ÀÌ¹ÌÁö .ÀÎº¥ÀÌ¹ÌÁö .½ºÆù .¹èÄ¡ .½ºÅ³º¸±â"));
-		pc.sendPackets(new S_SystemMessage(".¹öÇÁ .º¯½Å .¼Ò»ı .¿Ã¹öÇÁ .ÀüÃ¼¹öÇÁ .°×ºí .¼³¹®"));
-		pc.sendPackets(new S_SystemMessage(".¾Æµ¥³ª .¾ÆÀÌÅÛ .¼¼Æ®¾ÆÀÌÅÛ .¼±¹° .·¾¼±¹° .¾×¼Ç "));
-		pc.sendPackets(new S_SystemMessage(".Ã¤ÆÃ .Ã¤±İ .¼ÂÆÃ .¼­¸Õ .Ã»¼Ò .³¯¾¾ .¼ÒÈ¯. ÆÄÆ¼¼ÒÈ¯"));
-		pc.sendPackets(new S_SystemMessage(".È¨Å¸¿î .±ÍÈ¯ .ÃâµÎ .½ºÅ³¸¶½ºÅÍ .·¹º§ .¼Óµµ"));
-		pc.sendPackets(new S_SystemMessage(".ÀÌµ¿ .À§Ä¡ .´©±¸ .Á¤º¸ .ÇÇ¹Ù .°¨½Ã .Åõ¸í .ºÒÅõ¸í"));
-		pc.sendPackets(new S_SystemMessage(".¸®·ÎµåÆ®·¦ .¼îÆ®·¦ .¸®¼ÂÆ®·¦ .½ÇÇà .Àç½ÇÇà  .°í½ºÆù"));
-		pc.sendPackets(new S_SystemMessage(".»óÁ¡°Ë»ç .ÀÌÆÑÆ® .°³ÀÎ¹ë·±½º .Ä³¸¯µî·Ï .Ä³¸¯Á¶È¸  .Ãß°¡¸í·É"));
-		pc.sendPackets(new S_SystemMessage(".È®·üÃÊ±âÈ­ .È®·ü .È®·üÈ®ÀÎ .·Îº¿»ç³É .¼öÇ¥ .½ÃÀÛ"));
-		pc.sendPackets(new S_SystemMessage(".³¬½Ã·Îº¿ .µå¶ø"));
+		pc.sendPackets(new S_SystemMessage("-------------------<GM ëª…ë ¹ì–´>--------------------"));
+		pc.sendPackets(new S_SystemMessage(".ì¢…ë£Œ .ì˜êµ¬ì¶”ë°© .ì¶”ë°© .ê³„ì •ì••ë¥˜ .ë°´ì•„ì´í”¼ .í‚¬"));
+		pc.sendPackets(new S_SystemMessage(".ì—”í”¼ì”¨ì´ë¯¸ì§€ .ì¸ë²¤ì´ë¯¸ì§€ .ìŠ¤í° .ë°°ì¹˜ .ìŠ¤í‚¬ë³´ê¸°"));
+		pc.sendPackets(new S_SystemMessage(".ë²„í”„ .ë³€ì‹  .ì†Œìƒ .ì˜¬ë²„í”„ .ì „ì²´ë²„í”„ .ê²œë¸” .ì„¤ë¬¸"));
+		pc.sendPackets(new S_SystemMessage(".ì•„ë°ë‚˜ .ì•„ì´í…œ .ì„¸íŠ¸ì•„ì´í…œ .ì„ ë¬¼ .ë ™ì„ ë¬¼ .ì•¡ì…˜ "));
+		pc.sendPackets(new S_SystemMessage(".ì±„íŒ… .ì±„ê¸ˆ .ì…‹íŒ… .ì„œë¨¼ .ì²­ì†Œ .ë‚ ì”¨ .ì†Œí™˜. íŒŒí‹°ì†Œí™˜"));
+		pc.sendPackets(new S_SystemMessage(".í™ˆíƒ€ìš´ .ê·€í™˜ .ì¶œë‘ .ìŠ¤í‚¬ë§ˆìŠ¤í„° .ë ˆë²¨ .ì†ë„"));
+		pc.sendPackets(new S_SystemMessage(".ì´ë™ .ìœ„ì¹˜ .ëˆ„êµ¬ .ì •ë³´ .í”¼ë°” .ê°ì‹œ .íˆ¬ëª… .ë¶ˆíˆ¬ëª…"));
+		pc.sendPackets(new S_SystemMessage(".ë¦¬ë¡œë“œíŠ¸ë© .ì‡¼íŠ¸ë© .ë¦¬ì…‹íŠ¸ë© .ì‹¤í–‰ .ì¬ì‹¤í–‰  .ê³ ìŠ¤í°"));
+		pc.sendPackets(new S_SystemMessage(".ìƒì ê²€ì‚¬ .ì´íŒ©íŠ¸ .ê°œì¸ë°¸ëŸ°ìŠ¤ .ìºë¦­ë“±ë¡ .ìºë¦­ì¡°íšŒ  .ì¶”ê°€ëª…ë ¹"));
+		pc.sendPackets(new S_SystemMessage(".í™•ë¥ ì´ˆê¸°í™” .í™•ë¥  .í™•ë¥ í™•ì¸ .ë¡œë´‡ì‚¬ëƒ¥ .ìˆ˜í‘œ .ì‹œì‘"));
+		pc.sendPackets(new S_SystemMessage(".ë‚šì‹œë¡œë´‡ .ë“œë"));
 		pc.sendPackets(new S_SystemMessage("--------------------------------------------------"));
 	}
 
@@ -923,34 +923,34 @@ public class GMCommands {
 		try {
 			String lastCmd = _lastCommands.get(pc.getId());
 			if (arg.isEmpty()) {
-				pc.sendPackets(new S_SystemMessage("[Command] Ä¿¸Çµå " + lastCmd + " À»(¸¦) Àç½ÇÇàÇÕ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("[Command] ì»¤ë§¨ë“œ " + lastCmd + " ì„(ë¥¼) ì¬ì‹¤í–‰í•©ë‹ˆë‹¤."));
 				handleCommands(pc, lastCmd);
 			} else {
 				StringTokenizer token = new StringTokenizer(lastCmd);
 				String cmd = token.nextToken() + " " + arg;
-				pc.sendPackets(new S_SystemMessage("[Command] Ä¿¸Çµå " + cmd + " À»(¸¦) Àç½ÇÇàÇÕ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("[Command] ì»¤ë§¨ë“œ " + cmd + " ì„(ë¥¼) ì¬ì‹¤í–‰í•©ë‹ˆë‹¤."));
 				handleCommands(pc, cmd);
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			pc.sendPackets(new S_SystemMessage("[Command] .Àç½ÇÇà Ä¿¸Çµå¿¡·¯"));
+			pc.sendPackets(new S_SystemMessage("[Command] .ì¬ì‹¤í–‰ ì»¤ë§¨ë“œì—ëŸ¬"));
 		}
 	}
 
-	public void ±â¿îÃàº¹(L1PcInstance gm, String arg) {
+	public void ê¸°ìš´ì¶•ë³µ(L1PcInstance gm, String arg) {
 		try {
 			StringTokenizer tok = new StringTokenizer(arg);
 			String user = tok.nextToken();
 			L1PcInstance target = L1World.getInstance().getPlayer(user);
-			target.±â¿îÃàº¹ = true;
-			target.sendPackets(new S_SystemMessage("\\aL¿î¿µÀÚ²²¼­ ±â¿îÅÛ È®·ü 100% 1¹øÀÇ ±âÈ¸¸¦ ÁÖ¼Ì½À´Ï´Ù."));
-			gm.sendPackets(new S_SystemMessage("\\aL[" + target.getName() + "]¿¡°Ô  100% ±â¿îÅÛ È®·ü 1¹øÀÇ ±âÈ¸¸¦ µå·È½À´Ï´Ù."));
+			target.ê¸°ìš´ì¶•ë³µ = true;
+			target.sendPackets(new S_SystemMessage("\\aLìš´ì˜ìê»˜ì„œ ê¸°ìš´í…œ í™•ë¥  100% 1ë²ˆì˜ ê¸°íšŒë¥¼ ì£¼ì…¨ìŠµë‹ˆë‹¤."));
+			gm.sendPackets(new S_SystemMessage("\\aL[" + target.getName() + "]ì—ê²Œ  100% ê¸°ìš´í…œ í™•ë¥  1ë²ˆì˜ ê¸°íšŒë¥¼ ë“œë ¸ìŠµë‹ˆë‹¤."));
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage(".±â¿îÃàº¹ [ÄÉ¸¯¸í]"));
+			gm.sendPackets(new S_SystemMessage(".ê¸°ìš´ì¶•ë³µ [ì¼€ë¦­ëª…]"));
 		}
 	}
 
-	private void ½ºÅÏÃàº¹(L1PcInstance pc, String param) {
+	private void ìŠ¤í„´ì¶•ë³µ(L1PcInstance pc, String param) {
 		try {
 			StringTokenizer st = new StringTokenizer(param);
 			String charName = st.nextToken();
@@ -958,7 +958,7 @@ public class GMCommands {
 			L1PcInstance player = L1World.getInstance().getPlayer(charName);
 			player.addHitup_skill(addImpactStun);
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".½ºÅÏÃàº¹ [Ä³¸¯¸í] [¼öÄ¡]"));
+			pc.sendPackets(new S_SystemMessage(".ìŠ¤í„´ì¶•ë³µ [ìºë¦­ëª…] [ìˆ˜ì¹˜]"));
 		}
 	}
 
@@ -997,14 +997,14 @@ public class GMCommands {
 			}
 
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".¹ë·±½º [Ä³¸¯¸í] [ÃßÅ¸] [ÃßÅ¸È®·ü] [¸®´ö] [¸®´öÈ®·ü]"));
+			pc.sendPackets(new S_SystemMessage(".ë°¸ëŸ°ìŠ¤ [ìºë¦­ëª…] [ì¶”íƒ€] [ì¶”íƒ€í™•ë¥ ] [ë¦¬ë•] [ë¦¬ë•í™•ë¥ ]"));
 		} finally {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
 	}
 
-	private void ½ºÅÏ³»¼º(L1PcInstance pc, String param) {
+	private void ìŠ¤í„´ë‚´ì„±(L1PcInstance pc, String param) {
 		try {
 			StringTokenizer st = new StringTokenizer(param);
 			String charName = st.nextToken();
@@ -1012,7 +1012,7 @@ public class GMCommands {
 			L1PcInstance player = L1World.getInstance().getPlayer(charName);
 			player.addHitup_skill(addImpactStun);
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".½ºÅÏ³»¼º [Ä³¸¯¸í] [¼öÄ¡]"));
+			pc.sendPackets(new S_SystemMessage(".ìŠ¤í„´ë‚´ì„± [ìºë¦­ëª…] [ìˆ˜ì¹˜]"));
 		}
 	}
 
@@ -1023,7 +1023,7 @@ public class GMCommands {
 			pc.sendPackets(new S_SkillSound(pc.getId(), sprid));
 			Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), sprid));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".ÀÌÆÑÆ® [¼ıÀÚ] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä."));
+			pc.sendPackets(new S_SystemMessage(".ì´íŒ©íŠ¸ [ìˆ«ì] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”."));
 		}
 	}
 
@@ -1033,7 +1033,7 @@ public class GMCommands {
 			int id = Integer.parseInt(st.nextToken(), 10);
 			pc.sendPackets(new S_PacketBox(id));
 		} catch (Exception exception) {
-			pc.sendPackets(new S_SystemMessage("[Command] .ÆĞÅ¶¹Ú½º [id] ÀÔ·Â"));
+			pc.sendPackets(new S_SystemMessage("[Command] .íŒ¨í‚·ë°•ìŠ¤ [id] ì…ë ¥"));
 		}
 	}
 	// private static String encodePassword(String rawPassword) throws
@@ -1060,7 +1060,7 @@ public class GMCommands {
 			if (rs.next())
 				login = rs.getString(1);
 			if (login != null) {
-				gm.sendPackets(new S_SystemMessage("[Command] ÀÌ¹Ì °èÁ¤ÀÌ ÀÖ½À´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("[Command] ì´ë¯¸ ê³„ì •ì´ ìˆìŠµë‹ˆë‹¤."));
 				return;
 			} else {
 				String sqlstr = "INSERT INTO accounts SET login=?,password=?,lastactive=?,access_level=?,ip=?,host=?,banned=?,charslot=?,gamepassword=?";
@@ -1075,7 +1075,7 @@ public class GMCommands {
 				pstm.setInt(8, 6);
 				pstm.setInt(9, 0);
 				pstm.execute();
-				gm.sendPackets(new S_SystemMessage("[Command] °èÁ¤ Ãß°¡°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("[Command] ê³„ì • ì¶”ê°€ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 			}
 
 			rs.close();
@@ -1089,10 +1089,10 @@ public class GMCommands {
 	private static boolean isDisitAlpha(String str) {
 		boolean check = true;
 		for (int i = 0; i < str.length(); i++) {
-			if (!Character.isDigit(str.charAt(i)) // ¼ıÀÚ°¡ ¾Æ´Ï¶ó¸é
-					&& Character.isLetterOrDigit(str.charAt(i)) // Æ¯¼ö¹®ÀÚ¶ó¸é
-					&& !Character.isUpperCase(str.charAt(i)) // ´ë¹®ÀÚ°¡ ¾Æ´Ï¶ó¸é
-					&& !Character.isLowerCase(str.charAt(i))) { // ¼Ò¹®ÀÚ°¡ ¾Æ´Ï¶ó¸é
+			if (!Character.isDigit(str.charAt(i)) // ìˆ«ìê°€ ì•„ë‹ˆë¼ë©´
+					&& Character.isLetterOrDigit(str.charAt(i)) // íŠ¹ìˆ˜ë¬¸ìë¼ë©´
+					&& !Character.isUpperCase(str.charAt(i)) // ëŒ€ë¬¸ìê°€ ì•„ë‹ˆë¼ë©´
+					&& !Character.isLowerCase(str.charAt(i))) { // ì†Œë¬¸ìê°€ ì•„ë‹ˆë¼ë©´
 				check = false;
 				break;
 			}
@@ -1122,9 +1122,9 @@ public class GMCommands {
 			}
 
 			list.clear();
-			pc.sendPackets(new S_SystemMessage("'ÀÌ¹ÌÁö »èÁ¦' °¡ ¿Ï·á µÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("'ì´ë¯¸ì§€ ì‚­ì œ' ê°€ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤."));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("Ä¿¸àµå: .ÀÌ¹ÌÁö»èÁ¦ ·Î ÀÔ·Â ¹Ù¶ø´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("ì»¤ë©˜ë“œ: .ì´ë¯¸ì§€ì‚­ì œ ë¡œ ì…ë ¥ ë°”ëë‹ˆë‹¤."));
 		}
 	}
 
@@ -1141,40 +1141,40 @@ public class GMCommands {
 			String passwd = tok.nextToken();
 
 			if (user.length() < 4) {
-				gm.sendPackets(new S_SystemMessage("[Command] ÀÔ·ÂÇÏ½Å °èÁ¤¸íÀÇ ÀÚ¸´¼ö°¡ ³Ê¹« Âª½À´Ï´Ù."));
-				gm.sendPackets(new S_SystemMessage("[Command] ÃÖ¼Ò 4ÀÚ ÀÌ»ó ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À."));
+				gm.sendPackets(new S_SystemMessage("[Command] ì…ë ¥í•˜ì‹  ê³„ì •ëª…ì˜ ìë¦¿ìˆ˜ê°€ ë„ˆë¬´ ì§§ìŠµë‹ˆë‹¤."));
+				gm.sendPackets(new S_SystemMessage("[Command] ìµœì†Œ 4ì ì´ìƒ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤."));
 				return;
 			}
 			if (passwd.length() < 4) {
-				gm.sendPackets(new S_SystemMessage("[Command] ÀÔ·ÂÇÏ½Å ¾ÏÈ£ÀÇ ÀÚ¸´¼ö°¡ ³Ê¹« Âª½À´Ï´Ù."));
-				gm.sendPackets(new S_SystemMessage("[Command] ÃÖ¼Ò 4ÀÚ ÀÌ»ó ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À."));
+				gm.sendPackets(new S_SystemMessage("[Command] ì…ë ¥í•˜ì‹  ì•”í˜¸ì˜ ìë¦¿ìˆ˜ê°€ ë„ˆë¬´ ì§§ìŠµë‹ˆë‹¤."));
+				gm.sendPackets(new S_SystemMessage("[Command] ìµœì†Œ 4ì ì´ìƒ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤."));
 				return;
 			}
 
 			if (passwd.length() > 12) {
-				gm.sendPackets(new S_SystemMessage("[Command] ÀÔ·ÂÇÏ½Å ¾ÏÈ£ÀÇ ÀÚ¸´¼ö°¡ ³Ê¹« ±é´Ï´Ù."));
-				gm.sendPackets(new S_SystemMessage("[Command] ÃÖ´ë 12ÀÚ ÀÌÇÏ·Î ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À."));
+				gm.sendPackets(new S_SystemMessage("[Command] ì…ë ¥í•˜ì‹  ì•”í˜¸ì˜ ìë¦¿ìˆ˜ê°€ ë„ˆë¬´ ê¹ë‹ˆë‹¤."));
+				gm.sendPackets(new S_SystemMessage("[Command] ìµœëŒ€ 12ì ì´í•˜ë¡œ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤."));
 				return;
 			}
 
 			if (isDisitAlpha(passwd) == false) {
-				gm.sendPackets(new S_SystemMessage("[Command] ¾ÏÈ£¿¡ Çã¿ëµÇÁö ¾Ê´Â ¹®ÀÚ°¡ Æ÷ÇÔ µÇ¾î ÀÖ½À´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("[Command] ì•”í˜¸ì— í—ˆìš©ë˜ì§€ ì•ŠëŠ” ë¬¸ìê°€ í¬í•¨ ë˜ì–´ ìˆìŠµë‹ˆë‹¤."));
 				return;
 			}
 			AddAccount(gm, user, passwd, "127.0.0.1", "127.0.0.1");
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage("[Command] .°èÁ¤Ãß°¡ [°èÁ¤¸í] [¾ÏÈ£] ÀÔ·Â"));
+			gm.sendPackets(new S_SystemMessage("[Command] .ê³„ì •ì¶”ê°€ [ê³„ì •ëª…] [ì•”í˜¸] ì…ë ¥"));
 		}
 	}
 
-	private void Å×½ºÆ®¾ÆÀÎ(L1PcInstance gm, String param) {
+	private void í…ŒìŠ¤íŠ¸ì•„ì¸(L1PcInstance gm, String param) {
 		try {
 			StringTokenizer tok = new StringTokenizer(param);
 			String user = tok.nextToken();
 			int ain = Integer.parseInt(user);
 			gm.setAinHasad(0);
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage("[Command] .ºñ¹øº¯°æ [°èÁ¤] [ÇöÀçºñ¹ø] [¹Ù²Üºñ¹ø] ÀÔ·Â"));
+			gm.sendPackets(new S_SystemMessage("[Command] .ë¹„ë²ˆë³€ê²½ [ê³„ì •] [í˜„ì¬ë¹„ë²ˆ] [ë°”ê¿€ë¹„ë²ˆ] ì…ë ¥"));
 		}
 	}
 	
@@ -1186,28 +1186,28 @@ public class GMCommands {
 			String newpasswd = tok.nextToken();
 
 			if (user.length() < 4) {
-				gm.sendPackets(new S_SystemMessage("[Command] ÀÔ·ÂÇÏ½Å °èÁ¤¸íÀÇ ÀÚ¸´¼ö°¡ ³Ê¹« Âª½À´Ï´Ù."));
-				gm.sendPackets(new S_SystemMessage("[Command] ÃÖ¼Ò 4ÀÚ ÀÌ»ó ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À."));
+				gm.sendPackets(new S_SystemMessage("[Command] ì…ë ¥í•˜ì‹  ê³„ì •ëª…ì˜ ìë¦¿ìˆ˜ê°€ ë„ˆë¬´ ì§§ìŠµë‹ˆë‹¤."));
+				gm.sendPackets(new S_SystemMessage("[Command] ìµœì†Œ 4ì ì´ìƒ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤."));
 				return;
 			}
 			if (newpasswd.length() < 4) {
-				gm.sendPackets(new S_SystemMessage("[Command] ÀÔ·ÂÇÏ½Å ¾ÏÈ£ÀÇ ÀÚ¸´¼ö°¡ ³Ê¹« Âª½À´Ï´Ù."));
-				gm.sendPackets(new S_SystemMessage("[Command] ÃÖ¼Ò 4ÀÚ ÀÌ»ó ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À."));
+				gm.sendPackets(new S_SystemMessage("[Command] ì…ë ¥í•˜ì‹  ì•”í˜¸ì˜ ìë¦¿ìˆ˜ê°€ ë„ˆë¬´ ì§§ìŠµë‹ˆë‹¤."));
+				gm.sendPackets(new S_SystemMessage("[Command] ìµœì†Œ 4ì ì´ìƒ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤."));
 				return;
 			}
 			if (newpasswd.length() > 12) {
-				gm.sendPackets(new S_SystemMessage("[Command] ÀÔ·ÂÇÏ½Å ¾ÏÈ£ÀÇ ÀÚ¸´¼ö°¡ ³Ê¹« ±é´Ï´Ù."));
-				gm.sendPackets(new S_SystemMessage("[Command] ÃÖ´ë 12ÀÚ ÀÌÇÏ·Î ÀÔ·ÂÇØ ÁÖ½Ê½Ã¿À."));
+				gm.sendPackets(new S_SystemMessage("[Command] ì…ë ¥í•˜ì‹  ì•”í˜¸ì˜ ìë¦¿ìˆ˜ê°€ ë„ˆë¬´ ê¹ë‹ˆë‹¤."));
+				gm.sendPackets(new S_SystemMessage("[Command] ìµœëŒ€ 12ì ì´í•˜ë¡œ ì…ë ¥í•´ ì£¼ì‹­ì‹œì˜¤."));
 				return;
 			}
 
 			if (isDisitAlpha(newpasswd) == false) {
-				gm.sendPackets(new S_SystemMessage("[Command] ¾ÏÈ£¿¡ Çã¿ëµÇÁö ¾Ê´Â ¹®ÀÚ°¡ Æ÷ÇÔ µÇ¾î ÀÖ½À´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("[Command] ì•”í˜¸ì— í—ˆìš©ë˜ì§€ ì•ŠëŠ” ë¬¸ìê°€ í¬í•¨ ë˜ì–´ ìˆìŠµë‹ˆë‹¤."));
 				return;
 			}
 			chkpassword(gm, user, oldpasswd, newpasswd);
 		} catch (Exception e) {
-			gm.sendPackets(new S_SystemMessage("[Command] .ºñ¹øº¯°æ [°èÁ¤] [ÇöÀçºñ¹ø] [¹Ù²Üºñ¹ø] ÀÔ·Â"));
+			gm.sendPackets(new S_SystemMessage("[Command] .ë¹„ë²ˆë³€ê²½ [ê³„ì •] [í˜„ì¬ë¹„ë²ˆ] [ë°”ê¿€ë¹„ë²ˆ] ì…ë ¥"));
 		}
 	}
 
@@ -1225,15 +1225,15 @@ public class GMCommands {
 			if (rs.next())
 				password = rs.getString(1);
 			if (password == null) {
-				gm.sendPackets(new S_SystemMessage("[Command] ÀÔ·ÂÇÏ½Å °èÁ¤Àº ¼­¹ö³»¿¡ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("[Command] ì…ë ¥í•˜ì‹  ê³„ì •ì€ ì„œë²„ë‚´ì— ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."));
 				return;
 			}
 
 			if (!isPasswordTrue(password, oldpassword)) {
-				// System.out.println("ÇöÀç ºñ¹ø : " + oldpassword+" - Ã¼Å© ºñ¹ø :
+				// System.out.println("í˜„ì¬ ë¹„ë²ˆ : " + oldpassword+" - ì²´í¬ ë¹„ë²ˆ :
 				// "+password);
-				gm.sendPackets(new S_SystemMessage("[Command] ±âÁ¸ °èÁ¤¸íÀÇ ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù. "));
-				gm.sendPackets(new S_SystemMessage("[Command] ´Ù½Ã È®ÀÎÇÏ½Ã°í ½ÇÇàÇØ ÁÖ¼¼¿ä."));
+				gm.sendPackets(new S_SystemMessage("[Command] ê¸°ì¡´ ê³„ì •ëª…ì˜ ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. "));
+				gm.sendPackets(new S_SystemMessage("[Command] ë‹¤ì‹œ í™•ì¸í•˜ì‹œê³  ì‹¤í–‰í•´ ì£¼ì„¸ìš”."));
 				return;
 			} else {
 				String sqlstr = "UPDATE accounts SET password=password(?) WHERE login=?";
@@ -1241,8 +1241,8 @@ public class GMCommands {
 				pstm.setString(1, newpassword);
 				pstm.setString(2, account);
 				pstm.execute();
-				gm.sendPackets(new S_SystemMessage("[Command] °èÁ¤¸í : " + account + " / ¹Ù²ïºñ¹Ğ¹øÈ£ : " + newpassword));
-				gm.sendPackets(new S_SystemMessage("[Command] ºñ¹Ğ¹øÈ£ º¯°æÀÌ Á¤»óÀûÀ¸·Î ¿Ï·áµÇ¾ú½À´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("[Command] ê³„ì •ëª… : " + account + " / ë°”ë€ë¹„ë°€ë²ˆí˜¸ : " + newpassword));
+				gm.sendPackets(new S_SystemMessage("[Command] ë¹„ë°€ë²ˆí˜¸ ë³€ê²½ì´ ì •ìƒì ìœ¼ë¡œ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 			}
 			rs.close();
 			pstm.close();
@@ -1252,7 +1252,7 @@ public class GMCommands {
 		}
 	}
 
-	// ÆĞ½º¿öµå ¸Â´ÂÁö ¿©ºÎ ¸®ÅÏ
+	// íŒ¨ìŠ¤ì›Œë“œ ë§ëŠ”ì§€ ì—¬ë¶€ ë¦¬í„´
 	public static boolean isPasswordTrue(String Password, String oldPassword) {
 		String _rtnPwd = null;
 		Connection con = null;
@@ -1267,7 +1267,7 @@ public class GMCommands {
 			if (rs.next()) {
 				_rtnPwd = rs.getString("pwd");
 			}
-			if (_rtnPwd.equals(Password)) { // µ¿ÀÏÇÏ´Ù¸é
+			if (_rtnPwd.equals(Password)) { // ë™ì¼í•˜ë‹¤ë©´
 				return true;
 			} else
 				return false;
@@ -1287,33 +1287,33 @@ public class GMCommands {
 			int codetest = Integer.parseInt(st.nextToken(), 10);
 			// pc.sendPackets(new S_ServerMessage(161,"$580","$245", "$247"));
 			// int time = 1020;
-			// ¡é Å×½ºÆ®ÇÒ ÄÚµå°¡ º¸¿©Áú Àü´Ş ÆĞÅ¶ ºÎºĞ
+			// â†“ í…ŒìŠ¤íŠ¸í•  ì½”ë“œê°€ ë³´ì—¬ì§ˆ ì „ë‹¬ íŒ¨í‚· ë¶€ë¶„
 			pc.sendPackets(new S_Test(pc, codetest));
 			// pc.sendPackets(new S_PacketBox(S_PacketBox.ICON_AURA, codetest,
-			// time)); // ±×½Å,¿å¸Á ¹öÇÁ Å×½ºÆ®
-			// pc.sendPackets(new S_CastleMaster(codetest, pc.getId())); // ¿Õ°ü
-			// Å×½ºÆ®
-			// pc.sendPackets(new S_StatusReset(pc, codetest, 1)); // ½ºÅİ ÃÊ±âÈ­ Å×½ºÆ®
+			// time)); // ê·¸ì‹ ,ìš•ë§ ë²„í”„ í…ŒìŠ¤íŠ¸
+			// pc.sendPackets(new S_CastleMaster(codetest, pc.getId())); // ì™•ê´€
+			// í…ŒìŠ¤íŠ¸
+			// pc.sendPackets(new S_StatusReset(pc, codetest, 1)); // ìŠ¤í…Ÿ ì´ˆê¸°í™” í…ŒìŠ¤íŠ¸
 		} catch (Exception exception) {
-			pc.sendPackets(new S_SystemMessage("[Command] .ÄÚµå [¼ıÀÚ] ÀÔ·Â"));
+			pc.sendPackets(new S_SystemMessage("[Command] .ì½”ë“œ [ìˆ«ì] ì…ë ¥"));
 		}
 	}
 
 	private void Clear(L1PcInstance gm) {
 		for (L1Object obj : L1World.getInstance().getVisibleObjects(gm, 10)) { // 10
-																				// ¹üÀ§
-																				// ³»¿¡
-																				// ¿ÀºêÁ§Æ®¸¦
-																				// Ã£¾Æ¼­
-			if (obj instanceof L1MonsterInstance) { // ¸ó½ºÅÍ¶ó¸é
+																				// ë²”ìœ„
+																				// ë‚´ì—
+																				// ì˜¤ë¸Œì íŠ¸ë¥¼
+																				// ì°¾ì•„ì„œ
+			if (obj instanceof L1MonsterInstance) { // ëª¬ìŠ¤í„°ë¼ë©´
 				L1NpcInstance npc = (L1NpcInstance) obj;
-				npc.receiveDamage(gm, npc.getMaxHp()); // µ¥¹ÌÁö
-			} else if (obj instanceof L1PcInstance) { // pc¶ó¸é
+				npc.receiveDamage(gm, npc.getMaxHp()); // ë°ë¯¸ì§€
+			} else if (obj instanceof L1PcInstance) { // pcë¼ë©´
 				L1PcInstance player = (L1PcInstance) obj;
-				player.receiveDamage(player, 0, false); // µ¥¹ÌÁö
+				player.receiveDamage(player, 0, false); // ë°ë¯¸ì§€
 				if (player.getCurrentHp() <= 0) {
 					// gm.sendPackets(new S_SkillSound(obj.getId() , 1815)); //
-					// µğ½º
+					// ë””ìŠ¤
 					// Broadcaster.broadcastPacket(gm, new
 					// S_SkillSound(obj.getId() , 1815));
 				} else {
@@ -1325,7 +1325,7 @@ public class GMCommands {
 		}
 	}
 
-	// ÀÎº¥»èÁ¦
+	// ì¸ë²¤ì‚­ì œ
 	private void InventoryDelete(L1PcInstance pc, String param) {
 		try {
 
@@ -1336,11 +1336,11 @@ public class GMCommands {
 			}
 
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".ÀÎº¥»èÁ¦"));
+			pc.sendPackets(new S_SystemMessage(".ì¸ë²¤ì‚­ì œ"));
 		}
 	}
 
-	// ´Ğ³×ÀÓ
+	// ë‹‰ë„¤ì„
 	private void GmCharacterNameChange(L1PcInstance pc, String param) {
 		try {
 			StringTokenizer tok = new StringTokenizer(param);
@@ -1353,13 +1353,13 @@ public class GMCommands {
 
 			pc.setCharacterName(name);
 			L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc.getMoveState().getHeading(), false);
-			pc.sendPackets(new S_SystemMessage("\\fYÄ³¸¯¸íÀ» " + name + "À¸·Î º¯°æÇÏ¿´½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("\\fYìºë¦­ëª…ì„ " + name + "ìœ¼ë¡œ ë³€ê²½í•˜ì˜€ìŠµë‹ˆë‹¤."));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".´Ğ³×ÀÓ [Ä³¸¯¸í]"));
+			pc.sendPackets(new S_SystemMessage(".ë‹‰ë„¤ì„ [ìºë¦­ëª…]"));
 		}
 	}
 
-	private void »óÁ¡°Ë»ç(L1PcInstance gm) {
+	private void ìƒì ê²€ì‚¬(L1PcInstance gm) {
 		try {
 			ArrayList<Integer> itemids = new ArrayList<Integer>();
 			Connection con = null;
@@ -1380,10 +1380,10 @@ public class GMCommands {
 				cnt = 0;
 				for (i$ = itemids.iterator(); i$.hasNext();) {
 					int itemid = ((Integer) i$.next()).intValue();
-					int ±¸¸ÅÃÖÀú°¡ = ÃÖ¼Ò°ª(itemid);
-					int ÆÇ¸ÅÃÖ°í°¡ = ÃÖ´ë°ª(itemid);
-					if ((±¸¸ÅÃÖÀú°¡ != 0) && (±¸¸ÅÃÖÀú°¡ < ÆÇ¸ÅÃÖ°í°¡)) {
-						gm.sendPackets(new S_SystemMessage("°ËÃâµÊ! [ÅÛ " + itemid + " : [±¸¸Å°ª " + ±¸¸ÅÃÖÀú°¡ + "] [¸ÅÀÔ°ª " + ÆÇ¸ÅÃÖ°í°¡ + "]"));
+					int êµ¬ë§¤ìµœì €ê°€ = ìµœì†Œê°’(itemid);
+					int íŒë§¤ìµœê³ ê°€ = ìµœëŒ€ê°’(itemid);
+					if ((êµ¬ë§¤ìµœì €ê°€ != 0) && (êµ¬ë§¤ìµœì €ê°€ < íŒë§¤ìµœê³ ê°€)) {
+						gm.sendPackets(new S_SystemMessage("ê²€ì¶œë¨! [í…œ " + itemid + " : [êµ¬ë§¤ê°’ " + êµ¬ë§¤ìµœì €ê°€ + "] [ë§¤ì…ê°’ " + íŒë§¤ìµœê³ ê°€ + "]"));
 					}
 					cnt++;
 				}
@@ -1397,7 +1397,7 @@ public class GMCommands {
 		}
 	}
 
-	private int ÃÖ¼Ò°ª(int itemid) {
+	private int ìµœì†Œê°’(int itemid) {
 		try {
 			Connection con = null;
 			PreparedStatement pstm = null;
@@ -1429,7 +1429,7 @@ public class GMCommands {
 		return 0;
 	}
 
-	private int ÃÖ´ë°ª(int itemid) {
+	private int ìµœëŒ€ê°’(int itemid) {
 		try {
 			Connection con = null;
 			PreparedStatement pstm = null;
@@ -1464,9 +1464,9 @@ public class GMCommands {
 			pc.setRealName((String) realName);
 			pc.setBankName((String) bankName);
 			pc.setBankNumber((String) bankNumber);
-			pc.sendPackets(new S_SystemMessage("¿¹±İÁÖ[" + realName + "]" + " ÀºÇà[" + bankName + "]" + "°èÁÂ¹øÈ£[" + bankNumber + "] µî·Ï ¿Ï·á."));
+			pc.sendPackets(new S_SystemMessage("ì˜ˆê¸ˆì£¼[" + realName + "]" + " ì€í–‰[" + bankName + "]" + "ê³„ì¢Œë²ˆí˜¸[" + bankNumber + "] ë“±ë¡ ì™„ë£Œ."));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".°èÁÂµî·Ï [½Ç¸í] [ÀºÇàÀÌ¸§] [°èÁÂ¹øÈ£]"));
+			pc.sendPackets(new S_SystemMessage(".ê³„ì¢Œë“±ë¡ [ì‹¤ëª…] [ì€í–‰ì´ë¦„] [ê³„ì¢Œë²ˆí˜¸]"));
 		}
 	}
 
@@ -1475,12 +1475,12 @@ public class GMCommands {
 		try {
 			if (pc.getRealName() != null || pc.getBankName() != null || pc.getBankNumber() != null) {
 				pc.sendPackets(
-						new S_SystemMessage("¿¹±İÁÖ[" + pc.getRealName() + "]" + " ÀºÇà[" + pc.getBankName() + "]" + "°èÁÂ¹øÈ£[" + pc.getBankNumber() + "]"));
+						new S_SystemMessage("ì˜ˆê¸ˆì£¼[" + pc.getRealName() + "]" + " ì€í–‰[" + pc.getBankName() + "]" + "ê³„ì¢Œë²ˆí˜¸[" + pc.getBankNumber() + "]"));
 			} else {
-				pc.sendPackets(new S_SystemMessage("°èÁÂ¸¦ ¸ÕÀú µî·Ï ÇÏ¿© ÁÖ½Ê½Ã¿À."));
+				pc.sendPackets(new S_SystemMessage("ê³„ì¢Œë¥¼ ë¨¼ì € ë“±ë¡ í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤."));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".°èÁÂÈ®ÀÎ"));
+			pc.sendPackets(new S_SystemMessage(".ê³„ì¢Œí™•ì¸"));
 		}
 	}
 
@@ -1520,41 +1520,41 @@ public class GMCommands {
 			L1ItemInstance checkadena = pc.getInventory().findItemId(L1ItemId.ADENA);
 			if (pc.getInventory().checkItem(40308, 1)) {
 				if (pc.getRealName() == null || pc.getBankName() == null || pc.getBankNumber() == null) {
-					pc.sendPackets(new S_SystemMessage("ÆÇ¸Å µî·Ï: °èÁÂµî·ÏÀ» ÇÏÁö ¾ÊÀ¸¸é ¹°Ç°À» µî·Ï ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("íŒë§¤ ë“±ë¡: ê³„ì¢Œë“±ë¡ì„ í•˜ì§€ ì•Šìœ¼ë©´ ë¬¼í’ˆì„ ë“±ë¡ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 					return;
 				}
 				if (adena > checkadena.getCount()) {
-					pc.sendPackets(new S_SystemMessage("ÆÇ¸Å µî·Ï: ¾Æµ¥³ª°¡ ºÎÁ· ÇÕ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("íŒë§¤ ë“±ë¡: ì•„ë°ë‚˜ê°€ ë¶€ì¡± í•©ë‹ˆë‹¤."));
 					return;
 				}
 				if (pc.getAdenaSellCount() > 0) {
-					pc.sendPackets(new S_SystemMessage("ÆÇ¸Å µî·Ï: ÀÌ¹Ì ÆÇ¸ÅÁßÀÎ ¹°Ç°ÀÌ ÀÖ½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("íŒë§¤ ë“±ë¡: ì´ë¯¸ íŒë§¤ì¤‘ì¸ ë¬¼í’ˆì´ ìˆìŠµë‹ˆë‹¤."));
 					return;
 				}
 				if (adena < 10000000) {
-					pc.sendPackets(new S_SystemMessage("ÆÇ¸Å µî·Ï: ÆÇ¸Å ÃÖ¼Ò ±İ¾×Àº 1Ãµ¸¸ ¾Æµ¥³ª ÀÔ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("íŒë§¤ ë“±ë¡: íŒë§¤ ìµœì†Œ ê¸ˆì•¡ì€ 1ì²œë§Œ ì•„ë°ë‚˜ ì…ë‹ˆë‹¤."));
 					return;
 				}
 				if (adena >= 10000001 && adena <= 19999999 || adena >= 20000001 && adena <= 29999999 || adena >= 30000001 && adena <= 39999999
 						|| adena >= 40000001 && adena <= 49999999 || adena >= 50000001 && adena <= 59999999 || adena >= 60000001 && adena <= 69999999
 						|| adena >= 70000001 && adena <= 79999999 || adena >= 80000001 && adena <= 89999999 || adena >= 90000001 && adena <= 99999999
 						|| adena >= 90000001 && adena <= 99999999) {
-					pc.sendPackets(new S_SystemMessage("ÆÇ¸Å µî·Ï: ÆÇ¸Å ±İ¾×Àº 1Ãµ¸¸ ´ÜÀ§·Î µî·Ï ÇÏ¼Å¾ß ÇÕ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("íŒë§¤ ë“±ë¡: íŒë§¤ ê¸ˆì•¡ì€ 1ì²œë§Œ ë‹¨ìœ„ë¡œ ë“±ë¡ í•˜ì…”ì•¼ í•©ë‹ˆë‹¤."));
 					return;
 				}
 				if (adena >= 100000001) {
-					pc.sendPackets(new S_SystemMessage("ÆÇ¸Å µî·Ï: ÆÇ¸Å ÃÖ´ë ±İ¾×Àº 1¾ï ¾Æµ¥³ª ÀÔ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("íŒë§¤ ë“±ë¡: íŒë§¤ ìµœëŒ€ ê¸ˆì•¡ì€ 1ì–µ ì•„ë°ë‚˜ ì…ë‹ˆë‹¤."));
 					return;
 				}
 				pc.getSkillEffectTimerSet().setSkillEffect(12000, 3600 * 1000);
 				pc.getInventory().consumeItem(L1ItemId.ADENA, adena);
 				writeAdenaSell(pc, adena, price);
-				pc.sendPackets(new S_SystemMessage("ÆÇ¸Å µî·Ï: ¾Æµ¥³ª (" + comentAdena.format(adena) + ") °¡°İ: " + comentAdena.format(price) + "¿ø ¿Ï·á."));
+				pc.sendPackets(new S_SystemMessage("íŒë§¤ ë“±ë¡: ì•„ë°ë‚˜ (" + comentAdena.format(adena) + ") ê°€ê²©: " + comentAdena.format(price) + "ì› ì™„ë£Œ."));
 			} else {
-				pc.sendPackets(new S_SystemMessage("ÆÇ¸Å µî·Ï: ¾Æµ¥³ª°¡ ºÎÁ· ÇÕ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("íŒë§¤ ë“±ë¡: ì•„ë°ë‚˜ê°€ ë¶€ì¡± í•©ë‹ˆë‹¤."));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".ÆÇ¸Åµî·Ï [¾Æµ¥³ª] [ÆÇ¸Å±İ¾×]"));
+			pc.sendPackets(new S_SystemMessage(".íŒë§¤ë“±ë¡ [ì•„ë°ë‚˜] [íŒë§¤ê¸ˆì•¡]"));
 		}
 	}
 
@@ -1579,36 +1579,36 @@ public class GMCommands {
 					"INSERT INTO board_adena SET id=?, name=?,  date=?, type=?, title=?, content=?, adena=?, pay=?, seller=?, bidder=?, coment=?, step=?,real_name=?,bank_name=?,bank_number=?");
 			pstm2.setInt(1, (count + 1));
 			pstm2.setString(2, pc.getName());
-			pstm2.setString(3, date); // ³¯Â¥
-			pstm2.setString(4, "adena"); // Å¸ÀÔ
-			pstm2.setString(5, "ÆÇ¸ÅÁß"); // Å¸ÀÌÆ²
-			pstm2.setString(6, null); // ³»¿ë
+			pstm2.setString(3, date); // ë‚ ì§œ
+			pstm2.setString(4, "adena"); // íƒ€ì…
+			pstm2.setString(5, "íŒë§¤ì¤‘"); // íƒ€ì´í‹€
+			pstm2.setString(6, null); // ë‚´ìš©
 			pstm2.setInt(7, adena);
 			pstm2.setLong(8, price);
 			pstm2.setString(9, pc.getName());
 			if (adena == 10000000) {
-				comentAdena = "1Ãµ¸¸";
+				comentAdena = "1ì²œë§Œ";
 			} else if (adena == 20000000) {
-				comentAdena = "2Ãµ¸¸";
+				comentAdena = "2ì²œë§Œ";
 			} else if (adena == 30000000) {
-				comentAdena = "3Ãµ¸¸";
+				comentAdena = "3ì²œë§Œ";
 			} else if (adena == 40000000) {
-				comentAdena = "4Ãµ¸¸";
+				comentAdena = "4ì²œë§Œ";
 			} else if (adena == 50000000) {
-				comentAdena = "5Ãµ¸¸";
+				comentAdena = "5ì²œë§Œ";
 			} else if (adena == 60000000) {
-				comentAdena = "6Ãµ¸¸";
+				comentAdena = "6ì²œë§Œ";
 			} else if (adena == 70000000) {
-				comentAdena = "7Ãµ¸¸";
+				comentAdena = "7ì²œë§Œ";
 			} else if (adena == 80000000) {
-				comentAdena = "8Ãµ¸¸";
+				comentAdena = "8ì²œë§Œ";
 			} else if (adena == 90000000) {
-				comentAdena = "9Ãµ¸¸";
+				comentAdena = "9ì²œë§Œ";
 			} else if (adena == 100000000) {
-				comentAdena = "1¾ï";
+				comentAdena = "1ì–µ";
 			}
 			pstm2.setString(10, null);
-			pstm2.setString(11, comentAdena + " - " + comentPrice.format(price) + "¿ø");
+			pstm2.setString(11, comentAdena + " - " + comentPrice.format(price) + "ì›");
 			pstm2.setInt(12, 0);
 			pstm2.setString(13, pc.getRealName());
 			pstm2.setString(14, pc.getBankName());
@@ -1616,7 +1616,7 @@ public class GMCommands {
 			pstm2.executeUpdate();
 			pc.setAdenaSellCount(count + 1);
 		} catch (SQLException e) {
-			pc.sendPackets(new S_SystemMessage(".ÆÇ¸Åµî·Ï [ÆÇ¸Å¾Æµ¥³ª(¼ıÀÚ±âÀÔ)] [¹ŞÀ»±İ¾×(¼ıÀÚ±âÀÔ)]"));
+			pc.sendPackets(new S_SystemMessage(".íŒë§¤ë“±ë¡ [íŒë§¤ì•„ë°ë‚˜(ìˆ«ìê¸°ì…)] [ë°›ì„ê¸ˆì•¡(ìˆ«ìê¸°ì…)]"));
 		} finally {
 			SQLUtil.close(rs);
 			SQLUtil.close(pstm1);
@@ -1631,7 +1631,7 @@ public class GMCommands {
 			int id = Integer.parseInt(tok.nextToken());
 			AdenaSellDone(pc, id);
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".ÆÇ¸Å¿Ï·á [°Ô½Ã¹° ¹øÈ£]"));
+			pc.sendPackets(new S_SystemMessage(".íŒë§¤ì™„ë£Œ [ê²Œì‹œë¬¼ ë²ˆí˜¸]"));
 		}
 	}
 
@@ -1665,46 +1665,46 @@ public class GMCommands {
 			}
 
 			if (!SellerName.equalsIgnoreCase(pc.getName())) {
-				pc.sendPackets(new S_SystemMessage("ÆÇ¸Å ¿Ï·á: ÀÚ½ÅÀÌ µî·ÏÇÑ ¹°Ç° ¹øÈ£¸¸ ÆÇ¸Å¿Ï·á°¡ °¡´ÉÇÕ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("íŒë§¤ ì™„ë£Œ: ìì‹ ì´ ë“±ë¡í•œ ë¬¼í’ˆ ë²ˆí˜¸ë§Œ íŒë§¤ì™„ë£Œê°€ ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 				return;
 			}
 
 			if (pc.getAdenaSellCount() < 0) {
-				pc.sendPackets(new S_SystemMessage("ÆÇ¸Å ¿Ï·á: ¿Ï·á °¡´ÉÇÑ ¹°Ç°ÀÌ ¾ø½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("íŒë§¤ ì™„ë£Œ: ì™„ë£Œ ê°€ëŠ¥í•œ ë¬¼í’ˆì´ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
-			if (BidderName == null || title.equalsIgnoreCase("ÆÇ¸ÅÁß")) {
-				pc.sendPackets(new S_SystemMessage("ÆÇ¸Å ¿Ï·á: °Å·¡ ½ÅÃ»ÀÚ°¡ ¾ø½À´Ï´Ù."));
+			if (BidderName == null || title.equalsIgnoreCase("íŒë§¤ì¤‘")) {
+				pc.sendPackets(new S_SystemMessage("íŒë§¤ ì™„ë£Œ: ê±°ë˜ ì‹ ì²­ìê°€ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
-			if (title.equalsIgnoreCase("°Å·¡¿Ï·á")) {
-				pc.sendPackets(new S_SystemMessage("ÆÇ¸Å ¿Ï·á: ÀÌ¹Ì ÆÇ¸Å¿Ï·áµÈ ¹°Ç°ÀÔ´Ï´Ù."));
+			if (title.equalsIgnoreCase("ê±°ë˜ì™„ë£Œ")) {
+				pc.sendPackets(new S_SystemMessage("íŒë§¤ ì™„ë£Œ: ì´ë¯¸ íŒë§¤ì™„ë£Œëœ ë¬¼í’ˆì…ë‹ˆë‹¤."));
 				return;
 			}
 			L1PcInstance target = L1World.getInstance().getPlayer(BidderName);
 			if (target == null) {
-				pc.sendPackets(new S_SystemMessage("ÆÇ¸Å ¿Ï·á: ±¸¸ÅÀÚ°¡ Á¢¼ÓÁßÀÌÁö ¾Ê½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("íŒë§¤ ì™„ë£Œ: êµ¬ë§¤ìê°€ ì ‘ì†ì¤‘ì´ì§€ ì•ŠìŠµë‹ˆë‹¤."));
 				return;
 			}
 			if (target != null) {
-				// ¿©±â¼­ ¾Æµ¥³ª ÁÖµµ·Ï
+				// ì—¬ê¸°ì„œ ì•„ë°ë‚˜ ì£¼ë„ë¡
 				target.getInventory().storeItem(40308, adena);
 				target.setAdenaBuyCount(0);
-				target.sendPackets(new S_SystemMessage("ÆÇ¸Å ¿Ï·á: ¹°Ç°¹øÈ£: " + id + "¿¡ ´ëÇÑ ±¸¸Å°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù."));
+				target.sendPackets(new S_SystemMessage("íŒë§¤ ì™„ë£Œ: ë¬¼í’ˆë²ˆí˜¸: " + id + "ì— ëŒ€í•œ êµ¬ë§¤ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 			}
 			pstm2 = con.prepareStatement("UPDATE board_adena SET  bidder=?, title=?, step=? WHERE id=?");
 			pstm2.setString(1, BidderName);
-			pstm2.setString(2, "°Å·¡¿Ï·á");
+			pstm2.setString(2, "ê±°ë˜ì™„ë£Œ");
 			pstm2.setInt(3, 2);
 			pstm2.setInt(4, id);
 			pstm2.executeUpdate();
 			pstm2.close();
 			pc.setAdenaSellCount(0);
-			pc.sendPackets(new S_SystemMessage("ÆÇ¸Å ¿Ï·á: ¹°Ç°¹øÈ£: " + id + "¿¡ ´ëÇÑ ÆÇ¸Å°¡ ¿Ï·áµÇ¾ú½À´Ï´Ù."));
-			// target.sendPackets(new S_SystemMessage("¹°Ç°¹øÈ£: " + id + "¿¡ ´ëÇÑ ±¸¸Å°¡
-			// ¿Ï·áµÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("íŒë§¤ ì™„ë£Œ: ë¬¼í’ˆë²ˆí˜¸: " + id + "ì— ëŒ€í•œ íŒë§¤ê°€ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
+			// target.sendPackets(new S_SystemMessage("ë¬¼í’ˆë²ˆí˜¸: " + id + "ì— ëŒ€í•œ êµ¬ë§¤ê°€
+			// ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 		} catch (SQLException e) {
-			pc.sendPackets(new S_SystemMessage(".¾È´ë"));
+			pc.sendPackets(new S_SystemMessage(".ì•ˆëŒ€"));
 		} finally {
 			SQLUtil.close(rs);
 			SQLUtil.close(pstm1);
@@ -1719,7 +1719,7 @@ public class GMCommands {
 			int id = Integer.parseInt(tok.nextToken());
 			CancelAdenaSell(pc, id);
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".ÆÇ¸ÅÃë¼Ò [°Ô½Ã¹° ¹øÈ£] °Ô½Ã¹° ¹øÈ£°¡ 0001ÀÌ¸é 1¸¸ ÀÔ·Â"));
+			pc.sendPackets(new S_SystemMessage(".íŒë§¤ì·¨ì†Œ [ê²Œì‹œë¬¼ ë²ˆí˜¸] ê²Œì‹œë¬¼ ë²ˆí˜¸ê°€ 0001ì´ë©´ 1ë§Œ ì…ë ¥"));
 		}
 	}
 
@@ -1748,14 +1748,14 @@ public class GMCommands {
 				coment = rs.getString("coment");
 				adena = rs.getInt("adena");
 			}
-			if (title.equalsIgnoreCase("°Å·¡Áß")) {
+			if (title.equalsIgnoreCase("ê±°ë˜ì¤‘")) {
 				L1PcInstance target = L1World.getInstance().getPlayer(BidderName);
 				if (target != null) {
-					target.sendPackets(new S_Message_YN(622, "»ó´ë¹æÀÌ ÆÇ¸Å Ãë¼Ò¸¦ ¿øÇÕ´Ï´Ù µ¿ÀÇ ÇÏ½Ã°Ú½À´Ï±î?"));
+					target.sendPackets(new S_Message_YN(622, "ìƒëŒ€ë°©ì´ íŒë§¤ ì·¨ì†Œë¥¼ ì›í•©ë‹ˆë‹¤ ë™ì˜ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"));
 					target.setAttrMsgType(1);
-					pc.sendPackets(new S_SystemMessage("ÆÇ¸Å Ãë¼Ò: »ó´ë¹æÀÇ µ¿ÀÇ¸¦ ¾ò°í ÀÖ½À´Ï´Ù. "));
+					pc.sendPackets(new S_SystemMessage("íŒë§¤ ì·¨ì†Œ: ìƒëŒ€ë°©ì˜ ë™ì˜ë¥¼ ì–»ê³  ìˆìŠµë‹ˆë‹¤. "));
 				} else {
-					pc.sendPackets(new S_SystemMessage("ÆÇ¸Å Ãë¼Ò: ±¸¸ÅÀÚ°¡ Á¢¼ÓÁßÀÌÁö ¾Ê½À´Ï´Ù. "));
+					pc.sendPackets(new S_SystemMessage("íŒë§¤ ì·¨ì†Œ: êµ¬ë§¤ìê°€ ì ‘ì†ì¤‘ì´ì§€ ì•ŠìŠµë‹ˆë‹¤. "));
 				}
 				return;
 			}
@@ -1763,15 +1763,15 @@ public class GMCommands {
 			pc.getInventory().storeItem(40308, adena);
 			pstm2 = con.prepareStatement("UPDATE board_adena SET bidder=?, title=?, step=? WHERE id=?");
 			pstm2.setString(1, BidderName);
-			pstm2.setString(2, "ÆÇ¸ÅÃë¼Ò");
+			pstm2.setString(2, "íŒë§¤ì·¨ì†Œ");
 			pstm2.setInt(3, 3);
 			pstm2.setInt(4, id);
 			pstm2.executeUpdate();
 			pc.setAdenaSellCount(0);
-			pc.sendPackets(new S_SystemMessage("ÆÇ¸Å Ãë¼Ò: µî·ÏÇÏ½Å ¹°Ç°ÀÌ Ãë¼Ò µÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("íŒë§¤ ì·¨ì†Œ: ë“±ë¡í•˜ì‹  ë¬¼í’ˆì´ ì·¨ì†Œ ë˜ì—ˆìŠµë‹ˆë‹¤."));
 			pstm2.close();
 		} catch (SQLException e) {
-			pc.sendPackets(new S_SystemMessage(".±¸¸Å½ÅÃ» [°Ô½Ã¹° ¹øÈ£] °Ô½Ã¹° ¹øÈ£°¡ 0001ÀÌ¸é 1¸¸ ÀÔ·Â."));
+			pc.sendPackets(new S_SystemMessage(".êµ¬ë§¤ì‹ ì²­ [ê²Œì‹œë¬¼ ë²ˆí˜¸] ê²Œì‹œë¬¼ ë²ˆí˜¸ê°€ 0001ì´ë©´ 1ë§Œ ì…ë ¥."));
 		} finally {
 			SQLUtil.close(rs);
 			SQLUtil.close(pstm1);
@@ -1786,7 +1786,7 @@ public class GMCommands {
 			int id = Integer.parseInt(tok.nextToken());
 			writeAdenaBuy(pc, id);
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".±¸¸Å½ÅÃ» [°Ô½Ã¹° ¹øÈ£] °Ô½Ã¹° ¹øÈ£°¡ 0001ÀÌ¸é 1¸¸ ÀÔ·Â"));
+			pc.sendPackets(new S_SystemMessage(".êµ¬ë§¤ì‹ ì²­ [ê²Œì‹œë¬¼ ë²ˆí˜¸] ê²Œì‹œë¬¼ ë²ˆí˜¸ê°€ 0001ì´ë©´ 1ë§Œ ì…ë ¥"));
 		}
 	}
 
@@ -1815,45 +1815,45 @@ public class GMCommands {
 				coment = rs.getString("coment");
 			}
 			if (SellerName == null) {
-				pc.sendPackets(new S_SystemMessage("±¸¸Å ½ÅÃ»: ½ÅÃ»ÇÒ °Ô½Ã¹° ¹øÈ£°¡ ¾ø½À´Ï´Ù. "));
+				pc.sendPackets(new S_SystemMessage("êµ¬ë§¤ ì‹ ì²­: ì‹ ì²­í•  ê²Œì‹œë¬¼ ë²ˆí˜¸ê°€ ì—†ìŠµë‹ˆë‹¤. "));
 				return;
 			}
-			if (title.equalsIgnoreCase("°Å·¡Áß")) {
-				pc.sendPackets(new S_SystemMessage("±¸¸Å ½ÅÃ»: ÀÌ¹Ì °Å·¡ÁßÀÎ ¹°Ç°ÀÔ´Ï´Ù."));
+			if (title.equalsIgnoreCase("ê±°ë˜ì¤‘")) {
+				pc.sendPackets(new S_SystemMessage("êµ¬ë§¤ ì‹ ì²­: ì´ë¯¸ ê±°ë˜ì¤‘ì¸ ë¬¼í’ˆì…ë‹ˆë‹¤."));
 				return;
 			}
-			if (title.equalsIgnoreCase("°Å·¡¿Ï·á")) {
-				pc.sendPackets(new S_SystemMessage("±¸¸Å ½ÅÃ»: ÀÌ¹Ì ÆÇ¸Å¿Ï·áµÈ ¹°Ç°ÀÔ´Ï´Ù."));
+			if (title.equalsIgnoreCase("ê±°ë˜ì™„ë£Œ")) {
+				pc.sendPackets(new S_SystemMessage("êµ¬ë§¤ ì‹ ì²­: ì´ë¯¸ íŒë§¤ì™„ë£Œëœ ë¬¼í’ˆì…ë‹ˆë‹¤."));
 				return;
 			}
 			if (SellerName.equalsIgnoreCase(pc.getName())) {
-				pc.sendPackets(new S_SystemMessage("±¸¸Å ½ÅÃ»: ÀÚ½ÅÀÌ µî·ÏÇÑ °Ô½Ã¹°Àº ±¸¸Å ½ÅÃ» ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("êµ¬ë§¤ ì‹ ì²­: ìì‹ ì´ ë“±ë¡í•œ ê²Œì‹œë¬¼ì€ êµ¬ë§¤ ì‹ ì²­ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
 			if (pc.getAdenaBuyCount() > 0) {
-				pc.sendPackets(new S_SystemMessage("±¸¸Å ½ÅÃ»: ÀÌ¹Ì °Å·¡ÁßÀÎ ¹°Ç°ÀÌ ÀÖ½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("êµ¬ë§¤ ì‹ ì²­: ì´ë¯¸ ê±°ë˜ì¤‘ì¸ ë¬¼í’ˆì´ ìˆìŠµë‹ˆë‹¤."));
 				return;
 			}
 			L1PcInstance target = L1World.getInstance().getPlayer(SellerName);
 			if (target == null) {
-				pc.sendPackets(new S_SystemMessage("±¸¸Å ½ÅÃ»: ÆÇ¸ÅÀÚ°¡ Á¢¼ÓÁßÀÌÁö ¾Ê½À´Ï´Ù. "));
+				pc.sendPackets(new S_SystemMessage("êµ¬ë§¤ ì‹ ì²­: íŒë§¤ìê°€ ì ‘ì†ì¤‘ì´ì§€ ì•ŠìŠµë‹ˆë‹¤. "));
 				return;
 			}
 			target.setAdenaTrade(true);
 			pstm2 = con.prepareStatement("UPDATE board_adena SET  bidder=?, title=?, step=? WHERE id=?");
 			pstm2.setString(1, pc.getName());
-			pstm2.setString(2, "°Å·¡Áß");
+			pstm2.setString(2, "ê±°ë˜ì¤‘");
 			pstm2.setInt(3, 1);
 			pstm2.setInt(4, id);
 			pstm2.executeUpdate();
-			// ¿©±â¿¡ º¯¼öÇÏ³ª ÁÖÀÚ
-			target.sendPackets(new S_SystemMessage("±¸¸Å ½ÅÃ»: ¹°Ç°¹øÈ£ " + id + " ¿¡ ´ëÇÑ ±¸¸Å ½ÅÃ»ÀÌ ¿Ô½À´Ï´Ù."));
-			pc.sendPackets(new S_SystemMessage("±¸¸Å ½ÅÃ»: ¹°Ç°¹øÈ£ " + id + " ¿¡ ´ëÇÑ ±¸¸Å ½ÅÃ»ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù."));
+			// ì—¬ê¸°ì— ë³€ìˆ˜í•˜ë‚˜ ì£¼ì
+			target.sendPackets(new S_SystemMessage("êµ¬ë§¤ ì‹ ì²­: ë¬¼í’ˆë²ˆí˜¸ " + id + " ì— ëŒ€í•œ êµ¬ë§¤ ì‹ ì²­ì´ ì™”ìŠµë‹ˆë‹¤."));
+			pc.sendPackets(new S_SystemMessage("êµ¬ë§¤ ì‹ ì²­: ë¬¼í’ˆë²ˆí˜¸ " + id + " ì— ëŒ€í•œ êµ¬ë§¤ ì‹ ì²­ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤."));
 			pc.setAdenaBuyCount(id);
 			pstm2.close();
 
 		} catch (SQLException e) {
-			pc.sendPackets(new S_SystemMessage(".±¸¸Å½ÅÃ» [°Ô½Ã¹° ¹øÈ£] °Ô½Ã¹° ¹øÈ£°¡ 0001ÀÌ¸é 1¸¸ ÀÔ·Â."));
+			pc.sendPackets(new S_SystemMessage(".êµ¬ë§¤ì‹ ì²­ [ê²Œì‹œë¬¼ ë²ˆí˜¸] ê²Œì‹œë¬¼ ë²ˆí˜¸ê°€ 0001ì´ë©´ 1ë§Œ ì…ë ¥."));
 		} finally {
 			SQLUtil.close(rs);
 			SQLUtil.close(pstm1);
@@ -1866,26 +1866,26 @@ public class GMCommands {
 		try {
 			StringTokenizer tokenizer = new StringTokenizer(param);
 			String code = tokenizer.nextToken();
-			if (code.equalsIgnoreCase("¸®·Îµå")) {
+			if (code.equalsIgnoreCase("ë¦¬ë¡œë“œ")) {
 				EventSystemLoader.reload();
-				gm.sendPackets(new S_SystemMessage("ÀÌº¥Æ® ½Ã½ºÅÛÀ» ¸®·Îµå ÇÕ´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("ì´ë²¤íŠ¸ ì‹œìŠ¤í…œì„ ë¦¬ë¡œë“œ í•©ë‹ˆë‹¤."));
 				return;
 			}
 			int i = Integer.parseInt(tokenizer.nextToken(), 10);
 
 			if (EventSystemLoader.getInstance().getEventSystemSize() < i) {
-				gm.sendPackets(new S_SystemMessage("¿Ã¹Ù¸¥ ÀÌº¥Æ® ³Ñ¹ö¸¦ ÀÔ·ÂÇØ ÁÖ½Ã±â ¹Ù¶ø´Ï´Ù."));
+				gm.sendPackets(new S_SystemMessage("ì˜¬ë°”ë¥¸ ì´ë²¤íŠ¸ ë„˜ë²„ë¥¼ ì…ë ¥í•´ ì£¼ì‹œê¸° ë°”ëë‹ˆë‹¤."));
 				return;
 			}
-			if (code.equalsIgnoreCase("½ÃÀÛ")) {
+			if (code.equalsIgnoreCase("ì‹œì‘")) {
 				EventSystemTimeController.getInstance().initScs(i);
 				GeneralThreadPool.getInstance().execute(new EventSystemSpawner(i, EventSystemTimeController.FS_START));
-			} else if (code.equalsIgnoreCase("Á¾·á")) {
+			} else if (code.equalsIgnoreCase("ì¢…ë£Œ")) {
 				GeneralThreadPool.getInstance().execute(new EventSystemSpawner(i, EventSystemTimeController.FS_END));
 			}
 		} catch (Exception e) {
 			EventSystemLoader.getInstance().getEventSystemInfoCheck(gm);
-			gm.sendPackets(new S_SystemMessage(".ÀÌº¥Æ® [½ÃÀÛ/Á¾·á/¸®·Îµå] ÀÌº¥Æ®³Ñ¹ö"));
+			gm.sendPackets(new S_SystemMessage(".ì´ë²¤íŠ¸ [ì‹œì‘/ì¢…ë£Œ/ë¦¬ë¡œë“œ] ì´ë²¤íŠ¸ë„˜ë²„"));
 		}
 	}
 
@@ -1901,30 +1901,30 @@ public class GMCommands {
 					target.getInventory().loadItems();
 					pc.sendPackets(new S_InvGfx(target, target.getInventory()));
 					StringBuffer info = new StringBuffer();
-					pc.sendPackets(new S_SystemMessage("-----------Ä³¸¯Á¤º¸--------------"));
-					info.append("Á÷¾÷:" + target.getClassName() + " / ");
+					pc.sendPackets(new S_SystemMessage("-----------ìºë¦­ì •ë³´--------------"));
+					info.append("ì§ì—…:" + target.getClassName() + " / ");
 					int lv = target.getLevel();
 					int currentLvExp = ExpTable.getExpByLevel(lv);
 					int nextLvExp = ExpTable.getExpByLevel(lv + 1);
 					double neededExp = nextLvExp - currentLvExp;
 					double currentExp = target.getExp() - currentLvExp;
 					int per = (int) ((currentExp / neededExp) * 100.0);
-					info.append("·¹º§:" + target.getLevel() + "." + per + " / ");
+					info.append("ë ˆë²¨:" + target.getLevel() + "." + per + " / ");
 
-					info.append("¿¤¸¯¼­º¹¿ë:" + target.getAbility().getElixirCount() + "°³");
+					info.append("ì—˜ë¦­ì„œë³µìš©:" + target.getAbility().getElixirCount() + "ê°œ");
 					pc.sendPackets(new S_SystemMessage(info.toString()));
 
 					StringBuffer info2 = new StringBuffer();
-					info2.append("Èû:" + target.getAbility().getBaseStr() + ", ");
-					info2.append("µ¦½º:" + target.getAbility().getBaseDex() + ", ");
-					info2.append("ÀÎÆ®:" + target.getAbility().getBaseInt() + ", ");
-					info2.append("À§Áî:" + target.getAbility().getBaseWis() + ", ");
-					info2.append("ÄÜ:" + target.getAbility().getBaseCon() + ", ");
-					info2.append("Ä«¸®:" + target.getAbility().getBaseCha() + ", ");
+					info2.append("í˜:" + target.getAbility().getBaseStr() + ", ");
+					info2.append("ë±ìŠ¤:" + target.getAbility().getBaseDex() + ", ");
+					info2.append("ì¸íŠ¸:" + target.getAbility().getBaseInt() + ", ");
+					info2.append("ìœ„ì¦ˆ:" + target.getAbility().getBaseWis() + ", ");
+					info2.append("ì½˜:" + target.getAbility().getBaseCon() + ", ");
+					info2.append("ì¹´ë¦¬:" + target.getAbility().getBaseCha() + ", ");
 					pc.sendPackets(new S_SystemMessage(info2.toString()));
 
 					StringBuffer info3 = new StringBuffer();
-					info3.append("¸¶¹ıÁ¤º¸:");
+					info3.append("ë§ˆë²•ì •ë³´:");
 
 					Connection con = null;
 					PreparedStatement pstm = null;
@@ -1938,30 +1938,30 @@ public class GMCommands {
 						while (rs.next()) {
 							int skillId = rs.getInt("skill_id");
 							switch (skillId) {
-							case 28: // ¹ìÆÄ
-							case 60: // ÀÎºñÁö
-							case 65: // ¶óÅè
-							case 67: // ¼ÎÀÌÇÁ Ã¼ÀÎÁö
-							case 68: // ÀÌ¹Ã
-							case 71: // µğÄÉÀÌ
-							case 74: // ¹ÌÆ¼¾î
-							case 77: // µğ½º
-							case 78: // ¾Û¼Ö
-							case 79: // ¾îº¥
-							case 87: // ½ºÅÏ
-							case 90: // ¼Ö¸®µå Ä³¸®Áö
-							case 91: // Ä«º£
-							case 105: // ´õºíºê·¹ÀÌÅ©
-							case 107: // ½¦µµ¿ìÆë
-							case 114: // ±Û·ÎÀ× ¿À¶ó
-							case 115: // »şÀÌ´×¿À¶ó
-							case 117: // ºê·¹ÀÌºê ¿À¶ó
-							case 146: // ºí·¯µå Åõ ¼Ò¿ï
-							case 157: // ¾î¹Ù
-							case 164: // ºí·¹½Ì
-							case 166: // ½ºÅè¼¦
-							case 174: // ½ºÆ®¶óÀÌÄ¿ °ÔÀÏ
-							case 175: // ¼ÒÇÁ
+							case 28: // ë±€íŒŒ
+							case 60: // ì¸ë¹„ì§€
+							case 65: // ë¼í†°
+							case 67: // ì…°ì´í”„ ì²´ì¸ì§€
+							case 68: // ì´ë®¨
+							case 71: // ë””ì¼€ì´
+							case 74: // ë¯¸í‹°ì–´
+							case 77: // ë””ìŠ¤
+							case 78: // ì•±ì†”
+							case 79: // ì–´ë²¤
+							case 87: // ìŠ¤í„´
+							case 90: // ì†”ë¦¬ë“œ ìºë¦¬ì§€
+							case 91: // ì¹´ë² 
+							case 105: // ë”ë¸”ë¸Œë ˆì´í¬
+							case 107: // ì‰ë„ìš°í­
+							case 114: // ê¸€ë¡œì‰ ì˜¤ë¼
+							case 115: // ìƒ¤ì´ë‹ì˜¤ë¼
+							case 117: // ë¸Œë ˆì´ë¸Œ ì˜¤ë¼
+							case 146: // ë¸”ëŸ¬ë“œ íˆ¬ ì†Œìš¸
+							case 157: // ì–´ë°”
+							case 164: // ë¸”ë ˆì‹±
+							case 166: // ìŠ¤í†°ìƒ·
+							case 174: // ìŠ¤íŠ¸ë¼ì´ì»¤ ê²Œì¼
+							case 175: // ì†Œí”„
 								L1Skills l1skills = SkillsTable.getInstance().getTemplate(skillId);
 								info3.append(l1skills.getName() + ", ");
 								break;
@@ -1977,13 +1977,13 @@ public class GMCommands {
 					pc.sendPackets(new S_SystemMessage(info3.toString()));
 
 				} else {
-					pc.sendPackets(new S_SystemMessage(ChaId + "´Â µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage(ChaId + "ëŠ” ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 				}
 			} else {
-				pc.sendPackets(new S_SystemMessage(ChaId + "´Â µî·ÏµÇÁö ¾Ê¾Ò½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage(ChaId + "ëŠ” ë“±ë¡ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".Ä³¸¯Á¶È¸ [id]"));
+			pc.sendPackets(new S_SystemMessage(".ìºë¦­ì¡°íšŒ [id]"));
 		}
 	}
 
@@ -1992,28 +1992,28 @@ public class GMCommands {
 			StringTokenizer st = new StringTokenizer(param);
 			String name = st.nextToken();
 			if (!pc.getInventory().checkItem(50111, 1)) {
-				pc.sendPackets(new S_SystemMessage("ºó Ä³¸¯ÅÍ ÀÎÇüÀ» ±¸ÀÔ ÈÄ µî·ÏÇØ ÁÖ¼¼¿ä."));
+				pc.sendPackets(new S_SystemMessage("ë¹ˆ ìºë¦­í„° ì¸í˜•ì„ êµ¬ì… í›„ ë“±ë¡í•´ ì£¼ì„¸ìš”."));
 				return;
 			}
 
 			if (pc.getName().equalsIgnoreCase(name)) {
-				pc.sendPackets(new S_SystemMessage("Á¢¼ÓÇÑ Ä³¸¯ÅÍ´Â µî·ÏÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì ‘ì†í•œ ìºë¦­í„°ëŠ” ë“±ë¡ì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤."));
 				return;
 			}
 
-			// °èÁ¤¸íÀ» ¹Ş¾Æ¿Â´Ù.
+			// ê³„ì •ëª…ì„ ë°›ì•„ì˜¨ë‹¤.
 			String AccName = getTradeAccName(name);
 
 			if (pc.getAccountName().equalsIgnoreCase(AccName)) {
-				pc.sendPackets(new S_SystemMessage("³» °èÁ¤¿¡ Á¸ÀçÇÑ´Ù."));
+				pc.sendPackets(new S_SystemMessage("ë‚´ ê³„ì •ì— ì¡´ì¬í•œë‹¤."));
 				L1PcInstance TradePc = CharacterTable.getInstance().loadCharacter(name);
 				if (TradePc != null) {
 					if (TradePc.getClanid() != 0) {
-						pc.sendPackets(new S_SystemMessage("Ç÷¸ÍÀ» Å»ÅğÇÑ ÈÄ µî·ÏÇØÁÖ¼¼¿ä."));
+						pc.sendPackets(new S_SystemMessage("í˜ˆë§¹ì„ íƒˆí‡´í•œ í›„ ë“±ë¡í•´ì£¼ì„¸ìš”."));
 						return;
 					}
 
-					// Ä³¸¯ÅÍ Å×ÀÌºí °èÁ¤¸íÀ» ºñ¿î´Ù.
+					// ìºë¦­í„° í…Œì´ë¸” ê³„ì •ëª…ì„ ë¹„ìš´ë‹¤.
 					CharacterTable.TradeAccUpdate("", name);
 					L1ItemInstance TradeItem = pc.getInventory().findItemId(50111);
 					TradeItem.setTradeCha(TradePc.getId());
@@ -2039,10 +2039,10 @@ public class GMCommands {
 					// new C_NoticeClick(client);
 				}
 			} else {
-				pc.sendPackets(new S_SystemMessage("ÀÚ½ÅÀÇ °èÁ¤¿¡ Á¸ÀçÇÏ´Â Ä³¸¯¸¸ µî·Ï°¡´ÉÇÕ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ìì‹ ì˜ ê³„ì •ì— ì¡´ì¬í•˜ëŠ” ìºë¦­ë§Œ ë“±ë¡ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".Ä³¸¯µî·Ï [Ä³¸¯¸í]"));
+			pc.sendPackets(new S_SystemMessage(".ìºë¦­ë“±ë¡ [ìºë¦­ëª…]"));
 		}
 	}
 
@@ -2091,36 +2091,36 @@ public class GMCommands {
 		return AccName;
 	}
 
-	private void ÀÚµ¿µå´Ù(L1PcInstance pc, String param) {
+	private void ìë™ë“œë‹¤(L1PcInstance pc, String param) {
 		try {
 			StringTokenizer st = new StringTokenizer(param);
 			String OnOff = st.nextToken();
-			if (OnOff.equalsIgnoreCase("ÄÔ")) {
+			if (OnOff.equalsIgnoreCase("ì¼¬")) {
 				pc.setDragonDia(true);
-				pc.sendPackets(new S_SystemMessage("ÀÚµ¿À¸·Î µå·¡°ïÀÇ ´ÙÀÌ¾Æ¸óµå¸¦ º¹¿ëÇÕ´Ï´Ù."));
-			} else if (OnOff.equalsIgnoreCase("²û")) {
+				pc.sendPackets(new S_SystemMessage("ìë™ìœ¼ë¡œ ë“œë˜ê³¤ì˜ ë‹¤ì´ì•„ëª¬ë“œë¥¼ ë³µìš©í•©ë‹ˆë‹¤."));
+			} else if (OnOff.equalsIgnoreCase("ë”")) {
 				pc.setDragonDia(false);
-				pc.sendPackets(new S_SystemMessage("ÀÚµ¿ µå´Ù ±â´ÉÀÌ ²¨Á³½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ìë™ ë“œë‹¤ ê¸°ëŠ¥ì´ êº¼ì¡ŒìŠµë‹ˆë‹¤."));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".ÀÚµ¿µå´Ù [ÄÔ/²û]"));
+			pc.sendPackets(new S_SystemMessage(".ìë™ë“œë‹¤ [ì¼¬/ë”]"));
 		}
 	}
 
 	private static void initialize_user_private_probability(MJCommandArgs args) {
 		try {
 			String type_name = args.nextString();
-			if (type_name.equalsIgnoreCase("ÀüÃ¼")) {
+			if (type_name.equalsIgnoreCase("ì „ì²´")) {
 				for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 					pc.truncate_private_probability();
 				}
 				Updator.truncate("characters_private_probability");
-				args.notify("¸ğµç Ä³¸¯ÅÍµéÀÇ È®·üÀÌ ÃÊ±âÈ­µÇ¾ú½À´Ï´Ù.");
+				args.notify("ëª¨ë“  ìºë¦­í„°ë“¤ì˜ í™•ë¥ ì´ ì´ˆê¸°í™”ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			} else {
 				String character_name = args.nextString();
 				L1PcInstance pc = L1World.getInstance().getPlayer(character_name);
 				if (pc == null) {
-					args.notify(String.format("%s´ÔÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.", character_name));
+					args.notify(String.format("%së‹˜ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", character_name));
 					return;
 				}
 				pc.truncate_private_probability();
@@ -2130,11 +2130,11 @@ public class GMCommands {
 						pstm.setInt(1, pc.getId());
 					}
 				});
-				args.notify(String.format("%s´ÔÀÇ È®·üÀÌ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.", character_name));
+				args.notify(String.format("%së‹˜ì˜ í™•ë¥ ì´ ì´ˆê¸°í™” ë˜ì—ˆìŠµë‹ˆë‹¤.", character_name));
 			}
 		} catch (Exception e) {
-			args.notify(".È®·üÃÊ±âÈ­ Ä³¸¯ÅÍ [Ä³¸¯ÅÍ¸í]");
-			args.notify(".È®·üÃÊ±âÈ­ ÀüÃ¼");
+			args.notify(".í™•ë¥ ì´ˆê¸°í™” ìºë¦­í„° [ìºë¦­í„°ëª…]");
+			args.notify(".í™•ë¥ ì´ˆê¸°í™” ì „ì²´");
 		}
 	}
 
@@ -2145,14 +2145,14 @@ public class GMCommands {
 			int added_probability = args.nextInt();
 			L1PcInstance pc = L1World.getInstance().getPlayer(character_name);
 			if (pc == null) {
-				args.notify(String.format("%s´ÔÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.", character_name));
+				args.notify(String.format("%së‹˜ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", character_name));
 				return;
 			}
 
 			pc.add_private_probability(skill_id, added_probability);
-			args.notify(String.format("%s´ÔÀº %d¹ø ½ºÅ³ »ç¿ë¿¡ ´ëÇØ Ãß°¡ È®·ü %d%%¸¦ Àû¿ëÇß½À´Ï´Ù.", character_name, skill_id, added_probability));
+			args.notify(String.format("%së‹˜ì€ %dë²ˆ ìŠ¤í‚¬ ì‚¬ìš©ì— ëŒ€í•´ ì¶”ê°€ í™•ë¥  %d%%ë¥¼ ì ìš©í–ˆìŠµë‹ˆë‹¤.", character_name, skill_id, added_probability));
 		} catch (Exception e) {
-			args.notify(".È®·ü [Ä³¸¯ÅÍ¸í] [½ºÅ³¾ÆÀÌµğ] [Ãß°¡È®·ü]");
+			args.notify(".í™•ë¥  [ìºë¦­í„°ëª…] [ìŠ¤í‚¬ì•„ì´ë””] [ì¶”ê°€í™•ë¥ ]");
 		}
 	}
 
@@ -2162,36 +2162,36 @@ public class GMCommands {
 			int skill_id = args.nextInt();
 			L1PcInstance pc = L1World.getInstance().getPlayer(character_name);
 			if (pc == null) {
-				args.notify(String.format("%s´ÔÀ» Ã£À» ¼ö ¾ø½À´Ï´Ù.", character_name));
+				args.notify(String.format("%së‹˜ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.", character_name));
 				return;
 			}
-			args.notify(String.format("%s´ÔÀÇ %d¹ø ½ºÅ³Àº %d%%ÀÇ Ãß°¡ È®·üÀÌ Àû¿ëµÇ¾î ÀÖ½À´Ï´Ù. ", character_name, skill_id, pc.get_private_probability(skill_id)));
+			args.notify(String.format("%së‹˜ì˜ %dë²ˆ ìŠ¤í‚¬ì€ %d%%ì˜ ì¶”ê°€ í™•ë¥ ì´ ì ìš©ë˜ì–´ ìˆìŠµë‹ˆë‹¤. ", character_name, skill_id, pc.get_private_probability(skill_id)));
 		} catch (Exception e) {
-			args.notify(".È®·üÈ®ÀÎ [Ä³¸¯ÅÍ¸í] [½ºÅ³¾ÆÀÌµğ]");
+			args.notify(".í™•ë¥ í™•ì¸ [ìºë¦­í„°ëª…] [ìŠ¤í‚¬ì•„ì´ë””]");
 		}
 	}
 
 	private void autobot(L1PcInstance gm) {
-		// TODO ÀÚµ¿ »ı¼ºµÈ ¸Ş¼Òµå ½ºÅÓ
+		// TODO ìë™ ìƒì„±ëœ ë©”ì†Œë“œ ìŠ¤í…
 		try {
 			if (fishBot) {
-				gm.sendPackets(new S_SystemMessage("³¬½Ã º¿Àº ÇöÀç °¡µ¿ÁßÀÔ´Ï´Ù."), true);
+				gm.sendPackets(new S_SystemMessage("ë‚šì‹œ ë´‡ì€ í˜„ì¬ ê°€ë™ì¤‘ì…ë‹ˆë‹¤."), true);
 				return;
 			}
 			fishBot = true;
 			Robot_Fish.getInstance().start_spawn();
-			gm.sendPackets(new S_SystemMessage("³¬½Ãº¿ »ı¼ºÀ» ½ÃÀÛÇÕ´Ï´Ù."), true);
+			gm.sendPackets(new S_SystemMessage("ë‚šì‹œë´‡ ìƒì„±ì„ ì‹œì‘í•©ë‹ˆë‹¤."), true);
 			return;
 		} catch (Exception e) {
 			gm.sendPackets(new S_SystemMessage(
-					".³¬½Ã·Îº¿ ÀÔ·ÂÇØÁÖ¼¼¿ä."), true);
+					".ë‚šì‹œë¡œë´‡ ì…ë ¥í•´ì£¼ì„¸ìš”."), true);
 		}
 	}
 	
-	private static final String ¸àÆ®[] = { "¼Õ", "¼Õ!", "¼Õ~", "¼Õ!!", "¼Õ~!", "¹ß", "¹ß~", "¼Õ~~", "¹ß" };
+	private static final String ë©˜íŠ¸[] = { "ì†", "ì†!", "ì†~", "ì†!!", "ì†~!", "ë°œ", "ë°œ~", "ì†~~", "ë°œ" };
 	private static Random _random = new Random(System.nanoTime());
-	class ·Îº¿ºÎÃ³ÇÚ¼¶ implements Runnable {
-		public ·Îº¿ºÎÃ³ÇÚ¼¶() {
+	class ë¡œë´‡ë¶€ì²˜í•¸ì„¬ implements Runnable {
+		public ë¡œë´‡ë¶€ì²˜í•¸ì„¬() {
 		}
 
 		public void run() {
@@ -2205,7 +2205,7 @@ public class GMCommands {
 					for (L1PcInstance listner : L1World.getInstance()
 							.getAllPlayers()) {
 						listner.sendPackets(
-								new S_ChatPacket(rob, ¸àÆ®[_random.nextInt(¸àÆ®.length)], Opcodes.S_OPCODE_MSG, 3), true);
+								new S_ChatPacket(rob, ë©˜íŠ¸[_random.nextInt(ë©˜íŠ¸.length)], Opcodes.S_OPCODE_MSG, 3), true);
 					}
 				}
 			} catch (Exception e) {

@@ -1,4 +1,4 @@
-// Decompiled by DJ v3.9.9.91 Copyright 2005 Atanas Neshkov  Date: 2007/05/06 22:06:37
+﻿// Decompiled by DJ v3.9.9.91 Copyright 2005 Atanas Neshkov  Date: 2007/05/06 22:06:37
 // Home Page : http://members.fortunecity.com/neshkov/dj.html  - Check often for new version!
 // Decompiler options: packimports(3) 
 // Source File Name:   Logins.java

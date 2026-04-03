@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import java.util.Collection;
 import java.util.Timer;
@@ -33,17 +33,17 @@ public class ItemDeleteController extends TimerTask{
 			for (L1Object obj1 : objs) {
 				if(obj1 instanceof L1ItemInstance){
 					L1ItemInstance obj = (L1ItemInstance)obj1;
-					if (obj.getX() == 0 && obj.getY() == 0) { // Áö¸é»óÀÇ ¾ÆÀÌÅÛÀº ¾Æ´Ï°í, ´©±º°¡ÀÇ ¼ÒÀ¯¹°
+					if (obj.getX() == 0 && obj.getY() == 0) { // ì§€ë©´ìƒì˜ ì•„ì´í…œì€ ì•„ë‹ˆê³ , ëˆ„êµ°ê°€ì˜ ì†Œìœ ë¬¼
 						continue;
 					}
-					if (obj.getItem().getItemId() == 40515) { // Á¤·ÉÀÇ µ¹
+					if (obj.getItem().getItemId() == 40515) { // ì •ë ¹ì˜ ëŒ
 						continue;
 					}
-					if (obj.getMapId() == 88 || obj.getMapId() == 98 || obj.getMapId() == 91 || obj.getMapId() == 92 || obj.getMapId() == 95) { // ¹«ÇÑ´ëÀü
+					if (obj.getMapId() == 88 || obj.getMapId() == 98 || obj.getMapId() == 91 || obj.getMapId() == 92 || obj.getMapId() == 95) { // ë¬´í•œëŒ€ì „
 						continue;
 					}
 					if (L1HouseLocation.isInHouse(obj.getX(), obj.getY(), obj
-							. getMapId())) { // ¾ÆÁöÆ®³»
+							. getMapId())) { // ì•„ì§€íŠ¸ë‚´
 						continue;
 					}
 
@@ -59,7 +59,7 @@ public class ItemDeleteController extends TimerTask{
 					else{
 						obj.add_DeleteItemTime();
 					}
-					/*if (players.isEmpty()) { // ÁöÁ¤ ¹üÀ§³»¿¡ ÇÃ·¹ÀÌ¾î°¡ ¾øÀ¸¸é »èÁ¦
+					/*if (players.isEmpty()) { // ì§€ì • ë²”ìœ„ë‚´ì— í”Œë ˆì´ì–´ê°€ ì—†ìœ¼ë©´ ì‚­ì œ
 						groundInventory = L1World
 								. getInstance()
 								. getInventory(obj.getX(), obj.getY(), obj.getMapId());
@@ -69,7 +69,7 @@ public class ItemDeleteController extends TimerTask{
 				}			
 			}
 			objs = null;
-			_log.fine("¿ùµå ¸Ê»óÀÇ ¾ÆÀÌÅÛÀ» ÀÚµ¿ »èÁ¦. »èÁ¦¼ö: " + numOfDeleted);
+			_log.fine("ì›”ë“œ ë§µìƒì˜ ì•„ì´í…œì„ ìë™ ì‚­ì œ. ì‚­ì œìˆ˜: " + numOfDeleted);
 		}
 		catch(Exception e){
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -54,7 +54,7 @@ public class ResurrectionScroll extends L1ItemInstance{
 					if (L1World.getInstance().getVisiblePlayer(target,0).size() > 0) {
 						for (L1PcInstance visiblePc : L1World.getInstance().getVisiblePlayer(target,0)) {
 							if (!visiblePc.isDead()) {
-								// \f1±× ÀÚ¸®¼Ò¿¡ ´Ù¸¥ »ç¶÷ÀÌ ¼­ ÀÖÀ¸¹Ç·Î ºÎÈ°½ÃÅ³ ¼ö°¡ ¾ø½À´Ï´Ù.
+								// \f1ê·¸ ìë¦¬ì†Œì— ë‹¤ë¥¸ ì‚¬ëŒì´ ì„œ ìˆìœ¼ë¯€ë¡œ ë¶€í™œì‹œí‚¬ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 								pc.sendPackets(new S_ServerMessage(592));
 								return;
 							}
@@ -64,10 +64,10 @@ public class ResurrectionScroll extends L1ItemInstance{
 						if (pc.getMap().isUseResurrection()) {
 							target.setTempID(pc.getId());
 							if (itemId == 40089) {
-								// ¶Ç ºÎÈ°ÇÏ°í ½Í½À´Ï±î? (Y/N)
+								// ë˜ ë¶€í™œí•˜ê³  ì‹¶ìŠµë‹ˆê¹Œ? (Y/N)
 								target.sendPackets(new S_Message_YN(321, ""));
 							} else if (itemId == 140089) {
-								// ¶Ç ºÎÈ°ÇÏ°í ½Í½À´Ï±î? (Y/N)
+								// ë˜ ë¶€í™œí•˜ê³  ì‹¶ìŠµë‹ˆê¹Œ? (Y/N)
 								target.sendPackets(new S_Message_YN(322, ""));
 							}
 						} else {
@@ -84,7 +84,7 @@ public class ResurrectionScroll extends L1ItemInstance{
 						if (npc instanceof L1PetInstance && L1World.getInstance().getVisiblePlayer(npc, 0).size() > 0) {
 							for (L1PcInstance visiblePc : L1World.getInstance().getVisiblePlayer(npc, 0)) {
 								if (!visiblePc.isDead()) {
-									// \f1±× ÀÚ¸®¼Ò¿¡ ´Ù¸¥ »ç¶÷ÀÌ ¼­ ÀÖÀ¸¹Ç·Î ºÎÈ°½ÃÅ³ ¼ö°¡ ¾ø½À´Ï´Ù.
+									// \f1ê·¸ ìë¦¬ì†Œì— ë‹¤ë¥¸ ì‚¬ëŒì´ ì„œ ìˆìœ¼ë¯€ë¡œ ë¶€í™œì‹œí‚¬ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 									pc.sendPackets(new S_ServerMessage(592));
 									return;
 								}

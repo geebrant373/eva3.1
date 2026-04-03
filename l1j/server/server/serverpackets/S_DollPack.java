@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -45,12 +45,12 @@ public class S_DollPack extends ServerBasePacket {
 		writeC(pet.getActionStatus()); // Modes in List.spr
 		writeC(pet.getMoveState().getHeading());
 		writeC(0); // (Bright) - 0~15
-		writeC(pet.getMoveState().getMoveSpeed()); // ¥¹¥Ô¡¼¥É - 0:normal,1:fast,2:slow
+		writeC(pet.getMoveState().getMoveSpeed()); // â…©Î¥ã€Î™ - 0:normal,1:fast,2:slow
 		writeD(0);
 		writeH(0);
 		writeS(pet.getNameId());
 		writeS(pet.getTitle());
-		writeC(0); // ½Ã½Ã´ÏÅ× - 0:mob, item(atk pointer) , 1:poisoned() ,
+		writeC(0); // ì‹œì‹œë‹ˆí…Œ - 0:mob, item(atk pointer) , 1:poisoned() ,
 		// 2:invisable() , 4:pc, 8:cursed() , 16:brave() ,
 		// 32:??, 64:??(??) , 128:invisable but name
 		writeD(0); // ??

@@ -1,4 +1,4 @@
-package l1j.server.server.command.executor;
+ï»¿package l1j.server.server.command.executor;
 
 import java.util.StringTokenizer;
 
@@ -42,7 +42,7 @@ public class L1CreateItem implements L1CommandExecutor {
 			} catch (NumberFormatException e) {
 				itemid = ItemTable.getInstance().findItemIdByNameWithoutSpace(nameid);
 				if (itemid == 0) {
-					pc.sendPackets(new S_SystemMessage("ÇØ´ç ¾ÆÀÌÅÛÀÌ ¹ß°ßµÇÁö ¾Ê½À´Ï´Ù. "));
+					pc.sendPackets(new S_SystemMessage("í•´ë‹¹ ì•„ì´í…œì´ ë°œê²¬ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤. "));
 					return;
 				}
 			}
@@ -57,7 +57,7 @@ public class L1CreateItem implements L1CommandExecutor {
 					}
 					if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 						pc.getInventory().storeItem(item);
-						pc.sendPackets(new S_ServerMessage(403, // %0¸¦ ¼Õ¿¡ ³Ö¾ú½À´Ï´Ù.
+						pc.sendPackets(new S_ServerMessage(403, // %0ë¥¼ ì†ì— ë„£ì—ˆìŠµë‹ˆë‹¤.
 								item.getLogName() + "(ID:" + itemid + ")"));
 					}
 				} else {
@@ -76,16 +76,16 @@ public class L1CreateItem implements L1CommandExecutor {
 						}
 					}
 					if (createCount > 0) {
-						pc.sendPackets(new S_ServerMessage(403, // %0¸¦ ¼Õ¿¡ ³Ö¾ú½À´Ï´Ù.
+						pc.sendPackets(new S_ServerMessage(403, // %0ë¥¼ ì†ì— ë„£ì—ˆìŠµë‹ˆë‹¤.
 								item.getLogName() + "(ID:" + itemid + ")"));
 
 					}
 				}
 			} else {
-				pc.sendPackets(new S_SystemMessage("ÁöÁ¤ IDÀÇ ¾ÆÀÌÅÛÀº Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù"));
+				pc.sendPackets(new S_SystemMessage("ì§€ì • IDì˜ ì•„ì´í…œì€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤"));
 			}
 		} catch (Exception e) {		
-			pc.sendPackets(new S_SystemMessage("." + cmdName + " <ÅÛ¹øÈ£/ÀÌ¸§> <°¹¼ö> <ÀÎÃ¦Æ®> <Ãàº¹> "));
+			pc.sendPackets(new S_SystemMessage("." + cmdName + " <í…œë²ˆí˜¸/ì´ë¦„> <ê°¯ìˆ˜> <ì¸ì±ˆíŠ¸> <ì¶•ë³µ> "));
 		}
 	}
 }

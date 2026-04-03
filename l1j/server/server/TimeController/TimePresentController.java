@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -10,10 +10,10 @@ public class TimePresentController implements Runnable {
     private static TimePresentController _instance;
     public boolean isgameStart = false;
     public int Status = 0;
-    private final int ´ë±â = 0;
-    private final int ¿ÀÇÂ = 1;
-    private final int ÁøÇà = 2;
-    private final int Á¾·á = 3;
+    private final int ëŒ€ê¸° = 0;
+    private final int ì˜¤í”ˆ = 1;
+    private final int ì§„í–‰ = 2;
+    private final int ì¢…ë£Œ = 3;
 
     public static TimePresentController getInstance() {
         if (_instance == null) {
@@ -27,27 +27,27 @@ public class TimePresentController implements Runnable {
         try {
             while (true) {
                 switch (Status) {
-                case ´ë±â:
+                case ëŒ€ê¸°:
                     Thread.sleep(10000);
                     if (isgameStart == false) {
                         continue;
                     }
-                    Status = ¿ÀÇÂ;
+                    Status = ì˜¤í”ˆ;
                     continue;
-                case ¿ÀÇÂ:
-                    L1World.getInstance().broadcastServerMessage("¾Ë¸² : ¾ÆÀÌÅÛÀ» ¼øÂ÷ÀûÀ¸·Î Áö±ŞÇÏ°í ÀÖ½À´Ï´Ù.");
-                    Status = ÁøÇà;
+                case ì˜¤í”ˆ:
+                    L1World.getInstance().broadcastServerMessage("ì•Œë¦¼ : ì•„ì´í…œì„ ìˆœì°¨ì ìœ¼ë¡œ ì§€ê¸‰í•˜ê³  ìˆìŠµë‹ˆë‹¤.");
+                    Status = ì§„í–‰;
                     continue;
-                case ÁøÇà:
+                case ì§„í–‰:
                     for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
                     	pc.getInventory().storeItem(875640508, 1);
-                    	pc.sendPackets(new S_SystemMessage("¾Ë¸² : ¾ÆÀÌÅÛÀÌ Áö±ŞµÇ¾ú½À´Ï´Ù."));
+                    	pc.sendPackets(new S_SystemMessage("ì•Œë¦¼ : ì•„ì´í…œì´ ì§€ê¸‰ë˜ì—ˆìŠµë‹ˆë‹¤."));
                     }
-                    Status = Á¾·á;
+                    Status = ì¢…ë£Œ;
                     continue;
-                case Á¾·á:
+                case ì¢…ë£Œ:
                     isgameStart = false;
-                    Status = ´ë±â;
+                    Status = ëŒ€ê¸°;
                     continue;
                 }
             }

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -50,7 +50,7 @@ public class L1Summon implements L1CommandExecutor {
 				npcid = NpcTable.getInstance(). findNpcIdByNameWithoutSpace(
 						nameid);
 				if (npcid == 0) {
-					pc.sendPackets(new S_SystemMessage("ÇØ´ç NPC°¡ ¹ß°ßµÇÁö ¾Ê½À´Ï´Ù. "));
+					pc.sendPackets(new S_SystemMessage("í•´ë‹¹ NPCê°€ ë°œê²¬ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤. "));
 					return;
 				}
 			}
@@ -66,10 +66,10 @@ public class L1Summon implements L1CommandExecutor {
 			}
 			nameid = NpcTable.getInstance(). getTemplate(npcid). get_name();
 			pc.sendPackets(new S_SystemMessage(nameid + "(ID:" + npcid + ") ("
-					+ count + ")¸¦ ¼ÒÈ¯Çß½À´Ï´Ù. "));
+					+ count + ")ë¥¼ ì†Œí™˜í–ˆìŠµë‹ˆë‹¤. "));
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(cmdName
-					+ " [npcid or name] [¼­¸Õ¼ö] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+					+ " [npcid or name] [ì„œë¨¼ìˆ˜] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

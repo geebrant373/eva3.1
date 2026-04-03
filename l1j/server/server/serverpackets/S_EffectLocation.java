@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -27,31 +27,31 @@ public class S_EffectLocation extends ServerBasePacket {
 	private byte[] _byte = null;
 
 	/**
-	 * ÁöÁ¤µÈ À§Ä¡¿¡ È¿°ú¸¦ Ç¥½ÃÇÏ´Â ÆĞÅ¶À» ±¸ÃàÇÑ´Ù.
+	 * ì§€ì •ëœ ìœ„ì¹˜ì— íš¨ê³¼ë¥¼ í‘œì‹œí•˜ëŠ” íŒ¨í‚·ì„ êµ¬ì¶•í•œë‹¤.
 	 * 
-	 * @param pt - È¿°ú¸¦ Ç¥½ÃÇÏ´Â À§Ä¡¸¦ °İ³³ÇÑ Point ¿ÀºêÁ§Æ®
-	 * @param gfxId - Ç¥½ÃÇÏ´Â È¿°úÀÇ ID
+	 * @param pt - íš¨ê³¼ë¥¼ í‘œì‹œí•˜ëŠ” ìœ„ì¹˜ë¥¼ ê²©ë‚©í•œ Point ì˜¤ë¸Œì íŠ¸
+	 * @param gfxId - í‘œì‹œí•˜ëŠ” íš¨ê³¼ì˜ ID
 	 */
 	public S_EffectLocation(Point pt, int gfxId) {
 		this(pt.getX(), pt.getY(), gfxId);
 	}
 
 	/**
-	 * ÁöÁ¤µÈ À§Ä¡¿¡ È¿°ú¸¦ Ç¥½ÃÇÏ´Â ÆĞÅ¶À» ±¸ÃàÇÑ´Ù.
+	 * ì§€ì •ëœ ìœ„ì¹˜ì— íš¨ê³¼ë¥¼ í‘œì‹œí•˜ëŠ” íŒ¨í‚·ì„ êµ¬ì¶•í•œë‹¤.
 	 * 
-	 * @param loc - È¿°ú¸¦ Ç¥½ÃÇÏ´Â À§Ä¡¸¦ °İ³³ÇÑ L1Location ¿ÀºêÁ§Æ®
-	 * @param gfxId - Ç¥½ÃÇÏ´Â È¿°úÀÇ ID
+	 * @param loc - íš¨ê³¼ë¥¼ í‘œì‹œí•˜ëŠ” ìœ„ì¹˜ë¥¼ ê²©ë‚©í•œ L1Location ì˜¤ë¸Œì íŠ¸
+	 * @param gfxId - í‘œì‹œí•˜ëŠ” íš¨ê³¼ì˜ ID
 	 */
 	public S_EffectLocation(L1Location loc, int gfxId) {
 		this(loc.getX(), loc.getY(), gfxId);
 	}
 
 	/**
-	 * ÁöÁ¤µÈ À§Ä¡¿¡ È¿°ú¸¦ Ç¥½ÃÇÏ´Â ÆĞÅ¶À» ±¸ÃàÇÑ´Ù.
+	 * ì§€ì •ëœ ìœ„ì¹˜ì— íš¨ê³¼ë¥¼ í‘œì‹œí•˜ëŠ” íŒ¨í‚·ì„ êµ¬ì¶•í•œë‹¤.
 	 * 
-	 * @param x - È¿°ú¸¦ Ç¥½ÃÇÏ´Â À§Ä¡ÀÇ XÁÂÇ¥
-	 * @param y - È¿°ú¸¦ Ç¥½ÃÇÏ´Â À§Ä¡ÀÇ YÁÂÇ¥
-	 * @param gfxId - Ç¥½ÃÇÏ´Â È¿°úÀÇ ID
+	 * @param x - íš¨ê³¼ë¥¼ í‘œì‹œí•˜ëŠ” ìœ„ì¹˜ì˜ Xì¢Œí‘œ
+	 * @param y - íš¨ê³¼ë¥¼ í‘œì‹œí•˜ëŠ” ìœ„ì¹˜ì˜ Yì¢Œí‘œ
+	 * @param gfxId - í‘œì‹œí•˜ëŠ” íš¨ê³¼ì˜ ID
 	 */
 	public S_EffectLocation(int x, int y, int gfxId) {
 		writeC(Opcodes.S_OPCODE_EFFECTLOCATION);

@@ -1,4 +1,4 @@
-package l1j.server.MJCTSystem;
+﻿package l1j.server.MJCTSystem;
 /** 
  * MJCTCharInfo
  * MJSoft Character TradeSystem - Spell

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -52,12 +52,12 @@ public class L1ChatNG implements L1CommandExecutor {
 				tg.getSkillEffectTimerSet().setSkillEffect(L1SkillId.STATUS_CHAT_PROHIBITED,
 						time * 60 * 1000);
 				tg.sendPackets(new S_SkillIconGFX(36, time * 60));
-				tg.sendPackets(new S_ServerMessage(286, String.valueOf(time))); // \f3°ÔÀÓ¿¡ ÀûÇÕÇÏÁö ¾Ê´Â Çàµ¿ÀÌ±â (À§ÇØ)¶§¹®¿¡, ÇâÈÄ%0ºĞ°£ Ã¤ÆÃÀ» ±İÁöÇÕ´Ï´Ù.
-				pc.sendPackets(new S_ServerMessage(287, name + "ÀÇ Ã¤ÆÃÀ» " + String.valueOf(time) + "ºĞ°£ ±İÁö½ÃÄ×½À´Ï´Ù.")); // %0ÀÇ Ã¤ÆÃÀ» ±İÁöÇß½À´Ï´Ù.
+				tg.sendPackets(new S_ServerMessage(286, String.valueOf(time))); // \f3ê²Œì„ì— ì í•©í•˜ì§€ ì•ŠëŠ” í–‰ë™ì´ê¸° (ìœ„í•´)ë•Œë¬¸ì—, í–¥í›„%0ë¶„ê°„ ì±„íŒ…ì„ ê¸ˆì§€í•©ë‹ˆë‹¤.
+				pc.sendPackets(new S_ServerMessage(287, name + "ì˜ ì±„íŒ…ì„ " + String.valueOf(time) + "ë¶„ê°„ ê¸ˆì§€ì‹œì¼°ìŠµë‹ˆë‹¤.")); // %0ì˜ ì±„íŒ…ì„ ê¸ˆì§€í–ˆìŠµë‹ˆë‹¤.
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(cmdName
-					+ " [Ä³¸¯ÅÍ¸í] [½Ã°£(ºĞ)] ÀÌ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+					+ " [ìºë¦­í„°ëª…] [ì‹œê°„(ë¶„)] ì´ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

@@ -1,4 +1,4 @@
- /*
+ï»¿ /*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -168,8 +168,8 @@ public class S_ReturnedStat extends ServerBasePacket {
 			break;
 		case LOGIN:
 			/*
-			 * pc.getAblilyty¿¡¼­ ¹İÈ¯µÇ´Â ÃÖ¼Ò ½ºÅÈ°ª ¹è¿­ ¼ø¼­ 
-			 * 0:Èû/1:µ¦/2:ÄÜ/3:À§Áî/4:Ä«¸®/5:ÀÎÆ®
+			 * pc.getAblilytyì—ì„œ ë°˜í™˜ë˜ëŠ” ìµœì†Œ ìŠ¤íƒ¯ê°’ ë°°ì—´ ìˆœì„œ 
+			 * 0:í˜/1:ë±/2:ì½˜/3:ìœ„ì¦ˆ/4:ì¹´ë¦¬/5:ì¸íŠ¸
 			 */
 			int minStat[] = new int[6]; 
 			minStat = pc.getAbility().getMinStat(pc.getClassId());

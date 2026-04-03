@@ -1,4 +1,4 @@
-package l1j.server.server;
+﻿package l1j.server.server;
 
 import java.util.ArrayList;
 import java.util.HashMap;

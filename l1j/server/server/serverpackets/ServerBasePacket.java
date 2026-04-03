@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -76,7 +76,7 @@ public abstract class ServerBasePacket {
 
 	protected void writeC(int value) {
 		_bao.write(value & 0xff);
-		// ¿ÉÄÚµå wirteC Ã¹¹øÂ° È£Ãâ¸¸ ¼ÂÆÃ...
+		// ì˜µì½”ë“œ wirteC ì²«ë²ˆì§¸ í˜¸ì¶œë§Œ ì…‹íŒ…...
 		if(isKey){
 			setKey(value);
 			isKey = false;
@@ -121,12 +121,12 @@ public abstract class ServerBasePacket {
 				byte[] test = text.getBytes("EUC-KR"); 
 				for(int i=0 ; i<test.length ; ){ 
 					if((test[i]&0xff)>=0x7F){ 
-						/** ÇÑ±Û **/ 
+						/** í•œê¸€ **/ 
 						_bao.write(test[i+1]); 
 						_bao.write(test[i]); 
 					i += 2; 
 					}else{ 
-						/** ¿µ¹®&¼ıÀÚ **/ 
+						/** ì˜ë¬¸&ìˆ«ì **/ 
 						_bao.write(test[i]); 
 						_bao.write(0); 
 						i += 1; 
@@ -174,15 +174,15 @@ public abstract class ServerBasePacket {
 	public abstract byte[] getContent() throws IOException;
 	
 	/**
-	 * ¼­¹ö ÆĞÅ¶ÀÇ Á¾·ù¸¦ ³ªÅ¸³»´Â Ä³¸¯ÅÍ ¶óÀÎÀ» µ¹·ÁÁØ´Ù. ("[S] S_WhoAmount" µî )
+	 * ì„œë²„ íŒ¨í‚·ì˜ ì¢…ë¥˜ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ìºë¦­í„° ë¼ì¸ì„ ëŒë ¤ì¤€ë‹¤. ("[S] S_WhoAmount" ë“± )
 	 */
 	public String getType(){
 		return "";
 	}
 
 	public String toString(){
-		// getType() ÀÇ ¸®ÅÏÀÌ "" ÀÌ¶ó¸é ºó°ª ¾Æ´Ï¸é ÆĞÅ¶ÀÌ¸§ + ÄÚµå°ª Ãâ·Â
-		// [¿ÉÄÚµå] ÆĞÅ¶¸í
+		// getType() ì˜ ë¦¬í„´ì´ "" ì´ë¼ë©´ ë¹ˆê°’ ì•„ë‹ˆë©´ íŒ¨í‚·ì´ë¦„ + ì½”ë“œê°’ ì¶œë ¥
+		// [ì˜µì½”ë“œ] íŒ¨í‚·ëª…
 		String sTemp = getType().equals("") ? "" : "["+getKey()+"] " + getType();
 		return sTemp;
 	}

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -70,9 +70,9 @@ public class C_Trade extends ClientBasePacket {
 			}
 			
 			if (!target.isParalyzed()) {
-				player.setTradeID(target.getId()); // »ó´ëÀÇ ¿ÀºêÁ§Æ® ID¸¦ º¸Á¸ÇØ µĞ´Ù
+				player.setTradeID(target.getId()); // ìƒëŒ€ì˜ ì˜¤ë¸Œì íŠ¸ IDë¥¼ ë³´ì¡´í•´ ë‘”ë‹¤
 				target.setTradeID(player.getId());
-				target.sendPackets(new S_Message_YN(252, player.getName())); // %0%s°¡ ´ç½Å°ú ¾ÆÀÌÅÛÀÇ °Å·¡¸¦ ¹Ù¶ó°í ÀÖ½À´Ï´Ù. °Å·¡ÇÕ´Ï±î? (Y/N)
+				target.sendPackets(new S_Message_YN(252, player.getName())); // %0%sê°€ ë‹¹ì‹ ê³¼ ì•„ì´í…œì˜ ê±°ë˜ë¥¼ ë°”ë¼ê³  ìˆìŠµë‹ˆë‹¤. ê±°ë˜í•©ë‹ˆê¹Œ? (Y/N)
 			}
 		}
 	}

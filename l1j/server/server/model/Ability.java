@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.utils.IntRange;
@@ -8,9 +8,9 @@ public class Ability {
 	private static final int LIMIT_MIN = 0;
 	private static final int LIMIT_MAX = 127;
 	
-	private byte str; 		// º£ÀÌ½º Èû + ·¹º§¾÷ ¶Ç´Â ¿¤¸¯¼­·Î ÀÎÇØ »ó½ÂÇÑ Èû
-	private byte baseStr; 	// º£ÀÌ½º Èû
-	private byte addedStr; 	// ¸¶¹ı ¶Ç´Â ¾ÆÀÌÅÛÀ¸·Î »ó½ÂÇÑ Èû
+	private byte str; 		// ë² ì´ìŠ¤ í˜ + ë ˆë²¨ì—… ë˜ëŠ” ì—˜ë¦­ì„œë¡œ ì¸í•´ ìƒìŠ¹í•œ í˜
+	private byte baseStr; 	// ë² ì´ìŠ¤ í˜
+	private byte addedStr; 	// ë§ˆë²• ë˜ëŠ” ì•„ì´í…œìœ¼ë¡œ ìƒìŠ¹í•œ í˜
 	
 	private byte con; 
 	private byte baseCon;

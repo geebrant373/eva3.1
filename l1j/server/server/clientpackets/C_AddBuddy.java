@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -59,7 +59,7 @@ public class C_AddBuddy extends ClientBasePacket {
 				return;
 			}
 		}
-		pc.sendPackets(new S_ServerMessage(109, charName)); // %0¶ó´Â ÀÌ¸§ÀÇ »ç¶÷Àº ¾ø½À´Ï´Ù.
+		pc.sendPackets(new S_ServerMessage(109, charName)); // %0ë¼ëŠ” ì´ë¦„ì˜ ì‚¬ëŒì€ ì—†ìŠµë‹ˆë‹¤.
 	}
 
 	@Override

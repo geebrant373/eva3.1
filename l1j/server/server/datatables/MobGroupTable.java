@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -82,7 +82,7 @@ public class MobGroupTable {
 				mobGroup.setMinion7Count(rs.getInt("minion7_count"));
 				_mobGroupIndex.put(mobGroupId, mobGroup);
 			}
-			_log.config("MOB ±×·ì ¸®½ºÆ® " + _mobGroupIndex.size() + "°Ç ·Îµå");
+			_log.config("MOB ê·¸ë£¹ ë¦¬ìŠ¤íŠ¸ " + _mobGroupIndex.size() + "ê±´ ë¡œë“œ");
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, "error while creating mobgroup table", e);
 		} finally {

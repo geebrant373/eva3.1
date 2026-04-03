@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -26,10 +26,10 @@ public class S_SystemMessage extends ServerBasePacket {
 	private byte[] _byte = null;
 
 	/**
-	 * Å¬¶óÀÌ¾ğÆ®¿¡ µ¥ÀÌÅÍÀÇ Á¸ÀçÇÏÁö ¾Ê´Â ¿À¸®Áö³¯ÀÇ ¸Ş¼¼Áö¸¦ Ç¥½ÃÇÑ´Ù.
-	 * ¸Ş¼¼Áö¿¡ nameid($xxx)°¡ Æ÷ÇÔµÇ¾î ÀÖ´Â °æ¿ì´Â overload µÈ ÀÌÁ¦(¹ú½á) ÇÑÆíÀ» »ç¿ëÇÑ´Ù.
+	 * í´ë¼ì´ì–¸íŠ¸ì— ë°ì´í„°ì˜ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì˜¤ë¦¬ì§€ë‚ ì˜ ë©”ì„¸ì§€ë¥¼ í‘œì‹œí•œë‹¤.
+	 * ë©”ì„¸ì§€ì— nameid($xxx)ê°€ í¬í•¨ë˜ì–´ ìˆëŠ” ê²½ìš°ëŠ” overload ëœ ì´ì œ(ë²Œì¨) í•œí¸ì„ ì‚¬ìš©í•œë‹¤.
 	 * 
-	 * @param msg - Ç¥½ÃÇÏ´Â Ä³¸¯ÅÍ ¶óÀÎ
+	 * @param msg - í‘œì‹œí•˜ëŠ” ìºë¦­í„° ë¼ì¸
 	 */
 	public S_SystemMessage(String msg) {
 		writeC(Opcodes.S_OPCODE_MSG);
@@ -38,17 +38,17 @@ public class S_SystemMessage extends ServerBasePacket {
 	}
 
 	/**
-	 * Å¬¶óÀÌ¾ğÆ®¿¡ µ¥ÀÌÅÍÀÇ Á¸ÀçÇÏÁö ¾Ê´Â ¿À¸®Áö³¯ÀÇ ¸Ş¼¼Áö¸¦ Ç¥½ÃÇÑ´Ù.
+	 * í´ë¼ì´ì–¸íŠ¸ì— ë°ì´í„°ì˜ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì˜¤ë¦¬ì§€ë‚ ì˜ ë©”ì„¸ì§€ë¥¼ í‘œì‹œí•œë‹¤.
 	 * 
-	 * @param msg - Ç¥½ÃÇÏ´Â Ä³¸¯ÅÍ ¶óÀÎ
-	 * @param nameid - Ä³¸¯ÅÍ ¶óÀÎ¿¡ nameid($xxx)°¡ Æ÷ÇÔµÇ¾î ÀÖ´Â °æ¿ì true·Î ÇÑ´Ù.
+	 * @param msg - í‘œì‹œí•˜ëŠ” ìºë¦­í„° ë¼ì¸
+	 * @param nameid - ìºë¦­í„° ë¼ì¸ì— nameid($xxx)ê°€ í¬í•¨ë˜ì–´ ìˆëŠ” ê²½ìš° trueë¡œ í•œë‹¤.
 	 */
 	public S_SystemMessage(String msg, boolean nameid) {
 		writeC(Opcodes.S_OPCODE_NPCSHOUT);
 		writeC(2);
 		writeD(0);
 		writeS(msg);
-		// NPC Ã¤ÆÃ ÆĞÅ¶ÀÌ¸é nameid°¡ ÇØ¼®µÇ±â (À§ÇØ)¶§¹®¿¡ ÀÌ°ÍÀ» ÀÌ¿ëÇÑ´Ù
+		// NPC ì±„íŒ… íŒ¨í‚·ì´ë©´ nameidê°€ í•´ì„ë˜ê¸° (ìœ„í•´)ë•Œë¬¸ì— ì´ê²ƒì„ ì´ìš©í•œë‹¤
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -86,7 +86,7 @@ public class L1EquipmentSlot {
 		return _weapon;
 	}
 
-	// ÀÔ±â
+	// ì…ê¸°
 	private void setArmor(L1ItemInstance armor) {
 		L1Item item = armor.getItem();
 		int itemlvl = armor.getEnchantLevel();
@@ -174,7 +174,7 @@ public class L1EquipmentSlot {
 		if (itemId == 20288 || itemId == 120288) {
 			_owner.sendPackets(new S_Ability(1, true));
 		}
-		// º¯¹İ
+		// ë³€ë°˜
 		if (itemId == 20281) {
 			_owner.sendPackets(new S_Ability(2, true));
 		}
@@ -184,7 +184,7 @@ public class L1EquipmentSlot {
 		if (itemId == 20207) {
 			_owner.sendPackets(new S_SkillIconBlessOfEva(_owner.getId(), -1));
 		}
-		if (itemId == 420003) { // °íÅõ»ç
+		if (itemId == 420003) { // ê³ íˆ¬ì‚¬
 			if (itemlvl < 5) {
 				_owner.addDmgup(1);
 			} else if (itemlvl == 5) {
@@ -199,7 +199,7 @@ public class L1EquipmentSlot {
 				_owner.addDmgup(6);
 			}
 		}
-		if (itemId == 20107) { // ¸®Ä¡·Îºê
+		if (itemId == 20107) { // ë¦¬ì¹˜ë¡œë¸Œ
 			if (itemlvl > 3)
 				_owner.getAbility().addSp(armor.getEnchantLevel() - 3);
 		}
@@ -639,40 +639,40 @@ public class L1EquipmentSlot {
 				break;
 			}
 		}
-		// Áø¸í¼Â 0306Ãß°¡
-		if (itemId == 20390) {// Áø¸í Åõ±¸ ¹ı»çÅ¬·¡½º
+		// ì§„ëª…ì…‹ 0306ì¶”ê°€
+		if (itemId == 20390) {// ì§„ëª… íˆ¬êµ¬ ë²•ì‚¬í´ë˜ìŠ¤
 			switch (itemlvl) {
 			case 5:
-				_owner.addHitup_magic(1);// 5ÀÎÃ¦ ¸¶¹ıÀûÁß1»ó½Â
-				_owner.setBaseMagicCritical(1);// 5ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ1»ó½Â
+				_owner.addHitup_magic(1);// 5ì¸ì±ˆ ë§ˆë²•ì ì¤‘1ìƒìŠ¹
+				_owner.setBaseMagicCritical(1);// 5ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬1ìƒìŠ¹
 				break;
 			case 6:
-				_owner.addHitup_magic(2);// 6ÀÎÃ¦ ¸¶¹ıÀûÁß2»ó½Â
-				_owner.setBaseMagicCritical(2);// 6ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ2»ó½Â
+				_owner.addHitup_magic(2);// 6ì¸ì±ˆ ë§ˆë²•ì ì¤‘2ìƒìŠ¹
+				_owner.setBaseMagicCritical(2);// 6ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬2ìƒìŠ¹
 				break;
 			case 7:
-				_owner.addHitup_magic(3);// 7ÀÎÃ¦ ¸¶¹ıÀûÁß3»ó½Â
-				_owner.setBaseMagicCritical(3);// 7ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ3»ó½Â
+				_owner.addHitup_magic(3);// 7ì¸ì±ˆ ë§ˆë²•ì ì¤‘3ìƒìŠ¹
+				_owner.setBaseMagicCritical(3);// 7ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬3ìƒìŠ¹
 				break;
 			case 8:
-				_owner.addHitup_magic(4);// 8ÀÎÃ¦ ¸¶¹ıÀûÁß4»ó½Â
-				_owner.setBaseMagicCritical(4);// 8ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ4»ó½Â
+				_owner.addHitup_magic(4);// 8ì¸ì±ˆ ë§ˆë²•ì ì¤‘4ìƒìŠ¹
+				_owner.setBaseMagicCritical(4);// 8ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬4ìƒìŠ¹
 				break;
 			case 9:
-				_owner.addHitup_magic(5);// 9ÀÎÃ¦ ¸¶¹ıÀûÁß5»ó½Â
-				_owner.setBaseMagicCritical(5);// 9ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ5»ó½Â
+				_owner.addHitup_magic(5);// 9ì¸ì±ˆ ë§ˆë²•ì ì¤‘5ìƒìŠ¹
+				_owner.setBaseMagicCritical(5);// 9ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬5ìƒìŠ¹
 				break;
 			case 10:
-				_owner.addHitup_magic(7);// 10ÀÎÃ¦ ¸¶¹ıÀûÁß7»ó½Â
-				_owner.setBaseMagicCritical(7);// 10ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ7»ó½Â
+				_owner.addHitup_magic(7);// 10ì¸ì±ˆ ë§ˆë²•ì ì¤‘7ìƒìŠ¹
+				_owner.setBaseMagicCritical(7);// 10ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬7ìƒìŠ¹
 				break;
 			case 11:
-				_owner.addHitup_magic(8);// 11ÀÎÃ¦ ¸¶¹ıÀûÁß8»ó½Â
-				_owner.setBaseMagicCritical(8);// 11ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ8»ó½Â
+				_owner.addHitup_magic(8);// 11ì¸ì±ˆ ë§ˆë²•ì ì¤‘8ìƒìŠ¹
+				_owner.setBaseMagicCritical(8);// 11ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬8ìƒìŠ¹
 				break;
 			case 12:
-				_owner.addHitup_magic(9);// 12ÀÎÃ¦ ¸¶¹ıÀûÁß9»ó½Â
-				_owner.setBaseMagicCritical(9);// 12ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ9»ó½Â
+				_owner.addHitup_magic(9);// 12ì¸ì±ˆ ë§ˆë²•ì ì¤‘9ìƒìŠ¹
+				_owner.setBaseMagicCritical(9);// 12ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬9ìƒìŠ¹
 				break;
 			default:
 				break;
@@ -745,7 +745,7 @@ public class L1EquipmentSlot {
 			}
 		}
 		
-		/** °İºĞÀÇ Àå°© **/
+		/** ê²©ë¶„ì˜ ì¥ê°‘ **/
 		if (itemId == 222317) {
 			switch (itemlvl) {
 			case 7:
@@ -898,177 +898,177 @@ public class L1EquipmentSlot {
 			}
 		}
 		
-		if (itemId == 20395) {// Áø¸í °©¿Ê
+		if (itemId == 20395) {// ì§„ëª… ê°‘ì˜·
 			switch (itemlvl) {
 			case 5:
-				_owner.addDamageReductionByArmor(1);// ¹æ¾î±¸ ¸®´ö¼Ç1»ó½Â
-				_owner.addPVPDamage(1);// pvpµ¥¹ÌÁö1»ó½Â
-				_owner.addPVPDamageReduction(1);// pvpµ¥¹ÌÁö¸®´ö¼Ç1»ó½Â
-				_owner.addPVPMagicDamageReduction(1);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç1»ó½Â
+				_owner.addDamageReductionByArmor(1);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜1ìƒìŠ¹
+				_owner.addPVPDamage(1);// pvpë°ë¯¸ì§€1ìƒìŠ¹
+				_owner.addPVPDamageReduction(1);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜1ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(1);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜1ìƒìŠ¹
 				break;
 			case 6:
-				_owner.addDamageReductionByArmor(2);// ¹æ¾î±¸ ¸®´ö¼Ç2»ó½Â
-				_owner.addPVPDamage(2);// pvpµ¥¹ÌÁö2»ó½Â
-				_owner.addPVPDamageReduction(2);// pvpµ¥¹ÌÁö¸®´ö¼Ç2»ó½Â
-				_owner.addPVPMagicDamageReduction(2);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç2»ó½Â
+				_owner.addDamageReductionByArmor(2);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜2ìƒìŠ¹
+				_owner.addPVPDamage(2);// pvpë°ë¯¸ì§€2ìƒìŠ¹
+				_owner.addPVPDamageReduction(2);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜2ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(2);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜2ìƒìŠ¹
 				break;
 			case 7:
-				_owner.addDamageReductionByArmor(3);// ¹æ¾î±¸ ¸®´ö¼Ç3»ó½Â
-				_owner.addPVPDamage(3);// pvpµ¥¹ÌÁö3»ó½Â
-				_owner.addPVPDamageReduction(3);// pvpµ¥¹ÌÁö¸®´ö¼Ç3»ó½Â
-				_owner.addPVPMagicDamageReduction(3);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç3»ó½Â
+				_owner.addDamageReductionByArmor(3);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜3ìƒìŠ¹
+				_owner.addPVPDamage(3);// pvpë°ë¯¸ì§€3ìƒìŠ¹
+				_owner.addPVPDamageReduction(3);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜3ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(3);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜3ìƒìŠ¹
 				break;
 			case 8:
-				_owner.addDamageReductionByArmor(4);// ¹æ¾î±¸ ¸®´ö¼Ç4»ó½Â
-				_owner.addPVPDamage(4);// pvpµ¥¹ÌÁö4»ó½Â
-				_owner.addPVPDamageReduction(4);// pvpµ¥¹ÌÁö¸®´ö¼Ç4»ó½Â
-				_owner.addPVPMagicDamageReduction(4);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç4»ó½Â
+				_owner.addDamageReductionByArmor(4);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜4ìƒìŠ¹
+				_owner.addPVPDamage(4);// pvpë°ë¯¸ì§€4ìƒìŠ¹
+				_owner.addPVPDamageReduction(4);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜4ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(4);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜4ìƒìŠ¹
 				break;
 			case 9:
-				_owner.addDamageReductionByArmor(5);// ¹æ¾î±¸ ¸®´ö¼Ç5»ó½Â
-				_owner.addPVPDamage(5);// pvpµ¥¹ÌÁö5»ó½Â
-				_owner.addPVPDamageReduction(5);// pvpµ¥¹ÌÁö¸®´ö¼Ç5»ó½Â
-				_owner.addPVPMagicDamageReduction(5);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç5»ó½Â
+				_owner.addDamageReductionByArmor(5);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜5ìƒìŠ¹
+				_owner.addPVPDamage(5);// pvpë°ë¯¸ì§€5ìƒìŠ¹
+				_owner.addPVPDamageReduction(5);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜5ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(5);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜5ìƒìŠ¹
 				break;
 			case 10:
-				_owner.addDamageReductionByArmor(7);// ¹æ¾î±¸ ¸®´ö¼Ç7»ó½Â
-				_owner.addPVPDamage(7);// pvpµ¥¹ÌÁö7»ó½Â
-				_owner.addPVPDamageReduction(7);// pvpµ¥¹ÌÁö¸®´ö¼Ç7»ó½Â
-				_owner.addPVPMagicDamageReduction(7);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç7»ó½Â
+				_owner.addDamageReductionByArmor(7);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜7ìƒìŠ¹
+				_owner.addPVPDamage(7);// pvpë°ë¯¸ì§€7ìƒìŠ¹
+				_owner.addPVPDamageReduction(7);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜7ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(7);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜7ìƒìŠ¹
 				break;
 			case 11:
-				_owner.addDamageReductionByArmor(8);// ¹æ¾î±¸ ¸®´ö¼Ç8»ó½Â
-				_owner.addPVPDamage(8);// pvpµ¥¹ÌÁö8»ó½Â
-				_owner.addPVPDamageReduction(8);// pvpµ¥¹ÌÁö¸®´ö¼Ç8»ó½Â
-				_owner.addPVPMagicDamageReduction(8);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç8»ó½Â
+				_owner.addDamageReductionByArmor(8);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜8ìƒìŠ¹
+				_owner.addPVPDamage(8);// pvpë°ë¯¸ì§€8ìƒìŠ¹
+				_owner.addPVPDamageReduction(8);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜8ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(8);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜8ìƒìŠ¹
 				break;
 			case 12:
-				_owner.addDamageReductionByArmor(9);// ¹æ¾î±¸ ¸®´ö¼Ç9»ó½Â
-				_owner.addPVPDamage(9);// pvpµ¥¹ÌÁö9»ó½Â
-				_owner.addPVPDamageReduction(9);// pvpµ¥¹ÌÁö¸®´ö¼Ç9»ó½Â
-				_owner.addPVPMagicDamageReduction(9);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç9»ó½Â
+				_owner.addDamageReductionByArmor(9);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜9ìƒìŠ¹
+				_owner.addPVPDamage(9);// pvpë°ë¯¸ì§€9ìƒìŠ¹
+				_owner.addPVPDamageReduction(9);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜9ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(9);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜9ìƒìŠ¹
 				break;
 			default:
 				break;
 			}
 		}
-		if (itemId == 20402) {// Áø¸í¸ÁÅä
+		if (itemId == 20402) {// ì§„ëª…ë§í† 
 			switch (itemlvl) {
 			case 5:
-				_owner.addHitup_skill(1); // ½ºÅ³ÀûÁß1»ó½Â
-				_owner.addHitup_spirit(1); // Á¤·ÉÀûÁß1»ó½Â
-				_owner.getResistance().addStun(1);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(1); // ìŠ¤í‚¬ì ì¤‘1ìƒìŠ¹
+				_owner.addHitup_spirit(1); // ì •ë ¹ì ì¤‘1ìƒìŠ¹
+				_owner.getResistance().addStun(1);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 6:
-				_owner.addHitup_skill(2); // ½ºÅ³ÀûÁß2»ó½Â
-				_owner.addHitup_spirit(2); // Á¤·ÉÀûÁß2»ó½Â
-				_owner.getResistance().addStun(2);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(2); // ìŠ¤í‚¬ì ì¤‘2ìƒìŠ¹
+				_owner.addHitup_spirit(2); // ì •ë ¹ì ì¤‘2ìƒìŠ¹
+				_owner.getResistance().addStun(2);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 7:
-				_owner.addHitup_skill(3); // ½ºÅ³ÀûÁß3»ó½Â
-				_owner.addHitup_spirit(3); // Á¤·ÉÀûÁß3»ó½Â
-				_owner.getResistance().addStun(3);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(3); // ìŠ¤í‚¬ì ì¤‘3ìƒìŠ¹
+				_owner.addHitup_spirit(3); // ì •ë ¹ì ì¤‘3ìƒìŠ¹
+				_owner.getResistance().addStun(3);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 8:
-				_owner.addHitup_skill(4); // ½ºÅ³ÀûÁß4»ó½Â
-				_owner.addHitup_spirit(4); // Á¤·ÉÀûÁß4»ó½Â
-				_owner.getResistance().addStun(4);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(4); // ìŠ¤í‚¬ì ì¤‘4ìƒìŠ¹
+				_owner.addHitup_spirit(4); // ì •ë ¹ì ì¤‘4ìƒìŠ¹
+				_owner.getResistance().addStun(4);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 9:
-				_owner.addHitup_skill(5); // ½ºÅ³ÀûÁß5»ó½Â
-				_owner.addHitup_spirit(5); // Á¤·ÉÀûÁß5»ó½Â
-				_owner.getResistance().addStun(5);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(5); // ìŠ¤í‚¬ì ì¤‘5ìƒìŠ¹
+				_owner.addHitup_spirit(5); // ì •ë ¹ì ì¤‘5ìƒìŠ¹
+				_owner.getResistance().addStun(5);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 10:
-				_owner.addHitup_skill(7); // ½ºÅ³ÀûÁß7»ó½Â
-				_owner.addHitup_spirit(7); // Á¤·ÉÀûÁß7»ó½Â
-				_owner.getResistance().addStun(7);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(7); // ìŠ¤í‚¬ì ì¤‘7ìƒìŠ¹
+				_owner.addHitup_spirit(7); // ì •ë ¹ì ì¤‘7ìƒìŠ¹
+				_owner.getResistance().addStun(7);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 11:
-				_owner.addHitup_skill(8); // ½ºÅ³ÀûÁß8»ó½Â
-				_owner.addHitup_spirit(8); // Á¤·ÉÀûÁß8»ó½Â
-				_owner.getResistance().addStun(8);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(8); // ìŠ¤í‚¬ì ì¤‘8ìƒìŠ¹
+				_owner.addHitup_spirit(8); // ì •ë ¹ì ì¤‘8ìƒìŠ¹
+				_owner.getResistance().addStun(8);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 12:
-				_owner.addHitup_skill(9); // ½ºÅ³ÀûÁß9»ó½Â
-				_owner.addHitup_spirit(9); // Á¤·ÉÀûÁß9»ó½Â
-				_owner.getResistance().addStun(9);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(9); // ìŠ¤í‚¬ì ì¤‘9ìƒìŠ¹
+				_owner.addHitup_spirit(9); // ì •ë ¹ì ì¤‘9ìƒìŠ¹
+				_owner.getResistance().addStun(9);// ìŠ¤í„´ë°©ì–´
 				break;
 			default:
 				break;
 			}
 		}
-		if (itemId == 20408) {// Áø¸í ºÎÃ÷ ¿äÁ¤
+		if (itemId == 20408) {// ì§„ëª… ë¶€ì¸  ìš”ì •
 			switch (itemlvl) {
 			case 5:
-				_owner.addBowHitupByArmor(1);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ1»ó½Â
-				_owner.addBowDmgupByArmor(1);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²1»ó½Â
+				_owner.addBowHitupByArmor(1);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©1ìƒìŠ¹
+				_owner.addBowDmgupByArmor(1);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨1ìƒìŠ¹
 				break;
 			case 6:
-				_owner.addBowHitupByArmor(2);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ2»ó½Â
-				_owner.addBowDmgupByArmor(2);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²2»ó½Â
+				_owner.addBowHitupByArmor(2);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©2ìƒìŠ¹
+				_owner.addBowDmgupByArmor(2);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨2ìƒìŠ¹
 				break;
 			case 7:
-				_owner.addBowHitupByArmor(3);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ3»ó½Â
-				_owner.addBowDmgupByArmor(3);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²3»ó½Â
+				_owner.addBowHitupByArmor(3);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©3ìƒìŠ¹
+				_owner.addBowDmgupByArmor(3);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨3ìƒìŠ¹
 				break;
 			case 8:
-				_owner.addBowHitupByArmor(4);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ4»ó½Â
-				_owner.addBowDmgupByArmor(4);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²4»ó½Â
+				_owner.addBowHitupByArmor(4);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©4ìƒìŠ¹
+				_owner.addBowDmgupByArmor(4);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨4ìƒìŠ¹
 				break;
 			case 9:
-				_owner.addBowHitupByArmor(5);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ5»ó½Â
-				_owner.addBowDmgupByArmor(5);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²5»ó½Â
+				_owner.addBowHitupByArmor(5);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©5ìƒìŠ¹
+				_owner.addBowDmgupByArmor(5);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨5ìƒìŠ¹
 				break;
 			case 10:
-				_owner.addBowHitupByArmor(7);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ7»ó½Â
-				_owner.addBowDmgupByArmor(7);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²7»ó½Â
+				_owner.addBowHitupByArmor(7);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©7ìƒìŠ¹
+				_owner.addBowDmgupByArmor(7);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨7ìƒìŠ¹
 				break;
 			case 11:
-				_owner.addBowHitupByArmor(8);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ8»ó½Â
-				_owner.addBowDmgupByArmor(8);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²8»ó½Â
+				_owner.addBowHitupByArmor(8);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©8ìƒìŠ¹
+				_owner.addBowDmgupByArmor(8);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨8ìƒìŠ¹
 				break;
 			case 12:
-				_owner.addBowHitupByArmor(9);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ9»ó½Â
-				_owner.addBowDmgupByArmor(9);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²9»ó½Â
+				_owner.addBowHitupByArmor(9);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©9ìƒìŠ¹
+				_owner.addBowDmgupByArmor(9);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨9ìƒìŠ¹
 				break;
 			default:
 				break;
 			}
 		}
-		if (itemId == 20410) {// Áø¸í Àå°©
+		if (itemId == 20410) {// ì§„ëª… ì¥ê°‘
 			switch (itemlvl) {
 			case 5:
-				_owner.addHitupByArmor(1);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ1»ó½Â
-				_owner.addDmgupByArmor(1);// ±Ù°Å¸®¸íÁßÈ¿À²1»ó½Â
+				_owner.addHitupByArmor(1);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©1ìƒìŠ¹
+				_owner.addDmgupByArmor(1);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨1ìƒìŠ¹
 				break;
 			case 6:
-				_owner.addHitupByArmor(2);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ2»ó½Â
-				_owner.addDmgupByArmor(2);// ±Ù°Å¸®¸íÁßÈ¿À²2»ó½Â
+				_owner.addHitupByArmor(2);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©2ìƒìŠ¹
+				_owner.addDmgupByArmor(2);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨2ìƒìŠ¹
 				break;
 			case 7:
-				_owner.addHitupByArmor(3);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ3»ó½Â
-				_owner.addDmgupByArmor(3);// ±Ù°Å¸®¸íÁßÈ¿À²3»ó½Â
+				_owner.addHitupByArmor(3);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©3ìƒìŠ¹
+				_owner.addDmgupByArmor(3);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨3ìƒìŠ¹
 				break;
 			case 8:
-				_owner.addHitupByArmor(4);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ4»ó½Â
-				_owner.addDmgupByArmor(4);// ±Ù°Å¸®¸íÁßÈ¿À²4»ó½Â
+				_owner.addHitupByArmor(4);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©4ìƒìŠ¹
+				_owner.addDmgupByArmor(4);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨4ìƒìŠ¹
 				break;
 			case 9:
-				_owner.addHitupByArmor(5);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ5»ó½Â
-				_owner.addDmgupByArmor(5);// ±Ù°Å¸®¸íÁßÈ¿À²5»ó½Â
+				_owner.addHitupByArmor(5);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©5ìƒìŠ¹
+				_owner.addDmgupByArmor(5);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨5ìƒìŠ¹
 				break;
 			case 10:
-				_owner.addHitupByArmor(7);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ7»ó½Â
-				_owner.addDmgupByArmor(7);// ±Ù°Å¸®¸íÁßÈ¿À²7»ó½Â
+				_owner.addHitupByArmor(7);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©7ìƒìŠ¹
+				_owner.addDmgupByArmor(7);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨7ìƒìŠ¹
 				break;
 			case 11:
-				_owner.addHitupByArmor(8);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ8»ó½Â
-				_owner.addDmgupByArmor(8);// ±Ù°Å¸®¸íÁßÈ¿À²8»ó½Â
+				_owner.addHitupByArmor(8);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©8ìƒìŠ¹
+				_owner.addDmgupByArmor(8);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨8ìƒìŠ¹
 				break;
 			case 12:
-				_owner.addHitupByArmor(9);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ9»ó½Â
-				_owner.addDmgupByArmor(9);// ±Ù°Å¸®¸íÁßÈ¿À²9»ó½Â
+				_owner.addHitupByArmor(9);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©9ìƒìŠ¹
+				_owner.addDmgupByArmor(9);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨9ìƒìŠ¹
 				break;
 			default:
 				break;
@@ -1076,13 +1076,13 @@ public class L1EquipmentSlot {
 		}
 
 		/*
-		 * 427116 ½º³ÀÆÛÀÇ ¿ë»ç ¹İÁö 427117 ½º³ÀÆÛÀÇ ¿ë»ç ¹İÁö(Ãà) 427118 ½º³ÀÆÛÀÇ Ã¼·Â ¹İÁö 427119 ½º³ÀÆÛÀÇ Ã¼·Â ¹İÁö(Ãà)
-		 * 427120 ½º³ÀÆÛÀÇ ÁöÇı ¹İÁö 427121 ½º³ÀÆÛÀÇ ÁöÇı ¹İÁö(Ãà) 427122 ½º³ÀÆÛÀÇ ¸¶¹ıÀúÇ× ¹İÁö 427123 ½º³ÀÆÛÀÇ ¸¶¹ıÀúÇ×
-		 * ¹İÁö(Ãà)
+		 * 427116 ìŠ¤ëƒ…í¼ì˜ ìš©ì‚¬ ë°˜ì§€ 427117 ìŠ¤ëƒ…í¼ì˜ ìš©ì‚¬ ë°˜ì§€(ì¶•) 427118 ìŠ¤ëƒ…í¼ì˜ ì²´ë ¥ ë°˜ì§€ 427119 ìŠ¤ëƒ…í¼ì˜ ì²´ë ¥ ë°˜ì§€(ì¶•)
+		 * 427120 ìŠ¤ëƒ…í¼ì˜ ì§€í˜œ ë°˜ì§€ 427121 ìŠ¤ëƒ…í¼ì˜ ì§€í˜œ ë°˜ì§€(ì¶•) 427122 ìŠ¤ëƒ…í¼ì˜ ë§ˆë²•ì €í•­ ë°˜ì§€ 427123 ìŠ¤ëƒ…í¼ì˜ ë§ˆë²•ì €í•­
+		 * ë°˜ì§€(ì¶•)
 		 */
 
-		/** Àåºñ Âø¿ë½Ã */
-		/** ½º³ÀÆÛ ¹İÁö ·ù ¹İÁö */
+		/** ì¥ë¹„ ì°©ìš©ì‹œ */
+		/** ìŠ¤ëƒ…í¼ ë°˜ì§€ ë¥˜ ë°˜ì§€ */
 		// if((itemtype == 9 || itemtype == 11) && itemgrade == 3) {
 		// switch (itemlvl) {
 		// case 427116:
@@ -1409,7 +1409,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(3);
 				_owner.getResistance().addStun(7);
 				_owner.addPVPDamage(1);
-				_owner.addHitup_magic(1);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(1);// ë§ˆë²• ì ì¤‘
 				break;
 			case 8:
 				_owner.addMaxHp(40);
@@ -1418,7 +1418,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(5);
 				_owner.getResistance().addStun(9);
 				_owner.addPVPDamage(3);
-				_owner.addHitup_magic(3);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(3);// ë§ˆë²• ì ì¤‘
 				break;
 			case 9:
 				_owner.addMaxHp(50);
@@ -1427,7 +1427,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(7);
 				_owner.getResistance().addStun(9);
 				_owner.addPVPDamage(7);
-				_owner.addHitup_magic(5);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(5);// ë§ˆë²• ì ì¤‘
 				break;
 			default:
 				break;
@@ -1469,7 +1469,7 @@ public class L1EquipmentSlot {
 				_owner.getAC().addAc(-5);
 				_owner.getAbility().addSp(3);
 				_owner.getResistance().addStun(5);
-				_owner.addHitup_magic(1);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(1);// ë§ˆë²• ì ì¤‘
 				break;
 			case 7:
 				_owner.addMaxHp(40);
@@ -1478,7 +1478,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(4);
 				_owner.getResistance().addStun(7);
 				_owner.addPVPDamage(1);
-				_owner.addHitup_magic(2);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(2);// ë§ˆë²• ì ì¤‘
 				break;
 			case 8:
 				_owner.addMaxHp(50);
@@ -1487,7 +1487,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(7);
 				_owner.getResistance().addStun(9);
 				_owner.addPVPDamage(5);
-				_owner.addHitup_magic(5);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(5);// ë§ˆë²• ì ì¤‘
 				break;
 			case 9:
 				_owner.addMaxHp(60);
@@ -1496,7 +1496,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(9);
 				_owner.getResistance().addStun(9);
 				_owner.addPVPDamage(9);
-				_owner.addHitup_magic(7);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(7);// ë§ˆë²• ì ì¤‘
 				break;
 			default:
 				break;
@@ -1625,10 +1625,10 @@ public class L1EquipmentSlot {
 		}
 
 		/*
-		 * 427110 ·ëÆ¼½ºÀÇ °ËÀººû ±Í°ÉÀÌ 427111 ·ëÆ¼½ºÀÇ °ËÀººû ±Í°ÉÀÌ(Ãà) 427112 ·ëÆ¼½ºÀÇ ºÓÀººû ±Í°ÉÀÌ 427113 ·ëÆ¼½ºÀÇ
-		 * ºÓÀººû ±Í°ÉÀÌ(Ãà) 427114 ·ëÆ¼½ºÀÇ º¸¶óºû ±Í°ÉÀÌ 427115 ·ëÆ¼½ºÀÇ º¸¶óºû ±Í°ÉÀÌ(Ãà)
+		 * 427110 ë£¸í‹°ìŠ¤ì˜ ê²€ì€ë¹› ê·€ê±¸ì´ 427111 ë£¸í‹°ìŠ¤ì˜ ê²€ì€ë¹› ê·€ê±¸ì´(ì¶•) 427112 ë£¸í‹°ìŠ¤ì˜ ë¶‰ì€ë¹› ê·€ê±¸ì´ 427113 ë£¸í‹°ìŠ¤ì˜
+		 * ë¶‰ì€ë¹› ê·€ê±¸ì´(ì¶•) 427114 ë£¸í‹°ìŠ¤ì˜ ë³´ë¼ë¹› ê·€ê±¸ì´ 427115 ë£¸í‹°ìŠ¤ì˜ ë³´ë¼ë¹› ê·€ê±¸ì´(ì¶•)
 		 */
-		/** ·ëÆ¼½º ±Í°ÉÀÌ */
+		/** ë£¸í‹°ìŠ¤ ê·€ê±¸ì´ */
 		if (itemtype == 12 && itemgrade == 3) {
 			switch (itemId) {
 			case 427110:
@@ -1827,9 +1827,9 @@ public class L1EquipmentSlot {
 				break;
 			case 427114:
 				switch (enchantlevel) {
-				case 1: // ÀÎÃ¾Æ®°¡ 1ÀÌ¶ó¸é
-					_owner.addMaxMp(15); // ÃÖ´ëMP¸¦ 10Áõ°¡½ÃÄÑÁÖ°í
-					_owner.getResistance().addMr(3); // ¸¶¹æÀ» 3Áõ°¡½ÃÄÑÁØ´Ù
+				case 1: // ì¸ì²¸íŠ¸ê°€ 1ì´ë¼ë©´
+					_owner.addMaxMp(15); // ìµœëŒ€MPë¥¼ 10ì¦ê°€ì‹œì¼œì£¼ê³ 
+					_owner.getResistance().addMr(3); // ë§ˆë°©ì„ 3ì¦ê°€ì‹œì¼œì¤€ë‹¤
 					break;
 				case 2:
 					_owner.addMaxMp(20);
@@ -1880,9 +1880,9 @@ public class L1EquipmentSlot {
 				break;
 			case 427115:
 				switch (enchantlevel) {
-				case 1: // ÀÎÃ¾Æ®°¡ 1ÀÌ¶ó¸é
-					_owner.addMaxMp(15); // ÃÖ´ëMP¸¦ 10Áõ°¡½ÃÄÑÁÖ°í
-					_owner.getResistance().addMr(3); // ¸¶¹æÀ» 3Áõ°¡½ÃÄÑÁØ´Ù
+				case 1: // ì¸ì²¸íŠ¸ê°€ 1ì´ë¼ë©´
+					_owner.addMaxMp(15); // ìµœëŒ€MPë¥¼ 10ì¦ê°€ì‹œì¼œì£¼ê³ 
+					_owner.getResistance().addMr(3); // ë§ˆë°©ì„ 3ì¦ê°€ì‹œì¼œì¤€ë‹¤
 					break;
 				case 2:
 					_owner.addMaxMp(20);
@@ -1935,7 +1935,7 @@ public class L1EquipmentSlot {
 				break;
 			}
 		}
-		/** ÀÏ¹İ¾Ç¼¼ ¿À¸² ¹İÁö */
+		/** ì¼ë°˜ì•…ì„¸ ì˜¤ë¦¼ ë°˜ì§€ */
 		if ((itemtype == 9 || itemtype == 11) && itemgrade != 3) {
 			switch (enchantlevel) {
 			case 1:
@@ -1990,7 +1990,7 @@ public class L1EquipmentSlot {
 			}
 		}
 
-		/** ÀÏ¹İ¾Ç¼¼ ¿À¸² ¸ñ°ÉÀÌ */
+		/** ì¼ë°˜ì•…ì„¸ ì˜¤ë¦¼ ëª©ê±¸ì´ */
 		if (itemtype == 8 && itemgrade != 3) {
 			switch (enchantlevel) {
 			case 1:
@@ -2037,7 +2037,7 @@ public class L1EquipmentSlot {
 			}
 		}
 
-		/** ÀÏ¹İ¾Ç¼¼ ¿À¸² º§Æ® Âø¿ë */
+		/** ì¼ë°˜ì•…ì„¸ ì˜¤ë¦¼ ë²¨íŠ¸ ì°©ìš© */
 		if (itemtype == 10 && itemgrade != 3) {
 			switch (itemlvl) {
 			case 1:
@@ -2084,7 +2084,7 @@ public class L1EquipmentSlot {
 			}
 		}
 
-		/** ÀÏ¹İ¾Ç¼¼ ¿À¸² ±Í°ÉÀÌ Âø¿ë */
+		/** ì¼ë°˜ì•…ì„¸ ì˜¤ë¦¼ ê·€ê±¸ì´ ì°©ìš© */
 		if (itemtype == 12 && itemgrade != 3) {
 			switch (enchantlevel) {
 			case 1:
@@ -2138,7 +2138,7 @@ public class L1EquipmentSlot {
 		if (_owner.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.COUNTER_BARRIER)) {
 			_owner.getSkillEffectTimerSet().removeSkillEffect(L1SkillId.COUNTER_BARRIER);
 		}
-		if (_owner._isShowFang == true) { // ½¦µµ¿ìÆØ ¹«±â ÇØÃ¼½Ã ¹öÇÁ Á¾·á
+		if (_owner._isShowFang == true) { // ì‰ë„ìš°íŒ½ ë¬´ê¸° í•´ì²´ì‹œ ë²„í”„ ì¢…ë£Œ
 			weapon.setSkillWeaponEnchant(_owner, L1SkillId.SHADOW_FANG, 0);
 		}
 		if (weapon.getItemId() == 316 || weapon.getItemId() == 317) {
@@ -2160,7 +2160,7 @@ public class L1EquipmentSlot {
 		}
 	}
 
-	// ¹ş±â
+	// ë²—ê¸°
 	private void removeArmor(L1ItemInstance armor) {
 		L1Item item = armor.getItem();
 		int itemId = armor.getItem().getItemId();
@@ -2204,7 +2204,7 @@ public class L1EquipmentSlot {
 				_currentArmorSet.remove(armorSet);
 			}
 		}
-		if (itemId == 420003) { // °íÅõ»ç
+		if (itemId == 420003) { // ê³ íˆ¬ì‚¬
 			if (itemlvl < 5) {
 				_owner.addDmgup(-1);
 			} else if (itemlvl == 5) {
@@ -2219,7 +2219,7 @@ public class L1EquipmentSlot {
 				_owner.addDmgup(-6);
 			}
 		}
-		if (itemId == 20107) { // ¸®Ä¡·Îºê
+		if (itemId == 20107) { // ë¦¬ì¹˜ë¡œë¸Œ
 			if (itemlvl > 3)
 				_owner.getAbility().addSp(-(armor.getEnchantLevel() - 3));
 		}
@@ -2254,7 +2254,7 @@ public class L1EquipmentSlot {
 		if (itemId == 20288 || itemId == 120288) {
 			_owner.sendPackets(new S_Ability(1, false));
 		}
-		// º¯¹İ
+		// ë³€ë°˜
 		if (itemId == 20281) {
 			_owner.sendPackets(new S_Ability(2, true));
 		}
@@ -2683,40 +2683,40 @@ public class L1EquipmentSlot {
 				break;
 			}
 		}
-		// Áø¸í¼Â 0306Ãß°¡
-		if (itemId == 20390) {// Áø¸í Åõ±¸ ¹ı»çÅ¬·¡½º
+		// ì§„ëª…ì…‹ 0306ì¶”ê°€
+		if (itemId == 20390) {// ì§„ëª… íˆ¬êµ¬ ë²•ì‚¬í´ë˜ìŠ¤
 			switch (itemlvl) {
 			case 5:
-				_owner.addHitup_magic(-1);// 5ÀÎÃ¦ ¸¶¹ıÀûÁß1»ó½Â
-				_owner.setBaseMagicCritical(-1);// 5ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ1»ó½Â
+				_owner.addHitup_magic(-1);// 5ì¸ì±ˆ ë§ˆë²•ì ì¤‘1ìƒìŠ¹
+				_owner.setBaseMagicCritical(-1);// 5ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬1ìƒìŠ¹
 				break;
 			case 6:
-				_owner.addHitup_magic(-2);// 6ÀÎÃ¦ ¸¶¹ıÀûÁß2»ó½Â
-				_owner.setBaseMagicCritical(-2);// 6ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ2»ó½Â
+				_owner.addHitup_magic(-2);// 6ì¸ì±ˆ ë§ˆë²•ì ì¤‘2ìƒìŠ¹
+				_owner.setBaseMagicCritical(-2);// 6ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬2ìƒìŠ¹
 				break;
 			case 7:
-				_owner.addHitup_magic(-3);// 7ÀÎÃ¦ ¸¶¹ıÀûÁß3»ó½Â
-				_owner.setBaseMagicCritical(-3);// 7ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ3»ó½Â
+				_owner.addHitup_magic(-3);// 7ì¸ì±ˆ ë§ˆë²•ì ì¤‘3ìƒìŠ¹
+				_owner.setBaseMagicCritical(-3);// 7ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬3ìƒìŠ¹
 				break;
 			case 8:
-				_owner.addHitup_magic(-4);// 8ÀÎÃ¦ ¸¶¹ıÀûÁß4»ó½Â
-				_owner.setBaseMagicCritical(-4);// 8ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ4»ó½Â
+				_owner.addHitup_magic(-4);// 8ì¸ì±ˆ ë§ˆë²•ì ì¤‘4ìƒìŠ¹
+				_owner.setBaseMagicCritical(-4);// 8ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬4ìƒìŠ¹
 				break;
 			case 9:
-				_owner.addHitup_magic(-5);// 9ÀÎÃ¦ ¸¶¹ıÀûÁß5»ó½Â
-				_owner.setBaseMagicCritical(-5);// 9ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ5»ó½Â
+				_owner.addHitup_magic(-5);// 9ì¸ì±ˆ ë§ˆë²•ì ì¤‘5ìƒìŠ¹
+				_owner.setBaseMagicCritical(-5);// 9ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬5ìƒìŠ¹
 				break;
 			case 10:
-				_owner.addHitup_magic(-7);// 10ÀÎÃ¦ ¸¶¹ıÀûÁß7»ó½Â
-				_owner.setBaseMagicCritical(-7);// 10ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ7»ó½Â
+				_owner.addHitup_magic(-7);// 10ì¸ì±ˆ ë§ˆë²•ì ì¤‘7ìƒìŠ¹
+				_owner.setBaseMagicCritical(-7);// 10ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬7ìƒìŠ¹
 				break;
 			case 11:
-				_owner.addHitup_magic(-8);// 11ÀÎÃ¦ ¸¶¹ıÀûÁß8»ó½Â
-				_owner.setBaseMagicCritical(-8);// 11ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ8»ó½Â
+				_owner.addHitup_magic(-8);// 11ì¸ì±ˆ ë§ˆë²•ì ì¤‘8ìƒìŠ¹
+				_owner.setBaseMagicCritical(-8);// 11ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬8ìƒìŠ¹
 				break;
 			case 12:
-				_owner.addHitup_magic(-9);// 12ÀÎÃ¦ ¸¶¹ıÀûÁß9»ó½Â
-				_owner.setBaseMagicCritical(-9);// 12ÀÎÃ¦ ¸¶¹ıÅ©¸®ÄÃ9»ó½Â
+				_owner.addHitup_magic(-9);// 12ì¸ì±ˆ ë§ˆë²•ì ì¤‘9ìƒìŠ¹
+				_owner.setBaseMagicCritical(-9);// 12ì¸ì±ˆ ë§ˆë²•í¬ë¦¬ì»¬9ìƒìŠ¹
 				break;
 			default:
 				break;
@@ -2789,7 +2789,7 @@ public class L1EquipmentSlot {
 			}
 		}
 		
-		/** °İºĞÀÇ Àå°© **/
+		/** ê²©ë¶„ì˜ ì¥ê°‘ **/
 		if (itemId == 222317) {
 			switch (itemlvl) {
 			case 7:
@@ -2942,177 +2942,177 @@ public class L1EquipmentSlot {
 			}
 		}
 		
-		if (itemId == 20395) {// Áø¸í °©¿Ê
+		if (itemId == 20395) {// ì§„ëª… ê°‘ì˜·
 			switch (itemlvl) {
 			case 5:
-				_owner.addDamageReductionByArmor(-1);// ¹æ¾î±¸ ¸®´ö¼Ç1»ó½Â
-				_owner.addPVPDamage(-1);// pvpµ¥¹ÌÁö1»ó½Â
-				_owner.addPVPDamageReduction(-1);// pvpµ¥¹ÌÁö¸®´ö¼Ç1»ó½Â
-				_owner.addPVPMagicDamageReduction(-1);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç1»ó½Â
+				_owner.addDamageReductionByArmor(-1);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜1ìƒìŠ¹
+				_owner.addPVPDamage(-1);// pvpë°ë¯¸ì§€1ìƒìŠ¹
+				_owner.addPVPDamageReduction(-1);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜1ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(-1);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜1ìƒìŠ¹
 				break;
 			case 6:
-				_owner.addDamageReductionByArmor(-2);// ¹æ¾î±¸ ¸®´ö¼Ç2»ó½Â
-				_owner.addPVPDamage(-2);// pvpµ¥¹ÌÁö2»ó½Â
-				_owner.addPVPDamageReduction(-2);// pvpµ¥¹ÌÁö¸®´ö¼Ç2»ó½Â
-				_owner.addPVPMagicDamageReduction(-2);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç2»ó½Â
+				_owner.addDamageReductionByArmor(-2);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜2ìƒìŠ¹
+				_owner.addPVPDamage(-2);// pvpë°ë¯¸ì§€2ìƒìŠ¹
+				_owner.addPVPDamageReduction(-2);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜2ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(-2);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜2ìƒìŠ¹
 				break;
 			case 7:
-				_owner.addDamageReductionByArmor(-3);// ¹æ¾î±¸ ¸®´ö¼Ç3»ó½Â
-				_owner.addPVPDamage(-3);// pvpµ¥¹ÌÁö3»ó½Â
-				_owner.addPVPDamageReduction(-3);// pvpµ¥¹ÌÁö¸®´ö¼Ç3»ó½Â
-				_owner.addPVPMagicDamageReduction(-3);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç3»ó½Â
+				_owner.addDamageReductionByArmor(-3);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜3ìƒìŠ¹
+				_owner.addPVPDamage(-3);// pvpë°ë¯¸ì§€3ìƒìŠ¹
+				_owner.addPVPDamageReduction(-3);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜3ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(-3);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜3ìƒìŠ¹
 				break;
 			case 8:
-				_owner.addDamageReductionByArmor(-4);// ¹æ¾î±¸ ¸®´ö¼Ç4»ó½Â
-				_owner.addPVPDamage(-4);// pvpµ¥¹ÌÁö4»ó½Â
-				_owner.addPVPDamageReduction(-4);// pvpµ¥¹ÌÁö¸®´ö¼Ç4»ó½Â
-				_owner.addPVPMagicDamageReduction(-4);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç4»ó½Â
+				_owner.addDamageReductionByArmor(-4);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜4ìƒìŠ¹
+				_owner.addPVPDamage(-4);// pvpë°ë¯¸ì§€4ìƒìŠ¹
+				_owner.addPVPDamageReduction(-4);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜4ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(-4);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜4ìƒìŠ¹
 				break;
 			case 9:
-				_owner.addDamageReductionByArmor(-5);// ¹æ¾î±¸ ¸®´ö¼Ç5»ó½Â
-				_owner.addPVPDamage(-5);// pvpµ¥¹ÌÁö5»ó½Â
-				_owner.addPVPDamageReduction(-5);// pvpµ¥¹ÌÁö¸®´ö¼Ç5»ó½Â
-				_owner.addPVPMagicDamageReduction(-5);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç5»ó½Â
+				_owner.addDamageReductionByArmor(-5);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜5ìƒìŠ¹
+				_owner.addPVPDamage(-5);// pvpë°ë¯¸ì§€5ìƒìŠ¹
+				_owner.addPVPDamageReduction(-5);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜5ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(-5);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜5ìƒìŠ¹
 				break;
 			case 10:
-				_owner.addDamageReductionByArmor(-7);// ¹æ¾î±¸ ¸®´ö¼Ç7»ó½Â
-				_owner.addPVPDamage(-7);// pvpµ¥¹ÌÁö7»ó½Â
-				_owner.addPVPDamageReduction(-7);// pvpµ¥¹ÌÁö¸®´ö¼Ç7»ó½Â
-				_owner.addPVPMagicDamageReduction(-7);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç7»ó½Â
+				_owner.addDamageReductionByArmor(-7);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜7ìƒìŠ¹
+				_owner.addPVPDamage(-7);// pvpë°ë¯¸ì§€7ìƒìŠ¹
+				_owner.addPVPDamageReduction(-7);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜7ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(-7);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜7ìƒìŠ¹
 				break;
 			case 11:
-				_owner.addDamageReductionByArmor(-8);// ¹æ¾î±¸ ¸®´ö¼Ç8»ó½Â
-				_owner.addPVPDamage(-8);// pvpµ¥¹ÌÁö8»ó½Â
-				_owner.addPVPDamageReduction(-8);// pvpµ¥¹ÌÁö¸®´ö¼Ç8»ó½Â
-				_owner.addPVPMagicDamageReduction(-8);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç8»ó½Â
+				_owner.addDamageReductionByArmor(-8);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜8ìƒìŠ¹
+				_owner.addPVPDamage(-8);// pvpë°ë¯¸ì§€8ìƒìŠ¹
+				_owner.addPVPDamageReduction(-8);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜8ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(-8);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜8ìƒìŠ¹
 				break;
 			case 12:
-				_owner.addDamageReductionByArmor(-9);// ¹æ¾î±¸ ¸®´ö¼Ç9»ó½Â
-				_owner.addPVPDamage(-9);// pvpµ¥¹ÌÁö9»ó½Â
-				_owner.addPVPDamageReduction(-9);// pvpµ¥¹ÌÁö¸®´ö¼Ç9»ó½Â
-				_owner.addPVPMagicDamageReduction(-9);// pvp¸¶¹ıµ¥¹ÌÁö¸®´ö¼Ç9»ó½Â
+				_owner.addDamageReductionByArmor(-9);// ë°©ì–´êµ¬ ë¦¬ë•ì…˜9ìƒìŠ¹
+				_owner.addPVPDamage(-9);// pvpë°ë¯¸ì§€9ìƒìŠ¹
+				_owner.addPVPDamageReduction(-9);// pvpë°ë¯¸ì§€ë¦¬ë•ì…˜9ìƒìŠ¹
+				_owner.addPVPMagicDamageReduction(-9);// pvpë§ˆë²•ë°ë¯¸ì§€ë¦¬ë•ì…˜9ìƒìŠ¹
 				break;
 			default:
 				break;
 			}
 		}
-		if (itemId == 20402) {// Áø¸í¸ÁÅä
+		if (itemId == 20402) {// ì§„ëª…ë§í† 
 			switch (itemlvl) {
 			case 5:
-				_owner.addHitup_skill(-1); // ½ºÅ³ÀûÁß1»ó½Â
-				_owner.addHitup_spirit(-1); // Á¤·ÉÀûÁß1»ó½Â
-				_owner.getResistance().addStun(-1);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(-1); // ìŠ¤í‚¬ì ì¤‘1ìƒìŠ¹
+				_owner.addHitup_spirit(-1); // ì •ë ¹ì ì¤‘1ìƒìŠ¹
+				_owner.getResistance().addStun(-1);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 6:
-				_owner.addHitup_skill(-2); // ½ºÅ³ÀûÁß2»ó½Â
-				_owner.addHitup_spirit(-2); // Á¤·ÉÀûÁß2»ó½Â
-				_owner.getResistance().addStun(-2);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(-2); // ìŠ¤í‚¬ì ì¤‘2ìƒìŠ¹
+				_owner.addHitup_spirit(-2); // ì •ë ¹ì ì¤‘2ìƒìŠ¹
+				_owner.getResistance().addStun(-2);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 7:
-				_owner.addHitup_skill(-3); // ½ºÅ³ÀûÁß3»ó½Â
-				_owner.addHitup_spirit(-3); // Á¤·ÉÀûÁß3»ó½Â
-				_owner.getResistance().addStun(-3);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(-3); // ìŠ¤í‚¬ì ì¤‘3ìƒìŠ¹
+				_owner.addHitup_spirit(-3); // ì •ë ¹ì ì¤‘3ìƒìŠ¹
+				_owner.getResistance().addStun(-3);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 8:
-				_owner.addHitup_skill(-4); // ½ºÅ³ÀûÁß4»ó½Â
-				_owner.addHitup_spirit(-4); // Á¤·ÉÀûÁß4»ó½Â
-				_owner.getResistance().addStun(-4);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(-4); // ìŠ¤í‚¬ì ì¤‘4ìƒìŠ¹
+				_owner.addHitup_spirit(-4); // ì •ë ¹ì ì¤‘4ìƒìŠ¹
+				_owner.getResistance().addStun(-4);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 9:
-				_owner.addHitup_skill(-5); // ½ºÅ³ÀûÁß5»ó½Â
-				_owner.addHitup_spirit(-5); // Á¤·ÉÀûÁß5»ó½Â
-				_owner.getResistance().addStun(-5);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(-5); // ìŠ¤í‚¬ì ì¤‘5ìƒìŠ¹
+				_owner.addHitup_spirit(-5); // ì •ë ¹ì ì¤‘5ìƒìŠ¹
+				_owner.getResistance().addStun(-5);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 10:
-				_owner.addHitup_skill(-7); // ½ºÅ³ÀûÁß7»ó½Â
-				_owner.addHitup_spirit(-7); // Á¤·ÉÀûÁß7»ó½Â
-				_owner.getResistance().addStun(-7);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(-7); // ìŠ¤í‚¬ì ì¤‘7ìƒìŠ¹
+				_owner.addHitup_spirit(-7); // ì •ë ¹ì ì¤‘7ìƒìŠ¹
+				_owner.getResistance().addStun(-7);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 11:
-				_owner.addHitup_skill(-8); // ½ºÅ³ÀûÁß8»ó½Â
-				_owner.addHitup_spirit(-8); // Á¤·ÉÀûÁß8»ó½Â
-				_owner.getResistance().addStun(-8);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(-8); // ìŠ¤í‚¬ì ì¤‘8ìƒìŠ¹
+				_owner.addHitup_spirit(-8); // ì •ë ¹ì ì¤‘8ìƒìŠ¹
+				_owner.getResistance().addStun(-8);// ìŠ¤í„´ë°©ì–´
 				break;
 			case 12:
-				_owner.addHitup_skill(-9); // ½ºÅ³ÀûÁß9»ó½Â
-				_owner.addHitup_spirit(-9); // Á¤·ÉÀûÁß9»ó½Â
-				_owner.getResistance().addStun(-9);// ½ºÅÏ¹æ¾î
+				_owner.addHitup_skill(-9); // ìŠ¤í‚¬ì ì¤‘9ìƒìŠ¹
+				_owner.addHitup_spirit(-9); // ì •ë ¹ì ì¤‘9ìƒìŠ¹
+				_owner.getResistance().addStun(-9);// ìŠ¤í„´ë°©ì–´
 				break;
 			default:
 				break;
 			}
 		}
-		if (itemId == 20408) {// Áø¸í ºÎÃ÷ ¿äÁ¤
+		if (itemId == 20408) {// ì§„ëª… ë¶€ì¸  ìš”ì •
 			switch (itemlvl) {
 			case 5:
-				_owner.addBowHitupByArmor(-1);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ1»ó½Â
-				_owner.addBowDmgupByArmor(-1);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²1»ó½Â
+				_owner.addBowHitupByArmor(-1);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©1ìƒìŠ¹
+				_owner.addBowDmgupByArmor(-1);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨1ìƒìŠ¹
 				break;
 			case 6:
-				_owner.addBowHitupByArmor(-2);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ2»ó½Â
-				_owner.addBowDmgupByArmor(-2);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²2»ó½Â
+				_owner.addBowHitupByArmor(-2);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©2ìƒìŠ¹
+				_owner.addBowDmgupByArmor(-2);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨2ìƒìŠ¹
 				break;
 			case 7:
-				_owner.addBowHitupByArmor(-3);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ3»ó½Â
-				_owner.addBowDmgupByArmor(-3);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²3»ó½Â
+				_owner.addBowHitupByArmor(-3);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©3ìƒìŠ¹
+				_owner.addBowDmgupByArmor(-3);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨3ìƒìŠ¹
 				break;
 			case 8:
-				_owner.addBowHitupByArmor(-4);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ4»ó½Â
-				_owner.addBowDmgupByArmor(-4);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²4»ó½Â
+				_owner.addBowHitupByArmor(-4);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©4ìƒìŠ¹
+				_owner.addBowDmgupByArmor(-4);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨4ìƒìŠ¹
 				break;
 			case 9:
-				_owner.addBowHitupByArmor(-5);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ5»ó½Â
-				_owner.addBowDmgupByArmor(-5);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²5»ó½Â
+				_owner.addBowHitupByArmor(-5);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©5ìƒìŠ¹
+				_owner.addBowDmgupByArmor(-5);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨5ìƒìŠ¹
 				break;
 			case 10:
-				_owner.addBowHitupByArmor(-7);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ7»ó½Â
-				_owner.addBowDmgupByArmor(-7);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²7»ó½Â
+				_owner.addBowHitupByArmor(-7);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©7ìƒìŠ¹
+				_owner.addBowDmgupByArmor(-7);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨7ìƒìŠ¹
 				break;
 			case 11:
-				_owner.addBowHitupByArmor(-8);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ8»ó½Â
-				_owner.addBowDmgupByArmor(-8);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²8»ó½Â
+				_owner.addBowHitupByArmor(-8);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©8ìƒìŠ¹
+				_owner.addBowDmgupByArmor(-8);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨8ìƒìŠ¹
 				break;
 			case 12:
-				_owner.addBowHitupByArmor(-9);// ¿ø°Å¸®µ¥¹ÌÁö°ø°İ9»ó½Â
-				_owner.addBowDmgupByArmor(-9);// ¿ø°Å¸® È°ÀÇ ÃßÅ¸À²9»ó½Â
+				_owner.addBowHitupByArmor(-9);// ì›ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©9ìƒìŠ¹
+				_owner.addBowDmgupByArmor(-9);// ì›ê±°ë¦¬ í™œì˜ ì¶”íƒ€ìœ¨9ìƒìŠ¹
 				break;
 			default:
 				break;
 			}
 		}
-		if (itemId == 20410) {// Áø¸í Àå°©
+		if (itemId == 20410) {// ì§„ëª… ì¥ê°‘
 			switch (itemlvl) {
 			case 5:
-				_owner.addHitupByArmor(-1);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ1»ó½Â
-				_owner.addDmgupByArmor(-1);// ±Ù°Å¸®¸íÁßÈ¿À²1»ó½Â
+				_owner.addHitupByArmor(-1);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©1ìƒìŠ¹
+				_owner.addDmgupByArmor(-1);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨1ìƒìŠ¹
 				break;
 			case 6:
-				_owner.addHitupByArmor(-2);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ2»ó½Â
-				_owner.addDmgupByArmor(-2);// ±Ù°Å¸®¸íÁßÈ¿À²2»ó½Â
+				_owner.addHitupByArmor(-2);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©2ìƒìŠ¹
+				_owner.addDmgupByArmor(-2);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨2ìƒìŠ¹
 				break;
 			case 7:
-				_owner.addHitupByArmor(-3);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ3»ó½Â
-				_owner.addDmgupByArmor(-3);// ±Ù°Å¸®¸íÁßÈ¿À²3»ó½Â
+				_owner.addHitupByArmor(-3);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©3ìƒìŠ¹
+				_owner.addDmgupByArmor(-3);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨3ìƒìŠ¹
 				break;
 			case 8:
-				_owner.addHitupByArmor(-4);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ4»ó½Â
-				_owner.addDmgupByArmor(-4);// ±Ù°Å¸®¸íÁßÈ¿À²4»ó½Â
+				_owner.addHitupByArmor(-4);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©4ìƒìŠ¹
+				_owner.addDmgupByArmor(-4);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨4ìƒìŠ¹
 				break;
 			case 9:
-				_owner.addHitupByArmor(-5);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ5»ó½Â
-				_owner.addDmgupByArmor(-5);// ±Ù°Å¸®¸íÁßÈ¿À²5»ó½Â
+				_owner.addHitupByArmor(-5);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©5ìƒìŠ¹
+				_owner.addDmgupByArmor(-5);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨5ìƒìŠ¹
 				break;
 			case 10:
-				_owner.addHitupByArmor(-7);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ7»ó½Â
-				_owner.addDmgupByArmor(-7);// ±Ù°Å¸®¸íÁßÈ¿À²7»ó½Â
+				_owner.addHitupByArmor(-7);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©7ìƒìŠ¹
+				_owner.addDmgupByArmor(-7);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨7ìƒìŠ¹
 				break;
 			case 11:
-				_owner.addHitupByArmor(-8);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ8»ó½Â
-				_owner.addDmgupByArmor(-8);// ±Ù°Å¸®¸íÁßÈ¿À²8»ó½Â
+				_owner.addHitupByArmor(-8);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©8ìƒìŠ¹
+				_owner.addDmgupByArmor(-8);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨8ìƒìŠ¹
 				break;
 			case 12:
-				_owner.addHitupByArmor(-9);// ±Ù°Å¸®µ¥¹ÌÁö°ø°İ9»ó½Â
-				_owner.addDmgupByArmor(-9);// ±Ù°Å¸®¸íÁßÈ¿À²9»ó½Â
+				_owner.addHitupByArmor(-9);// ê·¼ê±°ë¦¬ë°ë¯¸ì§€ê³µê²©9ìƒìŠ¹
+				_owner.addDmgupByArmor(-9);// ê·¼ê±°ë¦¬ëª…ì¤‘íš¨ìœ¨9ìƒìŠ¹
 				break;
 			default:
 				break;
@@ -3120,12 +3120,12 @@ public class L1EquipmentSlot {
 		}
 
 		/*
-		 * 427116 ½º³ÀÆÛÀÇ ¿ë»ç ¹İÁö 427117 ½º³ÀÆÛÀÇ ¿ë»ç ¹İÁö(Ãà) 427118 ½º³ÀÆÛÀÇ Ã¼·Â ¹İÁö 427119 ½º³ÀÆÛÀÇ Ã¼·Â ¹İÁö(Ãà)
-		 * 427120 ½º³ÀÆÛÀÇ ÁöÇı ¹İÁö 427121 ½º³ÀÆÛÀÇ ÁöÇı ¹İÁö(Ãà) 427122 ½º³ÀÆÛÀÇ ¸¶¹ıÀúÇ× ¹İÁö 427123 ½º³ÀÆÛÀÇ ¸¶¹ıÀúÇ×
-		 * ¹İÁö(Ãà)
+		 * 427116 ìŠ¤ëƒ…í¼ì˜ ìš©ì‚¬ ë°˜ì§€ 427117 ìŠ¤ëƒ…í¼ì˜ ìš©ì‚¬ ë°˜ì§€(ì¶•) 427118 ìŠ¤ëƒ…í¼ì˜ ì²´ë ¥ ë°˜ì§€ 427119 ìŠ¤ëƒ…í¼ì˜ ì²´ë ¥ ë°˜ì§€(ì¶•)
+		 * 427120 ìŠ¤ëƒ…í¼ì˜ ì§€í˜œ ë°˜ì§€ 427121 ìŠ¤ëƒ…í¼ì˜ ì§€í˜œ ë°˜ì§€(ì¶•) 427122 ìŠ¤ëƒ…í¼ì˜ ë§ˆë²•ì €í•­ ë°˜ì§€ 427123 ìŠ¤ëƒ…í¼ì˜ ë§ˆë²•ì €í•­
+		 * ë°˜ì§€(ì¶•)
 		 */
-		/** Àåºñ ¹şÀ»½Ã */
-		/** ½º³ÀÆÛ ¹İÁö ·ù ¹İÁö */
+		/** ì¥ë¹„ ë²—ì„ì‹œ */
+		/** ìŠ¤ëƒ…í¼ ë°˜ì§€ ë¥˜ ë°˜ì§€ */
 		// if((itemtype == 9 || itemtype == 11) && itemgrade == 3) {
 		// switch(itemId) {
 		// case 427116:
@@ -3449,7 +3449,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(-3);
 				_owner.getResistance().addStun(-7);
 				_owner.addPVPDamage(-1);
-				_owner.addHitup_magic(-1);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(-1);// ë§ˆë²• ì ì¤‘
 				break;
 			case 8:
 				_owner.addMaxHp(-40);
@@ -3458,7 +3458,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(-5);
 				_owner.getResistance().addStun(-9);
 				_owner.addPVPDamage(-3);
-				_owner.addHitup_magic(-3);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(-3);// ë§ˆë²• ì ì¤‘
 				break;
 			case 9:
 				_owner.addMaxHp(-50);
@@ -3467,7 +3467,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(-7);
 				_owner.getResistance().addStun(-9);
 				_owner.addPVPDamage(-7);
-				_owner.addHitup_magic(-5);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(-5);// ë§ˆë²• ì ì¤‘
 				break;
 			default:
 				break;
@@ -3509,7 +3509,7 @@ public class L1EquipmentSlot {
 				_owner.getAC().addAc(5);
 				_owner.getAbility().addSp(-3);
 				_owner.getResistance().addStun(-5);
-				_owner.addHitup_magic(-1);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(-1);// ë§ˆë²• ì ì¤‘
 				break;
 			case 7:
 				_owner.addMaxHp(-40);
@@ -3518,7 +3518,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(-4);
 				_owner.getResistance().addStun(-7);
 				_owner.addPVPDamage(-1);
-				_owner.addHitup_magic(-2);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(-2);// ë§ˆë²• ì ì¤‘
 				break;
 			case 8:
 				_owner.addMaxHp(-50);
@@ -3527,7 +3527,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(-7);
 				_owner.getResistance().addStun(-9);
 				_owner.addPVPDamage(-5);
-				_owner.addHitup_magic(-5);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(-5);// ë§ˆë²• ì ì¤‘
 				break;
 			case 9:
 				_owner.addMaxHp(-60);
@@ -3536,7 +3536,7 @@ public class L1EquipmentSlot {
 				_owner.getAbility().addSp(-9);
 				_owner.getResistance().addStun(-9);
 				_owner.addPVPDamage(-9);
-				_owner.addHitup_magic(-7);// ¸¶¹ı ÀûÁß
+				_owner.addHitup_magic(-7);// ë§ˆë²• ì ì¤‘
 				break;
 			default:
 				break;
@@ -3664,10 +3664,10 @@ public class L1EquipmentSlot {
 		}
 
 		/*
-		 * 427110 ·ëÆ¼½ºÀÇ °ËÀººû ±Í°ÉÀÌ 427111 ·ëÆ¼½ºÀÇ °ËÀººû ±Í°ÉÀÌ(Ãà) 427112 ·ëÆ¼½ºÀÇ ºÓÀººû ±Í°ÉÀÌ 427113 ·ëÆ¼½ºÀÇ
-		 * ºÓÀººû ±Í°ÉÀÌ(Ãà) 427114 ·ëÆ¼½ºÀÇ º¸¶óºû ±Í°ÉÀÌ 427115 ·ëÆ¼½ºÀÇ º¸¶óºû ±Í°ÉÀÌ(Ãà)
+		 * 427110 ë£¸í‹°ìŠ¤ì˜ ê²€ì€ë¹› ê·€ê±¸ì´ 427111 ë£¸í‹°ìŠ¤ì˜ ê²€ì€ë¹› ê·€ê±¸ì´(ì¶•) 427112 ë£¸í‹°ìŠ¤ì˜ ë¶‰ì€ë¹› ê·€ê±¸ì´ 427113 ë£¸í‹°ìŠ¤ì˜
+		 * ë¶‰ì€ë¹› ê·€ê±¸ì´(ì¶•) 427114 ë£¸í‹°ìŠ¤ì˜ ë³´ë¼ë¹› ê·€ê±¸ì´ 427115 ë£¸í‹°ìŠ¤ì˜ ë³´ë¼ë¹› ê·€ê±¸ì´(ì¶•)
 		 */
-		/** ·ëÆ¼½º ±Í°ÉÀÌ */
+		/** ë£¸í‹°ìŠ¤ ê·€ê±¸ì´ */
 		if (itemtype == 12 && itemgrade == 3) {
 			switch (itemId) {
 			case 427110:
@@ -3866,9 +3866,9 @@ public class L1EquipmentSlot {
 				break;
 			case 427114:
 				switch (enchantlevel) {
-				case 1: // ÀÎÃ¾Æ®°¡ 1ÀÌ¶ó¸é
-					_owner.addMaxMp(-15); // ÃÖ´ëMP¸¦ 10Áõ°¡½ÃÄÑÁÖ°í
-					_owner.getResistance().addMr(-3); // ¸¶¹æÀ» 3Áõ°¡½ÃÄÑÁØ´Ù
+				case 1: // ì¸ì²¸íŠ¸ê°€ 1ì´ë¼ë©´
+					_owner.addMaxMp(-15); // ìµœëŒ€MPë¥¼ 10ì¦ê°€ì‹œì¼œì£¼ê³ 
+					_owner.getResistance().addMr(-3); // ë§ˆë°©ì„ 3ì¦ê°€ì‹œì¼œì¤€ë‹¤
 					break;
 				case 2:
 					_owner.addMaxMp(-20);
@@ -3919,9 +3919,9 @@ public class L1EquipmentSlot {
 				break;
 			case 427115:
 				switch (enchantlevel) {
-				case 1: // ÀÎÃ¾Æ®°¡ 1ÀÌ¶ó¸é
-					_owner.addMaxMp(-15); // ÃÖ´ëMP¸¦ 10Áõ°¡½ÃÄÑÁÖ°í
-					_owner.getResistance().addMr(-3); // ¸¶¹æÀ» 3Áõ°¡½ÃÄÑÁØ´Ù
+				case 1: // ì¸ì²¸íŠ¸ê°€ 1ì´ë¼ë©´
+					_owner.addMaxMp(-15); // ìµœëŒ€MPë¥¼ 10ì¦ê°€ì‹œì¼œì£¼ê³ 
+					_owner.getResistance().addMr(-3); // ë§ˆë°©ì„ 3ì¦ê°€ì‹œì¼œì¤€ë‹¤
 					break;
 				case 2:
 					_owner.addMaxMp(-20);
@@ -3975,7 +3975,7 @@ public class L1EquipmentSlot {
 			}
 		}
 
-		/** ÀÏ¹İ¾Ç¼¼ ¿À¸² ¹İÁö */
+		/** ì¼ë°˜ì•…ì„¸ ì˜¤ë¦¼ ë°˜ì§€ */
 		if ((itemtype == 9 || itemtype == 11) && itemgrade != 3) {
 			switch (enchantlevel) {
 			case 1:
@@ -4030,7 +4030,7 @@ public class L1EquipmentSlot {
 			}
 		}
 
-		/** ÀÏ¹İ¾Ç¼¼ ¿À¸² ¸ñ°ÉÀÌ */
+		/** ì¼ë°˜ì•…ì„¸ ì˜¤ë¦¼ ëª©ê±¸ì´ */
 		if (itemtype == 8 && itemgrade != 3) {
 			switch (enchantlevel) {
 			case 1:
@@ -4077,7 +4077,7 @@ public class L1EquipmentSlot {
 			}
 		}
 
-		/** ÀÏ¹İ¾Ç¼¼ ¿À¸² º§Æ® */
+		/** ì¼ë°˜ì•…ì„¸ ì˜¤ë¦¼ ë²¨íŠ¸ */
 		if (itemtype == 10 && itemgrade != 3) {
 			switch (itemlvl) {
 			case 1:
@@ -4124,7 +4124,7 @@ public class L1EquipmentSlot {
 			}
 		}
 
-		/** ÀÏ¹İ¾Ç¼¼ ¿À¸² ±Í°ÉÀÌ */
+		/** ì¼ë°˜ì•…ì„¸ ì˜¤ë¦¼ ê·€ê±¸ì´ */
 		if (itemtype == 12 && itemgrade != 3) {
 			switch (enchantlevel) {
 			case 1:

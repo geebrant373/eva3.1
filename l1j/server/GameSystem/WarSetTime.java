@@ -1,4 +1,4 @@
-package l1j.server.GameSystem;
+ï»¿package l1j.server.GameSystem;
 
 import java.util.Calendar;
 
@@ -39,8 +39,8 @@ public class WarSetTime implements TimeListener{
 	public void onMinuteChanged(BaseTime time) {
 		int rm = time.get(Calendar.MINUTE);
 		int rt = time.getSeconds();
-//		System.out.println("ºĞ¸¶´Ù Àß µ¿ÀÛ ÇÏ´ÂÁö.." + rm);
-//		System.out.println("ÃÊ´Â Àß ÀĞ¾î ¿À´ÂÁö.." + rt);
+//		System.out.println("ë¶„ë§ˆë‹¤ ì˜ ë™ì‘ í•˜ëŠ”ì§€.." + rm);
+//		System.out.println("ì´ˆëŠ” ì˜ ì½ì–´ ì˜¤ëŠ”ì§€.." + rt);
 		if (rm%10 != 0) return;
 		for (int i = 0; i < _castle.length; i++) {
 			int wbt = _castle[i].getWarBaseTime() + 7200;

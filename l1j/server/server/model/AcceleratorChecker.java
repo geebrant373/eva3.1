@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -26,7 +26,7 @@ import l1j.server.server.datatables.SprTable;
 import l1j.server.server.model.Instance.L1PcInstance;
 
 /**
- * °¡¼Ó±âÀÇ »ç¿ëÀ» Ã¼Å©ÇÏ´Â Å¬·¡½º.
+ * ê°€ì†ê¸°ì˜ ì‚¬ìš©ì„ ì²´í¬í•˜ëŠ” í´ë˜ìŠ¤.
  */
 public class AcceleratorChecker {
 
@@ -40,8 +40,8 @@ public class AcceleratorChecker {
 
 	//private static final int JUSTICE_COUNT_LIMIT = Config.JUSTICE_COUNT;
 
-	// ½ÇÁ¦·Î´Â ÀÌµ¿°ú °ø°İÀÇ ÆĞÅ¶ °£°İÀº sprÀÇ ÀÌ·ĞÄ¡º¸´Ù5%¸¸Å­ ´Ê´Ù.
-	// ±×°ÍÀ» °í·ÁÇØ¡ª5·Î ÇÏ°í ÀÖ´Ù.
+	// ì‹¤ì œë¡œëŠ” ì´ë™ê³¼ ê³µê²©ì˜ íŒ¨í‚· ê°„ê²©ì€ sprì˜ ì´ë¡ ì¹˜ë³´ë‹¤5%ë§Œí¼ ëŠ¦ë‹¤.
+	// ê·¸ê²ƒì„ ê³ ë ¤í•´â€•5ë¡œ í•˜ê³  ìˆë‹¤.
 	private static final double CHECK_STRICTNESS = (Config.CHECK_STRICTNESS - 5) / 100D;
 
 	private static final double HASTE_RATE = 0.745;
@@ -58,7 +58,7 @@ public class AcceleratorChecker {
 
 	public static enum ACT_TYPE { MOVE, ATTACK, SPELL_DIR, SPELL_NODIR }
 
-	// Ã¼Å©ÀÇ °á°ú
+	// ì²´í¬ì˜ ê²°ê³¼
 	public static final int R_OK = 0;
 
 	public static final int R_DETECTED = 1;
@@ -77,11 +77,11 @@ public class AcceleratorChecker {
 	}
 
 	/**
-	 * ¾×¼ÇÀÇ °£°İÀÌ ºÎÁ¤ÇÏÁö ¾ÊÀ»±î Ã¼Å©ÇØ, Àû´ç Ã³¸®¸¦ ½Ç½ÃÇÑ´Ù.
+	 * ì•¡ì…˜ì˜ ê°„ê²©ì´ ë¶€ì •í•˜ì§€ ì•Šì„ê¹Œ ì²´í¬í•´, ì ë‹¹ ì²˜ë¦¬ë¥¼ ì‹¤ì‹œí•œë‹¤.
 	 * 
 	 * @param type -
-	 *            Ã¼Å©ÇÏ´Â ¾×¼ÇÀÇ Å¸ÀÔ
-	 * @return ¹®Á¦°¡ ¾ø¾ú´ø °æ¿ì´Â 0, ºÎÁ¤ÇÒ °æ¿ì´Â 1, ºÎÁ¤ µ¿ÀÛÀÌ ÀÏÁ¤ È¸¼ö¿¡ ÀÌ¸£·¶±â ¶§¹®¿¡ ÇÃ·¹ÀÌ¾î¸¦ Àı´Ü ÇßÀ» °æ¿ì´Â 2¸¦ µ¹·ÁÁØ´Ù.
+	 *            ì²´í¬í•˜ëŠ” ì•¡ì…˜ì˜ íƒ€ì…
+	 * @return ë¬¸ì œê°€ ì—†ì—ˆë˜ ê²½ìš°ëŠ” 0, ë¶€ì •í•  ê²½ìš°ëŠ” 1, ë¶€ì • ë™ì‘ì´ ì¼ì • íšŒìˆ˜ì— ì´ë¥´ë €ê¸° ë•Œë¬¸ì— í”Œë ˆì´ì–´ë¥¼ ì ˆë‹¨ í–ˆì„ ê²½ìš°ëŠ” 2ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public int checkInterval(ACT_TYPE type) {
 		int result = R_OK;
@@ -94,13 +94,13 @@ public class AcceleratorChecker {
 		//	return R_OK;
 		//}
 		
-		if (_pc.getGfxId().getTempCharGfx() == 6284){	// À¯·ÉÀÇÁıÈ£¹Ú
+		if (_pc.getGfxId().getTempCharGfx() == 6284){	// ìœ ë ¹ì˜ì§‘í˜¸ë°•
 			_injusticeCount = 0;
 			_justiceCount = 0;
 			return R_OK;
 		}
 		
-		//System.out.println("½ÇÁ¦½Ã°£(Interval):" + interval + ",  spr°ª :" + rightInterval);
+		//System.out.println("ì‹¤ì œì‹œê°„(Interval):" + interval + ",  sprê°’ :" + rightInterval);
 		
 		if (0 < interval && interval < rightInterval) {
 			_injusticeCount++;
@@ -136,7 +136,7 @@ public class AcceleratorChecker {
 			}
 		}*/
 
-		// °ËÁõ¿ë
+		// ê²€ì¦ìš©
 //		double rate = (double) interval / rightInterval;
 //		System.out.println(String.format("%s: %d / %d = %.2f (o-%d x-%d)",
 //		type.toString(), interval, rightInterval, rate,
@@ -149,25 +149,25 @@ public class AcceleratorChecker {
 	private void doDisconnect(String type) {
 		if (!(_pc.getAccessLevel() == Config.GMCODE)) {
 			L1Teleport.teleport(_pc, _pc.getSpeedHackX(), _pc.getSpeedHackY(), _pc.getSpeedHackMapid(), _pc.getSpeedHackHeading(), false);
-			//_pc.sendPackets(new S_ServerMessage(945)); // À§¹ı ÇÁ·Î±×·¥ÀÌ ¹ß°ßµÇ¾úÀ¸¹Ç·Î, Á¾·áÇÕ´Ï´Ù.
+			//_pc.sendPackets(new S_ServerMessage(945)); // ìœ„ë²• í”„ë¡œê·¸ë¨ì´ ë°œê²¬ë˜ì—ˆìœ¼ë¯€ë¡œ, ì¢…ë£Œí•©ë‹ˆë‹¤.
 			//_pc.sendPackets(new S_Disconnect());
 		} else {
-			// GM´Â Àı´Ü ÇÏÁö ¾Ê´Â´Ù
+			// GMëŠ” ì ˆë‹¨ í•˜ì§€ ì•ŠëŠ”ë‹¤
 			_pc.sendPackets(new S_SystemMessage(
-			"[½ºÇÙ Àı´Ü] Ä³¸¯¸í - "+_pc.getName()+" / º¯½Å - "+_pc.getGfxId().getTempCharGfx()+" / Å¸ÀÔ -"+type));
+			"[ìŠ¤í•µ ì ˆë‹¨] ìºë¦­ëª… - "+_pc.getName()+" / ë³€ì‹  - "+_pc.getGfxId().getTempCharGfx()+" / íƒ€ì… -"+type));
 			_injusticeCount = 0;
 		}
 
 	}
 */
 	/**
-	 * PC »óÅÂ·ÎºÎÅÍ ÁöÁ¤µÈ Á¾·ùÀÇ ¾×¼ÇÀÇ ¿Ã¹Ù¸¥ ÀÎÅÍ¹ú(ms)À» °è»êÇØ, µ¹·ÁÁØ´Ù.
+	 * PC ìƒíƒœë¡œë¶€í„° ì§€ì •ëœ ì¢…ë¥˜ì˜ ì•¡ì…˜ì˜ ì˜¬ë°”ë¥¸ ì¸í„°ë²Œ(ms)ì„ ê³„ì‚°í•´, ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param type -
-	 *            ¾×¼ÇÀÇ Á¾·ù
+	 *            ì•¡ì…˜ì˜ ì¢…ë¥˜
 	 * @param _pc -
-	 *            Á¶»çÇÏ´Â PC
-	 * @return ¿Ã¹Ù¸¥ ÀÎÅÍ¹ú(ms)
+	 *            ì¡°ì‚¬í•˜ëŠ” PC
+	 * @return ì˜¬ë°”ë¥¸ ì¸í„°ë²Œ(ms)
 	 */
 	public int getRightInterval(ACT_TYPE type) {
 		int interval;
@@ -176,7 +176,7 @@ public class AcceleratorChecker {
 			interval = SprTable.getInstance().getAttackSpeed(
 					_pc.getGfxId().getTempCharGfx(), _pc.getCurrentWeapon() + 1);
 			if(interval == 0){
-				System.out.println("¾ø´Â(°ø°İ) gfxid:"+ _pc.getGfxId().getTempCharGfx());
+				System.out.println("ì—†ëŠ”(ê³µê²©) gfxid:"+ _pc.getGfxId().getTempCharGfx());
 				interval = 700;//700
 			}
 			
@@ -185,7 +185,7 @@ public class AcceleratorChecker {
 			interval = SprTable.getInstance().getMoveSpeed(
 					_pc.getGfxId().getTempCharGfx(), _pc.getCurrentWeapon());
 			if(interval == 0){
-				System.out.println("¾ø´Â(ÀÌµ¿) gfxid:"+ _pc.getGfxId().getTempCharGfx());
+				System.out.println("ì—†ëŠ”(ì´ë™) gfxid:"+ _pc.getGfxId().getTempCharGfx());
 			}
 			break;
 		case SPELL_DIR:

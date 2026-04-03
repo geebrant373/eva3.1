@@ -1,4 +1,4 @@
-package l1j.server.MJ3SEx;
+﻿package l1j.server.MJ3SEx;
 
 public class EActionConstruct {
 	public static final int ACTION_TYPE_BREATH = 1;

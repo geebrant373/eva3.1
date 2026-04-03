@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -51,7 +51,7 @@ public class L1SpawnMannequin implements L1CommandExecutor {
 
 			int npcid = 5000000 + classtype;
 			if(npcid > 5000100) {
-				pc.sendPackets(new S_SystemMessage("Çã»óÀ¸·Î »õ¿ï¼ö ÀÖ´Â ¿£ÇÇ¾¾ ¼ö¸¦ ÃÊ°úÇÏ¿´½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("í—ˆìƒìœ¼ë¡œ ìƒˆìš¸ìˆ˜ ìˆëŠ” ì—”í”¼ì”¨ ìˆ˜ë¥¼ ì´ˆê³¼í•˜ì˜€ìŠµë‹ˆë‹¤."));
 				return;
 			}
 
@@ -78,7 +78,7 @@ public class L1SpawnMannequin implements L1CommandExecutor {
 
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(cmdName
-					+ "[Å¸ÀÔ] ¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+					+ "[íƒ€ì…] ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 

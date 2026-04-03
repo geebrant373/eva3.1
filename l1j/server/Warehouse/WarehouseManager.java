@@ -1,4 +1,4 @@
-package l1j.server.Warehouse;
+﻿package l1j.server.Warehouse;
 
 public class WarehouseManager {	
 	private static WarehouseManager uniqueInstance = null;

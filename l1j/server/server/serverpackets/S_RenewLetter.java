@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+ï»¿package l1j.server.server.serverpackets;
 
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -14,8 +14,8 @@ public class S_RenewLetter extends ServerBasePacket{
 	}
 	private void buildPacket(L1PcInstance pc, int type, int id) {
 		writeC(Opcodes.S_OPCODE_LETTER);
-	    writeC(type); // 0:¸ŞÀÏÇÔ 1:Ç÷¸Í¸ŞÀÏÇÔ 2:º¸°üÇÔ
-	    writeD(id);  // °Ô½Ã¹° ³Ñ¹ö
+	    writeC(type); // 0:ë©”ì¼í•¨ 1:í˜ˆë§¹ë©”ì¼í•¨ 2:ë³´ê´€í•¨
+	    writeD(id);  // ê²Œì‹œë¬¼ ë„˜ë²„
 	    writeC(1); 
 	}
 	@Override

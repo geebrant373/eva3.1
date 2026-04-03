@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -49,43 +49,43 @@ public class SealScroll extends L1ItemInstance {
 			int itemId = this.getItemId();
 			L1ItemInstance l1iteminstance1 = pc.getInventory().getItem(packet.readD());
 			int targetItem = l1iteminstance1.getItemId();
-			if (itemId == 50020) { // ºÀÀÎÁÜ¼­
+			if (itemId == 50020) { // ë´‰ì¸ì¤Œì„œ
 				if (l1iteminstance1.getBless() >= 0 && l1iteminstance1.getBless() <= 3) {
 					int Bless = 0;
 					switch (l1iteminstance1.getBless()) {
 					case 0:
 						Bless = 128;
-						break; // Ãà
+						break; // ì¶•
 					case 1:
 						Bless = 129;
-						break; // º¸Åë
+						break; // ë³´í†µ
 					case 2:
 						Bless = 130;
-						break; // ÀúÁÖ
+						break; // ì €ì£¼
 					case 3:
 						Bless = 131;
-						break; // ¹ÌÈ®ÀÎ
+						break; // ë¯¸í™•ì¸
 					}
 					l1iteminstance1.setBless(Bless);
 					pc.getInventory().updateItem(l1iteminstance1, L1PcInventory.COL_BLESS);
 					pc.getInventory().saveItem(l1iteminstance1, L1PcInventory.COL_BLESS);
 					pc.getInventory().removeItem(useItem, 1);
 				} else
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö
-																// ¾Ê¾Ò½À´Ï´Ù.
-			} else if (itemId == 45110) { // ºÀÀÎÇØÁ¦ÁÜ¼­
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€
+																// ì•Šì•˜ìŠµë‹ˆë‹¤.
+			} else if (itemId == 45110) { // ë´‰ì¸í•´ì œì¤Œì„œ
 				if (l1iteminstance1.getBless() >= 1 && l1iteminstance1.getBless() <= 3) {
 					int Bless = 0;
 					switch (l1iteminstance1.getBless()) {
 					case 1:
 						Bless = 0;
-						break; // º¸Åë ¾ÆÀÌÅÛ
+						break; // ë³´í†µ ì•„ì´í…œ
 					case 2:
 						Bless = 0;
-						break; // ÀúÁÖ ¾ÆÀÌÅÛ
+						break; // ì €ì£¼ ì•„ì´í…œ
 					case 3:
 						Bless = 0;
-						break; // ¹ÌÈ®ÀÎ ¾ÆÀÌÅÛ
+						break; // ë¯¸í™•ì¸ ì•„ì´í…œ
 					}
 					int rnd = _random.nextInt(100) + 1;
 					if (rnd < 10) {
@@ -104,12 +104,12 @@ public class SealScroll extends L1ItemInstance {
 						}
 					} else {
 						pc.getInventory().removeItem(useItem, 1);
-						pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ
-																	// ÀÏ¾î³ªÁö
-																	// ¾Ê¾Ò½À´Ï´Ù.
+						pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„
+																	// ì¼ì–´ë‚˜ì§€
+																	// ì•Šì•˜ìŠµë‹ˆë‹¤.
 					}
 				}
-			} else if (itemId == 50021) { // ºÀÀÎÇØÁ¦ÁÜ¼­
+			} else if (itemId == 50021) { // ë´‰ì¸í•´ì œì¤Œì„œ
 				if (l1iteminstance1.getBless() >= 128 && l1iteminstance1.getBless() <= 131) {
 					int Bless = 0;
 					switch (l1iteminstance1.getBless()) {
@@ -131,51 +131,51 @@ public class SealScroll extends L1ItemInstance {
 					pc.getInventory().saveItem(l1iteminstance1, L1PcInventory.COL_BLESS);
 					pc.getInventory().removeItem(useItem, 1);
 				} else
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö
-																// ¾Ê¾Ò½À´Ï´Ù.
-			} else if (itemId == 501003) { // Ãàº¹¹ŞÀº ÁÖ¹®¼­
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€
+																// ì•Šì•˜ìŠµë‹ˆë‹¤.
+			} else if (itemId == 501003) { // ì¶•ë³µë°›ì€ ì£¼ë¬¸ì„œ
 
 				if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() == 0) {
-					pc.sendPackets(new S_SystemMessage("\\fY¹«±â¿Í ¹æ¾î±¸¸¸ »ç¿ë°¡´ÉÇÕ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("\\fYë¬´ê¸°ì™€ ë°©ì–´êµ¬ë§Œ ì‚¬ìš©ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 					return;
 				}
 				// 1:helm, 2:armor, 3:T, 4:cloak, 5:glove, 6:boots, 7:shield, 8:amulet,9:ring, 10:belt, 11:ring2, 12:earring
 				if (l1iteminstance1.getItem().getType2() == 2) {
 					if (l1iteminstance1.getItem().getType() >= 9 && l1iteminstance1.getItem().getType() <= 13) {
-						pc.sendPackets(new S_SystemMessage("±Í°ÉÀÌ,º§Æ®,°¡´õ,¹İÁö¿¡´Â Ãàº¹ ÁÖ¹®¼­¸¦ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("ê·€ê±¸ì´,ë²¨íŠ¸,ê°€ë”,ë°˜ì§€ì—ëŠ” ì¶•ë³µ ì£¼ë¬¸ì„œë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 						return;
 					}
 				}
 				if (l1iteminstance1.getItem().getType2() == 1) {
 					if (l1iteminstance1.getEnchantLevel() <= 7) {
-						pc.sendPackets(new S_SystemMessage("\\fY+8ÀÎÃ¾ºÎÅÍ Ãàº¹ ÁÖ¹®¼­ »ç¿ë °¡´ÉÇÕ´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("\\fY+8ì¸ì²¸ë¶€í„° ì¶•ë³µ ì£¼ë¬¸ì„œ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 						return;
 					}
 				} else if (l1iteminstance1.getItem().getType2() == 2) {
 					if (l1iteminstance1.getItem().get_safeenchant() == 0) {
 						if (l1iteminstance1.getEnchantLevel() <= 2) {
-							pc.sendPackets(new S_SystemMessage("\\fY+3ÀÎÃ¾ºÎÅÍ Ãàº¹ ÁÖ¹®¼­ »ç¿ë °¡´ÉÇÕ´Ï´Ù."));
+							pc.sendPackets(new S_SystemMessage("\\fY+3ì¸ì²¸ë¶€í„° ì¶•ë³µ ì£¼ë¬¸ì„œ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 							return;
 						}
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 4) {
 						if (l1iteminstance1.getEnchantLevel() <= 6) {
-							pc.sendPackets(new S_SystemMessage("\\fY+7ÀÎÃ¾ºÎÅÍ Ãàº¹ ÁÖ¹®¼­ »ç¿ë °¡´ÉÇÕ´Ï´Ù."));
+							pc.sendPackets(new S_SystemMessage("\\fY+7ì¸ì²¸ë¶€í„° ì¶•ë³µ ì£¼ë¬¸ì„œ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 							return;
 						}
 					} else if (l1iteminstance1.getItem().get_safeenchant() == 6) {
 						if (l1iteminstance1.getEnchantLevel() <= 7) {
-							pc.sendPackets(new S_SystemMessage("\\fY+8ÀÎÃ¾ºÎÅÍ Ãàº¹ ÁÖ¹®¼­ »ç¿ë °¡´ÉÇÕ´Ï´Ù."));
+							pc.sendPackets(new S_SystemMessage("\\fY+8ì¸ì²¸ë¶€í„° ì¶•ë³µ ì£¼ë¬¸ì„œ ì‚¬ìš© ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 							return;
 						}
 					}
 				}
-				if (l1iteminstance1.getBless() >= 128) { // ÀÌ¹ÌÃàÀÏ°æ¿ì
-					pc.sendPackets(new S_ServerMessage(79)); // ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+				if (l1iteminstance1.getBless() >= 128) { // ì´ë¯¸ì¶•ì¼ê²½ìš°
+					pc.sendPackets(new S_ServerMessage(79)); // ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 				
 				int ran = _random.nextInt(100) + 1;
-				if (ran <= Config.weaponbless) {// 10ÇÁ·Î È®·ü·Î Ãàº¹ÀÎÃ¾¿¡ ¼º°øÇÑ´Ù.
+				if (ran <= Config.weaponbless) {// 10í”„ë¡œ í™•ë¥ ë¡œ ì¶•ë³µì¸ì²¸ì— ì„±ê³µí•œë‹¤.
 					if (l1iteminstance1.getItem().getType2() == 1) {
 						switch(l1iteminstance1.getEnchantLevel()) {
 						case 7:
@@ -235,12 +235,12 @@ public class SealScroll extends L1ItemInstance {
 					pc.getInventory().saveItem(l1iteminstance1, L1PcInventory.COL_BLESS);
 					pc.getInventory().updateItem(l1iteminstance1, L1PcInventory.COL_IS_ID);
 					pc.getInventory().removeItem(useItem, 1);
-					pc.sendPackets(new S_SystemMessage("\\fYÃàº¹ ¹ŞÀº ÁÖ¹®¼­ ÀÎÃ¾¿¡ ¼º°øÇÏ¿´½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("\\fYì¶•ë³µ ë°›ì€ ì£¼ë¬¸ì„œ ì¸ì²¸ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤."));
 				} else {
-					pc.sendPackets(new S_SystemMessage("\\fYÃàº¹ ¹ŞÀº ÁÖ¹®¼­ ÀÎÃ¾¿¡ ½ÇÆĞÇÏ¿´½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("\\fYì¶•ë³µ ë°›ì€ ì£¼ë¬¸ì„œ ì¸ì²¸ì— ì‹¤íŒ¨í•˜ì˜€ìŠµë‹ˆë‹¤."));
 					pc.getInventory().removeItem(useItem, 1);
 				}
-			} else if (itemId == 90000034) { // ÀÎÇü Ãàº¹¹ŞÀº ÁÖ¹®¼­
+			} else if (itemId == 90000034) { // ì¸í˜• ì¶•ë³µë°›ì€ ì£¼ë¬¸ì„œ
 				if (targetItem == 743 || targetItem == 744 || targetItem == 41248 || targetItem == 41249 || targetItem == 41250
 						 || targetItem == 41916 || targetItem == 430000 || targetItem == 430001 || targetItem == 430002
 						 || targetItem == 430003 || targetItem == 430004 || targetItem == 430500 || targetItem == 430505
@@ -248,25 +248,25 @@ public class SealScroll extends L1ItemInstance {
 						 || targetItem == 4370600 || targetItem == 5370600 || targetItem == 5370601 || targetItem == 5370602
 						 || targetItem == 5370603 || targetItem == 5370604 || targetItem == 5370605 || targetItem == 5370606
 						 || targetItem == 5370607 || targetItem == 5370608) {
-					if (l1iteminstance1.getBless() == 0) { // ÀÌ¹ÌÃàÀÏ°æ¿ì
-						pc.sendPackets(new S_ServerMessage(79)); // ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					if (l1iteminstance1.getBless() == 0) { // ì´ë¯¸ì¶•ì¼ê²½ìš°
+						pc.sendPackets(new S_ServerMessage(79)); // ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 						return;
 					}
 					
 					int ran = _random.nextInt(100) + 1;
-					if (ran <= Config.ÀÎÇüÃàº¹) {
+					if (ran <= Config.ì¸í˜•ì¶•ë³µ) {
 						l1iteminstance1.setBless(0);
 						pc.getInventory().updateItem(l1iteminstance1, L1PcInventory.COL_BLESS);
 						pc.getInventory().saveItem(l1iteminstance1, L1PcInventory.COL_BLESS);
 						pc.getInventory().updateItem(l1iteminstance1, L1PcInventory.COL_IS_ID);
 						pc.getInventory().removeItem(useItem, 1);
-						pc.sendPackets(new S_SystemMessage("\\fYÀÎÇü¿¡ Ãàº¹ÀÇ ±â¿îÀÌ ½º¸çµì´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("\\fYì¸í˜•ì— ì¶•ë³µì˜ ê¸°ìš´ì´ ìŠ¤ë©°ë“­ë‹ˆë‹¤."));
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fYÃàº¹ÀÌ ½ÇÆĞµÇ¾ú½À´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("\\fYì¶•ë³µì´ ì‹¤íŒ¨ë˜ì—ˆìŠµë‹ˆë‹¤."));
 						pc.getInventory().removeItem(useItem, 1);
 					}
 				} else {
-					pc.sendPackets(new S_SystemMessage("\\fYÀÎÇü¿¡¸¸ »ç¿ë ÇÒ ¼ö ÀÖ½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("\\fYì¸í˜•ì—ë§Œ ì‚¬ìš© í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤."));
 				}
 			}
 		}

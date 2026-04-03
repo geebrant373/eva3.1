@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -34,15 +34,15 @@ public class CharacterAutoHuntTable {
 			pstm.setInt(1, pc.getId());
 			rs = pstm.executeQuery();
 			while (rs.next()) {
-				pc.set_ÀÚµ¿±ÍÈ¯ÆÛ¼¾Æ®(rs.getInt("Auto_Return_Percent"));
+				pc.set_ìë™ê·€í™˜í¼ì„¼íŠ¸(rs.getInt("Auto_Return_Percent"));
 				pc.setAutoTell(rs.getInt("Auto_Teleport_Use") != 0);
 				pc.setAutoBuyPotion(rs.getInt("Auto_Buy_item_Use") != 0);
 			}
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
-			System.out.println("¡áSQLÁ¢¼Ó ¿À·ù¡á : ½ºÅ©¸°¼¦À» Âï¾î ÁÖ½Ã±æ ¹Ù¶ø´Ï´Ù.");
+			System.out.println("â– SQLì ‘ì† ì˜¤ë¥˜â–  : ìŠ¤í¬ë¦°ìƒ·ì„ ì°ì–´ ì£¼ì‹œê¸¸ ë°”ëë‹ˆë‹¤.");
 		} catch (Exception e1) {
-			System.out.println("¡á¿À·ù¡á : ½ºÅ©¸°¼¦À» Âï¾î ÁÖ½Ã±æ ¹Ù¶ø´Ï´Ù.");
+			System.out.println("â– ì˜¤ë¥˜â–  : ìŠ¤í¬ë¦°ìƒ·ì„ ì°ì–´ ì£¼ì‹œê¸¸ ë°”ëë‹ˆë‹¤.");
 		} finally {
 			SQLUtil.close(rs);
 			SQLUtil.close(pstm);
@@ -57,9 +57,9 @@ public class CharacterAutoHuntTable {
 			String sql = "INSERT INTO character_auto_hunt (objid, char_name, Auto_Return_Percent, Auto_Teleport_Use, Auto_Buy_item_Use) VALUES (?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE objid=?, char_name=?, Auto_Return_Percent=?, Auto_Teleport_Use=?, Auto_Buy_item_Use=?";
 
 			L1QueryUtil.execute(con, sql,
-					new Object[] { Integer.valueOf(pc.getId()), pc.getName(), Integer.valueOf(pc.get_ÀÚµ¿±ÍÈ¯ÆÛ¼¾Æ®()),
+					new Object[] { Integer.valueOf(pc.getId()), pc.getName(), Integer.valueOf(pc.get_ìë™ê·€í™˜í¼ì„¼íŠ¸()),
 							Integer.valueOf(pc.getAutoTell() ? 1 : 0), Integer.valueOf(pc.getAutoBuyPotion() ? 1 : 0),
-							Integer.valueOf(pc.getId()), pc.getName(), Integer.valueOf(pc.get_ÀÚµ¿±ÍÈ¯ÆÛ¼¾Æ®()),
+							Integer.valueOf(pc.getId()), pc.getName(), Integer.valueOf(pc.get_ìë™ê·€í™˜í¼ì„¼íŠ¸()),
 							Integer.valueOf(pc.getAutoTell() ? 1 : 0),
 							Integer.valueOf(pc.getAutoBuyPotion() ? 1 : 0) });
 		} catch (Exception e) {

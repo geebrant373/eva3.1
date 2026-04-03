@@ -1,4 +1,4 @@
-package server.threads.pc;
+ï»¿package server.threads.pc;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +26,7 @@ public class CharacterQuickCheckThread extends Thread{
 	
 	
 	public void run(){
-		System.out.println(CharacterQuickCheckThread.class.getName()  + " ½ÃÀÛ");
+		System.out.println(CharacterQuickCheckThread.class.getName()  + " ì‹œìž‘");
 		while(true){
 			try {
 				for(L1PcInstance _client : L1World.getInstance().getAllPlayers()){

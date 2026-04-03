@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Astar.share;
+﻿package l1j.server.GameSystem.Astar.share;
 
 public final class TimeLine {
 

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -52,70 +52,70 @@ public class L1Status implements L1CommandExecutor {
 			target = L1World.getInstance().getPlayer(char_name);
 
 			if (target == null) {
-				pc.sendPackets(new S_ServerMessage(73, char_name)); // \f1%0Àº °ÔÀÓÀ» ÇÏ°í ÀÖÁö ¾Ê½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(73, char_name)); // \f1%0ì€ ê²Œì„ì„ í•˜ê³  ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 				return;
 			}
 
 			// -- not use DB --
-			if (param.equalsIgnoreCase("¹æ¾î")) {
+			if (param.equalsIgnoreCase("ë°©ì–´")) {
 				target.getAC().addAc((byte) (value - target.getAC().getAc()));
-			} else if (param.equalsIgnoreCase("¸¶¹æ")) {
+			} else if (param.equalsIgnoreCase("ë§ˆë°©")) {
 				target.getResistance().addMr((short) (value - target.getResistance().getMr()));
-			} else if (param.equalsIgnoreCase("°ø¼º")) {
+			} else if (param.equalsIgnoreCase("ê³µì„±")) {
 				target.addHitup((short) (value - target.getHitup()));
-			} else if (param.equalsIgnoreCase("µ¥¹ÌÁö")) {
+			} else if (param.equalsIgnoreCase("ë°ë¯¸ì§€")) {
 				target.addDmgup((short) (value - target.getDmgup()));
 				// -- use DB --
 			} else {
-				if (param.equalsIgnoreCase("ÇÇ")) {
+				if (param.equalsIgnoreCase("í”¼")) {
 					target.addBaseMaxHp((short) (value - target.getBaseMaxHp()));
 					target.setCurrentHp(target.getMaxHp());
-				} else if (param.equalsIgnoreCase("¿¥ÇÇ")) {
+				} else if (param.equalsIgnoreCase("ì— í”¼")) {
 					target.addBaseMaxMp((short)(value - target.getBaseMaxMp()));
 					target.setCurrentMp(target.getMaxMp());
-				} else if (param.equalsIgnoreCase("¼ºÇâ")) {
+				} else if (param.equalsIgnoreCase("ì„±í–¥")) {
 					target.setLawful(value);
 					S_Lawful s_lawful = new S_Lawful(target.getId(), target.getLawful());
 					target.sendPackets(s_lawful);
 					Broadcaster.broadcastPacket(target, s_lawful);
-				} else if (param.equalsIgnoreCase("¿ìÈ£µµ")) {
+				} else if (param.equalsIgnoreCase("ìš°í˜¸ë„")) {
 					target.setKarma(value);
-				} else if (param.equalsIgnoreCase("Áö¿¥")) {
+				} else if (param.equalsIgnoreCase("ì§€ì— ")) {
 					if(value == Config.GMCODE || value == 1){
 						target.setAccessLevel((short) value);
-						target.sendPackets(new S_SystemMessage("RESTART ÇÏ¸é GM±ÇÇÑÀÌ »ı±é´Ï´Ù."));
+						target.sendPackets(new S_SystemMessage("RESTART í•˜ë©´ GMê¶Œí•œì´ ìƒê¹ë‹ˆë‹¤."));
 					} else if(value == 0 && target.getAccessLevel() == 1) {
 						target.setAccessLevel((short) value);
-						target.sendPackets(new S_SystemMessage("RESTART ÇÏ¸é ±ÇÇÑÀÌ »ç¶óÁı´Ï´Ù."));
+						target.sendPackets(new S_SystemMessage("RESTART í•˜ë©´ ê¶Œí•œì´ ì‚¬ë¼ì§‘ë‹ˆë‹¤."));
 					} else {
-						target.sendPackets(new S_SystemMessage("GM¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù."));
+						target.sendPackets(new S_SystemMessage("GMë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."));
 					}
-				} else if (param.equalsIgnoreCase("Èû")) {
+				} else if (param.equalsIgnoreCase("í˜")) {
 					target.getAbility().setStr((byte)value);
-				} else if (param.equalsIgnoreCase("ÄÜ")) {
+				} else if (param.equalsIgnoreCase("ì½˜")) {
 					target.getAbility().setCon((byte)value);
-				} else if (param.equalsIgnoreCase("µ¦½º")) {
+				} else if (param.equalsIgnoreCase("ë±ìŠ¤")) {
 					target.getAbility().setDex((byte)value);
-				} else if (param.equalsIgnoreCase("ÀÎÆ®")) {
+				} else if (param.equalsIgnoreCase("ì¸íŠ¸")) {
 					target.getAbility().setInt((byte)value);
-				} else if (param.equalsIgnoreCase("À§Áî")) {
+				} else if (param.equalsIgnoreCase("ìœ„ì¦ˆ")) {
 					target.getAbility().setWis((byte)value);
-				} else if (param.equalsIgnoreCase("Ä«¸®")) {
+				} else if (param.equalsIgnoreCase("ì¹´ë¦¬")) {
 					target.getAbility().setCha((byte)value);
 				} else {
-					pc.sendPackets(new S_SystemMessage("½ºÅ×ÀÌÅÍ½º " + param
-							+ " (Àº)´Â ºÒ¸íÇÕ´Ï´Ù. "));
+					pc.sendPackets(new S_SystemMessage("ìŠ¤í…Œì´í„°ìŠ¤ " + param
+							+ " (ì€)ëŠ” ë¶ˆëª…í•©ë‹ˆë‹¤. "));
 					return;
 				}
-				target.save(); // DB¿¡ Ä³¸¯ÅÍ Á¤º¸¸¦ ±âÀÔÇÑ´Ù
+				target.save(); // DBì— ìºë¦­í„° ì •ë³´ë¥¼ ê¸°ì…í•œë‹¤
 				target.refresh();
 			}
 			target.sendPackets(new S_OwnCharStatus(target));
-			pc.sendPackets(new S_SystemMessage(target.getName() + "ÀÇ " + param
-					+ "(À»)¸¦ " + value + "·Î º¯°æÇß½À´Ï´Ù. "));
+			pc.sendPackets(new S_SystemMessage(target.getName() + "ì˜ " + param
+					+ "(ì„)ë¥¼ " + value + "ë¡œ ë³€ê²½í–ˆìŠµë‹ˆë‹¤. "));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [Ä³¸¯ÅÍ¸í] [½ºÅİ] [º¯°æÄ¡]¸¦ ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
-			pc.sendPackets(new S_SystemMessage("[ÇÇ][¿¥ÇÇ][¼ºÇâ][¿ìÈ£µµ][Áö¿¥][Èû][ÄÜ][µ¦½º][ÀÎÆ®][À§Áî][Ä«¸®]"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [ìºë¦­í„°ëª…] [ìŠ¤í…Ÿ] [ë³€ê²½ì¹˜]ë¥¼ ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
+			pc.sendPackets(new S_SystemMessage("[í”¼][ì— í”¼][ì„±í–¥][ìš°í˜¸ë„][ì§€ì— ][í˜][ì½˜][ë±ìŠ¤][ì¸íŠ¸][ìœ„ì¦ˆ][ì¹´ë¦¬]"));
 		}
 	}
 }

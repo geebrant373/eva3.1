@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -26,7 +26,7 @@ public class S_Exp extends ServerBasePacket {
 	private static final String S_EXP = "[S] S_Exp";
 
 	/**
-	 * ·¹º§°ú °æÇèÄ¡ µ¥ÀÌÅÍ¸¦ º¸³½´Ù.
+	 * ë ˆë²¨ê³¼ ê²½í—˜ì¹˜ ë°ì´í„°ë¥¼ ë³´ë‚¸ë‹¤.
 	 * @param pc - PC
 	 */
 	public S_Exp(L1PcInstance pc) {

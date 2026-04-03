@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -46,15 +46,15 @@ public class Weapon extends L1ItemInstance{
 					int min = useItem.getItem().getMinLevel();
 					int max = useItem.getItem().getMaxLevel();
 					if (min != 0 && min > pc.getLevel()) {
-						// ÀÌ ¾ÆÀÌÅÛÀº%0·¹º§ ÀÌ»óÀÌ µÇÁö ¾ÊÀ¸¸é »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+						// ì´ ì•„ì´í…œì€%0ë ˆë²¨ ì´ìƒì´ ë˜ì§€ ì•Šìœ¼ë©´ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 						pc.sendPackets(new S_ServerMessage(318, String.valueOf(min)));
 					} else if (max != 0 && max < pc.getLevel()) {
-						// ÀÌ ¾ÆÀÌÅÛÀº%d·¹º§ ÀÌÇÏ¸¸ »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
-						// S_ServerMessage¿¡¼­´Â ÀÎ¼ö°¡ Ç¥½ÃµÇÁö ¾Ê´Â´Ù
+						// ì´ ì•„ì´í…œì€%dë ˆë²¨ ì´í•˜ë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+						// S_ServerMessageì—ì„œëŠ” ì¸ìˆ˜ê°€ í‘œì‹œë˜ì§€ ì•ŠëŠ”ë‹¤
 						if (max < 50) { 
 							pc.sendPackets(new S_PacketBox(S_PacketBox.MSG_LEVEL_OVER, max));
 						} else {
-							pc.sendPackets(new S_SystemMessage("ÀÌ ¾ÆÀÌÅÛÀº" + max + "·¹º§ ÀÌÇÏ¸¸ »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù. "));
+							pc.sendPackets(new S_SystemMessage("ì´ ì•„ì´í…œì€" + max + "ë ˆë²¨ ì´í•˜ë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. "));
 						}
 					} else {
 						if (pc.isGm()){
@@ -66,7 +66,7 @@ public class Weapon extends L1ItemInstance{
 								|| pc.isDarkelf() && useItem.getItem().isUseDarkelf()) {
 							UseWeapon(pc, useItem);
 						} else {
-							// \f1´ç½ÅÀÇ Å¬·¡½º¿¡¼­´Â ÀÌ ¾ÆÀÌÅÛÀº »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+							// \f1ë‹¹ì‹ ì˜ í´ë˜ìŠ¤ì—ì„œëŠ” ì´ ì•„ì´í…œì€ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 							pc.sendPackets(new S_ServerMessage(264));
 						}
 					}
@@ -77,24 +77,24 @@ public class Weapon extends L1ItemInstance{
 	private void UseWeapon(L1PcInstance activeChar, L1ItemInstance weapon) {
 		L1PcInventory pcInventory = activeChar.getInventory();		
 		if (activeChar.getWeapon() == null
-				|| !activeChar.getWeapon().equals(weapon)) { // ÁöÁ¤µÈ ¹«±â°¡ Àåºñ ÇÏ°í ÀÖ´Â ¹«±â¿Í ´Ù¸¥ °æ¿ì, Àåºñ ÇÒ ¼ö ÀÖÀ»±î È®ÀÎ
+				|| !activeChar.getWeapon().equals(weapon)) { // ì§€ì •ëœ ë¬´ê¸°ê°€ ì¥ë¹„ í•˜ê³  ìˆëŠ” ë¬´ê¸°ì™€ ë‹¤ë¥¸ ê²½ìš°, ì¥ë¹„ í•  ìˆ˜ ìˆì„ê¹Œ í™•ì¸
 			int weapon_type = weapon.getItem().getType();
 			int polyid = activeChar.getGfxId().getTempCharGfx();
 
-			if (!L1PolyMorph.isEquipableWeapon(polyid, weapon_type)) { // ±× º¯½Å¿¡¼­´Â Àåºñ ºÒ°¡
+			if (!L1PolyMorph.isEquipableWeapon(polyid, weapon_type)) { // ê·¸ ë³€ì‹ ì—ì„œëŠ” ì¥ë¹„ ë¶ˆê°€
 				return;
 			}		
 		}
 
-		activeChar.cancelAbsoluteBarrier(); // ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+		activeChar.cancelAbsoluteBarrier(); // ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 
-		if (activeChar.getWeapon() != null) { // ÀÌ¹Ì ¹«¾ùÀÎ°¡¸¦ Àåºñ ÇÏ°í ÀÖ´Â °æ¿ì, ÀüÀÇ Àåºñ¸¦ ¶¾´Ù
-			if (activeChar.getWeapon().getItem().getBless() == 2) { // ÀúÁÖÇØÁö°í ÀÖ¾úÀ» °æ¿ì
-				activeChar.sendPackets(new S_ServerMessage(150)); // \f1 ¶¿ ¼ö°¡ ¾ø½À´Ï´Ù. ÀúÁÖ¸¦ °ÉÄ¥ ¼ö ÀÖ°í ÀÖ´Â °Í °°½À´Ï´Ù.
+		if (activeChar.getWeapon() != null) { // ì´ë¯¸ ë¬´ì—‡ì¸ê°€ë¥¼ ì¥ë¹„ í•˜ê³  ìˆëŠ” ê²½ìš°, ì „ì˜ ì¥ë¹„ë¥¼ ë—€ë‹¤
+			if (activeChar.getWeapon().getItem().getBless() == 2) { // ì €ì£¼í•´ì§€ê³  ìˆì—ˆì„ ê²½ìš°
+				activeChar.sendPackets(new S_ServerMessage(150)); // \f1 ë—„ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤. ì €ì£¼ë¥¼ ê±¸ì¹  ìˆ˜ ìˆê³  ìˆëŠ” ê²ƒ ê°™ìŠµë‹ˆë‹¤.
 				return;
 			}
 			if (activeChar.getWeapon().equals(weapon)) {
-				// Àåºñ ±³È¯Àº ¾Æ´Ï°í Á¦¿ÜÇÒ »Ó
+				// ì¥ë¹„ êµí™˜ì€ ì•„ë‹ˆê³  ì œì™¸í•  ë¿
 				pcInventory.setEquipped(activeChar.getWeapon(), false, false,
 						false);
 				return;
@@ -105,15 +105,15 @@ public class Weapon extends L1ItemInstance{
 		}
 
 		if (weapon.getItem().isTwohandedWeapon() && pcInventory.getTypeEquipped(2, 7) >= 1) {
-			// ¾ç¼Õ ¹«±âÀÇ °æ¿ì, ½¯µå(shield) ÀåºñÀÇ È®ÀÎ
+			// ì–‘ì† ë¬´ê¸°ì˜ ê²½ìš°, ì‰´ë“œ(shield) ì¥ë¹„ì˜ í™•ì¸
 			activeChar.sendPackets(new S_ServerMessage(128));
-			// \f1½¯µå(shield)¸¦ Àåºñ ÇÏ°í ÀÖÀ» ¶§´Â ¾ç¼ÕÀ¸·Î °¡Áö´Â ¹«±â¸¦ »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+			// \f1ì‰´ë“œ(shield)ë¥¼ ì¥ë¹„ í•˜ê³  ìˆì„ ë•ŒëŠ” ì–‘ì†ìœ¼ë¡œ ê°€ì§€ëŠ” ë¬´ê¸°ë¥¼ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 		
-		if (weapon.getItemId() == 200002) { // ÀúÁÖÇØÁø ´ÙÀÌ½º´Ù°¡
+		if (weapon.getItemId() == 200002) { // ì €ì£¼í•´ì§„ ë‹¤ì´ìŠ¤ë‹¤ê°€
 			activeChar.sendPackets(new S_ServerMessage(149, weapon
-					.getLogName())); // \f1%0ÀÌ ¼Õ¿¡ µé·¯ºÙ¾ú½À´Ï´Ù.
+					.getLogName())); // \f1%0ì´ ì†ì— ë“¤ëŸ¬ë¶™ì—ˆìŠµë‹ˆë‹¤.
 		}
 		pcInventory.setEquipped(weapon, true, false, false);
 	}

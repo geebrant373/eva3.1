@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -38,7 +38,7 @@ public class C_Exclude extends ClientBasePacket {
 	private static Logger _log = Logger.getLogger(C_Exclude.class.getName());
 
 	/**
-	 * C_1 /exclude Ä¿¸àµå¸¦ ÃÆÀ» ¶§¿¡ º¸³»Áø´Ù
+	 * C_1 /exclude ì»¤ë©˜ë“œë¥¼ ì³¤ì„ ë•Œì— ë³´ë‚´ì§„ë‹¤
 	 */
 	public C_Exclude(byte[] decrypt, LineageClient client) {
 		super(decrypt);
@@ -50,7 +50,7 @@ public class C_Exclude extends ClientBasePacket {
 		try {
 			L1ExcludingList exList = pc.getExcludingList();
 			if (exList.isFull()) {
-				pc.sendPackets(new S_ServerMessage(472)); // \f1Â÷´ÜµÈ À¯Àú°¡ ³Ê¹« ¸¹½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(472)); // \f1ì°¨ë‹¨ëœ ìœ ì €ê°€ ë„ˆë¬´ ë§ìŠµë‹ˆë‹¤.
 				return;
 			}
 			if (exList.contains(name)) {

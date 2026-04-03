@@ -1,4 +1,4 @@
-package l1j.server.server.model.skill.skills;
+ï»¿package l1j.server.server.model.skill.skills;
 
 import l1j.server.server.datatables.NpcTable;
 import l1j.server.server.model.L1Character;
@@ -15,7 +15,7 @@ public class SummonMonster {
 		int level = pc.getLevel();
 		
 		if (pc.getMap().isRecallPets() || pc.isGm()) {
-			if (pc.getInventory().checkEquipped(20284)) { // 20284 : ¼ÒÈ¯Á¶Á¾¹ÝÁö
+			if (pc.getInventory().checkEquipped(20284)) { // 20284 : ì†Œí™˜ì¡°ì¢…ë°˜ì§€
 				pc.sendPackets(new S_ShowSummonList(pc.getId()));
 			} else {
 				int[] summons = new int[] { 81083, 81084, 81085, 81086, 81087, 81088, 81089 };

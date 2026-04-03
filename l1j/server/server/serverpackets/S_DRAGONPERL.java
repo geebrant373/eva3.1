@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;//µå·¡°ïÁøÁÖ
+ï»¿package l1j.server.server.serverpackets;//ë“œë˜ê³¤ì§„ì£¼
 
 import java.util.logging.Logger;
 
@@ -13,8 +13,8 @@ public class S_DRAGONPERL extends ServerBasePacket {
 
 	public S_DRAGONPERL(int i, int type) {
 		writeC(Opcodes.S_OPCODE_DRAGONPERL);
-		writeD(i); // ÄÉ¸¯ÅÍ °´Ã¼ ¾ÆÀÌµğ
-		writeC(type); // 1~7 ¼úÃëÇÑ È¿°ú 8 µåÁø
+		writeD(i); // ì¼€ë¦­í„° ê°ì²´ ì•„ì´ë””
+		writeC(type); // 1~7 ìˆ ì·¨í•œ íš¨ê³¼ 8 ë“œì§„
 	}
 
 	@Override

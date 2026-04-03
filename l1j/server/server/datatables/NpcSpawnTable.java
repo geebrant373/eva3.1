@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -140,8 +140,8 @@ public class NpcSpawnTable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		_log.config("NPC ¹èÄ¡ ¸®½ºÆ® " + _spawntable.size() + "°Ç ·Îµå");
-		_log.fine("ÃÑNPC¼ö " + spawnCount + "°Ç");
+		_log.config("NPC ë°°ì¹˜ ë¦¬ìŠ¤íŠ¸ " + _spawntable.size() + "ê±´ ë¡œë“œ");
+		_log.fine("ì´NPCìˆ˜ " + spawnCount + "ê±´");
 	}
 
 	public void storeSpawn(L1PcInstance pc, L1Npc npc) {
@@ -186,10 +186,10 @@ public class NpcSpawnTable {
 	    PreparedStatement pstm = null;
 	    ResultSet rs = null;
 	    try {
-	        // µ¥ÀÌÅÍº£ÀÌ½º ¿¬°á
+	        // ë°ì´í„°ë² ì´ìŠ¤ ì—°ê²°
 	        con = L1DatabaseFactory.getInstance().getConnection();
 
-	        // ½ºÆù Á¤º¸ Á¶È¸
+	        // ìŠ¤í° ì •ë³´ ì¡°íšŒ
 	        pstm = con.prepareStatement(
 	            "SELECT id FROM spawnlist_npc WHERE npc_templateid=? AND mapid=? AND locx=? AND locy=?"
 	        );
@@ -202,14 +202,14 @@ public class NpcSpawnTable {
 	        if (rs.next()) {
 	            int id = rs.getInt("id");
 
-	            // ³»ºÎ ½ºÆù Å×ÀÌºí¿¡¼­ Á¦°Å
+	            // ë‚´ë¶€ ìŠ¤í° í…Œì´ë¸”ì—ì„œ ì œê±°
 	            this._spawntable.remove(Integer.valueOf(id));
 
-	            // Statement ´İ±â
+	            // Statement ë‹«ê¸°
 	            SQLUtil.close(pstm);
-	            pstm = null; // ¸®¼Ò½º ÃÊ±âÈ­
+	            pstm = null; // ë¦¬ì†ŒìŠ¤ ì´ˆê¸°í™”
 
-	            // ½ºÆù Á¤º¸ »èÁ¦
+	            // ìŠ¤í° ì •ë³´ ì‚­ì œ
 	            pstm = con.prepareStatement(
 	                "DELETE FROM spawnlist_npc WHERE npc_templateid=? AND mapid=? AND locx=? AND locy=?"
 	            );
@@ -220,13 +220,13 @@ public class NpcSpawnTable {
 	            pstm.executeUpdate();
 	        }
 	    } catch (Exception e) {
-	        // ¿¹¿Ü ¹ß»ı ½Ã ·Î±ë
+	        // ì˜ˆì™¸ ë°œìƒ ì‹œ ë¡œê¹…
 	        e.printStackTrace();
 	    } finally {
-	        // ¸®¼Ò½º Á¤¸®
+	        // ë¦¬ì†ŒìŠ¤ ì •ë¦¬
 	        SQLUtil.close(rs);
-	        SQLUtil.close(pstm); // PreparedStatement ´İ±â
-	        SQLUtil.close(con);  // Connection ´İ±â
+	        SQLUtil.close(pstm); // PreparedStatement ë‹«ê¸°
+	        SQLUtil.close(con);  // Connection ë‹«ê¸°
 	    }
 	}
 

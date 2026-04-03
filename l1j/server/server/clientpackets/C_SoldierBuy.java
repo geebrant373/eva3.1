@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,17 +42,17 @@ public class C_SoldierBuy extends ClientBasePacket {
 	public C_SoldierBuy(byte abyte0[], LineageClient clientthread) {
 		super(abyte0);
 		@SuppressWarnings("unused")
-		int npcid = readD(); // ¸» °Ç npc id
-		int count = readH(); // ¸ñ·Ï¿¡¼­ ¸î°³ ¼±ÅÃ?
+		int npcid = readD(); // ë§ ê±´ npc id
+		int count = readH(); // ëª©ë¡ì—ì„œ ëª‡ê°œ ì„ íƒ?
 
 		SelectedSoldierInfo [] soldierInfor = new SelectedSoldierInfo[count];
 
 		int totalCount = 0, totalPrice = 0;
 		for(int i = 0; i < soldierInfor.length ; i++) {
 			soldierInfor[i] = new SelectedSoldierInfo();
-			soldierInfor[i].number = readH(); // ¸ñ·Ï¿¡¼­ ¸î¹øÂ° ¿ëº´ÀÎ°¡ 
-			soldierInfor[i].count = readH(); // ¿ëº´ ¸¶¸´¼ö
-			soldierInfor[i].price = readH(); // °¡°İ
+			soldierInfor[i].number = readH(); // ëª©ë¡ì—ì„œ ëª‡ë²ˆì§¸ ìš©ë³‘ì¸ê°€ 
+			soldierInfor[i].count = readH(); // ìš©ë³‘ ë§ˆë¦¿ìˆ˜
+			soldierInfor[i].price = readH(); // ê°€ê²©
 
 			totalCount += soldierInfor[i].count;
 			totalPrice += soldierInfor[i].price;
@@ -69,12 +69,12 @@ public class C_SoldierBuy extends ClientBasePacket {
 		int clanBossChar = pc.getAbility().getTotalCha();
 
 		if(totalsoldier + totalCount > clanBossChar) {
-			// Ä«¸® ºÎÁ·À¸·Î ½ÇÆĞ
-			// ¸Ş¼¼Áö º¸³»³ª?
+			// ì¹´ë¦¬ ë¶€ì¡±ìœ¼ë¡œ ì‹¤íŒ¨
+			// ë©”ì„¸ì§€ ë³´ë‚´ë‚˜?
 			return;
 		}
 
-		// ¸ğµç °Ë»ç ÇßÀ¸´Ï±î, ¿ëº´ ±¸ÀÔ Ã³¸®
+		// ëª¨ë“  ê²€ì‚¬ í–ˆìœ¼ë‹ˆê¹Œ, ìš©ë³‘ êµ¬ì… ì²˜ë¦¬
 
 		for(int i = 0; i < count ; i++) {
 			switch(soldierInfor[i].number) {

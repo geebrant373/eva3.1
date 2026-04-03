@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -79,12 +79,12 @@ public class SpawnBossTable {
 				while (s.hasMoreElements()) {
 					String temp2 = "";
 					StringTokenizer values = new StringTokenizer(s.nextToken());
-					while (values.hasMoreElements()) {// °ø¹éÁ¦°Å
+					while (values.hasMoreElements()) {// ê³µë°±ì œê±°
 						temp2 += values.nextToken();
 					}
 				//	 System.out.println("temp2 = " + temp2);
 
-				 // ½ºÆù½Ã°£
+				 // ìŠ¤í°ì‹œê°„
 						StringTokenizer mdata = new StringTokenizer(temp2, "/");
 						ArrayList<Integer> Hourlist = new ArrayList<Integer>();
 						ArrayList<Integer> Minutelist = new ArrayList<Integer>();
@@ -109,16 +109,16 @@ public class SpawnBossTable {
 							 //System.out.println("Minute = " + Minute);
 						}
 						
-					 // ½ºÆùÁÂÇ¥
+					 // ìŠ¤í°ì¢Œí‘œ
 					
 						
 						temp.SpawnLoc = new int[3];
 						temp.SpawnLoc[0] = rs.getInt("loc_x");
 						temp.SpawnLoc[1] = rs.getInt("loc_y");
 						temp.SpawnLoc[2] = rs.getInt("map_id");
-						// System.out.println("½ºÆùÁÂÇ¥x = " + temp.SpawnLoc[0]);
-						// System.out.println("½ºÆùÁÂÇ¥y = " + temp.SpawnLoc[1]);
-						// System.out.println("½ºÆùÁÂÇ¥m = " + temp.SpawnLoc[2]);
+						// System.out.println("ìŠ¤í°ì¢Œí‘œx = " + temp.SpawnLoc[0]);
+						// System.out.println("ìŠ¤í°ì¢Œí‘œy = " + temp.SpawnLoc[1]);
+						// System.out.println("ìŠ¤í°ì¢Œí‘œm = " + temp.SpawnLoc[2]);
 					
 
 					number++;
@@ -170,15 +170,15 @@ public class SpawnBossTable {
  
 	/*
 	 * 1~6 0 
-	 * ½ºÆùµ¥ÀÌ: ¿ù,È­,¼ö,¸ñ,±İ,Åä,ÀÏ 
-	 * ½ºÆùÅ¸ÀÓ: 2½Ã 00ºĞ, 5½Ã 30ºĞ 
-	 * ·£´ıÅ¸ÀÓ: 0ºĞ 
-	 * »èÁ¦Å¸ÀÓ: 3600ÃÊ 
-	 * ½ºÆùÁÂÇ¥: 32726, 32832, 603 
-	 * ·£´ı¹üÀ§: 0 
-	 * ±×·ì½ºÆù: 0 
-	 * YN¸Ş¼¼Áö: 1 
-	 * ½ºÆù¸àÆ®: 1
+	 * ìŠ¤í°ë°ì´: ì›”,í™”,ìˆ˜,ëª©,ê¸ˆ,í† ,ì¼ 
+	 * ìŠ¤í°íƒ€ì„: 2ì‹œ 00ë¶„, 5ì‹œ 30ë¶„ 
+	 * ëœë¤íƒ€ì„: 0ë¶„ 
+	 * ì‚­ì œíƒ€ì„: 3600ì´ˆ 
+	 * ìŠ¤í°ì¢Œí‘œ: 32726, 32832, 603 
+	 * ëœë¤ë²”ìœ„: 0 
+	 * ê·¸ë£¹ìŠ¤í°: 0 
+	 * YNë©”ì„¸ì§€: 1 
+	 * ìŠ¤í°ë©˜íŠ¸: 1
 	 */
 	public static class BossTemp {
 		public int npcid;

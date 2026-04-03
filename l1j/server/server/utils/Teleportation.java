@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -199,7 +199,7 @@ public class Teleportation {
 			pc.sendPackets(new S_SkillIconWindShackle(pc.getId(), pc.getSkillEffectTimerSet().getSkillEffectTimeSec(L1SkillId.WIND_SHACKLE)));
 		}
 		if (pc.getAutoHunt() && pc.getAutoMapid() != pc.getMapId()) {
-			removeAuto(pc,"\\fT¸ÊÀÌµ¿½Ã ÀÚµ¿»ç³ÉÀÌ Á¾·áµË´Ï´Ù.");
+			removeAuto(pc,"\\fTë§µì´ë™ì‹œ ìë™ì‚¬ëƒ¥ì´ ì¢…ë£Œë©ë‹ˆë‹¤.");
 		}
 	}
 

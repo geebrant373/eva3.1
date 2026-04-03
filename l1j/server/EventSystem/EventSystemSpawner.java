@@ -1,4 +1,4 @@
-package l1j.server.EventSystem;
+ï»¿package l1j.server.EventSystem;
 
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.L1World;
@@ -25,8 +25,8 @@ public class EventSystemSpawner implements Runnable {
 		try {
 			if ((_fsFlg & EventSystemTimeController.FS_START) > 0) {
 				EventSystemTimeController.getInstance().setFlag(_EventInfo);
-				L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, String.format("Áö±İºÎÅÍ %s ÀÌº¥Æ®°¡ ½ÃÀÛµË´Ï´Ù.", _EventInfo.get_event_name())));
-				L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(String.format("Áö±İºÎÅÍ %s ÀÌº¥Æ®°¡ ½ÃÀÛµË´Ï´Ù.", _EventInfo.get_event_name())));
+				L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, String.format("ì§€ê¸ˆë¶€í„° %s ì´ë²¤íŠ¸ê°€ ì‹œì‘ë©ë‹ˆë‹¤.", _EventInfo.get_event_name())));
+				L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(String.format("ì§€ê¸ˆë¶€í„° %s ì´ë²¤íŠ¸ê°€ ì‹œì‘ë©ë‹ˆë‹¤.", _EventInfo.get_event_name())));
 				if (_EventInfo.get_spawn_loc() != null) {
 					int npcid = _EventInfo.get_npc_id();
 					String[] spawn = _EventInfo.get_spawn_loc().split(",");
@@ -38,8 +38,8 @@ public class EventSystemSpawner implements Runnable {
 				}
 			} else if ((_fsFlg & EventSystemTimeController.FS_END) > 0) {
 				EventSystemTimeController.getInstance().delFlag(_EventInfo);
-				L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, String.format("%s ÀÌº¥Æ®°¡ Á¾·á µÇ¾ú½À´Ï´Ù.", _EventInfo.get_event_name())));
-				L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(String.format("%s ÀÌº¥Æ®°¡ Á¾·á µÇ¾ú½À´Ï´Ù.", _EventInfo.get_event_name())));
+				L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, String.format("%s ì´ë²¤íŠ¸ê°€ ì¢…ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.", _EventInfo.get_event_name())));
+				L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(String.format("%s ì´ë²¤íŠ¸ê°€ ì¢…ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.", _EventInfo.get_event_name())));
 				if (_EventInfo.is_mapout())
 					EventSystemTimeController.getInstance().MapOut(_EventInfo.get_event_map_id());
 			}

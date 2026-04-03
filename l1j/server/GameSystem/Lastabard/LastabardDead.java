@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Lastabard;
+Ôªøpackage l1j.server.GameSystem.Lastabard;
 
 import l1j.server.server.datatables.DoorSpawnTable;
 import l1j.server.server.model.Dead;
@@ -31,7 +31,7 @@ public class LastabardDead extends Dead {
 		int doorId = getDoorId();
 		int countMapId = getCountMapId();
 		
-		if(LastabardData.isFourthFloor(mobMapId)) { // ∂Û¥¯ 4√˛
+		if(LastabardData.isFourthFloor(mobMapId)) { // ÎùºÎçò 4Ï∏µ
 			int pos = LastabardData.getPos(mobMapId, getLocX(), getLocY());
 			LastabardController.getInstance().die(mobMapId, pos);
 			if(LastabardController.getInstance().getMobCount(mobMapId, pos) == 0) {

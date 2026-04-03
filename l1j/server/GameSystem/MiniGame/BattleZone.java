@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -55,7 +55,7 @@ public class BattleZone implements Runnable {
 	    return line2.size();
 	}
 	
-	// µà¾ó ½ÃÀÛ¿©ºÎ
+	// ë“€ì–¼ ì‹œì‘ì—¬ë¶€
 	private boolean _DuelStart;
 
 	public boolean getDuelStart() {
@@ -66,7 +66,7 @@ public class BattleZone implements Runnable {
 		_DuelStart = duel;
 	}
 
-	// µà¾ó ÀÔÀå¿©ºÎ
+	// ë“€ì–¼ ì…ì¥ì—¬ë¶€
 	private boolean _DuelOpen;
 
 	public boolean getDuelOpen() {
@@ -77,25 +77,25 @@ public class BattleZone implements Runnable {
 		_DuelOpen = duel;
 	}
 
-	// µà¾ó ½ÃÀÛ¿©ºÎ
-	private boolean _ÁøÇà;
+	// ë“€ì–¼ ì‹œì‘ì—¬ë¶€
+	private boolean _ì§„í–‰;
 
-	public boolean ¹èÆ²Á¸ÁøÇà() {
-		return _ÁøÇà;
+	public boolean ë°°í‹€ì¡´ì§„í–‰() {
+		return _ì§„í–‰;
 	}
 
-	public void set¹èÆ²Á¸ÁøÇà(boolean flag) {
-		_ÁøÇà = flag;
+	public void setë°°í‹€ì¡´ì§„í–‰(boolean flag) {
+		_ì§„í–‰ = flag;
 	}
 
-	private boolean _Á¾·á;
+	private boolean _ì¢…ë£Œ;
 
-	public boolean ¹èÆ²Á¸Á¾·á() {
-		return _Á¾·á;
+	public boolean ë°°í‹€ì¡´ì¢…ë£Œ() {
+		return _ì¢…ë£Œ;
 	}
 
-	public void set¹èÆ²Á¸Á¾·á(boolean flag) {
-		_Á¾·á = flag;
+	public void setë°°í‹€ì¡´ì¢…ë£Œ(boolean flag) {
+		_ì¢…ë£Œ = flag;
 	}
 	// public int DuelCount;
 
@@ -103,26 +103,26 @@ public class BattleZone implements Runnable {
 
 	private boolean Close;
 
-	protected ArrayList<L1PcInstance> ¹èÆ²Á¸À¯Àú = new ArrayList<L1PcInstance>();
+	protected ArrayList<L1PcInstance> ë°°í‹€ì¡´ìœ ì € = new ArrayList<L1PcInstance>();
 
-	public void add¹èÆ²Á¸À¯Àú(L1PcInstance pc) {
-		¹èÆ²Á¸À¯Àú.add(pc);
+	public void addë°°í‹€ì¡´ìœ ì €(L1PcInstance pc) {
+		ë°°í‹€ì¡´ìœ ì €.add(pc);
 	}
 
-	public void remove¹èÆ²Á¸À¯Àú(L1PcInstance pc) {
-		¹èÆ²Á¸À¯Àú.remove(pc);
+	public void removeë°°í‹€ì¡´ìœ ì €(L1PcInstance pc) {
+		ë°°í‹€ì¡´ìœ ì €.remove(pc);
 	}
 
-	public void clear¹èÆ²Á¸À¯Àú() {
-		¹èÆ²Á¸À¯Àú.clear();
+	public void clearë°°í‹€ì¡´ìœ ì €() {
+		ë°°í‹€ì¡´ìœ ì €.clear();
 	}
 
-	public boolean is¹èÆ²Á¸À¯Àú(L1PcInstance pc) {
-		return ¹èÆ²Á¸À¯Àú.contains(pc);
+	public boolean isë°°í‹€ì¡´ìœ ì €(L1PcInstance pc) {
+		return ë°°í‹€ì¡´ìœ ì €.contains(pc);
 	}
 
-	public int get¹èÆ²Á¸À¯ÀúCount() {
-		return ¹èÆ²Á¸À¯Àú.size();
+	public int getë°°í‹€ì¡´ìœ ì €Count() {
+		return ë°°í‹€ì¡´ìœ ì €.size();
 	}
 
 	private boolean GmStart = false;
@@ -135,8 +135,8 @@ public class BattleZone implements Runnable {
 		return GmStart;
 	}
 
-	public L1PcInstance[] toArray¹èÆ²Á¸À¯Àú() {
-		return ¹èÆ²Á¸À¯Àú.toArray(new L1PcInstance[¹èÆ²Á¸À¯Àú.size()]);
+	public L1PcInstance[] toArrayë°°í‹€ì¡´ìœ ì €() {
+		return ë°°í‹€ì¡´ìœ ì €.toArray(new L1PcInstance[ë°°í‹€ì¡´ìœ ì €.size()]);
 	}
 
 	public static BattleZone getInstance() {
@@ -151,13 +151,13 @@ public class BattleZone implements Runnable {
 		try {
 			while (true) {
 				try {
-					if (¹èÆ²Á¸Á¾·á() == true) {
-						Thread.sleep(1000 * 60 * 60 * 2); // 2½Ã°£ ´ë±â½Ã°£
-						set¹èÆ²Á¸Á¾·á(false);
+					if (ë°°í‹€ì¡´ì¢…ë£Œ() == true) {
+						Thread.sleep(1000 * 60 * 60 * 2); // 2ì‹œê°„ ëŒ€ê¸°ì‹œê°„
+						setë°°í‹€ì¡´ì¢…ë£Œ(false);
 					} else {
-						checkDuelTime(); // µà¾ó °¡´É½Ã°£À» Ã¼Å©
-						if (¹èÆ²Á¸ÁøÇà() == true) {
-							À¯ÀúÃ¼Å©();
+						checkDuelTime(); // ë“€ì–¼ ê°€ëŠ¥ì‹œê°„ì„ ì²´í¬
+						if (ë°°í‹€ì¡´ì§„í–‰() == true) {
+							ìœ ì €ì²´í¬();
 						}
 						Thread.sleep(1000);
 					}
@@ -168,8 +168,8 @@ public class BattleZone implements Runnable {
 		}
 	}
 
-	private void À¯ÀúÃ¼Å©() {
-		L1PcInstance[] pc = toArray¹èÆ²Á¸À¯Àú();
+	private void ìœ ì €ì²´í¬() {
+		L1PcInstance[] pc = toArrayë°°í‹€ì¡´ìœ ì €();
 		for (int i = 0; i < pc.length; i++) {
 			if (pc[i] == null)
 				continue;
@@ -177,20 +177,20 @@ public class BattleZone implements Runnable {
 			if (pc[i].getMapId() == 5001 || pc[i].getMapId() == 5153) {
 				continue;
 			} else {
-				if (is¹èÆ²Á¸À¯Àú(pc[i])) {
-					remove¹èÆ²Á¸À¯Àú(pc[i]);
+				if (isë°°í‹€ì¡´ìœ ì €(pc[i])) {
+					removeë°°í‹€ì¡´ìœ ì €(pc[i]);
 				}
 				pc[i].set_DuelLine(0);
 			}
 		}
 	}
 
-	// µà¾ó½Ã°£Ã¼Å©
+	// ë“€ì–¼ì‹œê°„ì²´í¬
 	public void checkDuelTime() {
-		// °ÔÀÓ½Ã°£À» ¹Ş¾Æ¿Â´Ù.
+		// ê²Œì„ì‹œê°„ì„ ë°›ì•„ì˜¨ë‹¤.
 		try {
 			double servertime = RealTimeClock.getInstance().getRealTime().getSeconds();
-			// ÇöÀç½Ã°£
+			// í˜„ì¬ì‹œê°„
 			double nowdueltime = servertime % 86400;
 			int count1 = 0;
 			int count2 = 0;
@@ -199,26 +199,26 @@ public class BattleZone implements Runnable {
 				if (getGmStart()) {
 					setDuelOpen(true);
 					setDuelStart(true);
-					ÀÔÀå3ºĞ´ë±â();
+					ì…ì¥3ë¶„ëŒ€ê¸°();
 				}
-				if (¹èÆ²Á¸ÁøÇà() == true) {
-					L1PcInstance[] c = toArray¹èÆ²Á¸À¯Àú();
+				if (ë°°í‹€ì¡´ì§„í–‰() == true) {
+					L1PcInstance[] c = toArrayë°°í‹€ì¡´ìœ ì €();
 					for (int i = 0; i < c.length; i++) {
 						if (c[i].getMapId() == 5001) {
 							if (!c[i].isDead()) {
-								¹èÆ²Á¸ÀÔÀå(c[i]);
+								ë°°í‹€ì¡´ì…ì¥(c[i]);
 							}
 						}
 					}
 					setDuelStart(true);
-					// ³¡³ª´Â ½Ã°£ÁöÁ¤
-					enddueltime = nowdueltime + 600; // 10ºĞÈÄÁ¾·áÁ¾·á½Ã°£ Á¤ÇÏ´Â°÷
+					// ëë‚˜ëŠ” ì‹œê°„ì§€ì •
+					enddueltime = nowdueltime + 600; // 10ë¶„í›„ì¢…ë£Œì¢…ë£Œì‹œê°„ ì •í•˜ëŠ”ê³³
 
 				}
 			} else {
-				// Á¾·á½Ã°£ÀÌ°Å³ª °­Á¦Á¾·á¶ó¸é
+				// ì¢…ë£Œì‹œê°„ì´ê±°ë‚˜ ê°•ì œì¢…ë£Œë¼ë©´
 				if (nowdueltime >= enddueltime || Close == true) {
-					L1PcInstance[] c1 = toArray¹èÆ²Á¸À¯Àú();
+					L1PcInstance[] c1 = toArrayë°°í‹€ì¡´ìœ ì €();
 					for (int i = 0; i < c1.length; i++) {
 						if (c1[i].getMapId() == 5153) {
 							if (!c1[i].isDead()) {
@@ -230,58 +230,58 @@ public class BattleZone implements Runnable {
 							}
 						}
 					}
-					// ¿ì½ÂÃ¼Å©
+					// ìš°ìŠ¹ì²´í¬
 					String ment = null;
 					if (count1 > count2) {
-						// 1¹ø¶óÀÎ ¿ì½Â
+						// 1ë²ˆë¼ì¸ ìš°ìŠ¹
 						winLine = 1;
-						ment = "ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ 'ºí·ç' ¶óÀÎÀÇ ½Â¸®ÀÔ´Ï´Ù.";
-						L1World.getInstance().broadcastServerMessage("\\fT* ¹èÆ²Á¸ Á¾·á! 'ºí·ç' ¶óÀÎÀÇ ½Â¸®ÀÔ´Ï´Ù *");
+						ment = "í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ 'ë¸”ë£¨' ë¼ì¸ì˜ ìŠ¹ë¦¬ì…ë‹ˆë‹¤.";
+						L1World.getInstance().broadcastServerMessage("\\fT* ë°°í‹€ì¡´ ì¢…ë£Œ! 'ë¸”ë£¨' ë¼ì¸ì˜ ìŠ¹ë¦¬ì…ë‹ˆë‹¤ *");
 					} else if (count1 < count2) {
-						// 2¹ø¶óÀÎ ¿ì½Â
+						// 2ë²ˆë¼ì¸ ìš°ìŠ¹
 						winLine = 2;
-						ment = "ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ '·¹µå' ¶óÀÎÀÇ ½Â¸®ÀÔ´Ï´Ù.";
-						L1World.getInstance().broadcastServerMessage("\\fT* ¹èÆ²Á¸ Á¾·á! '·¹µå' ¶óÀÎÀÇ ½Â¸®ÀÔ´Ï´Ù *");
+						ment = "í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ 'ë ˆë“œ' ë¼ì¸ì˜ ìŠ¹ë¦¬ì…ë‹ˆë‹¤.";
+						L1World.getInstance().broadcastServerMessage("\\fT* ë°°í‹€ì¡´ ì¢…ë£Œ! 'ë ˆë“œ' ë¼ì¸ì˜ ìŠ¹ë¦¬ì…ë‹ˆë‹¤ *");
 					} else {
 						winLine = 3;
-						ment = "ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ 'ºí·ç' ¶óÀÎ°ú '·¹µå' ¶óÀÎÀÌ ºñ°å½À´Ï´Ù.";
-						L1World.getInstance().broadcastServerMessage("\\fT* ¹èÆ²Á¸ Á¾·á! 'ºí·ç' ¶óÀÎ°ú '·¹µå'¶óÀÎÀÌ µ¿Á¡ÀÔ´Ï´Ù *");
+						ment = "í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ 'ë¸”ë£¨' ë¼ì¸ê³¼ 'ë ˆë“œ' ë¼ì¸ì´ ë¹„ê²¼ìŠµë‹ˆë‹¤.";
+						L1World.getInstance().broadcastServerMessage("\\fT* ë°°í‹€ì¡´ ì¢…ë£Œ! 'ë¸”ë£¨' ë¼ì¸ê³¼ 'ë ˆë“œ'ë¼ì¸ì´ ë™ì ì…ë‹ˆë‹¤ *");
 					}
 
-					L1PcInstance[] c2 = toArray¹èÆ²Á¸À¯Àú();
+					L1PcInstance[] c2 = toArrayë°°í‹€ì¡´ìœ ì €();
 					for (int i = 0; i < c2.length; i++) {
 						if (c2[i] == null)
 							continue;
 						if (c2[i].get_DuelLine() != 0) {
-							c2[i].sendPackets(new S_SystemMessage(ment));// ¸àÆ®¼öÁ¤
-							// ÀÌ±ä ¶óÀÎ¿¡°Ô ¾ÆÀÌÅÛÁö±Ş
+							c2[i].sendPackets(new S_SystemMessage(ment));// ë©˜íŠ¸ìˆ˜ì •
+							// ì´ê¸´ ë¼ì¸ì—ê²Œ ì•„ì´í…œì§€ê¸‰
 							if (c2[i].get_DuelLine() == winLine) {
 								String[] itemIds = null;
 								try {
-									int idx = Config.¹èÆ²Á¸¾ÆÀÌÅÛ.indexOf(",");
-									// ,·Î ÀÖÀ»°æ¿ì
+									int idx = Config.ë°°í‹€ì¡´ì•„ì´í…œ.indexOf(",");
+									// ,ë¡œ ìˆì„ê²½ìš°
 									if (idx > -1) {
-										itemIds = Config.¹èÆ²Á¸¾ÆÀÌÅÛ.split(",");
+										itemIds = Config.ë°°í‹€ì¡´ì•„ì´í…œ.split(",");
 									} else {
 										itemIds = new String[1];
-										itemIds[0] = Config.¹èÆ²Á¸¾ÆÀÌÅÛ;
+										itemIds[0] = Config.ë°°í‹€ì¡´ì•„ì´í…œ;
 									}
 								} catch (Exception e) {
 								}
-								// Áö±ŞÇÒ ¾ÆÀÌÅÛ °¹¼ö
+								// ì§€ê¸‰í•  ì•„ì´í…œ ê°¯ìˆ˜
 								String[] counts = null;
 								try {
-									int idx = Config.¹èÆ²Á¸¾ÆÀÌÅÛ°¹¼ö.indexOf(",");
-									// ,·Î ÀÖÀ»°æ¿ì
+									int idx = Config.ë°°í‹€ì¡´ì•„ì´í…œê°¯ìˆ˜.indexOf(",");
+									// ,ë¡œ ìˆì„ê²½ìš°
 									if (idx > -1) {
-										counts = Config.¹èÆ²Á¸¾ÆÀÌÅÛ°¹¼ö.split(",");
+										counts = Config.ë°°í‹€ì¡´ì•„ì´í…œê°¯ìˆ˜.split(",");
 									} else {
 										counts = new String[1];
-										counts[0] = Config.¹èÆ²Á¸¾ÆÀÌÅÛ°¹¼ö;
+										counts[0] = Config.ë°°í‹€ì¡´ì•„ì´í…œê°¯ìˆ˜;
 									}
 								} catch (Exception e) {
 								}
-								// ¾ÆÀÌÅÛ ¾ÆÀÌµğ³ª Ä«¿îÆ®°¡ ¾øÀ»°æ¿ì
+								// ì•„ì´í…œ ì•„ì´ë””ë‚˜ ì¹´ìš´íŠ¸ê°€ ì—†ì„ê²½ìš°
 								if (itemIds == null || counts == null)
 									return;
 								for (int j = 0; j < itemIds.length; j++) {
@@ -294,13 +294,13 @@ public class BattleZone implements Runnable {
 									L1ItemInstance item = c2[i].getInventory().storeItem(itemId, count);
 									if (item != null)
 										c2[i].sendPackets(
-												new S_SystemMessage(item.getName() + " (" + count + ")À» ¾ò¾ú½À´Ï´Ù."));
+												new S_SystemMessage(item.getName() + " (" + count + ")ì„ ì–»ì—ˆìŠµë‹ˆë‹¤."));
 								}
-								c2[i].sendPackets(new S_SystemMessage("\\fT ½Â¸®ÆÀ¿¡°Ô ¾ÆÀÌÅÛÀÌ Áö±ŞµÇ¾ú½À´Ï´Ù *"));
+								c2[i].sendPackets(new S_SystemMessage("\\fT ìŠ¹ë¦¬íŒ€ì—ê²Œ ì•„ì´í…œì´ ì§€ê¸‰ë˜ì—ˆìŠµë‹ˆë‹¤ *"));
 							}
 
 							c2[i].set_DuelLine(0);
-							// ¹èÆ²Á¸ÀÌ¶ó¸é
+							// ë°°í‹€ì¡´ì´ë¼ë©´
 							if (c2[i].getMapId() == 5153 || c2[i].getMapId() == 5001) {
 								if (!c2[i].isDead()) {
 									L1Teleport.teleport(c2[i], 33090, 33402, (short) 4, 0, true);//
@@ -309,38 +309,38 @@ public class BattleZone implements Runnable {
 						}
 					}
 					ment = null;
-					Announcements.getInstance().announceToAll("\\fTÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù *");
-					set¹èÆ²Á¸Á¾·á(true);
-					set¹èÆ²Á¸ÁøÇà(false);
+					Announcements.getInstance().announceToAll("\\fTí”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤ *");
+					setë°°í‹€ì¡´ì¢…ë£Œ(true);
+					setë°°í‹€ì¡´ì§„í–‰(false);
 					setDuelStart(false);
 					// DuelCount = 0;
 					Close = false;
-					¹èÆ²Á¸À¯Àú.clear();
+					ë°°í‹€ì¡´ìœ ì €.clear();
 					setGmStart(false);
 				} else {
-					// ÀÔÀåÀÌ ¸¶°¨µÇ¾ú´Ù¸é
+					// ì…ì¥ì´ ë§ˆê°ë˜ì—ˆë‹¤ë©´
 					if (!getDuelOpen()) {
 						int count3 = 0;
 						int count4 = 0;
-						L1PcInstance[] c3 = toArray¹èÆ²Á¸À¯Àú();
+						L1PcInstance[] c3 = toArrayë°°í‹€ì¡´ìœ ì €();
 						for (int i = 0; i < c3.length; i++) {
 							if (c3[i] == null)
 								continue;
-							// ¹èÆ²Á¸ÀÌ¶ó¸é
+							// ë°°í‹€ì¡´ì´ë¼ë©´
 							if (c3[i].getMapId() == 5153) {
-								if (!c3[i].isDead()) {// Á×Áö¾ÊÀº À¯Àú Ã¼Å©
+								if (!c3[i].isDead()) {// ì£½ì§€ì•Šì€ ìœ ì € ì²´í¬
 									if (c3[i].get_DuelLine() == 1) {
 										count3 += 1;
 									} else if (c3[i].get_DuelLine() == 2) {
 										count4 += 1;
 									} else {
-										remove¹èÆ²Á¸À¯Àú(c3[i]);
+										removeë°°í‹€ì¡´ìœ ì €(c3[i]);
 									}
 								}
 							}
 						}
 
-						// ³²ÀºÀ¯Àú°¡ 0¸íÀÏ¶§ °­Á¦Á¾·á½ÇÇà<<
+						// ë‚¨ì€ìœ ì €ê°€ 0ëª…ì¼ë•Œ ê°•ì œì¢…ë£Œì‹¤í–‰<<
 						if (count3 == 0 || count4 == 0) {
 							Close = true;
 						}
@@ -354,9 +354,9 @@ public class BattleZone implements Runnable {
 	}
 
 	private void createMiniHp(L1PcInstance pc) {
-		// ¹èÆ²½Ã, ¼­·Î HP¸¦ Ç¥½Ã½ÃÅ²´Ù
-		for (L1PcInstance member : BattleZone.getInstance().toArray¹èÆ²Á¸À¯Àú()) {
-			// °°Àº¶óÀÎ¿¡°Ô hpÇ¥½Ã
+		// ë°°í‹€ì‹œ, ì„œë¡œ HPë¥¼ í‘œì‹œì‹œí‚¨ë‹¤
+		for (L1PcInstance member : BattleZone.getInstance().toArrayë°°í‹€ì¡´ìœ ì €()) {
+			// ê°™ì€ë¼ì¸ì—ê²Œ hpí‘œì‹œ
 			if (member != null) {
 				if (pc.get_DuelLine() == member.get_DuelLine()) {
 					member.sendPackets(new S_HPMeter(pc));
@@ -366,7 +366,7 @@ public class BattleZone implements Runnable {
 		}
 	}
 
-	private void ¹èÆ²Á¸º¯½Å(L1PcInstance pc) {
+	private void ë°°í‹€ì¡´ë³€ì‹ (L1PcInstance pc) {
 		if (pc == null)
 			return;
 		int DuelLine = pc.get_DuelLine();
@@ -374,15 +374,15 @@ public class BattleZone implements Runnable {
 		int time = 1800;
 		if (pc != null) {
 			if (pc.isKnight() || pc.isCrown() || pc.isDarkelf()) {
-				// ±â»ç ±ºÁÖ ´ÙÅ©¿¤ÇÁ ¿ë±â»ç
+				// ê¸°ì‚¬ êµ°ì£¼ ë‹¤í¬ì—˜í”„ ìš©ê¸°ì‚¬
 				if (DuelLine == 1) {
-					polyid = 6270;// <<1¹ø¶óÀÎ º¯½Å´ÙÅ©>
+					polyid = 6270;// <<1ë²ˆë¼ì¸ ë³€ì‹ ë‹¤í¬>
 				} else {
-					polyid = 6267;// 2¹ø¶óÀÎ ¾ÆÅ©º¯½Å
+					polyid = 6267;// 2ë²ˆë¼ì¸ ì•„í¬ë³€ì‹ 
 				}
 				L1PolyMorph.doPoly(pc, polyid, time, 2);
 			}
-			// ¹ı»ç È¯¼ú»ç
+			// ë²•ì‚¬ í™˜ìˆ ì‚¬
 			if (pc.isWizard()) {
 				if (DuelLine == 1) {
 					polyid = 6271;
@@ -391,7 +391,7 @@ public class BattleZone implements Runnable {
 				}
 				L1PolyMorph.doPoly(pc, polyid, time, 2);
 			}
-			// ¿äÁ¤
+			// ìš”ì •
 			if (pc.isElf()) {
 				if (DuelLine == 1) {
 					polyid = 6272;
@@ -403,9 +403,9 @@ public class BattleZone implements Runnable {
 		}
 	}
 
-	private void ¹èÆ²Á¸ÀÔÀå(L1PcInstance pc) {
+	private void ë°°í‹€ì¡´ì…ì¥(L1PcInstance pc) {
 		try {
-			¹èÆ²Á¸º¯½Å(pc);
+			ë°°í‹€ì¡´ë³€ì‹ (pc);
 			createMiniHp(pc);
 			if (pc.get_DuelLine() == 1) {
 				int ranx = 32628 + _random.nextInt(4);
@@ -417,26 +417,26 @@ public class BattleZone implements Runnable {
 				L1Teleport.teleport(pc, ranx2, rany2, (short) 5153, 5, true);
 			}
 
-			set¹èÆ²Á¸ÁøÇà(false);
+			setë°°í‹€ì¡´ì§„í–‰(false);
 		} catch (Exception e) {
 		}
 	}
 
-	public void ÀÔÀå3ºĞ´ë±â() {
+	public void ì…ì¥3ë¶„ëŒ€ê¸°() {
 		try {
-			Announcements.getInstance().announceToAll("3ºĞ ÈÄ ´ÜÃ¼Àü ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸À» °³ÃÖÇÕ´Ï´Ù.");
-			Announcements.getInstance().announceToAll("ÀÔÀåÀº ¼±Âø¼øÀ¸·Î ±â¶õ¸¶À»¿¡¼­ ÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+			Announcements.getInstance().announceToAll("3ë¶„ í›„ ë‹¨ì²´ì „ í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ì„ ê°œìµœí•©ë‹ˆë‹¤.");
+			Announcements.getInstance().announceToAll("ì…ì¥ì€ ì„ ì°©ìˆœìœ¼ë¡œ ê¸°ë€ë§ˆì„ì—ì„œ í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.");
 			try {
 				Thread.sleep(1000 * 120);
 			} catch (Exception e) {
 			}
-			Announcements.getInstance().announceToAll("1ºĞ ÈÄ ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ ÀÔÀåÀ» ¸¶°¨ÇÕ´Ï´Ù.");
-			Announcements.getInstance().announceToAll("±â¶õ 'ÇÁ¸®¹Ì¾ö¹èÆ²Á¸'¸¦ ÅëÇÑ ÀÔÀåÀÌ °¡´ÉÇÕ´Ï´Ù.");
+			Announcements.getInstance().announceToAll("1ë¶„ í›„ í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ ì…ì¥ì„ ë§ˆê°í•©ë‹ˆë‹¤.");
+			Announcements.getInstance().announceToAll("ê¸°ë€ 'í”„ë¦¬ë¯¸ì—„ë°°í‹€ì¡´'ë¥¼ í†µí•œ ì…ì¥ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 			try {
 				Thread.sleep(1000 * 50);
 			} catch (Exception e) {
 			}
-			Announcements.getInstance().announceToAll("ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ ÀÔÀå ¸¶°¨ 10ÃÊ ³²¾Ò½À´Ï´Ù.");
+			Announcements.getInstance().announceToAll("í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ ì…ì¥ ë§ˆê° 10ì´ˆ ë‚¨ì•˜ìŠµë‹ˆë‹¤.");
 			try {
 				Thread.sleep(1000 * 10);
 			} catch (Exception e) {
@@ -444,23 +444,23 @@ public class BattleZone implements Runnable {
 			if (getDuelOpen()) {
 			    setDuelOpen(false);
 			}
-			Announcements.getInstance().announceToAll("ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ ÀÔÀåÀ» ¸¶°¨ÇÏ¿´½À´Ï´Ù.");
+			Announcements.getInstance().announceToAll("í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ ì…ì¥ì„ ë§ˆê°í•˜ì˜€ìŠµë‹ˆë‹¤.");
 			try {
 			    Thread.sleep(1000 * 5);
 			} catch (Exception e) {
 			}
 			if (getLine1Count() > 0 && getLine2Count() > 0) {
 				balanceLineIfNeeded();
-			    Announcements.getInstance().announceToAll("ÆÀ ÀÎ¿øÀÌ ÃæÁ·µÇ¾î ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸À» ½ÃÀÛÇÕ´Ï´Ù.");
-			    set¹èÆ²Á¸ÁøÇà(true);
+			    Announcements.getInstance().announceToAll("íŒ€ ì¸ì›ì´ ì¶©ì¡±ë˜ì–´ í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ì„ ì‹œì‘í•©ë‹ˆë‹¤.");
+			    setë°°í‹€ì¡´ì§„í–‰(true);
 			} else {
-			    Announcements.getInstance().announceToAll("¹èÆ²Á¸ ÀÎ¿øÀÌ ÃæÁ·µÇÁö ¾Ê¾Æ ÀÌº¥Æ®°¡ Ãë¼ÒµÇ¾ú½À´Ï´Ù.");
-			    for (L1PcInstance pc : toArray¹èÆ²Á¸À¯Àú()) {
+			    Announcements.getInstance().announceToAll("ë°°í‹€ì¡´ ì¸ì›ì´ ì¶©ì¡±ë˜ì§€ ì•Šì•„ ì´ë²¤íŠ¸ê°€ ì·¨ì†Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+			    for (L1PcInstance pc : toArrayë°°í‹€ì¡´ìœ ì €()) {
 			        if (pc == null) continue;
 			        pc.set_DuelLine(0);
 			        L1Teleport.teleport(pc, 33090, 33402, (short) 4, 0, true);
 			    }
-			    ¹èÆ²Á¸À¯Àú.clear();
+			    ë°°í‹€ì¡´ìœ ì €.clear();
 			}
 			setGmStart(true);
 		} catch (Exception e) {
@@ -477,11 +477,11 @@ public class BattleZone implements Runnable {
 	    ArrayList<L1PcInstance> target = (line1.size() > line2.size()) ? line1 : line2;
 	    L1PcInstance outPc = target.get(target.size() - 1);
 	    target.remove(outPc);
-	    remove¹èÆ²Á¸À¯Àú(outPc);
+	    removeë°°í‹€ì¡´ìœ ì €(outPc);
 
 	    outPc.set_DuelLine(0);
 	    outPc.sendPackets(new S_SystemMessage(
-	        "ÆÀ ÀÎ¿ø ºÒ±ÕÇüÀ¸·Î ÀÎÇØ ¹èÆ²Á¸¿¡¼­ Á¦¿ÜµÇ¾ú½À´Ï´Ù."
+	        "íŒ€ ì¸ì› ë¶ˆê· í˜•ìœ¼ë¡œ ì¸í•´ ë°°í‹€ì¡´ì—ì„œ ì œì™¸ë˜ì—ˆìŠµë‹ˆë‹¤."
 	    ));
 
 	    if (!outPc.isDead()) {

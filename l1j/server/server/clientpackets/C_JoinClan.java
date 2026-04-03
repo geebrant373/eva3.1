@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -51,52 +51,52 @@ public class C_JoinClan extends ClientBasePacket {
 
 	private void JoinClan(L1PcInstance player, L1PcInstance target) {
 		if (!(target.getClanRank()== L1Clan.CLAN_RANK_PRINCE) 
-			&& !(target.getClanRank()== L1Clan.CLAN_RANK_GUARDIAN)) { // »ó´ë°¡ ÇÁ¸°½º ¶Ç´Â ÇÁ¸°¼¼½º ÀÌ¿Ü
-			player.sendPackets(new S_ServerMessage(92, target.getName())); // \f1%0Àº ÇÁ¸°½º³ª ÇÁ¸°¼¼½º°¡ ¾Æ´Õ´Ï´Ù.
+			&& !(target.getClanRank()== L1Clan.CLAN_RANK_GUARDIAN)) { // ìƒëŒ€ê°€ í”„ë¦°ìŠ¤ ë˜ëŠ” í”„ë¦°ì„¸ìŠ¤ ì´ì™¸
+			player.sendPackets(new S_ServerMessage(92, target.getName())); // \f1%0ì€ í”„ë¦°ìŠ¤ë‚˜ í”„ë¦°ì„¸ìŠ¤ê°€ ì•„ë‹™ë‹ˆë‹¤.
 			return;
 		}
 
 		int clan_id = target.getClanid();
 		String clan_name = target.getClanname();
-		if (clan_id == 0) { // »ó´ë Å©¶õÀÌ ¾ø´Ù
-			player.sendPackets(new S_ServerMessage(90, target.getName())); // \f1%0Àº Ç÷¸ÍÀ» Ã¢¼³ÇÏ°í ÀÖÁö ¾Ê´Â »óÅÂÀÔ´Ï´Ù.
+		if (clan_id == 0) { // ìƒëŒ€ í¬ë€ì´ ì—†ë‹¤
+			player.sendPackets(new S_ServerMessage(90, target.getName())); // \f1%0ì€ í˜ˆë§¹ì„ ì°½ì„¤í•˜ê³  ìˆì§€ ì•ŠëŠ” ìƒíƒœì…ë‹ˆë‹¤.
 			return;
 		}
 
 		L1Clan clan = L1World.getInstance().getClan(clan_name);
 		if (clan == null) return;
-//		if (target.getId() != clan.getLeaderId() || ) { // »ó´ë°¡ Ç÷¸ÍÁÖ ÀÌ¿Ü
-//			player.sendPackets(new S_ServerMessage(92, target.getName())); // \f1%0Àº ÇÁ¸°½º³ª ÇÁ¸°¼¼½º°¡ ¾Æ´Õ´Ï´Ù.
+//		if (target.getId() != clan.getLeaderId() || ) { // ìƒëŒ€ê°€ í˜ˆë§¹ì£¼ ì´ì™¸
+//			player.sendPackets(new S_ServerMessage(92, target.getName())); // \f1%0ì€ í”„ë¦°ìŠ¤ë‚˜ í”„ë¦°ì„¸ìŠ¤ê°€ ì•„ë‹™ë‹ˆë‹¤.
 //			return;
 //		}
 
-		if (player.getClanid() != 0) { // ÀÌ¹Ì Å©¶õ¿¡ °¡ÀÔÀÌ ³¡³­ »óÅÂ
-			if (player.isCrown()) { // ÀÚ½ÅÀÌ ±ºÁÖ
+		if (player.getClanid() != 0) { // ì´ë¯¸ í¬ë€ì— ê°€ì…ì´ ëë‚œ ìƒíƒœ
+			if (player.isCrown()) { // ìì‹ ì´ êµ°ì£¼
 				String player_clan_name = player.getClanname();
 				L1Clan player_clan = L1World.getInstance().getClan(player_clan_name);
 				if (player_clan == null) {
 					return;
 				}
 
-				if (player.getId() != player_clan.getLeaderId()) { // ÀÚ½ÅÀÌ Ç÷¸ÍÁÖ ÀÌ¿Ü
-					player.sendPackets(new S_ServerMessage(89)); // \f1´ç½ÅÀº ¹ú½á Ç÷¸Í¿¡ °¡ÀÔÇÏ°í ÀÖ½À´Ï´Ù.
+				if (player.getId() != player_clan.getLeaderId()) { // ìì‹ ì´ í˜ˆë§¹ì£¼ ì´ì™¸
+					player.sendPackets(new S_ServerMessage(89)); // \f1ë‹¹ì‹ ì€ ë²Œì¨ í˜ˆë§¹ì— ê°€ì…í•˜ê³  ìˆìŠµë‹ˆë‹¤.
 					return;
 				}
 
 				if (player_clan.getCastleId() != 0 || player_clan.getHouseId() != 0) {
-					player.sendPackets(new S_ServerMessage(665)); // \f1¼ºÀÌ³ª ¾ÆÁöÆ®¸¦ ¼ÒÀ¯ÇÑ »óÅÂ·Î Ç÷¸ÍÀ» ÇØ»êÇÒ ¼ö ¾ø½À´Ï´Ù.
+					player.sendPackets(new S_ServerMessage(665)); // \f1ì„±ì´ë‚˜ ì•„ì§€íŠ¸ë¥¼ ì†Œìœ í•œ ìƒíƒœë¡œ í˜ˆë§¹ì„ í•´ì‚°í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 					return;
 				}
 			} else {
-				player.sendPackets(new S_ServerMessage(89)); // \f1´ç½ÅÀº ¹ú½á Ç÷¸Í¿¡ °¡ÀÔÇÏ°í ÀÖ½À´Ï´Ù.
+				player.sendPackets(new S_ServerMessage(89)); // \f1ë‹¹ì‹ ì€ ë²Œì¨ í˜ˆë§¹ì— ê°€ì…í•˜ê³  ìˆìŠµë‹ˆë‹¤.
 				return;
 			}
 		}
 		if (target.isAutoClanjoin()) {
 			L1ClanJoin.getInstance().ClanJoin(target, player);
 		} else {
-			target.setTempID(player.getId()); // »ó´ëÀÇ ¿ÀºêÁ§Æ® ID¸¦ º¸Á¸ÇØ µĞ´Ù
-			target.sendPackets(new S_Message_YN(97, player.getName())); // %0°¡ Ç÷¸Í¿¡ °¡ÀÔÇßÁö¸¸Àº ÀÖ½À´Ï´Ù. ½Â³«ÇÕ´Ï±î? (Y/N)
+			target.setTempID(player.getId()); // ìƒëŒ€ì˜ ì˜¤ë¸Œì íŠ¸ IDë¥¼ ë³´ì¡´í•´ ë‘”ë‹¤
+			target.sendPackets(new S_Message_YN(97, player.getName())); // %0ê°€ í˜ˆë§¹ì— ê°€ì…í–ˆì§€ë§Œì€ ìˆìŠµë‹ˆë‹¤. ìŠ¹ë‚™í•©ë‹ˆê¹Œ? (Y/N)
 		}
 	}
 

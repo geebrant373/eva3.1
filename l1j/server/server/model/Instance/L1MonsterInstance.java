@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -155,7 +155,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 				continue;
 			}
 
-			// ¹ö¶¥ Äù½ºÆ®ÀÇ º¯½Å, °¢ Áø¿µÀÇ monster·ÎºÎÅÍ ¼±Á¦ °ø°İ¹ŞÁö ¾Ê´Â´Ù
+			// ë²„ë•… í€˜ìŠ¤íŠ¸ì˜ ë³€ì‹ , ê° ì§„ì˜ì˜ monsterë¡œë¶€í„° ì„ ì œ ê³µê²©ë°›ì§€ ì•ŠëŠ”ë‹¤
 			if (pc.getGfxId().getTempCharGfx() == 6034 && getNpcTemplate(). getKarma() < 0 
 					|| pc.getGfxId().getTempCharGfx() == 6035 && getNpcTemplate(). getKarma() > 0
 					|| pc.getGfxId().getTempCharGfx() == 6035 && getNpcTemplate(). get_npcId() == 46070
@@ -264,12 +264,12 @@ public class L1MonsterInstance extends L1NpcInstance {
 		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(getNpcTemplate().get_npcId());
 
 		if (talking == null) {
-			System.out.println("¿À·ù¸¦¹ß»ı½ÃÅ°´Â ¿£ÇÇ½Ã ÀÌ¸§ :" + getName() + " x :"
+			System.out.println("ì˜¤ë¥˜ë¥¼ë°œìƒì‹œí‚¤ëŠ” ì—”í”¼ì‹œ ì´ë¦„ :" + getName() + " x :"
 					+ getX() + " y :" + getY() + " m :" + getMapId()
-					+ " PcÀÌ¸§: " + (pc == null ? "null" : pc.getName()));
+					+ " Pcì´ë¦„: " + (pc == null ? "null" : pc.getName()));
 			return;
 		}
-		if (pc.getLawful() < -1000) { // ÇÃ·¹ÀÌ¾î°¡ Ä«¿ÀÆ½
+		if (pc.getLawful() < -1000) { // í”Œë ˆì´ì–´ê°€ ì¹´ì˜¤í‹±
 			pc.sendPackets(new S_NPCTalkReturn(talking, objid, 2));
 		} else {
 			pc.sendPackets(new S_NPCTalkReturn(talking, objid, 1));
@@ -355,7 +355,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					|| getNpcId() ==	45516
 					|| getNpcId() ==	45617	
 					|| getNpcId() ==	45610
-					) {// ÀÌº¥Æ® º¸½º
+					) {// ì´ë²¤íŠ¸ ë³´ìŠ¤
 				if (attacker instanceof L1PcInstance) { 
 					L1PcInstance pc = (L1PcInstance) attacker;
 					pc.setEventDmg(true);
@@ -401,28 +401,28 @@ public class L1MonsterInstance extends L1NpcInstance {
 			}
 			int newHp = getCurrentHp() - damage;
 			if (newHp <= 0 && !isDead()) {
-				if (getNpcTemplate().get_npcId() == 4038000 && isantarun == false) { // ¿£ÇÇ¾¾ ¹øÈ£
+				if (getNpcTemplate().get_npcId() == 4038000 && isantarun == false) { // ì—”í”¼ì”¨ ë²ˆí˜¸
 					isantarun = true;
 					AntarasRaid ar = AntarasRaidSystem.getInstance().getAR(
 							getMapId());
 					AntarasRaidTimer antaendtime = new AntarasRaidTimer(this,
-							ar, 7, 2000);// 22ºĞ Ã¼Å©
+							ar, 7, 2000);// 22ë¶„ ì²´í¬
 					antaendtime.begin();
 				}
-				if (getNpcTemplate().get_npcId() == 4200010 && isantarun == false) { // ¿£ÇÇ¾¾ ¹øÈ£
+				if (getNpcTemplate().get_npcId() == 4200010 && isantarun == false) { // ì—”í”¼ì”¨ ë²ˆí˜¸
 					isantarun = true;
 					AntarasRaid ar = AntarasRaidSystem.getInstance().getAR(
 							getMapId());
 					AntarasRaidTimer antaendtime = new AntarasRaidTimer(this,
-							ar, 8, 2000);// 22ºĞ Ã¼Å©
+							ar, 8, 2000);// 22ë¶„ ì²´í¬
 					antaendtime.begin();
 				}
-				if (getNpcTemplate().get_npcId() == 4200011 && isantarun == false) { // ¿£ÇÇ¾¾ ¹øÈ£
+				if (getNpcTemplate().get_npcId() == 4200011 && isantarun == false) { // ì—”í”¼ì”¨ ë²ˆí˜¸
 					isantarun = true;
 					AntarasRaid ar = AntarasRaidSystem.getInstance().getAR(
 							getMapId());
 					AntarasRaidTimer antaendtime = new AntarasRaidTimer(this,
-							ar, 9, 2000);// 22ºĞ Ã¼Å©
+							ar, 9, 2000);// 22ë¶„ ì²´í¬
 					antaendtime.begin();
 				}
 				int transformId = getNpcTemplate().getTransformId();
@@ -819,7 +819,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 		}
 	}
 	private void addreward(L1Character lastAttacker) {
-//		if (Config.¿ÀÇÂ´ë±â)
+//		if (Config.ì˜¤í”ˆëŒ€ê¸°)
 //			return;
 
 		int npcId = getNpcTemplate().get_npcId();
@@ -830,7 +830,7 @@ public class L1MonsterInstance extends L1NpcInstance {
 					if (getLocation().getTileLineDistance(new Point(pc.getLocation())) < 20) {
 						if (giveitem.isGiveItem()) {
 							L1ItemInstance giveItem = pc.getInventory().storeItem(giveitem.getItemId(),giveitem.getItemCount());
-							pc.sendPackets(new S_SystemMessage(giveItem.getName()+" "+ giveitem.getItemCount() +"¸¦ È¹µæ ÇÏ¿´½À´Ï´Ù."));
+							pc.sendPackets(new S_SystemMessage(giveItem.getName()+" "+ giveitem.getItemCount() +"ë¥¼ íšë“ í•˜ì˜€ìŠµë‹ˆë‹¤."));
 						}
 					}
 				}

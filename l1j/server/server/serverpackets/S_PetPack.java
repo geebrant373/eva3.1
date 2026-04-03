@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -49,7 +49,7 @@ public class S_PetPack extends ServerBasePacket {
 		writeC(pet.getActionStatus()); // Modes in List.spr
 		writeC(pet.getMoveState().getHeading());
 		writeC(pet.getLight().getChaLightSize()); // (Bright) - 0~15
-		writeC(pet.getMoveState().getMoveSpeed()); // Ω∫««µÂ - 0:normal, 1:fast,
+		writeC(pet.getMoveState().getMoveSpeed()); // Ïä§ÌîºÎìú - 0:normal, 1:fast,
 		// 2:slow
 		writeD(pet.getExp());
 		writeH(pet.getTempLawful());
@@ -66,7 +66,7 @@ public class S_PetPack extends ServerBasePacket {
 		writeS(null); // ??
 		writeS(pet.getMaster() != null ? pet.getMaster().getName() : "");
 		writeC(0); // ??
-		// HP¿« ∆€ºæ∆Æ
+		// HPÏùò ÌçºÏÑºÌä∏
 		if (pet.getMaster() != null && pet.getMaster().getId() == pc.getId()) {
 			writeC(100 * pet.getCurrentHp() / pet.getMaxHp());
 		} else {

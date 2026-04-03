@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 
 import java.util.ArrayList;
@@ -95,9 +95,9 @@ public class LotationController implements Runnable {
 		}
 	}
 
-	int CloseBeforeMinute = 1; // ´İÈ÷±â ¸îºĞÀü¿¡ °øÁöÇÕ´Ï´Ù.
-	int TeleporterDisapearBeforeMinute = 1; // ÅÚ·¹Æ÷ÅÍ°¡ ¸îºĞÀü¿¡ ¹Ì¸® »ç¶óÁı´Ï´Ù.
-	// ¸ÊÀÌº¥Æ® ÁøÇà
+	int CloseBeforeMinute = 1; // ë‹«íˆê¸° ëª‡ë¶„ì „ì— ê³µì§€í•©ë‹ˆë‹¤.
+	int TeleporterDisapearBeforeMinute = 1; // í…”ë ˆí¬í„°ê°€ ëª‡ë¶„ì „ì— ë¯¸ë¦¬ ì‚¬ë¼ì§‘ë‹ˆë‹¤.
+	// ë§µì´ë²¤íŠ¸ ì§„í–‰
 
 	class MapThread implements Runnable {
 		MapEventInfo temp;
@@ -111,12 +111,12 @@ public class LotationController implements Runnable {
 			try {
 				
 				
-				EtcUtils.SetBroadcastMessage("[" + temp.Notice + "]  °³¹æµÇ¾ú½À´Ï´Ù.", MESSAGE_TYPE.BOTH);
+				EtcUtils.SetBroadcastMessage("[" + temp.Notice + "]  ê°œë°©ë˜ì—ˆìŠµë‹ˆë‹¤.", MESSAGE_TYPE.BOTH);
 				// OPEN MAP
 			//	
-				CharacterTable.clear·ÎÅ×ÀÌ¼Ç½ÃÀÛ();
-				·ÎÅ×ÀÌ¼ÇÀØ¼¶_Å¸ÀÓ½ÃÀÛ();
-				// ÅÚ·¹Æ÷ÅÍ NPC »ı¼º ( ¿ÀÇÂ½Ã°£µ¿¾È »ı¼º )
+				CharacterTable.clearë¡œí…Œì´ì…˜ì‹œì‘();
+				ë¡œí…Œì´ì…˜ìŠì„¬_íƒ€ì„ì‹œì‘();
+				// í…”ë ˆí¬í„° NPC ìƒì„± ( ì˜¤í”ˆì‹œê°„ë™ì•ˆ ìƒì„± )
 				L1NpcInstance npc = NpcTable.getInstance().newNpcInstance(temp.EntryNpc);
 
 				L1Location loc = new L1Location(temp.EntryNpcLoc[0], temp.EntryNpcLoc[1], temp.EntryNpcLoc[2]);
@@ -125,7 +125,7 @@ public class LotationController implements Runnable {
 				npc.setHomeX(npc.getX());
 				npc.setHomeY(npc.getY());
 
-				L1SpawnUtil.spawn·ÎÅ×(npc, temp.EntryNpc, 0,
+				L1SpawnUtil.spawnë¡œí…Œ(npc, temp.EntryNpc, 0,
 						(temp.DuringTime - (TeleporterDisapearBeforeMinute * 60)) * 1000);
 				
 				// L1World.getInstance().storeObject(npc);
@@ -135,24 +135,24 @@ public class LotationController implements Runnable {
 				 timer.begin1();
 				
 				Thread.sleep((temp.DuringTime - (CloseBeforeMinute * 60)) * 1000);
-				EtcUtils.SetBroadcastMessage("[" + temp.Notice + "] Á¾·á½Ã°£ÀÌ " + CloseBeforeMinute + "ºĞ ³²¾Ò½À´Ï´Ù.",
+				EtcUtils.SetBroadcastMessage("[" + temp.Notice + "] ì¢…ë£Œì‹œê°„ì´ " + CloseBeforeMinute + "ë¶„ ë‚¨ì•˜ìŠµë‹ˆë‹¤.",
 						MESSAGE_TYPE.BOTH);
 
 				Thread.sleep(CloseBeforeMinute * 1000 * 60);
-				EtcUtils.SetBroadcastMessage("[" + temp.Notice + "]  Á¾·áµÇ¾ú½À´Ï´Ù.", MESSAGE_TYPE.BOTH);
+				EtcUtils.SetBroadcastMessage("[" + temp.Notice + "]  ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.", MESSAGE_TYPE.BOTH);
 				//RejectMaps(temp.Maps);
-				CharacterTable.clear·ÎÅ×ÀÌ¼Ç();
+				CharacterTable.clearë¡œí…Œì´ì…˜();
 				// AFTER 5 MINUTES MORE REJECT PLAYERS FROM MAPS.
 				//Thread.sleep(5 * 1000 * 60);
 				//RejectMaps(temp.Maps);
-				·ÎÅ×ÀÌ¼ÇÀØ¼¶_Å¸ÀÓÁ¾·á();
+				ë¡œí…Œì´ì…˜ìŠì„¬_íƒ€ì„ì¢…ë£Œ();
 				
-				·ÎÅ×ÀÌ¼ÇÀØ¼¶Á¾·á();
-				·ÎÅ×ÀÌ¼ÇÅ×º£Á¾·á();
-				close(); // Ãß°¡(²À¿©±â¿¡ÇÏ»ï)
+				ë¡œí…Œì´ì…˜ìŠì„¬ì¢…ë£Œ();
+				ë¡œí…Œì´ì…˜í…Œë² ì¢…ë£Œ();
+				close(); // ì¶”ê°€(ê¼­ì—¬ê¸°ì—í•˜ì‚¼)
 				
 
-				/** Á¾·á **/
+				/** ì¢…ë£Œ **/
 				End();
 
 			} catch (Exception e) {
@@ -174,17 +174,17 @@ public class LotationController implements Runnable {
 		c.stopHpRegenerationByDoll();
 		c.stopMpRegenerationByDoll();
 		L1Teleport.teleport(c, 33431, 32794, (short) 4, 4, true);
-		c.sendPackets(new S_SystemMessage("Çö ½Ã°£ºÎ·Î °³¹æÀÌ Á¾·áµÇ¾ú½À´Ï´Ù."));
+		c.sendPackets(new S_SystemMessage("í˜„ ì‹œê°„ë¶€ë¡œ ê°œë°©ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 	}
-	/** ¾Æµ§¸¶À»·Î ÆÃ±â°Ô **/
-	private void ·ÎÅ×ÀÌ¼ÇÀØ¼¶Á¾·á() {
+	/** ì•„ë´ë§ˆì„ë¡œ íŒ…ê¸°ê²Œ **/
+	private void ë¡œí…Œì´ì…˜ìŠì„¬ì¢…ë£Œ() {
 		for (L1PcInstance c : L1World.getInstance().getAllPlayers()) {
 			switch (c.getMap().getId()) {
 			case 70: // 
 				c.stopHpRegenerationByDoll();
 				c.stopMpRegenerationByDoll();
 				L1Teleport.teleport(c, 33442, 32818, (short)4, c.getMoveState().getHeading(), true);	
-				c.sendPackets(new S_SystemMessage("ÀØÇôÁø ¼¶ÀÌ Á¾·á µÇ¾ú½À´Ï´Ù."));
+				c.sendPackets(new S_SystemMessage("ìŠí˜€ì§„ ì„¬ì´ ì¢…ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤."));
 				break;
 			default:
 				break;
@@ -192,30 +192,30 @@ public class LotationController implements Runnable {
 		}
 	}
 	
-	public static void ·ÎÅ×ÀÌ¼ÇÀØ¼¶_Å¸ÀÓ½ÃÀÛ() {
+	public static void ë¡œí…Œì´ì…˜ìŠì„¬_íƒ€ì„ì‹œì‘() {
 		for (L1PcInstance c : L1World.getInstance().getAllPlayers()) {
-			/**if (!c.·ÎÅ×_½ÃÀÛ) {
-				c.·ÎÅ×_½ÃÀÛ = true;
+			/**if (!c.ë¡œí…Œ_ì‹œì‘) {
+				c.ë¡œí…Œ_ì‹œì‘ = true;
 				
 			*/	
-			c.set·ÎÅ×½ÃÀÛ(1);
-		    CharacterTable.update·ÎÅ×ÀÌ¼Ç(c);
-				System.out.println(c.get·ÎÅ×½ÃÀÛ());
+			c.setë¡œí…Œì‹œì‘(1);
+		    CharacterTable.updateë¡œí…Œì´ì…˜(c);
+				System.out.println(c.getë¡œí…Œì‹œì‘());
 				
 			//}
 		}
 	}
-	public static void ·ÎÅ×ÀÌ¼ÇÀØ¼¶_Å¸ÀÓÁ¾·á() {
+	public static void ë¡œí…Œì´ì…˜ìŠì„¬_íƒ€ì„ì¢…ë£Œ() {
 		for (L1PcInstance c : L1World.getInstance().getAllPlayers()) {
 			
-				//c.·ÎÅ×_½ÃÀÛ = false;
-		    	c.set·ÎÅ×½ÃÀÛ(0);
-			    CharacterTable.update·ÎÅ×ÀÌ¼Ç(c);
+				//c.ë¡œí…Œ_ì‹œì‘ = false;
+		    	c.setë¡œí…Œì‹œì‘(0);
+			    CharacterTable.updateë¡œí…Œì´ì…˜(c);
 				
 		}
 	}
-	/** ¾Æµ§¸¶À»·Î ÆÃ±â°Ô **/
-	private void ·ÎÅ×ÀÌ¼ÇÅ×º£Á¾·á() {
+	/** ì•„ë´ë§ˆì„ë¡œ íŒ…ê¸°ê²Œ **/
+	private void ë¡œí…Œì´ì…˜í…Œë² ì¢…ë£Œ() {
 		for (L1PcInstance c : L1World.getInstance().getAllPlayers()) {
 			switch (c.getMap().getId()) {
 			case 780: // mapid
@@ -224,7 +224,7 @@ public class LotationController implements Runnable {
 				c.stopHpRegenerationByDoll();
 				c.stopMpRegenerationByDoll();
 				L1Teleport.teleport(c, 33442, 32818, (short)4, c.getMoveState().getHeading(), true);	
-				c.sendPackets(new S_SystemMessage("Å×º£¶ó½º°¡ Á¾·á µÇ¾ú½À´Ï´Ù."));
+				c.sendPackets(new S_SystemMessage("í…Œë² ë¼ìŠ¤ê°€ ì¢…ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤."));
 				break;
 			default:
 				break;
@@ -232,7 +232,7 @@ public class LotationController implements Runnable {
 		}
 	}
 
-	/** Ä³¸¯ÅÍ°¡ Á×¾ú´Ù¸é Á¾·á½ÃÅ°±â **/
+	/** ìºë¦­í„°ê°€ ì£½ì—ˆë‹¤ë©´ ì¢…ë£Œì‹œí‚¤ê¸° **/
 	private void close() {
 		for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 			if (pc.getMap().getId() == 72 && pc.isDead()) {
@@ -243,13 +243,13 @@ public class LotationController implements Runnable {
 		}
 	}
 
-	/** Á¾·á **/
+	/** ì¢…ë£Œ **/
 	private void End() {
-		·ÎÅ×ÀÌ¼ÇÀØ¼¶Á¾·á();
-		close(); //Ãß°¡
-		L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, " ·ÎÅ×ÀÌ¼ÇÀÌ ´İÇû½À´Ï´Ù."));
-		L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, " ·ÎÅ×ÀÌ¼ÇÀÌ ´İÇû½À´Ï´Ù."));
-		L1World.getInstance().broadcastServerMessage("\\fW·ÎÅ×ÀÌ¼ÇÀÌ ´İÇû½À´Ï´Ù.");
+		ë¡œí…Œì´ì…˜ìŠì„¬ì¢…ë£Œ();
+		close(); //ì¶”ê°€
+		L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, " ë¡œí…Œì´ì…˜ì´ ë‹«í˜”ìŠµë‹ˆë‹¤."));
+		L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, " ë¡œí…Œì´ì…˜ì´ ë‹«í˜”ìŠµë‹ˆë‹¤."));
+		L1World.getInstance().broadcastServerMessage("\\fWë¡œí…Œì´ì…˜ì´ ë‹«í˜”ìŠµë‹ˆë‹¤.");
 	
 	}
 }

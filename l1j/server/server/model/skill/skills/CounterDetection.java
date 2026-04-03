@@ -1,4 +1,4 @@
-package l1j.server.server.model.skill.skills;
+﻿package l1j.server.server.model.skill.skills;
 
 import l1j.server.server.model.L1Character;
 import l1j.server.server.model.L1Magic;

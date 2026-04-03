@@ -1,5 +1,5 @@
-/**
- * Å¸ÀÌ¸Ó °ü·Ã ¸Ê °´Ã¼
+ï»¿/**
+ * íƒ€ì´ë¨¸ ê´€ë ¨ ë§µ ê°ì²´
  * 2008. 12. 04
 */
 
@@ -12,19 +12,19 @@ public class L1TimeMap{
 	private int DoorId;
 
 	/** 
-	 * ±âº» »ı¼ºÀÚ
-	 * @param	(int)	id		¸Ê ¾ÆÀÌµğ
-	 * @param	(int)	time	¼³Á¤µÈ ½Ã°£(s)
+	 * ê¸°ë³¸ ìƒì„±ì
+	 * @param	(int)	id		ë§µ ì•„ì´ë””
+	 * @param	(int)	time	ì„¤ì •ëœ ì‹œê°„(s)
 	*/
 	public L1TimeMap(int id, int time){
 		this.id = id;
 		this.time = time;
 	}
 	/** 
-	 * ±âº» »ı¼ºÀÚ
-	 * @param	(int)	id		¸Ê ¾ÆÀÌµğ
-	 * @param	(int)	time	¼³Á¤µÈ ½Ã°£(s)
-	 * @param	(int)	DoorId	¼³Á¤µÈ ¹® ¾ÆÀÌµğ
+	 * ê¸°ë³¸ ìƒì„±ì
+	 * @param	(int)	id		ë§µ ì•„ì´ë””
+	 * @param	(int)	time	ì„¤ì •ëœ ì‹œê°„(s)
+	 * @param	(int)	DoorId	ì„¤ì •ëœ ë¬¸ ì•„ì´ë””
 	*/
 	public L1TimeMap(int id, int time, int DoorId){
 		this.id = id;
@@ -32,29 +32,29 @@ public class L1TimeMap{
 		this.DoorId = DoorId;
 	}
 	/** 
-	 * ¸Ê ¾ÆÀÌµğ ¸®ÅÏ
-	 * @return	(int)	¸Ê ¾ÆÀÌµğ
+	 * ë§µ ì•„ì´ë”” ë¦¬í„´
+	 * @return	(int)	ë§µ ì•„ì´ë””
 	*/
 	public int getId(){
 		return id;
 	}
 	/** 
-	 * ¼³Á¤ ½Ã°£ ¸®ÅÏ
-	 * @return	(int)	¼³Á¤½Ã°£
+	 * ì„¤ì • ì‹œê°„ ë¦¬í„´
+	 * @return	(int)	ì„¤ì •ì‹œê°„
 	*/
 	public int getTime(){
 		return time;
 	}
 	/** 
-	 * ¼³Á¤µÈ ¹® ¾ÆÀÌµğ ¸®ÅÏ
-	 * @return	(int)	¹® ¾ÆÀÌµğ
+	 * ì„¤ì •ëœ ë¬¸ ì•„ì´ë”” ë¦¬í„´
+	 * @return	(int)	ë¬¸ ì•„ì´ë””
 	*/
 	public int getDoor(){
 		return DoorId;
 	}
 	/** 
-	 * ³²Àº½Ã°£ °è»ê
-	 * @return	(boolean)	½Ã°£ÀÌ Á¾·áµÇ¾úÀ¸¸é true, ³²¾ÆÀÖ´Ù¸é false
+	 * ë‚¨ì€ì‹œê°„ ê³„ì‚°
+	 * @return	(boolean)	ì‹œê°„ì´ ì¢…ë£Œë˜ì—ˆìœ¼ë©´ true, ë‚¨ì•„ìˆë‹¤ë©´ false
 	*/
 	public boolean count(){
 		return time-- <= 0;

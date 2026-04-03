@@ -1,4 +1,4 @@
-/*
+ο»Ώ/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -101,8 +101,8 @@ public class S_OtherCharPacks extends ServerBasePacket {
 		writeS(pc.getTitle());
 		writeC(status);
 		writeD(pc.getClanid() > 0 ? pc.getClan().getEmblemId() : 0); 
-		writeS(pc.getClanname()); // Ε©¶υΈν
-		writeS(null); // ΖκΘ£ΖΓ?
+		writeS(pc.getClanname()); // ν¬λ€λª…
+		writeS(null); // ν«νΈν…?
 		writeC(0); // ?
 		writeC(0xFF);
 		writeC(pc.isThirdSpeed() ? 0x08 : 0x00);

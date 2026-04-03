@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -71,7 +71,7 @@ public class L1Skills {
 	private int _itmeConsumeCount;
 	private int _reuseDelay;
 	private int _buffDuration;
-	private int _targetTo; // ´ë»ó 0:ÀÚ½Å 1:PC 2:NPC 4:Ç÷¸Í 8:ÆÄÆ¼ 16:Æê 32:Àå¼Ò
+	private int _targetTo; // ëŒ€ìƒ 0:ìì‹  1:PC 2:NPC 4:í˜ˆë§¹ 8:íŒŒí‹° 16:í« 32:ì¥ì†Œ
 
 	public int getSkillId() {return _skillId;}
 	public void setSkillId(int i) {_skillId = i;}

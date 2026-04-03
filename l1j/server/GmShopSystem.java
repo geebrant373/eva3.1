@@ -1,4 +1,4 @@
-/**package l1j.server;
+ï»¿/**package l1j.server;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ public class GmShopSystem{
 				shop_x = shop.getX();
 				shop_y = shop.getY();
 				shop_m = shop.getMapId();
-				//ÁöÁ¤µÈ ÁÂÇ¥°¡ µî·ÏµÇ¾îÀÖ´Â°¡.
+				//ì§€ì •ëœ ì¢Œí‘œê°€ ë“±ë¡ë˜ì–´ìˆëŠ”ê°€.
 				boolean ck1 = false;
 				for(ShopPointTable.S_Point temp : ShopPointTable.getInstance().getSlist()) {
 					if(temp.LocX == shop_x && temp.LocY == shop_y && temp.LocM == shop_m) {
@@ -56,24 +56,24 @@ public class GmShopSystem{
 						break;
 					}
 				}
-				//ÁÂÇ¥°¡ µî·ÏµÇ¾îÀÖ´Ù.
+				//ì¢Œí‘œê°€ ë“±ë¡ë˜ì–´ìˆë‹¤.
 				if(ck1) {
-					//ÇØ´ç ÁÂÇ¥¿¡ À¯Àú°¡ Á¸ÀçÇÏ´ÂÁö Ã¼Å©ÇÑ´Ù.
-					if(UseCheck(shop_x, shop_y, shop_m)) { //À¯Àú°¡ Á¸ÀçÇÏÁö ¾Ê´Â´Ù ¹Ù·Î ½ºÆù.
+					//í•´ë‹¹ ì¢Œí‘œì— ìœ ì €ê°€ ì¡´ì¬í•˜ëŠ”ì§€ ì²´í¬í•œë‹¤.
+					if(UseCheck(shop_x, shop_y, shop_m)) { //ìœ ì €ê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤ ë°”ë¡œ ìŠ¤í°.
 						SpawnShop(shop, shop_x,shop_y,shop_m);
-					}else { //À¯Àú°¡ Á¸ÀçÇÑ´Ù. ½ºÆù°¡´ÉÇÑ ÁÂÇ¥¸¦ Ã£´Â´Ù.
+					}else { //ìœ ì €ê°€ ì¡´ì¬í•œë‹¤. ìŠ¤í°ê°€ëŠ¥í•œ ì¢Œí‘œë¥¼ ì°¾ëŠ”ë‹¤.
 						for(ShopPointTable.S_Point temp : ShopPointTable.getInstance().getSlist()) {
 							if(UseCheck(temp.LocX, temp.LocY, temp.LocM)) {
-								//½ºÆù
+								//ìŠ¤í°
 								SpawnShop(shop, temp.LocX,temp.LocY,temp.LocM);
 								break;
 							}
 						}
 					}
-				}else { //ÁÂÇ¥°¡ Á¸ÀçÇÏÁö ¾Ê´Â´Ù. ½ºÆù°¡´ÉÇÑ ÁÂÇ¥¸¦ Ã£´Â´Ù.
+				}else { //ì¢Œí‘œê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤. ìŠ¤í°ê°€ëŠ¥í•œ ì¢Œí‘œë¥¼ ì°¾ëŠ”ë‹¤.
 					for(ShopPointTable.S_Point temp : ShopPointTable.getInstance().getSlist()) {
 						if(UseCheck(temp.LocX, temp.LocY, temp.LocM)) {
-							//½ºÆù
+							//ìŠ¤í°
 							SpawnShop(shop, temp.LocX,temp.LocY,temp.LocM);
 							break;
 						}
@@ -82,7 +82,7 @@ public class GmShopSystem{
 				
 			}
 			
-			pc.sendPackets(new S_SystemMessage("¿µÀÚ»óÁ¡ " + _shops.size() + "¸íÀÌ ½ºÆùµÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("ì˜ììƒì  " + _shops.size() + "ëª…ì´ ìŠ¤í°ë˜ì—ˆìŠµë‹ˆë‹¤."));
 		}catch (Exception e) {
 
 		}
@@ -147,7 +147,7 @@ public class GmShopSystem{
 			shop_x = shop.getX();
 			shop_y = shop.getY();
 			shop_m = shop.getMapId();
-			//ÁöÁ¤µÈ ÁÂÇ¥°¡ µî·ÏµÇ¾îÀÖ´Â°¡.
+			//ì§€ì •ëœ ì¢Œí‘œê°€ ë“±ë¡ë˜ì–´ìˆëŠ”ê°€.
 			boolean ck1 = false;
 			for(ShopPointTable.S_Point temp : ShopPointTable.getInstance().getSlist()) {
 				if(temp.LocX == shop_x && temp.LocY == shop_y && temp.LocM == shop_m) {
@@ -155,28 +155,28 @@ public class GmShopSystem{
 					break;
 				}
 			}
-			//ÁÂÇ¥°¡ µî·ÏµÇ¾îÀÖ´Ù.
+			//ì¢Œí‘œê°€ ë“±ë¡ë˜ì–´ìˆë‹¤.
 			if(ck1) {
-				//ÇØ´ç ÁÂÇ¥¿¡ À¯Àú°¡ Á¸ÀçÇÏ´ÂÁö Ã¼Å©ÇÑ´Ù.
-				if(UseCheck(shop_x, shop_y, shop_m)) { //À¯Àú°¡ Á¸ÀçÇÏÁö ¾Ê´Â´Ù ¹Ù·Î ½ºÆù.
+				//í•´ë‹¹ ì¢Œí‘œì— ìœ ì €ê°€ ì¡´ì¬í•˜ëŠ”ì§€ ì²´í¬í•œë‹¤.
+				if(UseCheck(shop_x, shop_y, shop_m)) { //ìœ ì €ê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤ ë°”ë¡œ ìŠ¤í°.
 					SpawnShop(shop, shop_x,shop_y,shop_m);
-					pc.sendPackets(new S_SystemMessage(name + " ¿µÀÚ»óÁ¡ÀÌ ½ºÆùµÇ¾ú½À´Ï´Ù."));
-				}else { //À¯Àú°¡ Á¸ÀçÇÑ´Ù. ½ºÆù°¡´ÉÇÑ ÁÂÇ¥¸¦ Ã£´Â´Ù.
+					pc.sendPackets(new S_SystemMessage(name + " ì˜ììƒì ì´ ìŠ¤í°ë˜ì—ˆìŠµë‹ˆë‹¤."));
+				}else { //ìœ ì €ê°€ ì¡´ì¬í•œë‹¤. ìŠ¤í°ê°€ëŠ¥í•œ ì¢Œí‘œë¥¼ ì°¾ëŠ”ë‹¤.
 					for(ShopPointTable.S_Point temp : ShopPointTable.getInstance().getSlist()) {
 						if(UseCheck(temp.LocX, temp.LocY, temp.LocM)) {
-							//½ºÆù
+							//ìŠ¤í°
 							SpawnShop(shop, temp.LocX,temp.LocY,temp.LocM);
-							pc.sendPackets(new S_SystemMessage(name + " ¿µÀÚ»óÁ¡ÀÌ ½ºÆùµÇ¾ú½À´Ï´Ù."));
+							pc.sendPackets(new S_SystemMessage(name + " ì˜ììƒì ì´ ìŠ¤í°ë˜ì—ˆìŠµë‹ˆë‹¤."));
 							break;
 						}
 					}
 				}
-			}else { //ÁÂÇ¥°¡ Á¸ÀçÇÏÁö ¾Ê´Â´Ù. ½ºÆù°¡´ÉÇÑ ÁÂÇ¥¸¦ Ã£´Â´Ù.
+			}else { //ì¢Œí‘œê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ”ë‹¤. ìŠ¤í°ê°€ëŠ¥í•œ ì¢Œí‘œë¥¼ ì°¾ëŠ”ë‹¤.
 				for(ShopPointTable.S_Point temp : ShopPointTable.getInstance().getSlist()) {
 					if(UseCheck(temp.LocX, temp.LocY, temp.LocM)) {
-						//½ºÆù
+						//ìŠ¤í°
 						SpawnShop(shop, temp.LocX,temp.LocY,temp.LocM);
-						pc.sendPackets(new S_SystemMessage(name + " ¿µÀÚ»óÁ¡ÀÌ ½ºÆùµÇ¾ú½À´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage(name + " ì˜ììƒì ì´ ìŠ¤í°ë˜ì—ˆìŠµë‹ˆë‹¤."));
 						break;
 					}
 				}
@@ -202,7 +202,7 @@ public class GmShopSystem{
 //			npc.broadcastPacket(new S_DoActionShop(npc.getId(), ActionCodes.ACTION_Shop, shop.getShopName().getBytes()));
 //			_shops.add(npc);
 			
-//			pc.sendPackets(new S_SystemMessage(name + " ¿µÀÚ»óÁ¡ÀÌ ½ºÆùµÇ¾ú½À´Ï´Ù."));
+//			pc.sendPackets(new S_SystemMessage(name + " ì˜ììƒì ì´ ìŠ¤í°ë˜ì—ˆìŠµë‹ˆë‹¤."));
 		}catch (Exception e) {
 
 		}
@@ -220,7 +220,7 @@ public class GmShopSystem{
 					break;
 				}
 			}
-			pc.sendPackets(new S_SystemMessage(name + " ¿µÀÚ»óÁ¡ÀÌ »èÁ¦µÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage(name + " ì˜ììƒì ì´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤."));
 		}catch (Exception e) {
 
 		}
@@ -236,7 +236,7 @@ public class GmShopSystem{
 				npc.deleteMe();
 				_shops.remove(npc);
 			}
-			pc.sendPackets(new S_SystemMessage("¿µÀÚ»óÁ¡ÀÌ ¸ğµÎ »èÁ¦µÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("ì˜ììƒì ì´ ëª¨ë‘ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤."));
 		}catch (Exception e) {
 			e.printStackTrace();
 		}

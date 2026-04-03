@@ -1,4 +1,4 @@
-
+ï»¿
 package l1j.server.server.serverpackets;
 
 import l1j.server.server.Opcodes;
@@ -15,7 +15,7 @@ public class S_Horun extends ServerBasePacket {
 			}
 		}
 		writeC(Opcodes.S_OPCODE_HORUN);
-		writeC(inCount);// º¸¿©ÁÙ ¸®½ºÆ® °¹¼ö?
+		writeC(inCount);// ë³´ì—¬ì¤„ ë¦¬ìŠ¤íŠ¸ ê°¯ìˆ˜?
 		writeC(0);
 		for (int k = 0; k < count; k++) {
 			if (!pc.isSkillMastery((k + 1))) {

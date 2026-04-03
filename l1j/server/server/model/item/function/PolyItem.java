@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -41,23 +41,23 @@ public class PolyItem extends L1ItemInstance{
 			L1PcInstance pc = (L1PcInstance)cha;
 			L1ItemInstance useItem = pc.getInventory().getItem(this.getId());
 			int itemId = this.getItemId();
-			if (itemId == 41154 // ¾îµÒÀÇ ºñ´Ã
-					|| itemId == 41155 //·©Å·º¯½Å ÁÖ¹®¼­
-					|| itemId == 451000 // µå·¡°ï½½·¹ÀÌ¾îº¯½ÅÄ«µå 1È¸¿ë
-					|| itemId == 41156 // ¹è´öÀÚÀÇ ºñ´Ã
-					|| itemId == 41157// Áõ¿ÀÀÇ ºñ´Ã
-					|| itemId == 41143 // ·¯¹ö ¾ó°£ÀÌ º¯½Å ÀÏºÎ
-					|| itemId == 41144 // ¶ó¹Ùº»¾ÆÃ­ º¯½Å ÀÏºÎ
-					|| itemId == 41145) {  //¶ó¹öº»³ªÀÌÆ®
+			if (itemId == 41154 // ì–´ë‘ ì˜ ë¹„ëŠ˜
+					|| itemId == 41155 //ë­í‚¹ë³€ì‹  ì£¼ë¬¸ì„œ
+					|| itemId == 451000 // ë“œë˜ê³¤ìŠ¬ë ˆì´ì–´ë³€ì‹ ì¹´ë“œ 1íšŒìš©
+					|| itemId == 41156 // ë°°ë•ìì˜ ë¹„ëŠ˜
+					|| itemId == 41157// ì¦ì˜¤ì˜ ë¹„ëŠ˜
+					|| itemId == 41143 // ëŸ¬ë²„ ì–¼ê°„ì´ ë³€ì‹  ì¼ë¶€
+					|| itemId == 41144 // ë¼ë°”ë³¸ì•„ì±  ë³€ì‹  ì¼ë¶€
+					|| itemId == 41145) {  //ë¼ë²„ë³¸ë‚˜ì´íŠ¸
 				usePolyItem(pc, itemId);
 				pc.getInventory().removeItem(useItem, 1);
-			} else if (itemId == L1ItemId.SHARNA_POLYSCROLL_LV30 // »ş¸£³ªÀÇ º¯½Å ÁÖ¹®¼­ (·¹º§ 30)
-					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV40 // »ş¸£³ªÀÇ º¯½Å ÁÖ¹®¼­ (·¹º§ 40)
-					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV52		//»ş¸£³ªÀÇ º¯½Å ÁÖ¹®¼­ (·¹º§ 52)
-					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV55		//»ş¸£³ªÀÇ º¯½Å ÁÖ¹®¼­ (·¹º§ 55)
-					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV60		//»ş¸£³ªÀÇ º¯½Å ÁÖ¹®¼­ (·¹º§ 60)
-					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV65  //»ş¸£³ªÀÇ º¯½Å ÁÖ¹®¼­ (·¹º§ 65)
-					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV70) { //»ş¸£³ªÀÇ º¯½Å ÁÖ¹®¼­ (·¹º§ 70)
+			} else if (itemId == L1ItemId.SHARNA_POLYSCROLL_LV30 // ìƒ¤ë¥´ë‚˜ì˜ ë³€ì‹  ì£¼ë¬¸ì„œ (ë ˆë²¨ 30)
+					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV40 // ìƒ¤ë¥´ë‚˜ì˜ ë³€ì‹  ì£¼ë¬¸ì„œ (ë ˆë²¨ 40)
+					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV52		//ìƒ¤ë¥´ë‚˜ì˜ ë³€ì‹  ì£¼ë¬¸ì„œ (ë ˆë²¨ 52)
+					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV55		//ìƒ¤ë¥´ë‚˜ì˜ ë³€ì‹  ì£¼ë¬¸ì„œ (ë ˆë²¨ 55)
+					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV60		//ìƒ¤ë¥´ë‚˜ì˜ ë³€ì‹  ì£¼ë¬¸ì„œ (ë ˆë²¨ 60)
+					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV65  //ìƒ¤ë¥´ë‚˜ì˜ ë³€ì‹  ì£¼ë¬¸ì„œ (ë ˆë²¨ 65)
+					|| itemId == L1ItemId.SHARNA_POLYSCROLL_LV70) { //ìƒ¤ë¥´ë‚˜ì˜ ë³€ì‹  ì£¼ë¬¸ì„œ (ë ˆë²¨ 70)
 				useLevelPolyScroll(pc, itemId);
 				pc.getInventory().removeItem(useItem, 1);	
 			} else if (itemId == L1ItemId.POLYSCROLL_ARC){
@@ -85,10 +85,10 @@ public class PolyItem extends L1ItemInstance{
 		
 		int polyId = 0;
 		int time = 0;
-		if (itemId == 41154) { // ¾îµÒÀÇ ºñ´Ã
+		if (itemId == 41154) { // ì–´ë‘ ì˜ ë¹„ëŠ˜
 			polyId = 3101;
 			time = 600;
-		} else if (itemId == 451001) { // ·©Å·º¯½ÅÁÖ¹®¼­-ºÎÀûÀ¸·Î 0310¾÷µ«
+		} else if (itemId == 451001) { // ë­í‚¹ë³€ì‹ ì£¼ë¬¸ì„œ-ë¶€ì ìœ¼ë¡œ 0310ì—…ëƒ
 		
 		} if (pc.isWizard()) {
 			if (pc.get_sex() == 0) {
@@ -153,7 +153,7 @@ public class PolyItem extends L1ItemInstance{
 					L1PolyMorph.doPoly(pc, polyId, time, L1PolyMorph.MORPH_BY_ITEMMAGIC);
 
 			
-		}  else if (itemId == 41155) { // ·©Å·º¯½ÅÁÖ¹®¼­ ¼Ò¸ğ¼º
+		}  else if (itemId == 41155) { // ë­í‚¹ë³€ì‹ ì£¼ë¬¸ì„œ ì†Œëª¨ì„±
 			if (pc.isCrown()) {
 				if (pc.get_sex() == 0) {
 					polyId = 20775;
@@ -197,10 +197,10 @@ public class PolyItem extends L1ItemInstance{
 					time = 1800;
 				}
 			}
-		} else if (itemId == 41156) { // ¹è´öÀÚÀÇ ºñ´Ã
+		} else if (itemId == 41156) { // ë°°ë•ìì˜ ë¹„ëŠ˜
 			polyId = 3888;
 			time = 600;
-		} else if (itemId == 41157) { // Áõ¿ÀÀÇ ºñ´Ã ÇÃ·¡µ¥½ºº¯½Å
+		} else if (itemId == 41157) { // ì¦ì˜¤ì˜ ë¹„ëŠ˜ í”Œë˜ë°ìŠ¤ë³€ì‹ 
 			polyId = 13858;
 			time = 1800;
 		} else if (itemId == 41143) {
@@ -213,17 +213,17 @@ public class PolyItem extends L1ItemInstance{
 			polyId = 6088;
 			time = 1800;
 		}
-		 else if (itemId == 451000) { //µå·¡°ï ½½·¹ÀÌ¾î º¯½Å Ä«µå 1È¸¿ë
+		 else if (itemId == 451000) { //ë“œë˜ê³¤ ìŠ¬ë ˆì´ì–´ ë³€ì‹  ì¹´ë“œ 1íšŒìš©
 				polyId = 14491;
 				time = 1800;
 		}
 		
-		// else if (itemId == 451001) { //µå·¡°ï ½½·¹ÀÌ¾î º¯½Å Ä«µå ¹«Á¦ÇÑ
+		// else if (itemId == 451001) { //ë“œë˜ê³¤ ìŠ¬ë ˆì´ì–´ ë³€ì‹  ì¹´ë“œ ë¬´ì œí•œ
 		//		polyId = 14491;
 		//		time = 1800;
 	//		}
 			/*
-			 * else if (itemId == 455555) { //¿î¿µÀÚ polyId = 1080; time = 1800; }
+			 * else if (itemId == 455555) { //ìš´ì˜ì polyId = 1080; time = 1800; }
 			 */
 		L1PolyMorph.doPoly(pc, polyId, time, L1PolyMorph.MORPH_BY_ITEMMAGIC);
 		

@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Lastabard;
+ï»¿package l1j.server.GameSystem.Lastabard;
 
 import l1j.server.server.model.Getback;
 import l1j.server.server.model.L1Teleport;
@@ -21,7 +21,7 @@ public class LastabardData {
 	}
 
 	public static boolean isFourthFloor(int mobMapId) {
-		if(mobMapId == 531 || mobMapId == 533) { // ¶ó´ø 4Ãş
+		if(mobMapId == 531 || mobMapId == 533) { // ë¼ë˜ 4ì¸µ
 			return true;
 		}
 		return false;
@@ -30,25 +30,25 @@ public class LastabardData {
 	public static int getDelayTime(int mapId) {
 		int delayTime = 0;
 		switch(mapId) {
-		// 20ºĞ
+		// 20ë¶„
 		case 452: case 454: case 455: case 456: case 471: case 472: 
 		case 475: case 476: case 477: case 478: case 492: case 495:	case 531: 
 			delayTime = 1200; // 60 * 20
 			break;
-		// 25ºĞ
+		// 25ë¶„
 		case 461: case 465: case 490:
 			delayTime = 1500; // 60 * 25
 			break;
-		// 30ºĞ
+		// 30ë¶„
 		case 453: case 462:	case 463: case 473: case 533:
 			delayTime = 1800; // 60 * 30
 			break;
-		// 35ºĞ
+		// 35ë¶„
 		case 466: case 474: case 493: case 494: case 496:
 			delayTime = 2100; // 60 * 35
 			break;
-		// 5ºĞ
-		case 530: case 532: case 534: // ÄÉÀÌ³ª, ÀÌµ¥¾Æ ,Ä«»êµå¶ó Á×Àº ÈÄ ½Ã°£ Á¦ÇÑ
+		// 5ë¶„
+		case 530: case 532: case 534: // ì¼€ì´ë‚˜, ì´ë°ì•„ ,ì¹´ì‚°ë“œë¼ ì£½ì€ í›„ ì‹œê°„ ì œí•œ
 			delayTime = 300; // 60 * 5
 			break;
 		default:
@@ -64,10 +64,10 @@ public class LastabardData {
 			
 			switch(pc.getMapId()){
 			case 534:
-				L1Teleport.teleport(pc, 32733, 32872, (short) 468, 5, true); // Àå·ÎÈ¸ÀÇÀå
+				L1Teleport.teleport(pc, 32733, 32872, (short) 468, 5, true); // ì¥ë¡œíšŒì˜ì¥
 				break;
 			default:
-				// °¢ ÃşÀÇ ÈŞ½ÄÃşÀ¸·Î ±ÍÈ¯
+				// ê° ì¸µì˜ íœ´ì‹ì¸µìœ¼ë¡œ ê·€í™˜
 				int[] loc = Getback.GetBack_Location(pc, true);
 				L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2], 5, true);
 			}

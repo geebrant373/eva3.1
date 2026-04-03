@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Lastabard;
+ï»¿package l1j.server.GameSystem.Lastabard;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,7 +34,7 @@ public class LastabardSpawnTable {
 		PerformanceTimer timer = new PerformanceTimer();
 		System.out.print("[Lastabard] spawning Mobs...");
 		fillSpawnTable();
-		log.config("[Lastabard] SpawnList " + spawnTable.size() + "°Ç ºÒ·¯¿È");
+		log.config("[Lastabard] SpawnList " + spawnTable.size() + "ê±´ ë¶ˆëŸ¬ì˜´");
 		System.out.println("OK! " + timer.get() + " ms");
 	}
 	public void reload1() {
@@ -103,7 +103,7 @@ public class LastabardSpawnTable {
 				spawnDat.setCountMapId(rs.getInt("count_map"));
 
 				if (count > 1 && spawnDat.getLocX1() == 0) {
-					// ´Ù¼öÀÇ °íÁ¤ ½ºÆù¸÷Àº  °³Ã¼¼ö * 6 ÀÇ ¹üÀ§½ºÆù (¹üÀ§ 30 ÀÌÇÏ)
+					// ë‹¤ìˆ˜ì˜ ê³ ì • ìŠ¤í°ëª¹ì€  ê°œì²´ìˆ˜ * 6 ì˜ ë²”ìœ„ìŠ¤í° (ë²”ìœ„ 30 ì´í•˜)
 					int range = Math.min(count * 6, 30);
 					spawnDat.setLocX1(spawnDat.getLocX() - range);
 					spawnDat.setLocY1(spawnDat.getLocY() - range);
@@ -128,7 +128,7 @@ public class LastabardSpawnTable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		log.fine("[Lastabard] ÃÑ " + spawnCount + "¸¶¸®");
+		log.fine("[Lastabard] ì´ " + spawnCount + "ë§ˆë¦¬");
 	}
 
 	private static int calcCount(L1Npc npc, int count, double rate) {
@@ -193,7 +193,7 @@ public class LastabardSpawnTable {
 				spawnDat.setName(npcTemplate.get_name());
 
 				if (count > 1 && spawnDat.getLocX1() == 0) {
-					// ´Ù¼öÀÇ °íÁ¤ ½ºÆù¸÷Àº  °³Ã¼¼ö * 6 ÀÇ ¹üÀ§½ºÆù (¹üÀ§ 30 ÀÌÇÏ)
+					// ë‹¤ìˆ˜ì˜ ê³ ì • ìŠ¤í°ëª¹ì€  ê°œì²´ìˆ˜ * 6 ì˜ ë²”ìœ„ìŠ¤í° (ë²”ìœ„ 30 ì´í•˜)
 					int range = Math.min(count * 6, 30);
 					spawnDat.setLocX1(spawnDat.getLocX() - range);
 					spawnDat.setLocY1(spawnDat.getLocY() - range);

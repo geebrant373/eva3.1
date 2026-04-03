@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,18 +31,18 @@ public class HongboTable {
 			r = p.executeQuery();
 			if (r.next()){
 				if(r.getInt(1) == 2){
-					pc.sendPackets(new S_SystemMessage("[È«º¸ÀÎÁõ] È«º¸±â°¡ ÀÎÁõµÇ¾ú½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("[í™ë³´ì¸ì¦] í™ë³´ê¸°ê°€ ì¸ì¦ë˜ì—ˆìŠµë‹ˆë‹¤."));
 					pc.setadFeature(2);
 				}else{
-					pc.sendPackets(new S_SystemMessage("[È«º¸ÀÎÁõ] È«º¸±â¸¦ Á¤»óµ¿ÀÛ ÇØÁÖ½Ê½Ã¿ä!"));
+					pc.sendPackets(new S_SystemMessage("[í™ë³´ì¸ì¦] í™ë³´ê¸°ë¥¼ ì •ìƒë™ì‘ í•´ì£¼ì‹­ì‹œìš”!"));
 				}
 				
 			}
 			else{
-				pc.sendPackets(new S_SystemMessage("[È«º¸ÀÎÁõ] È«º¸±â¸¦ Á¤»óµ¿ÀÛ ÇØÁÖ½Ê½Ã¿ä!"));
+				pc.sendPackets(new S_SystemMessage("[í™ë³´ì¸ì¦] í™ë³´ê¸°ë¥¼ ì •ìƒë™ì‘ í•´ì£¼ì‹­ì‹œìš”!"));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage("[È«º¸ÀÎÁõ] È«º¸±â¸¦ Á¤»óµ¿ÀÛ ÇØÁÖ½Ê½Ã¿ä!"));
+			pc.sendPackets(new S_SystemMessage("[í™ë³´ì¸ì¦] í™ë³´ê¸°ë¥¼ ì •ìƒë™ì‘ í•´ì£¼ì‹­ì‹œìš”!"));
 		} finally{
 			SQLUtil.close(r);
 			SQLUtil.close(p);

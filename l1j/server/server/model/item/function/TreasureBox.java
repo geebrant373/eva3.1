@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -45,7 +45,7 @@ public class TreasureBox extends L1ItemInstance{
 			L1PcInstance pc = (L1PcInstance)cha;
 			L1ItemInstance useItem = pc.getInventory().getItem(this.getId());
 			int itemId = useItem.getItemId();
-			// ¿ÁªÁøÎ √º≈©
+			// Ïû¨ÏÇ¨Ïö© Ï≤¥ÌÅ¨
 			boolean isDelayEffect = false;
 			if (useItem.getItem().getType2() == 0) {
 				int delayEffect = ((L1EtcItem) useItem.getItem()).get_delayEffect();
@@ -55,7 +55,7 @@ public class TreasureBox extends L1ItemInstance{
 					if (lastUsed != null) {
 						Calendar cal = Calendar.getInstance();
 						if ((cal.getTimeInMillis() - lastUsed.getTime()) / 1000 <= delayEffect) {
-							// \f1 æ∆π´∞Õµµ ¿œæÓ≥™¡ˆ æ æ“Ω¿¥œ¥Ÿ.
+							// \f1 ÏïÑÎ¨¥Í≤ÉÎèÑ ÏùºÏñ¥ÎÇòÏßÄ ÏïäÏïòÏäµÎãàÎã§.
 							pc.sendPackets(new S_ServerMessage(79));
 							return;
 						}

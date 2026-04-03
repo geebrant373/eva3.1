@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,9 +42,9 @@ public class L1HpBar implements L1CommandExecutor {
 
 	@Override
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
-		if (arg.equalsIgnoreCase("ÄÔ")) {
+		if (arg.equalsIgnoreCase("ì¼¬")) {
 			pc.getSkillEffectTimerSet().setSkillEffect(L1SkillId.GMSTATUS_HPBAR, 0);
-		} else if (arg.equalsIgnoreCase("²û")) {
+		} else if (arg.equalsIgnoreCase("ë”")) {
 			pc.getSkillEffectTimerSet().removeSkillEffect(L1SkillId.GMSTATUS_HPBAR);
 
 			for (L1Object obj : pc.getNearObjects().getKnownObjects()) {
@@ -53,7 +53,7 @@ public class L1HpBar implements L1CommandExecutor {
 				}
 			}
 		} else {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [ÄÔ,²û] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [ì¼¬,ë”] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 

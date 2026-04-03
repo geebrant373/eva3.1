@@ -1,4 +1,4 @@
-package l1j.server.server.model.npc.action;
+ï»¿package l1j.server.server.model.npc.action;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +57,7 @@ public class L1NpcMakeItemAction extends L1NpcXmlAction {
 	}
 
 	private boolean makeItems(L1PcInstance pc, String npcName, int amount) {
-		// Á¦ÀÛ¹ö±× °ü·Ã Ãß°¡
+		// ì œìž‘ë²„ê·¸ ê´€ë ¨ ì¶”ê°€
 		if (amount <= 0 || amount > 9999) {
 			return false;
 		}
@@ -90,7 +90,7 @@ public class L1NpcMakeItemAction extends L1NpcXmlAction {
 			}
 			weight += temp.getWeight() * (makingItem.getAmount() * amount) / 1000;
 			long _CountToCreate = countToCreate;
-			// Á¦ÀÛ ¹ö±× °ü·Ã Ãß°¡
+			// ì œìž‘ ë²„ê·¸ ê´€ë ¨ ì¶”ê°€
 			if (_CountToCreate < 0 || _CountToCreate > 9999)
 				return false;
 		}

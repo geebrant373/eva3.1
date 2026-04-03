@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Robot;
+ï»¿package l1j.server.GameSystem.Robot;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -7,90 +7,90 @@ public class Robot_Location {
 
 	private static Random _random = new Random(System.currentTimeMillis());
 
-	private static ArrayList<Robot_Location_bean> ±â¶õ¼ÂÆÃ = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ±â¶õ¼ÂÆÃ2 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ±â¶õ¼ÂÆÃ3 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ±â¶õ¼ÂÆÃ4 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ±â¶õ¼ÂÆÃ5 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¿À·»¼ÂÆÃ = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ±Û¸»¼ÂÆÃ = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> À£´ø¼ÂÆÃ = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ÅÚ³à = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¿ë´øÀÔ±¸ = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> º»´øÀÔ±¸ = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ±â°¨ÀÔ±¸ = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> »ó¾ÆÅ¾4Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> »ó¾ÆÅ¾5Ãş = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸°ë€ì…‹íŒ… = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸°ë€ì…‹íŒ…2 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸°ë€ì…‹íŒ…3 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸°ë€ì…‹íŒ…4 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸°ë€ì…‹íŒ…5 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ì˜¤ë Œì…‹íŒ… = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸€ë§ì…‹íŒ… = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ì›°ë˜ì…‹íŒ… = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> í…”ë…€ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìš©ë˜ì…êµ¬ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë³¸ë˜ì…êµ¬ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸°ê°ì…êµ¬ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìƒì•„íƒ‘4ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìƒì•„íƒ‘5ì¸µ = new ArrayList<Robot_Location_bean>();
 	
 
-	private static ArrayList<Robot_Location_bean> ÁöÀú = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¿ë´ø1Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¿ë´ø2Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¿ë´ø3Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¿ë´ø4Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¿ë´ø5Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¿ë´ø6Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¿ë´ø7Ãş = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ì§€ì € = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìš©ë˜1ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìš©ë˜2ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìš©ë˜3ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìš©ë˜4ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìš©ë˜5ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìš©ë˜6ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìš©ë˜7ì¸µ = new ArrayList<Robot_Location_bean>();
 
-	private static ArrayList<Robot_Location_bean> ¸®´º¾ó¿À¸¸1Ãş = new ArrayList<Robot_Location_bean>(); // 160316
-	private static ArrayList<Robot_Location_bean> ¸®´º¾ó¿À¸¸2Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¸®´º¾ó¿À¸¸3Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¸®´º¾ó¿À¸¸4Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¸®´º¾ó¿À¸¸5Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¸®´º¾ó¿À¸¸6Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¸®´º¾ó¿À¸¸7Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¸®´º¾ó¿À¸¸8Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¸®´º¾ó¿À¸¸9Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¸®´º¾ó¿À¸¸10Ãş = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë¦¬ë‰´ì–¼ì˜¤ë§Œ1ì¸µ = new ArrayList<Robot_Location_bean>(); // 160316
+	private static ArrayList<Robot_Location_bean> ë¦¬ë‰´ì–¼ì˜¤ë§Œ2ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë¦¬ë‰´ì–¼ì˜¤ë§Œ3ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë¦¬ë‰´ì–¼ì˜¤ë§Œ4ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë¦¬ë‰´ì–¼ì˜¤ë§Œ5ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë¦¬ë‰´ì–¼ì˜¤ë§Œ6ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë¦¬ë‰´ì–¼ì˜¤ë§Œ7ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë¦¬ë‰´ì–¼ì˜¤ë§Œ8ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë¦¬ë‰´ì–¼ì˜¤ë§Œ9ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë¦¬ë‰´ì–¼ì˜¤ë§Œ10ì¸µ = new ArrayList<Robot_Location_bean>();
 
-	private static ArrayList<Robot_Location_bean> º»´ø1Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> º»´ø2Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> º»´ø3Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> º»´ø4Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> º»´ø5Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> º»´ø6Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> º»´ø7Ãş = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë³¸ë˜1ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë³¸ë˜2ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë³¸ë˜3ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë³¸ë˜4ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë³¸ë˜5ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë³¸ë˜6ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ë³¸ë˜7ì¸µ = new ArrayList<Robot_Location_bean>();
 
-	private static ArrayList<Robot_Location_bean> ¼±¹Ú½ÉÇØ = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¼±¹Ú½ÉÇØ2 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ¼±¹Ú½ÉÇØ3 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ì„ ë°•ì‹¬í•´ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ì„ ë°•ì‹¬í•´2 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ì„ ë°•ì‹¬í•´3 = new ArrayList<Robot_Location_bean>();
 
-	private static ArrayList<Robot_Location_bean> ÀØ¼¶ = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ÀØ¼¶2 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ÀØ¼¶3 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ÀØ¼¶4 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ÀØ¼¶5 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìŠì„¬ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìŠì„¬2 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìŠì„¬3 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìŠì„¬4 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ìŠì„¬5 = new ArrayList<Robot_Location_bean>();
 
-	private static ArrayList<Robot_Location_bean> Áö¹èÀÚ1Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> Áö¹èÀÚ2Ãş = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ì§€ë°°ì1ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ì§€ë°°ì2ì¸µ = new ArrayList<Robot_Location_bean>();
 
-	private static ArrayList<Robot_Location_bean> °³¹Ì±¼1 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> °³¹Ì±¼2 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> °³¹Ì±¼3 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> °³¹Ì±¼4 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> °³¹Ì±¼5 = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> °³¹Ì±¼6 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê°œë¯¸êµ´1 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê°œë¯¸êµ´2 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê°œë¯¸êµ´3 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê°œë¯¸êµ´4 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê°œë¯¸êµ´5 = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê°œë¯¸êµ´6 = new ArrayList<Robot_Location_bean>();
 
-	private static ArrayList<Robot_Location_bean> ±â°¨1Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ±â°¨2Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ±â°¨3Ãş = new ArrayList<Robot_Location_bean>();
-	private static ArrayList<Robot_Location_bean> ±â°¨4Ãş = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸°ê°1ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸°ê°2ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸°ê°3ì¸µ = new ArrayList<Robot_Location_bean>();
+	private static ArrayList<Robot_Location_bean> ê¸°ê°4ì¸µ = new ArrayList<Robot_Location_bean>();
 
-	public static void ·ÎÄÉÀÌ¼Çµî·Ï(int x, int y, int m) {
+	public static void ë¡œì¼€ì´ì…˜ë“±ë¡(int x, int y, int m) {
 
 	}
 
-	public static ArrayList<Robot_Location_bean> ·ÎÄÉÀÌ¼Ç(L1RobotInstance bot) {
+	public static ArrayList<Robot_Location_bean> ë¡œì¼€ì´ì…˜(L1RobotInstance bot) {
 		_random.setSeed(System.currentTimeMillis());
-		if (bot.»ç³Éº¿_Å¸ÀÔ == L1RobotInstance.SETTING) {
-			if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø1Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø2Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø3Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø4Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø5Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø6Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø7Ãş")) {
-				return _random.nextInt(1000) > 500 ? ±â¶õ¼ÂÆÃ : ±â¶õ¼ÂÆÃ2;
+		if (bot.ì‚¬ëƒ¥ë´‡_íƒ€ì… == L1RobotInstance.SETTING) {
+			if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜1ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜2ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜3ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜4ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜5ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜6ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜7ì¸µ")) {
+				return _random.nextInt(1000) > 500 ? ê¸°ë€ì…‹íŒ… : ê¸°ë€ì…‹íŒ…2;
 			}
 			int rr = _random.nextInt(16);
 			if (rr == 15) {
@@ -107,316 +107,316 @@ public class Robot_Location {
 			case 7:
 			case 11:
 			case 0:
-				return _random.nextInt(1000) >= 500 ? ±â¶õ¼ÂÆÃ2 : ±â¶õ¼ÂÆÃ5;
+				return _random.nextInt(1000) >= 500 ? ê¸°ë€ì…‹íŒ…2 : ê¸°ë€ì…‹íŒ…5;
 			case 8:
 			case 4:
 			case 1:
-				return ¿À·»¼ÂÆÃ;
+				return ì˜¤ë Œì…‹íŒ…;
 			case 13:
 			case 12:
-				return ±â¶õ¼ÂÆÃ4;
+				return ê¸°ë€ì…‹íŒ…4;
 			case 10:
 			case 9:
 			case 5:
 			case 2:
-				return _random.nextInt(1000) >= 500 ? ±â¶õ¼ÂÆÃ : ±â¶õ¼ÂÆÃ3;
-				// return ±Û¸»¼ÂÆÃ; //¿ø·¡ ±Û¸»¼ÂÆÃ
+				return _random.nextInt(1000) >= 500 ? ê¸°ë€ì…‹íŒ… : ê¸°ë€ì…‹íŒ…3;
+				// return ê¸€ë§ì…‹íŒ…; //ì›ë˜ ê¸€ë§ì…‹íŒ…
 			case 14:
 			case 6:
 			case 3:
-				return ±Û¸»¼ÂÆÃ;
-				// return À£´ø¼ÂÆÃ;
+				return ê¸€ë§ì…‹íŒ…;
+				// return ì›°ë˜ì…‹íŒ…;
 			default:
 				break;
 			}
-			return ±â¶õ¼ÂÆÃ;
-		} else if (bot.»ç³Éº¿_Å¸ÀÔ == L1RobotInstance.TEL_NPC_MOVE) {
-			if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø1Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø2Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø3Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø4Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø5Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø6Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø7Ãş")) {
-				return ¿ë´øÀÔ±¸;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø1Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø2Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø3Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø4Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø5Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø6Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø7Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸1Ãş")// 160316
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸2Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸3Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸4Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸5Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸6Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸7Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸8Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸9Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸10Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.startsWith("ÀØ¼¶")
-					|| bot.»ç³Éº¿_À§Ä¡.startsWith("Áö¹èÀÚ1Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.startsWith("Áö¹èÀÚ2Ãş")) { // ÀØ¼¶
+			return ê¸°ë€ì…‹íŒ…;
+		} else if (bot.ì‚¬ëƒ¥ë´‡_íƒ€ì… == L1RobotInstance.TEL_NPC_MOVE) {
+			if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜1ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜2ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜3ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜4ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜5ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜6ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜7ì¸µ")) {
+				return ìš©ë˜ì…êµ¬;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜1ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜2ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜3ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜4ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜5ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜6ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜7ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ1ì¸µ")// 160316
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ2ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ3ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ4ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ5ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ6ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ7ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ8ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ9ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ10ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.startsWith("ìŠì„¬")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.startsWith("ì§€ë°°ì1ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.startsWith("ì§€ë°°ì2ì¸µ")) { // ìŠì„¬
 
-				return ÅÚ³à; // ¿ø·¡null
-			} else if (bot.»ç³Éº¿_À§Ä¡.startsWith("¿À¸¸")
-					|| bot.»ç³Éº¿_À§Ä¡.startsWith("°³¹Ì±¼")) {
+				return í…”ë…€; // ì›ë˜null
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.startsWith("ì˜¤ë§Œ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.startsWith("ê°œë¯¸êµ´")) {
 				return null;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("±â°¨1Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("±â°¨2Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("±â°¨3Ãş")
-					|| bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("±â°¨4Ãş"))
-				return ±â°¨ÀÔ±¸;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê¸°ê°1ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê¸°ê°2ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê¸°ê°3ì¸µ")
+					|| bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê¸°ê°4ì¸µ"))
+				return ê¸°ê°ì…êµ¬;
 			if (bot.getX() >= 33410 && bot.getX() <= 33461
 					&& bot.getY() >= 32788 && bot.getY() <= 32838
-					&& bot.getMapId() == 4)// ±â¶õ
-				return ÅÚ³à;
-		} else if (bot.»ç³Éº¿_Å¸ÀÔ == L1RobotInstance.HUNT_MOVE) {
-			bot.ÅÚ»ç³É = false;
-			if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¼±¹Ú½ÉÇØ")) {
-				bot.ÅÚ»ç³É = true;
+					&& bot.getMapId() == 4)// ê¸°ë€
+				return í…”ë…€;
+		} else if (bot.ì‚¬ëƒ¥ë´‡_íƒ€ì… == L1RobotInstance.HUNT_MOVE) {
+			bot.í…”ì‚¬ëƒ¥ = false;
+			if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ì„ ë°•ì‹¬í•´")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
 				switch (_random.nextInt(3)) {
 				case 0:
-					return ¼±¹Ú½ÉÇØ;
+					return ì„ ë°•ì‹¬í•´;
 				case 1:
-					return ¼±¹Ú½ÉÇØ2;
+					return ì„ ë°•ì‹¬í•´2;
 				case 2:
-					return ¼±¹Ú½ÉÇØ3;
+					return ì„ ë°•ì‹¬í•´3;
 				default:
 					break;
 				}
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("ÀØ¼¶")) {
-				// bot.ÅÚ»ç³É = false;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìŠì„¬")) {
+				// bot.í…”ì‚¬ëƒ¥ = false;
 				switch (_random.nextInt(5)) {
 				case 0:
-					return ÀØ¼¶;
+					return ìŠì„¬;
 				case 1:
-					return ÀØ¼¶2;
+					return ìŠì„¬2;
 				case 2:
-					return ÀØ¼¶3;
+					return ìŠì„¬3;
 				case 3:
-					return ÀØ¼¶4;
+					return ìŠì„¬4;
 				case 4:
-					return ÀØ¼¶5;
+					return ìŠì„¬5;
 				default:
 					break;
 				}
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("°³¹Ì±¼1")) {
-				bot.ÅÚ»ç³É = true;
-				return °³¹Ì±¼1;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("°³¹Ì±¼2")) {
-				bot.ÅÚ»ç³É = true;
-				return °³¹Ì±¼2;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("°³¹Ì±¼3")) {
-				bot.ÅÚ»ç³É = true;
-				return °³¹Ì±¼3;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("°³¹Ì±¼4")) {
-				bot.ÅÚ»ç³É = true;
-				return °³¹Ì±¼4;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("°³¹Ì±¼5")) {
-				bot.ÅÚ»ç³É = true;
-				return °³¹Ì±¼5;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("°³¹Ì±¼6")) {
-				bot.ÅÚ»ç³É = true;
-				return °³¹Ì±¼6;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("»ó¾ÆÅ¾4Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return »ó¾ÆÅ¾4Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("»ó¾ÆÅ¾5Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return »ó¾ÆÅ¾5Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("ÁöÀú")) {
-				bot.ÅÚ»ç³É = true;
-				return ÁöÀú;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê°œë¯¸êµ´1")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ê°œë¯¸êµ´1;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê°œë¯¸êµ´2")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ê°œë¯¸êµ´2;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê°œë¯¸êµ´3")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ê°œë¯¸êµ´3;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê°œë¯¸êµ´4")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ê°œë¯¸êµ´4;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê°œë¯¸êµ´5")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ê°œë¯¸êµ´5;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê°œë¯¸êµ´6")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ê°œë¯¸êµ´6;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìƒì•„íƒ‘4ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ìƒì•„íƒ‘4ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìƒì•„íƒ‘5ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ìƒì•„íƒ‘5ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ì§€ì €")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ì§€ì €;
 				// 160316
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸1Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¸®´º¾ó¿À¸¸1Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸2Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¸®´º¾ó¿À¸¸2Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸3Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¸®´º¾ó¿À¸¸3Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸4Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¸®´º¾ó¿À¸¸4Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸5Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¸®´º¾ó¿À¸¸5Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸6Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¸®´º¾ó¿À¸¸6Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸7Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¸®´º¾ó¿À¸¸7Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸8Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¸®´º¾ó¿À¸¸8Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸9Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¸®´º¾ó¿À¸¸9Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¸®´º¾ó¿À¸¸10Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¸®´º¾ó¿À¸¸10Ãş;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ1ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë¦¬ë‰´ì–¼ì˜¤ë§Œ1ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ2ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë¦¬ë‰´ì–¼ì˜¤ë§Œ2ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ3ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë¦¬ë‰´ì–¼ì˜¤ë§Œ3ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ4ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë¦¬ë‰´ì–¼ì˜¤ë§Œ4ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ5ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë¦¬ë‰´ì–¼ì˜¤ë§Œ5ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ6ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë¦¬ë‰´ì–¼ì˜¤ë§Œ6ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ7ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë¦¬ë‰´ì–¼ì˜¤ë§Œ7ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ8ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë¦¬ë‰´ì–¼ì˜¤ë§Œ8ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ9ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë¦¬ë‰´ì–¼ì˜¤ë§Œ9ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë¦¬ë‰´ì–¼ì˜¤ë§Œ10ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë¦¬ë‰´ì–¼ì˜¤ë§Œ10ì¸µ;
 				// 160316
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø1Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¿ë´ø1Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø2Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¿ë´ø2Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø3Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¿ë´ø3Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø4Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¿ë´ø4Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø5Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¿ë´ø5Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø6Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¿ë´ø6Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¿ë´ø7Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ¿ë´ø7Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø1Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return º»´ø1Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø2Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return º»´ø2Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø3Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return º»´ø3Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø4Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return º»´ø4Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø5Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return º»´ø5Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø6Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return º»´ø6Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("º»´ø7Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return º»´ø7Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("±â°¨1Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ±â°¨1Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("±â°¨2Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ±â°¨2Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("±â°¨3Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ±â°¨3Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("±â°¨4Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return ±â°¨4Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("Áö¹èÀÚ1Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return Áö¹èÀÚ1Ãş;
-			} else if (bot.»ç³Éº¿_À§Ä¡.equalsIgnoreCase("Áö¹èÀÚ2Ãş")) {
-				bot.ÅÚ»ç³É = true;
-				return Áö¹èÀÚ2Ãş;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜1ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ìš©ë˜1ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜2ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ìš©ë˜2ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜3ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ìš©ë˜3ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜4ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ìš©ë˜4ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜5ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ìš©ë˜5ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜6ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ìš©ë˜6ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìš©ë˜7ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ìš©ë˜7ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜1ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë³¸ë˜1ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜2ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë³¸ë˜2ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜3ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë³¸ë˜3ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜4ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë³¸ë˜4ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜5ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë³¸ë˜5ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜6ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë³¸ë˜6ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ë³¸ë˜7ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ë³¸ë˜7ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê¸°ê°1ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ê¸°ê°1ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê¸°ê°2ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ê¸°ê°2ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê¸°ê°3ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ê¸°ê°3ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ê¸°ê°4ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ê¸°ê°4ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ì§€ë°°ì1ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ì§€ë°°ì1ì¸µ;
+			} else if (bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ì§€ë°°ì2ì¸µ")) {
+				bot.í…”ì‚¬ëƒ¥ = true;
+				return ì§€ë°°ì2ì¸µ;
 			}
 		}
 		return null;
 	}
 
 	public static void setRLOC() {
-		// ¹°¾à, Ã¢°í, ¹öÇÁ
-		±â¶õ¼ÂÆÃ.add(new Robot_Location_bean(33457, 32819, 4));
-		±â¶õ¼ÂÆÃ.add(new Robot_Location_bean(33431, 32816, 4));
-		±â¶õ¼ÂÆÃ.add(new Robot_Location_bean(33437, 32804, 4));
-		±â¶õ¼ÂÆÃ2.add(new Robot_Location_bean(33432, 32815, 4));
-		±â¶õ¼ÂÆÃ2.add(new Robot_Location_bean(33457, 32820, 4));
-		±â¶õ¼ÂÆÃ2.add(new Robot_Location_bean(33437, 32804, 4));
-		±â¶õ¼ÂÆÃ3.add(new Robot_Location_bean(33428, 32806, 4));
-		±â¶õ¼ÂÆÃ3.add(new Robot_Location_bean(33422, 32813, 4));
-		±â¶õ¼ÂÆÃ3.add(new Robot_Location_bean(33437, 32803, 4));
-		±â¶õ¼ÂÆÃ4.add(new Robot_Location_bean(33437, 32803, 4));
-		±â¶õ¼ÂÆÃ5.add(new Robot_Location_bean(33428, 32806, 4));
-		±â¶õ¼ÂÆÃ5.add(new Robot_Location_bean(33440, 32801, 4));
+		// ë¬¼ì•½, ì°½ê³ , ë²„í”„
+		ê¸°ë€ì…‹íŒ….add(new Robot_Location_bean(33457, 32819, 4));
+		ê¸°ë€ì…‹íŒ….add(new Robot_Location_bean(33431, 32816, 4));
+		ê¸°ë€ì…‹íŒ….add(new Robot_Location_bean(33437, 32804, 4));
+		ê¸°ë€ì…‹íŒ…2.add(new Robot_Location_bean(33432, 32815, 4));
+		ê¸°ë€ì…‹íŒ…2.add(new Robot_Location_bean(33457, 32820, 4));
+		ê¸°ë€ì…‹íŒ…2.add(new Robot_Location_bean(33437, 32804, 4));
+		ê¸°ë€ì…‹íŒ…3.add(new Robot_Location_bean(33428, 32806, 4));
+		ê¸°ë€ì…‹íŒ…3.add(new Robot_Location_bean(33422, 32813, 4));
+		ê¸°ë€ì…‹íŒ…3.add(new Robot_Location_bean(33437, 32803, 4));
+		ê¸°ë€ì…‹íŒ…4.add(new Robot_Location_bean(33437, 32803, 4));
+		ê¸°ë€ì…‹íŒ…5.add(new Robot_Location_bean(33428, 32806, 4));
+		ê¸°ë€ì…‹íŒ…5.add(new Robot_Location_bean(33440, 32801, 4));
 
-		¿À·»¼ÂÆÃ.add(new Robot_Location_bean(34065, 32287, 4));
-		¿À·»¼ÂÆÃ.add(new Robot_Location_bean(34053, 32287, 4));
-		¿À·»¼ÂÆÃ.add(new Robot_Location_bean(34064, 32279, 4));
-		±Û¸»¼ÂÆÃ.add(new Robot_Location_bean(32596, 32741, 4));
-		±Û¸»¼ÂÆÃ.add(new Robot_Location_bean(32609, 32735, 4));
-		À£´ø¼ÂÆÃ.add(new Robot_Location_bean(33738, 32494, 4));
-		À£´ø¼ÂÆÃ.add(new Robot_Location_bean(33723, 32488, 4));
-		À£´ø¼ÂÆÃ.add(new Robot_Location_bean(33714, 32498, 4));
-		// ±â¶õ ÅÚ³à ÀÌµ¿
-		ÅÚ³à.add(new Robot_Location_bean(33437, 32795, 4));
-		// ¿ë´ø ÀÔ±¸
-		¿ë´øÀÔ±¸.add(new Robot_Location_bean(33446, 32828, 4));
-		// ±â°¨ ÀÔ±¸
-		±â°¨ÀÔ±¸.add(new Robot_Location_bean(33428, 32820, 4));
-		// º»´ø ÀÔ±¸
-		º»´øÀÔ±¸.add(new Robot_Location_bean(32727, 32929, 4));
+		ì˜¤ë Œì…‹íŒ….add(new Robot_Location_bean(34065, 32287, 4));
+		ì˜¤ë Œì…‹íŒ….add(new Robot_Location_bean(34053, 32287, 4));
+		ì˜¤ë Œì…‹íŒ….add(new Robot_Location_bean(34064, 32279, 4));
+		ê¸€ë§ì…‹íŒ….add(new Robot_Location_bean(32596, 32741, 4));
+		ê¸€ë§ì…‹íŒ….add(new Robot_Location_bean(32609, 32735, 4));
+		ì›°ë˜ì…‹íŒ….add(new Robot_Location_bean(33738, 32494, 4));
+		ì›°ë˜ì…‹íŒ….add(new Robot_Location_bean(33723, 32488, 4));
+		ì›°ë˜ì…‹íŒ….add(new Robot_Location_bean(33714, 32498, 4));
+		// ê¸°ë€ í…”ë…€ ì´ë™
+		í…”ë…€.add(new Robot_Location_bean(33437, 32795, 4));
+		// ìš©ë˜ ì…êµ¬
+		ìš©ë˜ì…êµ¬.add(new Robot_Location_bean(33446, 32828, 4));
+		// ê¸°ê° ì…êµ¬
+		ê¸°ê°ì…êµ¬.add(new Robot_Location_bean(33428, 32820, 4));
+		// ë³¸ë˜ ì…êµ¬
+		ë³¸ë˜ì…êµ¬.add(new Robot_Location_bean(32727, 32929, 4));
 		
 
-		ÁöÀú.add(new Robot_Location_bean(32800, 33051, 420));
+		ì§€ì €.add(new Robot_Location_bean(32800, 33051, 420));
 
-		ÀØ¼¶.add(new Robot_Location_bean(32645, 33009, 1700)); // ÀÔ¼¶¼¼ÇÁÆ¼Á¸ÀÔ±¸
-		ÀØ¼¶2.add(new Robot_Location_bean(32754, 32942, 1700)); // ³²ÂÊ°ñ·½¿¬±¸¼ÒÀÔ±¸
-		ÀØ¼¶3.add(new Robot_Location_bean(32694, 32716, 1700)); // ¼­ÂÊ°ñ·½ÀÔ±¸
-		ÀØ¼¶4.add(new Robot_Location_bean(32926, 32890, 1700)); // µ¿ÂÊ°ñ·½ÀÔ±¸
-		ÀØ¼¶5.add(new Robot_Location_bean(32955, 32800, 1700)); // È÷µç»óÁ¡
+		ìŠì„¬.add(new Robot_Location_bean(32645, 33009, 1700)); // ì…ì„¬ì„¸í”„í‹°ì¡´ì…êµ¬
+		ìŠì„¬2.add(new Robot_Location_bean(32754, 32942, 1700)); // ë‚¨ìª½ê³¨ë ˜ì—°êµ¬ì†Œì…êµ¬
+		ìŠì„¬3.add(new Robot_Location_bean(32694, 32716, 1700)); // ì„œìª½ê³¨ë ˜ì…êµ¬
+		ìŠì„¬4.add(new Robot_Location_bean(32926, 32890, 1700)); // ë™ìª½ê³¨ë ˜ì…êµ¬
+		ìŠì„¬5.add(new Robot_Location_bean(32955, 32800, 1700)); // íˆë“ ìƒì 
 
-		Áö¹èÀÚ1Ãş.add(new Robot_Location_bean(32794, 32853, 15403)); // Áö¹èÀÚÀÇ°á°è1Ãş
-		Áö¹èÀÚ2Ãş.add(new Robot_Location_bean(32678, 32860, 15404)); // Áö¹èÀÚÀÇ°á°è2Ãş
+		ì§€ë°°ì1ì¸µ.add(new Robot_Location_bean(32794, 32853, 15403)); // ì§€ë°°ìì˜ê²°ê³„1ì¸µ
+		ì§€ë°°ì2ì¸µ.add(new Robot_Location_bean(32678, 32860, 15404)); // ì§€ë°°ìì˜ê²°ê³„2ì¸µ
 
-		¼±¹Ú½ÉÇØ.add(new Robot_Location_bean(33011, 33011, 558));
-		¼±¹Ú½ÉÇØ2.add(new Robot_Location_bean(33011, 33012, 558));
-		¼±¹Ú½ÉÇØ3.add(new Robot_Location_bean(33011, 33013, 558));
+		ì„ ë°•ì‹¬í•´.add(new Robot_Location_bean(33011, 33011, 558));
+		ì„ ë°•ì‹¬í•´2.add(new Robot_Location_bean(33011, 33012, 558));
+		ì„ ë°•ì‹¬í•´3.add(new Robot_Location_bean(33011, 33013, 558));
 
-		¿ë´ø1Ãş.add(new Robot_Location_bean(32799, 32742, 30));
-		¿ë´ø2Ãş.add(new Robot_Location_bean(32761, 32788, 31));
-		¿ë´ø3Ãş.add(new Robot_Location_bean(32703, 32833, 32));
-		¿ë´ø4Ãş.add(new Robot_Location_bean(32677, 32860, 33));
-		¿ë´ø5Ãş.add(new Robot_Location_bean(32742, 32794, 35));
-		¿ë´ø6Ãş.add(new Robot_Location_bean(32666, 32862, 36));
-		¿ë´ø7Ãş.add(new Robot_Location_bean(32664, 32838, 37));
+		ìš©ë˜1ì¸µ.add(new Robot_Location_bean(32799, 32742, 30));
+		ìš©ë˜2ì¸µ.add(new Robot_Location_bean(32761, 32788, 31));
+		ìš©ë˜3ì¸µ.add(new Robot_Location_bean(32703, 32833, 32));
+		ìš©ë˜4ì¸µ.add(new Robot_Location_bean(32677, 32860, 33));
+		ìš©ë˜5ì¸µ.add(new Robot_Location_bean(32742, 32794, 35));
+		ìš©ë˜6ì¸µ.add(new Robot_Location_bean(32666, 32862, 36));
+		ìš©ë˜7ì¸µ.add(new Robot_Location_bean(32664, 32838, 37));
 
 		// 160316
-		¸®´º¾ó¿À¸¸1Ãş.add(new Robot_Location_bean(32725, 32794, 101));
-		¸®´º¾ó¿À¸¸2Ãş.add(new Robot_Location_bean(32730, 32802, 102));
-		¸®´º¾ó¿À¸¸3Ãş.add(new Robot_Location_bean(32726, 32802, 103));
-		¸®´º¾ó¿À¸¸4Ãş.add(new Robot_Location_bean(32620, 32858, 104));
-		¸®´º¾ó¿À¸¸5Ãş.add(new Robot_Location_bean(32602, 32866, 105));
-		¸®´º¾ó¿À¸¸6Ãş.add(new Robot_Location_bean(32611, 32862, 106));
-		¸®´º¾ó¿À¸¸7Ãş.add(new Robot_Location_bean(32618, 32865, 107));
-		¸®´º¾ó¿À¸¸8Ãş.add(new Robot_Location_bean(32602, 32866, 108));
-		¸®´º¾ó¿À¸¸9Ãş.add(new Robot_Location_bean(32613, 32866, 109));
-		¸®´º¾ó¿À¸¸10Ãş.add(new Robot_Location_bean(32730, 32802, 110));
+		ë¦¬ë‰´ì–¼ì˜¤ë§Œ1ì¸µ.add(new Robot_Location_bean(32725, 32794, 101));
+		ë¦¬ë‰´ì–¼ì˜¤ë§Œ2ì¸µ.add(new Robot_Location_bean(32730, 32802, 102));
+		ë¦¬ë‰´ì–¼ì˜¤ë§Œ3ì¸µ.add(new Robot_Location_bean(32726, 32802, 103));
+		ë¦¬ë‰´ì–¼ì˜¤ë§Œ4ì¸µ.add(new Robot_Location_bean(32620, 32858, 104));
+		ë¦¬ë‰´ì–¼ì˜¤ë§Œ5ì¸µ.add(new Robot_Location_bean(32602, 32866, 105));
+		ë¦¬ë‰´ì–¼ì˜¤ë§Œ6ì¸µ.add(new Robot_Location_bean(32611, 32862, 106));
+		ë¦¬ë‰´ì–¼ì˜¤ë§Œ7ì¸µ.add(new Robot_Location_bean(32618, 32865, 107));
+		ë¦¬ë‰´ì–¼ì˜¤ë§Œ8ì¸µ.add(new Robot_Location_bean(32602, 32866, 108));
+		ë¦¬ë‰´ì–¼ì˜¤ë§Œ9ì¸µ.add(new Robot_Location_bean(32613, 32866, 109));
+		ë¦¬ë‰´ì–¼ì˜¤ë§Œ10ì¸µ.add(new Robot_Location_bean(32730, 32802, 110));
 		// 160316
 
-		º»´ø1Ãş.add(new Robot_Location_bean(32812, 32726, 807));
-		º»´ø2Ãş.add(new Robot_Location_bean(32750, 32798, 808));
-		º»´ø3Ãş.add(new Robot_Location_bean(32801, 32754, 809));
-		º»´ø4Ãş.add(new Robot_Location_bean(32763, 32773, 810));
-		º»´ø5Ãş.add(new Robot_Location_bean(32728, 32723, 811));
-		º»´ø6Ãş.add(new Robot_Location_bean(32804, 32725, 812));
-		º»´ø7Ãş.add(new Robot_Location_bean(32727, 32725, 813));
+		ë³¸ë˜1ì¸µ.add(new Robot_Location_bean(32812, 32726, 807));
+		ë³¸ë˜2ì¸µ.add(new Robot_Location_bean(32750, 32798, 808));
+		ë³¸ë˜3ì¸µ.add(new Robot_Location_bean(32801, 32754, 809));
+		ë³¸ë˜4ì¸µ.add(new Robot_Location_bean(32763, 32773, 810));
+		ë³¸ë˜5ì¸µ.add(new Robot_Location_bean(32728, 32723, 811));
+		ë³¸ë˜6ì¸µ.add(new Robot_Location_bean(32804, 32725, 812));
+		ë³¸ë˜7ì¸µ.add(new Robot_Location_bean(32727, 32725, 813));
 
-		»ó¾ÆÅ¾4Ãş.add(new Robot_Location_bean(32901, 32765, 280));
-		»ó¾ÆÅ¾5Ãş.add(new Robot_Location_bean(32810, 32865, 281));
+		ìƒì•„íƒ‘4ì¸µ.add(new Robot_Location_bean(32901, 32765, 280));
+		ìƒì•„íƒ‘5ì¸µ.add(new Robot_Location_bean(32810, 32865, 281));
 
-		°³¹Ì±¼1.add(new Robot_Location_bean(32784, 32751, 43));
-		°³¹Ì±¼2.add(new Robot_Location_bean(32798, 32754, 44));
-		°³¹Ì±¼3.add(new Robot_Location_bean(32759, 32742, 45));
-		°³¹Ì±¼4.add(new Robot_Location_bean(32750, 32764, 46));
-		°³¹Ì±¼5.add(new Robot_Location_bean(32795, 32746, 47));
-		°³¹Ì±¼6.add(new Robot_Location_bean(32768, 32805, 50));
+		ê°œë¯¸êµ´1.add(new Robot_Location_bean(32784, 32751, 43));
+		ê°œë¯¸êµ´2.add(new Robot_Location_bean(32798, 32754, 44));
+		ê°œë¯¸êµ´3.add(new Robot_Location_bean(32759, 32742, 45));
+		ê°œë¯¸êµ´4.add(new Robot_Location_bean(32750, 32764, 46));
+		ê°œë¯¸êµ´5.add(new Robot_Location_bean(32795, 32746, 47));
+		ê°œë¯¸êµ´6.add(new Robot_Location_bean(32768, 32805, 50));
 
-		±â°¨1Ãş.add(new Robot_Location_bean(32805, 32738, 53));
-		±â°¨2Ãş.add(new Robot_Location_bean(32808, 32796, 54));
-		±â°¨3Ãş.add(new Robot_Location_bean(32736, 32729, 55));
-		±â°¨4Ãş.add(new Robot_Location_bean(32768, 32820, 56));
+		ê¸°ê°1ì¸µ.add(new Robot_Location_bean(32805, 32738, 53));
+		ê¸°ê°2ì¸µ.add(new Robot_Location_bean(32808, 32796, 54));
+		ê¸°ê°3ì¸µ.add(new Robot_Location_bean(32736, 32729, 55));
+		ê¸°ê°4ì¸µ.add(new Robot_Location_bean(32768, 32820, 56));
 	}
 }

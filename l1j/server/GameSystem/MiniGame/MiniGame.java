@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.MiniGame;
+﻿package l1j.server.GameSystem.MiniGame;
 
 import java.util.ArrayList;
 import java.util.Random;

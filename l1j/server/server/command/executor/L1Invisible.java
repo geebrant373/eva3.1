@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -48,17 +48,17 @@ public class L1Invisible implements L1CommandExecutor {
 				Broadcaster.broadcastPacket(pc, new S_Invis(pc.getId(), 1));
 				Broadcaster.broadcastPacket(pc, new S_RemoveObject(pc));
 				pc.getSkillEffectTimerSet().setSkillEffect(L1SkillId.INVISIBILITY, 0);
-				pc.sendPackets(new S_SystemMessage("Åõ¸í»óÅÂ°¡ µÇ¾ú½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("íˆ¬ëª…ìƒíƒœê°€ ë˜ì—ˆìŠµë‹ˆë‹¤."));
 			}else{
 				pc.setGmInvis(false);
 				pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.INVISIBILITY);
 				pc.sendPackets(new S_Invis(pc.getId(), 0));
 				Broadcaster.broadcastPacket(pc, new S_OtherCharPacks(pc));
-				pc.sendPackets(new S_SystemMessage("Åõ¸í»óÅÂ¸¦ ÇØÁ¦Çß½À´Ï´Ù. "));
+				pc.sendPackets(new S_SystemMessage("íˆ¬ëª…ìƒíƒœë¥¼ í•´ì œí–ˆìŠµë‹ˆë‹¤. "));
 			}
 
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " Ä¿¸àµå ¿¡·¯"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " ì»¤ë©˜ë“œ ì—ëŸ¬"));
 		}
 	}
 }

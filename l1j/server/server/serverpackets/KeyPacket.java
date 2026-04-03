@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+﻿package l1j.server.server.serverpackets;
 
 public class KeyPacket extends ServerBasePacket{
 	private byte[] _byte = null;

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -46,9 +46,9 @@ public class C_BoardDelete extends ClientBasePacket {
 		L1Object obj = L1World.getInstance().findObject(objId);
 		L1BoardInstance board = (L1BoardInstance) obj;
 		if (board != null) {
-			if(board.getNpcId() == 82001) { //¾Æµ¥³ª°Å·¡
+			if(board.getNpcId() == 82001) { //ì•„ë°ë‚˜ê±°ë˜
 				return;
-			}else if(board.getNpcId() == 82002) { //Ä³¸¯ÅÍ °Å·¡
+			}else if(board.getNpcId() == 82002) { //ìºë¦­í„° ê±°ë˜
 				BoardTable.getInstance().deleteTopic(topicId);
 			}else {
 				if(pc.isGm()) {

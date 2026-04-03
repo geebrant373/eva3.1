@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -41,15 +41,15 @@ public class L1HomeTown implements L1CommandExecutor {
 		try {
 			StringTokenizer st = new StringTokenizer(arg);
 			String para1 = st.nextToken();
-			if (para1.equalsIgnoreCase("¸ÅÀÏ")) {
+			if (para1.equalsIgnoreCase("ë§¤ì¼")) {
 				HomeTownController.getInstance(). dailyProc();
-			} else if (para1.equalsIgnoreCase("¸Å´Ş")) {
+			} else if (para1.equalsIgnoreCase("ë§¤ë‹¬")) {
 				HomeTownController.getInstance(). monthlyProc();
 			} else {
 				throw new Exception();
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".È¨Å¸¿î [¸ÅÀÏ,¸Å´Ş] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(".í™ˆíƒ€ìš´ [ë§¤ì¼,ë§¤ë‹¬] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

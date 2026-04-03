@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -84,7 +84,7 @@ public class Announcements {
 				}
 			}
 
-			_log.config("°øÁö»çÇ×" + i + "·Îµå");
+			_log.config("ê³µì§€ì‚¬í•­" + i + "ë¡œë“œ");
 		} catch (FileNotFoundException e) {
 		} catch (IOException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);

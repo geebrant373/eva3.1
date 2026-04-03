@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,12 +15,12 @@ public class SkillEffectTimerSet {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ¿¡, »õ·Ó°Ô ½ºÅ³ È¿°ú¸¦ Ãß°¡ÇÑ´Ù.
+	 * ìºë¦­í„°ì—, ìƒˆë¡­ê²Œ ìŠ¤í‚¬ íš¨ê³¼ë¥¼ ì¶”ê°€í•œë‹¤.
 	 * 
 	 * @param skillId
-	 *            Ãß°¡ÇÏ´Â È¿°úÀÇ ½ºÅ³ ID.
+	 *            ì¶”ê°€í•˜ëŠ” íš¨ê³¼ì˜ ìŠ¤í‚¬ ID.
 	 * @param timeMillis
-	 *            Ãß°¡ÇÏ´Â È¿°úÀÇ Áö¼Ó ½Ã°£. ¹«ÇÑÀÇ °æ¿ì´Â 0.
+	 *            ì¶”ê°€í•˜ëŠ” íš¨ê³¼ì˜ ì§€ì† ì‹œê°„. ë¬´í•œì˜ ê²½ìš°ëŠ” 0.
 	 */
 	private void addSkillEffect(int skillId, int timeMillis) {
 		L1SkillTimer timer = null;
@@ -33,14 +33,14 @@ public class SkillEffectTimerSet {
 
 
 	/**
-	 * Ä³¸¯ÅÍ¿¡, ½ºÅ³ È¿°ú¸¦ ¼³Á¤ÇÑ´Ù. <br>
-	 * Áßº¹ ÇÏ´Â ½ºÅ³ÀÌ ¾ø´Â °æ¿ì´Â, »õ·Ó°Ô ½ºÅ³ È¿°ú¸¦ Ãß°¡ÇÑ´Ù. <br>
-	 * Áßº¹ ÇÏ´Â ½ºÅ³ÀÌ ÀÖ´Â °æ¿ì´Â, ³ª¸ÓÁö È¿°ú ½Ã°£°ú ÆÄ¶ó¹ÌÅÍÀÇ È¿°ú ½Ã°£ÀÇ ±ä (ºĞ)ÆíÀ» ¿ì¼±ÇØ ¼³Á¤ÇÑ´Ù.
+	 * ìºë¦­í„°ì—, ìŠ¤í‚¬ íš¨ê³¼ë¥¼ ì„¤ì •í•œë‹¤. <br>
+	 * ì¤‘ë³µ í•˜ëŠ” ìŠ¤í‚¬ì´ ì—†ëŠ” ê²½ìš°ëŠ”, ìƒˆë¡­ê²Œ ìŠ¤í‚¬ íš¨ê³¼ë¥¼ ì¶”ê°€í•œë‹¤. <br>
+	 * ì¤‘ë³µ í•˜ëŠ” ìŠ¤í‚¬ì´ ìˆëŠ” ê²½ìš°ëŠ”, ë‚˜ë¨¸ì§€ íš¨ê³¼ ì‹œê°„ê³¼ íŒŒë¼ë¯¸í„°ì˜ íš¨ê³¼ ì‹œê°„ì˜ ê¸´ (ë¶„)í¸ì„ ìš°ì„ í•´ ì„¤ì •í•œë‹¤.
 	 * 
 	 * @param skillId
-	 *            ¼³Á¤ÇÏ´Â È¿°úÀÇ ½ºÅ³ ID.
+	 *            ì„¤ì •í•˜ëŠ” íš¨ê³¼ì˜ ìŠ¤í‚¬ ID.
 	 * @param timeMillis
-	 *            ¼³Á¤ÇÏ´Â È¿°úÀÇ Áö¼Ó ½Ã°£. ¹«ÇÑÀÇ °æ¿ì´Â 0.
+	 *            ì„¤ì •í•˜ëŠ” íš¨ê³¼ì˜ ì§€ì† ì‹œê°„. ë¬´í•œì˜ ê²½ìš°ëŠ” 0.
 	 */
 	public void setSkillEffect(int skillId, int timeMillis) {
 		if (hasSkillEffect(skillId)) {
@@ -57,10 +57,10 @@ public class SkillEffectTimerSet {
 
 
 	/**
-	 * Ä³¸¯ÅÍ·ÎºÎÅÍ, ½ºÅ³ È¿°ú¸¦ »èÁ¦ÇÑ´Ù.
+	 * ìºë¦­í„°ë¡œë¶€í„°, ìŠ¤í‚¬ íš¨ê³¼ë¥¼ ì‚­ì œí•œë‹¤.
 	 * 
 	 * @param skillId
-	 *            »èÁ¦ÇÏ´Â È¿°úÀÇ ½ºÅ³ ID
+	 *            ì‚­ì œí•˜ëŠ” íš¨ê³¼ì˜ ìŠ¤í‚¬ ID
 	 */
 	public void removeSkillEffect(int skillId) {
 		L1SkillTimer timer = _skillEffect.remove(skillId);
@@ -70,10 +70,10 @@ public class SkillEffectTimerSet {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ·ÎºÎÅÍ, ½ºÅ³ È¿°úÀÇ Å¸ÀÌ¸Ó¸¦ »èÁ¦ÇÑ´Ù.  ½ºÅ³ È¿°ú´Â »èÁ¦µÇÁö ¾Ê´Â´Ù.
+	 * ìºë¦­í„°ë¡œë¶€í„°, ìŠ¤í‚¬ íš¨ê³¼ì˜ íƒ€ì´ë¨¸ë¥¼ ì‚­ì œí•œë‹¤.  ìŠ¤í‚¬ íš¨ê³¼ëŠ” ì‚­ì œë˜ì§€ ì•ŠëŠ”ë‹¤.
 	 * 
 	 * @param skillId
-	 *            »èÁ¦ÇÏ´Â Å¸ÀÌ¸ÓÀÇ ½ºÅ³ ID
+	 *            ì‚­ì œí•˜ëŠ” íƒ€ì´ë¨¸ì˜ ìŠ¤í‚¬ ID
 	 */
 	public void killSkillEffectTimer(int skillId) {
 		L1SkillTimer timer = _skillEffect.remove(skillId);
@@ -83,7 +83,7 @@ public class SkillEffectTimerSet {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ·ÎºÎÅÍ, ¸ğµç ½ºÅ³ È¿°ú Å¸ÀÌ¸Ó¸¦ »èÁ¦ÇÑ´Ù. ½ºÅ³ È¿°ú´Â »èÁ¦µÇÁö ¾Ê´Â´Ù.
+	 * ìºë¦­í„°ë¡œë¶€í„°, ëª¨ë“  ìŠ¤í‚¬ íš¨ê³¼ íƒ€ì´ë¨¸ë¥¼ ì‚­ì œí•œë‹¤. ìŠ¤í‚¬ íš¨ê³¼ëŠ” ì‚­ì œë˜ì§€ ì•ŠëŠ”ë‹¤.
 	 */
 	public void clearSkillEffectTimer() {
 		for (L1SkillTimer timer : _skillEffect.values()) {
@@ -95,21 +95,21 @@ public class SkillEffectTimerSet {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ¿¡, ÇØ´ç ½ºÅ³ È¿°ú°¡ °É·ÁÀÖ´ÂÁö ¾Ë·ÁÁÜ
+	 * ìºë¦­í„°ì—, í•´ë‹¹ ìŠ¤í‚¬ íš¨ê³¼ê°€ ê±¸ë ¤ìˆëŠ”ì§€ ì•Œë ¤ì¤Œ
 	 * 
-	 * @param skillId ½ºÅ³ ID
-	 * @return ¸¶¹ı È¿°ú°¡ ÀÖÀ¸¸é true, ¾øÀ¸¸é false.
+	 * @param skillId ìŠ¤í‚¬ ID
+	 * @return ë§ˆë²• íš¨ê³¼ê°€ ìˆìœ¼ë©´ true, ì—†ìœ¼ë©´ false.
 	 */
 	public boolean hasSkillEffect(int skillId) {
 		return _skillEffect.containsKey(skillId);
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ ½ºÅ³ È¿°úÀÇ Áö¼Ó ½Ã°£À» µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ ìŠ¤í‚¬ íš¨ê³¼ì˜ ì§€ì† ì‹œê°„ì„ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param skillId
-	 *            Á¶»çÇÏ´Â È¿°úÀÇ ½ºÅ³ ID
-	 * @return ½ºÅ³ È¿°úÀÇ ³²Àº ½Ã°£(ÃÊ). ½ºÅ³ÀÌ °É¸®Áö ¾ÊÀº°¡ È¿°ú ½Ã°£ÀÌ ¹«ÇÑÀÇ °æ¿ì,-1.
+	 *            ì¡°ì‚¬í•˜ëŠ” íš¨ê³¼ì˜ ìŠ¤í‚¬ ID
+	 * @return ìŠ¤í‚¬ íš¨ê³¼ì˜ ë‚¨ì€ ì‹œê°„(ì´ˆ). ìŠ¤í‚¬ì´ ê±¸ë¦¬ì§€ ì•Šì€ê°€ íš¨ê³¼ ì‹œê°„ì´ ë¬´í•œì˜ ê²½ìš°,-1.
 	 */
 	public int getSkillEffectTimeSec(int skillId) {
 		L1SkillTimer timer = _skillEffect.get(skillId);

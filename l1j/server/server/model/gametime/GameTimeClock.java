@@ -1,4 +1,4 @@
-package l1j.server.server.model.gametime;
+﻿package l1j.server.server.model.gametime;
 
 import java.util.Calendar;
 import java.util.List;

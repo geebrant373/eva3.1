@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -59,7 +59,7 @@ public class SprTable {
 	}
 
 	/**
-	 * spr_action Å×ÀÌºíÀ» ·ÎµåÇÑ´Ù.
+	 * spr_action í…Œì´ë¸”ì„ ë¡œë“œí•œë‹¤.
 	 */
 	public void loadSprAction() {
 		Connection con = null;
@@ -127,24 +127,24 @@ public class SprTable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		_log.config("SPR µ¥ÀÌÅÍ " + _dataMap.size() + "°Ç ·Îµå");
+		_log.config("SPR ë°ì´í„° " + _dataMap.size() + "ê±´ ë¡œë“œ");
 	}
 	
 	/**
-	 * ÇÁ·¹ÀÓ¼ö¿Í frame rate·ÎºÎÅÍ ¾×¼ÇÀÇ ÇÕ°è ½Ã°£(ms)À» °è»êÇØ µ¹·ÁÁØ´Ù.
+	 * í”„ë ˆì„ìˆ˜ì™€ frame rateë¡œë¶€í„° ì•¡ì…˜ì˜ í•©ê³„ ì‹œê°„(ms)ì„ ê³„ì‚°í•´ ëŒë ¤ì¤€ë‹¤.
 	 */
 	private int calcActionSpeed(int frameCount, int frameRate) {
 		return (int) (frameCount * 40 * (24D / frameRate));
 	}
 
 	/**
-	 * ÁöÁ¤µÈ sprÀÇ °ø°İ ¼Óµµ¸¦ µ¹·ÁÁØ´Ù. ¸¸¾à spr·Î ÁöÁ¤µÈ weapon_typeÀÇ µ¥ÀÌÅÍ°¡ ¼³Á¤µÇ¾î ÀÖÁö ¾ÊÀº °æ¿ì´Â, 1. attackÀÇ µ¥ÀÌÅÍ¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ sprì˜ ê³µê²© ì†ë„ë¥¼ ëŒë ¤ì¤€ë‹¤. ë§Œì•½ sprë¡œ ì§€ì •ëœ weapon_typeì˜ ë°ì´í„°ê°€ ì„¤ì •ë˜ì–´ ìˆì§€ ì•Šì€ ê²½ìš°ëŠ”, 1. attackì˜ ë°ì´í„°ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param sprid -
-	 *            Á¶»çÇÏ´Â sprÀÇ ID
+	 *            ì¡°ì‚¬í•˜ëŠ” sprì˜ ID
 	 * @param actid -
-	 *            ¹«±âÀÇ Á¾·ù¸¦ ³ªÅ¸³»´Â °ª. L1Item.getType1()ÀÇ º¯È¯°ª +1°ú ÀÏÄ¡ÇÑ´Ù
-	 * @return ÁöÁ¤µÈ sprÀÇ °ø°İ ¼Óµµ(ms)
+	 *            ë¬´ê¸°ì˜ ì¢…ë¥˜ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ê°’. L1Item.getType1()ì˜ ë³€í™˜ê°’ +1ê³¼ ì¼ì¹˜í•œë‹¤
+	 * @return ì§€ì •ëœ sprì˜ ê³µê²© ì†ë„(ms)
 	 */
 	public int getAttackSpeed(int sprid, int actid) {
 		if (_dataMap.containsKey(sprid)) {

@@ -1,4 +1,4 @@
-package server.system.autoshop;
+﻿package server.system.autoshop;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 

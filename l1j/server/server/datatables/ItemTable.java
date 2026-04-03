@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -125,14 +125,14 @@ public class ItemTable {
 		_etcItemTypes.put("sting", new Integer(15));
 		_etcItemTypes.put("treasure_box", new Integer(16));
 
-		_useTypes.put("none", new Integer(-1)); // »ç¿ë ºÒ°¡´É
+		_useTypes.put("none", new Integer(-1)); // ì‚¬ìš© ë¶ˆê°€ëŠ¥
 		_useTypes.put("normal", new Integer(0));
 		_useTypes.put("weapon", new Integer(1));
 		_useTypes.put("armor", new Integer(2));
 //		_useTypes.put("wand1", new Integer(3));
 //		_useTypes.put("wand", new Integer(4));
-		// wand¸¦ °ÅÀıÇÏ´Â ¾×¼ÇÀ» Àâ´Â´Ù(C_RequestExtraCommand°¡ º¸³»Áø´Ù)
-		_useTypes.put("spell_long", new Integer(5)); // Áö¸é / ¿ÀºêÁ§Æ® ¼±ÅÃ(¿ø°Å¸®)
+		// wandë¥¼ ê±°ì ˆí•˜ëŠ” ì•¡ì…˜ì„ ì¡ëŠ”ë‹¤(C_RequestExtraCommandê°€ ë³´ë‚´ì§„ë‹¤)
+		_useTypes.put("spell_long", new Integer(5)); // ì§€ë©´ / ì˜¤ë¸Œì íŠ¸ ì„ íƒ(ì›ê±°ë¦¬)
 		_useTypes.put("ntele", new Integer(6));
 		_useTypes.put("identify", new Integer(7));
 		_useTypes.put("res", new Integer(8));
@@ -141,7 +141,7 @@ public class ItemTable {
 		_useTypes.put("choice", new Integer(14));
 		_useTypes.put("instrument", new Integer(15));
 		_useTypes.put("sosc", new Integer(16));
-		_useTypes.put("spell_short", new Integer(17)); // Áö¸é / ¿ÀºêÁ§Æ® ¼±ÅÃ(±Ù°Å¸®)
+		_useTypes.put("spell_short", new Integer(17)); // ì§€ë©´ / ì˜¤ë¸Œì íŠ¸ ì„ íƒ(ê·¼ê±°ë¦¬)
 		_useTypes.put("T", new Integer(18));
 		_useTypes.put("cloak", new Integer(19));
 		_useTypes.put("glove", new Integer(20));
@@ -155,8 +155,8 @@ public class ItemTable {
 		_useTypes.put("zel", new Integer(27));
 		_useTypes.put("blank", new Integer(28));
 		_useTypes.put("btele", new Integer(29));
-		_useTypes.put("spell_buff", new Integer(30)); // ¿ÀºêÁ§Æ® ¼±ÅÃ(¿ø°Å¸®)
-		// Ctrl¸¦ ´©¸£Áö ¾Ê´Â´Ù°í ÆĞÅ¶ÀÌ ³¯Áö ¾Ê¾Æ?
+		_useTypes.put("spell_buff", new Integer(30)); // ì˜¤ë¸Œì íŠ¸ ì„ íƒ(ì›ê±°ë¦¬)
+		// Ctrlë¥¼ ëˆ„ë¥´ì§€ ì•ŠëŠ”ë‹¤ê³  íŒ¨í‚·ì´ ë‚ ì§€ ì•Šì•„?
 		_useTypes.put("ccard", new Integer(31));
 		_useTypes.put("ccard_w", new Integer(32));
 		_useTypes.put("vcard", new Integer(33));
@@ -164,17 +164,17 @@ public class ItemTable {
 		_useTypes.put("wcard", new Integer(35));
 		_useTypes.put("wcard_w", new Integer(36));
 		_useTypes.put("belt", new Integer(37));
-		// _useTypes.put("spell_long2", new Integer(39)); // Áö¸é / ¿ÀºêÁ§Æ® ¼±ÅÃ(¿ø°Å¸®)
-		// 5·Î °°Àº?
+		// _useTypes.put("spell_long2", new Integer(39)); // ì§€ë©´ / ì˜¤ë¸Œì íŠ¸ ì„ íƒ(ì›ê±°ë¦¬)
+		// 5ë¡œ ê°™ì€?
 		_useTypes.put("earring", new Integer(40));
 		_useTypes.put("fishing_rod", new Integer(42));
-		_useTypes.put("rune2", new Integer(43));// ·é
-		_useTypes.put("rune", new Integer(44));// ·é
-		_useTypes.put("rune3", new Integer(45));// ·é
+		_useTypes.put("rune2", new Integer(43));// ë£¬
+		_useTypes.put("rune", new Integer(44));// ë£¬
+		_useTypes.put("rune3", new Integer(45));// ë£¬
 		_useTypes.put("acczel", new Integer(46));
-		_useTypes.put("shoulder", new Integer(47)); // ¼ñ´õ
-		_useTypes.put("badge", new Integer(48)); // ¹èÂî
-		_useTypes.put("pants", new Integer(49)); // °¢¹İ
+		_useTypes.put("shoulder", new Integer(47)); // ìˆ„ë”
+		_useTypes.put("badge", new Integer(48)); // ë°°ì°Œ
+		_useTypes.put("pants", new Integer(49)); // ê°ë°˜
 		
 		
 		_armorTypes.put("none", new Integer(0));
@@ -191,12 +191,12 @@ public class ItemTable {
 		_armorTypes.put("ring2", new Integer(11));
 		_armorTypes.put("earring", new Integer(12));
 		_armorTypes.put("garder", new Integer(13));
-		_armorTypes.put("rune", new Integer(14)); // ·é
-		_armorTypes.put("rune2", new Integer(15)); // ·é
-		_armorTypes.put("rune3", new Integer(16)); // ·é
-		_armorTypes.put("shoulder", new Integer(17)); //°ß°©
-		_armorTypes.put("pants", new Integer(18)); // °¢¹İ
-		_armorTypes.put("badge", new Integer(19)); // ¹èÂî
+		_armorTypes.put("rune", new Integer(14)); // ë£¬
+		_armorTypes.put("rune2", new Integer(15)); // ë£¬
+		_armorTypes.put("rune3", new Integer(16)); // ë£¬
+		_armorTypes.put("shoulder", new Integer(17)); //ê²¬ê°‘
+		_armorTypes.put("pants", new Integer(18)); // ê°ë°˜
+		_armorTypes.put("badge", new Integer(19)); // ë°°ì°Œ
 		
 		_weaponTypes.put("sword", new Integer(1));
 		_weaponTypes.put("dagger", new Integer(2));
@@ -303,7 +303,7 @@ public class ItemTable {
 				item.setNameId(rs.getString("name_id"));
 				item.setType((_etcItemTypes.get(rs.getString("item_type"))).intValue());
 				item.setUseType(_useTypes.get(rs.getString("use_type")).intValue());
-//				item.setType1(0); // »ç¿ëÇÏÁö ¾Ê´Â´Ù
+//				item.setType1(0); // ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
 				item.setType2(0);
 				item.setMaterial((_materialTypes.get(rs.getString("material"))).intValue());
 				item.setWeight(rs.getInt("weight"));
@@ -335,7 +335,7 @@ public class ItemTable {
 			_log.log(Level.SEVERE, new StringBuilder()
 			.append(item.getName())
 			.append("(" + item.getItemId() + ")")
-			.append("ÀÇ ÀĞ¾î µéÀÌ±â¿¡ ½ÇÆĞÇß½À´Ï´Ù.").toString());
+			.append("ì˜ ì½ì–´ ë“¤ì´ê¸°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.").toString());
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
@@ -416,7 +416,7 @@ public class ItemTable {
 			_log.log(Level.SEVERE, new StringBuilder()
 			.append(weapon.getName())
 			.append("(" + weapon.getItemId() + ")")
-			.append("ÀÇ ÀĞ¾î µéÀÌ±â¿¡ ½ÇÆĞÇß½À´Ï´Ù.").toString());
+			.append("ì˜ ì½ì–´ ë“¤ì´ê¸°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.").toString());
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 
@@ -447,7 +447,7 @@ public class ItemTable {
 				armor.setNameId(rs.getString("name_id"));
 				armor.setType((_armorTypes.get(rs.getString("type"))).intValue());
 //				armor.setType1((_armorId
-//				.get(rs.getString("armor_type"))).intValue()); // »ç¿ëÇÏÁö ¾Ê´Â´Ù
+//				.get(rs.getString("armor_type"))).intValue()); // ì‚¬ìš©í•˜ì§€ ì•ŠëŠ”ë‹¤
 				armor.setType2(2);
 				armor.setUseType((_useTypes.get(rs.getString("type"))).intValue());				
 				armor.setGrade(rs.getInt("grade"));
@@ -508,7 +508,7 @@ public class ItemTable {
 			_log.log(Level.SEVERE, new StringBuilder()
 			.append(armor.getName())
 			.append("(" + armor.getItemId() + ")")
-			.append("ÀÇ ÀĞ¾î µéÀÌ±â¿¡ ½ÇÆĞÇß½À´Ï´Ù.").toString());
+			.append("ì˜ ì½ì–´ ë“¤ì´ê¸°ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤.").toString());
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
@@ -732,7 +732,7 @@ public class ItemTable {
 					break;
 				case 40074:
 				case 40078:
-				case 430040: //¼ø¹é°­È­ÁÜ¼­	
+				case 430040: //ìˆœë°±ê°•í™”ì¤Œì„œ	
 				case 40127:
 				case 40129:
 				case 140074:
@@ -742,11 +742,11 @@ public class ItemTable {
 				case 7324:
 				case 430014:
 				case 437006:
-				case 60417: //½º³ÀÆÛ ÁÖ¹®¼­
-				case 5000500: // ·ëÆ¼½º°­È­ÁÖ¹®¼­
-				case 5000501: // ·ëÆ¼½º°­È­ÁÖ¹®¼­
-				case 5000550: // ·ëÆ¼½º º¸È£ ÁÖ¹®¼­
-				case 5000551: // ½º³ÀÆÛ º¸È£ ÁÖ¹®¼­
+				case 60417: //ìŠ¤ëƒ…í¼ ì£¼ë¬¸ì„œ
+				case 5000500: // ë£¸í‹°ìŠ¤ê°•í™”ì£¼ë¬¸ì„œ
+				case 5000501: // ë£¸í‹°ìŠ¤ê°•í™”ì£¼ë¬¸ì„œ
+				case 5000550: // ë£¸í‹°ìŠ¤ ë³´í˜¸ ì£¼ë¬¸ì„œ
+				case 5000551: // ìŠ¤ëƒ…í¼ ë³´í˜¸ ì£¼ë¬¸ì„œ
 				case 5370632:
 				case 430042:
 				case 1430633:
@@ -769,7 +769,7 @@ public class ItemTable {
 				case 430012:
 				case 430013:
 				case 437007:
-				case 430633: // ÀåÀÎÀÇ ¹«±â¸¶¹ı ÁÖ¹®¼­
+				case 430633: // ì¥ì¸ì˜ ë¬´ê¸°ë§ˆë²• ì£¼ë¬¸ì„œ
 				case L1ItemId.TEST_ENCHANT_WEAPON:
 					item = new EnchantWeapon(temp);
 					item.setWorking(true);
@@ -880,16 +880,16 @@ public class ItemTable {
 				case L1ItemId.DOLLTYPE_SCARECROW:
 				case L1ItemId.DOLLTYPE_road:
 				case L1ItemId.DOLLTYPE_giant:
-				case L1ItemId.DOLLTYPE_»çÀÌÅ¬·Ó½º:
-				case L1ItemId.DOLLTYPE_µ¥½º³ªÀÌÆ®:
-				case L1ItemId.DOLLTYPE_µ¥¸ó:
-				case L1ItemId.DOLLTYPE_Å¸¶ô:
-				case L1ItemId.DOLLTYPE_¾óÀ½¿©¿Õ:
-				case L1ItemId.DOLLTYPE_¹Ù¶õÄ«:
-				case L1ItemId.DOLLTYPE_¾ÈÅ¸¶ó½º:
-				case L1ItemId.DOLLTYPE_½Ã¾î:
-				case L1ItemId.DOLLTYPE_³ªÀÌÆ®¹ßµå:
-				case L1ItemId.DOLLTYPE_¸®Ä¡:
+				case L1ItemId.DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤:
+				case L1ItemId.DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸:
+				case L1ItemId.DOLLTYPE_ë°ëª¬:
+				case L1ItemId.DOLLTYPE_íƒ€ë½:
+				case L1ItemId.DOLLTYPE_ì–¼ìŒì—¬ì™•:
+				case L1ItemId.DOLLTYPE_ë°”ë€ì¹´:
+				case L1ItemId.DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤:
+				case L1ItemId.DOLLTYPE_ì‹œì–´:
+				case L1ItemId.DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ:
+				case L1ItemId.DOLLTYPE_ë¦¬ì¹˜:
 				case 5370606:
 				case 5370607:
 				case 5370608:
@@ -1014,11 +1014,11 @@ public class ItemTable {
 		return itemid;
 	}
 
-	/** »õ·Î¿î Template °´Ã¼¸¦ »ı¼º(º¹»ç) */
+	/** ìƒˆë¡œìš´ Template ê°ì²´ë¥¼ ìƒì„±(ë³µì‚¬) */
 	
 	public L1Item clone(L1Item item, String name){
-		// ÀÌ¸§¶§¹®¿¡..
-		// ¹«±â
+		// ì´ë¦„ë•Œë¬¸ì—..
+		// ë¬´ê¸°
 		if(item.getType2() == 1){
 			L1Weapon weapon = new L1Weapon();
 			weapon.setItemId(item.getItemId());
@@ -1071,7 +1071,7 @@ public class ItemTable {
 			weapon.setSpiritHit(item.getSpiritHit());
 			weapon.setLimitTime(item.getLimitTime());
 			return weapon;
-			// ¹æ¾î±¸
+			// ë°©ì–´êµ¬
 		}else if(item.getType2() == 2){
 			L1Armor armor = new L1Armor();
 			armor.setItemId(item.getItemId());

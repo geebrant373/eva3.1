@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+ï»¿package l1j.server.server.serverpackets;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -16,7 +16,7 @@ public class S_AttackCritical extends ServerBasePacket {
 
     private static AtomicInteger _sequentialNumber = new AtomicInteger(0);
 
-    /** È°ÀÌ ¾Æ´Ñ °æ¿ì **/
+    /** í™œì´ ì•„ë‹Œ ê²½ìš° **/
     public S_AttackCritical(L1PcInstance pc, int objid, int type) {
     	int autoNum = _sequentialNumber.incrementAndGet();
     	
@@ -38,43 +38,43 @@ public class S_AttackCritical extends ServerBasePacket {
         writeC(1);
         writeC(0x00);
         writeC(pc.getMoveState().getHeading());
-        writeD(autoNum); // ¹øÈ£°¡ °ãÄ¡Áö ¾Ê°Ô º¸³½´Ù
+        writeD(autoNum); // ë²ˆí˜¸ê°€ ê²¹ì¹˜ì§€ ì•Šê²Œ ë³´ë‚¸ë‹¤
         
 
         int gfx = 13414;
         
         switch (type) {
-	        //ÇÑ¼Õ°Ë
+	        //í•œì†ê²€
 	        case 1:
 	            gfx = 13411;
 	            break;
-	        //´Ü°Ë
+	        //ë‹¨ê²€
 	        case 2:
 	            gfx = 13412;
 	            break;
 	        case 3:
-	            //¾ç¼Õ°Ë
+	            //ì–‘ì†ê²€
 	            gfx = 13410;
 	            break;
 	        case 4:
 	            break;
-	        //µµ³¢
+	        //ë„ë¼
 	        case 6:
 	            gfx = 13414;
 	            break;
 	        case 7:
-	            //ÁöÆÎÀÌ
+	            //ì§€íŒ¡ì´
 	            gfx = 13413;
 	            break;
-	        //Å©·Î¿ì
+	        //í¬ë¡œìš°
 	        case 11:
 	            gfx = 13416;
 	            break;
 	        case 12:
-	            //ÀÌµµ·ù
+	            //ì´ë„ë¥˜
 	            gfx = 13417;
 	            break;
-	        //¾ç¼Õµµ³¢
+	        //ì–‘ì†ë„ë¼
 	        case 15:
 	            gfx = 13415;
 	            break;
@@ -92,11 +92,11 @@ public class S_AttackCritical extends ServerBasePacket {
         writeD(0);
     }
 
-    /** È° ¸ğ¼Ç **/
+    /** í™œ ëª¨ì…˜ **/
     public S_AttackCritical(L1Character cha, int targetobj, int x, int y, int type, boolean isHit) {
         int gfxid = 0;
         int aid = 1;
-        // ¿ÀÅ© ±Ã¼ö¿¡¸¸ º¯°æ
+        // ì˜¤í¬ ê¶ìˆ˜ì—ë§Œ ë³€ê²½
         if (cha.getTempCharGfx() == 3860 || cha.getTempCharGfx() == 7959) {
             aid = 21;
         }

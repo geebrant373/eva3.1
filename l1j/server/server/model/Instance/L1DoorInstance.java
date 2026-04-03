@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -131,7 +131,7 @@ public class L1DoorInstance extends L1NpcInstance {
 						_crackStatus = 3;
 					}
 				} else if ((getMaxHp() * 4 / 6) > getCurrentHp()) {
-					if (getAutoStatus() == 1) {// ÀÌ »óÅÂ¿¡¼­ ÀÚµ¿ ¸®Æä¾î°¡ µÇ´ÂÁö È®½ÇÇÏÁö´Â ¾Ê´Ù;
+					if (getAutoStatus() == 1) {// ì´ ìƒíƒœì—ì„œ ìë™ ë¦¬í˜ì–´ê°€ ë˜ëŠ”ì§€ í™•ì‹¤í•˜ì§€ëŠ” ì•Šë‹¤;
 						repairGate();
 					} else if (_crackStatus != 2) {
 						Broadcaster.broadcastPacket(this, new S_DoActionGFX(getId(), ActionCodes.ACTION_DoorAction2));
@@ -184,7 +184,7 @@ public class L1DoorInstance extends L1NpcInstance {
 	class DoorTimer implements Runnable {
 		@Override
 		public void run() {
-			if (_destroyed) { // ÀÌ¹Ì ÆÄ±âµÇ¾î ÀÖÁö ¾ÊÀº°¡ Ã¼Å©
+			if (_destroyed) { // ì´ë¯¸ íŒŒê¸°ë˜ì–´ ìˆì§€ ì•Šì€ê°€ ì²´í¬
 				return;
 			}
 			close();

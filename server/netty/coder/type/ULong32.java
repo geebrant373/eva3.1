@@ -1,4 +1,4 @@
-package server.netty.coder.type;
+﻿package server.netty.coder.type;
 
 /**
  * Handles 32 bit unsigned long conversions, due to the lack in the java core.

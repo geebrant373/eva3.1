@@ -1,4 +1,4 @@
-package server.netty.coder.manager;
+ï»¿package server.netty.coder.manager;
 
 import java.nio.ByteBuffer;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -21,7 +21,7 @@ public class LineageDecoderThread implements Runnable{
 			try {
 				LineageClient client =  _client.take();
 					if(client!=null){
-						// ¿¬°á ÇØÁ¦µÈ°Å Á¤¸®.
+						// ì—°ê²° í•´ì œëœê±° ì •ë¦¬.
 						if(!client.isConnected()||client.ckclose==true){
 							client.close();
 							removeClient(client);							
@@ -43,7 +43,7 @@ public class LineageDecoderThread implements Runnable{
 		}
 	}
 	
-	// ÆĞÅ¶Å©±â °ª ¸®ÅÏ.
+	// íŒ¨í‚·í¬ê¸° ê°’ ë¦¬í„´.
 	private int PacketSize(byte[] data){
 		int length = data[0] &0xff;
 		length |= data[1] << 8 &0xff00;
@@ -57,7 +57,7 @@ public class LineageDecoderThread implements Runnable{
 		return length;
 	}
 	
-	// Å¬¶ó µî·Ï
+	// í´ë¼ ë“±ë¡
 	public void putClient(LineageClient c){
 		try {
 			//if(!_client.contains(c)) {
@@ -68,7 +68,7 @@ public class LineageDecoderThread implements Runnable{
 		}
 	}
 	
-	// Å¬¶ó Ã£±â
+	// í´ë¼ ì°¾ê¸°
 	public LineageClient getClient(String id){
 		if(id!=null){
 			try {
@@ -88,7 +88,7 @@ public class LineageDecoderThread implements Runnable{
 		return null;
 	}
 	
-	// Å¬¶ó »èÁ¦
+	// í´ë¼ ì‚­ì œ
 	public void removeClient(LineageClient c){
 		/** LINALL CONNECT SOURCE START **/
 		/*if(Config.AUTH_CONNECT) {
@@ -103,12 +103,12 @@ public class LineageDecoderThread implements Runnable{
 				_client.remove(c);
 	}
 	
-	// Å¬¶ó °¹¼ö
+	// í´ë¼ ê°¯ìˆ˜
 	public int ClientCount(){
 		return _client.size();
 	}
 	
-	// Å¬¶ó µî·ÏµÇ¾î ÀÖ´ÂÁö Ã¼Å©
+	// í´ë¼ ë“±ë¡ë˜ì–´ ìˆëŠ”ì§€ ì²´í¬
 	public boolean ContainsClient(LineageClient c){
 		return _client.contains(c);
 	}

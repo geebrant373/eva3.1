@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -43,7 +43,7 @@ public class L1DeleteItemOnGround {
 
 		@Override
 		public void run() {
-			//1ºĞ´ç ¾²·¹µå·Î °¨½Ã 
+			//1ë¶„ë‹¹ ì“°ë ˆë“œë¡œ ê°ì‹œ 
 			int time = 1 * 60 * 1000;
 			for (;;) {
 				try {
@@ -53,8 +53,8 @@ public class L1DeleteItemOnGround {
 					break;
 				}
 /*				L1World.getInstance().broadcastPacketToAll(
-						new S_ServerMessage(166, "¿ùµå ¸Ê»óÀÇ ¾ÆÀÌÅÛ",
-								"10ÃÊ ÈÄ¿¡ »èÁ¦µË´Ï´Ù")); 
+						new S_ServerMessage(166, "ì›”ë“œ ë§µìƒì˜ ì•„ì´í…œ",
+								"10ì´ˆ í›„ì— ì‚­ì œë©ë‹ˆë‹¤")); 
 				try {
 					Thread.sleep(10000);
 				} catch (Exception exception) {
@@ -63,7 +63,7 @@ public class L1DeleteItemOnGround {
 				}*/
 				deleteItem();
 //				L1World.getInstance().broadcastPacketToAll(
-//						new S_ServerMessage(166, "¿ùµå ¸Ê»óÀÇ ¾ÆÀÌÅÛ", "»èÁ¦µÇ¾ú½À´Ï´Ù"));
+//						new S_ServerMessage(166, "ì›”ë“œ ë§µìƒì˜ ì•„ì´í…œ", "ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤"));
 			}
 		}
 	}
@@ -74,7 +74,7 @@ public class L1DeleteItemOnGround {
 		}
 
 		_deleteTimer = new DeleteTimer();
-		GeneralThreadPool.getInstance(). execute(_deleteTimer); // Å¸ÀÌ¸Ó °³½Ã
+		GeneralThreadPool.getInstance(). execute(_deleteTimer); // íƒ€ì´ë¨¸ ê°œì‹œ
 	}
 
 	private void deleteItem() {
@@ -84,17 +84,17 @@ public class L1DeleteItemOnGround {
 		for (L1Object obj1 : objs) {
 			if(obj1 instanceof L1ItemInstance){
 				L1ItemInstance obj = (L1ItemInstance)obj1;
-				if (obj.getX() == 0 && obj.getY() == 0) { // Áö¸é»óÀÇ ¾ÆÀÌÅÛÀº ¾Æ´Ï°í, ´©±º°¡ÀÇ ¼ÒÀ¯¹°
+				if (obj.getX() == 0 && obj.getY() == 0) { // ì§€ë©´ìƒì˜ ì•„ì´í…œì€ ì•„ë‹ˆê³ , ëˆ„êµ°ê°€ì˜ ì†Œìœ ë¬¼
 					continue;
 				}
-				if (obj.getItem().getItemId() == 40515) { // Á¤·ÉÀÇ µ¹
+				if (obj.getItem().getItemId() == 40515) { // ì •ë ¹ì˜ ëŒ
 					continue;
 				}
-				if (obj.getMapId() == 88 || obj.getMapId() == 98 || obj.getMapId() == 91 || obj.getMapId() == 92 || obj.getMapId() == 95) { // ¹«ÇÑ´ëÀü
+				if (obj.getMapId() == 88 || obj.getMapId() == 98 || obj.getMapId() == 91 || obj.getMapId() == 92 || obj.getMapId() == 95) { // ë¬´í•œëŒ€ì „
 					continue;
 				}
 				if (L1HouseLocation.isInHouse(obj.getX(), obj.getY(), obj
-						. getMapId())) { // ¾ÆÁöÆ®³»
+						. getMapId())) { // ì•„ì§€íŠ¸ë‚´
 					continue;
 				}
 
@@ -107,7 +107,7 @@ public class L1DeleteItemOnGround {
 				else{
 					obj.add_DeleteItemTime();
 				}
-				/*if (players.isEmpty()) { // ÁöÁ¤ ¹üÀ§³»¿¡ ÇÃ·¹ÀÌ¾î°¡ ¾øÀ¸¸é »èÁ¦
+				/*if (players.isEmpty()) { // ì§€ì • ë²”ìœ„ë‚´ì— í”Œë ˆì´ì–´ê°€ ì—†ìœ¼ë©´ ì‚­ì œ
 					groundInventory = L1World
 							. getInstance()
 							. getInventory(obj.getX(), obj.getY(), obj.getMapId());
@@ -117,6 +117,6 @@ public class L1DeleteItemOnGround {
 			}			
 		}
 		objs = null;
-		_log.fine("¿ùµå ¸Ê»óÀÇ ¾ÆÀÌÅÛÀ» ÀÚµ¿ »èÁ¦. »èÁ¦¼ö: " + numOfDeleted);
+		_log.fine("ì›”ë“œ ë§µìƒì˜ ì•„ì´í…œì„ ìë™ ì‚­ì œ. ì‚­ì œìˆ˜: " + numOfDeleted);
 	}
 }

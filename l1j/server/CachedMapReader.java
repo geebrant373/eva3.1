@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -38,18 +38,18 @@ import l1j.server.server.utils.FileUtil;
 
 
 /**
- * ÅØ½ºÆ® ¸ÊÀ» Ä³½Ì ÇØ read ½Ã°£À» ´ÜÃàÇÑ´Ù.
+ * í…ìŠ¤íŠ¸ ë§µì„ ìºì‹± í•´ read ì‹œê°„ì„ ë‹¨ì¶•í•œë‹¤.
  */
 public class CachedMapReader extends MapReader {
 
-	/** ÅØ½ºÆ® ¸Ê È¦´õ.  */
+	/** í…ìŠ¤íŠ¸ ë§µ í™€ë”.  */
 	private static final String MAP_DIR = "./maps/";
 
-	/** Ä³½Ì ÇÏ´Â ¸Ê È¦´õ.  */
+	/** ìºì‹± í•˜ëŠ” ë§µ í™€ë”.  */
 	private static final String CACHE_DIR = "./data/mapcache/";
 
 	/**
-	 * Àü¸Ê IDÀÇ ¸®½ºÆ®¸¦ µ¹·ÁÁØ´Ù.
+	 * ì „ë§µ IDì˜ ë¦¬ìŠ¤íŠ¸ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 *
 	 * @return ArraryList
 	 */
@@ -79,10 +79,10 @@ public class CachedMapReader extends MapReader {
 	}
 
 	/**
-	 * ÁöÁ¤ÀÇ ¸Ê ¹øÈ£ÀÇ ÅØ½ºÆ® ¸ÊÀ» Ä³½¬ ¸ÊÀ¸·Î º¯°æÇÑ´Ù.
+	 * ì§€ì •ì˜ ë§µ ë²ˆí˜¸ì˜ í…ìŠ¤íŠ¸ ë§µì„ ìºì‰¬ ë§µìœ¼ë¡œ ë³€ê²½í•œë‹¤.
 	 *
 	 * @param mapId
-	 *            ¸Ê ¹øÈ£
+	 *            ë§µ ë²ˆí˜¸
 	 * @return L1V1Map
 	 * @throws IOException
 	 */
@@ -115,10 +115,10 @@ public class CachedMapReader extends MapReader {
 	}
 
 	/**
-	 * ÁöÁ¤ÀÇ ¸Ê ¹øÈ£ÀÇ Ä³½¬ ¸ÊÀ» ÀĞ¾îµéÀÎ´Ù.
+	 * ì§€ì •ì˜ ë§µ ë²ˆí˜¸ì˜ ìºì‰¬ ë§µì„ ì½ì–´ë“¤ì¸ë‹¤.
 	 *
 	 * @param mapId
-	 *            ¸Ê ¹øÈ£
+	 *            ë§µ ë²ˆí˜¸
 	 * @return L1Map
 	 * @throws IOException
 	 */
@@ -164,7 +164,7 @@ public class CachedMapReader extends MapReader {
 	}
 
 	/**
-	 * ¸ğµç ÅØ½ºÆ® ¸ÊÀ» ÀĞ¾îµéÀÎ´Ù.
+	 * ëª¨ë“  í…ìŠ¤íŠ¸ ë§µì„ ì½ì–´ë“¤ì¸ë‹¤.
 	 *
 	 * @return Map
 	 * @throws IOException

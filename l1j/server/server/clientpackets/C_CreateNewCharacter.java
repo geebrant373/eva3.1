@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -57,17 +57,17 @@ public class C_CreateNewCharacter extends ClientBasePacket {
 		byte str,dex,con,intel,wis,cha;
 		int total;
 		for (int i = 0;i<name.length();i++) {  
-			if (name.charAt(i) == '¤¡' || name.charAt(i) == '¤¢' || name.charAt(i) == '¤¤' || name.charAt(i) == '¤§' ||    //ÇÑ¹®ÀÚ(char)´ÜÀ§·Î ºñ±³.
-					name.charAt(i) == '¤¨' || name.charAt(i) == '¤©' || name.charAt(i) == '¤±' || name.charAt(i) == '¤²' ||    //ÇÑ¹®ÀÚ(char)´ÜÀ§·Î ºñ±³ 
-					name.charAt(i) == '¤³' || name.charAt(i) == '¤µ' || name.charAt(i) == '¤¶' || name.charAt(i) == '¤·' ||    //ÇÑ¹®ÀÚ(char)´ÜÀ§·Î ºñ±³
-					name.charAt(i) == '¤¸' || name.charAt(i) == '¤¹' || name.charAt(i) == '¤º' || name.charAt(i) == '¤»' ||    //ÇÑ¹®ÀÚ(char)´ÜÀ§·Î ºñ±³.
-					name.charAt(i) == '¤¼' || name.charAt(i) == '¤½' || name.charAt(i) == '¤¾' || name.charAt(i) == '¤Ë' ||    //ÇÑ¹®ÀÚ(char)´ÜÀ§·Î ºñ±³.
-					name.charAt(i) == '¤Å' || name.charAt(i) == '¤Á' || name.charAt(i) == '¤À' || name.charAt(i) == '¤Ä' ||    //ÇÑ¹®ÀÚ(char)´ÜÀ§·Î ºñ±³.
-					name.charAt(i) == '¤Ç' || name.charAt(i) == '¤Ã' || name.charAt(i) == '¤¿' || name.charAt(i) == '¤Ó' ||    //ÇÑ¹®ÀÚ(char)´ÜÀ§·Î ºñ±³.
-					name.charAt(i) == '¤Ğ' || name.charAt(i) == '¤Ì' || name.charAt(i) == '¤Ñ' || name.charAt(i) == '¤Â' ||    //ÇÑ¹®ÀÚ(char)´ÜÀ§·Î ºñ±³.
-					name.charAt(i) == '¤Æ' || name.charAt(i) == '¤Ò' || name.charAt(i) == '¤Ï' || name.charAt(i) == '¤Í' ||    //ÇÑ¹®ÀÚ(char)´ÜÀ§·Î ºñ±³.
-					name.charAt(i) == '¤Î' || name.charAt(i) == '¤É' || name.charAt(i) == '¤Ê' || name.charAt(i) == '¤È' ||    //ÇÑ¹®ÀÚ(char)´ÜÀ§·Î ºñ±³.
-					name.charAt(i) == '¾Ã' || name.charAt(i) == 'Á½' || name.charAt(i) == 'Á¿' || name.charAt(i) == '¤Ô'){
+			if (name.charAt(i) == 'ã„±' || name.charAt(i) == 'ã„²' || name.charAt(i) == 'ã„´' || name.charAt(i) == 'ã„·' ||    //í•œë¬¸ì(char)ë‹¨ìœ„ë¡œ ë¹„êµ.
+					name.charAt(i) == 'ã„¸' || name.charAt(i) == 'ã„¹' || name.charAt(i) == 'ã…' || name.charAt(i) == 'ã…‚' ||    //í•œë¬¸ì(char)ë‹¨ìœ„ë¡œ ë¹„êµ 
+					name.charAt(i) == 'ã…ƒ' || name.charAt(i) == 'ã……' || name.charAt(i) == 'ã…†' || name.charAt(i) == 'ã…‡' ||    //í•œë¬¸ì(char)ë‹¨ìœ„ë¡œ ë¹„êµ
+					name.charAt(i) == 'ã…ˆ' || name.charAt(i) == 'ã…‰' || name.charAt(i) == 'ã…Š' || name.charAt(i) == 'ã…‹' ||    //í•œë¬¸ì(char)ë‹¨ìœ„ë¡œ ë¹„êµ.
+					name.charAt(i) == 'ã…Œ' || name.charAt(i) == 'ã…' || name.charAt(i) == 'ã…' || name.charAt(i) == 'ã…›' ||    //í•œë¬¸ì(char)ë‹¨ìœ„ë¡œ ë¹„êµ.
+					name.charAt(i) == 'ã…•' || name.charAt(i) == 'ã…‘' || name.charAt(i) == 'ã…' || name.charAt(i) == 'ã…”' ||    //í•œë¬¸ì(char)ë‹¨ìœ„ë¡œ ë¹„êµ.
+					name.charAt(i) == 'ã…—' || name.charAt(i) == 'ã…“' || name.charAt(i) == 'ã…' || name.charAt(i) == 'ã…£' ||    //í•œë¬¸ì(char)ë‹¨ìœ„ë¡œ ë¹„êµ.
+					name.charAt(i) == 'ã… ' || name.charAt(i) == 'ã…œ' || name.charAt(i) == 'ã…¡' || name.charAt(i) == 'ã…’' ||    //í•œë¬¸ì(char)ë‹¨ìœ„ë¡œ ë¹„êµ.
+					name.charAt(i) == 'ã…–' || name.charAt(i) == 'ã…¢' || name.charAt(i) == 'ã…Ÿ' || name.charAt(i) == 'ã…' ||    //í•œë¬¸ì(char)ë‹¨ìœ„ë¡œ ë¹„êµ.
+					name.charAt(i) == 'ã…' || name.charAt(i) == 'ã…™' || name.charAt(i) == 'ã…š' || name.charAt(i) == 'ã…˜' ||    //í•œë¬¸ì(char)ë‹¨ìœ„ë¡œ ë¹„êµ.
+					name.charAt(i) == 'ì”¹' || name.charAt(i) == 'ì¢ƒ' || name.charAt(i) == 'ì¢†' || name.charAt(i) == 'ã…¤'){
 				S_CharCreateStatus s_charcreatestatus = new S_CharCreateStatus(S_CharCreateStatus.REASON_INVALID_NAME);
 				client.sendPacket(s_charcreatestatus);
 				return; 
@@ -82,7 +82,7 @@ public class C_CreateNewCharacter extends ClientBasePacket {
 		
 		if (BadNamesList.getInstance().isBadName(name)) {
 			S_CharCreateStatus s_charcreatestatus = new S_CharCreateStatus(S_CharCreateStatus.REASON_INVALID_NAME);
-			_log.info("»ı¼º ±İÁöµÈ Ä³¸¯ÅÍ ÀÌ¸§, »ı¼º½ÇÆĞ");
+			_log.info("ìƒì„± ê¸ˆì§€ëœ ìºë¦­í„° ì´ë¦„, ìƒì„±ì‹¤íŒ¨");
 			client.sendPacket(s_charcreatestatus);
 			return;
 		}
@@ -101,7 +101,7 @@ public class C_CreateNewCharacter extends ClientBasePacket {
 		}
 		
 		if (client.getAccount().countCharacters() >= 8) {
-			_log.fine("account: " + client.getAccountName() + " 8¸¦ ³Ñ´Â Ä³¸¯ÅÍ ÀÛ¼º ¿ä±¸. ");
+			_log.fine("account: " + client.getAccountName() + " 8ë¥¼ ë„˜ëŠ” ìºë¦­í„° ì‘ì„± ìš”êµ¬. ");
 			S_CharCreateStatus s_charcreatestatus1 = new S_CharCreateStatus(S_CharCreateStatus.REASON_WRONG_AMOUNT);
 			client.sendPacket(s_charcreatestatus1);
 			return;
@@ -137,14 +137,14 @@ public class C_CreateNewCharacter extends ClientBasePacket {
 			return;
 		}
 
-		if (!Config.´Ù¿¤»ı¼º && pc.isDarkelf()) {
+		if (!Config.ë‹¤ì—˜ìƒì„± && pc.isDarkelf()) {
 			S_CharCreateStatus s_charcreatestatus = new S_CharCreateStatus(S_CharCreateStatus.REASON_WRONG_AMOUNT);
-			_log.info("»ı¼º ±İÁöµÈ ´ÙÅ©¿¤ÇÁ Ä³¸¯ÅÍ, »ı¼º½ÇÆĞ");
+			_log.info("ìƒì„± ê¸ˆì§€ëœ ë‹¤í¬ì—˜í”„ ìºë¦­í„°, ìƒì„±ì‹¤íŒ¨");
 			client.sendPacket(s_charcreatestatus);
 			return;
 		}
 		if (client.getAccount().countCharacters() > 0) {
-			_log.fine("account: " + client.getAccountName() + " 2¸¦ ³Ñ´Â Ä³¸¯ÅÍ ÀÛ¼º ¿ä±¸. ");
+			_log.fine("account: " + client.getAccountName() + " 2ë¥¼ ë„˜ëŠ” ìºë¦­í„° ì‘ì„± ìš”êµ¬. ");
 			S_CharCreateStatus s_charcreatestatus1 = new S_CharCreateStatus(S_CharCreateStatus.REASON_WRONG_AMOUNT);
 			client.sendPacket(s_charcreatestatus1);
 			return;
@@ -160,32 +160,32 @@ public class C_CreateNewCharacter extends ClientBasePacket {
 	private static final int[] FEMALE_LIST = new int[] { 1, 48, 37, 1186, 2796, 6661, 6650 };
 	/*
 	 * private static final int[][] START_LOC_X = new int [][] {{ 34054, 34054,
-	 * 34054, 34054, 34054 }, // ¼û°è X { 34054, 34054, 34054, 34054, 34054 }};// ³ë¼¶ X
+	 * 34054, 34054, 34054 }, // ìˆ¨ê³„ X { 34054, 34054, 34054, 34054, 34054 }};// ë…¸ì„¬ X
 	 * private static final int[][] START_LOC_Y = new int [][] {{ 32277, 32277,
-	 * 32277, 32277, 32277 }, // ¼û°èY { 32277, 32277, 32277, 32277, 32277 }};// ³ë¼¶Y
+	 * 32277, 32277, 32277 }, // ìˆ¨ê³„Y { 32277, 32277, 32277, 32277, 32277 }};// ë…¸ì„¬Y
 	 * private static final short[] MAPID_LIST = new short[] { 4, 4, 4, 4, 4, 4, 4
 	 * };
 	 * 
 	 */
-	//  private static final int[][] START_LOC_X = new int [][] {{ 32581, 32581, 32581, 32581, 32581 }, // ¼û°è X 
-	//	{ 32581, 32581, 32581, 32581, 32581 }};// ³ë¼¶ X	
-	//	private static final int[][] START_LOC_Y = new int [][] {{ 32934, 32934, 32934, 32934, 32934 }, // ¼û°èY
-	//	{ 32934, 32934, 32934, 32934, 32934 }};// ³ë¼¶Y	
+	//  private static final int[][] START_LOC_X = new int [][] {{ 32581, 32581, 32581, 32581, 32581 }, // ìˆ¨ê³„ X 
+	//	{ 32581, 32581, 32581, 32581, 32581 }};// ë…¸ì„¬ X	
+	//	private static final int[][] START_LOC_Y = new int [][] {{ 32934, 32934, 32934, 32934, 32934 }, // ìˆ¨ê³„Y
+	//	{ 32934, 32934, 32934, 32934, 32934 }};// ë…¸ì„¬Y	
 	//	private static final short[] MAPID_LIST = new short[] { 0, 0, 0, 0, 0, 0, 0 };
 
 	
-		private static final int[][] START_LOC_X = new int [][] {{ 33441, 33441, 33442, 33443, 33443 }, // ¼û°è X 
-			{ 33441, 33441, 33442, 33443, 33443 }};// ³ë¼¶ X	
-			private static final int[][] START_LOC_Y = new int [][] {{ 32793, 32793, 32794, 32795, 32795 }, // ¼û°èY
-			{ 32793, 32793, 32794, 32795, 32795 }};// ³ë¼¶Y	
+		private static final int[][] START_LOC_X = new int [][] {{ 33441, 33441, 33442, 33443, 33443 }, // ìˆ¨ê³„ X 
+			{ 33441, 33441, 33442, 33443, 33443 }};// ë…¸ì„¬ X	
+			private static final int[][] START_LOC_Y = new int [][] {{ 32793, 32793, 32794, 32795, 32795 }, // ìˆ¨ê³„Y
+			{ 32793, 32793, 32794, 32795, 32795 }};// ë…¸ì„¬Y	
 			private static final short[] MAPID_LIST = new short[] { 4, 4, 4, 4, 4, 4, 4 };
 	
 	
 	private static void initNewChar(LineageClient client, L1PcInstance pc) throws IOException, Exception {
 		short init_hp = 0, init_mp = 0;
 		Random random = new Random();
-		final int HidingV = 0; // ¼û°è
-		final int SingingI = 1;// ³ë¼¶
+		final int HidingV = 0; // ìˆ¨ê³„
+		final int SingingI = 1;// ë…¸ì„¬
 		
 		int startPosType = HidingV; // default
 		int startPos = random.nextInt(5);
@@ -307,15 +307,15 @@ public class C_CreateNewCharacter extends ClientBasePacket {
 		pc.setReturnStat(0);
 		pc.setGdungeonTime(0);
 		pc.calAinHasad(0);
-		//Ãß°¡  /** ÇÁ¸®¼·¿¡ ¸Â°Ô ¼öÁ¤ (³ªÀÌ, Á·º¸ ¼³Á¤À¸·Î ÁÖ¼®) By µµ¿ì³Ê **/
+		//ì¶”ê°€  /** í”„ë¦¬ì„­ì— ë§ê²Œ ìˆ˜ì • (ë‚˜ì´, ì¡±ë³´ ì„¤ì •ìœ¼ë¡œ ì£¼ì„) By ë„ìš°ë„ˆ **/
 		pc.setAge(0);
 		pc.setMemberShip(0);
 		pc.setVipLevel(0);
 		pc.setKills(0);
 		pc.setDeaths(0);
 		pc.setRankLevel(0);
-		pc.set·ÎÅ×½ÃÀÛ(0);
-		//Ãß°¡  /** ÇÁ¸®¼·¿¡ ¸Â°Ô ¼öÁ¤ (³ªÀÌ, Á·º¸ ¼³Á¤À¸·Î ÁÖ¼®) By µµ¿ì³Ê **/
+		pc.setë¡œí…Œì‹œì‘(0);
+		//ì¶”ê°€  /** í”„ë¦¬ì„­ì— ë§ê²Œ ìˆ˜ì • (ë‚˜ì´, ì¡±ë³´ ì„¤ì •ìœ¼ë¡œ ì£¼ì„) By ë„ìš°ë„ˆ **/
 		int birth = 0;
 		if(_sdf == null) _sdf = new SimpleDateFormat("yyyyMMdd");
 		if(_calendar != null) _calendar.setTimeInMillis(System.currentTimeMillis());
@@ -339,15 +339,15 @@ public class C_CreateNewCharacter extends ClientBasePacket {
 			L1Skills l1skills = SkillsTable.getInstance().getTemplate(4); // EB
 			String skill_name = l1skills.getName();
 			int skill_id = l1skills.getSkillId();
-			SkillsTable.getInstance().spellMastery(object_id, skill_id,	skill_name, 0, 0); // DB¿¡ µî·Ï
+			SkillsTable.getInstance().spellMastery(object_id, skill_id,	skill_name, 0, 0); // DBì— ë“±ë¡
 		} else if (pc.isElf()) {
 			pc.sendPackets(new S_AddSkill(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 					0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0));
 			int object_id = pc.getId();
-			L1Skills l1skills = SkillsTable.getInstance().getTemplate(131); // ÅÚ·¹Æ÷Æ® Åõ ¸¶´õ
+			L1Skills l1skills = SkillsTable.getInstance().getTemplate(131); // í…”ë ˆí¬íŠ¸ íˆ¬ ë§ˆë”
 			String skill_name = l1skills.getName();
 			int skill_id = l1skills.getSkillId();
-			SkillsTable.getInstance().spellMastery(object_id, skill_id,	skill_name, 0, 0); // DB¿¡ µî·Ï
+			SkillsTable.getInstance().spellMastery(object_id, skill_id,	skill_name, 0, 0); // DBì— ë“±ë¡
 		}
 		Beginner.getInstance().GiveItem(pc);
 		
@@ -391,8 +391,8 @@ public class C_CreateNewCharacter extends ClientBasePacket {
 			return false;
 		}
 
-		// XXX - º»Ã»ÀÇ »ç¾ç°ú µ¿µîÇÑ°¡ ¹ÌÈ®ÀÎ
-		// Àü°¢ ¹®ÀÚ°¡ 5 ¹®ÀÚ¸¦ ³Ñ´ÂÁö, ÀüÃ¼·Î 12¹ÙÀÌÆ®¸¦ ³ÑÀ¸¸é(ÀÚ) ¹«È¿ÀÎ ÀÌ¸§À¸·Î ÇÑ´Ù
+		// XXX - ë³¸ì²­ì˜ ì‚¬ì–‘ê³¼ ë™ë“±í•œê°€ ë¯¸í™•ì¸
+		// ì „ê° ë¬¸ìê°€ 5 ë¬¸ìë¥¼ ë„˜ëŠ”ì§€, ì „ì²´ë¡œ 12ë°”ì´íŠ¸ë¥¼ ë„˜ìœ¼ë©´(ì) ë¬´íš¨ì¸ ì´ë¦„ìœ¼ë¡œ í•œë‹¤
 		if (5 < (numOfNameBytes - name.length()) || 12 < numOfNameBytes) {
 			return false;
 		}

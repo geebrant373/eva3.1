@@ -1,4 +1,4 @@
-
+ï»¿
 package l1j.server.server.datatables;
 
 import java.sql.Connection;
@@ -29,19 +29,19 @@ public final class Map_Event {
 	private static Map_Event _instance;
 
 	/**
-	 * Key¿¡ MAP ID, Value¿¡ ÅÚ·¹Æ÷Æ® °¡ºÎ ÇÃ·¡±×°¡ °İ³³µÇ´Â HashMap
+	 * Keyì— MAP ID, Valueì— í…”ë ˆí¬íŠ¸ ê°€ë¶€ í”Œë˜ê·¸ê°€ ê²©ë‚©ë˜ëŠ” HashMap
 	 */
 	private final Map<Integer, MapData> _maps = new HashMap<Integer, MapData>();
 
 	/**
-	 * »õ·Ó°í MapsTable ¿ÀºêÁ§Æ®¸¦ »ı¼ºÇØ, MAPÀÇ ÅÚ·¹Æ÷Æ® °¡ºÎ ÇÃ·¡±×¸¦ ÀĞ¾îµéÀÎ´Ù.
+	 * ìƒˆë¡­ê³  MapsTable ì˜¤ë¸Œì íŠ¸ë¥¼ ìƒì„±í•´, MAPì˜ í…”ë ˆí¬íŠ¸ ê°€ë¶€ í”Œë˜ê·¸ë¥¼ ì½ì–´ë“¤ì¸ë‹¤.
 	 */
 	private Map_Event() {
 		loadMapsFromDatabase();
 	}
 
 	/**
-	 * MAPÀÇ ÅÚ·¹Æ÷Æ® °¡ºÎ ÇÃ·¡±×¸¦ µ¥ÀÌÅ¸º£ÀÌ½º·ÎºÎÅÍ ÀĞ¾îµé¿©, HashMap _maps¿¡ °İ³³ÇÑ´Ù.
+	 * MAPì˜ í…”ë ˆí¬íŠ¸ ê°€ë¶€ í”Œë˜ê·¸ë¥¼ ë°ì´íƒ€ë² ì´ìŠ¤ë¡œë¶€í„° ì½ì–´ë“¤ì—¬, HashMap _mapsì— ê²©ë‚©í•œë‹¤.
 	 */
 	private void loadMapsFromDatabase() {
 		Connection con = null;
@@ -104,9 +104,9 @@ public final class Map_Event {
 		}
 	}
 	/**
-	 * MapsTableÀÇ ÀÎ½ºÅÏ½º¸¦ µ¹·ÁÁØ´Ù.
+	 * MapsTableì˜ ì¸ìŠ¤í„´ìŠ¤ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return MapsTableÀÇ ÀÎ½ºÅÏ½º
+	 * @return MapsTableì˜ ì¸ìŠ¤í„´ìŠ¤
 	 */
 	public static Map_Event getInstance() {
 		if (_instance == null) {
@@ -131,11 +131,11 @@ public final class Map_Event {
 	//	System.out.println("OK! " + timer.elapsedTimeMillis() + "ms");
 	}
 	/**
-	 * ¸ÊÀÇ µå·Ó ¹èÀ²À» µ¹·ÁÁØ´Ù
+	 * ë§µì˜ ë“œë¡­ ë°°ìœ¨ì„ ëŒë ¤ì¤€ë‹¤
 	 * 
 	 * @param mapId
-	 *            Á¶»çÇÏ´Â ¸ÊÀÇ ¸Ê ID
-	 * @return µå·Ó ¹èÀ²
+	 *            ì¡°ì‚¬í•˜ëŠ” ë§µì˜ ë§µ ID
+	 * @return ë“œë¡­ ë°°ìœ¨
 	 */
 	public double getadena_rate(int mapId) {
 		MapData map = _maps.get(mapId);

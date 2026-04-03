@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,7 +45,7 @@ public class DropTable {
 
 	private static DropTable _instance;
 
-	private final HashMap<Integer, ArrayList<L1Drop>> _droplists; // monster ¸¶´ÙÀÇ µå·Ó ¸®½ºÆ®
+	private final HashMap<Integer, ArrayList<L1Drop>> _droplists; // monster ë§ˆë‹¤ì˜ ë“œë¡­ ë¦¬ìŠ¤íŠ¸
 
 	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 
@@ -135,7 +135,7 @@ public class DropTable {
 		return droplistMap;
 	}
 
-	// ÀÎº¥Æ®¸®¿¡ µå·ÓÀ» ¼³Á¤
+	// ì¸ë²¤íŠ¸ë¦¬ì— ë“œë¡­ì„ ì„¤ì •
 	public void setDrop(L1NpcInstance npc, L1Inventory inventory) {
 
 		int mobId = npc.getNpcTemplate().get_npcId();
@@ -148,7 +148,7 @@ public class DropTable {
 			return;
 		}
 
-		// ·¹ÀÌÆ® Ãëµæ
+		// ë ˆì´íŠ¸ ì·¨ë“
 		double droprate = Config.RATE_DROP_ITEMS;
 		if (droprate <= 0) {
 			droprate = 0;
@@ -167,20 +167,20 @@ public class DropTable {
 		int randomChance;
 		L1ItemInstance item;
 
-		/** È¯»ó ÀÌº¥Æ® **/
+		/** í™˜ìƒ ì´ë²¤íŠ¸ **/
 		L1ItemInstance Fitem;
 		L1ItemInstance Citem;
 
 		Random random = new Random();
 
 		for (L1Drop drop : dropList) {
-			// µå·Ó ¾ÆÀÌÅÛÀÇ Ãëµæ
+			// ë“œë¡­ ì•„ì´í…œì˜ ì·¨ë“
 			itemId = drop.getItemid();
 			if (adenarate == 0 && itemId == L1ItemId.ADENA) {
-				continue; // ¾Æµ¥³ª·¹ÀÌÆ® 0À¸·Î µå·ÓÀÌ ¾Æµ¥³ªÀÇ °æ¿ì´Â ½º¸£
+				continue; // ì•„ë°ë‚˜ë ˆì´íŠ¸ 0ìœ¼ë¡œ ë“œë¡­ì´ ì•„ë°ë‚˜ì˜ ê²½ìš°ëŠ” ìŠ¤ë¥´
 			}
 
-			// µå·Ó Âù½º ÆÇÁ¤
+			// ë“œë¡­ ì°¬ìŠ¤ íŒì •
 			randomChance = random.nextInt(0xf4240) + 1;
 			double rateOfMapId = MapsTable.getInstance().getDropRate(npc.getMapId());
 			double rateOfItem = DropItemTable.getInstance().getDropRate(itemId);
@@ -194,7 +194,7 @@ public class DropTable {
 				continue;
 			}
 
-			// µå·Ó °³¼ö¸¦ ¼³Á¤
+			// ë“œë¡­ ê°œìˆ˜ë¥¼ ì„¤ì •
 			double amount = DropItemTable.getInstance().getDropAmount(itemId);
 			int min = drop.getMin();
 			int max = drop.getMax();
@@ -207,7 +207,7 @@ public class DropTable {
 			if (addCount > 1) {
 				itemCount += random.nextInt(addCount);
 			}
-			if (itemId == L1ItemId.ADENA) { // µå·ÓÀÌ ¾Æµ¥³ªÀÇ °æ¿ì´Â ¾Æµ¥³ª·¹ÀÌÆ®¸¦ °Ç´Ù
+			if (itemId == L1ItemId.ADENA) { // ë“œë¡­ì´ ì•„ë°ë‚˜ì˜ ê²½ìš°ëŠ” ì•„ë°ë‚˜ë ˆì´íŠ¸ë¥¼ ê±´ë‹¤
 				if (npc.getMapId() == 410) {
 					itemCount = 0;
 				} else {
@@ -222,14 +222,14 @@ public class DropTable {
 				itemCount = 2000000000;
 			}
 
-			// ¾ÆÀÌÅÛÀÇ »ı¼º
+			// ì•„ì´í…œì˜ ìƒì„±
 			item = ItemTable.getInstance().createItem(itemId);
 			item.setCount(itemCount);
-			// ¾ÆÀÌÅÛ °İ³³
+			// ì•„ì´í…œ ê²©ë‚©
 			inventory.storeItem(item);
 		}
 
-		/** È¯»ó ÀÌº¥Æ® **/
+		/** í™˜ìƒ ì´ë²¤íŠ¸ **/
 		if (Config.ALT_FANTASYEVENT == true) {
 			int itemRandom = random.nextInt(100) + 1;
 			int countRandom = random.nextInt(100) + 1;
@@ -257,7 +257,7 @@ public class DropTable {
 				inventory.storeItem(Fitem);
 			}
 		}
-		/** Ãß¼® ÀÌº¥Æ® **/
+		/** ì¶”ì„ ì´ë²¤íŠ¸ **/
 		if (Config.ALT_CHUSEOKEVENT == true) {
 			int itemRandom = random.nextInt(100) + 1;
 			if (itemRandom <= 3) {
@@ -265,7 +265,7 @@ public class DropTable {
 				inventory.storeItem(Citem);
 			}
 		}
-		/** ±êÅĞ ÀÌº¥Æ® **/
+		/** ê¹ƒí„¸ ì´ë²¤íŠ¸ **/
 		if (Config.ALT_FEATURE == true) {
 			short mapid = npc.getMapId();
 			if ((mapid >= 450 && mapid <= 478) || (mapid >= 490 && mapid <= 496) || (mapid >= 530 && mapid <= 536)) {
@@ -279,7 +279,7 @@ public class DropTable {
 			}
 		}
 
-		/** Å×½ºÆ® ¼­¹ö **/
+		/** í…ŒìŠ¤íŠ¸ ì„œë²„ **/
 		if (Config.GAME_SERVER_TYPE == 1) {
 			short mapid = npc.getMapId();
 			if ((mapid >= 450 && mapid <= 478) || (mapid >= 490 && mapid <= 496) || (mapid >= 530 && mapid <= 536)) {
@@ -301,7 +301,7 @@ public class DropTable {
 
 	private Random _random = new Random();
 
-	// µå·ÓÀ» ºĞ¹è
+	// ë“œë¡­ì„ ë¶„ë°°
 	public void dropShare(L1NpcInstance npc, ArrayList<?> acquisitorList, ArrayList<?> hateList, L1PcInstance pc) {
 		L1Inventory inventory = npc.getInventory();
 		int mobId = npc.getNpcTemplate().get_npcId();
@@ -316,25 +316,25 @@ public class DropTable {
 		if (acquisitorList.size() != hateList.size()) {
 			return;
 		}
-		// ÇìÀÌÆ®ÀÇ ÇÕ°è¸¦ Ãëµæ
+		// í—¤ì´íŠ¸ì˜ í•©ê³„ë¥¼ ì·¨ë“
 		int totalHate = 0;
 		L1Character acquisitor;
 		for (int i = hateList.size() - 1; i >= 0; i--) {
 			acquisitor = (L1Character) acquisitorList.get(i);
-			if ((Config.AUTO_LOOT == 0) // ¿ÀÅä ·çÆÃ 2ÀÇ °æ¿ì´Â »ç¸ó ¹× ¾Ö¿Ïµ¿¹°Àº »ı·«ÇÑ´Ù
+			if ((Config.AUTO_LOOT == 0) // ì˜¤í†  ë£¨íŒ… 2ì˜ ê²½ìš°ëŠ” ì‚¬ëª¬ ë° ì• ì™„ë™ë¬¼ì€ ìƒëµí•œë‹¤
 					&& (acquisitor instanceof L1SummonInstance || acquisitor instanceof L1PetInstance)) {
 				acquisitorList.remove(i);
 				hateList.remove(i);
 			} else if (acquisitor != null && acquisitor.getMapId() == npc.getMapId()
 					&& acquisitor.getLocation().getTileLineDistance(npc.getLocation()) <= Config.LOOTING_RANGE) {
 				totalHate += (Integer) hateList.get(i);
-			} else { // null¿´°Å³ª Á×±âµµ ÇÏ°í ¸Ö¾úÀ¸¸é ¹èÁ¦
+			} else { // nullì˜€ê±°ë‚˜ ì£½ê¸°ë„ í•˜ê³  ë©€ì—ˆìœ¼ë©´ ë°°ì œ
 				acquisitorList.remove(i);
 				hateList.remove(i);
 			}
 		}
 
-		// µå·ÓÀÇ ºĞ¹è
+		// ë“œë¡­ì˜ ë¶„ë°°
 		L1ItemInstance item;
 		L1Inventory targetInventory = null;
 		L1Inventory lastInventory = null;
@@ -350,7 +350,7 @@ public class DropTable {
 			item = inventory.getItems().get(0);
 			itemId = item.getItem().getItemId();
 			boolean isGround = false;
-			if (item.getItem().getType2() == 0 && item.getItem().getType() == 2) { // light°è ¾ÆÀÌÅÛ
+			if (item.getItem().getType2() == 0 && item.getItem().getType() == 2) { // lightê³„ ì•„ì´í…œ
 				item.setNowLighting(false);
 			}
 			
@@ -377,26 +377,26 @@ public class DropTable {
 							targetInventory = acquisitor.getInventory();
 							if (acquisitor instanceof L1PcInstance) {
 								player = (L1PcInstance) acquisitor;
-								L1ItemInstance l1iteminstance = player.getInventory().findItemId(L1ItemId.ADENA); // ¼ÒÁö ¾Æµ¥³ª¸¦ Ã¼Å©
+								L1ItemInstance l1iteminstance = player.getInventory().findItemId(L1ItemId.ADENA); // ì†Œì§€ ì•„ë°ë‚˜ë¥¼ ì²´í¬
 								if (l1iteminstance != null && l1iteminstance.getCount() > 2000000000) {
 									targetInventory = L1World.getInstance().getInventory(acquisitor.getX(),
-											acquisitor.getY(), acquisitor.getMapId()); // °¡Áú ¼ö ¾ø±â ¶§¹®¿¡ ¹ß¹Ø¿¡ ¶³¾î¶ß¸°´Ù
+											acquisitor.getY(), acquisitor.getMapId()); // ê°€ì§ˆ ìˆ˜ ì—†ê¸° ë•Œë¬¸ì— ë°œë°‘ì— ë–¨ì–´ëœ¨ë¦°ë‹¤
 									isGround = true;
 									player.sendPackets(
-											new S_ServerMessage(166, "¼ÒÁöÇÏ°í ÀÖ´Â ¾Æµ¥³ª", "2,000,000,000À» ÃÊ°úÇÏ°í ÀÖ½À´Ï´Ù."));
+											new S_ServerMessage(166, "ì†Œì§€í•˜ê³  ìˆëŠ” ì•„ë°ë‚˜", "2,000,000,000ì„ ì´ˆê³¼í•˜ê³  ìˆìŠµë‹ˆë‹¤."));
 								} else {
-									if (player.isInParty()) { // ÆÄÆ¼ÀÇ °æ¿ì
+									if (player.isInParty()) { // íŒŒí‹°ì˜ ê²½ìš°
 										L1PcInstance[] partyMember = player.getParty().getMembers();// partyMember
 										if (item != null && item.getItemId() != L1ItemId.ADENA) {
 											int Who = _random.nextInt(partyMember.length);
 											L1PcInstance pc1 = partyMember[Who];
 											
 											if (player.getLocation().getTileLineDistance(pc1.getLocation()) < 14) {
-												String ÀÌ¸§ = pc1.getName();
-												String ¾ÆÀÌÅÛÀÌ¸§ = item.getName();
-												int ¾ÆÀÌÅÛ°¹¼ö = item.getCount();
+												String ì´ë¦„ = pc1.getName();
+												String ì•„ì´í…œì´ë¦„ = item.getName();
+												int ì•„ì´í…œê°¯ìˆ˜ = item.getCount();
 												targetInventory = pc1.getInventory();
-												S_SystemMessage pck = new S_SystemMessage(String.format("\\f9[ÆÄÆ¼]\\fH %s´Ô²²¼­ [%s]À» [%d]°³ È¹µæÇÏ¼Ì½À´Ï´Ù.", ÀÌ¸§, ¾ÆÀÌÅÛÀÌ¸§, ¾ÆÀÌÅÛ°¹¼ö));
+												S_SystemMessage pck = new S_SystemMessage(String.format("\\f9[íŒŒí‹°]\\fH %së‹˜ê»˜ì„œ [%s]ì„ [%d]ê°œ íšë“í•˜ì…¨ìŠµë‹ˆë‹¤.", ì´ë¦„, ì•„ì´í…œì´ë¦„, ì•„ì´í…œê°¯ìˆ˜));
 												
 												for (int p = 0; p < partyMember.length; p++) {
 													if (!partyMember[p].getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_MENT)) {
@@ -408,14 +408,14 @@ public class DropTable {
 													if (item.getItemId() == Integer.parseInt(pickup_item[k])) {
 														String men = "";
 														if (Config.PickUpItem_UserName)
-															men = "" + pc.getName() + " ´Ô²²¼­";
+															men = "" + pc.getName() + " ë‹˜ê»˜ì„œ";
 														else
-															men = "´©±º°¡°¡";
+															men = "ëˆ„êµ°ê°€ê°€";
 
 														String itemName = item.getViewName();
 														if (itemName == null)
 															itemName = item.getName();
-														String message = String.format("" + men + "\\fH %s\\f2À»(¸¦) È¹µæÇÏ¿´½À´Ï´Ù.", itemName);
+														String message = String.format("" + men + "\\fH %s\\f2ì„(ë¥¼) íšë“í•˜ì˜€ìŠµë‹ˆë‹¤.", itemName);
 														L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, message));
 														L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(message));
 													}
@@ -429,36 +429,36 @@ public class DropTable {
 													_membersList.add(partyMember[a]);
 												}
 											}
-											int ¾Æµ¥³ª = item.getCount() / _membersList.size();
+											int ì•„ë°ë‚˜ = item.getCount() / _membersList.size();
 											/*if (is_blessing_effect(pc, item))
-												¾Æµ¥³ª = (int) ((item.getCount() * 1.3) / _membersList.size());*/
+												ì•„ë°ë‚˜ = (int) ((item.getCount() * 1.3) / _membersList.size());*/
 
-											int ¾Æµ¥³ª2 = 0;
+											int ì•„ë°ë‚˜2 = 0;
 											for (int A = 0; A < _membersList.size(); A++) {
 												targetInventory = _membersList.get(A).getInventory();
-												¾Æµ¥³ª2 = (int) (¾Æµ¥³ª * 1);
+												ì•„ë°ë‚˜2 = (int) (ì•„ë°ë‚˜ * 1);
 												if (_membersList.get(A).getSkillEffectTimerSet().hasSkillEffect(L1SkillId.AdenRateByDoll)) {
-													¾Æµ¥³ª2 *= 2;
+													ì•„ë°ë‚˜2 *= 2;
 												}
-												item.setCount(¾Æµ¥³ª2 + 1);
-												inventory.tradeItem(item, ¾Æµ¥³ª2, targetInventory);
+												item.setCount(ì•„ë°ë‚˜2 + 1);
+												inventory.tradeItem(item, ì•„ë°ë‚˜2, targetInventory);
 												if (!_membersList.get(A).getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_MENT)) {
-													_membersList.get(A).sendPackets(new S_SystemMessage(String.format("\\f9[ÆÄÆ¼]\\fH ¾Æµ¥³ª [%d]¸¦ È¹µæÇÏ¿´½À´Ï´Ù.", ¾Æµ¥³ª2)));
+													_membersList.get(A).sendPackets(new S_SystemMessage(String.format("\\f9[íŒŒí‹°]\\fH ì•„ë°ë‚˜ [%d]ë¥¼ íšë“í•˜ì˜€ìŠµë‹ˆë‹¤.", ì•„ë°ë‚˜2)));
 												}
 											}
 										}
 									} else {
-										// ¼Ö·ÎÀÇ °æ¿ì
+										// ì†”ë¡œì˜ ê²½ìš°
 										if (item != null && item.getItemId() == L1ItemId.ADENA) {
 											if (player.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.AdenRateByDoll)) {
 												if (player.getAutoHunt()) {
-													item.setCount((int) (item.getCount()*2 * Config.ÀÚµ¿ÆĞ³ÎÆ¼¹èÀ²));
+													item.setCount((int) (item.getCount()*2 * Config.ìë™íŒ¨ë„í‹°ë°°ìœ¨));
 												} else {
 													item.setCount(item.getCount()*2);
 												}
 											} else {
 												if (player.getAutoHunt()) {
-													item.setCount((int) (item.getCount() * Config.ÀÚµ¿ÆĞ³ÎÆ¼¹èÀ²));
+													item.setCount((int) (item.getCount() * Config.ìë™íŒ¨ë„í‹°ë°°ìœ¨));
 												} else {
 													item.setCount(item.getCount());
 												}
@@ -472,14 +472,14 @@ public class DropTable {
 											if (item.getItemId() == Integer.parseInt(pickup_item[k])) {
 												String men = "";
 												if (Config.PickUpItem_UserName)
-													men = "" + pc.getName() + " ´Ô²²¼­";
+													men = "" + pc.getName() + " ë‹˜ê»˜ì„œ";
 												else
-													men = "´©±º°¡°¡";
+													men = "ëˆ„êµ°ê°€ê°€";
 
 												String itemName = item.getViewName();
 												if (itemName == null)
 													itemName = item.getName();
-												String message = String.format("" + men + "\\fH %s\\f2À»(¸¦) È¹µæÇÏ¿´½À´Ï´Ù.", itemName);
+												String message = String.format("" + men + "\\fH %s\\f2ì„(ë¥¼) íšë“í•˜ì˜€ìŠµë‹ˆë‹¤.", itemName);
 												L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, message));
 												L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(message));
 											}
@@ -489,13 +489,13 @@ public class DropTable {
 							}
 						} else {
 							targetInventory = L1World.getInstance().getInventory(acquisitor.getX(), acquisitor.getY(),
-									acquisitor.getMapId()); // °¡Áú ¼ö ¾ø±â ¶§¹®¿¡ ¹ß¹Ø¿¡ ¶³¾î¶ß¸°´Ù
+									acquisitor.getMapId()); // ê°€ì§ˆ ìˆ˜ ì—†ê¸° ë•Œë¬¸ì— ë°œë°‘ì— ë–¨ì–´ëœ¨ë¦°ë‹¤
 							isGround = true;
 						}
 						break;
 					}
 				}
-			} else { // Non ¿ÀÅä ·çÆÃ
+			} else { // Non ì˜¤í†  ë£¨íŒ…
 				
 				item.setDropMobId(mobId);
 				item.startItemOwnerTimer(pc);
@@ -570,14 +570,14 @@ public class DropTable {
 	}
 
 	public void setPainwandDrop(L1NpcInstance npc, L1Inventory inventory) {
-		// µå·Ó ¸®½ºÆ®ÀÇ Ãëµæ
+		// ë“œë¡­ ë¦¬ìŠ¤íŠ¸ì˜ ì·¨ë“
 		int mobId = npc.getNpcTemplate().get_npcId();
 		ArrayList<L1Drop> dropList = _droplists.get(mobId);
 		if (dropList == null) {
 			return;
 		}
 
-		// ·¹ÀÌÆ® Ãëµæ
+		// ë ˆì´íŠ¸ ì·¨ë“
 		double droprate = Config.RATE_DROP_ITEMS;
 		if (droprate <= 0) {
 			droprate = 0;
@@ -598,16 +598,16 @@ public class DropTable {
 		Random random = new Random();
 
 		for (L1Drop drop : dropList) {
-			// µå·Ó ¾ÆÀÌÅÛÀÇ Ãëµæ
+			// ë“œë¡­ ì•„ì´í…œì˜ ì·¨ë“
 			itemId = drop.getItemid();
 			if (adenarate == 0 && itemId == L1ItemId.ADENA) {
-				continue; // ¾Æµ¥³ª·¹ÀÌÆ® 0À¸·Î µå·ÓÀÌ ¾Æµ¥³ªÀÇ °æ¿ì´Â ½º¸£
+				continue; // ì•„ë°ë‚˜ë ˆì´íŠ¸ 0ìœ¼ë¡œ ë“œë¡­ì´ ì•„ë°ë‚˜ì˜ ê²½ìš°ëŠ” ìŠ¤ë¥´
 			}
 			if (itemId != L1ItemId.ADENA) {
 				continue;
 			}
 
-			// µå·Ó Âù½º ÆÇÁ¤
+			// ë“œë¡­ ì°¬ìŠ¤ íŒì •
 			randomChance = random.nextInt(0xf4240) + 1;
 			double rateOfMapId = MapsTable.getInstance().getDropRate(npc.getMapId());
 			double rateOfItem = DropItemTable.getInstance().getDropRate(itemId);
@@ -615,7 +615,7 @@ public class DropTable {
 				continue;
 			}
 
-			// µå·Ó °³¼ö¸¦ ¼³Á¤
+			// ë“œë¡­ ê°œìˆ˜ë¥¼ ì„¤ì •
 			double amount = DropItemTable.getInstance().getDropAmount(itemId);
 			int min = drop.getMin();
 			int max = drop.getMax();
@@ -633,7 +633,7 @@ public class DropTable {
 			if (addCount > 1) {
 				itemCount += random.nextInt(addCount);
 			}
-			if (itemId == L1ItemId.ADENA) { // µå·ÓÀÌ ¾Æµ¥³ªÀÇ °æ¿ì´Â ¾Æµ¥³ª·¹ÀÌÆ®¸¦ °Ç´Ù
+			if (itemId == L1ItemId.ADENA) { // ë“œë¡­ì´ ì•„ë°ë‚˜ì˜ ê²½ìš°ëŠ” ì•„ë°ë‚˜ë ˆì´íŠ¸ë¥¼ ê±´ë‹¤
 				if (npc.getMapId() == 410) {
 					itemCount = 0;
 				} else {
@@ -647,10 +647,10 @@ public class DropTable {
 				itemCount = 2000000000;
 			}
 
-			// ¾ÆÀÌÅÛÀÇ »ı¼º
+			// ì•„ì´í…œì˜ ìƒì„±
 			item = ItemTable.getInstance().createItem(itemId);
 			item.setCount(itemCount);
-			// ¾ÆÀÌÅÛ °İ³³
+			// ì•„ì´í…œ ê²©ë‚©
 			inventory.storeItem(item);
 		}
 	}

@@ -1,4 +1,4 @@
-package manager;
+ï»¿package manager;
 
 import java.awt.EventQueue;
 import java.io.RandomAccessFile;
@@ -365,7 +365,7 @@ public class LinAllManager {
 			}
 		}
 
-		/**¼­¹ö Á¤º¸ ¾²·¹µå*/
+		/**ì„œë²„ ì •ë³´ ì“°ë ˆë“œ*/
 		LinAllManagerInfoThread.getInstance();
 
 		try{
@@ -376,7 +376,7 @@ public class LinAllManager {
 			}
 		}catch(Exception e){e.printStackTrace();}
 		//savelog();
-		/**Àç±ÍÈ£Ãâ*/
+		/**ì¬ê·€í˜¸ì¶œ*/
 		open();
 	}
 
@@ -401,7 +401,7 @@ public class LinAllManager {
 				dialog.setMessage(message); 
 				int flag = dialog.open();
 				if (flag == SWT.OK) { 
-					e.doit = false; // true·Î ÇÏ¸é Á¾·áµÊ
+					e.doit = false; // trueë¡œ í•˜ë©´ ì¢…ë£Œë¨
 				} else {
 					e.doit = false; 
 				}
@@ -412,7 +412,7 @@ public class LinAllManager {
 		});
 		shlInbumserverManager.setBackground(SWTResourceManager.getColor(102, 102, 102));
 		shlInbumserverManager.setSize(735, 735);
-		shlInbumserverManager.setText("ÆÛÇÃ 3.1");
+		shlInbumserverManager.setText("í¼í”Œ 3.1");
 
 		Composite composite = new Composite(shlInbumserverManager, SWT.NONE);
 		composite.setBackground(SWTResourceManager.getColor(51, 51, 51));
@@ -638,13 +638,13 @@ public class LinAllManager {
 			public void widgetSelected(SelectionEvent e) {
 				if(table_2.getSelectionCount() <= 0){
 					MessageBox messageBox = new MessageBox(shlInbumserverManager,SWT.OK|SWT.ICON_INFORMATION);
-					messageBox.setMessage("¼±ÅÃµÈ ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.");
+					messageBox.setMessage("ì„ íƒëœ ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.");
 					messageBox.open();
 					return;
 				}
 
 				MessageBox messageBox = new MessageBox(shlInbumserverManager,SWT.YES | SWT.NO |SWT.ICON_QUESTION);
-				messageBox.setMessage("ÇØ´ç ¾ÆÀÌÅÛÀ» Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î ?");
+				messageBox.setMessage("í•´ë‹¹ ì•„ì´í…œì„ ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ ?");
 				int type = messageBox.open();
 				if(type == SWT.YES){
 					itemdelete(table_2.getSelection());
@@ -690,13 +690,13 @@ public class LinAllManager {
 			public void widgetSelected(SelectionEvent e) {
 				if(table_3.getSelectionCount() <= 0){
 					MessageBox messageBox = new MessageBox(shlInbumserverManager,SWT.OK|SWT.ICON_INFORMATION);
-					messageBox.setMessage("¼±ÅÃµÈ ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.");
+					messageBox.setMessage("ì„ íƒëœ ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.");
 					messageBox.open();
 					return;
 				}
 
 				MessageBox messageBox = new MessageBox(shlInbumserverManager,SWT.YES | SWT.NO |SWT.ICON_QUESTION);
-				messageBox.setMessage("ÇØ´ç ¾ÆÀÌÅÛÀ» Á¤¸» »èÁ¦ÇÏ½Ã°Ú½À´Ï±î ?");
+				messageBox.setMessage("í•´ë‹¹ ì•„ì´í…œì„ ì •ë§ ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ ?");
 				int type = messageBox.open();
 				if(type == SWT.YES){
 					wherehouseitemdelete(table_3.getSelection());
@@ -721,12 +721,12 @@ public class LinAllManager {
 				if(e.detail == 0){
 					if(tree.getSelection()[0] == null)return;
 					String[] s = charlist.get(tree.getSelection()[0].getText());
-					/**Æ®¸®*/
+					/**íŠ¸ë¦¬*/
 					if(s == null)return;
-					lblNewLabel_47.setText(s[1]);//Ç÷¸Í
-					lblNewLabel_46.setText(s[2]);//·¹º§
-					label_25.setText(s[3]);//½Ã°£
-					label_28.setText(s[4]);//ÀüÀÏ
+					lblNewLabel_47.setText(s[1]);//í˜ˆë§¹
+					lblNewLabel_46.setText(s[2]);//ë ˆë²¨
+					label_25.setText(s[3]);//ì‹œê°„
+					label_28.setText(s[4]);//ì „ì¼
 
 				}
 			}
@@ -1133,7 +1133,7 @@ public class LinAllManager {
 		CTabItem tbtmNewItem_14 = new CTabItem(tabFolder_2, SWT.NONE);
 		tbtmNewItem_14.setText("\uD3B8\uC9C0\uD568");
 
-		/**ÀÌºÎºĞ ¹®Á¦*/
+		/**ì´ë¶€ë¶„ ë¬¸ì œ*/
 		composite_4 = new LetterComposite(tabFolder_2, SWT.NONE);
 		tbtmNewItem_14.setControl(composite_4);
 
@@ -1421,11 +1421,11 @@ public class LinAllManager {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (Pcname == null || Pcname.length() <= 0) {
-					toMessageBox("¼±ÅÃµÈ À¯Àú°¡ ¾ø½À´Ï´Ù.");
+					toMessageBox("ì„ íƒëœ ìœ ì €ê°€ ì—†ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				MessageBox messageBox = new MessageBox(shlInbumserverManager, SWT.YES | SWT.NO | SWT.ICON_QUESTION);
-				messageBox.setMessage(Pcname + " À¯ÀúÀÇ ·¹º§À» º¯°æÇÏ½Ã°Ú½À´Ï±î?");
+				messageBox.setMessage(Pcname + " ìœ ì €ì˜ ë ˆë²¨ì„ ë³€ê²½í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 				int type = messageBox.open();
 				if (type == SWT.YES) {
 					L1PcInstance pc = L1World.getInstance().getPlayer(Pcname);
@@ -1435,7 +1435,7 @@ public class LinAllManager {
 								SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
 						dialog.open(pc);
 					} else {
-						toMessageBox("À¯Àú°¡ ¿ùµå»ó¿¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+						toMessageBox("ìœ ì €ê°€ ì›”ë“œìƒì— ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 					}
 				}
 			}
@@ -1448,11 +1448,11 @@ public class LinAllManager {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (Pcname == null || Pcname.length() <= 0) {
-					toMessageBox("¼±ÅÃµÈ À¯Àú°¡ ¾ø½À´Ï´Ù.");
+					toMessageBox("ì„ íƒëœ ìœ ì €ê°€ ì—†ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				MessageBox messageBox = new MessageBox(shlInbumserverManager, SWT.YES | SWT.NO | SWT.ICON_QUESTION);
-				messageBox.setMessage(Pcname + " À¯Àú¸¦ º¯½Å½Ã°Ú½À´Ï±î?");
+				messageBox.setMessage(Pcname + " ìœ ì €ë¥¼ ë³€ì‹ ì‹œê² ìŠµë‹ˆê¹Œ?");
 				int type = messageBox.open();
 				if (type == SWT.YES) {
 					L1PcInstance pc = L1World.getInstance().getPlayer(Pcname);
@@ -1462,7 +1462,7 @@ public class LinAllManager {
 								SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL);
 						dialog.open(pc);
 					} else {
-						toMessageBox("À¯Àú°¡ ¿ùµå»ó¿¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+						toMessageBox("ìœ ì €ê°€ ì›”ë“œìƒì— ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 					}
 				}
 			}
@@ -1479,7 +1479,7 @@ public class LinAllManager {
 //			}
 //		});
 				if (Pcname == null || Pcname.length() <= 0) {
-					toMessageBox("¼±ÅÃµÈ À¯Àú°¡ ¾ø½À´Ï´Ù.");
+					toMessageBox("ì„ íƒëœ ìœ ì €ê°€ ì—†ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				L1PcInstance pc = L1World.getInstance().getPlayer(Pcname);
@@ -1494,18 +1494,18 @@ public class LinAllManager {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (Pcname == null || Pcname.length() <= 0) {
-					toMessageBox("¼±ÅÃµÈ À¯Àú°¡ ¾ø½À´Ï´Ù.");
+					toMessageBox("ì„ íƒëœ ìœ ì €ê°€ ì—†ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				MessageBox messageBox = new MessageBox(shlInbumserverManager, SWT.YES | SWT.NO | SWT.ICON_QUESTION);
-				messageBox.setMessage(Pcname + " À¯Àú¿¡°Ô ÅëÇÕ¹öÇÁ¸¦ ÁÖ½Ã°Ú½À´Ï±î?");
+				messageBox.setMessage(Pcname + " ìœ ì €ì—ê²Œ í†µí•©ë²„í”„ë¥¼ ì£¼ì‹œê² ìŠµë‹ˆê¹Œ?");
 				int type = messageBox.open();
 				if (type == SWT.YES) {
 					L1PcInstance pc = L1World.getInstance().getPlayer(Pcname);
 					if (pc != null) {
 						SpecialEventHandler.getInstance().doAllBuf();
 					} else {
-						toMessageBox("À¯Àú°¡ ¿ùµå»ó¿¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+						toMessageBox("ìœ ì €ê°€ ì›”ë“œìƒì— ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 					}
 				}
 			}
@@ -1518,18 +1518,18 @@ public class LinAllManager {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (Pcname == null || Pcname.length() <= 0) {
-					toMessageBox("¼±ÅÃµÈ À¯Àú°¡ ¾ø½À´Ï´Ù.");
+					toMessageBox("ì„ íƒëœ ìœ ì €ê°€ ì—†ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				MessageBox messageBox = new MessageBox(shlInbumserverManager, SWT.YES | SWT.NO | SWT.ICON_QUESTION);
-				messageBox.setMessage(Pcname + " À¯Àú¿¡°Ô Ã¤±İÀ» ÁÖ½Ã°Ú½À´Ï±î?");
+				messageBox.setMessage(Pcname + " ìœ ì €ì—ê²Œ ì±„ê¸ˆì„ ì£¼ì‹œê² ìŠµë‹ˆê¹Œ?");
 				int type = messageBox.open();
 				if (type == SWT.YES) {
 					L1PcInstance pc = L1World.getInstance().getPlayer(Pcname);
 					if (pc != null) {
 						SpecialEventHandler.getInstance().doNotChatEveryone();
 					} else {
-						toMessageBox("À¯Àú°¡ ¿ùµå»ó¿¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+						toMessageBox("ìœ ì €ê°€ ì›”ë“œìƒì— ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 					}
 				}
 			}
@@ -1542,11 +1542,11 @@ public class LinAllManager {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (Pcname == null || Pcname.length() <= 0) {
-					toMessageBox("¼±ÅÃµÈ À¯Àú°¡ ¾ø½À´Ï´Ù.");
+					toMessageBox("ì„ íƒëœ ìœ ì €ê°€ ì—†ìŠµë‹ˆë‹¤.");
 					return;
 				}
 				MessageBox messageBox = new MessageBox(shlInbumserverManager, SWT.YES | SWT.NO | SWT.ICON_QUESTION);
-				messageBox.setMessage(Pcname + " À¯ÀúÀÇ Ã¤±İÀ» ÇØÁ¦ÇÏ½Ã°Ú½À´Ï±î?");
+				messageBox.setMessage(Pcname + " ìœ ì €ì˜ ì±„ê¸ˆì„ í•´ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 				int type = messageBox.open();
 				if (type == SWT.YES) {
 					SpecialEventHandler.getInstance().doChatEveryone();
@@ -1561,7 +1561,7 @@ public class LinAllManager {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				MessageBox messageBox = new MessageBox(shlInbumserverManager,SWT.YES | SWT.NO |SWT.ICON_QUESTION);
-				messageBox.setMessage("¸ğµç ·Î±×¸¦ ÀúÀåÇÏ½Ã°Ú½À´Ï±î?");
+				messageBox.setMessage("ëª¨ë“  ë¡œê·¸ë¥¼ ì €ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 				int type = messageBox.open();
 				if(type == SWT.YES){
 				//	savelog();
@@ -1592,7 +1592,7 @@ public class LinAllManager {
 			public void widgetSelected(SelectionEvent e) {
 				GameServer.getInstance().saveAllCharInfo();
 				MessageBox messageBox = new MessageBox(shlInbumserverManager,SWT.OK|SWT.ICON_INFORMATION);
-				messageBox.setMessage("¸ğµç Ä³¸¯ÅÍÀÇ Á¤º¸ ÀúÀå ¿Ï·á !!");
+				messageBox.setMessage("ëª¨ë“  ìºë¦­í„°ì˜ ì •ë³´ ì €ì¥ ì™„ë£Œ !!");
 				messageBox.open();
 			}
 		});
@@ -1607,54 +1607,54 @@ public class LinAllManager {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				MessageBox messageBox = new MessageBox(shlInbumserverManager,SWT.YES | SWT.NO |SWT.ICON_QUESTION);
-				messageBox.setMessage("¼­¹ö¸¦ Á¾·áÇÏ½Ã°Ú½À´Ï±î?");
+				messageBox.setMessage("ì„œë²„ë¥¼ ì¢…ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 				int type = messageBox.open();
 				if(type == SWT.YES){
 					GameServer.getInstance().saveAllCharInfo();
 					MessageBox infomessageBox = new MessageBox(shlInbumserverManager,SWT.OK|SWT.ICON_INFORMATION);
-					infomessageBox.setMessage("¸ğµç Ä³¸¯ÅÍÀÇ Á¤º¸ ÀúÀå ¿Ï·á !!");
+					infomessageBox.setMessage("ëª¨ë“  ìºë¦­í„°ì˜ ì •ë³´ ì €ì¥ ì™„ë£Œ !!");
 					infomessageBox.open();
 					GameServer.getInstance().shutdownWithCountdown(1);
 				}
 			}
 		});
-		mntmNewItem_16.setText("Áï½ÃÁ¾·á");
+		mntmNewItem_16.setText("ì¦‰ì‹œì¢…ë£Œ");
 
 		MenuItem menuItem = new MenuItem(menu_1, SWT.NONE);
 		menuItem.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				MessageBox messageBox = new MessageBox(shlInbumserverManager,SWT.YES | SWT.NO |SWT.ICON_QUESTION);
-				messageBox.setMessage("¼­¹ö¸¦ Á¾·áÇÏ½Ã°Ú½À´Ï±î?");
+				messageBox.setMessage("ì„œë²„ë¥¼ ì¢…ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 				int type = messageBox.open();
 				if(type == SWT.YES){
 					GameServer.getInstance().saveAllCharInfo();
 					MessageBox infomessageBox = new MessageBox(shlInbumserverManager,SWT.OK|SWT.ICON_INFORMATION);
-					infomessageBox.setMessage("¸ğµç Ä³¸¯ÅÍÀÇ Á¤º¸ ÀúÀå ¿Ï·á !!");
+					infomessageBox.setMessage("ëª¨ë“  ìºë¦­í„°ì˜ ì •ë³´ ì €ì¥ ì™„ë£Œ !!");
 					infomessageBox.open();
 					GameServer.getInstance().shutdownWithCountdown(30);
 				}
 			}
 		});
-		menuItem.setText("¼­¹öÁ¾·á(30ÃÊ)");
+		menuItem.setText("ì„œë²„ì¢…ë£Œ(30ì´ˆ)");
 		
 		MenuItem mntmNewItem_24 = new MenuItem(menu_1, SWT.NONE);
 		mntmNewItem_24.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				MessageBox messageBox = new MessageBox(shlInbumserverManager,SWT.YES | SWT.NO |SWT.ICON_QUESTION);
-				messageBox.setMessage("¼­¹ö¸¦ Á¾·áÇÏ½Ã°Ú½À´Ï±î?");
+				messageBox.setMessage("ì„œë²„ë¥¼ ì¢…ë£Œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 				int type = messageBox.open();
 				if(type == SWT.YES){
 					GameServer.getInstance().saveAllCharInfo();
 					MessageBox infomessageBox = new MessageBox(shlInbumserverManager,SWT.OK|SWT.ICON_INFORMATION);
-					infomessageBox.setMessage("¸ğµç Ä³¸¯ÅÍÀÇ Á¤º¸ ÀúÀå ¿Ï·á !!");
+					infomessageBox.setMessage("ëª¨ë“  ìºë¦­í„°ì˜ ì •ë³´ ì €ì¥ ì™„ë£Œ !!");
 					infomessageBox.open();
 					GameServer.getInstance().shutdownWithCountdown(60);
 				}
 			}
 		});
-		mntmNewItem_24.setText("¼­¹öÁ¾·á(60ÃÊ)");
+		mntmNewItem_24.setText("ì„œë²„ì¢…ë£Œ(60ì´ˆ)");
 
 		mntmNewSubmenu_1 = new MenuItem(menu, SWT.CASCADE);
 		mntmNewSubmenu_1.setText("\uBAA8\uB2C8\uD130");
@@ -1677,7 +1677,7 @@ public class LinAllManager {
 			public void widgetSelected(SelectionEvent e) {
 //				savelog();
 				MessageBox messageBox = new MessageBox(shlInbumserverManager, SWT.OK | SWT.ICON_INFORMATION);
-				messageBox.setMessage("Ã¤ÆÃÈ­¸éÀ» Ã»¼ÒÈÄ ÀúÀå¿Ï·á.");
+				messageBox.setMessage("ì±„íŒ…í™”ë©´ì„ ì²­ì†Œí›„ ì €ì¥ì™„ë£Œ.");
 				messageBox.open();
 			}
 		});
@@ -1787,13 +1787,13 @@ public class LinAllManager {
 			public void widgetSelected(SelectionEvent e) {
 				final Tray tray = display.getSystemTray();
 				if(tray != null){
-					// ÇöÀç À©µµ¿ì °¨Ãß±â.
+					// í˜„ì¬ ìœˆë„ìš° ê°ì¶”ê¸°.
 					shlInbumserverManager.setVisible(false);
-					// Æ®·¹ÀÌ È°¼ºÈ­.
+					// íŠ¸ë ˆì´ í™œì„±í™”.
 					final TrayItem item = new TrayItem(tray, SWT.NONE);
 					item.setToolTipText( String.format("\uB9B0 \uC62C"));
 					item.setImage( SWTResourceManager.getImage("data\\img\\apple.png") );
-					// ÀÌº¥Æ® µî·Ï.
+					// ì´ë²¤íŠ¸ ë“±ë¡.
 					item.addSelectionListener(new SelectionAdapter() {
 						@Override
 						public void widgetSelected(SelectionEvent e) {
@@ -1878,7 +1878,7 @@ public class LinAllManager {
 	}
 
 	/**
-	 * ÇöÁ¦ ½Ã°£
+	 * í˜„ì œ ì‹œê°„
 	 * @return
 	 */
 	private String getLogTime() {
@@ -1903,7 +1903,7 @@ public class LinAllManager {
 
 
 	/**
-	 * ÀÎº¥Åä¸® ¾ÆÀÌÅÛ »èÁ¦ ÇÔ¼ö
+	 * ì¸ë²¤í† ë¦¬ ì•„ì´í…œ ì‚­ì œ í•¨ìˆ˜
 	 * @param tableitem
 	 */
 	public void itemdelete(final TableItem[] tableitem) {
@@ -1911,12 +1911,12 @@ public class LinAllManager {
 			L1PcInstance target = L1World.getInstance().getPlayer(Pcname);
 			if(target != null){
 				for(TableItem table : tableitem){
-					/**ÀÎº¥Åä¸®¿¡¼­ »èÁ¦*/
+					/**ì¸ë²¤í† ë¦¬ì—ì„œ ì‚­ì œ*/
 					target.getInventory().removeItem(Integer.parseInt(table.getText(1)));
-					/**¾ÆÀÌÅÛ ¸®½ºÆ®¿¡¼­ »èÁ¦*/
+					/**ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸ì—ì„œ ì‚­ì œ*/
 					items.remove(table.getText(1));
 				}
-				/**µ¥ÀÌÅÍ ÀúÀå*/
+				/**ë°ì´í„° ì €ì¥*/
 				target.saveInventory();
 			}else {
 				for(TableItem table : tableitem){
@@ -1929,10 +1929,10 @@ public class LinAllManager {
 		}catch(Exception e){e.printStackTrace();}
 	}
 	/**
-	 * Ã¢°í ¾ÆÀÌÅÛ »èÁ¦
+	 * ì°½ê³  ì•„ì´í…œ ì‚­ì œ
 	 * @param tableitem
 	 */
-	// È®ÀÎ¿Ï·á
+	// í™•ì¸ì™„ë£Œ
 	public void wherehouseitemdelete(final TableItem[] tableitem) {
 		try {
 
@@ -1946,9 +1946,9 @@ public class LinAllManager {
 
 
 	/**
-	 * Ä³¸¯ÅÍ ÀÎº¥Åä¸®
+	 * ìºë¦­í„° ì¸ë²¤í† ë¦¬
 	 */
-	// È®ÀÎ¿Ï·á
+	// í™•ì¸ì™„ë£Œ
 	ConcurrentHashMap<Integer,L1ItemInstance> items = new ConcurrentHashMap<Integer,L1ItemInstance>();
 	public void InvantoryList() {
 		items.clear();
@@ -2004,9 +2004,9 @@ public class LinAllManager {
 		}catch(Exception e){e.printStackTrace();}
 	}
 	/**
-	 * Ã¢°í ¾ÆÀÌÅÛ ¸®½ºÆ®
+	 * ì°½ê³  ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸
 	 */
-	// È®ÀÎ¿Ï·á
+	// í™•ì¸ì™„ë£Œ
 	ConcurrentHashMap<Integer,L1ItemInstance> warehouseitems = new ConcurrentHashMap<Integer,L1ItemInstance>();
 	public void warehouseList() {
 		warehouseitems.clear();
@@ -2050,7 +2050,7 @@ public class LinAllManager {
 
 
 	/**
-	 * Ä³¸¯ Á¢¼Ó ·Î±×
+	 * ìºë¦­ ì ‘ì† ë¡œê·¸
 	 * @param name
 	 * @param ip
 	 */
@@ -2064,9 +2064,9 @@ public class LinAllManager {
 							ch = true;
 					}
 					if (!ch) {
-						txtInbumserverByleaf.append(getLogTime() +" Á¢¼Ó [" + name + "] "+ (list.getItems().length + 1) +"¸í\n");
-						//txtInbumserverByleaf.append("[Á¢¼Ó] (" + name + ")\n");
-						//txtInbumserverByleaf.append("IP :" + ip + " Time : " + getLogTime() + " [" + (list.getItems().length + 1) + "¸í]\n\n");
+						txtInbumserverByleaf.append(getLogTime() +" ì ‘ì† [" + name + "] "+ (list.getItems().length + 1) +"ëª…\n");
+						//txtInbumserverByleaf.append("[ì ‘ì†] (" + name + ")\n");
+						//txtInbumserverByleaf.append("IP :" + ip + " Time : " + getLogTime() + " [" + (list.getItems().length + 1) + "ëª…]\n\n");
 						list.add(name);
 						if (LinAllManagerInfoThread.MaxUser < list.getItems().length) {
 							LinAllManagerInfoThread.MaxUser = list.getItems().length;
@@ -2080,7 +2080,7 @@ public class LinAllManager {
 	}
 
 	/**
-	 * Ä³¸¯ Á¢¼Ó Á¾·á
+	 * ìºë¦­ ì ‘ì† ì¢…ë£Œ
 	 * @param name
 	 * @param ip
 	 */
@@ -2094,9 +2094,9 @@ public class LinAllManager {
 							ch = true;
 					}
 					if (ch) {
-						txtInbumserverByleaf.append(getLogTime() +" Á¾·á [" + name + "] "+ (list.getItems().length - 1) +"¸í\n");
-						//txtInbumserverByleaf.append("[Á¾·á] (" + name + ")\n");
-						//txtInbumserverByleaf.append("IP :" + ip + " Time : " + getLogTime() + " [" + (list.getItems().length - 1) + "¸í]\n\n");
+						txtInbumserverByleaf.append(getLogTime() +" ì¢…ë£Œ [" + name + "] "+ (list.getItems().length - 1) +"ëª…\n");
+						//txtInbumserverByleaf.append("[ì¢…ë£Œ] (" + name + ")\n");
+						//txtInbumserverByleaf.append("IP :" + ip + " Time : " + getLogTime() + " [" + (list.getItems().length - 1) + "ëª…]\n\n");
 						list.remove(name);
 					}
 				} catch (Exception e) {
@@ -2106,7 +2106,7 @@ public class LinAllManager {
 		});
 	}
 	/**
-	 * ÀüÃ¼Ã¤ÆÃ ·Î±× 
+	 * ì „ì²´ì±„íŒ… ë¡œê·¸ 
 	 * @param name
 	 * @param msg
 	 */
@@ -2122,7 +2122,7 @@ public class LinAllManager {
 	}
 
 	/**
-	 * ÀÏ¹İ Ã¤ÆÃ ·Î±× 
+	 * ì¼ë°˜ ì±„íŒ… ë¡œê·¸ 
 	 * @param name
 	 * @param msg
 	 */
@@ -2139,7 +2139,7 @@ public class LinAllManager {
 
 
 	/**
-	 * ±Ó¸» Ã¤ÆÃ ·Î±×
+	 * ê·“ë§ ì±„íŒ… ë¡œê·¸
 	 * @param Aname
 	 * @param Dname
 	 * @param msg
@@ -2157,7 +2157,7 @@ public class LinAllManager {
 
 	}
 	/**
-	 * Å¬·£ Ã¤ÆÃ ·Î±×
+	 * í´ëœ ì±„íŒ… ë¡œê·¸
 	 * @param Clanname
 	 * @param name
 	 * @param msg
@@ -2175,7 +2175,7 @@ public class LinAllManager {
 
 	}
 	/**
-	 * ÆÄÆ¼Ã¤ÆÃ ·Î±×
+	 * íŒŒí‹°ì±„íŒ… ë¡œê·¸
 	 * @param partylist
 	 * @param name
 	 * @param msg
@@ -2192,7 +2192,7 @@ public class LinAllManager {
 		});
 	}
 	/**
-	 * »óÁ¡ ±¸ÀÔ ·Î±×
+	 * ìƒì  êµ¬ì… ë¡œê·¸
 	 * @param Itemname
 	 * @param count
 	 * @param price
@@ -2207,13 +2207,13 @@ public class LinAllManager {
 			public void run() {
 				try{
 					txtTime_1.append("["+npcname+"]"+name+" Time : "+getLogTime()+"\n");
-					txtTime_1.append("[¾ÆÀÌÅÛ : "+Itemname+"] [°¹¼ö :"+count+"] [°¡°İ : "+price+"]\n\n");
+					txtTime_1.append("[ì•„ì´í…œ : "+Itemname+"] [ê°¯ìˆ˜ :"+count+"] [ê°€ê²© : "+price+"]\n\n");
 				}catch(Exception e){e.printStackTrace();}
 			}
 		});
 	}
 	/**
-	 * °Å·¡ ·Î±×
+	 * ê±°ë˜ ë¡œê·¸
 	 * @param Itemname
 	 * @param count
 	 * @param Aname
@@ -2235,8 +2235,8 @@ public class LinAllManager {
 
 
 	/**
-	 * Ã¢°í ·Î±×
-	 * Ã¢°í  Ã¢°í¿¡ ³Ö±â : type = 0,Ã¢°í¿¡¼­ »©±â : type = 1
+	 * ì°½ê³  ë¡œê·¸
+	 * ì°½ê³   ì°½ê³ ì— ë„£ê¸° : type = 0,ì°½ê³ ì—ì„œ ë¹¼ê¸° : type = 1
 	 * 
 	 * @param Itemname
 	 * @param count
@@ -2249,11 +2249,11 @@ public class LinAllManager {
 			public void run() {
 				try{
 					if(type == 0){
-						text.append("["+name+"]->[Ã¢°í] Time : "+getLogTime()+"\n");
-						text.append("[¾ÆÀÌÅÛ : "+Itemname+"]\n\n");
+						text.append("["+name+"]->[ì°½ê³ ] Time : "+getLogTime()+"\n");
+						text.append("[ì•„ì´í…œ : "+Itemname+"]\n\n");
 					}else if(type == 1){
-						text.append("[Ã¢°í]->["+name+"] Time : "+getLogTime()+"\n");
-						text.append("[¾ÆÀÌÅÛ : "+Itemname+"]\n\n");
+						text.append("[ì°½ê³ ]->["+name+"] Time : "+getLogTime()+"\n");
+						text.append("[ì•„ì´í…œ : "+Itemname+"]\n\n");
 					}
 				}catch(Exception e){e.printStackTrace();}
 			}
@@ -2262,8 +2262,8 @@ public class LinAllManager {
 	}
 
 	/**
-	 * ¿äÁ¤³Ö±â, type = 0,¿äÁ¤ »©±â : type = 1
-	 * Ç÷¸Í³Ö±â, type = 2,Ç÷¸Í »©±â : type = 3
+	 * ìš”ì •ë„£ê¸°, type = 0,ìš”ì • ë¹¼ê¸° : type = 1
+	 * í˜ˆë§¹ë„£ê¸°, type = 2,í˜ˆë§¹ ë¹¼ê¸° : type = 3
 	 * @param Itemname
 	 * @param count
 	 * @param name
@@ -2275,17 +2275,17 @@ public class LinAllManager {
 			public void run() {
 				try{
 					if(type == 0){
-						text_4.append("["+name+"]->[¿äÁ¤Ã¢°í] Time : "+getLogTime()+"\n");
-						text_4.append("[¾ÆÀÌÅÛ : "+Itemname+"]\n\n");
+						text_4.append("["+name+"]->[ìš”ì •ì°½ê³ ] Time : "+getLogTime()+"\n");
+						text_4.append("[ì•„ì´í…œ : "+Itemname+"]\n\n");
 					}else if(type == 1){
-						text_4.append("[¿äÁ¤Ã¢°í]->["+name+"] Time : "+getLogTime()+"\n");
-						text_4.append("[¾ÆÀÌÅÛ : "+Itemname+"]\n\n");
+						text_4.append("[ìš”ì •ì°½ê³ ]->["+name+"] Time : "+getLogTime()+"\n");
+						text_4.append("[ì•„ì´í…œ : "+Itemname+"]\n\n");
 					}else if(type == 2){
-						text_4.append("["+name+"]->[Ç÷¸ÍÃ¢°í] Time : "+getLogTime()+"\n");
-						text_4.append("[¾ÆÀÌÅÛ : "+Itemname+"]\n\n");
+						text_4.append("["+name+"]->[í˜ˆë§¹ì°½ê³ ] Time : "+getLogTime()+"\n");
+						text_4.append("[ì•„ì´í…œ : "+Itemname+"]\n\n");
 					}else if(type == 3){
-						text_4.append("[Ç÷¸ÍÃ¢°í]->["+name+"] Time : "+getLogTime()+"\n");
-						text_4.append("[¾ÆÀÌÅÛ : "+Itemname+"]\n\n");
+						text_4.append("[í˜ˆë§¹ì°½ê³ ]->["+name+"] Time : "+getLogTime()+"\n");
+						text_4.append("[ì•„ì´í…œ : "+Itemname+"]\n\n");
 					}
 				}catch(Exception e){e.printStackTrace();}
 			}
@@ -2295,8 +2295,8 @@ public class LinAllManager {
 
 
 	/**
-	 * ÀÎÃ¾Æ® ·Î±×
-	 * ¼º°ø : type = 0,½ÇÆĞ : type = 1
+	 * ì¸ì²¸íŠ¸ ë¡œê·¸
+	 * ì„±ê³µ : type = 0,ì‹¤íŒ¨ : type = 1
 	 * @param Itemname
 	 * @param name
 	 * @param type
@@ -2306,12 +2306,12 @@ public class LinAllManager {
 		display.syncExec(new Runnable() {
 			public void run() {
 				try{
-					if(type == 0){//¼º°ø
-						txtTime_3.append("["+name+"]=> ÀÎÃ¾Æ® ¼º°ø! Time : "+getLogTime()+"\n");
-						txtTime_3.append("[¾ÆÀÌÅÛ : +"+oldEnchant+" "+Itemname+"] - > [¾ÆÀÌÅÛ : +"+newEnchant+" "+Itemname+"] \n");
-					}else{//½ÇÆĞ
-						txtTime_3.append("["+name+"]=> ÀÎÃ¾Æ® ½ÇÆĞ! Time : "+getLogTime()+"\n");
-						txtTime_3.append("[¾ÆÀÌÅÛ : +"+oldEnchant+" "+Itemname+"]\n");
+					if(type == 0){//ì„±ê³µ
+						txtTime_3.append("["+name+"]=> ì¸ì²¸íŠ¸ ì„±ê³µ! Time : "+getLogTime()+"\n");
+						txtTime_3.append("[ì•„ì´í…œ : +"+oldEnchant+" "+Itemname+"] - > [ì•„ì´í…œ : +"+newEnchant+" "+Itemname+"] \n");
+					}else{//ì‹¤íŒ¨
+						txtTime_3.append("["+name+"]=> ì¸ì²¸íŠ¸ ì‹¤íŒ¨! Time : "+getLogTime()+"\n");
+						txtTime_3.append("[ì•„ì´í…œ : +"+oldEnchant+" "+Itemname+"]\n");
 					}
 				}catch(Exception e){e.printStackTrace();}
 			}
@@ -2319,8 +2319,8 @@ public class LinAllManager {
 
 	}
 	/**
-	 * µå¶ø ¿£ ÇÈ¾÷
-	 * ÇÈ¾÷ : type=0,µå¶ø : type=1
+	 * ë“œë ì—” í”½ì—…
+	 * í”½ì—… : type=0,ë“œë : type=1
 	 * @param Itemname
 	 * @param name
 	 * @param count
@@ -2331,10 +2331,10 @@ public class LinAllManager {
 		display.syncExec(new Runnable() {
 			public void run() {
 				try{
-					if(type == 0){//ÇÈ¾÷
-						text_10.append("ÇÈ¾÷ : ["+name+"][¾ÆÀÌÅÛ : "+Itemname+"] Time : "+getLogTime()+"\n");		    		
-					}else{//µå¶ø
-						text_10.append("µå¶ø : ["+name+"][¾ÆÀÌÅÛ : "+Itemname+"] Time : "+getLogTime()+"\n");		    		
+					if(type == 0){//í”½ì—…
+						text_10.append("í”½ì—… : ["+name+"][ì•„ì´í…œ : "+Itemname+"] Time : "+getLogTime()+"\n");		    		
+					}else{//ë“œë
+						text_10.append("ë“œë : ["+name+"][ì•„ì´í…œ : "+Itemname+"] Time : "+getLogTime()+"\n");		    		
 					}
 				}catch(Exception e){e.printStackTrace();}
 			}
@@ -2344,19 +2344,19 @@ public class LinAllManager {
 
 //	public static void savelog() {
 //		try {
-//			savelog(txtInbumserverByleaf, "½Ã½ºÅÛ");
-//			savelog(chatText, "ÀüÃ¼Ã¤ÆÃ");
-//			savelog(txtTime, "±Ó¼Ó¸»");
-//			savelog(text_5, "Ç÷¸ÍÃ¤ÆÃ");
-//			savelog(text_6, "ÆÄÆ¼Ã¤ÆÃ");
-//			savelog(txtTime_1, "»óÁ¡");
-//			savelog(txtTime_2, "±³È¯");
-//			savelog(text, "Ã¢°í");
-//			savelog(text_4, "Æ¯¼öÃ¢°í");
-//			savelog(txtTime_3, "ÀÎÃ¦Æ®");
-//			savelog(text_10, "µå¶ø&ÇÈ¾÷");
-//			savelog(text_7, "ÆĞ³ÎÆ¼");
-//			savelog(text_8, "ÀÏ¹İÃ¤ÆÃ");
+//			savelog(txtInbumserverByleaf, "ì‹œìŠ¤í…œ");
+//			savelog(chatText, "ì „ì²´ì±„íŒ…");
+//			savelog(txtTime, "ê·“ì†ë§");
+//			savelog(text_5, "í˜ˆë§¹ì±„íŒ…");
+//			savelog(text_6, "íŒŒí‹°ì±„íŒ…");
+//			savelog(txtTime_1, "ìƒì ");
+//			savelog(txtTime_2, "êµí™˜");
+//			savelog(text, "ì°½ê³ ");
+//			savelog(text_4, "íŠ¹ìˆ˜ì°½ê³ ");
+//			savelog(txtTime_3, "ì¸ì±ˆíŠ¸");
+//			savelog(text_10, "ë“œë&í”½ì—…");
+//			savelog(text_7, "íŒ¨ë„í‹°");
+//			savelog(text_8, "ì¼ë°˜ì±„íŒ…");
 //		} catch (Exception e) {
 //			e.printStackTrace();
 //		}
@@ -2393,7 +2393,7 @@ public class LinAllManager {
 
 
 	/**
-	 * ÆĞ³ÎÆ¼ ¶³±À : 0 , Áõ¹ß : 1
+	 * íŒ¨ë„í‹° ë–¨êµ¼ : 0 , ì¦ë°œ : 1
 	 * @param Itemname
 	 * @param name
 	 * @param count
@@ -2404,10 +2404,10 @@ public class LinAllManager {
 		display.syncExec(new Runnable() {
 			public void run() {
 				try{
-					if(type == 0){//¶³±À
-						text_7.append("¶³±À : ["+name+"][¾ÆÀÌÅÛ : "+Itemname+"] Time : "+getLogTime()+"\n");		    		
-					}else{//Áõ¹ß
-						text_7.append("Áõ¹ß : ["+name+"][¾ÆÀÌÅÛ : "+Itemname+"] Time : "+getLogTime()+"\n");		    		
+					if(type == 0){//ë–¨êµ¼
+						text_7.append("ë–¨êµ¼ : ["+name+"][ì•„ì´í…œ : "+Itemname+"] Time : "+getLogTime()+"\n");		    		
+					}else{//ì¦ë°œ
+						text_7.append("ì¦ë°œ : ["+name+"][ì•„ì´í…œ : "+Itemname+"] Time : "+getLogTime()+"\n");		    		
 					}
 				}catch(Exception e){e.printStackTrace();}
 			}
@@ -2420,7 +2420,7 @@ public class LinAllManager {
 		display.syncExec(new Runnable() {
 			public void run() {
 				try {
-					text_11.append("¸í·É : [" + name + "] [" + cmd + "] [" + arg + "] Time : " + getLogTime() + "\n");
+					text_11.append("ëª…ë ¹ : [" + name + "] [" + cmd + "] [" + arg + "] Time : " + getLogTime() + "\n");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -2434,7 +2434,7 @@ public class LinAllManager {
 		display.syncExec(new Runnable() {
 			public void run() {
 				try {
-					text_9.append("º¸½º½ºÆù : [" + name + "]  Time : " + getLogTime() + "\n");
+					text_9.append("ë³´ìŠ¤ìŠ¤í° : [" + name + "]  Time : " + getLogTime() + "\n");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -2446,7 +2446,7 @@ public class LinAllManager {
 		display.syncExec(new Runnable() {
 			public void run() {
 				try {
-					text_12.append("´øÀü¿ÀÇÂ : [" + name + "]  Time : " + getLogTime() + "\n");
+					text_12.append("ë˜ì „ì˜¤í”ˆ : [" + name + "]  Time : " + getLogTime() + "\n");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -2458,7 +2458,7 @@ public class LinAllManager {
 		display.syncExec(new Runnable() {
 			public void run() {
 				try {
-					text_13.append("½ºÇÙÀÇ½É : [" + name + "] º¯½Å :[" + pc.getTempCharGfx() + "] Á÷¾÷ :["+ pc.getClassName() +"] ½Ã°£ : " + getLogTime() + "\n");
+					text_13.append("ìŠ¤í•µì˜ì‹¬ : [" + name + "] ë³€ì‹  :[" + pc.getTempCharGfx() + "] ì§ì—… :["+ pc.getClassName() +"] ì‹œê°„ : " + getLogTime() + "\n");
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -2468,7 +2468,7 @@ public class LinAllManager {
 
 
 	String Clanname="";String Pcname="";
-	String exp="";String stasts="";//·Î±ä»óÅÂ
+	String exp="";String stasts="";//ë¡œê¸´ìƒíƒœ
 	String hp="";String mp="";
 	String str="";String dex="";
 	String con="";String wis="";
@@ -2494,7 +2494,7 @@ public class LinAllManager {
 	private Label lblNewLabel_44;
 	private CTabItem tbtmNewItem_16;
 	private static Text text_8;
-	// È®ÀÎ¿Ï·á
+	// í™•ì¸ì™„ë£Œ
 	public boolean DBcharInfo(final String name) {
 		nf.setMaximumFractionDigits(2);
 		nf.setMinimumFractionDigits(2);
@@ -2512,7 +2512,7 @@ public class LinAllManager {
 			String cname = rs.getString("Clanname");
 
 			if(cname==null||cname.equals("")){
-				Clanname = "[°¡ÀÔÇÑ Ç÷¸Í ¾øÀ½]";
+				Clanname = "[ê°€ì…í•œ í˜ˆë§¹ ì—†ìŒ]";
 			}else{
 				Clanname = "["+cname+"]";
 			}
@@ -2542,12 +2542,12 @@ public class LinAllManager {
 				String str2 = sdf.format( new Date( rs.getTimestamp("lastLogoutTime").getTime()));
 				logindate = str2;
 
-				SimpleDateFormat sdf2 = new SimpleDateFormat( "HH½Ã mmºĞ ssÃÊ" , Locale.KOREA );
+				SimpleDateFormat sdf2 = new SimpleDateFormat( "HHì‹œ mmë¶„ ssì´ˆ" , Locale.KOREA );
 				String str3 = sdf2.format( new Date( rs.getTimestamp("lastLogoutTime").getTime()));
 				logintime = str3;
 			}else{
 				logindate = "0000-00-00";
-				logintime = "00½Ã 00ºĞ 00ÃÊ";
+				logintime = "00ì‹œ 00ë¶„ 00ì´ˆ";
 			}
 			MaxHp = rs.getShort("MaxHp");
 			CurrentHp = rs.getShort("CurHp");
@@ -2576,7 +2576,7 @@ public class LinAllManager {
 			if (target == null)
 				return false;
 			if (target.getClan() == null) {
-				Clanname = "[°¡ÀÔÇÑ Ç÷¸Í ¾øÀ½]";
+				Clanname = "[ê°€ì…í•œ í˜ˆë§¹ ì—†ìŒ]";
 
 			} else {
 				Clanname = "[" + target.getClan().getClanName() + "]";
@@ -2603,12 +2603,12 @@ public class LinAllManager {
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREA);
 				String str1 = sdf.format(new Date(target.getLastLoginTime().getTime()));
 				logindate = str1;
-				SimpleDateFormat sdf2 = new SimpleDateFormat("HH½Ã mmºĞ ssÃÊ", Locale.KOREA);
+				SimpleDateFormat sdf2 = new SimpleDateFormat("HHì‹œ mmë¶„ ssì´ˆ", Locale.KOREA);
 				String str2 = sdf2.format(new Date(target.getLastLoginTime().getTime()));
 				logintime = str2;
 			} else {
 				logindate = "0000-00-00";
-				logintime = "00½Ã 00ºĞ 00ÃÊ";
+				logintime = "00ì‹œ 00ë¶„ 00ì´ˆ";
 			}
 
 			MaxHp = target.getMaxHp();
@@ -2666,7 +2666,7 @@ public class LinAllManager {
 	private TabItem tabItem_3;
 	private Text text_13;
 	private Label label_50;
-	// È®ÀÎ¿Ï·á
+	// í™•ì¸ì™„ë£Œ
 	public void accountCharDBInfo() {
 		charlist.clear();
 		nf.setMaximumFractionDigits(2);
@@ -2683,20 +2683,20 @@ public class LinAllManager {
 				String name = rs.getString("char_name");
 				String clanname = "["+rs.getString("Clanname")+"]";
 				if(clanname.equals("[]")||clanname.equals("[null]")){
-					clanname = "[°¡ÀÔÇÑ Ç÷¸Í ¾øÀ½]";
+					clanname = "[ê°€ì…í•œ í˜ˆë§¹ ì—†ìŒ]";
 				}
 
 				int lv = rs.getInt("level");
 				String exp = lv+"Lv     "+nf.format(ExpTable.getExpPercentage(lv,rs.getInt("Exp")))+"%";		
 				String login = "0000-00-00  00:00:00";
-				String loginbefore = "0ÀÏÀü";
+				String loginbefore = "0ì¼ì „";
 				if(rs.getTimestamp("Logout_time") != null){
 					SimpleDateFormat sdf = new SimpleDateFormat( "yyyy-MM-dd  HH:mm:ss" , Locale.KOREA );
 					String str2 = sdf.format( new Date( rs.getTimestamp("Logout_time").getTime()));
 					login = str2;
 					SimpleDateFormat sdf2 = new SimpleDateFormat( "yyyyMMdd" , Locale.KOREA );
 					String str3 = sdf2.format( new Date( rs.getTimestamp("Logout_time").getTime()));
-					loginbefore = getDiffDayCount(str3,nowDate())+"ÀÏÀü";
+					loginbefore = getDiffDayCount(str3,nowDate())+"ì¼ì „";
 				}
 				charlist.put(name, new String[]{name,clanname,exp,login,loginbefore});
 			}
@@ -2711,7 +2711,7 @@ public class LinAllManager {
 
 
 	/**
-	 * °èÁ¤ Á¤º¸ Ãëµæ
+	 * ê³„ì • ì •ë³´ ì·¨ë“
 	 * @param name
 	 */
 	public void accountInfo() {
@@ -2720,11 +2720,11 @@ public class LinAllManager {
 			public void run() {
 				try {
 					Account account = Account.load(accountname);
-					lblNewLabel_49.setText(account.getName());// ¾ÆÀÌµğ
-					label_27.setText(account.get_Password());// ºñ¹ø
-					lblNewLabel_42.setText("IP : " + account.getHost());// ¾ÆÀÌÇÇ
+					lblNewLabel_49.setText(account.getName());// ì•„ì´ë””
+					label_27.setText(account.get_Password());// ë¹„ë²ˆ
+					lblNewLabel_42.setText("IP : " + account.getHost());// ì•„ì´í”¼
 					if (account.isBanned())
-						btnCheckButton.setSelection(true);// º¥ Ã¼Å©¹Ú½º
+						btnCheckButton.setSelection(true);// ë²¤ ì²´í¬ë°•ìŠ¤
 					else
 						btnCheckButton.setSelection(false);
 					trtmNewTreeitem.removeAll();
@@ -2742,30 +2742,30 @@ public class LinAllManager {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ Á¤º¸
+	 * ìºë¦­í„° ì •ë³´
 	 * @param name
 	 */
 	public void charInfo(final String name) {
 		L1PcInstance pc = L1World.getInstance().getPlayer(name);
 		if (pc == null) {
 			MessageBox messageBox = new MessageBox(shlInbumserverManager, SWT.OK | SWT.ICON_INFORMATION);
-			messageBox.setMessage("±×·¯ÇÑ Ä³¸¯¸íÀº Á¸ÀçÇÏÁö¾Ê½À´Ï´Ù!");
+			messageBox.setMessage("ê·¸ëŸ¬í•œ ìºë¦­ëª…ì€ ì¡´ì¬í•˜ì§€ì•ŠìŠµë‹ˆë‹¤!");
 			messageBox.open();
 			return;
 		}
 		if(ServercharInfo(name)){
-			/**ÀÎº¥*/
+			/**ì¸ë²¤*/
 			InvantoryList();
-			/**Ã¢°í*/
+			/**ì°½ê³ */
 			warehouseList();
 		}else if(DBcharInfo(name)){
-			/**ÀÎº¥*/
+			/**ì¸ë²¤*/
 			InvantoryList();
-			/**Ã¢°í*/
+			/**ì°½ê³ */
 			warehouseList();
 		}else{
 			MessageBox messageBox = new MessageBox(shlInbumserverManager,SWT.OK|SWT.ICON_INFORMATION);
-			messageBox.setMessage("±×·¯ÇÑ Ä³¸¯¸íÀº Á¸ÀçÇÏÁö¾Ê½À´Ï´Ù!");
+			messageBox.setMessage("ê·¸ëŸ¬í•œ ìºë¦­ëª…ì€ ì¡´ì¬í•˜ì§€ì•ŠìŠµë‹ˆë‹¤!");
 			messageBox.open();
 			return;
 		}
@@ -2808,29 +2808,29 @@ public class LinAllManager {
 							lblNewLabel_24.setBackgroundImage(SWTResourceManager.getImage("data\\img\\9.png"));
 						}
 					}
-					lblNewLabel_28.setText(Clanname);//Ç÷¸ÍÀÌ¸§[ ]Æ÷ÇÔ
-					lblNewLabel_25.setText(Pcname);//Ä³¸¯¸í
-					lblNewLabel_26.setText(exp);//·¹º§ °æÇèÄ¡ÆÛ¼¾Æ®
-					lblNewLabel_27.setText(stasts);//·Î±ä »óÅÂ Login : Æ÷ÇÔ
+					lblNewLabel_28.setText(Clanname);//í˜ˆë§¹ì´ë¦„[ ]í¬í•¨
+					lblNewLabel_25.setText(Pcname);//ìºë¦­ëª…
+					lblNewLabel_26.setText(exp);//ë ˆë²¨ ê²½í—˜ì¹˜í¼ì„¼íŠ¸
+					lblNewLabel_27.setText(stasts);//ë¡œê¸´ ìƒíƒœ Login : í¬í•¨
 					lblNewLabel_30.setText(hp);//hp 111/111
 					label_10.setText(mp);//mp 111/111
-					lblNewLabel_31.setText(str);//Èû º£ÀÌ½º Æ÷ÇÔ
-					label_13.setText(dex);//µ¦½º 
-					label_11.setText(con);//ÄÜ
-					label_14.setText(wis);//À§Áî
-					label_12.setText(Int);//ÀÎÆ®
-					label_15.setText(cha);//Ä«¸®
+					lblNewLabel_31.setText(str);//í˜ ë² ì´ìŠ¤ í¬í•¨
+					label_13.setText(dex);//ë±ìŠ¤ 
+					label_11.setText(con);//ì½˜
+					label_14.setText(wis);//ìœ„ì¦ˆ
+					label_12.setText(Int);//ì¸íŠ¸
+					label_15.setText(cha);//ì¹´ë¦¬
 					label_17.setText(sp);//sp
-					label_16.setText(mr);//mr %Æ÷ÇÔ
+					label_16.setText(mr);//mr %í¬í•¨
 					label_18.setText(er);//ER
 					label_19.setText(dg);//DG
-					lblNewLabel_40.setText(Ltime);//¶ó½ºÅ¸¹Ùµå Å¸ÀÓ
-					label_21.setText(toptime);//»ó¾ÆÅ¾ Å¸ÀÓ
-					label_22.setText(gitime);//±â¶õ Å¸ÀÓ
+					lblNewLabel_40.setText(Ltime);//ë¼ìŠ¤íƒ€ë°”ë“œ íƒ€ì„
+					label_21.setText(toptime);//ìƒì•„íƒ‘ íƒ€ì„
+					label_22.setText(gitime);//ê¸°ë€ íƒ€ì„
 					lblNewLabel_39.setText(pk);//PK
-					label_20.setText(deth);//µ¥½º
-					lblNewLabel_35.setText(logindate);//·Î±×¾Æ¿ô ³¯Â¥
-					lblNewLabel_37.setText(logintime);//·Î±×¾Æ¿ô ½Ã°£
+					label_20.setText(deth);//ë°ìŠ¤
+					lblNewLabel_35.setText(logindate);//ë¡œê·¸ì•„ì›ƒ ë‚ ì§œ
+					lblNewLabel_37.setText(logintime);//ë¡œê·¸ì•„ì›ƒ ì‹œê°„
 
 					progressBar_1.setMaximum(MaxHp);
 					progressBar_1.setMinimum(0);
@@ -2841,7 +2841,7 @@ public class LinAllManager {
 					progressBar_2.setSelection(CurrentMp);
 
 
-					/**ÀÎº¥Åä¸®*/
+					/**ì¸ë²¤í† ë¦¬*/
 					table_2.removeAll();
 					for(L1ItemInstance item : items.values()){
 						if(item.getItem().getItemId() == 40308){
@@ -2872,9 +2872,9 @@ public class LinAllManager {
 							tableItem.setForeground(SWTResourceManager.getColor(255, 0, 0));
 						tableItem.setText(new String[] {item.getLogName(), ""+item.getId()});
 					}
-					/**ÀÎº¥Åä¸®*/
+					/**ì¸ë²¤í† ë¦¬*/
 
-					/**Ã¢°í*/
+					/**ì°½ê³ */
 					table_3.removeAll();		    		
 					for(L1ItemInstance item : warehouseitems.values()){
 						if(item.getItem().getItemId() == 40308){
@@ -2905,7 +2905,7 @@ public class LinAllManager {
 							tableItem.setForeground(SWTResourceManager.getColor(255, 0, 0));
 						tableItem.setText(new String[] {item.getLogName(), ""+item.getId()});
 					}
-					/**Ã¢°í*/
+					/**ì°½ê³ */
 
 
 				}catch(Exception e){e.printStackTrace();}
@@ -2922,23 +2922,23 @@ public class LinAllManager {
 		display.syncExec(new Runnable() {
 			public void run() {
 				try{
-					lblNewLabel_5.setText(""+(int)Config.RATE_XP);//°æÇèÄ¡ ¹èÀ²
-					lblNewLabel_7.setText(""+(int)Config.RATE_DROP_ADENA);//¾Æµ¥³ª ¹èÀ²
-					lblNewLabel_9.setText(""+(int)Config.RATE_DROP_ITEMS);//¾ÆÀÌÅÛ ¹èÀ²
-					lblNewLabel_20.setText(AdenMake);//¾Æµ§ ÃÑ»ı»ê·®
-					label.setText(AdenConsume);//¾Æµ§ ÃÑ È¸¼ö·®
-					lblNewLabel_21.setText(AdenTax+"%");//¼¼±İ ¹èÀ²
-					lblNewLabel_22.setText(Bugdividend);//¹ö°æ ÃÖ´ë¹è´ç
-					label_1.setText(AccountCount);//°èÁ¤»ı¼º
-					lblNewLabel_23.setText(CharCount);//Ä³¸¯ »ı¼º
-					label_2.setText(PvPCount);//pvp È½¼ö
-					label_4.setText(PenaltyCount);//ÆĞ³ÎÆ¼ È½¼ö
-					label_3.setText(ClanMaker);//Ç÷¸Í Ã¢¼³
-					label_5.setText(Maxuser);//ÃÖ´ë À¯Àú¼ö
-					lblNewLabel_2.setText(ThreadCount);//¾²·¹µå °¹¼ö
-					lblm.setText(Memory);//¸Ş¸ğ¸® ¿ë·®
+					lblNewLabel_5.setText(""+(int)Config.RATE_XP);//ê²½í—˜ì¹˜ ë°°ìœ¨
+					lblNewLabel_7.setText(""+(int)Config.RATE_DROP_ADENA);//ì•„ë°ë‚˜ ë°°ìœ¨
+					lblNewLabel_9.setText(""+(int)Config.RATE_DROP_ITEMS);//ì•„ì´í…œ ë°°ìœ¨
+					lblNewLabel_20.setText(AdenMake);//ì•„ë´ ì´ìƒì‚°ëŸ‰
+					label.setText(AdenConsume);//ì•„ë´ ì´ íšŒìˆ˜ëŸ‰
+					lblNewLabel_21.setText(AdenTax+"%");//ì„¸ê¸ˆ ë°°ìœ¨
+					lblNewLabel_22.setText(Bugdividend);//ë²„ê²½ ìµœëŒ€ë°°ë‹¹
+					label_1.setText(AccountCount);//ê³„ì •ìƒì„±
+					lblNewLabel_23.setText(CharCount);//ìºë¦­ ìƒì„±
+					label_2.setText(PvPCount);//pvp íšŸìˆ˜
+					label_4.setText(PenaltyCount);//íŒ¨ë„í‹° íšŸìˆ˜
+					label_3.setText(ClanMaker);//í˜ˆë§¹ ì°½ì„¤
+					label_5.setText(Maxuser);//ìµœëŒ€ ìœ ì €ìˆ˜
+					lblNewLabel_2.setText(ThreadCount);//ì“°ë ˆë“œ ê°¯ìˆ˜
+					lblm.setText(Memory);//ë©”ëª¨ë¦¬ ìš©ëŸ‰
 
-					label_50.setText("¼­¹ö Æ÷Æ®  : [ "+ Config.GAME_SERVER_PORT +" ]¹ø");
+					label_50.setText("ì„œë²„ í¬íŠ¸  : [ "+ Config.GAME_SERVER_PORT +" ]ë²ˆ");
 					progressBar.setSelection(0);
 					
 				}catch(Exception e){e.printStackTrace();}
@@ -2971,7 +2971,7 @@ public class LinAllManager {
 
 	static public void toMessageBox(final String title, final String msg) {
 		MessageBox messageBox = new MessageBox(shlInbumserverManager, SWT.ICON_WARNING);
-		messageBox.setText(String.format("°æ°í :: %s", title));
+		messageBox.setText(String.format("ê²½ê³  :: %s", title));
 		messageBox.setMessage(msg);
 		messageBox.open();
 	}

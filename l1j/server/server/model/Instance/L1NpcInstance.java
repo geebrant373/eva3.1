@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -87,7 +87,7 @@ public class L1NpcInstance extends L1Character {
 	public static final int CHAT_TIMING_HIDE = 2;
 	public static final int CHAT_TIMING_SPAWN = 4;
 	public static final int CHAT_TIMING_GAME_TIME = 3;
-	public boolean ·ÎÅ×_½ÃÀÛ1 = false;
+	public boolean ë¡œí…Œ_ì‹œì‘1 = false;
 
 	public void setReSpawn(boolean flag) {
 		this._reSpawn = flag;
@@ -131,7 +131,7 @@ public class L1NpcInstance extends L1Character {
 		_dolllist.put(doll.getId(), doll);
 	}
 
-	/** Ä³¸¯ÅÍ·ÎºÎÅÍ dollÀ» »èÁ¦ÇÑ´Ù. */
+	/** ìºë¦­í„°ë¡œë¶€í„° dollì„ ì‚­ì œí•œë‹¤. */
 	public void removeDoll(L1DollInstance doll) {
 		_dolllist.remove(doll.getId());
 	}
@@ -149,7 +149,7 @@ public class L1NpcInstance extends L1Character {
 	private int _paralysisTime = 0; // Paralysis RestTime
 	private L1MobGroupInfo _mobGroupInfo = null;
 	private int _mobGroupId = 0;
-	private int num; /* ¹ö°æ °ü·Ã */
+	private int num; /* ë²„ê²½ ê´€ë ¨ */
 
 	private DeleteTimer _deleteTask;
 	private ScheduledFuture<?> _future = null;
@@ -375,7 +375,7 @@ public class L1NpcInstance extends L1Character {
 				stop();
 			} catch (Exception e) {
 				System.out.println("NPC ID : " + getNpcTemplate().get_npcId());
-				_log.log(Level.WARNING, "NpcAI¿¡ ¿¹¿Ü°¡ ¹ß»ıÇß½À´Ï´Ù.", e);
+				_log.log(Level.WARNING, "NpcAIì— ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.", e);
 			}
 		}
 
@@ -427,7 +427,7 @@ public class L1NpcInstance extends L1Character {
 				setAiRunning(false);
 			} catch (Exception e) {
 				System.out.println("NPC ID : " + getNpcTemplate().get_npcId());
-				_log.log(Level.WARNING, "NpcAI¿¡ ¿¹¿Ü°¡ ¹ß»ıÇß½À´Ï´Ù.", e);
+				_log.log(Level.WARNING, "NpcAIì— ì˜ˆì™¸ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.", e);
 			}
 		}
 	}
@@ -530,8 +530,8 @@ public class L1NpcInstance extends L1Character {
 			setDirectionMove(dir);
 			setSleepTime(calcSleepTime(getPassispeed(), MOVE_SPEED));
 		} else {
-			if (CharPosUtil.isAttackPosition(this, target.getX(), target.getY(), getNpcTemplate().get_ranged())) {// ±âº»
-																													// °ø°İ¹üÀ§
+			if (CharPosUtil.isAttackPosition(this, target.getX(), target.getY(), getNpcTemplate().get_ranged())) {// ê¸°ë³¸
+																													// ê³µê²©ë²”ìœ„
 				if (mobSkill.isSkillTrigger(target)) {
 					if (_random.nextInt(2) >= 1) {
 						getMoveState().setHeading(CharPosUtil.targetDirection(this, target.getX(), target.getY()));
@@ -549,7 +549,7 @@ public class L1NpcInstance extends L1Character {
 					attackTarget(target);
 				}
 			} else {
-				if (mobSkill.skillUse(target, true)) {// È®·üÀû¿ë
+				if (mobSkill.skillUse(target, true)) {// í™•ë¥ ì ìš©
 					setSleepTime(calcSleepTime(mobSkill.getSleepTime(), MAGIC_SPEED));
 					return;
 				}
@@ -900,7 +900,7 @@ public class L1NpcInstance extends L1Character {
 	public void onNpcAI() {
 	}
 
-	// NPCÅ¸ÀÔ HTML Ãâ·Â
+	// NPCíƒ€ì… HTML ì¶œë ¥
 	@Override
 	public void onTalkAction(L1PcInstance player) {
 		int objid = getId();
@@ -909,15 +909,15 @@ public class L1NpcInstance extends L1Character {
 		String htmlid = null;
 		String[] htmldata = null;
 
-		// html Ç¥½Ã ÆĞÅ¶ ¼Û½Å
-		if (htmlid != null) { // htmlid°¡ ÁöÁ¤µÇ°í ÀÖ´Â °æ¿ì
-			if (htmldata != null) { // html ÁöÁ¤ÀÌ ÀÖ´Â °æ¿ì´Â Ç¥½Ã
+		// html í‘œì‹œ íŒ¨í‚· ì†¡ì‹ 
+		if (htmlid != null) { // htmlidê°€ ì§€ì •ë˜ê³  ìˆëŠ” ê²½ìš°
+			if (htmldata != null) { // html ì§€ì •ì´ ìˆëŠ” ê²½ìš°ëŠ” í‘œì‹œ
 				player.sendPackets(new S_NPCTalkReturn(objid, htmlid, htmldata));
 			} else {
 				player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
 			}
 		} else {
-			if (player.getLawful() < -1000) { // ÇÃ·¹ÀÌ¾î°¡ Ä«¿ÀÆ½
+			if (player.getLawful() < -1000) { // í”Œë ˆì´ì–´ê°€ ì¹´ì˜¤í‹±
 				player.sendPackets(new S_NPCTalkReturn(talking, objid, 2));
 			} else {
 				player.sendPackets(new S_NPCTalkReturn(talking, objid, 1));

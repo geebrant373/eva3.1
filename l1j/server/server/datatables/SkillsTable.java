@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -121,7 +121,7 @@ public class SkillsTable {
 
 			_skills.put(new Integer(skill_id), l1skills);
 		}
-		_log.config("½ºÅ³ " + _skills.size() + "°Ç ·Îµå");
+		_log.config("ìŠ¤í‚¬ " + _skills.size() + "ê±´ ë¡œë“œ");
 	}
 
 	public void spellMastery(int playerobjid, int skillid, String skillname,

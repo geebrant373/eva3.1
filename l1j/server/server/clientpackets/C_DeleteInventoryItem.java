@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,19 +42,19 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 		L1ItemInstance item = pc.getInventory().getItem(itemObjectId);
 
-		// »èÁ¦ÇÏ·Á°í ÇÑ ¾ÆÀÌÅÛÀÌ ¼­¹ö»ó¿¡ ¾ø´Â °æ¿ì
+		// ì‚­ì œí•˜ë ¤ê³  í•œ ì•„ì´í…œì´ ì„œë²„ìƒì— ì—†ëŠ” ê²½ìš°
 		if (item == null) {	return; }
 		if (item.getItem().isCantDelete()) {
 			pc.sendPackets(new S_ServerMessage(125));
 			return;
 		}		
 		if (item.isEquipped()) {
-			// \f1»èÁ¦ÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛÀÌ³ª Àåºñ ÇÏ°í ÀÖ´Â ¾ÆÀÌÅÛÀº ¹ö¸± ¼ö ¾ø½À´Ï´Ù.
+			// \f1ì‚­ì œí•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œì´ë‚˜ ì¥ë¹„ í•˜ê³  ìˆëŠ” ì•„ì´í…œì€ ë²„ë¦´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			pc.sendPackets(new S_ServerMessage(125));
 			return;
 		}		
 		if(item.getBless() >= 128){
-			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0Àº ¹ö¸®°Å³ª ¶Ç´Â Å¸ÀÎ¿¡°Ô ¾çÀÏÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(210, item.getItem().getName())); // \f1%0ì€ ë²„ë¦¬ê±°ë‚˜ ë˜ëŠ” íƒ€ì¸ì—ê²Œ ì–‘ì¼ì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			
 			return;
 		}
@@ -65,7 +65,7 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 			if (dollObject instanceof L1DollInstance) {
 				doll = (L1DollInstance) dollObject;
 				if (item.getId() == doll.getItemObjId()) {
-					// \f1%0Àº ¹ö¸®°Å³ª ¶Ç´Â Å¸ÀÎ¿¡°Ô ¾çÀÏÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù.
+					// \f1%0ì€ ë²„ë¦¬ê±°ë‚˜ ë˜ëŠ” íƒ€ì¸ì—ê²Œ ì–‘ì¼ì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
 					
 					return;
@@ -79,14 +79,14 @@ public class C_DeleteInventoryItem extends ClientBasePacket {
 			if (petObject instanceof L1PetInstance) {
 				pet = (L1PetInstance) petObject;
 				if (item.getId() == pet.getItemObjId()) {
-					// \f1%0Àº ¹ö¸®°Å³ª ¶Ç´Â Å¸ÀÎ¿¡°Ô ¾çÀÏÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù.
+					// \f1%0ì€ ë²„ë¦¬ê±°ë‚˜ ë˜ëŠ” íƒ€ì¸ì—ê²Œ ì–‘ì¼ì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(210, item.getItem().getName()));
 				
 					return;
 				}
 			}
 		}
-		/** ÆÄÀÏ·Î±×ÀúÀå **/
+		/** íŒŒì¼ë¡œê·¸ì €ì¥ **/
 		LoggerInstance.getInstance().addItemAction(ItemActionType.Delete, pc, item, item.getCount());
 		pc.getInventory().removeItem(item, item.getCount());
 		pc.getLight().turnOnOffLight();		

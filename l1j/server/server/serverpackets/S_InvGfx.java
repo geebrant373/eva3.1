@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+Ôªøpackage l1j.server.server.serverpackets;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class S_InvGfx extends ServerBasePacket {
 		writeC(Opcodes.S_OPCODE_SHOWRETRIEVELIST);
 		writeD(pc.getId());
 		writeH(size);
-		writeC(3); // ∞≥¿Œ √¢∞Ì
+		writeC(3); // Í∞úÏù∏ Ï∞ΩÍ≥†
 		for(int i = 0; i < size; i++){
 			L1ItemInstance item = inventory.getItems().get(i);
 			writeD(item.getId());

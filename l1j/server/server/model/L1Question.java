@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 //import l1j.server.channel.ChatMonitorChannel;
 import l1j.server.server.serverpackets.S_Message_YN;
@@ -29,17 +29,17 @@ public class L1Question extends Thread{
 	public void run(){
 		try{
 			mainstart = true;
-			L1World.getInstance().broadcastServerMessage(" \\fYÀá½Ã ÈÄ ¼³¹®Á¶»ç°¡ ½ÃÀÛµË´Ï´Ù. (Á¦ÇÑ½Ã°£ 30ÃÊ)");
-			L1World.getInstance().broadcastServerMessage(" YES = Âù¼º, NO = ¹İ´ë, ±×¿Ü ¹«È¿~!");
+			L1World.getInstance().broadcastServerMessage(" \\fYì ì‹œ í›„ ì„¤ë¬¸ì¡°ì‚¬ê°€ ì‹œì‘ë©ë‹ˆë‹¤. (ì œí•œì‹œê°„ 30ì´ˆ)");
+			L1World.getInstance().broadcastServerMessage(" YES = ì°¬ì„±, NO = ë°˜ëŒ€, ê·¸ì™¸ ë¬´íš¨~!");
 			Thread.sleep(3000L);
 			L1World.getInstance().broadcastPacketToAll(new S_Message_YN(622, maintext));
 			Thread.sleep(30000L);
-			L1World.getInstance().broadcastServerMessage(" Àá½Ã ÈÄ ¼³¹®Á¶»ç °á°ú°¡ ¹ßÇ¥µË´Ï´Ù.");
+			L1World.getInstance().broadcastServerMessage(" ì ì‹œ í›„ ì„¤ë¬¸ì¡°ì‚¬ ê²°ê³¼ê°€ ë°œí‘œë©ë‹ˆë‹¤.");
 			Thread.sleep(3000L);
-			L1World.getInstance().broadcastServerMessage(" \\fW[°á°ú] Âù¼º : " + good + "Ç¥, ¹İ´ë : " + bad + "Ç¥");			
+			L1World.getInstance().broadcastServerMessage(" \\fW[ê²°ê³¼] ì°¬ì„± : " + good + "í‘œ, ë°˜ëŒ€ : " + bad + "í‘œ");			
 			
-//			ChatMonitorChannel.getInstance().sendMsg(ChatMonitorChannel.CHAT_MONITOR_GM, "\n [¼³¹®³»¿ë] : " + maintext, null);
-//			ChatMonitorChannel.getInstance().sendMsg(ChatMonitorChannel.CHAT_MONITOR_GM, "\n [¼³¹®°á°ú] : Âù¼º = " + good + "Ç¥,  ¹İ´ë = "+bad+"Ç¥", null);
+//			ChatMonitorChannel.getInstance().sendMsg(ChatMonitorChannel.CHAT_MONITOR_GM, "\n [ì„¤ë¬¸ë‚´ìš©] : " + maintext, null);
+//			ChatMonitorChannel.getInstance().sendMsg(ChatMonitorChannel.CHAT_MONITOR_GM, "\n [ì„¤ë¬¸ê²°ê³¼] : ì°¬ì„± = " + good + "í‘œ,  ë°˜ëŒ€ = "+bad+"í‘œ", null);
 			_instance = null;		
 			mainstart = false;
 			maintext = "";			

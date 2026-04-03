@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+Ôªøpackage l1j.server.server.model;
 
 import java.util.TimerTask;
 import java.util.logging.Level;
@@ -55,7 +55,7 @@ public class MpRegeneration extends TimerTask {
 			baseMpr = 3;
 		}
 		
-		// ∫£¿ÃΩ∫ WIS »∏∫π ∫∏≥ Ω∫
+		// Î≤†Ïù¥Ïä§ WIS ÌöåÎ≥µ Î≥¥ÎÑàÏä§
 		int baseStatMpr = CalcStat.calcBaseMpr(_pc.getType(), _pc.getAbility().getBaseWis());
 		
 		if (_pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_BLUE_POTION) == true) { 

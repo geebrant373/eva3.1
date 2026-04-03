@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -52,7 +52,7 @@ public class C_Drawal extends ClientBasePacket {
 			int castle_id = clan.getCastleId();
 			if (castle_id != 0) {
 				if(WarTimeController.getInstance().isNowWar(clan.getCastleId())){
-					pc.sendPackets(new S_SystemMessage("°ø¼ºÁß¿¡´Â ¼¼±İÀ» Ã£À¸½Ç¼ö ¾ø½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ê³µì„±ì¤‘ì—ëŠ” ì„¸ê¸ˆì„ ì°¾ìœ¼ì‹¤ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 					return;
 				}
 				if(pc.getClanRank() != 4 ||!pc.isCrown() || pc.getId() != pc.getClan().getLeaderId()) return;			

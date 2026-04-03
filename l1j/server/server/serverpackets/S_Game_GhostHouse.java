@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+ï»¿package l1j.server.server.serverpackets;
 
 import l1j.server.GameSystem.GhostHouse;
 import l1j.server.server.Opcodes;
@@ -9,12 +9,12 @@ public class S_Game_GhostHouse extends ServerBasePacket {
 	private static final String S_GameList = "[S] S_Game_HauntedHouse";
 
 	private byte[] _byte = null;	
-	// ·©Å·
+	// ë­í‚¹
 	public S_Game_GhostHouse(int rankvalue){
 		writeC(Opcodes.S_OPCODE_PACKETBOX);
 		writeC(0x42);
-		writeH(GhostHouse.getInstance().getPlayMembersCount()); // Âü¿©ÀÚ¼ö
-        writeH(rankvalue); // µî¼ö
+		writeH(GhostHouse.getInstance().getPlayMembersCount()); // ì°¸ì—¬ììˆ˜
+        writeH(rankvalue); // ë“±ìˆ˜
 		for(L1PcInstance pc : GhostHouse.getInstance().getRank()){
 			writeS(pc.getName());
 		}

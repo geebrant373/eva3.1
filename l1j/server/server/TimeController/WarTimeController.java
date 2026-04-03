@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -82,19 +82,19 @@ public class WarTimeController extends Thread {
 				_war_end_time[i] = (Calendar)cal.clone();
 				_war_end_time[i].add(Config.ALT_WAR_TIME_UNIT, Config.ALT_WAR_TIME);
 
-				// ¸ğµç À¯Àú¿¡°Ô °ø¼º½Ã°£ ¾Ë¸®±â
+				// ëª¨ë“  ìœ ì €ì—ê²Œ ê³µì„±ì‹œê°„ ì•Œë¦¬ê¸°
 				for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
-					pc.sendPackets(new S_SystemMessage(String.format("%s°ø¼º½Ã°£: %s ~ %s", castle.getName(), formatter.format(_war_start_time[i].getTime()), formatter.format(_war_end_time[i].getTime()))));
+					pc.sendPackets(new S_SystemMessage(String.format("%sê³µì„±ì‹œê°„: %s ~ %s", castle.getName(), formatter.format(_war_start_time[i].getTime()), formatter.format(_war_end_time[i].getTime()))));
 				}
 			}
 		}
 	}
 	
 	public void run() {
-		System.out.println(WarTimeController.class.getName()  + " ½ÃÀÛ");
+		System.out.println(WarTimeController.class.getName()  + " ì‹œì‘");
 		try {
 			while (true) {
-				checkWarTime(); // ÀüÀï ½Ã°£À» Ã¼Å©
+				checkWarTime(); // ì „ìŸ ì‹œê°„ì„ ì²´í¬
 				Thread.sleep(1000);
 			}
 		} catch (Exception e1) {
@@ -115,7 +115,7 @@ public class WarTimeController extends Thread {
 	public void checkCastleWar(L1PcInstance player) {
 		for (int i = 0; i < 8; i++) {
 			if (_is_now_war[i]) {
-				player.sendPackets(new S_PacketBox(S_PacketBox.MSG_WAR_GOING, i + 1)); // %sÀÇ °ø¼ºÀüÀÌ ÁøÇàÁßÀÔ´Ï´Ù.
+				player.sendPackets(new S_PacketBox(S_PacketBox.MSG_WAR_GOING, i + 1)); // %sì˜ ê³µì„±ì „ì´ ì§„í–‰ì¤‘ì…ë‹ˆë‹¤.
 			}
 		}
 	}
@@ -124,27 +124,27 @@ public class WarTimeController extends Thread {
 		L1WarSpawn warspawn = null;
 		Calendar Rtime = RealTimeClock.getInstance().getRealTimeCalendar();
 /*		System.out.print(Rtime.get(Calendar.DAY_OF_MONTH));
-		System.out.print("ÀÏ"+Rtime.get(Calendar.HOUR_OF_DAY));
-		System.out.print("½Ã"+Rtime.get(Calendar.MINUTE));
-		System.out.println("ºĞ"+Rtime.get(Calendar.SECOND)+"ÃÊ");*/
+		System.out.print("ì¼"+Rtime.get(Calendar.HOUR_OF_DAY));
+		System.out.print("ì‹œ"+Rtime.get(Calendar.MINUTE));
+		System.out.println("ë¶„"+Rtime.get(Calendar.SECOND)+"ì´ˆ");*/
 		for (int i = 0; i < 8; i++) {
-			if (_war_start_time[i].before(Rtime) // ÀüÀï °³½Ã
+			if (_war_start_time[i].before(Rtime) // ì „ìŸ ê°œì‹œ
 					&& _war_end_time[i].after(Rtime)) {
 				if (_is_now_war[i] == false) {
 					_is_now_war[i] = true;
-					// ±â¸¦ spawn ÇÑ´Ù
+					// ê¸°ë¥¼ spawn í•œë‹¤
 					warspawn = new L1WarSpawn();
 					warspawn.SpawnFlag(i + 1);
-					// ¼º¹®À» ¼ö¸®ÇØ ´İ´Â´Ù
+					// ì„±ë¬¸ì„ ìˆ˜ë¦¬í•´ ë‹«ëŠ”ë‹¤
 					for (L1DoorInstance door : DoorSpawnTable.getInstance().getDoorList()) {
 						if (L1CastleLocation.checkInWarArea(i + 1, door)) {
-							door.setAutoStatus(0);// ÀÚµ¿¼ö¸®¸¦ ÇØÁ¦
+							door.setAutoStatus(0);// ìë™ìˆ˜ë¦¬ë¥¼ í•´ì œ
 							door.repairGate();
 						}
 					}
 					if (_l1castle[i].getCastleSecurity() == 1)
-						securityStart(_l1castle[i]);// Ä¡¾È°ü¸®
-					L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.MSG_WAR_BEGIN, i + 1)); // %sÀÇ °ø¼ºÀüÀÌ ½ÃÀÛµÇ¾ú½À´Ï´Ù.
+						securityStart(_l1castle[i]);// ì¹˜ì•ˆê´€ë¦¬
+					L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.MSG_WAR_BEGIN, i + 1)); // %sì˜ ê³µì„±ì „ì´ ì‹œì‘ë˜ì—ˆìŠµë‹ˆë‹¤.
 					int[] loc = new int[3];
 					L1Clan clan = null;
 					for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
@@ -161,30 +161,30 @@ public class WarTimeController extends Thread {
 						}
 					}
 				}
-			} else if (_war_end_time[i].before(Rtime)) { // ÀüÀï Á¾·á
+			} else if (_war_end_time[i].before(Rtime)) { // ì „ìŸ ì¢…ë£Œ
 				if (_is_now_war[i] == true) {					
 					_is_now_war[i] = false;
 					L1World.getInstance().broadcastPacketToAll(
-							new S_PacketBox(S_PacketBox.MSG_WAR_END, i + 1)); // %sÀÇ °ø¼ºÀüÀÌ Á¾·áÇß½À´Ï´Ù.
+							new S_PacketBox(S_PacketBox.MSG_WAR_END, i + 1)); // %sì˜ ê³µì„±ì „ì´ ì¢…ë£Œí–ˆìŠµë‹ˆë‹¤.
 					_war_start_time[i].add(Config.ALT_WAR_INTERVAL_UNIT, Config.ALT_WAR_INTERVAL);
 					_war_end_time[i].add(Config.ALT_WAR_INTERVAL_UNIT, Config.ALT_WAR_INTERVAL);
-					_l1castle[i].setTaxRate(10); // ¼¼À²10ÇÁ·Î
-//					_l1castle[i].setPublicMoney(0); // °ø±İÅ¬¸®¾î
+					_l1castle[i].setTaxRate(10); // ì„¸ìœ¨10í”„ë¡œ
+//					_l1castle[i].setPublicMoney(0); // ê³µê¸ˆí´ë¦¬ì–´
 					CastleTable.getInstance().updateCastle(_l1castle[i]);
 					int castle_id = i + 1;
-//					CharSoldierTable.getInstance().delCastleSoldier(castle_id);// ¿ëº´ Å¬¸®¾î 
+//					CharSoldierTable.getInstance().delCastleSoldier(castle_id);// ìš©ë³‘ í´ë¦¬ì–´ 
 					L1FieldObjectInstance flag = null;
 					L1CrownInstance crown = null;
 					L1TowerInstance tower = null;
 					for (L1Object l1object : L1World.getInstance().getObject()) {
-						// ÀüÀï ¿¡¸®¾î³»ÀÇ ±â¸¦ Áö¿î´Ù
+						// ì „ìŸ ì—ë¦¬ì–´ë‚´ì˜ ê¸°ë¥¼ ì§€ìš´ë‹¤
 						if (l1object instanceof L1FieldObjectInstance) {
 							flag = (L1FieldObjectInstance) l1object;
 							if (L1CastleLocation.checkInWarArea(castle_id, flag)) {
 								flag.deleteMe();
 							}
 						}
-						// Å©¶ó¿îÀÌ ÀÖ´Â °æ¿ì´Â, Å©¶ó¿îÀ» Áö¿ö Å¸¿ö¸¦ spawn ÇÑ´Ù
+						// í¬ë¼ìš´ì´ ìˆëŠ” ê²½ìš°ëŠ”, í¬ë¼ìš´ì„ ì§€ì›Œ íƒ€ì›Œë¥¼ spawn í•œë‹¤
 						if (l1object instanceof L1CrownInstance) {
 							crown = (L1CrownInstance) l1object;
 							if (L1CastleLocation.checkInWarArea(castle_id, crown)) {

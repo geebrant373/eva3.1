@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -34,12 +34,12 @@ public class S_AttackPacketForNpc extends ServerBasePacket {
 		buildpacket(cha, npcObjectId, type);
 	}
 
-	//Ãß°¡ ·±´× º¯½Å ÇÇ°İÃ³¸®
+	//ì¶”ê°€ ëŸ°ë‹ ë³€ì‹  í”¼ê²©ì²˜ë¦¬
 	public S_AttackPacketForNpc(L1Character cha, int npcObjectId, int hit, int type) {
 		buildpacket(cha, npcObjectId, hit, type);
 	}
 	
-	//Ãß°¡ ·±´× º¯½Å ÇÇ°İÃ³¸®
+	//ì¶”ê°€ ëŸ°ë‹ ë³€ì‹  í”¼ê²©ì²˜ë¦¬
 	private void buildpacket(L1Character cha, int npcObjectId, int hit, int type) {
 		writeC(Opcodes.S_OPCODE_ATTACKPACKET);
 		writeC(type);

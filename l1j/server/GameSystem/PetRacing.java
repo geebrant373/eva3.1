@@ -1,4 +1,4 @@
-package l1j.server.GameSystem;
+ï»¿package l1j.server.GameSystem;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -38,8 +38,8 @@ public class PetRacing implements Runnable {
 	private L1PcInstance[] rankList;
 	private L1PcInstance[] finishMember;
 
-	private final int LIMIT_ENTERMEMBER_COUNT = 5;	// ÀÔÀå¸Ş¼¼Áö Ãâ·Â¿¡ ÇÊ¿äÇÑ ÀÎ¿ø(º»¼· : 5)	
-	private final int LIMIT_STARTMEMBER_COUNT = 2;	// °æ±â½ÃÀÛ¿¡ ÇÊ¿äÇÑ ÀÎ¿ø (º»¼· : 2)
+	private final int LIMIT_ENTERMEMBER_COUNT = 5;	// ì…ì¥ë©”ì„¸ì§€ ì¶œë ¥ì— í•„ìš”í•œ ì¸ì›(ë³¸ì„­ : 5)	
+	private final int LIMIT_STARTMEMBER_COUNT = 2;	// ê²½ê¸°ì‹œì‘ì— í•„ìš”í•œ ì¸ì› (ë³¸ì„­ : 2)
 	private final short PETRACE_MAPID = 5143;
 	
     public static int Start_X = 32735;
@@ -133,7 +133,7 @@ public class PetRacing implements Runnable {
 			while(true){				
 				switch (getStatus()) {
 				case ENTERREADY:
-					Thread.sleep(120000L);	// 2ºĞÁ¤µµ ÀÔÀåÀ¯Àú¹ŞÀ»°â ±â´Ù¸°´Ù 120000L
+					Thread.sleep(120000L);	// 2ë¶„ì •ë„ ì…ì¥ìœ ì €ë°›ì„ê²¸ ê¸°ë‹¤ë¦°ë‹¤ 120000L
 					if(checkEnoughEnterMember()){
 						sendMessage(MSG.ENTER);
 					}
@@ -161,16 +161,16 @@ public class PetRacing implements Runnable {
 					checkWinnerCount();
 					startPlayGameMembersGameTime();
 					petRacingStartDoorOpen();
-					// 5ºĞ Ã¼Å© ½ÃÀÛ
+					// 5ë¶„ ì²´í¬ ì‹œì‘
 					int j = 1;
 					while (j <= 600){
 						if(getStatus() == STATUS.END){ break; }
 						Thread.sleep(500L);								
 						RankList();								
-						// ½Ç½Ã°£ µî¼ö º¯ÇÏ´ÂºÎºĞ
+						// ì‹¤ì‹œê°„ ë“±ìˆ˜ ë³€í•˜ëŠ”ë¶€ë¶„
 						++j;
 					}
-					// 5ºĞ Ã¼Å© Á¾·á
+					// 5ë¶„ ì²´í¬ ì¢…ë£Œ
 					if (notWinnerGame()) timeover = true;
 					setStatus(STATUS.END);
 					break;
@@ -328,7 +328,7 @@ public class PetRacing implements Runnable {
 			if (pc != null){
 				if (pc.getMapId() == PETRACE_MAPID){
 					if (getStatus() == STATUS.READY){
-						pc.getInventory().storeItem(L1ItemId.ADENA, 1000); // 1000 ¾Æµ¥³ª Áö±Ş
+						pc.getInventory().storeItem(L1ItemId.ADENA, 1000); // 1000 ì•„ë°ë‚˜ ì§€ê¸‰
 					}
 					l1skilluse = new L1SkillUse();
 					l1skilluse.handleCommands(pc,L1SkillId.CANCELLATION, pc.getId(), pc.getX(),
@@ -372,18 +372,18 @@ public class PetRacing implements Runnable {
 	private void sendMessage(MSG message){
 		switch (message) {
 		case ENTER:
-			// °æ±âÀå¿¡ ÀÔÀå ÇÏ½Ã°Ú½À´Ï±î 
+			// ê²½ê¸°ì¥ì— ì…ì¥ í•˜ì‹œê² ìŠµë‹ˆê¹Œ 
 			for(L1PcInstance pc : getEnterMemberArray()) {
 				if (pc != null)	pc.sendPackets(new S_Message_YN(1256, ""));				
 			}
 			break;
 		case WAIT_START:
-			// Àá½Ã ÈÄ °æ±â°¡ ½ÃÀÛµË´Ï´Ù.
+			// ì ì‹œ í›„ ê²½ê¸°ê°€ ì‹œì‘ë©ë‹ˆë‹¤.
 			for(L1PcInstance pc : getPlayMemberArray())
 				if (pc != null)	pc.sendPackets(new S_ServerMessage(1257));				
 			break;
 		case NOT_ENOUGH_STARTMEMBERS:
-			// °æ±â ÀÎ¿øÀÌ ºÎÁ·ÇÏ¿© ¸¶À»·Î ²¨Áö½Ê½Ã¿À
+			// ê²½ê¸° ì¸ì›ì´ ë¶€ì¡±í•˜ì—¬ ë§ˆì„ë¡œ êº¼ì§€ì‹­ì‹œì˜¤
 			for(L1PcInstance pc : getPlayMemberArray())	
 				if (pc != null)	pc.sendPackets(new S_ServerMessage(1264));
 			break;

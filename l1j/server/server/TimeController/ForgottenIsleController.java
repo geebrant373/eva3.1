@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1World;
@@ -10,10 +10,10 @@ public class ForgottenIsleController implements Runnable {
     private static ForgottenIsleController _instance;
     public boolean isgameStart = false;
     public int Status = 0;
-    private final int ´ë±â = 0;
-    private final int ¿ÀÇÂ = 1;
-    private final int ÁøÇà = 2;
-    private final int Á¾·á = 3;
+    private final int ëŒ€ê¸° = 0;
+    private final int ì˜¤í”ˆ = 1;
+    private final int ì§„í–‰ = 2;
+    private final int ì¢…ë£Œ = 3;
 
     public static ForgottenIsleController getInstance() {
         if (_instance == null) {
@@ -27,33 +27,33 @@ public class ForgottenIsleController implements Runnable {
         try {
             while (true) {
                 switch (Status) {
-                case ´ë±â:
+                case ëŒ€ê¸°:
                     Thread.sleep(10000);
                     if (isgameStart == false) {
                         continue;
                     }
-                    Status = ¿ÀÇÂ;
-                    L1World.getInstance().broadcastServerMessage("\\aH¾Ë¸²: Àá½ÃÈÄ [ÀØÇôÁø ¼¶] ÀÔÀåÀÌ °¡´ÉÇÕ´Ï´Ù.");
+                    Status = ì˜¤í”ˆ;
+                    L1World.getInstance().broadcastServerMessage("\\aHì•Œë¦¼: ì ì‹œí›„ [ìŠí˜€ì§„ ì„¬] ì…ì¥ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
                     continue;
-                case ¿ÀÇÂ:
-                    L1World.getInstance().broadcastServerMessage("\\aH¾Ë¸²: ÀØÇôÁø ¼¶ 2½Ã°£ »ç³É°¡´ÉÇÏ¿À´Ï, Á¶½ÉÇÏ½Ã¿À.");
-                    L1World.getInstance().broadcastServerMessage("\\aH¾Ë¸²: ½Ã°£ÀÌ µÇ¸é °­Á¦±ÍÈ¯ µË´Ï´Ù.");
-                    System.out.println("...... ÀØÇôÁø¼¶ ¿­¸²");
-                    Status = ÁøÇà;
+                case ì˜¤í”ˆ:
+                    L1World.getInstance().broadcastServerMessage("\\aHì•Œë¦¼: ìŠí˜€ì§„ ì„¬ 2ì‹œê°„ ì‚¬ëƒ¥ê°€ëŠ¥í•˜ì˜¤ë‹ˆ, ì¡°ì‹¬í•˜ì‹œì˜¤.");
+                    L1World.getInstance().broadcastServerMessage("\\aHì•Œë¦¼: ì‹œê°„ì´ ë˜ë©´ ê°•ì œê·€í™˜ ë©ë‹ˆë‹¤.");
+                    System.out.println("...... ìŠí˜€ì§„ì„¬ ì—´ë¦¼");
+                    Status = ì§„í–‰;
                     continue;
-                case ÁøÇà:
+                case ì§„í–‰:
                     Thread.sleep(7200000L);
                     TelePort();
                     close();
                     Thread.sleep(5000L);
                     TelePort2();
-                    Status = Á¾·á;
+                    Status = ì¢…ë£Œ;
                     continue;
-                case Á¾·á:
-                    L1World.getInstance().broadcastServerMessage("\\aH¾Ë¸²: ÀØÇôÁø¼¶ÀÌ Á¾·áµÇ¾ú½À´Ï´Ù.");
-                    System.out.println("...... ÀØ¼¶ Á¾·áµÊ");
+                case ì¢…ë£Œ:
+                    L1World.getInstance().broadcastServerMessage("\\aHì•Œë¦¼: ìŠí˜€ì§„ì„¬ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+                    System.out.println("...... ìŠì„¬ ì¢…ë£Œë¨");
                     isgameStart = false;
-                    Status = ´ë±â;
+                    Status = ëŒ€ê¸°;
                     continue;
                 }
             }
@@ -69,7 +69,7 @@ public class ForgottenIsleController implements Runnable {
                 c.stopHpRegenerationByDoll();
                 c.stopMpRegenerationByDoll();
                 L1Teleport.teleport(c, 33970, 33246, (short) 4, 4, true);
-                c.sendPackets(new S_SystemMessage("ÀØÇôÁø¼¶ÀÌ ´İÇû½À´Ï´Ù."));
+                c.sendPackets(new S_SystemMessage("ìŠí˜€ì§„ì„¬ì´ ë‹«í˜”ìŠµë‹ˆë‹¤."));
                 break;
             default:
                 break;
@@ -95,7 +95,7 @@ public class ForgottenIsleController implements Runnable {
                 c.stopHpRegenerationByDoll();
                 c.stopMpRegenerationByDoll();
                 L1Teleport.teleport(c, 33430, 32797, (short) 4, 4, true);
-                c.sendPackets(new S_SystemMessage("ÀØÇôÁø¼¶ÀÌ ´İÇû½À´Ï´Ù."));
+                c.sendPackets(new S_SystemMessage("ìŠí˜€ì§„ì„¬ì´ ë‹«í˜”ìŠµë‹ˆë‹¤."));
                 break;
             default:
                 break;

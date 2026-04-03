@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -132,17 +132,17 @@ public class L1Attack {
 
 	private int _drainMana = 0;
 
-	/** Á¶¿ìÀÇ µ¹°ñ·½ **/
+	/** ì¡°ìš°ì˜ ëŒê³¨ë ˜ **/
 
 	private int _drainHp = 0;
 
-	/** Á¶¿ìÀÇ µ¹°ñ·½ **/
+	/** ì¡°ìš°ì˜ ëŒê³¨ë ˜ **/
 
 	private int _attckGrfxId = 0;
 
 	private int _attckActId = 0;
 
-	// °ø°İÀÚ°¡ ÇÃ·¹ÀÌ¾îÀÇ °æ¿ìÀÇ ¹«±â Á¤º¸
+	// ê³µê²©ìê°€ í”Œë ˆì´ì–´ì˜ ê²½ìš°ì˜ ë¬´ê¸° ì •ë³´
 	private L1ItemInstance weapon = null;
 
 	private int _weaponId = 0;
@@ -173,14 +173,14 @@ public class L1Attack {
 
 	private int _attackType = 0;
 
-	private boolean _¹ß¶ó±Ù°Å¸®°¡È£ = false;
-	private boolean _¹ß¶ó¿ø°Å¸®°¡È£ = false;
+	private boolean _ë°œë¼ê·¼ê±°ë¦¬ê°€í˜¸ = false;
+	private boolean _ë°œë¼ì›ê±°ë¦¬ê°€í˜¸ = false;
 
 	private L1ItemInstance _arrow = null;
 
 	private L1ItemInstance _sting = null;
 
-	private int _leverage = 10; // 1/10¹è·Î Ç¥ÇöÇÑ´Ù.
+	private int _leverage = 10; // 1/10ë°°ë¡œ í‘œí˜„í•œë‹¤.
 
 	public void setLeverage(int i) {
 		_leverage = i;
@@ -192,7 +192,7 @@ public class L1Attack {
 
 	private static final int[] strHit = new int[128];
 	
-	// °ø°İÀÚ°¡ ÇÃ·¹ÀÌ¾îÀÇ °æ¿ìÀÇ ½ºÅ×ÀÌÅÍ½º¿¡ ÀÇÇÑ º¸Á¤
+	// ê³µê²©ìê°€ í”Œë ˆì´ì–´ì˜ ê²½ìš°ì˜ ìŠ¤í…Œì´í„°ìŠ¤ì— ì˜í•œ ë³´ì •
 	static {
 		for (int str = 0; str <= 7; str++) {
 			strHit[str] = -2;
@@ -297,9 +297,9 @@ public class L1Attack {
 	private static final int[] dexHit = new int[128];
 
 	static {
-		// DEX µ¥¹ÌÁö º¸Á¤
+		// DEX ë°ë¯¸ì§€ ë³´ì •
 		for (int dex = 0; dex <= 6; dex++) {
-			// 0~11´Â 0
+			// 0~11ëŠ” 0
 			dexHit[dex] = -2;
 		}
 		dexHit[7] = 0;
@@ -403,13 +403,13 @@ public class L1Attack {
 	private static final int[] strDmg = new int[128];
 
 	static {
-		// STR µ¥¹ÌÁö º¸Á¤
+		// STR ë°ë¯¸ì§€ ë³´ì •
 		for (int str = 0; str <= 8; str++) {
-			// 1~8´Â -2
+			// 1~8ëŠ” -2
 			strDmg[str] = -2;
 		}
 		for (int str = 9; str <= 10; str++) {
-			// 9~10´Â -1
+			// 9~10ëŠ” -1
 			strDmg[str] = -1;
 		}
 		strDmg[11] = 0;
@@ -437,7 +437,7 @@ public class L1Attack {
 		strDmg[33] = 10;
 		strDmg[34] = 11;
 		int dmg = 12;
-		for (int str = 35; str <= 127; str++) { // 35~127Àº 4¸¶´Ù£«1
+		for (int str = 35; str <= 127; str++) { // 35~127ì€ 4ë§ˆë‹¤ï¼‹1
 			if (str % 4 == 1) {
 				dmg++;
 			}
@@ -448,9 +448,9 @@ public class L1Attack {
 	private static final int[] dexDmg = new int[128];
 
 	static {
-		// DEX µ¥¹ÌÁö º¸Á¤
+		// DEX ë°ë¯¸ì§€ ë³´ì •
 		for (int dex = 0; dex <= 14; dex++) {
-			// 0~14´Â 0
+			// 0~14ëŠ” 0
 			dexDmg[dex] = 0;
 		}
 		dexDmg[15] = 1;
@@ -475,7 +475,7 @@ public class L1Attack {
 		dexDmg[34] = 9;
 		dexDmg[35] = 9;
 		int dmg = 10;
-		for (int dex = 36; dex <= 127; dex++) { // 36~127Àº 4¸¶´Ù£«1 //#
+		for (int dex = 36; dex <= 127; dex++) { // 36~127ì€ 4ë§ˆë‹¤ï¼‹1 //#
 			if (dex % 4 == 1) {
 				dmg++;
 			}
@@ -510,7 +510,7 @@ public class L1Attack {
 				_targetNpc = (L1NpcInstance) target;
 				_calcType = PC_NPC;
 			}
-			// ¹«±â Á¤º¸ÀÇ Ãëµæ
+			// ë¬´ê¸° ì •ë³´ì˜ ì·¨ë“
 			weapon = _pc.getWeapon();
 			if (weapon != null) {
 				_weaponId = weapon.getItem().getItemId();
@@ -523,20 +523,20 @@ public class L1Attack {
 				_weaponRange = weapon.getItem().getRange();
 				_weaponBless = weapon.getItem().getBless();
 				if (_weaponType != 20 && _weaponType != 62) {
-					_weaponEnchant = weapon.getEnchantLevel() - weapon.get_durability(); // ¼Õ»óºĞ
-																							// ¸¶ÀÌ³Ê½º
+					_weaponEnchant = weapon.getEnchantLevel() - weapon.get_durability(); // ì†ìƒë¶„
+																							// ë§ˆì´ë„ˆìŠ¤
 				} else {
 					_weaponEnchant = weapon.getEnchantLevel();
 				}
 				_weaponMaterial = weapon.getItem().getMaterial();
-				if (_weaponType == 20) { // È­»ìÀÇ Ãëµæ
+				if (_weaponType == 20) { // í™”ì‚´ì˜ ì·¨ë“
 					_arrow = _pc.getInventory().getArrow();
 					if (_arrow != null) {
 						_weaponBless = _arrow.getItem().getBless();
 						_weaponMaterial = _arrow.getItem().getMaterial();
 					}
 				}
-				if (_weaponType == 62) { // ½ºÆÃÀÇ Ãëµæ
+				if (_weaponType == 62) { // ìŠ¤íŒ…ì˜ ì·¨ë“
 					_sting = _pc.getInventory().getSting();
 					if (_sting != null) {
 						_weaponBless = _sting.getItem().getBless();
@@ -546,8 +546,8 @@ public class L1Attack {
 				_weaponDoubleDmgChance = weapon.getItem().getDoubleDmgChance();
 				_weaponAttrEnchantLevel = weapon.getAttrEnchantLevel();
 			}
-			// ½ºÅ×ÀÌÅÍ½º¿¡ ÀÇÇÑ Ãß°¡ µ¥¹ÌÁö º¸Á¤
-			if (_weaponType == 20) { // È°ÀÇ °æ¿ì´Â DEXÄ¡ ÂüÁ¶
+			// ìŠ¤í…Œì´í„°ìŠ¤ì— ì˜í•œ ì¶”ê°€ ë°ë¯¸ì§€ ë³´ì •
+			if (_weaponType == 20) { // í™œì˜ ê²½ìš°ëŠ” DEXì¹˜ ì°¸ì¡°
 				_statusDamage = dexDmg[_pc.getAbility().getTotalDex()];
 			} else {
 				_statusDamage = strDmg[_pc.getAbility().getTotalStr()];
@@ -568,7 +568,7 @@ public class L1Attack {
 		_targetY = target.getY();
 	}
 
-	/* ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á ¸íÁß ÆÇÁ¤ ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á */
+	/* â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â–  ëª…ì¤‘ íŒì • â– â– â– â– â– â– â– â– â– â– â– â– â– â– â– â–  */
 
 	public boolean calcHit() {
 		if (_calcType == PC_PC || _calcType == PC_NPC) {
@@ -595,13 +595,13 @@ public class L1Attack {
 			}
 			if (!(_pc instanceof L1RobotInstance) && _weaponType == 20 && _weaponId != 190 && _weaponId != 9100
 					&& _weaponId != 450009 && _arrow == null) {
-				return _isHit = false; // È­»ìÀÌ ¾ø´Â °æ¿ì´Â ¹Ì½º
+				return _isHit = false; // í™”ì‚´ì´ ì—†ëŠ” ê²½ìš°ëŠ” ë¯¸ìŠ¤
 			} else if (_weaponType == 62 && _sting == null) {
-				return _isHit = false; // ½ºÆÃÀÌ ¾ø´Â °æ¿ì´Â ¹Ì½º
+				return _isHit = false; // ìŠ¤íŒ…ì´ ì—†ëŠ” ê²½ìš°ëŠ” ë¯¸ìŠ¤
 			} else if (!CharPosUtil.glanceCheck(_pc, _targetX, _targetY)) {
-				return _isHit = false; // °ø°İÀÚ°¡ ÇÃ·¹ÀÌ¾îÀÇ °æ¿ì´Â Àå¾Ö¹° ÆÇÁ¤
+				return _isHit = false; // ê³µê²©ìê°€ í”Œë ˆì´ì–´ì˜ ê²½ìš°ëŠ” ì¥ì• ë¬¼ íŒì •
 			} else if (_weaponId == 247 || _weaponId == 248 || _weaponId == 249) {
-				return _isHit = false; // ½Ã·ÃÀÇ °ËB~C °ø°İ ¹«È¿
+				return _isHit = false; // ì‹œë ¨ì˜ ê²€B~C ê³µê²© ë¬´íš¨
 			} else if (_calcType == PC_PC) {
 				if (CharPosUtil.getZoneType(_pc) == 1 || CharPosUtil.getZoneType(_targetPc) == 1) {
 					return _isHit = false;
@@ -628,11 +628,11 @@ public class L1Attack {
 		this.critical = critical;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ ÇÃ·¹ÀÌ¾î¿¡ÀÇ ¸íÁß ÆÇÁ¤ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— í”Œë ˆì´ì–´ë¡œë¶€í„° í”Œë ˆì´ì–´ì—ì˜ ëª…ì¤‘ íŒì • â—â—â—â—
 	/*
-	 * PC¿¡ÀÇ ¸íÁßÀ² =(PCÀÇ Lv£«Å¬·¡½º º¸Á¤£«STR º¸Á¤£«DEX º¸Á¤£«¹«±â º¸Á¤£«DAIÀÇ ¸Å¼ö/2£«¸¶¹ı º¸Á¤)¡¿0.68£­10 ÀÌ°ÍÀ¸·Î
-	 * »êÃâµÈ ¼öÄ¡´Â ÀÚ½ÅÀÌ ÃÖ´ë ¸íÁß(95%)À» ÁÖ´Â ÀÏÀ» ÇÒ ¼ö ÀÖ´Â »ó´ëÃø PCÀÇ AC °Å±â·ÎºÎÅÍ »ó´ëÃø PCÀÇ AC°¡ 1ÁÁ¾ÆÁú ¶§¸¶´Ù
-	 * ÀÚ¸íÁßÀ²·ÎºÎÅÍ 1´ç°Ü °£´Ù ÃÖ¼Ò ¸íÁßÀ²5% ÃÖ´ë ¸íÁßÀ²95%
+	 * PCì—ì˜ ëª…ì¤‘ìœ¨ =(PCì˜ Lvï¼‹í´ë˜ìŠ¤ ë³´ì •ï¼‹STR ë³´ì •ï¼‹DEX ë³´ì •ï¼‹ë¬´ê¸° ë³´ì •ï¼‹DAIì˜ ë§¤ìˆ˜/2ï¼‹ë§ˆë²• ë³´ì •)Ã—0.68ï¼10 ì´ê²ƒìœ¼ë¡œ
+	 * ì‚°ì¶œëœ ìˆ˜ì¹˜ëŠ” ìì‹ ì´ ìµœëŒ€ ëª…ì¤‘(95%)ì„ ì£¼ëŠ” ì¼ì„ í•  ìˆ˜ ìˆëŠ” ìƒëŒ€ì¸¡ PCì˜ AC ê±°ê¸°ë¡œë¶€í„° ìƒëŒ€ì¸¡ PCì˜ ACê°€ 1ì¢‹ì•„ì§ˆ ë•Œë§ˆë‹¤
+	 * ìëª…ì¤‘ìœ¨ë¡œë¶€í„° 1ë‹¹ê²¨ ê°„ë‹¤ ìµœì†Œ ëª…ì¤‘ìœ¨5% ìµœëŒ€ ëª…ì¤‘ìœ¨95%
 	 */
 	private boolean calcPcPcHit() {
 		if (_pc.getAbility().getTotalStr() > 39) {
@@ -649,7 +649,7 @@ public class L1Attack {
 		
 		_hitRate = (90 + _weaponAddHit + _weaponEnchant / 2);
 		
-		/** ½ºÅÈ + ¹«±â¿¡ µû¸¥ °ø¼º **/
+		/** ìŠ¤íƒ¯ + ë¬´ê¸°ì— ë”°ë¥¸ ê³µì„± **/
 		_hitRate += PchitAdd();
 		if (_targetPc.getAC().getAc() < 0)
 			_hitRate += (int) ((-10 + _targetPc.getAC().getAc()) * 0.66D);
@@ -708,22 +708,22 @@ public class L1Attack {
 			_hitRate = 0;
 		}
 		
-		// ¹Ì½ºÀÌÆÑ ³Ö±â
+		// ë¯¸ìŠ¤ì´íŒ© ë„£ê¸°
 		if (_hitRate >= rnd) {
 			return true;
 		} else {
-			_pc.sendPackets(new S_SkillSound(_targetPc.getId(), 20130));// ÀÌÆåÆ®
+			_pc.sendPackets(new S_SkillSound(_targetPc.getId(), 20130));// ì´í™íŠ¸
 			return false;
 		}
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ NPC ¿¡ÀÇ ¸íÁß ÆÇÁ¤ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— í”Œë ˆì´ì–´ë¡œë¶€í„° NPC ì—ì˜ ëª…ì¤‘ íŒì • â—â—â—â—
 	private boolean calcPcNpcHit() {
-		/** SPRÃ¼Å© **/
+		/** SPRì²´í¬ **/
 		if (_pc.AttackSpeedCheck2 >= 1) {
 			if (_pc.AttackSpeedCheck2 == 1) {
 				_pc.AttackSpeed2 = System.currentTimeMillis();
-				_pc.sendPackets(new S_SystemMessage("\\fY[Ã¼Å©½ÃÀÛ]"));
+				_pc.sendPackets(new S_SystemMessage("\\fY[ì²´í¬ì‹œì‘]"));
 			}
 			_pc.AttackSpeedCheck2++;
 			if (_pc.AttackSpeedCheck2 >= 12) {
@@ -732,30 +732,30 @@ public class L1Attack {
 				String s = String.format("%.0f", k);
 				_pc.AttackSpeed2 = 0;
 				_pc.sendPackets(new S_SystemMessage("-----------------------------------------"));
-				_pc.sendPackets(new S_SystemMessage("ÇØ´çº¯½ÅÀº " + s + "ÀÌ °ø¼ÓÀ¸·Î ÀûÀıÇÑ°ªÀÔ´Ï´Ù."));
+				_pc.sendPackets(new S_SystemMessage("í•´ë‹¹ë³€ì‹ ì€ " + s + "ì´ ê³µì†ìœ¼ë¡œ ì ì ˆí•œê°’ì…ë‹ˆë‹¤."));
 				_pc.sendPackets(new S_SystemMessage("-----------------------------------------"));
 			}
 		}
 		
-		/** SPRÃ¼Å© **/
-		// NPC¿¡ÀÇ ¸íÁßÀ²
-		// =(PCÀÇ Lv£«Å¬·¡½º º¸Á¤£«STR º¸Á¤£«DEX º¸Á¤£«¹«±â º¸Á¤£«DAIÀÇ ¸Å¼ö/2£«¸¶¹ı º¸Á¤)¡¿5£­{NPCÀÇ AC¡¿(-5)}
+		/** SPRì²´í¬ **/
+		// NPCì—ì˜ ëª…ì¤‘ìœ¨
+		// =(PCì˜ Lvï¼‹í´ë˜ìŠ¤ ë³´ì •ï¼‹STR ë³´ì •ï¼‹DEX ë³´ì •ï¼‹ë¬´ê¸° ë³´ì •ï¼‹DAIì˜ ë§¤ìˆ˜/2ï¼‹ë§ˆë²• ë³´ì •)Ã—5ï¼{NPCì˜ ACÃ—(-5)}
 
 		_hitRate += _pc.getLevel();
 
-		// ¸íÁßÄ¡ °ø½Ä ¼öÁ¤º»
+		// ëª…ì¤‘ì¹˜ ê³µì‹ ìˆ˜ì •ë³¸
 		if (_pc.isDarkelf() || _pc.isKnight()) {
 			_hitRate += _pc.getLevel() / 3;
 		} else if (_pc.isElf() || _pc.isCrown()) {
 			_hitRate += _pc.getLevel() / 5;
 		}
-		// ¸íÁßÄ¡ °ø½Ä ¼öÁ¤º»
+		// ëª…ì¤‘ì¹˜ ê³µì‹ ìˆ˜ì •ë³¸
 
 		if (_weaponType != 20 && _weaponType != 62) {
-			_hitRate += CalcStat.±Ù°Å¸®¸íÁß(_pc.getAbility().getTotalStr()) * 2;
+			_hitRate += CalcStat.ê·¼ê±°ë¦¬ëª…ì¤‘(_pc.getAbility().getTotalStr()) * 2;
 			_hitRate += _weaponAddHit + _pc.getHitup() + _pc.getHitupByArmor() + (_weaponEnchant / 2);
 		} else {
-			_hitRate += CalcStat.¿ø°Å¸®¸íÁß(_pc.getAbility().getTotalDex()) * 2;
+			_hitRate += CalcStat.ì›ê±°ë¦¬ëª…ì¤‘(_pc.getAbility().getTotalDex()) * 2;
 			_hitRate += _weaponAddHit + _pc.getBowHitup() + _pc.getBowHitupByArmor() + _pc.getBowHitupByDoll()
 					+ (_weaponEnchant / 2);
 		}
@@ -796,17 +796,17 @@ public class L1Attack {
 			e.printStackTrace();
 		}
 
-		if (_hitRate == 0) { // ¹Ì½º ÀÌÆÑÆ® Ã³¸®
+		if (_hitRate == 0) { // ë¯¸ìŠ¤ ì´íŒ©íŠ¸ ì²˜ë¦¬
 			_pc.sendPackets(new S_SkillSound(_targetNpc.getId(), 20130));
-			System.out.println("¹Ì½º");
+			System.out.println("ë¯¸ìŠ¤");
 		}
 
 		return _hitRate >= rnd;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü NPC ·ÎºÎÅÍ ÇÃ·¹ÀÌ¾î¿¡ÀÇ ¸íÁß ÆÇÁ¤ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— NPC ë¡œë¶€í„° í”Œë ˆì´ì–´ì—ì˜ ëª…ì¤‘ íŒì • â—â—â—â—
 	private boolean calcNpcPcHit() {
-		double mapevent_Npc_Pc_Hit = Map_Event.getInstance().getadd_Npc_Pc_hit(_npc.getMapId()); // ¸ÊÀÌº¥Æ®
+		double mapevent_Npc_Pc_Hit = Map_Event.getInstance().getadd_Npc_Pc_hit(_npc.getMapId()); // ë§µì´ë²¤íŠ¸
 		_hitRate += _npc.getLevel();
 
 		if (_npc instanceof L1PetInstance) {
@@ -880,7 +880,7 @@ public class L1Attack {
 		}
 
 		int rnd = _random.nextInt(100) + 1;
-		// NPCÀÇ °ø°İ ·¹ÀÎÁö°¡ 10ÀÌ»óÀÇ °æ¿ì·Î, 2ÀÌ»ó ¶³¾îÁ® ÀÖ´Â °æ¿ìÈ°°ø°İÀ¸·Î °£ÁÖÇÑ´Ù
+		// NPCì˜ ê³µê²© ë ˆì¸ì§€ê°€ 10ì´ìƒì˜ ê²½ìš°ë¡œ, 2ì´ìƒ ë–¨ì–´ì ¸ ìˆëŠ” ê²½ìš°í™œê³µê²©ìœ¼ë¡œ ê°„ì£¼í•œë‹¤
 		if (_npc.getNpcTemplate().get_ranged() >= 10 && _hitRate > rnd
 				&& _npc.getLocation().getTileLineDistance(new Point(_targetX, _targetY)) >= 3) {
 			return calcErEvasion();
@@ -888,25 +888,25 @@ public class L1Attack {
 		return _hitRate >= rnd;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü NPC ·ÎºÎÅÍ NPC ¿¡ÀÇ ¸íÁß ÆÇÁ¤ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— NPC ë¡œë¶€í„° NPC ì—ì˜ ëª…ì¤‘ íŒì • â—â—â—â—
 	private boolean calcNpcNpcHit() {
 		int target_ac = 10 - _targetNpc.getAC().getAc();
 		int attacker_lvl = _npc.getNpcTemplate().get_level();
 
 		if (target_ac != 0) {
-			_hitRate = (100 / target_ac * attacker_lvl); // ÇÇ°ø°İÀÚ AC = °ø°İÀÚ Lv
-			// ÀÇ ¶§ ¸íÁßÀ² 100%
+			_hitRate = (100 / target_ac * attacker_lvl); // í”¼ê³µê²©ì AC = ê³µê²©ì Lv
+			// ì˜ ë•Œ ëª…ì¤‘ìœ¨ 100%
 		} else {
 			_hitRate = 100 / 1 * attacker_lvl;
 		}
 
-		if (_npc instanceof L1PetInstance) { // ÆêÀº LV1¸¶´Ù Ãß°¡ ¸íÁß+2
+		if (_npc instanceof L1PetInstance) { // í«ì€ LV1ë§ˆë‹¤ ì¶”ê°€ ëª…ì¤‘+2
 			_hitRate += _npc.getLevel() * 2;
 			_hitRate += ((L1PetInstance) _npc).getHitByWeapon();
 		}
 
 		if (_hitRate < attacker_lvl) {
-			_hitRate = attacker_lvl; // ÃÖÀú ¸íÁßÀ²=L£ö£¥
+			_hitRate = attacker_lvl; // ìµœì € ëª…ì¤‘ìœ¨=Lï½–ï¼…
 		}
 
 		try {
@@ -916,17 +916,17 @@ public class L1Attack {
 		}
 
 		if (_hitRate > 95) {
-			_hitRate = 95; // ÃÖ°í ¸íÁßÀ²Àº 95%
+			_hitRate = 95; // ìµœê³  ëª…ì¤‘ìœ¨ì€ 95%
 		}
 		if (_hitRate < 5) {
-			_hitRate = 5; // °ø°İÀÚ Lv°¡ 5 ¹Ì¸¸¶§´Â ¸íÁßÀ² 5%
+			_hitRate = 5; // ê³µê²©ì Lvê°€ 5 ë¯¸ë§Œë•ŒëŠ” ëª…ì¤‘ìœ¨ 5%
 		}
 
 		int rnd = _random.nextInt(100) + 1;
 		return _hitRate >= rnd;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü ER¿¡ ÀÇÇÑ È¸ÇÇ ÆÇÁ¤ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— ERì— ì˜í•œ íšŒí”¼ íŒì • â—â—â—â—
 	private boolean calcErEvasion() {
 		int er = _targetPc.getEr();
 
@@ -934,7 +934,7 @@ public class L1Attack {
 		return er < rnd;
 	}
 
-	/* ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á µ¥¹ÌÁö »êÃâ ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á */
+	/* â– â– â– â– â– â– â– â– â– â– â– â– â– â– â–  ë°ë¯¸ì§€ ì‚°ì¶œ â– â– â– â– â– â– â– â– â– â– â– â– â– â– â–  */
 
 	public int calcDamage() {
 		try {
@@ -948,7 +948,7 @@ public class L1Attack {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				// ÇÇ°İ ¸ğ¼Ç Ã³¸®¸¦ ¾îµğ¿¡ ÇØ¾ß ÇÒ ±î?
+				// í”¼ê²© ëª¨ì…˜ ì²˜ë¦¬ë¥¼ ì–´ë””ì— í•´ì•¼ í•  ê¹Œ?
 				if (_targetPc.getGfxId().getTempCharGfx() == 16074 || _targetPc.getGfxId().getTempCharGfx() == 16053
 						|| _targetPc.getGfxId().getTempCharGfx() == 14491
 						|| _targetPc.getGfxId().getTempCharGfx() == 16056
@@ -989,7 +989,7 @@ public class L1Attack {
 
 				_damage += MonsterBalance.getInstance().getCharacterBalance(_npc.getNpcTemplate().get_npcId());
 
-				// ÇÇ°İ ¸ğ¼Ç Ã³¸®¸¦ ¾îµğ¿¡ ÇØ¾ß ÇÒ ±î?
+				// í”¼ê²© ëª¨ì…˜ ì²˜ë¦¬ë¥¼ ì–´ë””ì— í•´ì•¼ í•  ê¹Œ?
 				if (_targetPc.getGfxId().getTempCharGfx() == 16074 || _targetPc.getGfxId().getTempCharGfx() == 16053
 						|| _targetPc.getGfxId().getTempCharGfx() == 14491
 						|| _targetPc.getGfxId().getTempCharGfx() == 16056
@@ -1032,7 +1032,7 @@ public class L1Attack {
 
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ ÇÃ·¹ÀÌ¾î¿¡ÀÇ µ¥¹ÌÁö »êÃâ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— í”Œë ˆì´ì–´ë¡œë¶€í„° í”Œë ˆì´ì–´ì—ì˜ ë°ë¯¸ì§€ ì‚°ì¶œ â—â—â—â—
 	public int calcPcPcDamage() {
 		int weaponMaxDamage = _weaponSmall + _weaponAddDmg;
 
@@ -1044,28 +1044,28 @@ public class L1Attack {
 			for (L1ItemInstance item : _targetPc.getInventory().getItems()) {
 				if (item.isEquipped()) {
 					if (item.getItemId() >= 420104 && item.getItemId() <= 420107) {
-						if (chance1 < Config.ÆÄÇª°¡È£È®·ü) {
-							int basehp = (int) Config.ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö1;
+						if (chance1 < Config.íŒŒí‘¸ê°€í˜¸í™•ë¥ ) {
+							int basehp = (int) Config.íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€1;
 							if (item.getEnchantLevel() == 7)
-								basehp = (int) Config.ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö2;
+								basehp = (int) Config.íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€2;
 							if (item.getEnchantLevel() == 8)
-								basehp = (int) Config.ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö3;
+								basehp = (int) Config.íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€3;
 							if (item.getEnchantLevel() == 9)
-								basehp = (int) Config.ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö4;
+								basehp = (int) Config.íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€4;
 							_targetPc.setCurrentHp(_targetPc.getCurrentHp() + basehp);
 							_targetPc.sendPackets(new S_SkillSound(_targetPc.getId(), 2187));
 							Broadcaster.broadcastPacket(_targetPc, new S_SkillSound(_targetPc.getId(), 2187));
 						}
 						break;
 					} else if (item.getItemId() >= 420108 && item.getItemId() <= 420111) {
-						if (chance1 < Config.¸°µå°¡È£È®·ü) {
-							int basemp = (int) Config.¸°µåÀÌÆåÆ®´ë¹ÌÁö1;
+						if (chance1 < Config.ë¦°ë“œê°€í˜¸í™•ë¥ ) {
+							int basemp = (int) Config.ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€1;
 							if (item.getEnchantLevel() == 7)
-								basemp = (int) Config.¸°µåÀÌÆåÆ®´ë¹ÌÁö2;
+								basemp = (int) Config.ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€2;
 							if (item.getEnchantLevel() == 8)
-								basemp = (int) Config.¸°µåÀÌÆåÆ®´ë¹ÌÁö3;
+								basemp = (int) Config.ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€3;
 							if (item.getEnchantLevel() == 9)
-								basemp = (int) Config.¸°µåÀÌÆåÆ®´ë¹ÌÁö4;
+								basemp = (int) Config.ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€4;
 							_targetPc.setCurrentMp(_targetPc.getCurrentMp() + basemp);
 							_targetPc.sendPackets(new S_SkillSound(_targetPc.getId(), 2188));
 							Broadcaster.broadcastPacket(_targetPc, new S_SkillSound(_targetPc.getId(), 2188));
@@ -1089,26 +1089,26 @@ public class L1Attack {
 				}
 			}
 		}
-		// ÆÄÇª°¡È£
-		if (_weaponType == 58 && doubleChance <= _weaponDoubleDmgChance) { // Å©·Î¿ì
-																			// ´õºí
+		// íŒŒí‘¸ê°€í˜¸
+		if (_weaponType == 58 && doubleChance <= _weaponDoubleDmgChance) { // í¬ë¡œìš°
+																			// ë”ë¸”
 			weaponDamage = weaponMaxDamage;
-			_attackType = 2; // ÀÌ°Ô ÀÌÆÑÆ®±º
+			_attackType = 2; // ì´ê²Œ ì´íŒ©íŠ¸êµ°
 
 			// _pc.sendPackets(new S_SkillSound(_targetId, 13416));
 			// Broadcaster.broadcastPacket(_pc, new
 			// S_SkillSound(_targetPc.getId(), 13416));
 
-		} else if (_weaponType == 0) { // ¸Ç¼Õ
+		} else if (_weaponType == 0) { // ë§¨ì†
 			weaponDamage = 0;
 		} else {
 			weaponDamage = _random.nextInt(_weaponSmall) + 1 + _weaponAddDmg;
 		}
 
-		if (_¹ß¶ó¿ø°Å¸®°¡È£ || _¹ß¶ó±Ù°Å¸®°¡È£) {
+		if (_ë°œë¼ì›ê±°ë¦¬ê°€í˜¸ || _ë°œë¼ê·¼ê±°ë¦¬ê°€í˜¸) {
 			weaponDamage = weaponMaxDamage * 2;
-			_¹ß¶ó±Ù°Å¸®°¡È£ = false;
-			_¹ß¶ó¿ø°Å¸®°¡È£ = false;
+			_ë°œë¼ê·¼ê±°ë¦¬ê°€í˜¸ = false;
+			_ë°œë¼ì›ê±°ë¦¬ê°€í˜¸ = false;
 		}
 		if (_pc.getSkillEffectTimerSet().hasSkillEffect(SOUL_OF_FLAME)) {
 			if (_weaponType != 20 && _weaponType != 62) {
@@ -1144,20 +1144,20 @@ public class L1Attack {
 			dmg += _pc.getBowDmgup() + _pc.getBowDmgupByArmor() + _pc.getBowDmgupByDoll();
 		}
 
-		if (_weaponType == 20) { // È°
+		if (_weaponType == 20) { // í™œ
 			if (_arrow != null) {
 				int add_dmg = _arrow.getItem().getDmgSmall();
 				if (add_dmg == 0) {
 					add_dmg = 1;
 				}
 				dmg += _random.nextInt(add_dmg) + 1;
-			} else if (_weaponId == 190 || _weaponId == 9100 || _weaponId == 450009) { // »çÀÌÇÏÀÇ
-																						// È°,
-																						// °¡ÀÌ¾Æ
-				// °İ³ë
+			} else if (_weaponId == 190 || _weaponId == 9100 || _weaponId == 450009) { // ì‚¬ì´í•˜ì˜
+																						// í™œ,
+																						// ê°€ì´ì•„
+				// ê²©ë…¸
 				dmg += _random.nextInt(15) + 1;
 			}
-		} else if (_weaponType == 62) { // ¾Ï ÅäÅä ·¿
+		} else if (_weaponType == 62) { // ì•” í† í†  ë ›
 			int add_dmg = _sting.getItem().getDmgSmall();
 			if (add_dmg == 0) {
 				add_dmg = 1;
@@ -1165,10 +1165,10 @@ public class L1Attack {
 			dmg = dmg + _random.nextInt(add_dmg) + 1;
 		}
 
-		/** ¾Ç¸ùÀÇÀå±Ã Áø³ëÀÇÅ©·Î½ºº¸¿ì ¸®´º¾ó 6115 **/
+		/** ì•…ëª½ì˜ì¥ê¶ ì§„ë…¸ì˜í¬ë¡œìŠ¤ë³´ìš° ë¦¬ë‰´ì–¼ 6115 **/
 		if (_pc.getInventory().checkEquipped(450009) || _pc.getInventory().checkEquipped(66)
-				|| _pc.getInventory().checkEquipped(450008) || _pc.getInventory().checkEquipped(450010)) {// ¾ÆÀÌÅÛ¹øÈ£ µğºñ¿¡
-																											// ¸Â°Ô º¯°æ
+				|| _pc.getInventory().checkEquipped(450008) || _pc.getInventory().checkEquipped(450010)) {// ì•„ì´í…œë²ˆí˜¸ ë””ë¹„ì—
+																											// ë§ê²Œ ë³€ê²½
 			if (_pc.getLawful() < -32760) {
 				dmg += 13;
 			}
@@ -1185,9 +1185,9 @@ public class L1Attack {
 				dmg += 1;
 			}
 		}
-		// dmg = calcBuffDamage(dmg); Áßº¹À¸·ÎÀÎÇÑÁÖ¼®Ã³¸®
-		/** Áø³ëÀÇÅ©·Î¿ì ¸®´º¾ó 6127 **/
-		if (_pc.getInventory().checkEquipped(6127)) {// ¾ÆÀÌÅÛ¹øÈ£ µğºñ¿¡ ¸Â°Ô º¯°æ
+		// dmg = calcBuffDamage(dmg); ì¤‘ë³µìœ¼ë¡œì¸í•œì£¼ì„ì²˜ë¦¬
+		/** ì§„ë…¸ì˜í¬ë¡œìš° ë¦¬ë‰´ì–¼ 6127 **/
+		if (_pc.getInventory().checkEquipped(6127)) {// ì•„ì´í…œë²ˆí˜¸ ë””ë¹„ì— ë§ê²Œ ë³€ê²½
 			if (_pc.getLawful() < -32760) {
 				dmg += 8;
 			}
@@ -1204,9 +1204,9 @@ public class L1Attack {
 				dmg += 1;
 			}
 		}
-		// dmg = calcBuffDamage(dmg); Áßº¹À¸·ÎÀÎÇÑÁÖ¼®Ã³¸®
-		/** ºÓÀº ±â»çÀÇ ´ë°Ë ¸®´º¾ó 4150133 **/
-		if (_pc.getInventory().checkEquipped(4150133)) {// ¾ÆÀÌÅÛ¹øÈ£ µğºñ¿¡ ¸Â°Ô º¯°æ
+		// dmg = calcBuffDamage(dmg); ì¤‘ë³µìœ¼ë¡œì¸í•œì£¼ì„ì²˜ë¦¬
+		/** ë¶‰ì€ ê¸°ì‚¬ì˜ ëŒ€ê²€ ë¦¬ë‰´ì–¼ 4150133 **/
+		if (_pc.getInventory().checkEquipped(4150133)) {// ì•„ì´í…œë²ˆí˜¸ ë””ë¹„ì— ë§ê²Œ ë³€ê²½
 			if (_pc.getLawful() < -32760) {
 				dmg += 8;
 			}
@@ -1224,40 +1224,40 @@ public class L1Attack {
 			}
 		}
 		dmg = calcBuffDamage(dmg);
-		// 80·¾ºÎÅÍ 1·¾´ç Ãß°¡ µ¥¹ÌÁö 1¾¿..µ¥¹ÌÁö¸¦ ¹Ù²Ù°í½ÍÀ¸¸é µÚ¿¡¼ıÀÚ 2À» ¹Ù²Ù¼¼¿ä
-		dmg += Math.max(0, _pc.getLevel() - 80) * 2; // ·¾´çµ¥¹ÌÁöÃß°¡2
+		// 80ë ™ë¶€í„° 1ë ™ë‹¹ ì¶”ê°€ ë°ë¯¸ì§€ 1ì”©..ë°ë¯¸ì§€ë¥¼ ë°”ê¾¸ê³ ì‹¶ìœ¼ë©´ ë’¤ì—ìˆ«ì 2ì„ ë°”ê¾¸ì„¸ìš”
+		dmg += Math.max(0, _pc.getLevel() - 80) * 2; // ë ™ë‹¹ë°ë¯¸ì§€ì¶”ê°€2
 
 		dmg = calcPcDefenseByAcTable(dmg);
-		// //µ¥¹ÌÁö ¹ö±× 350ÀÌ»óÀº ³ª¿Ã¼ö¾ø´Ù.
+		// //ë°ë¯¸ì§€ ë²„ê·¸ 350ì´ìƒì€ ë‚˜ì˜¬ìˆ˜ì—†ë‹¤.
 		// if (_calcType == PC_PC || _calcType == PC_NPC) {
-		// if (dmg > 100) {//µ¥¹ÌÁö Á¶ÀıºÎºĞ
+		// if (dmg > 100) {//ë°ë¯¸ì§€ ì¡°ì ˆë¶€ë¶„
 		// dmg = 200;
 		// }
 		// }
 		
 
-		int ¹ßµ¿Âù½º = _random.nextInt(100);
+		int ë°œë™ì°¬ìŠ¤ = _random.nextInt(100);
 		int basedmg = 0;
-		if (¹ßµ¿Âù½º <= Config.¹ß¶ó°¡È£È®·ü) {
+		if (ë°œë™ì°¬ìŠ¤ <= Config.ë°œë¼ê°€í˜¸í™•ë¥ ) {
 			for (L1ItemInstance item : _pc.getInventory().getItems()) {
 				if (item.isEquipped()) {
 					if (item.getItemId() >= 420112 && item.getItemId() <= 420115) {
-						basedmg = (int) Config.¹ß¶óÀÌÆåÆ®´ë¹ÌÁö1;
+						basedmg = (int) Config.ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€1;
 						if (item.getEnchantLevel() == 7)
-							basedmg = (int) Config.¹ß¶óÀÌÆåÆ®´ë¹ÌÁö2;
+							basedmg = (int) Config.ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€2;
 						if (item.getEnchantLevel() == 8)
-							basedmg = (int) Config.¹ß¶óÀÌÆåÆ®´ë¹ÌÁö3;
+							basedmg = (int) Config.ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€3;
 						if (item.getEnchantLevel() == 9)
-							basedmg = (int) Config.¹ß¶óÀÌÆåÆ®´ë¹ÌÁö4;
+							basedmg = (int) Config.ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€4;
 						dmg += basedmg;
 						_pc.sendPackets(new S_SkillSound(_pc.getId(), 15841));
 						Broadcaster.broadcastPacket(_pc, new S_SkillSound(_pc.getId(), 15841));
-						_¹ß¶ó±Ù°Å¸®°¡È£ = true;
+						_ë°œë¼ê·¼ê±°ë¦¬ê°€í˜¸ = true;
 					}
 				}
 			}
 		}
-		if (_weaponType == 0) { // ¸Ç¼Õ
+		if (_weaponType == 0) { // ë§¨ì†
 			dmg = (_random.nextInt(5) + 4) / 4;
 		} else if (_weaponType == 46) {
 			dmg += 2;
@@ -1296,10 +1296,10 @@ public class L1Attack {
 		case 124:
 		case 200124:
 			dmg += WeaponSkill.getBaphometStaffDamage(_pc, _target);
-			¹ÙÆ÷¿¥Èí();
+			ë°”í¬ì— í¡();
 			break;
 		case 450008:
-			dmg += WeaponSkill.get4Â÷StaffDamage(_pc, _target);
+			dmg += WeaponSkill.get4ì°¨StaffDamage(_pc, _target);
 			break;
 		case 126:
 		case 127:
@@ -1366,8 +1366,8 @@ public class L1Attack {
 			calcStaffOfMana();
 			WeaponSkill.getDiseaseWeapon(_pc, _target, 413101);
 			break;
-		case 317: // ÆÄ±«ÀÇ Å©·Î¿ì
-		case 316: // ÆÄ±«ÀÇ ÀÌµµ·ù
+		case 317: // íŒŒê´´ì˜ í¬ë¡œìš°
+		case 316: // íŒŒê´´ì˜ ì´ë„ë¥˜
 			dmg += WeaponSkill.getVenomBladesDamage(_pc, _target, _weaponEnchant);
 			break;
 		case 84:
@@ -1392,14 +1392,14 @@ public class L1Attack {
 			doll.attackPoisonDamage(_pc, _targetPc);
 		}
 
-		dmg += ·ëÆ¼½º°Ë±ÍÃß°¡µ¥¹ÌÁö();
+		dmg += ë£¸í‹°ìŠ¤ê²€ê·€ì¶”ê°€ë°ë¯¸ì§€();
 
 		if (_pc.MaanAddDmg) {
 			int rnd = _random.nextInt(100) + 1;
 			if (rnd <= 15)
 				dmg += 5;
 		}
-		dmg -= _targetPc.getDamageReductionByArmor(); // ¹æ¾î¿ë ±â±¸¿¡ ÀÇÇÑ µ¥¹ÌÁö °æ°¨
+		dmg -= _targetPc.getDamageReductionByArmor(); // ë°©ì–´ìš© ê¸°êµ¬ì— ì˜í•œ ë°ë¯¸ì§€ ê²½ê°
 
 		if (_pc.getWeapon() != null && _targetPc.getWeapon() != null) {
 			if (_pc.getWeapon().getItem().getType() == 4) {
@@ -1408,17 +1408,17 @@ public class L1Attack {
 		}
 		
 		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STRIKER_GALE)) {
-			dmg += Config.°ÔÀÏÃß°¡´ë¹ÌÁö;
+			dmg += Config.ê²Œì¼ì¶”ê°€ëŒ€ë¯¸ì§€;
 		}
 		
-		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(SPECIAL_COOKING)) { // ½ºÆä¼È¿ä¸®¿¡
-																					// ÀÇÇÑ
-																					// µ¥¹ÌÁö
-																					// °æ°¨
+		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(SPECIAL_COOKING)) { // ìŠ¤í˜ì…œìš”ë¦¬ì—
+																					// ì˜í•œ
+																					// ë°ë¯¸ì§€
+																					// ê²½ê°
 			dmg -= 5;
 		}
-		dmg -= ·ëÆ¼½ººÓ±Íµ¥¹ÌÁö°¨¼Ò();
-		dmg -= ½º³ÀÆÛÃ¼¹İµ¥¹ÌÁö°¨¼Ò();
+		dmg -= ë£¸í‹°ìŠ¤ë¶‰ê·€ë°ë¯¸ì§€ê°ì†Œ();
+		dmg -= ìŠ¤ëƒ…í¼ì²´ë°˜ë°ë¯¸ì§€ê°ì†Œ();
 		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(REDUCTION_ARMOR)) {
 			int targetPcLvl = _targetPc.getLevel();
 			if (targetPcLvl < 50) {
@@ -1432,8 +1432,8 @@ public class L1Attack {
 		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(FEATHER_BUFF_B)) {
 			dmg -= 2;
 		}
-		// ·ëÆ¼½º ºÓÀººû È®·üÀû µ¥¹ÌÁö°¨¼ÒÃ³¸®
-		if (_targetPc.getInventory().checkEquipped(500040)) {// ¹İ¿ªÀÚÀÇ¹æÆĞ
+		// ë£¸í‹°ìŠ¤ ë¶‰ì€ë¹› í™•ë¥ ì  ë°ë¯¸ì§€ê°ì†Œì²˜ë¦¬
+		if (_targetPc.getInventory().checkEquipped(500040)) {// ë°˜ì—­ìì˜ë°©íŒ¨
 			int chance = _random.nextInt(100);
 			L1ItemInstance item = _targetPc.getInventory().findEquippedItemId(500040);
 			int enchant = item.getEnchantLevel();
@@ -1443,14 +1443,14 @@ public class L1Attack {
 				_targetPc.broadcastPacket(new S_SkillSound(_targetPc.getId(), 6320));
 			}
 		}
-		/** ¾Æ¸Óºê·¹ÀÌÅ© */
-		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(ARMOR_BRAKE)) { // ¾Æ¸Óºê·¹ÀÌÅ©
+		/** ì•„ë¨¸ë¸Œë ˆì´í¬ */
+		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(ARMOR_BRAKE)) { // ì•„ë¨¸ë¸Œë ˆì´í¬
 			if (_weaponType != 20 && _weaponType != 62) {
 				dmg *= 1.58;
 			}
 		}
-		/** ¾Æ¸Óºê·¹ÀÌÅ© */
-		/** °³ÀÎ ¹ë·±½º Ãß°¡ */
+		/** ì•„ë¨¸ë¸Œë ˆì´í¬ */
+		/** ê°œì¸ ë°¸ëŸ°ìŠ¤ ì¶”ê°€ */
 		if (_pc.getAddDamageRate() >= CommonUtil.random(100)) {
 			dmg += _pc.getAddDamage();
 		}
@@ -1463,7 +1463,7 @@ public class L1Attack {
 			dmg += _pc.getBapodmg();
 		}
 
-		// ¹«±â º§·±½º Ã³¸®
+		// ë¬´ê¸° ë²¨ëŸ°ìŠ¤ ì²˜ë¦¬
 		if (_weaponType == 20) {
 			dmg -= 15;
 		}
@@ -1472,18 +1472,18 @@ public class L1Attack {
 			dmg -= 5;
 		}
 
-		if (_weaponId == 317 || _weaponId == 316) { // ÆÄÀÌ ÆÄÅ©
+		if (_weaponId == 317 || _weaponId == 316) { // íŒŒì´ íŒŒí¬
 			dmg -= 10;
 		}
 
-		if (_weaponId == 318) { // ÆÄÀå
+		if (_weaponId == 318) { // íŒŒì¥
 			dmg -= 4;
 		}
-		if (_weaponId == 205) { // ´ŞÀå
+		if (_weaponId == 205) { // ë‹¬ì¥
 			dmg -= 3;
 		}
 
-		// ÀÎÃ¦´ç ´ë¹ÌÁö ÃßÅ¸
+		// ì¸ì±ˆë‹¹ ëŒ€ë¯¸ì§€ ì¶”íƒ€
 		/*int randomAdddmg = (_random.nextInt(3));
 		if (_weaponEnchant == 7) {
 			switch (randomAdddmg) {
@@ -1595,7 +1595,7 @@ public class L1Attack {
 			}
 		}*/
 
-		// Ä³¸¯ÅÍ °£ ´ë¹ÌÁö ¿ÜºÎÈ­ Ã³¸®
+		// ìºë¦­í„° ê°„ ëŒ€ë¯¸ì§€ ì™¸ë¶€í™” ì²˜ë¦¬
 
 		if (_calcType == PC_PC && _weaponId != 0) {
 			if (_pc.isCrown()) {
@@ -1611,7 +1611,7 @@ public class L1Attack {
 			}
 		}
 
-		if (_weaponId == 9100) {// °¡ÀÌ¾ÆÀÇ°İ³ë µ¥¹ÌÁö¸®´ö¼Ç
+		if (_weaponId == 9100) {// ê°€ì´ì•„ì˜ê²©ë…¸ ë°ë¯¸ì§€ë¦¬ë•ì…˜
 			int targetReduc = _targetPc.getDamageReductionByArmor();
 			if (targetReduc > weapon.getEnchantLevel() + 9) {
 				targetReduc = weapon.getEnchantLevel() + 9;
@@ -1624,14 +1624,14 @@ public class L1Attack {
 		}
 
 		if (_calcType == PC_PC) {
-			/** PVPÃß°¡ ´ë¹ÌÁö **/
+			/** PVPì¶”ê°€ ëŒ€ë¯¸ì§€ **/
 			if (_pc.getPVPDamage() > 0) {
 				int PVP = _pc.getPVPDamage();
 				dmg += PVP;
 
 			}
 
-			/** PVP´ë¹ÌÁö °¨¼Ò **/
+			/** PVPëŒ€ë¯¸ì§€ ê°ì†Œ **/
 			if (_pc.getPVPDamageReduction() > 0) {
 				int PVP = _pc.getPVPDamageReduction();
 				dmg -= PVP;
@@ -1698,64 +1698,64 @@ public class L1Attack {
 			L1ItemInstance item = _targetPc.getInventory().checkEquippedItem(20395);
 			if (item != null) {
 				if (item.getEnchantLevel() == 0) {
-					if (chance <= 2) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 2) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 5 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 1) {
-					if (chance <= 4) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 4) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 10 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 2) {
-					if (chance <= 6) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 6) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 20 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 3) {
-					if (chance <= 8) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 8) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 30 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 4) {
-					if (chance <= 10) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 10) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 40 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 5) {
-					if (chance <= 15) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 15) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 50 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 6) {
-					if (chance <= 20) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 20) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 60 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 7) {
-					if (chance <= 25) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 25) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 70 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 8) {
-					if (chance <= 30) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 30) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 80 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 9) {
-					if (chance <= 40) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 40) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 100 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 10) {
-					if (chance <= 50) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 50) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 150 + chanceHp);
 						type = true;
 					}
 				}
 
 				if (type) {
-					_targetPc.sendPackets(new S_SkillSound(_targetId, 2187));// ÆÄÇª°¡È£
+					_targetPc.sendPackets(new S_SkillSound(_targetId, 2187));// íŒŒí‘¸ê°€í˜¸
 					_targetPc.broadcastPacket(new S_SkillSound(_targetId, 2187));
 				}
 
@@ -1769,9 +1769,9 @@ public class L1Attack {
 		for (L1ItemInstance armor : _targetPc.getEquipSlot().getArmors()) {
 			if (AccessoryBalanceTable.getInstance().getItemBalanceReduction(armor.getItemId(), armor.getEnchantLevel()) != 0) {
 				if (armor.getItem().getType() >= 8 && armor.getItem().getType() <= 13) {
-					//_pc.sendPackets(new S_SystemMessage("¾Ç¼¼»ç¸® = " + armor.getName() + ", Àû¿ëÀü ´ë¹ÌÁö = " + dmg));
+					//_pc.sendPackets(new S_SystemMessage("ì•…ì„¸ì‚¬ë¦¬ = " + armor.getName() + ", ì ìš©ì „ ëŒ€ë¯¸ì§€ = " + dmg));
 					dmg -= AccessoryBalanceTable.getInstance().getItemBalanceReduction(armor.getItemId(), armor.getEnchantLevel());
-					//_pc.sendPackets(new S_SystemMessage("¾Ç¼¼»ç¸® = " + armor.getName() + ", Àû¿ëÈÄ ´ë¹ÌÁö = " + dmg));
+					//_pc.sendPackets(new S_SystemMessage("ì•…ì„¸ì‚¬ë¦¬ = " + armor.getName() + ", ì ìš©í›„ ëŒ€ë¯¸ì§€ = " + dmg));
 				}
 			}
 		}
@@ -1780,9 +1780,9 @@ public class L1Attack {
 		
 		for (L1ItemInstance armor : _pc.getEquipSlot().getArmors()) {
 			if (AccessoryBalanceTable.getInstance().getItemBalanceReduction(armor.getItemId(), armor.getEnchantLevel()) != 0) {
-				//_pc.sendPackets(new S_SystemMessage("¾Ç¼¼»ç¸® = " + armor.getName() + ", Àû¿ëÀü ´ë¹ÌÁö = " + dmg));
+				//_pc.sendPackets(new S_SystemMessage("ì•…ì„¸ì‚¬ë¦¬ = " + armor.getName() + ", ì ìš©ì „ ëŒ€ë¯¸ì§€ = " + dmg));
 				dmg += AccessoryBalanceTable.getInstance().getItemBalanceDmg(armor.getItemId(), armor.getEnchantLevel());
-				//_pc.sendPackets(new S_SystemMessage("¾Ç¼¼»ç¸® = " + armor.getName() + ", Àû¿ëÈÄ ´ë¹ÌÁö = " + dmg));
+				//_pc.sendPackets(new S_SystemMessage("ì•…ì„¸ì‚¬ë¦¬ = " + armor.getName() + ", ì ìš©í›„ ëŒ€ë¯¸ì§€ = " + dmg));
 			}
 		}
 		
@@ -1790,10 +1790,10 @@ public class L1Attack {
 		for (L1ItemInstance armor : _targetPc.getEquipSlot().getArmors()) {
 			if (ArmorBalanceTable.getInstance().getItemBalanceReduc(armor.getItemId(), armor.getEnchantLevel()) != 0) {
 				if (_pc.isGm()) {
-					_pc.sendPackets(new S_SystemMessage("¹æ¾î±¸ = " + armor.getName() + ", Àû¿ëÀü ´ë¹ÌÁö = " + dmg));
+					_pc.sendPackets(new S_SystemMessage("ë°©ì–´êµ¬ = " + armor.getName() + ", ì ìš©ì „ ëŒ€ë¯¸ì§€ = " + dmg));
 					dmg -= ArmorBalanceTable.getInstance().getItemBalanceReduc(armor.getItemId(),
 							armor.getEnchantLevel());
-					_pc.sendPackets(new S_SystemMessage("¹æ¾î±¸ = " + armor.getName() + ", Àû¿ëÈÄ ´ë¹ÌÁö = " + dmg));
+					_pc.sendPackets(new S_SystemMessage("ë°©ì–´êµ¬ = " + armor.getName() + ", ì ìš©í›„ ëŒ€ë¯¸ì§€ = " + dmg));
 				} else {
 					dmg -= ArmorBalanceTable.getInstance().getItemBalanceReduc(armor.getItemId(),
 							armor.getEnchantLevel());
@@ -1811,7 +1811,7 @@ public class L1Attack {
 		return (int) dmg;
 	}
 
-	private int ·ëÆ¼½ººÓ±Íµ¥¹ÌÁö°¨¼Ò() {
+	private int ë£¸í‹°ìŠ¤ë¶‰ê·€ë°ë¯¸ì§€ê°ì†Œ() {
 		int damage = 0;
 		if (_calcType == NPC_PC || _calcType == PC_PC) {
 			L1ItemInstance item = _targetPc.getInventory().checkEquippedItem(427112);
@@ -1833,7 +1833,7 @@ public class L1Attack {
 		return damage;
 	}
 
-	private double ·ëÆ¼½º°Ë±ÍÃß°¡µ¥¹ÌÁö() {
+	private double ë£¸í‹°ìŠ¤ê²€ê·€ì¶”ê°€ë°ë¯¸ì§€() {
 		int dmg = 0;
 		if (_calcType == PC_PC || _calcType == PC_NPC) {
 			L1ItemInstance blackRumti = _pc.getInventory().checkEquippedItem(427110);
@@ -1861,7 +1861,7 @@ public class L1Attack {
 
 	private int calcAttrEnchantDmg() {
 		int dmg = 0;
-		/** ¼Ó¼ºÀÎÃ¦Æ® Ãß°¡ Å¸°İÄ¡ */
+		/** ì†ì„±ì¸ì±ˆíŠ¸ ì¶”ê°€ íƒ€ê²©ì¹˜ */
 		switch (_weaponAttrEnchantLevel) {
 		case 1:
 		case 4:
@@ -1888,26 +1888,26 @@ public class L1Attack {
 		return dmg;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ NPC ¿¡ÀÇ µ¥¹ÌÁö »êÃâ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— í”Œë ˆì´ì–´ë¡œë¶€í„° NPC ì—ì˜ ë°ë¯¸ì§€ ì‚°ì¶œ â—â—â—â—
 	private int calcPcNpcDamage() {
 		int weaponMaxDamage = 0;
 
 		int doubleChance = _random.nextInt(100) + 1;
 
 		if (_pc instanceof L1RobotInstance) {
-			if (((L1RobotInstance) _pc).»ç³Éº¿_À§Ä¡.equalsIgnoreCase("ÁöÀú") || ((L1RobotInstance) _pc).»ç³Éº¿_À§Ä¡.startsWith("ÀØ¼¶")
-					|| ((L1RobotInstance) _pc).»ç³Éº¿_À§Ä¡.equalsIgnoreCase("¼±¹Ú¼ö¸é")
-					|| ((L1RobotInstance) _pc).»ç³Éº¿_À§Ä¡.equalsIgnoreCase("»ó¾ÆÅ¾4Ãş")
-					|| ((L1RobotInstance) _pc).»ç³Éº¿_À§Ä¡.equalsIgnoreCase("»ó¾ÆÅ¾5Ãş")) {
-				if (_pc.getCurrentWeapon() == 46 // ´Ü°Ë
-						|| _pc.getCurrentWeapon() == 20 || _pc.getCurrentWeapon() == 24) {// È°
+			if (((L1RobotInstance) _pc).ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ì§€ì €") || ((L1RobotInstance) _pc).ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.startsWith("ìŠì„¬")
+					|| ((L1RobotInstance) _pc).ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ì„ ë°•ìˆ˜ë©´")
+					|| ((L1RobotInstance) _pc).ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìƒì•„íƒ‘4ì¸µ")
+					|| ((L1RobotInstance) _pc).ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜.equalsIgnoreCase("ìƒì•„íƒ‘5ì¸µ")) {
+				if (_pc.getCurrentWeapon() == 46 // ë‹¨ê²€
+						|| _pc.getCurrentWeapon() == 20 || _pc.getCurrentWeapon() == 24) {// í™œ
 					return _random.nextInt(50) + 100;
 				} else {
 					return _random.nextInt(50) + 50;
 				}
 			} else {
-				if (_pc.getCurrentWeapon() == 46 // ´Ü°Ë
-						|| _pc.getCurrentWeapon() == 20 || _pc.getCurrentWeapon() == 24) {// È°
+				if (_pc.getCurrentWeapon() == 46 // ë‹¨ê²€
+						|| _pc.getCurrentWeapon() == 20 || _pc.getCurrentWeapon() == 24) {// í™œ
 					return _random.nextInt(30) + 70;
 				} else {
 					return _random.nextInt(40) + 40;
@@ -1928,22 +1928,22 @@ public class L1Attack {
 
 		int weaponDamage = 0;
 
-		if (_weaponType == 58 && doubleChance <= _weaponDoubleDmgChance) { // À§±â
-																			// È÷Æ®
+		if (_weaponType == 58 && doubleChance <= _weaponDoubleDmgChance) { // ìœ„ê¸°
+																			// íˆíŠ¸
 			weaponDamage = weaponMaxDamage + _weaponAddDmg;
-			_attackType = 2; // ÀÌ°Ô ÀÌÆÑÆ®±º
+			_attackType = 2; // ì´ê²Œ ì´íŒ©íŠ¸êµ°
 			// _pc.sendPackets(new S_SkillSound(_targetId, 13416));
 			// Broadcaster.broadcastPacket(_pc, new
 			// S_SkillSound(_targetPc.getId(), 13416));
-		} else if (_weaponType == 0) { // ¸Ç¼Õ
+		} else if (_weaponType == 0) { // ë§¨ì†
 			weaponDamage = 0;
 		} else {
 			weaponDamage = _random.nextInt(weaponMaxDamage) + 1 + _weaponAddDmg;
 		}
-		if (_¹ß¶ó¿ø°Å¸®°¡È£ || _¹ß¶ó±Ù°Å¸®°¡È£) {
+		if (_ë°œë¼ì›ê±°ë¦¬ê°€í˜¸ || _ë°œë¼ê·¼ê±°ë¦¬ê°€í˜¸) {
 			weaponDamage = weaponMaxDamage * 2;
-			_¹ß¶ó±Ù°Å¸®°¡È£ = false;
-			_¹ß¶ó¿ø°Å¸®°¡È£ = false;
+			_ë°œë¼ê·¼ê±°ë¦¬ê°€í˜¸ = false;
+			_ë°œë¼ì›ê±°ë¦¬ê°€í˜¸ = false;
 		}
 		if (_pc.getSkillEffectTimerSet().hasSkillEffect(SOUL_OF_FLAME)) {
 			if (_weaponType != 20 && _weaponType != 62) {
@@ -1953,12 +1953,12 @@ public class L1Attack {
 
 		int weaponTotalDamage = weaponDamage + _weaponEnchant;
 
-		weaponTotalDamage += calcMaterialBlessDmg(); // ÀºÃàº¹ µ¥¹ÌÁö º¸³Ê½º
+		weaponTotalDamage += calcMaterialBlessDmg(); // ì€ì¶•ë³µ ë°ë¯¸ì§€ ë³´ë„ˆìŠ¤
 
-		if (_weaponType == 54 && doubleChance <= _weaponDoubleDmgChance) { // ´õºí
-																			// È÷Æ®
+		if (_weaponType == 54 && doubleChance <= _weaponDoubleDmgChance) { // ë”ë¸”
+																			// íˆíŠ¸
 			weaponTotalDamage *= 2;
-			_attackType = 4; // ÀÌ°Ô ÀÌÆÑÆ®±º
+			_attackType = 4; // ì´ê²Œ ì´íŒ©íŠ¸êµ°
 			//// _pc.sendPackets(new S_SkillSound(_pc.getId(), 3398));
 			//// Broadcaster.broadcastPacket(_pc, new S_SkillSound(_pc.getId(),
 			//// 3398));
@@ -2023,7 +2023,7 @@ public class L1Attack {
 			dmg *= 1.1;
 		}
 
-		double add_Pc_Npc_reduc = Map_Event.getInstance().getadd_Pc_Npc_reduc(_pc.getMapId()); // ¸ÊÀÌº¥Æ®
+		double add_Pc_Npc_reduc = Map_Event.getInstance().getadd_Pc_Npc_reduc(_pc.getMapId()); // ë§µì´ë²¤íŠ¸
 		if (add_Pc_Npc_reduc == 0) {
 			add_Pc_Npc_reduc = 1;
 		}
@@ -2034,7 +2034,7 @@ public class L1Attack {
 			dmg += _pc.getBowDmgup() + _pc.getBowDmgupByArmor() + _pc.getBowDmgupByDoll();
 		}
 
-		if (_weaponType == 20) { // È°
+		if (_weaponType == 20) { // í™œ
 			if (_arrow != null) {
 				int add_dmg = 0;
 				if (_targetNpc.getNpcTemplate().get_size().equalsIgnoreCase("large")) {
@@ -2049,11 +2049,11 @@ public class L1Attack {
 					add_dmg /= 2;
 				}
 				dmg = dmg + _random.nextInt(add_dmg) + 1;
-			} else if (_weaponId == 190 || _weaponId == 9100 || _weaponId == 450009) { // »çÀÌÇÏÀÇ È°, °¡ÀÌ¾Æ
-				// °İ³ë
+			} else if (_weaponId == 190 || _weaponId == 9100 || _weaponId == 450009) { // ì‚¬ì´í•˜ì˜ í™œ, ê°€ì´ì•„
+				// ê²©ë…¸
 				dmg = dmg + _random.nextInt(15) + 1;
 			}
-		} else if (_weaponType == 62) { // ¾Ï ÅäÅä ·¿
+		} else if (_weaponType == 62) { // ì•” í† í†  ë ›
 			int add_dmg = 0;
 			if (_targetNpc.getNpcTemplate().get_size().equalsIgnoreCase("large")) {
 				add_dmg = _sting.getItem().getDmgLarge();
@@ -2068,10 +2068,10 @@ public class L1Attack {
 
 		dmg = calcBuffDamage(dmg);
 
-		if (_weaponType == 0) { // ¸Ç¼Õ
+		if (_weaponType == 0) { // ë§¨ì†
 			dmg = (_random.nextInt(5) + 4) / 4;
 		}
-		if (_weaponType1 == 17) { // Å°¸µÅ©
+		if (_weaponType1 == 17) { // í‚¤ë§í¬
 			dmg = WeaponSkill.getKiringkuDamage(_pc, _target);
 		}
 		switch (_weaponId) {
@@ -2100,10 +2100,10 @@ public class L1Attack {
 		case 124:
 		case 200124:
 			dmg += WeaponSkill.getBaphometStaffDamage(_pc, _target);
-			¹ÙÆ÷¿¥Èí();
+			ë°”í¬ì— í¡();
 			break;
 		case 450008:
-			dmg += WeaponSkill.get4Â÷StaffDamage(_pc, _target);
+			dmg += WeaponSkill.get4ì°¨StaffDamage(_pc, _target);
 			break;
 		case 126:
 		case 127:
@@ -2169,8 +2169,8 @@ public class L1Attack {
 			calcStaffOfMana();
 			WeaponSkill.getDiseaseWeapon(_pc, _target, 413101);
 			break;
-		case 317: // ÆÄ±«ÀÇ Å©·Î¿ì
-		case 316: // ÆÄ±«ÀÇ ÀÌµµ·ù
+		case 317: // íŒŒê´´ì˜ í¬ë¡œìš°
+		case 316: // íŒŒê´´ì˜ ì´ë„ë¥˜
 			dmg += WeaponSkill.getVenomBladesDamage(_pc, _target, _weaponEnchant);
 			break;
 		case 84:
@@ -2194,23 +2194,23 @@ public class L1Attack {
 			break;
 		}
 
-		int ¹ßµ¿Âù½º = _random.nextInt(100);
+		int ë°œë™ì°¬ìŠ¤ = _random.nextInt(100);
 		int basedmg = 0;
-		if (¹ßµ¿Âù½º <= Config.¹ß¶ó°¡È£È®·ü) {
+		if (ë°œë™ì°¬ìŠ¤ <= Config.ë°œë¼ê°€í˜¸í™•ë¥ ) {
 			for (L1ItemInstance item : _pc.getInventory().getItems()) {
 				if (item.isEquipped()) {
 					if (item.getItemId() >= 420112 && item.getItemId() <= 420115) {
-						basedmg = (int) Config.¹ß¶óÀÌÆåÆ®´ë¹ÌÁö1;
+						basedmg = (int) Config.ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€1;
 						if (item.getEnchantLevel() == 7)
-							basedmg = (int) Config.¹ß¶óÀÌÆåÆ®´ë¹ÌÁö2;
+							basedmg = (int) Config.ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€2;
 						if (item.getEnchantLevel() == 8)
-							basedmg = (int) Config.¹ß¶óÀÌÆåÆ®´ë¹ÌÁö3;
+							basedmg = (int) Config.ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€3;
 						if (item.getEnchantLevel() == 9)
-							basedmg = (int) Config.¹ß¶óÀÌÆåÆ®´ë¹ÌÁö4;
+							basedmg = (int) Config.ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€4;
 						dmg += basedmg;
 						_pc.sendPackets(new S_SkillSound(_pc.getId(), 15841));
 						Broadcaster.broadcastPacket(_pc, new S_SkillSound(_pc.getId(), 15841));
-						_¹ß¶ó±Ù°Å¸®°¡È£ = true;
+						_ë°œë¼ê·¼ê±°ë¦¬ê°€í˜¸ = true;
 					}
 				}
 			}
@@ -2239,7 +2239,7 @@ public class L1Attack {
 		if (_targetNpc.getNpcId() == 45640) {
 			dmg /= 2;
 		}
-		// ÇÃ·¹ÀÌ¾î·ÎºÎÅÍ ¾Ö¿Ïµ¿¹°, »ç¸ó¿¡ °ø°İ
+		// í”Œë ˆì´ì–´ë¡œë¶€í„° ì• ì™„ë™ë¬¼, ì‚¬ëª¬ì— ê³µê²©
 		boolean isNowWar = false;
 		int castleId = L1CastleLocation.getCastleIdByArea(_targetNpc);
 		if (castleId > 0) {
@@ -2261,7 +2261,7 @@ public class L1Attack {
 			dmg += _pc.getBapodmg();
 		}
 
-		// ¹«±â º§·±½º Ã³¸®
+		// ë¬´ê¸° ë²¨ëŸ°ìŠ¤ ì²˜ë¦¬
 		// if (_weaponType == 20) {
 		// dmg -= 10;
 		// }
@@ -2269,7 +2269,7 @@ public class L1Attack {
 		 * if (_weaponType == 46) { dmg -= 5; }
 		 * 
 		 */
-		// ÀÎÃ¦´ç ´ë¹ÌÁö ÃßÅ¸
+		// ì¸ì±ˆë‹¹ ëŒ€ë¯¸ì§€ ì¶”íƒ€
 		/*int randomAdddmg = (_random.nextInt(3));
 		if (_weaponEnchant == 7) {
 			switch (randomAdddmg) {
@@ -2380,7 +2380,7 @@ public class L1Attack {
 				break;
 			}
 		}*/
-		// ¹«±â º§·±½º Ã³¸®
+		// ë¬´ê¸° ë²¨ëŸ°ìŠ¤ ì²˜ë¦¬
 
 		/*double dmgRate = 1;
 		try {
@@ -2432,9 +2432,9 @@ public class L1Attack {
 		dmg += WeaponNpcBalanceTable.getInstance().getItemBalanceDmg(_weaponId, _weaponEnchant);
 		for (L1ItemInstance armor : _pc.getEquipSlot().getArmors()) {
 			if (AccessoryBalanceTable.getInstance().getItemBalanceReduction(armor.getItemId(), armor.getEnchantLevel()) != 0) {
-				//_pc.sendPackets(new S_SystemMessage("¾Ç¼¼»ç¸® = " + armor.getName() + ", Àû¿ëÀü ´ë¹ÌÁö = " + dmg));
+				//_pc.sendPackets(new S_SystemMessage("ì•…ì„¸ì‚¬ë¦¬ = " + armor.getName() + ", ì ìš©ì „ ëŒ€ë¯¸ì§€ = " + dmg));
 				dmg += AccessoryBalanceTable.getInstance().getItemBalanceDmg(armor.getItemId(), armor.getEnchantLevel());
-				//_pc.sendPackets(new S_SystemMessage("¾Ç¼¼»ç¸® = " + armor.getName() + ", Àû¿ëÈÄ ´ë¹ÌÁö = " + dmg));
+				//_pc.sendPackets(new S_SystemMessage("ì•…ì„¸ì‚¬ë¦¬ = " + armor.getName() + ", ì ìš©í›„ ëŒ€ë¯¸ì§€ = " + dmg));
 			}
 		}
 		
@@ -2450,7 +2450,7 @@ public class L1Attack {
 		return (int) dmg;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü NPC ·ÎºÎÅÍ ÇÃ·¹ÀÌ¾î¿¡ÀÇ µ¥¹ÌÁö »êÃâ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— NPC ë¡œë¶€í„° í”Œë ˆì´ì–´ì—ì˜ ë°ë¯¸ì§€ ì‚°ì¶œ â—â—â—â—
 	private int calcNpcPcDamage() {
 		int lvl = _npc.getLevel();
 		double dmg = 0D;
@@ -2477,49 +2477,49 @@ public class L1Attack {
 			mapevent_Npc_Pc_dmg = 1;
 		}
 
-		if (lvl < 20) { // ¸÷·¾ÀÌ 20¹Ì¸¸
+		if (lvl < 20) { // ëª¹ë ™ì´ 20ë¯¸ë§Œ
 			dmg = _random.nextInt(lvl) + 10D + _npc.getAbility().getTotalStr();
-		} else if (lvl >= 20 && lvl < 30) { // ¸÷·¾ÀÌ 20 ~ 29
+		} else if (lvl >= 20 && lvl < 30) { // ëª¹ë ™ì´ 20 ~ 29
 			dmg = _random.nextInt(lvl) + _npc.getAbility().getTotalStr() * Config.MONSTER_DAMAGE_1;
-		} else if (lvl >= 30 && lvl < 40) {// ¸÷·¾ÀÌ 30 ~ 39
+		} else if (lvl >= 30 && lvl < 40) {// ëª¹ë ™ì´ 30 ~ 39
 			dmg = _random.nextInt(lvl) + _npc.getAbility().getTotalStr() + Config.MONSTER_DAMAGE_2;
-		} else if (lvl >= 40 && lvl < 50) {// ¸÷·¾ÀÌ 40 ~ 49
+		} else if (lvl >= 40 && lvl < 50) {// ëª¹ë ™ì´ 40 ~ 49
 			dmg = _random.nextInt(lvl) + _npc.getAbility().getTotalStr() * Config.MONSTER_DAMAGE_3;
-		} else if (lvl >= 50 && lvl < 60) {// ¸÷·¾ÀÌ 50 ~ 59
+		} else if (lvl >= 50 && lvl < 60) {// ëª¹ë ™ì´ 50 ~ 59
 			dmg = _random.nextInt(lvl) + _npc.getAbility().getTotalStr() * Config.MONSTER_DAMAGE_4;
-		} else if (lvl >= 60 && lvl < 70) {// ¸÷·¾ÀÌ 60 ~ 69
+		} else if (lvl >= 60 && lvl < 70) {// ëª¹ë ™ì´ 60 ~ 69
 			dmg = _random.nextInt(lvl) + _npc.getAbility().getTotalStr() * Config.MONSTER_DAMAGE_5;
-		} else if (lvl >= 70 && lvl < 80) {// ¸÷·¾ÀÌ 70 ~ 79
+		} else if (lvl >= 70 && lvl < 80) {// ëª¹ë ™ì´ 70 ~ 79
 			dmg = _random.nextInt(lvl) + _npc.getAbility().getTotalStr() * Config.MONSTER_DAMAGE_6;
 		}
-		// ÆÄÇª°¡È£
+		// íŒŒí‘¸ê°€í˜¸
 		if (_target != null) {
 			int chance1 = _random.nextInt(100);
 			for (L1ItemInstance item : _targetPc.getInventory().getItems()) {
 				if (item.isEquipped()) {
 					if (item.getItemId() >= 420104 && item.getItemId() <= 420107) {
-						if (chance1 < Config.ÆÄÇª°¡È£È®·ü) {
-							int basehp = (int) Config.ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö1;
+						if (chance1 < Config.íŒŒí‘¸ê°€í˜¸í™•ë¥ ) {
+							int basehp = (int) Config.íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€1;
 							if (item.getEnchantLevel() == 7)
-								basehp = (int) Config.ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö2;
+								basehp = (int) Config.íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€2;
 							if (item.getEnchantLevel() == 8)
-								basehp = (int) Config.ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö3;
+								basehp = (int) Config.íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€3;
 							if (item.getEnchantLevel() == 9)
-								basehp = (int) Config.ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö4;
+								basehp = (int) Config.íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€4;
 							_targetPc.setCurrentHp(_targetPc.getCurrentHp() + basehp);
 							_targetPc.sendPackets(new S_SkillSound(_targetPc.getId(), 2187));
 							Broadcaster.broadcastPacket(_targetPc, new S_SkillSound(_targetPc.getId(), 2187));
 						}
 						break;
 					} else if (item.getItemId() >= 420108 && item.getItemId() <= 420111) {
-						if (chance1 < Config.¸°µå°¡È£È®·ü) {
-							int basemp = (int) Config.¸°µåÀÌÆåÆ®´ë¹ÌÁö1;
+						if (chance1 < Config.ë¦°ë“œê°€í˜¸í™•ë¥ ) {
+							int basemp = (int) Config.ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€1;
 							if (item.getEnchantLevel() == 7)
-								basemp = (int) Config.¸°µåÀÌÆåÆ®´ë¹ÌÁö2;
+								basemp = (int) Config.ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€2;
 							if (item.getEnchantLevel() == 8)
-								basemp = (int) Config.¸°µåÀÌÆåÆ®´ë¹ÌÁö3;
+								basemp = (int) Config.ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€3;
 							if (item.getEnchantLevel() == 9)
-								basemp = (int) Config.¸°µåÀÌÆåÆ®´ë¹ÌÁö4;
+								basemp = (int) Config.ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€4;
 							_targetPc.setCurrentMp(_targetPc.getCurrentMp() + basemp);
 							_targetPc.sendPackets(new S_SkillSound(_targetPc.getId(), 2188));
 							Broadcaster.broadcastPacket(_targetPc, new S_SkillSound(_targetPc.getId(), 2188));
@@ -2545,13 +2545,13 @@ public class L1Attack {
 
 		}
 
-		// °¡È£
+		// ê°€í˜¸
 
 		if (_npc instanceof L1PetInstance) {
-			dmg += (lvl / 16); // ÆêÀº LV16¸¶´Ù Ãß°¡ Å¸°İ
+			dmg += (lvl / 16); // í«ì€ LV16ë§ˆë‹¤ ì¶”ê°€ íƒ€ê²©
 			dmg += ((L1PetInstance) _npc).getDamageByWeapon();
 		}
-		dmg += ·ëÆ¼½º°Ë±ÍÃß°¡µ¥¹ÌÁö();
+		dmg += ë£¸í‹°ìŠ¤ê²€ê·€ì¶”ê°€ë°ë¯¸ì§€();
 		dmg += _npc.getDmgup();
 
 		dmg *= mapevent_Npc_Pc_dmg;
@@ -2560,8 +2560,8 @@ public class L1Attack {
 			dmg *= 1.1;
 		}
 
-		// ¹İ¿ªÀÚÀÇ¹æÆĞ È®·üÀû µ¥¹ÌÁö°¨¼ÒÃ³¸®
-		if (_targetPc.getInventory().checkEquipped(500040)) {// ¹İ¿ªÀÚÀÇ¹æÆĞ
+		// ë°˜ì—­ìì˜ë°©íŒ¨ í™•ë¥ ì  ë°ë¯¸ì§€ê°ì†Œì²˜ë¦¬
+		if (_targetPc.getInventory().checkEquipped(500040)) {// ë°˜ì—­ìì˜ë°©íŒ¨
 			int chance = _random.nextInt(100);
 			L1ItemInstance item = _targetPc.getInventory().findEquippedItemId(500040);
 			int enchant = item.getEnchantLevel();
@@ -2571,42 +2571,42 @@ public class L1Attack {
 				_targetPc.broadcastPacket(new S_SkillSound(_targetPc.getId(), 6320));
 			}
 		}
-		/** ÀüÃ¼ ¸ó½ºÅÍ ½Ø°Ô **/
-		// dmg = dmg * getLeverage() / 13;//<¸ó½ºÅÍ ¹°¸®µ¥¹ÌÁö ¿Ã¸®¸é ¾àÇØÁø´Ù.
-		dmg = dmg * getLeverage() / Config.npcdmg; // npc¹°¸®µ¥¹ÌÁö ¿ÜºÎÈ­
+		/** ì „ì²´ ëª¬ìŠ¤í„° ìŒ”ê²Œ **/
+		// dmg = dmg * getLeverage() / 13;//<ëª¬ìŠ¤í„° ë¬¼ë¦¬ë°ë¯¸ì§€ ì˜¬ë¦¬ë©´ ì•½í•´ì§„ë‹¤.
+		dmg = dmg * getLeverage() / Config.npcdmg; // npcë¬¼ë¦¬ë°ë¯¸ì§€ ì™¸ë¶€í™”
 		dmg -= calcPcDefense();
 		dmg = calcPcDefenseByAcTable(dmg);
 
-		if (_npc.isWeaponBreaked()) { // NPC°¡ ¿şÆùºê·¹ÀÌÅ©Áß.
+		if (_npc.isWeaponBreaked()) { // NPCê°€ ì›¨í°ë¸Œë ˆì´í¬ì¤‘.
 			dmg /= 2;
 		}
 
-		/** ¹İ¹æ */
+		/** ë°˜ë°© */
 		/*
-		 * if (_targetPc.is¹İ¿ªÀÚ()) { int chance = _targetPc.get¹İ¿ªÀÚÀÎÃ¦Æ®() * 2; if
+		 * if (_targetPc.isë°˜ì—­ì()) { int chance = _targetPc.getë°˜ì—­ìì¸ì±ˆíŠ¸() * 2; if
 		 * (_random.nextInt(100) <= chance) { if (dmg <= 50){ dmg -= dmg; } else { dmg
 		 * -= 50; } _targetPc.sendPackets(new S_SkillSound(_targetPc.getId(), 6320));
 		 * Broadcaster.broadcastPacket(_targetPc, new S_SkillSound(_targetPc.getId(),
 		 * 6320)); } }
 		 */
-		/** ¹İ¿ªÀÚ Åõ±¸ */
+		/** ë°˜ì—­ì íˆ¬êµ¬ */
 		/*
-		 * if (_targetPc.is¹İ¿ªÀÚÅõ±¸()) { // int chance = _targetPc.get¹İ¿ªÀÚÅõ±¸ÀÎÃ¦Æ®(); if
+		 * if (_targetPc.isë°˜ì—­ìíˆ¬êµ¬()) { // int chance = _targetPc.getë°˜ì—­ìíˆ¬êµ¬ì¸ì±ˆíŠ¸(); if
 		 * (_random.nextInt(100) <= chance) { if (dmg <= 20){ dmg -= dmg; } else { dmg
 		 * -= 20; } _targetPc.sendPackets(new S_SkillSound(_targetPc.getId(), 6320));
 		 * Broadcaster.broadcastPacket(_targetPc, new S_SkillSound(_targetPc.getId(),
 		 * 6320)); } }
 		*/ 
-		dmg -= _targetPc.getDamageReductionByArmor(); // ¹æ¾î¿ë ±â±¸¿¡ ÀÇÇÑ µ¥¹ÌÁö °æ°¨
+		dmg -= _targetPc.getDamageReductionByArmor(); // ë°©ì–´ìš© ê¸°êµ¬ì— ì˜í•œ ë°ë¯¸ì§€ ê²½ê°
 		for (L1DollInstance doll : _targetPc.getDollList().values()) {
 			if (_npc.getNpcTemplate().getBowActId() == 0)
 				dmg -= doll.getDamageReductionByDoll();
 		}
 
-		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(SPECIAL_COOKING)) { // ½ºÆä¼È¿ä¸®¿¡
-																					// ÀÇÇÑ
-																					// µ¥¹ÌÁö
-																					// °æ°¨
+		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(SPECIAL_COOKING)) { // ìŠ¤í˜ì…œìš”ë¦¬ì—
+																					// ì˜í•œ
+																					// ë°ë¯¸ì§€
+																					// ê²½ê°
 			dmg -= 5;
 		}
 
@@ -2622,9 +2622,9 @@ public class L1Attack {
 			if (rnd <= 10)
 				dmg /= 1.5;
 		}
-		dmg -= ·ëÆ¼½ººÓ±Íµ¥¹ÌÁö°¨¼Ò();
-		dmg -= ½º³ÀÆÛÃ¼¹İµ¥¹ÌÁö°¨¼Ò();
-		// ¾Ö¿Ïµ¿¹°, »ç¸óÀ¸·ÎºÎÅÍ ÇÃ·¹ÀÌ¾î¿¡ °ø°İ
+		dmg -= ë£¸í‹°ìŠ¤ë¶‰ê·€ë°ë¯¸ì§€ê°ì†Œ();
+		dmg -= ìŠ¤ëƒ…í¼ì²´ë°˜ë°ë¯¸ì§€ê°ì†Œ();
+		// ì• ì™„ë™ë¬¼, ì‚¬ëª¬ìœ¼ë¡œë¶€í„° í”Œë ˆì´ì–´ì— ê³µê²©
 		boolean isNowWar = false;
 		int castleId = L1CastleLocation.getCastleIdByArea(_targetPc);
 		if (castleId > 0) {
@@ -2661,17 +2661,17 @@ public class L1Attack {
 			}
 		}
 
-		// 87º¯½Å ¸®´öÃ³¸®
+		// 87ë³€ì‹  ë¦¬ë•ì²˜ë¦¬
 		if (_targetPc.getGfxId().getTempCharGfx() >= 17515 && _targetPc.getGfxId().getTempCharGfx() <= 17551) {
 			dmg -= 5;
 		}
 
-		// ÀÌ°Ô ±× °¡Áö°í¸¸ ÀÖÀ¸¸ç
-		// if (_targetPc.getInventory().checkItem(10000105)) { // È¯»ıÈ¯¿ø
+		// ì´ê²Œ ê·¸ ê°€ì§€ê³ ë§Œ ìˆìœ¼ë©°
+		// if (_targetPc.getInventory().checkItem(10000105)) { // í™˜ìƒí™˜ì›
 
 		// }
 
-		// npc»ç³É½Ã Áø¸í¼ÂÅÍÁü ¼öÁ¤0326
+		// npcì‚¬ëƒ¥ì‹œ ì§„ëª…ì…‹í„°ì§ ìˆ˜ì •0326
 		if (_targetPc.getInventory().checkEquipped(20395)) {
 			//
 			int chance = _random.nextInt(100) + 1;
@@ -2682,64 +2682,64 @@ public class L1Attack {
 			L1ItemInstance item = _targetPc.getInventory().checkEquippedItem(20395);
 			if (item != null) {
 				if (item.getEnchantLevel() == 0) {
-					if (chance <= 2) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 2) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 5 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 1) {
-					if (chance <= 4) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 4) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 10 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 2) {
-					if (chance <= 6) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 6) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 20 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 3) {
-					if (chance <= 8) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 8) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 30 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 4) {
-					if (chance <= 10) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 10) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 40 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 5) {
-					if (chance <= 15) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 15) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 50 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 6) {
-					if (chance <= 20) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 20) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 60 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 7) {
-					if (chance <= 25) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 25) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 70 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 8) {
-					if (chance <= 30) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 30) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 80 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 9) {
-					if (chance <= 40) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 40) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 100 + chanceHp);
 						type = true;
 					}
 				} else if (item.getEnchantLevel() == 10) {
-					if (chance <= 50) {// ÀÎÃ¦·¹º§¿¡µû¶ó È®·üÁõ°¡..ÇÇ´Â °íÁ¤ ÀÎÃ¦4ÀÏ¶§ 10 ÀÎÃ¦5ÀÏ¶§ 20
+					if (chance <= 50) {// ì¸ì±ˆë ˆë²¨ì—ë”°ë¼ í™•ë¥ ì¦ê°€..í”¼ëŠ” ê³ ì • ì¸ì±ˆ4ì¼ë•Œ 10 ì¸ì±ˆ5ì¼ë•Œ 20
 						_targetPc.setCurrentHp(_targetPc.getCurrentHp() + 150 + chanceHp);
 						type = true;
 					}
 				}
 
 				if (type) {
-					_targetPc.sendPackets(new S_SkillSound(_targetId, 2187));// ÆÄÇª°¡È£
+					_targetPc.sendPackets(new S_SkillSound(_targetId, 2187));// íŒŒí‘¸ê°€í˜¸
 					_targetPc.broadcastPacket(new S_SkillSound(_targetId, 2187));
 				}
 
@@ -2753,9 +2753,9 @@ public class L1Attack {
 		for (L1ItemInstance armor : _targetPc.getEquipSlot().getArmors()) {
 			if (AccessoryBalanceTable.getInstance().getItemBalanceReduction(armor.getItemId(), armor.getEnchantLevel()) != 0) {
 				if (armor.getItem().getType() >= 8 && armor.getItem().getType() <= 13) {
-					//_targetPc.sendPackets(new S_SystemMessage("¾Ç¼¼»ç¸® = " + armor.getName() + ", Àû¿ëÀü ´ë¹ÌÁö = " + dmg));
+					//_targetPc.sendPackets(new S_SystemMessage("ì•…ì„¸ì‚¬ë¦¬ = " + armor.getName() + ", ì ìš©ì „ ëŒ€ë¯¸ì§€ = " + dmg));
 					dmg -= AccessoryBalanceTable.getInstance().getItemBalanceReduction(armor.getItemId(), armor.getEnchantLevel());
-					//_targetPc.sendPackets(new S_SystemMessage("¾Ç¼¼»ç¸® = " + armor.getName() + ", Àû¿ëÈÄ ´ë¹ÌÁö = " + dmg));
+					//_targetPc.sendPackets(new S_SystemMessage("ì•…ì„¸ì‚¬ë¦¬ = " + armor.getName() + ", ì ìš©í›„ ëŒ€ë¯¸ì§€ = " + dmg));
 				}
 			}
 		}
@@ -2763,10 +2763,10 @@ public class L1Attack {
 		for (L1ItemInstance armor : _targetPc.getEquipSlot().getArmors()) {
 			if (ArmorBalanceTable.getInstance().getItemBalanceReduc(armor.getItemId(), armor.getEnchantLevel()) != 0) {
 				if (_targetPc.isGm()) {
-					_targetPc.sendPackets(new S_SystemMessage("»ó´ë ¹æ¾î±¸ = " + armor.getName() + ", Àû¿ëÀü ¸÷´ë¹ÌÁö = " + dmg));
+					_targetPc.sendPackets(new S_SystemMessage("ìƒëŒ€ ë°©ì–´êµ¬ = " + armor.getName() + ", ì ìš©ì „ ëª¹ëŒ€ë¯¸ì§€ = " + dmg));
 					dmg -= ArmorBalanceTable.getInstance().getItemBalanceReduc(armor.getItemId(),
 							armor.getEnchantLevel());
-					_targetPc.sendPackets(new S_SystemMessage("»ó´ë ¹æ¾î±¸ = " + armor.getName() + ", Àû¿ëÈÄ ¸÷´ë¹ÌÁö = " + dmg));
+					_targetPc.sendPackets(new S_SystemMessage("ìƒëŒ€ ë°©ì–´êµ¬ = " + armor.getName() + ", ì ìš©í›„ ëª¹ëŒ€ë¯¸ì§€ = " + dmg));
 				} else {
 					dmg -= ArmorBalanceTable.getInstance().getItemBalanceReduc(armor.getItemId(),
 							armor.getEnchantLevel());
@@ -2781,23 +2781,23 @@ public class L1Attack {
 		return (int) dmg;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü NPC ·ÎºÎÅÍ NPC ¿¡ÀÇ µ¥¹ÌÁö »êÃâ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— NPC ë¡œë¶€í„° NPC ì—ì˜ ë°ë¯¸ì§€ ì‚°ì¶œ â—â—â—â—
 	private int calcNpcNpcDamage() {
 		int lvl = _npc.getLevel();
 		double dmg = 0;
 
 		if (_npc instanceof L1PetInstance) {
 			dmg = _random.nextInt(_npc.getNpcTemplate().get_level()) + _npc.getAbility().getTotalStr() / 2 + 1;
-			dmg += (lvl / 16); // ÆêÀº LV16¸¶´Ù Ãß°¡ Å¸°İ
+			dmg += (lvl / 16); // í«ì€ LV16ë§ˆë‹¤ ì¶”ê°€ íƒ€ê²©
 			dmg += ((L1PetInstance) _npc).getDamageByWeapon();
 		} else {
 			dmg = _random.nextInt(lvl) + _npc.getAbility().getTotalStr() / 2 + 1;
 		}
 
 		if (_npc instanceof L1PetInstance) {
-			dmg += Config.ÆêÃß°¡´ë¹ÌÁö;
+			dmg += Config.í«ì¶”ê°€ëŒ€ë¯¸ì§€;
 		} else if (_npc instanceof L1SummonInstance) {
-			dmg += Config.¼­¸ÕÃß°¡´ë¹ÌÁö;
+			dmg += Config.ì„œë¨¼ì¶”ê°€ëŒ€ë¯¸ì§€;
 		}
 		if (isUndeadDamage()) {
 			dmg *= 1.1;
@@ -2811,7 +2811,7 @@ public class L1Attack {
 
 		dmg -= calcNpcDamageReduction();
 
-		if (_npc.isWeaponBreaked()) { // NPC°¡ ¿şÆùºê·¹ÀÌÅ©Áß.
+		if (_npc.isWeaponBreaked()) { // NPCê°€ ì›¨í°ë¸Œë ˆì´í¬ì¤‘.
 			dmg /= 2;
 		}
 		
@@ -2828,7 +2828,7 @@ public class L1Attack {
 		return (int) dmg;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü ÇÃ·¹ÀÌ¾îÀÇ µ¥¹ÌÁö °­È­ ¸¶¹ı ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— í”Œë ˆì´ì–´ì˜ ë°ë¯¸ì§€ ê°•í™” ë§ˆë²• â—â—â—â—
 	private double calcBuffDamage(double dmg) {
 		if (isShortDistance() && _pc.getSkillEffectTimerSet().hasSkillEffect(BURNING_SPIRIT)) {
 			boolean isProbability = _random.nextInt(1000000) + 1 < Config.BURNING_SPIRIT_EXERCISE_PROB;
@@ -2849,7 +2849,7 @@ public class L1Attack {
 		return dmg;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü ÇÃ·¹ÀÌ¾îÀÇ AC¿¡ ÀÇÇÑ µ¥¹ÌÁö °æ°¨ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— í”Œë ˆì´ì–´ì˜ ACì— ì˜í•œ ë°ë¯¸ì§€ ê²½ê° â—â—â—â—
 	private int calcPcDefense() {
 		int ac = Math.max(0, 10 - _targetPc.getAC().getAc());
 		int acDefMax = _targetPc.getClassFeature().getAcDefenseMax(ac);
@@ -2865,34 +2865,34 @@ public class L1Attack {
 		return dmg;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü NPCÀÇ µ¥¹ÌÁö Ãà¼Ò¿¡ ÀÇÇÑ °æ°¨ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— NPCì˜ ë°ë¯¸ì§€ ì¶•ì†Œì— ì˜í•œ ê²½ê° â—â—â—â—
 	private int calcNpcDamageReduction() {
 		return _targetNpc.getNpcTemplate().get_damagereduction();
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü ¹«±âÀÇ ÀçÁú°ú Ãàº¹¿¡ ÀÇÇÑ Ãß°¡ µ¥¹ÌÁö »êÃâ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— ë¬´ê¸°ì˜ ì¬ì§ˆê³¼ ì¶•ë³µì— ì˜í•œ ì¶”ê°€ ë°ë¯¸ì§€ ì‚°ì¶œ â—â—â—â—
 	private int calcMaterialBlessDmg() {
 		int damage = 0;
 		int undead = _targetNpc.getNpcTemplate().get_undead();
 		if ((_weaponMaterial == 14 || _weaponMaterial == 17 || _weaponMaterial == 22)
-				&& (undead == 1 || undead == 3 || undead == 5)) { // Àº¡¤¹Ì½º¸±¡¤¿À¸®ÇÏ¸£ÄÜ,
-																	// ÇÑÆí,
-																	// ¾È
-																	// µ¥µå°è¡¤¾È
-																	// µ¥µå°è
-																	// º¸½º
+				&& (undead == 1 || undead == 3 || undead == 5)) { // ì€Â·ë¯¸ìŠ¤ë¦´Â·ì˜¤ë¦¬í•˜ë¥´ì½˜,
+																	// í•œí¸,
+																	// ì•ˆ
+																	// ë°ë“œê³„Â·ì•ˆ
+																	// ë°ë“œê³„
+																	// ë³´ìŠ¤
 			damage += _random.nextInt(20) + 1;
 		}
 		if ((_weaponMaterial == 17 || _weaponMaterial == 22) && undead == 2) {
 			damage += _random.nextInt(3) + 1;
 		}
-		if (_weaponBless == 0 && (undead == 1 || undead == 2 || undead == 3)) { // Ãàº¹
-																				// ¹«±â,
-																				// ÇÑÆí,
-																				// ¾È
-																				// µ¥µå°è¡¤¾Ç¸¶°è¡¤¾È
-																				// µ¥µå°è
-																				// º¸½º
+		if (_weaponBless == 0 && (undead == 1 || undead == 2 || undead == 3)) { // ì¶•ë³µ
+																				// ë¬´ê¸°,
+																				// í•œí¸,
+																				// ì•ˆ
+																				// ë°ë“œê³„Â·ì•…ë§ˆê³„Â·ì•ˆ
+																				// ë°ë“œê³„
+																				// ë³´ìŠ¤
 			damage += 3;
 		}
 
@@ -2903,22 +2903,22 @@ public class L1Attack {
 		return damage;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü NPCÀÇ ¾È µ¥µåÀÇ ¾ß°£ °ø°İ·ÂÀÇ º¯È­ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— NPCì˜ ì•ˆ ë°ë“œì˜ ì•¼ê°„ ê³µê²©ë ¥ì˜ ë³€í™” â—â—â—â—
 	private boolean isUndeadDamage() {
 		boolean flag = false;
 		int undead = _npc.getNpcTemplate().get_undead();
 		boolean isNight = GameTimeClock.getInstance().getGameTime().isNight();
-		if (isNight && (undead == 1 || undead == 3 || undead == 4)) { // 18~6½Ã,
-																		// ÇÑÆí, ¾È
-																		// µ¥µå°è¡¤¾È
-																		// µ¥µå°è
-																		// º¸½º
+		if (isNight && (undead == 1 || undead == 3 || undead == 4)) { // 18~6ì‹œ,
+																		// í•œí¸, ì•ˆ
+																		// ë°ë“œê³„Â·ì•ˆ
+																		// ë°ë“œê³„
+																		// ë³´ìŠ¤
 			flag = true;
 		}
 		return flag;
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü PCÀÇ µ¶°ø°İÀ» ºÎ°¡ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— PCì˜ ë…ê³µê²©ì„ ë¶€ê°€ â—â—â—â—
 	public void addPcPoisonAttack(L1Character attacker, L1Character target) {
 		int chance = _random.nextInt(100) + 1;
 		if ((_weaponId == 13 || _weaponId == 44
@@ -2927,40 +2927,40 @@ public class L1Attack {
 		}
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü NPCÀÇ µ¶°ø°İÀ» ºÎ°¡ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— NPCì˜ ë…ê³µê²©ì„ ë¶€ê°€ â—â—â—â—
 	private void addNpcPoisonAttack(L1Character attacker, L1Character target) {
-		if (_npc.getNpcTemplate().get_poisonatk() != 0) { // µ¶°ø°İ ÀÖ¾î
-			if (15 >= _random.nextInt(100) + 1) { // 15%ÀÇ È®·ü·Î µ¶°ø°İ
-				if (_npc.getNpcTemplate().get_poisonatk() == 1) { // Åë»óµ¶
-					// 3ÃÊ ÁÖ±â¿¡ µ¥¹ÌÁö 5
+		if (_npc.getNpcTemplate().get_poisonatk() != 0) { // ë…ê³µê²© ìˆì–´
+			if (15 >= _random.nextInt(100) + 1) { // 15%ì˜ í™•ë¥ ë¡œ ë…ê³µê²©
+				if (_npc.getNpcTemplate().get_poisonatk() == 1) { // í†µìƒë…
+					// 3ì´ˆ ì£¼ê¸°ì— ë°ë¯¸ì§€ 5
 					L1DamagePoison.doInfection(attacker, target, 3000, 5);
-				} else if (_npc.getNpcTemplate().get_poisonatk() == 2) { // Ä§¹¬µ¶
+				} else if (_npc.getNpcTemplate().get_poisonatk() == 2) { // ì¹¨ë¬µë…
 					L1SilencePoison.doInfection(target);
-				} else if (_npc.getNpcTemplate().get_poisonatk() == 4) { // ¸¶ºñµ¶
-					// 16ÃÊ ÈÄ¿¡ 8ÃÊ°£ ¸¶ºñ
+				} else if (_npc.getNpcTemplate().get_poisonatk() == 4) { // ë§ˆë¹„ë…
+					// 16ì´ˆ í›„ì— 8ì´ˆê°„ ë§ˆë¹„
 					L1ParalysisPoison.doInfection(target, 16000, 8000);
 				}
 			}
-		} else if (_npc.getNpcTemplate().get_paralysisatk() != 0) { /// ¸¶ºñ °ø°İ ÀÖ¾î
+		} else if (_npc.getNpcTemplate().get_paralysisatk() != 0) { /// ë§ˆë¹„ ê³µê²© ìˆì–´
 		}
 	}
 
-	// ¡á¡á¡á¡á ¸¶³ª½ºÅ¿ÈÄ¿Í °­Ã¶ÀÇ ¸¶³ª½ºÅ¿ÈÄÀÇ MPÈí¼ö·® »êÃâ ¡á¡á¡á¡á
+	// â– â– â– â–  ë§ˆë‚˜ìŠ¤íƒ“í›„ì™€ ê°•ì² ì˜ ë§ˆë‚˜ìŠ¤íƒ“í›„ì˜ MPí¡ìˆ˜ëŸ‰ ì‚°ì¶œ â– â– â– â– 
 	public void calcStaffOfMana() {
-		int som_lvl = _weaponEnchant + Config.±âº»¿¥Èí; // ÃÖ´ë MPÈí¼ö·®À» ¼³Á¤
+		int som_lvl = _weaponEnchant + Config.ê¸°ë³¸ì— í¡; // ìµœëŒ€ MPí¡ìˆ˜ëŸ‰ì„ ì„¤ì •
 		if (som_lvl < 0) {
 			som_lvl = 0;
 		}
-		// MPÈí¼ö·®À» ·£´ı Ãëµæ
+		// MPí¡ìˆ˜ëŸ‰ì„ ëœë¤ ì·¨ë“
 		_drainMana = 5;
 	}
 
-	public void ¹ÙÆ÷¿¥Èí() {
-		_drainMana = Config.¹ÙÆ÷¿¥Èí;
+	public void ë°”í¬ì— í¡() {
+		_drainMana = Config.ë°”í¬ì— í¡;
 	}
 	
-	/** Á¶¿ìÀÇ µ¹°ñ·½ - ÆÄ¸êÀÇ ´ë°Ë **/
-	public void calcDrainOfHp(double dmg) { // Ã¼·Â Èí¼ö¸¦ À§ÇÑ Ãß°¡
+	/** ì¡°ìš°ì˜ ëŒê³¨ë ˜ - íŒŒë©¸ì˜ ëŒ€ê²€ **/
+	public void calcDrainOfHp(double dmg) { // ì²´ë ¥ í¡ìˆ˜ë¥¼ ìœ„í•œ ì¶”ê°€
 		int r = _random.nextInt(100);
 		if (r <= 20) {
 			if (dmg <= 30) {
@@ -2984,8 +2984,8 @@ public class L1Attack {
 		}
 	}
 
-	/** Á¶¿ìÀÇ µ¹°ñ·½ - ¸¶·ÂÀÇ ´Ü°Ë **/
-	public void calcDrainOfMana() { // ¸¶³ª Èí¼ö¸¦ À§ÇÑ Ãß°¡
+	/** ì¡°ìš°ì˜ ëŒê³¨ë ˜ - ë§ˆë ¥ì˜ ë‹¨ê²€ **/
+	public void calcDrainOfMana() { // ë§ˆë‚˜ í¡ìˆ˜ë¥¼ ìœ„í•œ ì¶”ê°€
 		_drainMana = 1;
 		if (_target.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER)
 				|| _target.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
@@ -2997,7 +2997,7 @@ public class L1Attack {
 		}
 	}
 
-	/* ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á °ø°İ ¸ğ¼Ç ¼Û½Å ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á */
+	/* â– â– â– â– â– â– â– â– â– â– â– â– â– â–  ê³µê²© ëª¨ì…˜ ì†¡ì‹  â– â– â– â– â– â– â– â– â– â– â– â– â– â–  */
 
 	public void action() {
 		try {
@@ -3011,9 +3011,9 @@ public class L1Attack {
 		}
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü ÇÃ·¹ÀÌ¾îÀÇ °ø°İ ¸ğ¼Ç ¼Û½Å ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— í”Œë ˆì´ì–´ì˜ ê³µê²© ëª¨ì…˜ ì†¡ì‹  â—â—â—â—
 	private void actionPc() {
-		_pc.getMoveState().setHeading(CharPosUtil.targetDirection(_pc, _targetX, _targetY)); // ¹æÇâ¼¼Æ®
+		_pc.getMoveState().setHeading(CharPosUtil.targetDirection(_pc, _targetX, _targetY)); // ë°©í–¥ì„¸íŠ¸
 		if (_weaponType == 20) {
 			if (_arrow != null) {
 				_pc.getInventory().removeItem(_arrow, 1);
@@ -3112,7 +3112,7 @@ public class L1Attack {
 			}
 		} else {
 			if (_isHit) {
-				// Ãß°¡ ·±´× º¯½Å ÇÇ°İÃ³¸® ±Ù°Å¸®
+				// ì¶”ê°€ ëŸ°ë‹ ë³€ì‹  í”¼ê²©ì²˜ë¦¬ ê·¼ê±°ë¦¬
 				if (_target.getGfxId().getTempCharGfx() == 16074 || _target.getGfxId().getTempCharGfx() == 16053
 						|| _target.getGfxId().getTempCharGfx() == 14491 || _target.getGfxId().getTempCharGfx() == 16056
 						|| _target.getGfxId().getTempCharGfx() == 16284 || _target.getGfxId().getTempCharGfx() == 16002
@@ -3149,15 +3149,15 @@ public class L1Attack {
 		}
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü NPCÀÇ °ø°İ ¸ğ¼Ç ¼Û½Å ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— NPCì˜ ê³µê²© ëª¨ì…˜ ì†¡ì‹  â—â—â—â—
 	private void actionNpc() {
 		int _npcObjectId = _npc.getId();
 		int bowActId = 0;
 		int actId = 0;
 
-		_npc.getMoveState().setHeading(CharPosUtil.targetDirection(_npc, _targetX, _targetY)); // ¹æÇâ¼¼Æ®
+		_npc.getMoveState().setHeading(CharPosUtil.targetDirection(_npc, _targetX, _targetY)); // ë°©í–¥ì„¸íŠ¸
 
-		// Å¸°Ù°úÀÇ °Å¸®°¡ 2ÀÌ»ó ÀÖÀ¸¸é ¿ø°Å¸® °ø°İ
+		// íƒ€ê²Ÿê³¼ì˜ ê±°ë¦¬ê°€ 2ì´ìƒ ìˆìœ¼ë©´ ì›ê±°ë¦¬ ê³µê²©
 		boolean isLongRange = (_npc.getLocation().getTileLineDistance(new Point(_targetX, _targetY)) > 1);
 		bowActId = _npc.getNpcTemplate().getBowActId();
 
@@ -3188,7 +3188,7 @@ public class L1Attack {
 					Broadcaster.broadcastPacketExceptTargetSight(_target,
 							new S_DoActionGFX(_targetId, ActionCodes.ACTION_Damage), _npc);
 				} else {
-					// Ãß°¡ ·±´× º¯½Å ÇÇ°İÃ³¸® ±Ù°Å¸®
+					// ì¶”ê°€ ëŸ°ë‹ ë³€ì‹  í”¼ê²©ì²˜ë¦¬ ê·¼ê±°ë¦¬
 					if (_target.getGfxId().getTempCharGfx() == 16074 || _target.getGfxId().getTempCharGfx() == 16053
 							|| _target.getGfxId().getTempCharGfx() == 14491
 							|| _target.getGfxId().getTempCharGfx() == 16056
@@ -3216,7 +3216,7 @@ public class L1Attack {
 			}
 		}
 	}
-	/* ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á °è»ê °á°ú ¹İ¿µ ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á */
+	/* â– â– â– â– â– â– â– â– â– â– â– â– â– â– â–  ê³„ì‚° ê²°ê³¼ ë°˜ì˜ â– â– â– â– â– â– â– â– â– â– â– â– â– â– â–  */
 
 	public void commit() {
 		if (_isHit) {
@@ -3227,7 +3227,7 @@ public class L1Attack {
 			}
 		}
 
-		// µ¥¹ÌÁöÄ¡ ¹× ¸íÁßÀ² È®ÀÎ¿ë ¸Ş¼¼Áö
+		// ë°ë¯¸ì§€ì¹˜ ë° ëª…ì¤‘ìœ¨ í™•ì¸ìš© ë©”ì„¸ì§€
 		if (!Config.ALT_ATKMSG) {
 			return;
 		}
@@ -3242,15 +3242,15 @@ public class L1Attack {
 
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü ÇÃ·¹ÀÌ¾î¿¡ °è»ê °á°ú¸¦ ¹İ¿µ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— í”Œë ˆì´ì–´ì— ê³„ì‚° ê²°ê³¼ë¥¼ ë°˜ì˜ â—â—â—â—
 	private void commitPc() {
 		if (_calcType == PC_PC) {
 			if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
 					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER)
 					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(FREEZING_BLIZZARD)
 					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)
-					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL) // ¹Ù½Ç¾ó¸®±âµ¥¹ÌÁö0
-					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) { // ÄÚÄ«¾ó¸®±âµ¥¹ÌÁö0
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL) // ë°”ì‹¤ì–¼ë¦¬ê¸°ë°ë¯¸ì§€0
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) { // ì½”ì¹´ì–¼ë¦¬ê¸°ë°ë¯¸ì§€0
 				_damage = 0;
 				_drainMana = 0;
 				_drainHp = 0;
@@ -3265,7 +3265,7 @@ public class L1Attack {
 				_pc.setCurrentMp(newMp);
 			}
 
-			/** Á¶¿ìÀÇ µ¹°ñ·½ **/
+			/** ì¡°ìš°ì˜ ëŒê³¨ë ˜ **/
 
 			if (_drainHp > 0 && _targetPc.getCurrentHp() > 0) {
 				if (_drainHp > _targetPc.getCurrentHp()) {
@@ -3276,15 +3276,15 @@ public class L1Attack {
 				newHp = (short) (_pc.getCurrentHp() + _drainHp);
 				_pc.setCurrentHp(newHp);
 			}
-			/** Á¶¿ìÀÇ µ¹°ñ·½ **/
+			/** ì¡°ìš°ì˜ ëŒê³¨ë ˜ **/
 			_targetPc.receiveDamage(_pc, _damage, false);
 		} else if (_calcType == NPC_PC) {
 			if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
 					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER)
 					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(FREEZING_BLIZZARD)
 					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)
-					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL) // ¹Ù½Ç¾ó¸®±âµ¥¹ÌÁö0
-					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) { // ÄÚÄ«¾ó¸®±âµ¥¹ÌÁö0
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL) // ë°”ì‹¤ì–¼ë¦¬ê¸°ë°ë¯¸ì§€0
+					|| _targetPc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) { // ì½”ì¹´ì–¼ë¦¬ê¸°ë°ë¯¸ì§€0
 				_damage = 0;
 			}
 
@@ -3292,14 +3292,14 @@ public class L1Attack {
 		}
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü NPC¿¡ °è»ê °á°ú¸¦ ¹İ¿µ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— NPCì— ê³„ì‚° ê²°ê³¼ë¥¼ ë°˜ì˜ â—â—â—â—
 	private void commitNpc() {
 		if (_calcType == PC_NPC) {
 			if (_targetNpc.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
 					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(FREEZING_BLIZZARD)
 					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)
-					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL) // ¹Ù½Ç¾ó¸®±âµ¥¹ÌÁö0
-					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) { // ÄÚÄ«¾ó¸®±âµ¥¹ÌÁö0
+					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL) // ë°”ì‹¤ì–¼ë¦¬ê¸°ë°ë¯¸ì§€0
+					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) { // ì½”ì¹´ì–¼ë¦¬ê¸°ë°ë¯¸ì§€0
 				_damage = 0;
 				_drainMana = 0;
 				_drainHp = 0;
@@ -3315,35 +3315,35 @@ public class L1Attack {
 				_pc.setCurrentMp(newMp);
 			}
 			
-			/** Á¶¿ìÀÇ µ¹°ñ·½ **/
+			/** ì¡°ìš°ì˜ ëŒê³¨ë ˜ **/
 
 			if (_drainHp > 0) {
 				int newHp = _pc.getCurrentHp() + _drainHp;
 				_pc.setCurrentHp(newHp);
 			}
-			/** Á¶¿ìÀÇ µ¹°ñ·½ **/
+			/** ì¡°ìš°ì˜ ëŒê³¨ë ˜ **/
 
-			damageNpcWeaponDurability(); // ¹«±â¸¦ ¼Õ»ó½ÃÅ²´Ù.
+			damageNpcWeaponDurability(); // ë¬´ê¸°ë¥¼ ì†ìƒì‹œí‚¨ë‹¤.
 
 			_targetNpc.receiveDamage(_pc, _damage);
 		} else if (_calcType == NPC_NPC) {
 			if (_targetNpc.getSkillEffectTimerSet().hasSkillEffect(ICE_LANCE)
 					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(FREEZING_BLIZZARD)
 					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(EARTH_BIND)
-					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL) // ¹Ù½Ç¾ó¸®±âµ¥¹ÌÁö0
-					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) { // //ÄÚÄ«¾ó¸®±âµ¥¹ÌÁö0
+					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_BASILL) // ë°”ì‹¤ì–¼ë¦¬ê¸°ë°ë¯¸ì§€0
+					|| _targetNpc.getSkillEffectTimerSet().hasSkillEffect(MOB_COCA)) { // //ì½”ì¹´ì–¼ë¦¬ê¸°ë°ë¯¸ì§€0
 				_damage = 0;
 			}
 			_targetNpc.receiveDamage(_npc, _damage);
 		}
 	}
 
-	/* ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á Ä«¿îÅÍ ¹Ù¸®¾î ¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á¡á */
+	/* â– â– â– â– â– â– â– â– â– â– â– â– â– â– â–  ì¹´ìš´í„° ë°”ë¦¬ì–´ â– â– â– â– â– â– â– â– â– â– â– â– â– â– â–  */
 
-	// ¡á¡á¡á¡á Ä«¿îÅÍ ¹Ù¸®¾î½ÃÀÇ °ø°İ ¸ğ¼Ç ¼Û½Å ¡á¡á¡á¡á
+	// â– â– â– â–  ì¹´ìš´í„° ë°”ë¦¬ì–´ì‹œì˜ ê³µê²© ëª¨ì…˜ ì†¡ì‹  â– â– â– â– 
 	public void actionCounterBarrier() {
 		if (_calcType == PC_PC) {
-			_pc.getMoveState().setHeading(CharPosUtil.targetDirection(_pc, _targetX, _targetY)); // ¹æÇâ¼¼Æ®
+			_pc.getMoveState().setHeading(CharPosUtil.targetDirection(_pc, _targetX, _targetY)); // ë°©í–¥ì„¸íŠ¸
 			_pc.sendPackets(new S_AttackMissPacket(_pc, _targetId));
 			Broadcaster.broadcastPacket(_pc, new S_AttackMissPacket(_pc, _targetId));
 			_pc.sendPackets(new S_DoActionGFX(_pc.getId(), ActionCodes.ACTION_Damage));
@@ -3353,7 +3353,7 @@ public class L1Attack {
 
 		} else if (_calcType == NPC_PC) {
 			int actId = 0;
-			_npc.getMoveState().setHeading(CharPosUtil.targetDirection(_npc, _targetX, _targetY)); // ¹æÇâ¼¼Æ®
+			_npc.getMoveState().setHeading(CharPosUtil.targetDirection(_npc, _targetX, _targetY)); // ë°©í–¥ì„¸íŠ¸
 			if (getActId() > 0) {
 				actId = getActId();
 			} else {
@@ -3370,10 +3370,10 @@ public class L1Attack {
 		}
 	}
 
-	// ¡á¡á¡á¡á ¸ğÅ»¹Ùµğ ¹ßµ¿½ÃÀÇ °ø°İ ¸ğ¼Ç ¼Û½Å ¡á¡á¡á¡á
+	// â– â– â– â–  ëª¨íƒˆë°”ë”” ë°œë™ì‹œì˜ ê³µê²© ëª¨ì…˜ ì†¡ì‹  â– â– â– â– 
 	public void actionMortalBody() {
 		if (_calcType == PC_PC) {
-			_pc.getMoveState().setHeading(CharPosUtil.targetDirection(_pc, _targetX, _targetY)); // ¹æÇâ¼¼Æ®
+			_pc.getMoveState().setHeading(CharPosUtil.targetDirection(_pc, _targetX, _targetY)); // ë°©í–¥ì„¸íŠ¸
 			S_UseAttackSkill packet = new S_UseAttackSkill(_pc, _target.getId(), 6519, _targetX, _targetY,
 					ActionCodes.ACTION_Attack, false);
 			_pc.sendPackets(packet);
@@ -3381,23 +3381,23 @@ public class L1Attack {
 			_pc.sendPackets(new S_DoActionGFX(_pc.getId(), ActionCodes.ACTION_Damage));
 			Broadcaster.broadcastPacket(_pc, new S_DoActionGFX(_pc.getId(), ActionCodes.ACTION_Damage));
 		} else if (_calcType == NPC_PC) {
-			_npc.getMoveState().setHeading(CharPosUtil.targetDirection(_npc, _targetX, _targetY)); // ¹æÇâ¼¼Æ®
+			_npc.getMoveState().setHeading(CharPosUtil.targetDirection(_npc, _targetX, _targetY)); // ë°©í–¥ì„¸íŠ¸
 			Broadcaster.broadcastPacket(_npc, new S_SkillSound(_target.getId(), 6519));
 			Broadcaster.broadcastPacket(_npc, new S_DoActionGFX(_npc.getId(), ActionCodes.ACTION_Damage));
 		}
 	}
 
-	// ¡á¡á¡á¡á »ó´ëÀÇ °ø°İ¿¡ ´ëÇØ¼­ Ä«¿îÅÍ ¹Ù¸®¾î°¡ À¯È¿ÇÑ°¡¸¦ ÆÇº° ¡á¡á¡á¡á
+	// â– â– â– â–  ìƒëŒ€ì˜ ê³µê²©ì— ëŒ€í•´ì„œ ì¹´ìš´í„° ë°”ë¦¬ì–´ê°€ ìœ íš¨í•œê°€ë¥¼ íŒë³„ â– â– â– â– 
 	public boolean isShortDistance() {
 		boolean isShortDistance = true;
 		if (_calcType == PC_PC) {
-			if (_weaponType == 20 || _weaponType == 62) { // È°ÀÌ³ª °£Æ®·¿Æ®
+			if (_weaponType == 20 || _weaponType == 62) { // í™œì´ë‚˜ ê°„íŠ¸ë ›íŠ¸
 				isShortDistance = false;
 			}
 		} else if (_calcType == NPC_PC) {
 			boolean isLongRange = (_npc.getLocation().getTileLineDistance(new Point(_targetX, _targetY)) > 1);
 			int bowActId = _npc.getNpcTemplate().getBowActId();
-			// °Å¸®°¡ 2ÀÌ»ó, °ø°İÀÚÀÇ È°ÀÇ ¾×¼Ç ID°¡ ÀÖ´Â °æ¿ì´Â ¿ø°ø°İ
+			// ê±°ë¦¬ê°€ 2ì´ìƒ, ê³µê²©ìì˜ í™œì˜ ì•¡ì…˜ IDê°€ ìˆëŠ” ê²½ìš°ëŠ” ì›ê³µê²©
 			if (isLongRange && bowActId > 0) {
 				isShortDistance = false;
 			}
@@ -3405,7 +3405,7 @@ public class L1Attack {
 		return isShortDistance;
 	}
 
-	// ¡á¡á¡á¡á Ä«¿îÅÍ ¹Ù¸®¾îÀÇ µ¥¹ÌÁö¸¦ ¹İ¿µ ¡á¡á¡á¡á
+	// â– â– â– â–  ì¹´ìš´í„° ë°”ë¦¬ì–´ì˜ ë°ë¯¸ì§€ë¥¼ ë°˜ì˜ â– â– â– â– 
 	public void commitCounterBarrier() {
 		int damage = calcCounterBarrierDamage();
 		if (damage == 0) {
@@ -3418,7 +3418,7 @@ public class L1Attack {
 		}
 	}
 
-	// ¡á¡á¡á¡á ¸ğÅ»¹ÙµğÀÇ µ¥¹ÌÁö¸¦ ¹İ¿µ ¡á¡á¡á¡á
+	// â– â– â– â–  ëª¨íƒˆë°”ë””ì˜ ë°ë¯¸ì§€ë¥¼ ë°˜ì˜ â– â– â– â– 
 	public void commitMortalBody() {
 		int damage = 30;
 		if (damage == 0) {
@@ -3431,7 +3431,7 @@ public class L1Attack {
 		}
 	}
 
-	// ¡Ü¡Ü¡Ü¡Ü Ä«¿îÅÍ ¹Ù¸®¾îÀÇ µ¥¹ÌÁö¸¦ »êÃâ ¡Ü¡Ü¡Ü¡Ü
+	// â—â—â—â— ì¹´ìš´í„° ë°”ë¦¬ì–´ì˜ ë°ë¯¸ì§€ë¥¼ ì‚°ì¶œ â—â—â—â—
 	private int calcCounterBarrierDamage() {
 		int damage = 0;
 		L1ItemInstance weapon = null;
@@ -3446,34 +3446,34 @@ public class L1Attack {
 	}
 
 	/*
-	 * ¹«±â¸¦ ¼Õ»ó½ÃÅ²´Ù. ´ëNPCÀÇ °æ¿ì, ¼Õ»ó È®·üÀº10%·Î ÇÑ´Ù. Ãàº¹ ¹«±â´Â3%·Î ÇÑ´Ù.
+	 * ë¬´ê¸°ë¥¼ ì†ìƒì‹œí‚¨ë‹¤. ëŒ€NPCì˜ ê²½ìš°, ì†ìƒ í™•ë¥ ì€10%ë¡œ í•œë‹¤. ì¶•ë³µ ë¬´ê¸°ëŠ”3%ë¡œ í•œë‹¤.
 	 */
 	private void damageNpcWeaponDurability() {
 		int chance = 3;
 		int bchance = 1;
 
 		/*
-		 * ¼Õ»óÇÏÁö ¾Ê´Â NPC, ¸Ç¼Õ, ¼Õ»óÇÏÁö ¾Ê´Â ¹«±â »ç¿ë, SOFÁßÀÇ °æ¿ì ¾Æ¹«°Íµµ ÇÏÁö ¾Ê´Â´Ù.
+		 * ì†ìƒí•˜ì§€ ì•ŠëŠ” NPC, ë§¨ì†, ì†ìƒí•˜ì§€ ì•ŠëŠ” ë¬´ê¸° ì‚¬ìš©, SOFì¤‘ì˜ ê²½ìš° ì•„ë¬´ê²ƒë„ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 		 */
 		if (_calcType != PC_NPC || _targetNpc.getNpcTemplate().is_hard() == false || _weaponType == 0
 				|| weapon.getItem().get_canbedmg() == 0 || _pc.getSkillEffectTimerSet().hasSkillEffect(SOUL_OF_FLAME)) {
 			return;
 		}
 
-		if (_weaponBless == 0) { // Ãà ¹«±â´Â ¼Õ»ó¾ÈÇÔ
+		if (_weaponBless == 0) { // ì¶• ë¬´ê¸°ëŠ” ì†ìƒì•ˆí•¨
 			return;
 		}
-		// Åë»óÀÇ ¹«±â¡¤ÀúÁÖÇØÁø ¹«±â
+		// í†µìƒì˜ ë¬´ê¸°Â·ì €ì£¼í•´ì§„ ë¬´ê¸°
 		if ((_weaponBless == 1 || _weaponBless == 2) && ((_random.nextInt(100) + 1) < chance)) {
-			// \f1´ç½ÅÀÇ%0°¡ ¼Õ»óÇß½À´Ï´Ù.
+			// \f1ë‹¹ì‹ ì˜%0ê°€ ì†ìƒí–ˆìŠµë‹ˆë‹¤.
 			_pc.sendPackets(new S_ServerMessage(268, weapon.getLogName()));
 			_pc.getInventory().receiveDamage(weapon);
 		}
 
-		// Ãàº¹µÈ ¹«±â
+		// ì¶•ë³µëœ ë¬´ê¸°
 		/*
 		 * if (_weaponBless == 0 && ((_random.nextInt(100) + 1) < bchance)) { //
-		 * \f1´ç½ÅÀÇ%0°¡ ¼Õ»óÇß½À´Ï´Ù. _pc.sendPackets(new S_ServerMessage(268,
+		 * \f1ë‹¹ì‹ ì˜%0ê°€ ì†ìƒí–ˆìŠµë‹ˆë‹¤. _pc.sendPackets(new S_ServerMessage(268,
 		 * weapon.getLogName())); _pc.getInventory().receiveDamage(weapon); }
 		 */
 	}
@@ -3500,7 +3500,7 @@ public class L1Attack {
 		return _damage;
 	}
 
-	private int ½º³ÀÆÛÃ¼¹İµ¥¹ÌÁö°¨¼Ò() {
+	private int ìŠ¤ëƒ…í¼ì²´ë°˜ë°ë¯¸ì§€ê°ì†Œ() {
 		int damage = 0;
 		if (_calcType == NPC_PC || _calcType == PC_PC) {
 			L1ItemInstance item = _targetPc.getInventory().checkEquippedItem(21248);
@@ -3522,7 +3522,7 @@ public class L1Attack {
 		return damage;
 	}
 	
-	/** ½ºÅÈ + ¹«±â¿¡ µû¸¥ °ø¼º **/
+	/** ìŠ¤íƒ¯ + ë¬´ê¸°ì— ë”°ë¥¸ ê³µì„± **/
 	private int PchitAdd() {
 		int value = 0;
 		if (_pc instanceof L1RobotInstance) {
@@ -3549,7 +3549,7 @@ public class L1Attack {
 		return value;
 	}
 
-	/** Å¸°ÙPC È¸ÇÇ ½ºÅ³¿¡ ´ëÇÑ ¿¬»ê **/
+	/** íƒ€ê²ŸPC íšŒí”¼ ìŠ¤í‚¬ì— ëŒ€í•œ ì—°ì‚° **/
 	private int toPcSkillHit() {
 		int value = 0;
 		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(UNCANNY_DODGE)) {
@@ -3558,7 +3558,7 @@ public class L1Attack {
 		return value;
 	}
 
-	/** Hit ÃÖÁ¾ ¿¬»ê **/
+	/** Hit ìµœì¢… ì—°ì‚° **/
 	private int hitRateCal(int AD, int DD, int fumble, int critical) {
 		System.out.println("AD="+AD);
 		System.out.println("DD="+DD);
@@ -3578,7 +3578,7 @@ public class L1Attack {
 		return _hitRate;
 	}
 
-	/** Å¸°ÙPC DD ¿¬»ê **/
+	/** íƒ€ê²ŸPC DD ì—°ì‚° **/
 	private int toPcDD(int dv) {
 		if (_targetPc.getAC().getAc() >= 0) {
 			return 10 - _targetPc.getAC().getAc();

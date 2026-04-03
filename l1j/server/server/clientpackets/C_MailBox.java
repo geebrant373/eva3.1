@@ -1,4 +1,4 @@
-package l1j.server.server.clientpackets;
+ï»¿package l1j.server.server.clientpackets;
 
 import l1j.server.server.datatables.LetterTable;
 import l1j.server.server.model.L1Clan;
@@ -17,29 +17,29 @@ import java.util.*;
 import server.LineageClient;
 
 public class C_MailBox  extends ClientBasePacket {
-	private static final int TYPE_PRIVATE_MAIL 			= 0;  // °³ÀÎ ÆíÁö   
-	private static final int TYPE_BLOODPLEDGE_MAIL 		= 1;  // Ç÷¸Í ÆíÁö
-	private static final int TYPE_KEPT_MAIL				= 2;  // º¸°ü ÆíÁö
+	private static final int TYPE_PRIVATE_MAIL 			= 0;  // ê°œì¸ í¸ì§€   
+	private static final int TYPE_BLOODPLEDGE_MAIL 		= 1;  // í˜ˆë§¹ í¸ì§€
+	private static final int TYPE_KEPT_MAIL				= 2;  // ë³´ê´€ í¸ì§€
 
-	private static final int READ_PRIVATE_MAIL 			= 16; // °³ÀÎ ÆíÁöÀĞ±â
-	private static final int READ_BLOODPLEDGE_MAIL 		= 17; // Ç÷¸Í ÆíÁöÀĞ±â
-	private static final int READ_KEPT_MAIL_			= 18; // º¸°üÇÔ ÆíÁöÀĞ±â
+	private static final int READ_PRIVATE_MAIL 			= 16; // ê°œì¸ í¸ì§€ì½ê¸°
+	private static final int READ_BLOODPLEDGE_MAIL 		= 17; // í˜ˆë§¹ í¸ì§€ì½ê¸°
+	private static final int READ_KEPT_MAIL_			= 18; // ë³´ê´€í•¨ í¸ì§€ì½ê¸°
 
-	private static final int WRITE_PRIVATE_MAIL 		= 32; // °³ÀÎ ÆíÁö¾²±â
-	private static final int WRITE_BLOODPLEDGE_MAIL 	= 33; // Ç÷¸Í ÆíÁö¾²±â
+	private static final int WRITE_PRIVATE_MAIL 		= 32; // ê°œì¸ í¸ì§€ì“°ê¸°
+	private static final int WRITE_BLOODPLEDGE_MAIL 	= 33; // í˜ˆë§¹ í¸ì§€ì“°ê¸°
 
-	private static final int DEL_PRIVATE_MAIL 			= 48; // °³ÀÎ ÆíÁö»èÁ¦
-	private static final int DEL_BLOODPLEDGE_MAIL 		= 49; // Ç÷¸Í ÆíÁö»èÁ¦
-	private static final int DEL_KEPT_MAIL 				= 50; // º¸°üÇÔ ÆíÁö»èÁ¦
+	private static final int DEL_PRIVATE_MAIL 			= 48; // ê°œì¸ í¸ì§€ì‚­ì œ
+	private static final int DEL_BLOODPLEDGE_MAIL 		= 49; // í˜ˆë§¹ í¸ì§€ì‚­ì œ
+	private static final int DEL_KEPT_MAIL 				= 50; // ë³´ê´€í•¨ í¸ì§€ì‚­ì œ
 
-	private static final int TO_KEEP_MAIL				= 64; // ÆíÁö º¸°üÇÏ±â 
+	private static final int TO_KEEP_MAIL				= 64; // í¸ì§€ ë³´ê´€í•˜ê¸° 
 
-	private static final int PRICE_PRIVATEMAIL			= 50; 	// °³ÀÎ ÆíÁö °¡°İ
-	private static final int PRICE_BLOODPLEDGEMAIL		= 1000; // Ç÷¸Í ÆíÁö °¡°İ
+	private static final int PRICE_PRIVATEMAIL			= 50; 	// ê°œì¸ í¸ì§€ ê°€ê²©
+	private static final int PRICE_BLOODPLEDGEMAIL		= 1000; // í˜ˆë§¹ í¸ì§€ ê°€ê²©
 
-	private static final int SIZE_PRIVATE_MAILBOX		= 20; 	// °³ÀÎ ÆíÁöÇÔ Å©±â
-	private static final int SIZE_BLOODPLEDGE_MAILBOX	= 50; 	// Ç÷¸Í ÆíÁöÇÔ Å©±â
-	private static final int SIZE_KEPTMAIL_MAILBOX		= 10; 	// ÆíÁöº¸°üÇÔ Å©±â
+	private static final int SIZE_PRIVATE_MAILBOX		= 20; 	// ê°œì¸ í¸ì§€í•¨ í¬ê¸°
+	private static final int SIZE_BLOODPLEDGE_MAILBOX	= 50; 	// í˜ˆë§¹ í¸ì§€í•¨ í¬ê¸°
+	private static final int SIZE_KEPTMAIL_MAILBOX		= 10; 	// í¸ì§€ë³´ê´€í•¨ í¬ê¸°
 
 	private static final String C_MailBox = "[C] C_MailBox";
 
@@ -79,7 +79,7 @@ public class C_MailBox  extends ClientBasePacket {
 	private void WritePrivateMail(L1PcInstance sender) {
 		if(!payMailCost(sender, PRICE_PRIVATEMAIL))	return;
 
-		int paper = readH(); //ÆíÁöÁö
+		int paper = readH(); //í¸ì§€ì§€
 		SimpleDateFormat formatter = new SimpleDateFormat ( "yy/MM/dd", Locale.KOREA );
 		String dTime = formatter.format(new Date());
 		String receiverName = readS();
@@ -98,7 +98,7 @@ public class C_MailBox  extends ClientBasePacket {
 
 		if(!payMailCost(sender, PRICE_BLOODPLEDGEMAIL))	return;
 
-		int paper = readH(); //ÆíÁöÁö
+		int paper = readH(); //í¸ì§€ì§€
 		SimpleDateFormat formatter = new SimpleDateFormat ( "yy/MM/dd", Locale.KOREA );
 		String dTime = formatter.format(new Date());
 		String receiverName = readS();
@@ -124,23 +124,23 @@ public class C_MailBox  extends ClientBasePacket {
 		}		
 	}
 
-	//ÆíÁö¸¦ »èÁ¦ÇÏ±âÀ§ÇÑ ¸Ş¼Òµå
+	//í¸ì§€ë¥¼ ì‚­ì œí•˜ê¸°ìœ„í•œ ë©”ì†Œë“œ
 	private void DeleteLetter(L1PcInstance pc , int type, int letterType){
 		int id = readD(); 
 		LetterTable.getInstance().deleteLetter(id);
 		pc.sendPackets(new S_RenewLetter(pc,type,id));   
 	}
-	//ÆíÁö¸¦ ÀĞ±âÀ§ÇÑ ¸Ş¼Òµå
+	//í¸ì§€ë¥¼ ì½ê¸°ìœ„í•œ ë©”ì†Œë“œ
 	private void ReadLetter(L1PcInstance pc, int type, int letterType){
 		int id = readD();
 		LetterTable.getInstance().CheckLetter(id);
 		pc.sendPackets(new S_ReadLetter(pc,type,letterType,id));
 	}
-	//ÆíÁö¸®½ºÆ® Ãâ·ÂÀ»À§ÇÑ ¸Ş¼Òµå
+	//í¸ì§€ë¦¬ìŠ¤íŠ¸ ì¶œë ¥ì„ìœ„í•œ ë©”ì†Œë“œ
 	private void LetterList(L1PcInstance pc, int type, int count){
 		pc.sendPackets(new S_LetterList(pc,type,count));
 	}
-	//ÆíÁö¸¦ º¸°üÇÏ±â À§ÇÔ ¸Ş¼Òµå
+	//í¸ì§€ë¥¼ ë³´ê´€í•˜ê¸° ìœ„í•¨ ë©”ì†Œë“œ
 	private void SaveLetter(L1PcInstance pc, int type, int letterType){
 		int id = readD(); 
 		LetterTable.getInstance().SaveLetter(id,letterType);
@@ -149,7 +149,7 @@ public class C_MailBox  extends ClientBasePacket {
 
 	private boolean checkCountMail(L1PcInstance from, String to, int type, int max) {
 		int cntMailInMailBox = LetterTable.getInstance().getLetterCount(to, type);		
-		if(cntMailInMailBox >= max) { // ÆíÁöÇÔ ¸¸¶¥
+		if(cntMailInMailBox >= max) { // í¸ì§€í•¨ ë§Œë•…
 			from.sendPackets(new S_ServerMessage(1261));
 			return false;
 		}		
@@ -160,8 +160,8 @@ public class C_MailBox  extends ClientBasePacket {
 		if(receiver != null && receiver.getOnlineStatus() != 0){
 			LetterList(receiver,type,MAILBOX_SIZE);
 			receiver.sendPackets(new S_SkillSound(receiver.getId(), 1091));
-			receiver.sendPackets(new S_ServerMessage(428)); // ÆíÁö°¡ µµÂøÇß½À´Ï´Ù.
-			sender.sendPackets(new S_ServerMessage(1239)); //¼ö½ÅÀÚ¿¡°Ô ÆíÁö¸¦ º¸³Â½À´Ï´Ù.
+			receiver.sendPackets(new S_ServerMessage(428)); // í¸ì§€ê°€ ë„ì°©í–ˆìŠµë‹ˆë‹¤.
+			sender.sendPackets(new S_ServerMessage(1239)); //ìˆ˜ì‹ ìì—ê²Œ í¸ì§€ë¥¼ ë³´ëƒˆìŠµë‹ˆë‹¤.
 			sender.sendPackets(new S_LetterList(sender,type,MAILBOX_SIZE));
 		}
 	}

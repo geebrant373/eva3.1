@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,7 +42,7 @@ public class C_BoardRead extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 		if(board.getNpcTemplate().get_npcId() == 99355) {
 			if (!pc.isGm() && topicNumber != pc.getAdenaBuyCount()) {
-				pc.sendPackets(new S_SystemMessage("±¸¸Å ½ÅÃ»ÇÑ ¹°Ç°ÀÌ ¾Æ´Ï¸é ¿­¶÷ ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("êµ¬ë§¤ ì‹ ì²­í•œ ë¬¼í’ˆì´ ì•„ë‹ˆë©´ ì—´ëŒ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			} else {
 				board.onAdenaTraidActionRead(client.getActiveChar(), topicNumber);

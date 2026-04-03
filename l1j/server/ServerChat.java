@@ -1,4 +1,4 @@
-package l1j.server;
+﻿package l1j.server;
 
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;

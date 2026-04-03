@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -63,7 +63,7 @@ public class L1LittleBugInstance extends L1NpcInstance {
 		perceivedFrom.sendPackets(new S_NPCPack(this));
 	}
 
-	private int _number; // ÃâÀü¹øÈ£
+	private int _number; // ì¶œì „ë²ˆí˜¸
 
 	public void setNumber(int i) {
 		_number = i;
@@ -73,7 +73,7 @@ public class L1LittleBugInstance extends L1NpcInstance {
 		return _number;
 	}
 
-	private int _condition; // »óÅÂ
+	private int _condition; // ìƒíƒœ
 
 	public void setCondition(int i) {
 		_condition = i;
@@ -83,7 +83,7 @@ public class L1LittleBugInstance extends L1NpcInstance {
 		return _condition;
 	}
 
-	private int _win; // ½Â¸® È½¼ö
+	private int _win; // ìŠ¹ë¦¬ íšŸìˆ˜
 
 	public void setWin(int i) {
 		_win = i;
@@ -93,7 +93,7 @@ public class L1LittleBugInstance extends L1NpcInstance {
 		return _win;
 	}
 
-	private int _lose; // ÆĞ È½¼ö
+	private int _lose; // íŒ¨ íšŸìˆ˜
 
 	public void setLose(int i) {
 		_lose = i;
@@ -103,7 +103,7 @@ public class L1LittleBugInstance extends L1NpcInstance {
 		return _lose;
 	}
 
-	private String _winPoint; // ½Â·ü
+	private String _winPoint; // ìŠ¹ë¥ 
 
 	public void setWinPoint(String i) {
 		_winPoint = i;
@@ -113,7 +113,7 @@ public class L1LittleBugInstance extends L1NpcInstance {
 		return _winPoint;
 	}
 
-	private float _dividend; // ¹è´ç
+	private float _dividend; // ë°°ë‹¹
 
 	public void setDividend(float i) {
 		_dividend = i;

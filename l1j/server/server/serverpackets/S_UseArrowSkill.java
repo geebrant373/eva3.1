@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -36,7 +36,7 @@ public class S_UseArrowSkill extends ServerBasePacket {
 	public S_UseArrowSkill(L1Character cha, int targetobj, int spellgfx, int x, int y, boolean isHit) {
 
 		int aid = 1;
-		// ¿ÀÅ© ±Ã¼ö¿¡¸¸ º¯°æ
+		// ì˜¤í¬ ê¶ìˆ˜ì—ë§Œ ë³€ê²½
 		if (cha.getGfxId().getTempCharGfx() == 3860 || cha.getGfxId().getTempCharGfx() == 7959) {
 			aid = 21;
 		} else if (cha.getGfxId().getTempCharGfx() == 11714 || cha.getGfxId().getTempCharGfx() == 4125) {
@@ -53,7 +53,7 @@ public class S_UseArrowSkill extends ServerBasePacket {
 		// writeD(246);
 		writeD(_sequentialNumber.incrementAndGet());
 		writeH(spellgfx);
-		writeC(127); // ½ºÅ³ »ç¿ë½ÃÀÇ ±¤¿øÀÇ ³ĞÀÌ?
+		writeC(127); // ìŠ¤í‚¬ ì‚¬ìš©ì‹œì˜ ê´‘ì›ì˜ ë„“ì´?
 		writeH(cha.getX());
 		writeH(cha.getY());
 		writeH(x);

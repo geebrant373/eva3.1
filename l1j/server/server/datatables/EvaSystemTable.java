@@ -1,4 +1,4 @@
-/*
+ï»¿/*
 
  */
 package l1j.server.server.datatables;
@@ -78,8 +78,8 @@ public class EvaSystemTable {
 	}
 
 	/**
-	 * ½Ã½ºÅÛ °ªÀ» °¡Á® ¿Â´Ù 
-	 * @param id 1: ±Õ¿­
+	 * ì‹œìŠ¤í…œ ê°’ì„ ê°€ì ¸ ì˜¨ë‹¤ 
+	 * @param id 1: ê· ì—´
 	 * @return
 	 */
 	public L1EvaSystem getSystem(int id) {

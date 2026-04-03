@@ -1,7 +1,7 @@
-package l1j.server.server.monitor;
+ï»¿package l1j.server.server.monitor;
 
 import java.io.BufferedWriter;
-//////////// ³¯Â¥Æú´õº°·Î ÆÄÀÏ»ı¼ºÇÏ±â////////////////
+//////////// ë‚ ì§œí´ë”ë³„ë¡œ íŒŒì¼ìƒì„±í•˜ê¸°////////////////
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class FileLogger implements Logger {
 	private ArrayList<String> _warehouselog;
 	private ArrayList<String> _itemactionlog;
 	private ArrayList<String> _levellog;
-	/** 78·¹º§ ºÎÅÍ ·¹º§¾÷ÇÒ °æ¿ì levellog ±â·Ï */
+	/** 78ë ˆë²¨ ë¶€í„° ë ˆë²¨ì—…í•  ê²½ìš° levellog ê¸°ë¡ */
 	private ArrayList<String> _bosang_succ;
 	private ArrayList<String> _bosang_fail;
 	private ArrayList<String> _Nextcoin_Sell;
@@ -41,7 +41,7 @@ public class FileLogger implements Logger {
 		_tradelog = new ArrayList<String>();
 		_warehouselog = new ArrayList<String>();
 		_itemactionlog = new ArrayList<String>();
-		_levellog = new ArrayList<String>(); /** 78·¹º§ ºÎÅÍ ·¹º§¾÷ÇÒ °æ¿ì levellog ±â·Ï */
+		_levellog = new ArrayList<String>(); /** 78ë ˆë²¨ ë¶€í„° ë ˆë²¨ì—…í•  ê²½ìš° levellog ê¸°ë¡ */
 		_bosang_succ = new ArrayList<String>(512);
 		_bosang_fail = new ArrayList<String>(512);
 		_Nextcoin_Sell = new ArrayList<String>(512);
@@ -53,39 +53,39 @@ public class FileLogger implements Logger {
 
 		switch (type) {
 		case Clan:
-			log = String.format("%s\tÇ÷¸Í(%s)\t%s\t%s\r\n", getLocalTime(), pc.getClanname(), "[" + pc.getName() + "]",
+			log = String.format("%s\tí˜ˆë§¹(%s)\t%s\t%s\r\n", getLocalTime(), pc.getClanname(), "[" + pc.getName() + "]",
 					msg);
 			break;
 
 		case Global:
-			log = String.format("%s\tÀüÃ¼\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
+			log = String.format("%s\tì „ì²´\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
 			break;
 
 		case Normal:
-			log = String.format("%s\tÀÏ¹İ\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
+			log = String.format("%s\tì¼ë°˜\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
 			break;
 
 		case Alliance:
-			log = String.format("%s\tµ¿¸Í\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
+			log = String.format("%s\të™ë§¹\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
 			break;
 
 		case Guardian:
-			log = String.format("%s\t¼öÈ£\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
+			log = String.format("%s\tìˆ˜í˜¸\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
 			break;
 
 		case Party:
-			log = String.format("%s\tÆÄÆ¼\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
+			log = String.format("%s\tíŒŒí‹°\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
 			break;
 
 		case Group:
-			log = String.format("%s\t±×·ì\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
+			log = String.format("%s\tê·¸ë£¹\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
 			break;
 
 		case Shouting:
-			log = String.format("%s\t¿ÜÄ§\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
+			log = String.format("%s\tì™¸ì¹¨\t%s\t%s\r\n", getLocalTime(), "[" + pc.getName() + "]", msg);
 			break;
 		/*
-		 * Àå»çÃ¤ÆÃ ·Î±× ±â·Ï ³²±âÁö ¾Ê°Ô º¯°æ case Trade: log = String.format("%s\tÀå»ç\t%s\t%s\r\n",
+		 * ì¥ì‚¬ì±„íŒ… ë¡œê·¸ ê¸°ë¡ ë‚¨ê¸°ì§€ ì•Šê²Œ ë³€ê²½ case Trade: log = String.format("%s\tì¥ì‚¬\t%s\t%s\r\n",
 		 * getLocalTime(), "["+pc.getName()+"]", msg); break;
 		 */
 		}
@@ -95,8 +95,8 @@ public class FileLogger implements Logger {
 	}
 
 	public void addWhisper(L1PcInstance pcfrom, L1PcInstance pcto, String msg) {
-		// ½Ã°£ ±Ó¸» ÄÉ¸¯->ÄÉ¸¯\t³»¿ë
-		String log = String.format("%s\t±Ó¸»\t%s -> %s\t%s\r\n", getLocalTime(), "[" + pcfrom.getName() + "]",
+		// ì‹œê°„ ê·“ë§ ì¼€ë¦­->ì¼€ë¦­\të‚´ìš©
+		String log = String.format("%s\tê·“ë§\t%s -> %s\t%s\r\n", getLocalTime(), "[" + pcfrom.getName() + "]",
 				"[" + pcto.getName() + "]", msg);
 
 		synchronized (_chatlog) {
@@ -119,9 +119,9 @@ public class FileLogger implements Logger {
 	}
 
 	public void addEnchant(L1PcInstance pc, L1ItemInstance item, boolean success) {
-		// ½Ã°£ °èÁ¤:ÄÉ¸¯ »óÅÂ ¾ÆÀÌÅÛ
+		// ì‹œê°„ ê³„ì •:ì¼€ë¦­ ìƒíƒœ ì•„ì´í…œ
 		String msg = String.format("%s\t%s:%s\t%s\t%s\r\n", getLocalTime(), pc.getAccountName(),
-				"[" + pc.getName() + "]", (success ? "¼º°ø" : "½ÇÆĞ"), getFormatItemName(item, 1));
+				"[" + pc.getName() + "]", (success ? "ì„±ê³µ" : "ì‹¤íŒ¨"), getFormatItemName(item, 1));
 
 		synchronized (_enchantlog) {
 			_enchantlog.add(msg);
@@ -150,7 +150,7 @@ public class FileLogger implements Logger {
 	}
 
 	public void addShop(String itemName, int count, long price, int npc, String pc) {
-		String msg = String.format("[%s] ¿£ÇÇ¾¾ : %s, Ä³¸¯¸í : %s, ¾ÆÀÌÅÛ : %s, °¹¼ö : %d, °¡°İ : %d\r\n", getLocalTime(), npc, pc,
+		String msg = String.format("[%s] ì—”í”¼ì”¨ : %s, ìºë¦­ëª… : %s, ì•„ì´í…œ : %s, ê°¯ìˆ˜ : %d, ê°€ê²© : %d\r\n", getLocalTime(), npc, pc,
 				itemName, count, price);
 		synchronized (_shoplog) {
 			_shoplog.add(msg);
@@ -158,9 +158,9 @@ public class FileLogger implements Logger {
 	}
 
 	public void addTrade(boolean success, L1PcInstance pcfrom, L1PcInstance pcto, L1ItemInstance item, int count) {
-		// ½Ã°£ ¼º°ø °èÁ¤:ÄÉ¸¯ [¾ÆÀÌµğ]ÅÛÀÌ¸§(°¹¼ö) -> °èÁ¤:ÄÉ¸¯
-		// °Å·¡ ¼º°ø½Ã ·Î±× ±â·Ï ³²±â±â
-		String msg = String.format("%s\t%s\t%s:%s\t%s\t%s:%s\r\n", getLocalTime(), (success ? "OO¿Ï·áOO" : "XXÃë¼ÒXX"),
+		// ì‹œê°„ ì„±ê³µ ê³„ì •:ì¼€ë¦­ [ì•„ì´ë””]í…œì´ë¦„(ê°¯ìˆ˜) -> ê³„ì •:ì¼€ë¦­
+		// ê±°ë˜ ì„±ê³µì‹œ ë¡œê·¸ ê¸°ë¡ ë‚¨ê¸°ê¸°
+		String msg = String.format("%s\t%s\t%s:%s\t%s\t%s:%s\r\n", getLocalTime(), (success ? "OOì™„ë£ŒOO" : "XXì·¨ì†ŒXX"),
 				pcfrom.getAccountName(), "[" + pcfrom.getName() + "]", getFormatItemName(item, count),
 				pcto.getAccountName(), "[" + pcto.getName() + "]");
 		synchronized (_tradelog) {
@@ -168,10 +168,10 @@ public class FileLogger implements Logger {
 		}
 	}
 
-	public void °³ÀÎ»óÁ¡±¸¸Å(boolean success, L1PcInstance pcfrom, L1PcInstance pcto, L1ItemInstance item, int count) {
-		// ½Ã°£ ¼º°ø °èÁ¤:ÄÉ¸¯ [¾ÆÀÌµğ]ÅÛÀÌ¸§(°¹¼ö) -> °èÁ¤:ÄÉ¸¯
-		// °Å·¡ ¼º°ø½Ã ·Î±× ±â·Ï ³²±â±â
-		String msg = String.format("%s\t%s\t%s:%s\t%s\t%s:%s\r\n", getLocalTime(), (success ? "»óÁ¡±¸¸Å" : "»óÁ¡Ãë¼Ò"),
+	public void ê°œì¸ìƒì êµ¬ë§¤(boolean success, L1PcInstance pcfrom, L1PcInstance pcto, L1ItemInstance item, int count) {
+		// ì‹œê°„ ì„±ê³µ ê³„ì •:ì¼€ë¦­ [ì•„ì´ë””]í…œì´ë¦„(ê°¯ìˆ˜) -> ê³„ì •:ì¼€ë¦­
+		// ê±°ë˜ ì„±ê³µì‹œ ë¡œê·¸ ê¸°ë¡ ë‚¨ê¸°ê¸°
+		String msg = String.format("%s\t%s\t%s:%s\t%s\t%s:%s\r\n", getLocalTime(), (success ? "ìƒì êµ¬ë§¤" : "ìƒì ì·¨ì†Œ"),
 				pcfrom.getAccountName(), "[" + pcfrom.getName() + "]", getFormatItemName(item, count),
 				pcto.getAccountName(), "[" + pcto.getName() + "]");
 		synchronized (_tradelog) {
@@ -182,25 +182,25 @@ public class FileLogger implements Logger {
 	public void addWarehouse(WarehouseType type, boolean put, L1PcInstance pc, L1ItemInstance item, int count) {
 		String msg = "";
 
-		// ½Ã°£ Å¸ÀÔ µ¿ÀÛ °èÁ¤:ÄÉ¸¯¸í [¾ÆÀÌµğ]¾ÆÀÌÅÛ(°¹¼ö)
+		// ì‹œê°„ íƒ€ì… ë™ì‘ ê³„ì •:ì¼€ë¦­ëª… [ì•„ì´ë””]ì•„ì´í…œ(ê°¯ìˆ˜)
 		switch (type) {
 		case Private:
-			msg = String.format("%s\t°³ÀÎ:%s\t%s:%s\t%s\r\n", getLocalTime(), (put ? "¸Ã±â±â" : "Ã£±â"), pc.getAccountName(),
+			msg = String.format("%s\tê°œì¸:%s\t%s:%s\t%s\r\n", getLocalTime(), (put ? "ë§¡ê¸°ê¸°" : "ì°¾ê¸°"), pc.getAccountName(),
 					"[" + pc.getName() + "]", getFormatItemName(item, count));
 			break;
 
 		case Clan:
-			msg = String.format("%s\tÇ÷¸Í(%s):%s\t%s:%s\t%s\r\n", getLocalTime(), pc.getClanname(), (put ? "¸Ã±â±â" : "Ã£±â"),
+			msg = String.format("%s\tí˜ˆë§¹(%s):%s\t%s:%s\t%s\r\n", getLocalTime(), pc.getClanname(), (put ? "ë§¡ê¸°ê¸°" : "ì°¾ê¸°"),
 					pc.getAccountName(), "[" + pc.getName() + "]", getFormatItemName(item, count));
 			break;
 
 		case Package:
-			msg = String.format("%s\tÆĞÅ°Áö:%s\t%s:%s\t%s\r\n", getLocalTime(), (put ? "¸Ã±â±â" : "Ã£±â"), pc.getAccountName(),
+			msg = String.format("%s\tíŒ¨í‚¤ì§€:%s\t%s:%s\t%s\r\n", getLocalTime(), (put ? "ë§¡ê¸°ê¸°" : "ì°¾ê¸°"), pc.getAccountName(),
 					"[" + pc.getName() + "]", getFormatItemName(item, count));
 			break;
 
 		case Elf:
-			msg = String.format("%s\t¿äÁ¤:%s\t%s:%s\t%s\r\n", getLocalTime(), (put ? "¸Ã±â±â" : "Ã£±â"), pc.getAccountName(),
+			msg = String.format("%s\tìš”ì •:%s\t%s:%s\t%s\r\n", getLocalTime(), (put ? "ë§¡ê¸°ê¸°" : "ì°¾ê¸°"), pc.getAccountName(),
 					"[" + pc.getName() + "]", getFormatItemName(item, count));
 			break;
 
@@ -214,28 +214,28 @@ public class FileLogger implements Logger {
 	public void addItemAction(ItemActionType type, L1PcInstance pc, L1ItemInstance item, int count) {
 		String msg = "";
 
-		// ½Ã°£ Å¸ÀÔ °èÁ¤:ÄÉ¸¯¸í [¾ÆÀÌµğ]¾ÆÀÌÅÛ(°¹¼ö)
+		// ì‹œê°„ íƒ€ì… ê³„ì •:ì¼€ë¦­ëª… [ì•„ì´ë””]ì•„ì´í…œ(ê°¯ìˆ˜)
 		switch (type) {
 		case Pickup:
-			msg = String.format("%s\tÁİ±â\t%s:%s\t%s\r\n", getLocalTime(), pc.getAccountName(), "[" + pc.getName() + "]",
+			msg = String.format("%s\tì¤ê¸°\t%s:%s\t%s\r\n", getLocalTime(), pc.getAccountName(), "[" + pc.getName() + "]",
 					getFormatItemName(item, count));
 			break;
 		/*
-		 * ¿ÀÅä·çÆÃ ·Î±× ±â·Ï ³²±âÁö ¾Ê°Ô º¯°æ case AutoLoot: msg =
-		 * String.format("%s\t¿ÀÅä·çÆÃ\t%s:%s\t%s\r\n", getLocalTime(), pc.getAccountName(),
+		 * ì˜¤í† ë£¨íŒ… ë¡œê·¸ ê¸°ë¡ ë‚¨ê¸°ì§€ ì•Šê²Œ ë³€ê²½ case AutoLoot: msg =
+		 * String.format("%s\tì˜¤í† ë£¨íŒ…\t%s:%s\t%s\r\n", getLocalTime(), pc.getAccountName(),
 		 * "["+pc.getName()+"]", getFormatItemName(item, count)); break;
 		 */
 		case Drop:
-			msg = String.format("%s\t¹ö¸®±â\t%s:%s\t%s\r\n", getLocalTime(), pc.getAccountName(), "[" + pc.getName() + "]",
+			msg = String.format("%s\të²„ë¦¬ê¸°\t%s:%s\t%s\r\n", getLocalTime(), pc.getAccountName(), "[" + pc.getName() + "]",
 					getFormatItemName(item, count));
 			break;
 
 		case Delete:
-			msg = String.format("%s\t»èÁ¦\t%s:%s\t%s\r\n", getLocalTime(), pc.getAccountName(), "[" + pc.getName() + "]",
+			msg = String.format("%s\tì‚­ì œ\t%s:%s\t%s\r\n", getLocalTime(), pc.getAccountName(), "[" + pc.getName() + "]",
 					getFormatItemName(item, count));
 			break;
 		case del:
-			msg = String.format("%s\tÁõ¹ß\t%s:%s\t%s\r\n", getLocalTime(), pc.getAccountName(), pc.getName(),
+			msg = String.format("%s\tì¦ë°œ\t%s:%s\t%s\r\n", getLocalTime(), pc.getAccountName(), pc.getName(),
 					getFormatItemName(item, count));
 			break;
 
@@ -245,7 +245,7 @@ public class FileLogger implements Logger {
 		}
 	}
 
-	/** 78·¹º§ ºÎÅÍ ·¹º§¾÷ÇÒ °æ¿ì levellog ±â·Ï */
+	/** 78ë ˆë²¨ ë¶€í„° ë ˆë²¨ì—…í•  ê²½ìš° levellog ê¸°ë¡ */
 	public void addLevel(L1PcInstance pc, int level) {
 		String msg = "";
 
@@ -291,7 +291,7 @@ public class FileLogger implements Logger {
 			_itemactionlog.add(msg);
 		}
 
-		/** 78·¹º§ ºÎÅÍ ·¹º§¾÷ÇÒ °æ¿ì levellog ±â·Ï */
+		/** 78ë ˆë²¨ ë¶€í„° ë ˆë²¨ì—…í•  ê²½ìš° levellog ê¸°ë¡ */
 		synchronized (_levellog) {
 			_levellog.add(msg);
 		}
@@ -300,77 +300,77 @@ public class FileLogger implements Logger {
 	public void flush() throws IOException {
 		synchronized (_chatlog) {
 			if (!_chatlog.isEmpty()) {
-				writeLog(_chatlog, "Ã¤ÆÃ.txt");
+				writeLog(_chatlog, "ì±„íŒ….txt");
 				_chatlog.clear();
 			}
 		}
 
 		synchronized (_commandlog) {
 			if (!_commandlog.isEmpty()) {
-				writeLog(_commandlog, "¸í·É¾î.txt");
+				writeLog(_commandlog, "ëª…ë ¹ì–´.txt");
 				_commandlog.clear();
 			}
 		}
 
 		synchronized (_connectionlog) {
 			if (!_connectionlog.isEmpty()) {
-				writeLog(_connectionlog, "·Î±×ÀÎ.txt");
+				writeLog(_connectionlog, "ë¡œê·¸ì¸.txt");
 				_connectionlog.clear();
 			}
 		}
 
 		synchronized (_enchantlog) {
 			if (!_enchantlog.isEmpty()) {
-				writeLog(_enchantlog, "ÀÎÃ¦Æ®.txt");
+				writeLog(_enchantlog, "ì¸ì±ˆíŠ¸.txt");
 				_enchantlog.clear();
 			}
 		}
 
 		synchronized (_shoplog) {
 			if (!_shoplog.isEmpty()) {
-				writeLog(_shoplog, "»óÁ¡.txt");
+				writeLog(_shoplog, "ìƒì .txt");
 				_shoplog.clear();
 			}
 		}
 
 		synchronized (_tradelog) {
 			if (!_tradelog.isEmpty()) {
-				writeLog(_tradelog, "±³È¯.txt");
+				writeLog(_tradelog, "êµí™˜.txt");
 				_tradelog.clear();
 			}
 		}
 
 		synchronized (_warehouselog) {
 			if (!_warehouselog.isEmpty()) {
-				writeLog(_warehouselog, "Ã¢°í.txt");
+				writeLog(_warehouselog, "ì°½ê³ .txt");
 				_warehouselog.clear();
 			}
 		}
 
 		synchronized (_itemactionlog) {
 			if (!_itemactionlog.isEmpty()) {
-				writeLog(_itemactionlog, "¾ÆÀÌÅÛ·Î±×.txt");
+				writeLog(_itemactionlog, "ì•„ì´í…œë¡œê·¸.txt");
 				_itemactionlog.clear();
 			}
 		}
 
-		/** 78·¹º§ ºÎÅÍ ·¹º§¾÷ÇÒ °æ¿ì levellog ±â·Ï */
+		/** 78ë ˆë²¨ ë¶€í„° ë ˆë²¨ì—…í•  ê²½ìš° levellog ê¸°ë¡ */
 		synchronized (_levellog) {
 			if (!_levellog.isEmpty()) {
-				writeLog(_levellog, "·¹º§¾÷.txt");
+				writeLog(_levellog, "ë ˆë²¨ì—….txt");
 				_levellog.clear();
 			}
 		}
 	}
 
-	// ** ³¯Â¥º°·Î Æú´õ»ı¼ºÇØ¼­ ·Î±×ÀúÀåÇÏ±â **//
+	// ** ë‚ ì§œë³„ë¡œ í´ë”ìƒì„±í•´ì„œ ë¡œê·¸ì €ì¥í•˜ê¸° **//
 	private static String getDate() {
 		SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd hh-ss", Locale.KOREA);
 		return s.format(Calendar.getInstance().getTime());
 	}
 
 	public void writeLog(ArrayList<String> log, String filename) throws IOException {
-		// ** ³¯Â¥º°·Î Æú´õ»ı¼ºÇØ¼­ ·Î±×ÀúÀåÇÏ±â **//
+		// ** ë‚ ì§œë³„ë¡œ í´ë”ìƒì„±í•´ì„œ ë¡œê·¸ì €ì¥í•˜ê¸° **//
 		File f = null;
 		String sTemp = "";
 		sTemp = getDate();
@@ -379,7 +379,7 @@ public class FileLogger implements Logger {
 		f = new File("LogDB/" + date);
 		if (!f.exists())
 			f.mkdir();
-		// ** ³¯Â¥º°·Î Æú´õ»ı¼ºÇØ¼­ ·Î±×ÀúÀåÇÏ±â **//
+		// ** ë‚ ì§œë³„ë¡œ í´ë”ìƒì„±í•´ì„œ ë¡œê·¸ì €ì¥í•˜ê¸° **//
 		BufferedWriter w = new BufferedWriter(new FileWriter("LogDB/" + date + "/" + filename, true));
 		PrintWriter pw = new PrintWriter(w, true);
 

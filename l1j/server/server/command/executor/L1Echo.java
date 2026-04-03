@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -22,7 +22,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_SystemMessage;
 
 /**
- * ÀÔ·ÂµÈ ÀÎ¼ö¸¦ ±×´ë·Î µ¹·ÁÁÖ´Â Ä¿¸àµå.  Å×½ºÆ®, µğ¹ö±× ¹× Ä¿¸àµå ½ÇÀå »ùÇÃ¿ë.
+ * ì…ë ¥ëœ ì¸ìˆ˜ë¥¼ ê·¸ëŒ€ë¡œ ëŒë ¤ì£¼ëŠ” ì»¤ë©˜ë“œ.  í…ŒìŠ¤íŠ¸, ë””ë²„ê·¸ ë° ì»¤ë©˜ë“œ ì‹¤ì¥ ìƒ˜í”Œìš©.
  */
 public class L1Echo implements L1CommandExecutor {
 	private L1Echo() {

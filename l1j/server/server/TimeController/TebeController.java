@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1World;
@@ -12,11 +12,11 @@ public class TebeController implements Runnable {
     private static TebeController _instance;
     public boolean isgameStart = false;
     public int Status = 0;
-    private final int ´ë±â = 0;
-    private final int ¿ÀÇÂ = 1;
-    private final int ÁøÇà = 2;
-    private final int Á¾·á = 3;
-    public int Å×º£½Ã°£ = 0;
+    private final int ëŒ€ê¸° = 0;
+    private final int ì˜¤í”ˆ = 1;
+    private final int ì§„í–‰ = 2;
+    private final int ì¢…ë£Œ = 3;
+    public int í…Œë² ì‹œê°„ = 0;
     
     public static TebeController getInstance() {
         if (_instance == null) {
@@ -30,32 +30,32 @@ public class TebeController implements Runnable {
         try {
             while (true) {
                 switch (Status) {
-                case ´ë±â:
+                case ëŒ€ê¸°:
                     Thread.sleep(10000);
                     if (isgameStart == false) {
                         continue;
                     }
-                    Status = ¿ÀÇÂ;
+                    Status = ì˜¤í”ˆ;
                     continue;
-                case ¿ÀÇÂ:
-                    L1World.getInstance().broadcastServerMessage("\\fT¾Ë¸²: Å×º£¶ó½º¿¡¼­ »ç³É°¡´ÉÇÏ¿À´Ï,Á¶½ÉÇÏ¼¼¿ä.");
-                    L1World.getInstance().broadcastServerMessage("\\fT¾Ë¸²: ½Ã°£ÀÌ µÇ¸é °­Á¦±ÍÈ¯ µË´Ï´Ù.");
-                    System.out.println("...... Å×º£¶ó½º ¿­¸²");
-                    Status = ÁøÇà;
+                case ì˜¤í”ˆ:
+                    L1World.getInstance().broadcastServerMessage("\\fTì•Œë¦¼: í…Œë² ë¼ìŠ¤ì—ì„œ ì‚¬ëƒ¥ê°€ëŠ¥í•˜ì˜¤ë‹ˆ,ì¡°ì‹¬í•˜ì„¸ìš”.");
+                    L1World.getInstance().broadcastServerMessage("\\fTì•Œë¦¼: ì‹œê°„ì´ ë˜ë©´ ê°•ì œê·€í™˜ ë©ë‹ˆë‹¤.");
+                    System.out.println("...... í…Œë² ë¼ìŠ¤ ì—´ë¦¼");
+                    Status = ì§„í–‰;
                     continue;
-                case ÁøÇà:
-                    Thread.sleep(Å×º£½Ã°£ * 1000L);
+                case ì§„í–‰:
+                    Thread.sleep(í…Œë² ì‹œê°„ * 1000L);
                     TelePort();
                     close();
                     Thread.sleep(3000L);
                     TelePort2();
-                    Status = Á¾·á;
+                    Status = ì¢…ë£Œ;
                     continue;
-                case Á¾·á:
-                    L1World.getInstance().broadcastServerMessage("\\fT¾Ë¸²: Å×º£¶ó½º Á¾·áµÇ¾ú½À´Ï´Ù.");
-                    System.out.println("...... Å×º£¶ó½º Á¾·áµÊ");
+                case ì¢…ë£Œ:
+                    L1World.getInstance().broadcastServerMessage("\\fTì•Œë¦¼: í…Œë² ë¼ìŠ¤ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+                    System.out.println("...... í…Œë² ë¼ìŠ¤ ì¢…ë£Œë¨");
                     isgameStart = false;
-                    Status = ´ë±â;
+                    Status = ëŒ€ê¸°;
                     continue;
                 }
             }
@@ -71,7 +71,7 @@ public class TebeController implements Runnable {
                 c.stopHpRegenerationByDoll();
                 c.stopMpRegenerationByDoll();
                 L1Teleport.teleport(c, 33970, 33246, (short) 4, 0, true);
-                c.sendPackets(new S_SystemMessage("Å×º£¶ó½º ´İÇû½À´Ï´Ù."));
+                c.sendPackets(new S_SystemMessage("í…Œë² ë¼ìŠ¤ ë‹«í˜”ìŠµë‹ˆë‹¤."));
                 break;
             default:
                 break;
@@ -96,7 +96,7 @@ public class TebeController implements Runnable {
                 c.stopHpRegenerationByDoll();
                 c.stopMpRegenerationByDoll();
                 L1Teleport.teleport(c, 33970, 33246, (short) 4, 0, true);
-                c.sendPackets(new S_SystemMessage("Å×º£¶ó½º ´İÇû½À´Ï´Ù."));
+                c.sendPackets(new S_SystemMessage("í…Œë² ë¼ìŠ¤ ë‹«í˜”ìŠµë‹ˆë‹¤."));
                 break;
             default:
                 break;

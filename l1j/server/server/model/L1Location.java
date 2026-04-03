@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -171,7 +171,7 @@ public class L1Location extends Point {
 	public static L1Location randomLocation(L1Location baseLocation, int min,
 			int max, boolean isRandomTeleport) {
 		if (min > max) {
-			throw new IllegalArgumentException("min > max�� �Ǵ� �μ��� ��ȿ");
+			throw new IllegalArgumentException("min > max가 되는 인수는 무효");
 		}
 		if (max <= 0) {
 			return new L1Location(baseLocation);

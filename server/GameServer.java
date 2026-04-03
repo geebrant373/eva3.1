@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -192,7 +192,7 @@ public class GameServer/* extends Thread*/ {
 		showGameServerSetting();
 
 		ObjectIdFactory.createInstance();
-		L1WorldMap.createInstance();  // FIXME ºÎ½ÇÇÏ´Ù
+		L1WorldMap.createInstance();  // FIXME ë¶€ì‹¤í•˜ë‹¤
 		initTime();
 		//MJCTSpellLoader.getInstance();
 		SpecialMapTable.getInstance();
@@ -202,61 +202,61 @@ public class GameServer/* extends Thread*/ {
 		ExchangeItemLoader.getInstance();
 		//CharacterBalance.getInstance();
 		DollBonusEventLoader.getInstance();
-		BoardAdenaTable.getInstance(); //À¯Àú °Å·¡ °Ô½ÃÆÇ
+		BoardAdenaTable.getInstance(); //ìœ ì € ê±°ë˜ ê²Œì‹œíŒ
 		AdenaBoardController.getInstance();
-		CharacterTable.getInstance().loadAllCharName(); // FIXME ±»ÀÌ ¸Ş¸ğ¸®¿¡ ¶ç¿öµÑ ÇÊ¿ä°¡ ÀÖ³ª
+		CharacterTable.getInstance().loadAllCharName(); // FIXME êµ³ì´ ë©”ëª¨ë¦¬ì— ë„ì›Œë‘˜ í•„ìš”ê°€ ìˆë‚˜
 		CharacterTable.clearOnlineStatus();
 		WantedTeleportTable.getInstance();
-		//CharacterTable.clear·ÎÅ×ÀÌ¼Ç();
-		/**mjSpr°ü·Ã*/
+		//CharacterTable.clearë¡œí…Œì´ì…˜();
+		/**mjSprê´€ë ¨*/
 		SpriteInformationLoader.getInstance().loadSpriteInformation();
 		MJSprBoundary.do_load();
 		// TODO change following code to be more effective
 		DominanceDataLoader.getInstance();
 		DominanceTimeController.getInstance();
-		// UBÅ¸ÀÓ ÄÜÆ®·Ñ·¯
+		// UBíƒ€ì„ ì½˜íŠ¸ë¡¤ëŸ¬
 		//UbTimeController.getInstance();
 		Robot_Location.setRLOC();
 		Robot_Fish.getInstance();
-		// ÀüÀï Å¸ÀÓ ÄÜÆ®·Ñ·¯
+		// ì „ìŸ íƒ€ì„ ì½˜íŠ¸ë¡¤ëŸ¬
 		WarTimeController.getInstance();
-		// Á¤·ÉÀÇ µ¹ Å¸ÀÓ ÄÁÆ®·Ñ·¯
-		// ¹èÆ²Á¸
-		if (Config.¹èÆ²Á¸ÀÛµ¿À¯¹«) {
+		// ì •ë ¹ì˜ ëŒ íƒ€ì„ ì»¨íŠ¸ë¡¤ëŸ¬
+		// ë°°í‹€ì¡´
+		if (Config.ë°°í‹€ì¡´ì‘ë™ìœ ë¬´) {
 			BattleZone battleZone = BattleZone.getInstance();
 			GeneralThreadPool.getInstance().execute(battleZone);
 		}
-		//Á¦ÀÛÅ×ÀÌºí
+		//ì œì‘í…Œì´ë¸”
 				CraftListTable.getInstance();
-				//½ºÅ³µ¥¹ÌÁö Å×ÀÌºí
+				//ìŠ¤í‚¬ë°ë¯¸ì§€ í…Œì´ë¸”
 				SkillsDmgTable.getInstance();
-				//ÇåÅÍºÏ
+				//í—Œí„°ë¶
 				// huntingbookTable.getInstance();
-		// È¨ Å¸¿î
+		// í™ˆ íƒ€ìš´
 		//HomeTownController.getInstance();
 
-		// ¾ÆÁöÆ® °æ¸Å Å¸ÀÓ ÄÜÆ®·Ñ·¯
+		// ì•„ì§€íŠ¸ ê²½ë§¤ íƒ€ì„ ì½˜íŠ¸ë¡¤ëŸ¬
 		AuctionTimeController.getInstance();
 
-		// ¾ÆÁöÆ® ¼¼±İ Å¸ÀÓ ÄÜÆ®·Ñ·¯
+		// ì•„ì§€íŠ¸ ì„¸ê¸ˆ íƒ€ì„ ì½˜íŠ¸ë¡¤ëŸ¬
 		HouseTaxTimeController.getInstance();
 
-		// »ıÁ¸ÀÇ¿ÜÄ§ Å¸ÀÓ ÄÁÆ®·Ñ·¯
+		// ìƒì¡´ì˜ì™¸ì¹¨ íƒ€ì„ ì»¨íŠ¸ë¡¤ëŸ¬
 		//LiveTimeController.getInstance();
 
 		AutoDollController.getInstance();
 		
-		// ³¬½Ã Å¸ÀÓ ÄÜÆ®·Ñ·¯
+		// ë‚šì‹œ íƒ€ì„ ì½˜íŠ¸ë¡¤ëŸ¬
 		FishingTimeController fishingTimeController = FishingTimeController.getInstance();
 		GeneralThreadPool.getInstance().scheduleAtFixedRate(fishingTimeController, 0, FishingTimeController.SLEEP_TIME); // #
 
 		InvenTimeController invenTimeController = InvenTimeController.getInstance();
 		GeneralThreadPool.getInstance().scheduleAtFixedRate(invenTimeController, 0, InvenTimeController.SLEEP_TIME);
 		
-		// °í¹« Å¸ÀÓ ÄÁÆ®·Ñ·¯
+		// ê³ ë¬´ íƒ€ì„ ì»¨íŠ¸ë¡¤ëŸ¬
 	//	GomuSystem.getInstance().start();
 		
-		// °í¹« Å¸ÀÓ ÄÁÆ®·Ñ·¯
+		// ê³ ë¬´ íƒ€ì„ ì»¨íŠ¸ë¡¤ëŸ¬
 //		GomuSystem1.getInstance().start();
 		
 		NpcChatTimeController.getInstance();
@@ -290,7 +290,7 @@ public class GameServer/* extends Thread*/ {
 		PetTable.getInstance();
 		ClanTable.getInstance();
 		CastleTable.getInstance();
-		L1CastleLocation.setCastleTaxRate(); // CastleTable ÃÊ±âÈ­ ´ÙÀ½ ¾Æ´Ï¸é ¾È µÈ´Ù
+		L1CastleLocation.setCastleTaxRate(); // CastleTable ì´ˆê¸°í™” ë‹¤ìŒ ì•„ë‹ˆë©´ ì•ˆ ëœë‹¤
 		GetBackRestartTable.getInstance();
 		DoorSpawnTable.getInstance();
 		GeneralThreadPool.getInstance();
@@ -311,8 +311,8 @@ public class GameServer/* extends Thread*/ {
 //		CrockController.getInstance().start();
 //		SoldierTable.getInstance();
 //		L1BugBearRace.getInstance();
-		WeaponPcBalanceTable.getInstance(); // ¹«±âµ¥¹ÌÁö pc
-		WeaponNpcBalanceTable.getInstance(); // ¹«±âµ¥¹ÌÁö npc
+		WeaponPcBalanceTable.getInstance(); // ë¬´ê¸°ë°ë¯¸ì§€ pc
+		WeaponNpcBalanceTable.getInstance(); // ë¬´ê¸°ë°ë¯¸ì§€ npc
 		AccessoryBalanceTable.getInstance();
 		WeaponMagicPcBalanceTable.getInstance();
 		WeaponMagicNpcBalanceTable.getInstance();
@@ -320,18 +320,18 @@ public class GameServer/* extends Thread*/ {
 		BossSpawnTimeController.getInstance();
 		NewNpcSpawnTable.getInstance();
 		NpcTimeController.getInstance();
-		// ¶ó½ºÅ¸¹Ùµå ´øÀü
+		// ë¼ìŠ¤íƒ€ë°”ë“œ ë˜ì „
 		/*LastabardController.start();
 		BiscuitLastabardController biscuitLastabardController = BiscuitLastabardController.getInstance();
 	    GeneralThreadPool.getInstance().execute(biscuitLastabardController);*/
 	    MonsterBalance.getInstance();
 	    FishExpTable.getInstance();
 	    
-		// ´øÀü Å¸ÀÌ¸Ó
+		// ë˜ì „ íƒ€ì´ë¨¸
 		DungeonTimer dungeontimer = DungeonTimer.getInstance();
 		GeneralThreadPool.getInstance().scheduleAtFixedRate(dungeontimer, 0, DungeonTimer.SleepTime);
 	 		
-	    /** ½ÃÀå°»½Å ¹× ½ÃÀå½ºÅ¸Æ® ÄÁÆ®·Ñ·¯ Ãß°¡ */
+	    /** ì‹œì¥ê°±ì‹  ë° ì‹œì¥ìŠ¤íƒ€íŠ¸ ì»¨íŠ¸ë¡¤ëŸ¬ ì¶”ê°€ */
 	    boolean power = ShopNpcSystem.getInstance().isPower();
 	    if(!power) {
 	    	ShopNpcSystem.getInstance().npcShopStart();
@@ -361,18 +361,18 @@ public class GameServer/* extends Thread*/ {
 			
 		LotationStatics.getInstance();
 		LotationController.getInstance();
-		// À¯·ÉÀÇÁı, µ¥½º¸ÅÄ¡
+		// ìœ ë ¹ì˜ì§‘, ë°ìŠ¤ë§¤ì¹˜
 		//GeneralThreadPool.getInstance().execute(DeathMatch.getInstance());
 		//GeneralThreadPool.getInstance().execute(GhostHouse.getInstance());
 		//GeneralThreadPool.getInstance().execute(PetRacing.getInstance());
 		L1Sys.getInstance();
 		L1Sys l1Sys = L1Sys.getInstance();
 		GeneralThreadPool.getInstance().execute(l1Sys);
-		// È¶ºÒ
+		// íšƒë¶ˆ
 		LightSpawnTable.getInstance();
 		LightTimeController.start();
 
-		// ¿ùµå³»¿¡ ¸ğÇü ³Ö±â(´øÀü³» È½ºÒ µîµî)
+		// ì›”ë“œë‚´ì— ëª¨í˜• ë„£ê¸°(ë˜ì „ë‚´ íšŸë¶ˆ ë“±ë“±)
 		ModelSpawnTable.getInstance().ModelInsertWorld();
 		
 		EventSystemLoader.getInstance();
@@ -382,35 +382,35 @@ public class GameServer/* extends Thread*/ {
 		//AutoBuyItemController.getInstance();
 		AutoSellItemController.getInstance();
 		ArmorBalanceTable.getInstance();
-		AutoPotionSystem.getInstance();//220102Ãß°¡
-		// °ø¼º ½Ã°£ÁöÁ¤ Å¸ÀÌ¸Ó
+		AutoPotionSystem.getInstance();//220102ì¶”ê°€
+		// ê³µì„± ì‹œê°„ì§€ì • íƒ€ì´ë¨¸
 //		WarSetTime.start();
 
-		// °ÔÀÓ °øÁö
+		// ê²Œì„ ê³µì§€
 		//NoticeSystem.start();
 
-		// ½Ã°£ÀÇ ±Õ¿­
+		// ì‹œê°„ì˜ ê· ì—´
 		/*CrockSystem.getInstance();
 		EvaSystemTable.getInstance();
 		if (Config.ALT_HALLOWEENEVENT != true) {
 			Halloween();
 		}*/
-		//º¸½º ÇÑÀÔ¸¸ »óÀÚ
+		//ë³´ìŠ¤ í•œì…ë§Œ ìƒì
 		AddRewardMonTable.getInstance();
-		// ¹ö°æÇ¥ »èÁ¦
+		// ë²„ê²½í‘œ ì‚­ì œ
 		//RaceTicket();
 //		MapFixKeyTable.getInstance();
 
 //		MiniClient Mini = MiniClient.getInstance();
 //		Mini.start();
-		//ÄÉ¸¯ÅÍ ÀÚµ¿ÀúÀå ½ºÄÉÁÙ·¯ ÇØ´ç ½Ã°£¿¡ ¸Â°Ô ÀüÃ¼ À¯Àú¸¦ ÀĞ¾î¼­ ÀúÀå½ÃÅ²´Ù.
+		//ì¼€ë¦­í„° ìë™ì €ì¥ ìŠ¤ì¼€ì¤„ëŸ¬ í•´ë‹¹ ì‹œê°„ì— ë§ê²Œ ì „ì²´ ìœ ì €ë¥¼ ì½ì–´ì„œ ì €ì¥ì‹œí‚¨ë‹¤.
 		//CharacterAutoSaveController chaSave = new CharacterAutoSaveController(Config.AUTOSAVE_INTERVAL * 1000);
 		//chaSave.start();
 
 
 		//CharacterQuitCheckController quick = new CharacterQuitCheckController(10000);
 		//quick.start();
-		//ÄÉ¸¯ÅÍ°¡ °¡Áø ÀÎÇüÀÇ ActionÀ» Àü¼ÛÇÑ´Ù.
+		//ì¼€ë¦­í„°ê°€ ê°€ì§„ ì¸í˜•ì˜ Actionì„ ì „ì†¡í•œë‹¤.
 		//DollobserverController dollAction = new DollobserverController(15000);
 		//dollAction.start();
 
@@ -425,7 +425,7 @@ public class GameServer/* extends Thread*/ {
 		CharacterQuickCheckThread.getInstance();
 		//AutoUpdateThread.getInstance();
 		//ExpMonitorThread.getInstance();
-//		UserRankingController.getInstance(); //·©Å· ½Ã½ºÅÛ
+//		UserRankingController.getInstance(); //ë­í‚¹ ì‹œìŠ¤í…œ
 		ExpMonitorController.getInstance();
 		AttrEnchantControlTable.getInstance();
 		CharacterBalance.getInstance();
@@ -449,8 +449,8 @@ public class GameServer/* extends Thread*/ {
 			spawnStatue(5160, firstHero());
 		}
 		
-		// °¡ºñÁö ÄÃ·ºÅÍ ½ÇÇà (Null) °´Ã¼ÀÇ ÇØÁ¦
-		System.out.println("[GameServer] ·Îµù ¿Ï·á!");
+		// ê°€ë¹„ì§€ ì»¬ë ‰í„° ì‹¤í–‰ (Null) ê°ì²´ì˜ í•´ì œ
+		System.out.println("[GameServer] ë¡œë”© ì™„ë£Œ!");
 		System.out.println("=================================================");
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
 
@@ -489,7 +489,7 @@ public class GameServer/* extends Thread*/ {
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement("UPDATE npc SET nameid = ?, gfxid = ? WHERE npcid = 900009622");
-			pstm.setString(1, "[¼­¹ö ·©Å· 1À§]^" + "<<"+name+">>");
+			pstm.setString(1, "[ì„œë²„ ë­í‚¹ 1ìœ„]^" + "<<"+name+">>");
 			pstm.setInt(2, classid);
 			pstm.executeUpdate();
 		} catch (SQLException e) {
@@ -501,7 +501,7 @@ public class GameServer/* extends Thread*/ {
 		}
 
 		NpcTable.reload();
-		L1SpawnUtil.spawn2(Config.·©Å·µ¿»óxÁÂÇ¥, Config.·©Å·µ¿»óyÁÂÇ¥, (short) 4, 900009622, 0, 0, 0); 
+		L1SpawnUtil.spawn2(Config.ë­í‚¹ë™ìƒxì¢Œí‘œ, Config.ë­í‚¹ë™ìƒyì¢Œí‘œ, (short) 4, 900009622, 0, 0, 0); 
 	}
 	
 	public static String firstHero() {
@@ -536,8 +536,8 @@ public class GameServer/* extends Thread*/ {
 	}
 	
 	private void initTime() {
-		GameTimeClock.init(); // °ÔÀÓ ½Ã°£ ½Ã°è
-		RealTimeClock.init(); // ÇöÀç ½Ã°£ ½Ã°è
+		GameTimeClock.init(); // ê²Œì„ ì‹œê°„ ì‹œê³„
+		RealTimeClock.init(); // í˜„ì¬ ì‹œê°„ ì‹œê³„
 	}
 
 	private void showGameServerSetting() {
@@ -552,7 +552,7 @@ public class GameServer/* extends Thread*/ {
 		System.out.println("[GameServer] Exp: x" + rateXp + " / Lawful: x" + rateLawful + " / Adena: x" + rateDropAdena);
 		System.out.println("[GameServer] Karma: x" + rateKarma + " / Item: x" + rateDropItems);
 		System.out.println("[GameServer] Chatting Level: " + Config.GLOBAL_CHAT_LEVEL);
-		System.out.println("[GameServer] Maximum User: " + Config.MAX_ONLINE_USERS + "ÀÎ");
+		System.out.println("[GameServer] Maximum User: " + Config.MAX_ONLINE_USERS + "ì¸");
 
 		System.out.print("[GameServer] PvP mode: ");
 		if (Config.ALT_NONPVP) 	System.out.println("On");
@@ -561,11 +561,11 @@ public class GameServer/* extends Thread*/ {
 	}
 
 	/**
-	 * ¿Â¶óÀÎÁßÀÇ ÇÃ·¹ÀÌ¾î ¸ğµÎ¿¡ ´ëÇØ¼­ kick, Ä³¸¯ÅÍ Á¤º¸ÀÇ º¸Á¸À» ÇÑ´Ù.
+	 * ì˜¨ë¼ì¸ì¤‘ì˜ í”Œë ˆì´ì–´ ëª¨ë‘ì— ëŒ€í•´ì„œ kick, ìºë¦­í„° ì •ë³´ì˜ ë³´ì¡´ì„ í•œë‹¤.
 	 */
 	public void disconnectAllCharacters() {
 		Collection<L1PcInstance> players = L1World.getInstance().getAllPlayers();
-		// ¸ğµç Ä³¸¯ÅÍ ²÷±â
+		// ëª¨ë“  ìºë¦­í„° ëŠê¸°
 		for (L1PcInstance pc : players) {
 			if (!(pc instanceof L1RobotInstance)) {
 				if (!AutoShopManager.getInstance().isExistAutoShop(pc.getId())) {
@@ -598,7 +598,7 @@ public class GameServer/* extends Thread*/ {
 	}
 
 	public int saveAllCharInfo() {
-		// exception ¹ß»ıÇÏ¸é -1 ¸®ÅÏ, ¾Æ´Ï¸é ÀúÀåÇÑ ÀÎ¿ø ¼ö ¸®ÅÏ
+		// exception ë°œìƒí•˜ë©´ -1 ë¦¬í„´, ì•„ë‹ˆë©´ ì €ì¥í•œ ì¸ì› ìˆ˜ ë¦¬í„´
 		int cnt = 0;
 		try {
 			for(L1PcInstance pc : L1World.getInstance().getAllPlayers()){
@@ -613,7 +613,7 @@ public class GameServer/* extends Thread*/ {
 	}
 
 	/**
-	 * ¿Â¶óÀÎÁßÀÇ ÇÃ·¹ÀÌ¾î¿¡ ´ëÇØ¼­ kick , Ä³¸¯ÅÍ Á¤º¸ÀÇ º¸Á¸À» ÇÑ´Ù.
+	 * ì˜¨ë¼ì¸ì¤‘ì˜ í”Œë ˆì´ì–´ì— ëŒ€í•´ì„œ kick , ìºë¦­í„° ì •ë³´ì˜ ë³´ì¡´ì„ í•œë‹¤.
 	 */
 	public void disconnectChar(String name) {
 		L1PcInstance pc = L1World.getInstance().getPlayer(name);
@@ -644,18 +644,18 @@ public class GameServer/* extends Thread*/ {
 			L1World world = L1World.getInstance();
 			try {
 				int secondsCount = _secondsCount;
-				System.out.println("[GameServer] Àá½Ã ÈÄ, ¼­¹ö¸¦ Á¾·á ÇÕ´Ï´Ù.");
-				System.out.println("[GameServer] ¾ÈÀüÇÑ Àå¼Ò¿¡¼­ ·Î±×¾Æ¿ô ÇØ ÁÖ¼¼¿ä.");
-				world.broadcastServerMessage("Àá½Ã ÈÄ, ¼­¹ö¸¦ Á¾·á ÇÕ´Ï´Ù.");
-				world.broadcastServerMessage("¾ÈÀüÇÑ Àå¼Ò¿¡¼­ ·Î±×¾Æ¿ô ÇØ ÁÖ¼¼¿ä.");
+				System.out.println("[GameServer] ì ì‹œ í›„, ì„œë²„ë¥¼ ì¢…ë£Œ í•©ë‹ˆë‹¤.");
+				System.out.println("[GameServer] ì•ˆì „í•œ ì¥ì†Œì—ì„œ ë¡œê·¸ì•„ì›ƒ í•´ ì£¼ì„¸ìš”.");
+				world.broadcastServerMessage("ì ì‹œ í›„, ì„œë²„ë¥¼ ì¢…ë£Œ í•©ë‹ˆë‹¤.");
+				world.broadcastServerMessage("ì•ˆì „í•œ ì¥ì†Œì—ì„œ ë¡œê·¸ì•„ì›ƒ í•´ ì£¼ì„¸ìš”.");
 				while (0 < secondsCount) {
 					if (secondsCount <= 30) {
-						System.out.println("[GameServer] °ÔÀÓÀÌ " + secondsCount + "ÃÊ ÈÄ¿¡ Á¾·á µË´Ï´Ù. °ÔÀÓÀ» Áß´ÜÇØ ÁÖ¼¼¿ä.");
-						world.broadcastServerMessage("°ÔÀÓÀÌ " + secondsCount + "ÃÊ ÈÄ¿¡ Á¾·á µË´Ï´Ù. °ÔÀÓÀ» Áß´ÜÇØ ÁÖ¼¼¿ä.");
+						System.out.println("[GameServer] ê²Œì„ì´ " + secondsCount + "ì´ˆ í›„ì— ì¢…ë£Œ ë©ë‹ˆë‹¤. ê²Œì„ì„ ì¤‘ë‹¨í•´ ì£¼ì„¸ìš”.");
+						world.broadcastServerMessage("ê²Œì„ì´ " + secondsCount + "ì´ˆ í›„ì— ì¢…ë£Œ ë©ë‹ˆë‹¤. ê²Œì„ì„ ì¤‘ë‹¨í•´ ì£¼ì„¸ìš”.");
 					} else {
 						if (secondsCount % 60 == 0) {
-							System.out.println("[GameServer] °ÔÀÓÀÌ " + secondsCount / 60 + "ºĞ ÈÄ¿¡ Á¾·á µË´Ï´Ù.");
-							world.broadcastServerMessage("°ÔÀÓÀÌ " + secondsCount / 60 + "ºĞ ÈÄ¿¡ Á¾·á µË´Ï´Ù.");
+							System.out.println("[GameServer] ê²Œì„ì´ " + secondsCount / 60 + "ë¶„ í›„ì— ì¢…ë£Œ ë©ë‹ˆë‹¤.");
+							world.broadcastServerMessage("ê²Œì„ì´ " + secondsCount / 60 + "ë¶„ í›„ì— ì¢…ë£Œ ë©ë‹ˆë‹¤.");
 						}
 					}
 					Thread.sleep(1000);
@@ -663,8 +663,8 @@ public class GameServer/* extends Thread*/ {
 				}
 				shutdown();
 			} catch (InterruptedException e) {
-				System.out.println("[GameServer] ¼­¹ö Á¾·á°¡ Áß´ÜµÇ¾ú½À´Ï´Ù. ¼­¹ö´Â Á¤»ó °¡µ¿ÁßÀÔ´Ï´Ù.");
-				world.broadcastServerMessage("¼­¹ö Á¾·á°¡ Áß´ÜµÇ¾ú½À´Ï´Ù. ¼­¹ö´Â Á¤»ó °¡µ¿ÁßÀÔ´Ï´Ù.");
+				System.out.println("[GameServer] ì„œë²„ ì¢…ë£Œê°€ ì¤‘ë‹¨ë˜ì—ˆìŠµë‹ˆë‹¤. ì„œë²„ëŠ” ì •ìƒ ê°€ë™ì¤‘ì…ë‹ˆë‹¤.");
+				world.broadcastServerMessage("ì„œë²„ ì¢…ë£Œê°€ ì¤‘ë‹¨ë˜ì—ˆìŠµë‹ˆë‹¤. ì„œë²„ëŠ” ì •ìƒ ê°€ë™ì¤‘ì…ë‹ˆë‹¤.");
 				return;
 			}
 		}
@@ -674,8 +674,8 @@ public class GameServer/* extends Thread*/ {
 
 	public synchronized void shutdownWithCountdown(int secondsCount) {
 		if (_shutdownThread != null) {
-			// ÀÌ¹Ì ½¸´Ù¿î ¿ä±¸¸¦ ÇÏ°í ÀÖ´Ù
-			// TODO ¿¡·¯ ÅëÁö°¡ ÇÊ¿äÇÒÁöµµ ¸ğ¸¥´Ù
+			// ì´ë¯¸ ìŠ›ë‹¤ìš´ ìš”êµ¬ë¥¼ í•˜ê³  ìˆë‹¤
+			// TODO ì—ëŸ¬ í†µì§€ê°€ í•„ìš”í• ì§€ë„ ëª¨ë¥¸ë‹¤
 			return;
 		}
 		_shutdownThread = new ServerShutdownThread(secondsCount);
@@ -694,8 +694,8 @@ public class GameServer/* extends Thread*/ {
 
 	public synchronized void abortShutdown() {
 		if (_shutdownThread == null) {
-			// ½¸´Ù¿î ¿ä±¸¸¦ ÇÏÁö ¾Ê¾Ò´Ù
-			// TODO ¿¡·¯ ÅëÁö°¡ ÇÊ¿äÇÒÁöµµ ¸ğ¸¥´Ù
+			// ìŠ›ë‹¤ìš´ ìš”êµ¬ë¥¼ í•˜ì§€ ì•Šì•˜ë‹¤
+			// TODO ì—ëŸ¬ í†µì§€ê°€ í•„ìš”í• ì§€ë„ ëª¨ë¥¸ë‹¤
 			return;
 		}
 

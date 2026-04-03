@@ -1,4 +1,4 @@
-package l1j.server.AutoHuntSystem;
+ï»¿package l1j.server.AutoHuntSystem;
 
 import static l1j.server.server.model.skill.L1SkillId.DETECTION;
 import static l1j.server.server.model.skill.L1SkillId.ENCHANT_WEAPON;
@@ -40,7 +40,7 @@ public class AutoHuntSkillUse {
 			if (owner.getWeapon() == null) {
 				return;
 			}
-			if (owner.getWeapon().getItem().getType1() == 20) {// È°
+			if (owner.getWeapon().getItem().getType1() == 20) {// í™œ
 				if (owner.getElfAttr() == 4) {
 					skillIds = new int[] { L1SkillId.PHYSICAL_ENCHANT_STR,L1SkillId.PHYSICAL_ENCHANT_DEX, L1SkillId.CLEAR_MIND };
 				} else if (owner.getElfAttr() == 8) {
@@ -83,7 +83,7 @@ public class AutoHuntSkillUse {
 					continue;
 				}
 				
-				if (owner.get_ÀÚµ¿¸¶³ªÆÛ¼¾Æ®() > owner.getCurrentMpPercent()) {
+				if (owner.get_ìžë™ë§ˆë‚˜í¼ì„¼íŠ¸() > owner.getCurrentMpPercent()) {
 					continue;
 				}
 				
@@ -174,7 +174,7 @@ public class AutoHuntSkillUse {
 		L1SkillUse _skilluse;
 		L1Skills _skill;
 		if (_hp <= 50) {
-			if (owner.get_ÀÚµ¿¸¶³ªÆÛ¼¾Æ®() > owner.getCurrentMpPercent()) {
+			if (owner.get_ìžë™ë§ˆë‚˜í¼ì„¼íŠ¸() > owner.getCurrentMpPercent()) {
 				return;
 			}
 			if (!SkillCheck.getInstance().CheckSkill(owner, L1SkillId.IMMUNE_TO_HARM))
@@ -196,7 +196,7 @@ public class AutoHuntSkillUse {
 	public void toTripleArrow(L1Character target) {			
 		if(!SkillCheck.getInstance().CheckSkill(owner, L1SkillId.TRIPLE_ARROW)) 
 			return;
-		if (owner.get_ÀÚµ¿¸¶³ªÆÛ¼¾Æ®() > owner.getCurrentMpPercent()) {
+		if (owner.get_ìžë™ë§ˆë‚˜í¼ì„¼íŠ¸() > owner.getCurrentMpPercent()) {
 			return;
 		}
 		L1Skills _skill = SkillsTable.getInstance().getTemplate(L1SkillId.TRIPLE_ARROW);
@@ -258,7 +258,7 @@ public class AutoHuntSkillUse {
 			if (!pc.glanceCheck(target.getX(), target.getY())) {
 				return;
 			}
-			if (pc.getCurrentMpPercent() < pc.get_ÀÚµ¿¸¶³ªÆÛ¼¾Æ®()) {
+			if (pc.getCurrentMpPercent() < pc.get_ìžë™ë§ˆë‚˜í¼ì„¼íŠ¸()) {
 				return;
 			}
 			if (!isundead(target)) {
@@ -286,7 +286,7 @@ public class AutoHuntSkillUse {
 		if (current - pc.getAutoSkillDelay() < 0) {
 			return;
 		}
-		if (owner.get_ÀÚµ¿¸¶³ªÆÛ¼¾Æ®() > owner.getCurrentMpPercent()) {
+		if (owner.get_ìžë™ë§ˆë‚˜í¼ì„¼íŠ¸() > owner.getCurrentMpPercent()) {
 			return;
 		}
 		L1SkillUse _skilluse = new L1SkillUse();
@@ -306,7 +306,7 @@ public class AutoHuntSkillUse {
 			return;
 		}
 		
-		if (pc.getCurrentMpPercent() < pc.get_ÀÚµ¿¸¶³ªÆÛ¼¾Æ®()) {
+		if (pc.getCurrentMpPercent() < pc.get_ìžë™ë§ˆë‚˜í¼ì„¼íŠ¸()) {
 			return;
 		}
 		L1SkillUse _skilluse = new L1SkillUse();
@@ -326,7 +326,7 @@ public class AutoHuntSkillUse {
 			return;
 		}
 		
-		if (pc.getCurrentMpPercent() < pc.get_ÀÚµ¿¸¶³ªÆÛ¼¾Æ®()) {
+		if (pc.getCurrentMpPercent() < pc.get_ìžë™ë§ˆë‚˜í¼ì„¼íŠ¸()) {
 			return;
 		}
 		L1SkillUse _skilluse = new L1SkillUse();
@@ -348,7 +348,7 @@ public class AutoHuntSkillUse {
 			return;
 		}
 		
-		if (owner.get_ÀÚµ¿¸¶³ªÆÛ¼¾Æ®() > owner.getCurrentMpPercent()) {
+		if (owner.get_ìžë™ë§ˆë‚˜í¼ì„¼íŠ¸() > owner.getCurrentMpPercent()) {
 			return;
 		}
 		L1SkillUse _skilluse = new L1SkillUse();

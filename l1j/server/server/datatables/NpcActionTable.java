@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -92,7 +92,7 @@ public class NpcActionTable {
 			_instance = new NpcActionTable();
 			System.out.println("OK! " + timer.get() + "ms");
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, "NpcAction¸¦ ÀĞ¾îµéÀÏ ¼ö ¾ø¾ú½À´Ï´Ù", e);
+			_log.log(Level.SEVERE, "NpcActionë¥¼ ì½ì–´ë“¤ì¼ ìˆ˜ ì—†ì—ˆìŠµë‹ˆë‹¤", e);
 			System.exit(0);
 		}
 	}

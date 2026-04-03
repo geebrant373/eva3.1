@@ -1,4 +1,4 @@
-package l1j.server.GameSystem;
+﻿package l1j.server.GameSystem;
 
 
 public class HotelSystem {

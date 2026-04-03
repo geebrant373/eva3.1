@@ -1,4 +1,4 @@
-package server.monitor;
+﻿package server.monitor;
 
 public interface Monitorable {
 	public void registerMonitor(Monitor m);

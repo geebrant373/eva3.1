@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -37,10 +37,10 @@ public class UbTimeController extends Thread {
 	}
 
 	public void run() {
-		System.out.println(UbTimeController.class.getName()  + " ½ÃÀÛ");
+		System.out.println(UbTimeController.class.getName()  + " ì‹œì‘");
 		try {
 			while (true) {
-				checkUbTime(); // UB°³½Ã ½Ã°£À» Ã¼Å©
+				checkUbTime(); // UBê°œì‹œ ì‹œê°„ì„ ì²´í¬
 				Thread.sleep(15000);
 			}
 		} catch (Exception e1) {

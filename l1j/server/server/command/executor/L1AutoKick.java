@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -46,10 +46,10 @@ public class L1AutoKick implements L1CommandExecutor {
 				shopManager.remove(shopPlayer);
 				shopPlayer = null;				
 			}else{
-				pc.sendPackets(new S_SystemMessage(cmdName + " Ä³¸¯Àº ¹«ÀÎ»óÁ¡ÀÌ ¾Æ´Õ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage(cmdName + " ìºë¦­ì€ ë¬´ì¸ìƒì ì´ ì•„ë‹™ë‹ˆë‹¤."));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [Ä³¸¯ÅÍ¸í]À¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [ìºë¦­í„°ëª…]ìœ¼ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

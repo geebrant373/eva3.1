@@ -1,8 +1,8 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 public class GfxId {
-	private int _tempCharGfx; // ¡Ü º£ÀÌ½º ±×·¡ÇÈ ID
-	private int _gfxid; // ¡Ü ±×·¡ÇÈ ID
+	private int _tempCharGfx; // â— ë² ì´ìŠ¤ ê·¸ë˜í”½ ID
+	private int _gfxid; // â— ê·¸ë˜í”½ ID
 
 	public int getTempCharGfx() {
 		return _tempCharGfx;

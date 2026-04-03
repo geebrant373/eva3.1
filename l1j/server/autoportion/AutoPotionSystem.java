@@ -1,4 +1,4 @@
-package l1j.server.autoportion;
+ï»¿package l1j.server.autoportion;
 
 import static l1j.server.server.model.skill.L1SkillId.POLLUTE_WATER;
 
@@ -36,14 +36,14 @@ public class AutoPotionSystem extends Thread {
 				list = L1World.getInstance().getAllPlayers();
 				for (L1PcInstance pc : list) {
 					if (pc == null || (pc.getNetConnection() == null && !pc.noPlayerCK) || pc.isDead()
-							|| pc.getSkillEffectTimerSet().hasSkillEffect(33) == true // Ä¿½º
-							|| pc.getSkillEffectTimerSet().hasSkillEffect(50) == true // ¾ÆÀÌ½º
-							|| pc.getSkillEffectTimerSet().hasSkillEffect(66) == true // Æ÷±×
-							|| pc.getSkillEffectTimerSet().hasSkillEffect(71) == true // µğÄÉÀÌÆ÷¼Ç
-							|| pc.getSkillEffectTimerSet().hasSkillEffect(78) == true // ¾Û¼Ö
-							|| pc.getSkillEffectTimerSet().hasSkillEffect(87) == true // ¼îÅ©½ºÅÏ
-							|| pc.getSkillEffectTimerSet().hasSkillEffect(157) == true // ¾î½º¹ÙÀÎµå
-							|| pc.getSkillEffectTimerSet().hasSkillEffect(208) == true // º»
+							|| pc.getSkillEffectTimerSet().hasSkillEffect(33) == true // ì»¤ìŠ¤
+							|| pc.getSkillEffectTimerSet().hasSkillEffect(50) == true // ì•„ì´ìŠ¤
+							|| pc.getSkillEffectTimerSet().hasSkillEffect(66) == true // í¬ê·¸
+							|| pc.getSkillEffectTimerSet().hasSkillEffect(71) == true // ë””ì¼€ì´í¬ì…˜
+							|| pc.getSkillEffectTimerSet().hasSkillEffect(78) == true // ì•±ì†”
+							|| pc.getSkillEffectTimerSet().hasSkillEffect(87) == true // ì‡¼í¬ìŠ¤í„´
+							|| pc.getSkillEffectTimerSet().hasSkillEffect(157) == true // ì–´ìŠ¤ë°”ì¸ë“œ
+							|| pc.getSkillEffectTimerSet().hasSkillEffect(208) == true // ë³¸
 							|| pc.isAutoPotion() == false) {
 						continue;
 					}
@@ -58,8 +58,8 @@ public class AutoPotionSystem extends Thread {
 					int heal = 0;
 
 					switch (pc.getHealItemNum()) {
-					case 40010: // Ã¼·ÂÈ¸º¹Á¦
-						heal = Config.»¡°»ÀÌÈ¸º¹·®;
+					case 40010: // ì²´ë ¥íšŒë³µì œ
+						heal = Config.ë¹¨ê°±ì´íšŒë³µëŸ‰;
 						effect = 189;
 						if (pc.getHealDelay() == 0) {
 							pc.setHealDelay(1);
@@ -67,8 +67,8 @@ public class AutoPotionSystem extends Thread {
 							pc.setHealDelay(0);
 						}
 						break;
-					case 40011: // °í±Ş Ã¼·Â È¸º¹Á¦
-						heal = Config.ÁÖÈ«ÀÌÈ¸º¹·®;
+					case 40011: // ê³ ê¸‰ ì²´ë ¥ íšŒë³µì œ
+						heal = Config.ì£¼í™ì´íšŒë³µëŸ‰;
 						effect = 194;
 						if (pc.getHealDelay() == 0) {
 							pc.setHealDelay(1);
@@ -76,8 +76,8 @@ public class AutoPotionSystem extends Thread {
 							pc.setHealDelay(0);
 						}
 						break;
-					case 40012: // °­·Â Ã¼·Â È¸º¹Á¦
-						heal = Config.¸¼°»ÀÌÈ¸º¹·®;
+					case 40012: // ê°•ë ¥ ì²´ë ¥ íšŒë³µì œ
+						heal = Config.ë§‘ê°±ì´íšŒë³µëŸ‰;
 						effect = 197;
 						if (pc.getHealDelay() == 0) {
 							pc.setHealDelay(1);
@@ -88,12 +88,12 @@ public class AutoPotionSystem extends Thread {
 					}
 
 					if (pc.getHealDelay() == 0) {
-						if (Hp < pc.getHealVal()) {// ¹°¾à È¸º¹ ±¸°£ ÆÛ¼¾Å×ÀÌÁö.
+						if (Hp < pc.getHealVal()) {// ë¬¼ì•½ íšŒë³µ êµ¬ê°„ í¼ì„¼í…Œì´ì§€.
 							if (pc.getInventory().checkItem(pc.getHealItemNum(), 1)) {
 								pc.getInventory().consumeItem(pc.getHealItemNum(), 1);
 								UseHeallingPotion(pc, heal, effect);
 							} else {
-								pc.sendPackets(new S_SystemMessage("¹°¾àÀÌ ºÎÁ·ÇÏ¿© ÀÚµ¿¹°¾à È¸º¹À» Á¾·áÇÕ´Ï´Ù."));
+								pc.sendPackets(new S_SystemMessage("ë¬¼ì•½ì´ ë¶€ì¡±í•˜ì—¬ ìë™ë¬¼ì•½ íšŒë³µì„ ì¢…ë£Œí•©ë‹ˆë‹¤."));
 								pc.setAutoPotion(false);
 							}
 						}
@@ -103,8 +103,8 @@ public class AutoPotionSystem extends Thread {
 				e.printStackTrace();
 			} finally {
 				try {
-					Thread.sleep(495);// ¹°¾à È¸º¹ µô·¹ÀÌ µğºñ¿Í°°ÀÌ 500¹Ğ¸®¼¼ÄÁµå·Î ¸ÂÃã. ºü¸£´Ù½ÍÀ¸¸é
-										// ´Ã¸®¸éµÊ.
+					Thread.sleep(495);// ë¬¼ì•½ íšŒë³µ ë”œë ˆì´ ë””ë¹„ì™€ê°™ì´ 500ë°€ë¦¬ì„¸ì»¨ë“œë¡œ ë§ì¶¤. ë¹ ë¥´ë‹¤ì‹¶ìœ¼ë©´
+										// ëŠ˜ë¦¬ë©´ë¨.
 					list = null;
 				} catch (Exception e) {
 				}
@@ -114,19 +114,19 @@ public class AutoPotionSystem extends Thread {
 
 	private void UseHeallingPotion(L1PcInstance pc, int heal, int gfxid) {
 		
-		// ¾Û¼Ö·çÆ®º£¸®¾îÀÇ ÇØÁ¦
+		// ì•±ì†”ë£¨íŠ¸ë² ë¦¬ì–´ì˜ í•´ì œ
 		pc.cancelAbsoluteBarrier();
 
 		pc.sendPackets(new S_SkillSound(pc.getId(), gfxid));
 		Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), gfxid));
 
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(POLLUTE_WATER)) { // Æ÷¸£Æ®¿öÅ¸ÁßÀº
-			// È¸º¹·®1/2¹è
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(POLLUTE_WATER)) { // í¬ë¥´íŠ¸ì›Œíƒ€ì¤‘ì€
+			// íšŒë³µëŸ‰1/2ë°°
 			heal *= 0.5;
 		}
 
 		if (pc.isGm()) {
-			pc.sendPackets(new S_SystemMessage("Èú·® : " + heal));
+			pc.sendPackets(new S_SystemMessage("íëŸ‰ : " + heal));
 		}
 
 		pc.setCurrentHp(pc.getCurrentHp() + heal);

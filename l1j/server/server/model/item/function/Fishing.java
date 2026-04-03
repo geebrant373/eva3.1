@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -50,13 +50,13 @@ public class Fishing extends L1ItemInstance {
 			pc._fishingRod = pc.getInventory().findItemId(itemId);
 			
 			if (Config.STANDBY_SERVER) {
-				pc.sendPackets(new S_SystemMessage("¿ÀÇÂ´ë±â »óÅÂ¿¡¼­´Â ³¬½Ã¸¦ ÇÒ ¼ö ¾ø½À´Ï´Ù."), true);
+				pc.sendPackets(new S_SystemMessage("ì˜¤í”ˆëŒ€ê¸° ìƒíƒœì—ì„œëŠ” ë‚šì‹œë¥¼ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."), true);
 				return;
 			}
 			if (pc.isFishing()) {
-				pc.sendPackets(new S_SystemMessage("³¬½Ã: ÁøÇàÁß"), true);
+				pc.sendPackets(new S_SystemMessage("ë‚šì‹œ: ì§„í–‰ì¤‘"), true);
 			} else {
-				if (Config.³¬½ÃÀå¼Ò) {
+				if (Config.ë‚šì‹œìž¥ì†Œ) {
 					startFishing(pc, itemId, packet.readH(), packet.readH());
 				} else {
 					startFishingInTown(pc, itemId, packet.readH(), packet.readH());
@@ -69,55 +69,55 @@ public class Fishing extends L1ItemInstance {
 	
 	private void startFishing(L1PcInstance pc, int itemId, int fishX, int fishY) {
 		if (pc.getMapId() != 4 ) {//5302
-			pc.sendPackets(new S_BlueMessage(1416, "\\f=ÀÌ °÷¿¡¼­´Â ³¬½Ã°¡ ºÒ°¡´É ÇÕ´Ï´Ù."));
+			pc.sendPackets(new S_BlueMessage(1416, "\\f=ì´ ê³³ì—ì„œëŠ” ë‚šì‹œê°€ ë¶ˆê°€ëŠ¥ í•©ë‹ˆë‹¤."));
 			return;
 		}
 	
 
 		if (pc.getLocation().getTileDistance(new Point(fishX, fishY)) > 15) {
-			pc.sendPackets(new S_BlueMessage(1416, "\\f=Á¶±Ý ´õ °¡±îÀÌ¿¡¼­ ´øÁ®ÁÖ¼¼¿ä."));
+			pc.sendPackets(new S_BlueMessage(1416, "\\f=ì¡°ê¸ˆ ë” ê°€ê¹Œì´ì—ì„œ ë˜ì ¸ì£¼ì„¸ìš”."));
 			return;
 		}
 		int gab = 0;
-		int heading = pc.getMoveState().getHeading(); // ¡Ü ¹æÇâ: (0.ÁÂ»ó)(1.»ó)(
-														// 2.¿ì»ó)(3.¿À¸¥ÂÊ)(4.¿ìÇÏ)(5.ÇÏ)(6.ÁÂÇÏ)(7.ÁÂ)
+		int heading = pc.getMoveState().getHeading(); // â— ë°©í–¥: (0.ì¢Œìƒ)(1.ìƒ)(
+														// 2.ìš°ìƒ)(3.ì˜¤ë¥¸ìª½)(4.ìš°í•˜)(5.í•˜)(6.ì¢Œí•˜)(7.ì¢Œ)
 		switch (heading) {
-		case 0: // »óÁÂ
+		case 0: // ìƒì¢Œ
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX(), pc.getY() - 5);
 			break;
-		case 1: // »ó
+		case 1: // ìƒ
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() + 5, pc.getY() - 5);
 			break;
-		case 2: // ¿ì»ó
+		case 2: // ìš°ìƒ
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() + 5, pc.getY() - 5);
 			break;
-		case 3: // ¿À¸¥ÂÊ
+		case 3: // ì˜¤ë¥¸ìª½
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() + 5, pc.getY() + 5);
 			break;
-		case 4: // ¿ìÇÏ
+		case 4: // ìš°í•˜
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX(), pc.getY() + 5);
 			break;
-		case 5: // ÇÏ
+		case 5: // í•˜
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() - 5, pc.getY() + 5);
 			break;
-		case 6: // ÁÂÇÏ
+		case 6: // ì¢Œí•˜
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() - 5, pc.getY());
 			break;
-		case 7: // ÁÂ
+		case 7: // ì¢Œ
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() - 5, pc.getY() - 5);
 			break;
 		}
 		int fishGab = pc.getMap().getOriginalTile(fishX, fishY);
 		if (gab == 28 && fishGab == 28) {
-			if (pc.getInventory().checkItem(241295, 1) || pc.getInventory().checkItem(141295, 1) || pc.getInventory().consumeItem(41295, 1)) { // ¸ÔÀÌ 
+			if (pc.getInventory().checkItem(241295, 1) || pc.getInventory().checkItem(141295, 1) || pc.getInventory().consumeItem(41295, 1)) { // ë¨¹ì´ 
 				pc.setFishing(true);
 				pc.setFishingItem(this);
 				pc.sendPackets(new S_Fishing(pc.getId(), ActionCodes.ACTION_Fishing, fishX, fishY), true);
@@ -125,67 +125,67 @@ public class Fishing extends L1ItemInstance {
 				pc.fishX = fishX;
 				pc.fishY = fishY;
 				long time = System.currentTimeMillis() + 120000;
-				if (itemId == 41294) {// Âª°í °¡º­¿î ³¬½Ë´ë
+				if (itemId == 41294) {// ì§§ê³  ê°€ë²¼ìš´ ë‚šì‹¯ëŒ€
 					time = System.currentTimeMillis() + 60000;
 				}
 				pc.setFishingTime(time);
 				FishingTimeController.getInstance().addMember(pc);
 			} else {
-				// ³¬½Ã¸¦ ÇÏ±â À§ÇØ¼­´Â ¸ÔÀÌ°¡ ÇÊ¿äÇÕ´Ï´Ù.
+				// ë‚šì‹œë¥¼ í•˜ê¸° ìœ„í•´ì„œëŠ” ë¨¹ì´ê°€ í•„ìš”í•©ë‹ˆë‹¤.
 				pc.sendPackets(new S_ServerMessage(1137), true);
 			}
 		} else {
-			// ¿©±â¿¡ ³¬½Ë´ë¸¦ ´øÁú ¼ö ¾ø½À´Ï´Ù.
+			// ì—¬ê¸°ì— ë‚šì‹¯ëŒ€ë¥¼ ë˜ì§ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			pc.sendPackets(new S_ServerMessage(1138), true);
 		}
 	}
 	
 	private void startFishingInTown(L1PcInstance pc, int itemId, int fishX, int fishY) { 
 		int gab = 0;
-		int heading = pc.getMoveState().getHeading(); // ¡Ü ¹æÇâ: (0.ÁÂ»ó)(1.»ó)(
-														// 2.¿ì»ó)(3.¿À¸¥ÂÊ)(4.¿ìÇÏ)(5.ÇÏ)(6.ÁÂÇÏ)(7.ÁÂ)
+		int heading = pc.getMoveState().getHeading(); // â— ë°©í–¥: (0.ì¢Œìƒ)(1.ìƒ)(
+														// 2.ìš°ìƒ)(3.ì˜¤ë¥¸ìª½)(4.ìš°í•˜)(5.í•˜)(6.ì¢Œí•˜)(7.ì¢Œ)
 		switch (heading) {
-		case 0: // »óÁÂ
+		case 0: // ìƒì¢Œ
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX(), pc.getY() - 5);
 			break;
-		case 1: // »ó
+		case 1: // ìƒ
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() + 5, pc.getY() - 5);
 			break;
-		case 2: // ¿ì»ó
+		case 2: // ìš°ìƒ
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() + 5, pc.getY() - 5);
 			break;
-		case 3: // ¿À¸¥ÂÊ
+		case 3: // ì˜¤ë¥¸ìª½
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() + 5, pc.getY() + 5);
 			break;
-		case 4: // ¿ìÇÏ
+		case 4: // ìš°í•˜
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX(), pc.getY() + 5);
 			break;
-		case 5: // ÇÏ
+		case 5: // í•˜
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() - 5, pc.getY() + 5);
 			break;
-		case 6: // ÁÂÇÏ
+		case 6: // ì¢Œí•˜
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() - 5, pc.getY());
 			break;
-		case 7: // ÁÂ
+		case 7: // ì¢Œ
 			gab = L1WorldMap.getInstance().getMap((short) 4)
 					.getOriginalTile(pc.getX() - 5, pc.getY() - 5);
 			break;
 		}
 		int px = 0;
 		int py = 0;
-		int x = 33446;// Àâ¾ÆµÐÁÂÇ¥ ±âÁØÁ¡ 33417 32831
+		int x = 33446;// ìž¡ì•„ë‘”ì¢Œí‘œ ê¸°ì¤€ì  33417 32831
 		int y = 32790;
 		px = 4;
 		py = 5;
 		if ((fishX >= x - px && fishX <= x + px) && (fishY >= y - py && fishY <= y + py)) {
-			if (pc.getInventory().checkItem(241295, 1) || pc.getInventory().checkItem(141295, 1) || pc.getInventory().consumeItem(41295, 1)) { // ¸ÔÀÌ 
+			if (pc.getInventory().checkItem(241295, 1) || pc.getInventory().checkItem(141295, 1) || pc.getInventory().consumeItem(41295, 1)) { // ë¨¹ì´ 
 				pc.setFishing(true);
 				pc.setFishingItem(this);
 				pc.sendPackets(new S_Fishing(pc.getId(), ActionCodes.ACTION_Fishing, fishX, fishY), true);
@@ -193,17 +193,17 @@ public class Fishing extends L1ItemInstance {
 				pc.fishX = fishX;
 				pc.fishY = fishY;
 				long time = System.currentTimeMillis() + 120000;
-				if (itemId == 41294) {// Âª°í °¡º­¿î ³¬½Ë´ë
+				if (itemId == 41294) {// ì§§ê³  ê°€ë²¼ìš´ ë‚šì‹¯ëŒ€
 					time = System.currentTimeMillis() + 60000;
 				}
 				pc.setFishingTime(time);
 				FishingTimeController.getInstance().addMember(pc);
 			} else {
-				// ³¬½Ã¸¦ ÇÏ±â À§ÇØ¼­´Â ¸ÔÀÌ°¡ ÇÊ¿äÇÕ´Ï´Ù.
+				// ë‚šì‹œë¥¼ í•˜ê¸° ìœ„í•´ì„œëŠ” ë¨¹ì´ê°€ í•„ìš”í•©ë‹ˆë‹¤.
 				pc.sendPackets(new S_ServerMessage(1137), true);
 			}
 		} else {
-			// ¿©±â¿¡ ³¬½Ë´ë¸¦ ´øÁú ¼ö ¾ø½À´Ï´Ù.
+			// ì—¬ê¸°ì— ë‚šì‹¯ëŒ€ë¥¼ ë˜ì§ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			pc.sendPackets(new S_ServerMessage(1138), true);
 		}
 	}

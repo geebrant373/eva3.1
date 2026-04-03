@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU General Public License as published by the Free Software Foundation; either version 2, or (at
  * your option) any later version.
@@ -98,13 +98,13 @@ public class ShopNpcTable {
       int enchant = rs.getInt("enchant");
       int bless = rs.getInt("bless");
       switch (itemId) {
-        case 62: // π´æÁ
+        case 62: // Î¨¥Ïñë
           sellingPrice += (_random.nextInt(5) + 1) * 100000;
           break;
-        case 81: // »Ê¿Ã
+        case 81: // ÌùëÏù¥
           sellingPrice += (_random.nextInt(3) + 1) * 100000;
           break;
-        case 188: // ∂Û«Ï∫Ò
+        case 188: // ÎùºÌó§ÎπÑ
           sellingPrice += (_random.nextInt(5) + 1) * 10000;
           break;
         case 40074:

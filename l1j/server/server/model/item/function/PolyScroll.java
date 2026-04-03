@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -44,7 +44,7 @@ public class PolyScroll extends L1ItemInstance{
 			L1ItemInstance useItem = pc.getInventory().getItem(this.getId());
 			
 			if (pc.getMapId() == 5153 || pc.getMapId() == 5001) {
-				pc.sendPackets(new S_SystemMessage("ÇöÀç¸Ê¿¡¼­´Â º¯½ÅÇÒ ¼ö ¾ø½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("í˜„ì¬ë§µì—ì„œëŠ” ë³€ì‹ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
 			
@@ -52,7 +52,7 @@ public class PolyScroll extends L1ItemInstance{
 			if (usePolyScroll(pc, itemId, packet.readS())) {
 				pc.getInventory().removeItem(useItem, 1);
 			} else {
-				pc.sendPackets(new S_ServerMessage(181)); // \f1 ±×·¯ÇÑ monster¿¡°Ô´Â º¯½ÅÇÒ ¼ö ¾ø½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(181)); // \f1 ê·¸ëŸ¬í•œ monsterì—ê²ŒëŠ” ë³€ì‹ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			}
 		}
 	}
@@ -60,9 +60,9 @@ public class PolyScroll extends L1ItemInstance{
 	private boolean usePolyScroll(L1PcInstance pc, int item_id, String s) {
 		//System.out.println("S="+s);
 		int time = 0;
-		if (item_id == 40088 || item_id == 40096) { // º¯½Å ½ºÅ©·Ñ, »ó¾ÆÀÇ Å¾ÀÇ º¯½Å ½ºÅ©·Ñ
+		if (item_id == 40088 || item_id == 40096) { // ë³€ì‹  ìŠ¤í¬ë¡¤, ìƒì•„ì˜ íƒ‘ì˜ ë³€ì‹  ìŠ¤í¬ë¡¤
 			time = 1800;
-		} else if (item_id == 140088) { // Ãàº¹µÈ º¯½Å ½ºÅ©·Ñ
+		} else if (item_id == 140088) { // ì¶•ë³µëœ ë³€ì‹  ìŠ¤í¬ë¡¤
 			time = 2100;
 		}
 		if(s.equalsIgnoreCase("ranking class polymorph")) {

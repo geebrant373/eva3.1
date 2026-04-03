@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -37,6 +37,6 @@ public class L1GM implements L1CommandExecutor {
 	@Override
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		pc.setGm(!pc.isGm());
-		pc.sendPackets(new S_SystemMessage("GM ¼¼ÆÃ = " + pc.isGm()));
+		pc.sendPackets(new S_SystemMessage("GM ì„¸íŒ… = " + pc.isGm()));
 	}
 }

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -30,7 +30,7 @@ public class S_SoldierBuyList extends ServerBasePacket {
 
 
 	/**
-	 * ¼ºÀÇ ¿ëº´ ¸®½ºÆ®¸¦ Ãâ·ÂÇÑ´Ù
+	 * ì„±ì˜ ìš©ë³‘ ë¦¬ìŠ¤íŠ¸ë¥¼ ì¶œë ¥í•œë‹¤
 	 */
 	public S_SoldierBuyList(int objId, int castle_id) {
 		L1Soldier soldier = SoldierTable.getInstance().getSoldierTable(castle_id);

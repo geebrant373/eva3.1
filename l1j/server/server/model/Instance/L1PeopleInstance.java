@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -101,28 +101,28 @@ public class L1PeopleInstance extends L1NpcInstance {
 
 		if (talking != null) {	
 			switch(npcid){
-			case 70839: //µµ¿¡Æ®
+			case 70839: //ë„ì—íŠ¸
 				if (pc.isCrown() || pc.isKnight() || pc.isWizard()){
 					htmlid="doettM1";					
 				} else if (pc.isDarkelf()){
 					htmlid="doettM2";					
 				}
 				break;
-			case 70854: //ÈÄ¸°´Ş·»
+			case 70854: //í›„ë¦°ë‹¬ë Œ
 				if (pc.isCrown() || pc.isKnight() || pc.isWizard()){
 					htmlid="hurinM1";					
 				} else if (pc.isDarkelf()){
 					htmlid="hurinE3";					
 				}
 				break;
-			case 70843: //¸ğ¸®¿£
+			case 70843: //ëª¨ë¦¬ì—”
 				if (pc.isCrown() || pc.isKnight() || pc.isWizard()){
 					htmlid="morienM1";					
 				} else if (pc.isDarkelf()){
 					htmlid="morienM2";					
 				}
 				break;
-			case 70849: //Å×¿Àµµ¸£
+			case 70849: //í…Œì˜¤ë„ë¥´
 				if (pc.isCrown() || pc.isKnight() || pc.isWizard()){
 					htmlid="theodorM1";					
 				} else if (pc.isDarkelf()){
@@ -132,15 +132,15 @@ public class L1PeopleInstance extends L1NpcInstance {
 			default:
 				break;
 			}
-			// html Ç¥½Ã ÆĞÅ¶ ¼Û½Å
-			if (htmlid != null) { // htmlid°¡ ÁöÁ¤µÇ°í ÀÖ´Â °æ¿ì
-				if (htmldata != null) { // html ÁöÁ¤ÀÌ ÀÖ´Â °æ¿ì´Â Ç¥½Ã
+			// html í‘œì‹œ íŒ¨í‚· ì†¡ì‹ 
+			if (htmlid != null) { // htmlidê°€ ì§€ì •ë˜ê³  ìˆëŠ” ê²½ìš°
+				if (htmldata != null) { // html ì§€ì •ì´ ìˆëŠ” ê²½ìš°ëŠ” í‘œì‹œ
 					pc.sendPackets(new S_NPCTalkReturn(objid, htmlid, htmldata));
 				} else {
 					pc.sendPackets(new S_NPCTalkReturn(objid, htmlid));
 				}
 			} else {
-				if (pc.getLawful() < -1000) { // ÇÃ·¹ÀÌ¾î°¡ Ä«¿ÀÆ½
+				if (pc.getLawful() < -1000) { // í”Œë ˆì´ì–´ê°€ ì¹´ì˜¤í‹±
 					pc.sendPackets(new S_NPCTalkReturn(talking, objid, 2));
 				} else {
 					pc.sendPackets(new S_NPCTalkReturn(talking, objid, 1));

@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.biscuitGame;
+ï»¿package l1j.server.GameSystem.biscuitGame;
 
 import java.util.Collection;
 
@@ -7,7 +7,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.S_SystemMessage;
 
-/** ÀÚµ¿ ¹°¾à ½Ã½ºÅÛ **/
+/** ìë™ ë¬¼ì•½ ì‹œìŠ¤í…œ **/
 public class AutoWeaponSystem extends Thread {
 
 	private static AutoWeaponSystem _instance;
@@ -45,7 +45,7 @@ public class AutoWeaponSystem extends Thread {
                                     L1ItemInstance item = pc.getInventory().findItemId(40317);
                                     pc.getInventory().removeItem(item, 1);
                                 } else {
-                                    pc.sendPackets(new S_SystemMessage("¼ıµ¹ÀÌ ºÎÁ·ÇÕ´Ï´Ù."));
+                                    pc.sendPackets(new S_SystemMessage("ìˆ«ëŒì´ ë¶€ì¡±í•©ë‹ˆë‹¤."));
                                 }
                             }
                         }

@@ -1,4 +1,4 @@
-package server;
+ï»¿package server;
 
 import java.sql.Timestamp;
 import java.util.Date;
@@ -106,7 +106,7 @@ public class LineageClient {
 	}
 
 	private PacketHandler packetHandler;
-	private static final int H_CAPACITY = 40; // Çàµ¿ ¿ä±¸¸¦ ÇÑ º¯¿¡ ¹Ş¾ÆµéÀÌ´Â ÃÖ´ë ¿ë·® // ±âÁ¸
+	private static final int H_CAPACITY = 40; // í–‰ë™ ìš”êµ¬ë¥¼ í•œ ë³€ì— ë°›ì•„ë“¤ì´ëŠ” ìµœëŒ€ ìš©ëŸ‰ // ê¸°ì¡´
 												// 30
 	private static Timer observerTimer = new Timer();
 	private int loginStatus = 0;
@@ -117,7 +117,7 @@ public class LineageClient {
 	private int threadIndex = 0;
 	public HcPacket hcPacket = null;
 	public ServerPavketThread ServerPacket = null;
-	private CircleArray Circle = new CircleArray(1024 * 6); // ±âÁ¸ 5
+	private CircleArray Circle = new CircleArray(1024 * 6); // ê¸°ì¡´ 5
 
 	public boolean DecodingCK = false;
 	ClientThreadObserver observer = new ClientThreadObserver(Config.AUTOMATIC_KICK * 60 * 1000);
@@ -132,7 +132,7 @@ public class LineageClient {
 		this.chnnel = _chnnel;
 		le = new server.netty.coder.LineageEncryption();
 		le.initKeys(key);
-		PacketD = new byte[1024 * 6]; // ±âÁ¸4
+		PacketD = new byte[1024 * 6]; // ê¸°ì¡´4
 		PacketIdx = 0;
 		if (Config.AUTOMATIC_KICK > 0) {
 			observer.start();
@@ -198,7 +198,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * Á¾·á½Ã È£Ãâ
+	 * ì¢…ë£Œì‹œ í˜¸ì¶œ
 	 */
 	public void close() {
 		if (!close) {
@@ -226,7 +226,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇöÀç Å¬¶óÀÌ¾ğÆ®¿¡ »ç¿ëÇÒ PC °´Ã¼¸¦ ¼³Á¤ÇÑ´Ù.
+	 * í˜„ì¬ í´ë¼ì´ì–¸íŠ¸ì— ì‚¬ìš©í•  PC ê°ì²´ë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
 	 * @param pc
 	 */
@@ -235,7 +235,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇöÀç Å¬¶óÀÌ¾ğÆ® »ç¿ëÇÏ°í ÀÖ´Â PC °´Ã¼¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * í˜„ì¬ í´ë¼ì´ì–¸íŠ¸ ì‚¬ìš©í•˜ê³  ìˆëŠ” PC ê°ì²´ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @return activeCharInstance;
 	 */
@@ -244,7 +244,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇöÀç »ç¿ëÇÏ´Â °èÁ¤À» ¼³Á¤ÇÑ´Ù.
+	 * í˜„ì¬ ì‚¬ìš©í•˜ëŠ” ê³„ì •ì„ ì„¤ì •í•œë‹¤.
 	 * 
 	 * @param account
 	 */
@@ -253,7 +253,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇöÀç »ç¿ëÁßÀÎ °èÁ¤Àº ¹İÈ¯ÇÑ´Ù.
+	 * í˜„ì¬ ì‚¬ìš©ì¤‘ì¸ ê³„ì •ì€ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @return account
 	 */
@@ -262,7 +262,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇöÀç »ç¿ëÁßÀÎ °èÁ¤¸íÀ» ¹İÈ¯ÇÑ´Ù.
+	 * í˜„ì¬ ì‚¬ìš©ì¤‘ì¸ ê³„ì •ëª…ì„ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @return account.getName();
 	 */
@@ -276,20 +276,20 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇØ´ç LineageClient°¡ Á¾·áÇÒ¶§ È£Ãâ
+	 * í•´ë‹¹ LineageClientê°€ ì¢…ë£Œí• ë•Œ í˜¸ì¶œ
 	 * 
 	 * @param pc
 	 */
 	public void quitGame(L1PcInstance pc) {
 
-		// _log.info("Ä³¸¯ÅÍ Á¾·á: char=" + pc.getName() + " account=" +
+		// _log.info("ìºë¦­í„° ì¢…ë£Œ: char=" + pc.getName() + " account=" +
 		// pc.getAccountName() + " host=" + L.getHostname());
 		pc.setadFeature(1);
 		pc.setDeathMatch(false);
 		pc.setHaunted(false);
 		pc.setPetRacing(false);
 
-		// »ç¸ÁÇÏ°í ÀÖÀ¸¸é(ÀÚ) °Å¸®¿¡ µÇµ¹·Á, °øº¹ »óÅÂ·Î ÇÑ´Ù
+		// ì‚¬ë§í•˜ê³  ìˆìœ¼ë©´(ì) ê±°ë¦¬ì— ë˜ëŒë ¤, ê³µë³µ ìƒíƒœë¡œ í•œë‹¤
 		if (pc.isDead()) {
 			int[] loc = Getback.GetBack_Location(pc, true);
 			pc.setX(loc[0]);
@@ -301,13 +301,13 @@ public class LineageClient {
 			loc = null;
 		}
 
-		// Æ®·¹ÀÌµå¸¦ ÁßÁöÇÑ´Ù
-		if (pc.getTradeID() != 0) { // Æ®·¹ÀÌµåÁß
+		// íŠ¸ë ˆì´ë“œë¥¼ ì¤‘ì§€í•œë‹¤
+		if (pc.getTradeID() != 0) { // íŠ¸ë ˆì´ë“œì¤‘
 			L1Trade trade = new L1Trade();
 			trade.TradeCancel(pc);
 		}
 
-		// °áÅõÁß
+		// ê²°íˆ¬ì¤‘
 		if (pc.getFightId() != 0) {
 			pc.setFightId(0);
 			L1PcInstance fightPc = (L1PcInstance) L1World.getInstance().findObject(pc.getFightId());
@@ -317,13 +317,13 @@ public class LineageClient {
 			}
 		}
 
-		// ÆÄÆ¼¸¦ ºüÁø´Ù
-		if (pc.isInParty()) { // ÆÄÆ¼Áß
+		// íŒŒí‹°ë¥¼ ë¹ ì§„ë‹¤
+		if (pc.isInParty()) { // íŒŒí‹°ì¤‘
 			pc.getParty().leaveMember(pc);
 		}
 
-		// Ã¤ÆÃÆÄÆ¼¸¦ ºüÁø´Ù
-		if (pc.isInChatParty()) { // Ã¤ÆÃÆÄÆ¼Áß
+		// ì±„íŒ…íŒŒí‹°ë¥¼ ë¹ ì§„ë‹¤
+		if (pc.isInChatParty()) { // ì±„íŒ…íŒŒí‹°ì¤‘
 			pc.getChatParty().leaveMember(pc);
 		}
 
@@ -344,7 +344,7 @@ public class LineageClient {
 		if (PetRacing.getInstance().isEnterMember(pc)) {
 			PetRacing.getInstance().removeEnterMember(pc);
 		}
-		// ¾Ö¿Ïµ¿¹°À» ¿ùµå MAP»óÀ¸·ÎºÎÅÍ Áö¿î´Ù
+		// ì• ì™„ë™ë¬¼ì„ ì›”ë“œ MAPìƒìœ¼ë¡œë¶€í„° ì§€ìš´ë‹¤
 		for (Object petObject : pc.getPetList().values().toArray()) {
 			if (petObject instanceof L1PetInstance) {
 				L1PetInstance pet = (L1PetInstance) petObject;
@@ -362,7 +362,7 @@ public class LineageClient {
 			}
 		}
 
-		// ¸¶¹ı ÀÎÇüÀ» ¿ùµå ¸Ê»óÀ¸·ÎºÎÅÍ Áö¿î´Ù
+		// ë§ˆë²• ì¸í˜•ì„ ì›”ë“œ ë§µìƒìœ¼ë¡œë¶€í„° ì§€ìš´ë‹¤
 		for (L1DollInstance doll : pc.getDollList().values()) {
 			doll.deleteDoll();
 		}
@@ -377,7 +377,7 @@ public class LineageClient {
 			follower.deleteMe();
 		}
 
-		// ¿£Ã®Æ®¸¦ DBÀÇ character_buff¿¡ º¸Á¸ÇÑ´Ù
+		// ì—”ì±¤íŠ¸ë¥¼ DBì˜ character_buffì— ë³´ì¡´í•œë‹¤
 		CharBuffTable.DeleteBuff(pc);
 		CharBuffTable.SaveBuff(pc);
 		pc.getSkillEffectTimerSet().clearSkillEffectTimer();
@@ -387,13 +387,13 @@ public class LineageClient {
 				pc.getInventory().deleteItem(item);
 			}
 		}
-		// ·Î±×¾Æ¿ô ½Ã°£À» ±â·ÏÇÑ
+		// ë¡œê·¸ì•„ì›ƒ ì‹œê°„ì„ ê¸°ë¡í•œ
 		pc.setLogOutTime();
-		// pcÀÇ ¸ğ´ÏÅÍ¸¦ stop ÇÑ´Ù.
+		// pcì˜ ëª¨ë‹ˆí„°ë¥¼ stop í•œë‹¤.
 		// pc.stopEtcMonitor();
-		// ¿Â¶óÀÎ »óÅÂ¸¦ OFF·Î ÇØ, DB¿¡ Ä³¸¯ÅÍ Á¤º¸¸¦ ±âÀÔÇÑ´Ù
+		// ì˜¨ë¼ì¸ ìƒíƒœë¥¼ OFFë¡œ í•´, DBì— ìºë¦­í„° ì •ë³´ë¥¼ ê¸°ì…í•œë‹¤
 		pc.setOnlineStatus(0);
-		pc.set·ÎÅ×½ÃÀÛ(0);
+		pc.setë¡œí…Œì‹œì‘(0);
 
 		try {
 			pc.save();
@@ -406,7 +406,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇöÀç ¿¬°áµÈ È£½ºÆ®¸íÀ» ¹İÈ¯ÇÑ´Ù.
+	 * í˜„ì¬ ì—°ê²°ëœ í˜¸ìŠ¤íŠ¸ëª…ì„ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @return
 	 */
@@ -423,7 +423,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇöÀç ·Î±×ÀÎ ½ÇÆĞÇÑ Ä«¿îÆ® ¼ö¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * í˜„ì¬ ë¡œê·¸ì¸ ì‹¤íŒ¨í•œ ì¹´ìš´íŠ¸ ìˆ˜ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @return
 	 */
@@ -432,7 +432,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇöÀç ·Î±×ÀÎ ½ÇÆĞÇÑ Ä«¿îÆ® ¼ö¸¦ ¼³Á¤ÇÑ´Ù.
+	 * í˜„ì¬ ë¡œê·¸ì¸ ì‹¤íŒ¨í•œ ì¹´ìš´íŠ¸ ìˆ˜ë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
 	 * @param i
 	 */
@@ -441,7 +441,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÆĞÅ¶À» º¹È£È­ ÇÏ°í ÆĞÅ¶ÇÚµé·¯¿¡ ÆĞÅ¶À» Àü´ŞÇÑ´Ù.
+	 * íŒ¨í‚·ì„ ë³µí˜¸í™” í•˜ê³  íŒ¨í‚·í•¸ë“¤ëŸ¬ì— íŒ¨í‚·ì„ ì „ë‹¬í•œë‹¤.
 	 * 
 	 * @param data
 	 */
@@ -468,7 +468,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÆĞÅ¶À» ¾ÏÈ£È­ÇÑ´Ù.
+	 * íŒ¨í‚·ì„ ì•”í˜¸í™”í•œë‹¤.
 	 * 
 	 * @param data
 	 * @return
@@ -485,7 +485,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÆĞÅ¶ »çÀÌÁî¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * íŒ¨í‚· ì‚¬ì´ì¦ˆë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @param data
 	 * @return
@@ -497,7 +497,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ID¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * IDë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @return
 	 */
@@ -506,7 +506,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ID¸¦ ¼³Á¤ÇÑ´Ù.
+	 * IDë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
 	 * @param id
 	 */
@@ -515,7 +515,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * LineageClientÀÇ Á¢¼Ó ¿©ºÎ¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * LineageClientì˜ ì ‘ì† ì—¬ë¶€ë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @return
 	 */
@@ -524,7 +524,7 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇöÀç Á¢¼ÓÁßÀÎ LineageClient¿¡ IP¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * í˜„ì¬ ì ‘ì†ì¤‘ì¸ LineageClientì— IPë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @return
 	 */
@@ -544,14 +544,14 @@ public class LineageClient {
 	}
 
 	/**
-	 * ÇöÀç ½ÇÇàÁßÀÎ Å¬¶óÀÌ¾ğÆ® °¨½Ã¸¦ Áß´ÜÇÑ´Ù.
+	 * í˜„ì¬ ì‹¤í–‰ì¤‘ì¸ í´ë¼ì´ì–¸íŠ¸ ê°ì‹œë¥¼ ì¤‘ë‹¨í•œë‹¤.
 	 */
 	public void stopObsever() {
 		observer.cancel();
 	}
 
 	/**
-	 * ÇöÀç »õ¼Ç Á¾·á»óÅÂ¸¦ ¹İÈ¯ÇÑ´Ù.
+	 * í˜„ì¬ ìƒˆì…˜ ì¢…ë£Œìƒíƒœë¥¼ ë°˜í™˜í•œë‹¤.
 	 * 
 	 * @return
 	 */
@@ -579,7 +579,7 @@ public class LineageClient {
 	private PacketHandler _handler = new PacketHandler(LineageClient.this);
 
 	/**
-	 * ÆĞÅ¶ ±¸ºĞÇÏ¿© Ã³¸®.
+	 * íŒ¨í‚· êµ¬ë¶„í•˜ì—¬ ì²˜ë¦¬.
 	 * 
 	 * @param data
 	 * @throws Exception
@@ -599,7 +599,7 @@ public class LineageClient {
 		}
 		if (length > 2048) {
 			close();
-			System.out.println("Çã¿ëµÈ ÆĞÅ¶ ÃÊ°ú : " + getIp());
+			System.out.println("í—ˆìš©ëœ íŒ¨í‚· ì´ˆê³¼ : " + getIp());
 			return;
 		}
 
@@ -635,8 +635,8 @@ public class LineageClient {
 				|| opcode == Opcodes.C_OPCODE_DELETEINVENTORYITEM || opcode == Opcodes.C_OPCODE_SHOP) {
 			if (Config.KEYWORD_USE) {
 				if (!this.keyword) {
-					activeCharInstance.sendPackets("\\fT[!] Å°¿öµåÀÎÁõÀ» ÁøÇàÇØÁÖ¼¼¿ä.[.Å°ÀÎÁõ [¼ıÀÚ6ÀÚ¸®]");
-					activeCharInstance.sendPackets("\\fT[!] ÀÎÁõ¿Ï·áµÇ¾î¾ß¸¸ Á¤»óÀûÀ¸·Î ÀÌ¿ë°¡´ÉÇÕ´Ï´Ù.");
+					activeCharInstance.sendPackets("\\fT[!] í‚¤ì›Œë“œì¸ì¦ì„ ì§„í–‰í•´ì£¼ì„¸ìš”.[.í‚¤ì¸ì¦ [ìˆ«ì6ìë¦¬]");
+					activeCharInstance.sendPackets("\\fT[!] ì¸ì¦ì™„ë£Œë˜ì–´ì•¼ë§Œ ì •ìƒì ìœ¼ë¡œ ì´ìš©ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 					return;
 				}
 			}
@@ -761,7 +761,7 @@ public class LineageClient {
 				}
 				if (activeCharInstance == null) {
 					kick();
-					_log.warning("ÀÏÁ¤½Ã°£ ÀÀ´äÀ» ¾òÀ» ¼ö ¾ø¾ú±â ¶§¹®¿¡(" + hostname + ")°ú(¿Í)ÀÇ Á¢¼ÓÀ» °­Á¦ Àı´Ü Çß½À´Ï´Ù.");
+					_log.warning("ì¼ì •ì‹œê°„ ì‘ë‹µì„ ì–»ì„ ìˆ˜ ì—†ì—ˆê¸° ë•Œë¬¸ì—(" + hostname + ")ê³¼(ì™€)ì˜ ì ‘ì†ì„ ê°•ì œ ì ˆë‹¨ í–ˆìŠµë‹ˆë‹¤.");
 					cancel();
 					return;
 				}

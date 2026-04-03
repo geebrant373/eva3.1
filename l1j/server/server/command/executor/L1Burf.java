@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -55,7 +55,7 @@ public class L1Burf implements L1CommandExecutor {
 				try {
 					Thread.sleep(50);
 					int num = _sprid + i;
-					_pc.sendPackets(new S_SystemMessage("½ºÅ³¹øÈ£: "+num+""));
+					_pc.sendPackets(new S_SystemMessage("ìŠ¤í‚¬ë²ˆí˜¸: "+num+""));
 					_pc.sendPackets(new S_SkillSound(_pc.getId(), _sprid+i));
 					Broadcaster.broadcastPacket(_pc, new S_SkillSound(_pc.getId(), _sprid+i));
 				} catch (Exception exception) {
@@ -80,7 +80,7 @@ public class L1Burf implements L1CommandExecutor {
 //			pc.sendPackets(new S_SkillSound(pc.getId(), sprid));
 //			Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), sprid));
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [castgfx] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [castgfx] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

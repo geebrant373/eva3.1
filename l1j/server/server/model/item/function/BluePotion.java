@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,12 +47,12 @@ public class BluePotion extends L1ItemInstance {
 	}
 
 	private static void useBluePotion(L1PcInstance pc, int item_id) {
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(DECAY_POTION)) { // µğÄÉÀÌÆ÷¼Ç »óÅÂ
-			pc.sendPackets(new S_ServerMessage(698)); // \f1¸¶·Â¿¡ ÀÇÇØ ¾Æ¹«°Íµµ ¸¶½Ç ¼ö°¡ ¾ø½À´Ï´Ù.
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(DECAY_POTION)) { // ë””ì¼€ì´í¬ì…˜ ìƒíƒœ
+			pc.sendPackets(new S_ServerMessage(698)); // \f1ë§ˆë ¥ì— ì˜í•´ ì•„ë¬´ê²ƒë„ ë§ˆì‹¤ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 
-		// ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+		// ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 		pc.cancelAbsoluteBarrier();
 
 		int time = 0;
@@ -83,6 +83,6 @@ public class BluePotion extends L1ItemInstance {
 
 		pc.getSkillEffectTimerSet().setSkillEffect(type, time * 1000);
 
-		pc.sendPackets(new S_ServerMessage(1007)); // MPÀÇ È¸º¹ ¼Óµµ°¡ »¡¶óÁı´Ï´Ù.
+		pc.sendPackets(new S_ServerMessage(1007)); // MPì˜ íšŒë³µ ì†ë„ê°€ ë¹¨ë¼ì§‘ë‹ˆë‹¤.
 	}
 }

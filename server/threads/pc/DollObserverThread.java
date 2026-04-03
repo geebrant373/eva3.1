@@ -1,4 +1,4 @@
-package server.threads.pc;
+ï»¿package server.threads.pc;
 
 import java.util.Random;
 import java.util.logging.Level;
@@ -29,7 +29,7 @@ public class DollObserverThread extends Thread{
 	}
 
 	public void run(){
-		System.out.println(DollObserverThread.class.getName()  + " ½ÃÀÛ");
+		System.out.println(DollObserverThread.class.getName()  + " ì‹œìž‘");
 		while(true){
 			try {
 				for(L1PcInstance _client : L1World.getInstance().getAllPlayers()){

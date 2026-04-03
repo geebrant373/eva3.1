@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2, or (at your option) any later version.
@@ -28,7 +28,7 @@ public class S_AddItem extends ServerBasePacket {
 	private static final String S_ADD_ITEM = "[S] S_AddItem";
 
 	/**
-	 * ¸ñ·Ï¿¡ ¾ÆÀÌÅÛÀ» 1°³ Ãß°¡ÇÑ´Ù.
+	 * ëª©ë¡ì— ì•„ì´í…œì„ 1ê°œ ì¶”ê°€í•œë‹¤.
 	 */
 	public S_AddItem(L1ItemInstance item) {
 		writeC(Opcodes.S_OPCODE_ADDITEM);
@@ -42,7 +42,7 @@ public class S_AddItem extends ServerBasePacket {
 		writeS(item.getViewName());
 	
 		if (!item.isIdentified()) {
-			// ¹Ì°¨Á¤ÀÇ °æ¿ì ½ºÅ×ÀÌÅÍ½º¸¦ º¸³¾ ÇÊ¿ä´Â ¾ø´Ù
+			// ë¯¸ê°ì •ì˜ ê²½ìš° ìŠ¤í…Œì´í„°ìŠ¤ë¥¼ ë³´ë‚¼ í•„ìš”ëŠ” ì—†ë‹¤
 			writeC(0);
 		} else {
 			byte[] status = item.getStatusBytes();

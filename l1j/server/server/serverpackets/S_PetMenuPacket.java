@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -34,7 +34,7 @@ public class S_PetMenuPacket extends ServerBasePacket {
 	private void buildpacket(L1NpcInstance npc, int exppercet) {
 		writeC(Opcodes.S_OPCODE_SHOWHTML);
 
-		if (npc instanceof L1PetInstance) { // Æê
+		if (npc instanceof L1PetInstance) { // í«
 			L1PetInstance pet = (L1PetInstance) npc;
 			writeD(pet.getId());
 			writeS("anicom");
@@ -42,112 +42,112 @@ public class S_PetMenuPacket extends ServerBasePacket {
 			writeH(10);
 			switch (pet.getCurrentPetStatus()) {
 			case 1:
-				writeS("$469"); // °ø°İ ÅÂ¼¼
+				writeS("$469"); // ê³µê²© íƒœì„¸
 				break;
 			case 2:
-				writeS("$470"); // ¹æ¾î ÅÂ¼¼
+				writeS("$470"); // ë°©ì–´ íƒœì„¸
 				break;
 			case 3:
-				writeS("$471"); // ÈŞ°Ô
+				writeS("$471"); // íœ´ê²Œ
 				break;
 			case 5:
-				writeS("$472"); // °æ°è
+				writeS("$472"); // ê²½ê³„
 				break;
 			case 8:
-				writeS("$613");	//¼öÁı
+				writeS("$613");	//ìˆ˜ì§‘
 				break;
 			default:
-				writeS("$471"); // ÈŞ°Ô
+				writeS("$471"); // íœ´ê²Œ
 				break;
 			}
-			writeS(Integer.toString(pet.getCurrentHp())); // ÇöÀçÀÇ HP
-			writeS(Integer.toString(pet.getMaxHp())); // ÃÖ´ë HP
-			writeS(Integer.toString(pet.getCurrentMp())); // ÇöÀçÀÇ MP
-			writeS(Integer.toString(pet.getMaxMp())); // ÃÖ´ë MP
-			writeS(Integer.toString(pet.getLevel())); // ·¹º§
-			writeS(pet.getName()); // ÆêÀÇ ÀÌ¸§À» Ç¥½Ã
+			writeS(Integer.toString(pet.getCurrentHp())); // í˜„ì¬ì˜ HP
+			writeS(Integer.toString(pet.getMaxHp())); // ìµœëŒ€ HP
+			writeS(Integer.toString(pet.getCurrentMp())); // í˜„ì¬ì˜ MP
+			writeS(Integer.toString(pet.getMaxMp())); // ìµœëŒ€ MP
+			writeS(Integer.toString(pet.getLevel())); // ë ˆë²¨
+			writeS(pet.getName()); // í«ì˜ ì´ë¦„ì„ í‘œì‹œ
 			switch (pet.getFood()) {
 			case 0:
-				writeS("$612");//¾ÆÁÖ¹èºÎ¸§
+				writeS("$612");//ì•„ì£¼ë°°ë¶€ë¦„
 				break;
 			case 1:
-				writeS("$611");//¹èºÎ¸§
+				writeS("$611");//ë°°ë¶€ë¦„
 				break;
 			case 2:
-				writeS("$610");//º¸Åë
+				writeS("$610");//ë³´í†µ
 				break;
 			case 3:
-				writeS("$609");//¾à°£ ¹è°íÇÄ
+				writeS("$609");//ì•½ê°„ ë°°ê³ í””
 				break;
 			case 4:
 			case 5:
-				writeS("$608");//¾ÆÁÖ¹è°íÇÄ
+				writeS("$608");//ì•„ì£¼ë°°ê³ í””
 				break;
 			default:
 				writeS("$608");
 			break;
 			}
-			writeS(Integer.toString(exppercet)); // °æÇèÄ¡
-			writeS(Integer.toString(pet.getLawful())); // ¾Æ¶óÀÌ¸ÕÆ®
-		} else if (npc instanceof L1SummonInstance) { // »ç¸ó¸ó½ºÅ¸
+			writeS(Integer.toString(exppercet)); // ê²½í—˜ì¹˜
+			writeS(Integer.toString(pet.getLawful())); // ì•„ë¼ì´ë¨¼íŠ¸
+		} else if (npc instanceof L1SummonInstance) { // ì‚¬ëª¬ëª¬ìŠ¤íƒ€
 			L1SummonInstance summon = (L1SummonInstance) npc;
 			writeD(summon.getId());
 			writeS("moncom");
 			writeC(0x00);
-			writeH(6); // °Ç³×ÁÖ´Â ÀÎ¼ö Ä³¸¯ÅÍÀÇ ¼öÀÇ ¸ğ¾ç
+			writeH(6); // ê±´ë„¤ì£¼ëŠ” ì¸ìˆ˜ ìºë¦­í„°ì˜ ìˆ˜ì˜ ëª¨ì–‘
 			switch (summon.get_currentPetStatus()) {
 			case 1:
-				writeS("$469"); // °ø°İ ÅÂ¼¼
+				writeS("$469"); // ê³µê²© íƒœì„¸
 				break;
 			case 2:
-				writeS("$470"); // ¹æ¾î ÅÂ¼¼
+				writeS("$470"); // ë°©ì–´ íƒœì„¸
 				break;
 			case 3:
-				writeS("$471"); // ÈŞ°Ô
+				writeS("$471"); // íœ´ê²Œ
 				break;
 			case 5:
-				writeS("$472"); // °æ°è
+				writeS("$472"); // ê²½ê³„
 				break;
 			default:
-				writeS("$471"); // ÈŞ°Ô
+				writeS("$471"); // íœ´ê²Œ
 				break;
 			}
-			writeS(Integer.toString(summon.getCurrentHp())); // ÇöÀçÀÇ HP
-			writeS(Integer.toString(summon.getMaxHp())); // ÃÖ´ë HP
-			writeS(Integer.toString(summon.getCurrentMp())); // ÇöÀçÀÇ MP
-			writeS(Integer.toString(summon.getMaxMp())); // ÃÖ´ë MP
-			writeS(Integer.toString(summon.getLevel())); // ·¹º§
+			writeS(Integer.toString(summon.getCurrentHp())); // í˜„ì¬ì˜ HP
+			writeS(Integer.toString(summon.getMaxHp())); // ìµœëŒ€ HP
+			writeS(Integer.toString(summon.getCurrentMp())); // í˜„ì¬ì˜ MP
+			writeS(Integer.toString(summon.getMaxMp())); // ìµœëŒ€ MP
+			writeS(Integer.toString(summon.getLevel())); // ë ˆë²¨
 			// writeS(summon.getNpcTemplate().get_nameid());
 			// writeS(Integer.toString(0));
 			// writeS(Integer.toString(790));
-/*		} else if (npc instanceof L1SoldierInstance) { // ¼ºÇ÷ ¿ëº´
+/*		} else if (npc instanceof L1SoldierInstance) { // ì„±í˜ˆ ìš©ë³‘
 			L1SoldierInstance soldier = (L1SoldierInstance) npc;
 			writeD(summon.getId());
 			writeS("moncom");
 			writeC(0x00);
-			writeH(9); // °Ç³×ÁÖ´Â ÀÎ¼ö Ä³¸¯ÅÍÀÇ ¼öÀÇ ¸ğ¾ç
+			writeH(9); // ê±´ë„¤ì£¼ëŠ” ì¸ìˆ˜ ìºë¦­í„°ì˜ ìˆ˜ì˜ ëª¨ì–‘
 			switch (soldier.get_currentPetStatus()) {
 			case 1:
-				writeS("$469"); // °ø°İ ÅÂ¼¼
+				writeS("$469"); // ê³µê²© íƒœì„¸
 				break;
 			case 2:
-				writeS("$470"); // ¹æ¾î ÅÂ¼¼
+				writeS("$470"); // ë°©ì–´ íƒœì„¸
 				break;
 			case 3:
-				writeS("$471"); // ÈŞ°Ô
+				writeS("$471"); // íœ´ê²Œ
 				break;
 			case 5:
-				writeS("$472"); // °æ°è
+				writeS("$472"); // ê²½ê³„
 				break;
 			default:
-				writeS("$471"); // ÈŞ°Ô
+				writeS("$471"); // íœ´ê²Œ
 				break;
 			}
-			writeS(Integer.toString(soldier.getCurrentHp())); // ÇöÀçÀÇ HP
-			writeS(Integer.toString(soldier.getMaxHp())); // ÃÖ´ë HP
-			writeS(Integer.toString(0)); // ÇöÀçÀÇ MP
-			writeS(Integer.toString(0)); // ÃÖ´ë MP
-			writeS(Integer.toString(soldier.getLevel())); // ·¹º§
+			writeS(Integer.toString(soldier.getCurrentHp())); // í˜„ì¬ì˜ HP
+			writeS(Integer.toString(soldier.getMaxHp())); // ìµœëŒ€ HP
+			writeS(Integer.toString(0)); // í˜„ì¬ì˜ MP
+			writeS(Integer.toString(0)); // ìµœëŒ€ MP
+			writeS(Integer.toString(soldier.getLevel())); // ë ˆë²¨
 			writeS(soldier.getNpcTemplate().get_nameid());
 			writeS(Integer.toString(0));
 			// writeS(Integer.toString(790));*/

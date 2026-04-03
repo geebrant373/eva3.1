@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,16 +36,16 @@ public class SkillsDmgTable{
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				SkillsDmgTemp temp = new SkillsDmgTemp();
-				temp.skillid = rs.getInt("½ºÅ³¹øÈ£");
-				temp.name = rs.getString("½ºÅ³¸í");
-				temp.dmg = rs.getInt("±âº»´ë¹ÌÁö");
-				temp.rnd_dmg = rs.getInt("·£´ı´ë¹ÌÁö");
-				temp.Sp_stan = rs.getInt("±âÁØ½ºÆç");
-				temp.Sp_dmg = rs.getInt("½ºÆç´ë¹ÌÁö");
-				temp.Mr_stan = rs.getInt("±âÁØ¸¶¹æ");
-				temp.Mr_dmg = rs.getInt("¸¶¹æ´ë¹ÌÁö");
-				temp.mon_dmg = rs.getInt("¸÷±âº»´ë¹ÌÁö");
-				temp.mon_rnd_dmg = rs.getInt("¸÷·£´ı´ë¹ÌÁö");
+				temp.skillid = rs.getInt("ìŠ¤í‚¬ë²ˆí˜¸");
+				temp.name = rs.getString("ìŠ¤í‚¬ëª…");
+				temp.dmg = rs.getInt("ê¸°ë³¸ëŒ€ë¯¸ì§€");
+				temp.rnd_dmg = rs.getInt("ëœë¤ëŒ€ë¯¸ì§€");
+				temp.Sp_stan = rs.getInt("ê¸°ì¤€ìŠ¤í ");
+				temp.Sp_dmg = rs.getInt("ìŠ¤í ëŒ€ë¯¸ì§€");
+				temp.Mr_stan = rs.getInt("ê¸°ì¤€ë§ˆë°©");
+				temp.Mr_dmg = rs.getInt("ë§ˆë°©ëŒ€ë¯¸ì§€");
+				temp.mon_dmg = rs.getInt("ëª¹ê¸°ë³¸ëŒ€ë¯¸ì§€");
+				temp.mon_rnd_dmg = rs.getInt("ëª¹ëœë¤ëŒ€ë¯¸ì§€");
 				_skilldmglist.put(temp.skillid, temp);
 			}
 		} catch (SQLException e) {

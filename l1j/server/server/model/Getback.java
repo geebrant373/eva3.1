@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -68,7 +68,7 @@ public class Getback {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			// µ¿¸ÊÀ¸·Î ¿¡¸®¾î ÁöÁ¤°ú ¹«ÁöÁ¤ÀÌ È¥ÀçÇÏ°í ÀÖÀ¸¸é(ÀÚ), ¿¡¸®¾î ÁöÁ¤À» ¸ÕÀú ÀĞ¾îµéÀÌ±â À§ÇØ area_x1 DESC
+			// ë™ë§µìœ¼ë¡œ ì—ë¦¬ì–´ ì§€ì •ê³¼ ë¬´ì§€ì •ì´ í˜¼ì¬í•˜ê³  ìˆìœ¼ë©´(ì), ì—ë¦¬ì–´ ì§€ì •ì„ ë¨¼ì € ì½ì–´ë“¤ì´ê¸° ìœ„í•´ area_x1 DESC
 			String sSQL = "SELECT * FROM getback ORDER BY area_mapid,area_x1 DESC ";
 			pstm = con.prepareStatement(sSQL);
 			rs = pstm.executeQuery();
@@ -108,11 +108,11 @@ public class Getback {
 	}
 
 	/**
-	 * pcÀÇ ÇöÀçÁö·ÎºÎÅÍ ±ÍÈ¯ Æ÷ÀÎÆ®¸¦ ÃëµæÇÑ´Ù.
+	 * pcì˜ í˜„ì¬ì§€ë¡œë¶€í„° ê·€í™˜ í¬ì¸íŠ¸ë¥¼ ì·¨ë“í•œë‹¤.
 	 * 
 	 * @param pc
-	 * @param bScroll_Escape(¹Ì»ç¿ë)
-	 * @return locx, locy, mapidÀÇ ¼ø¼­¿¡ °İ³³µÇ°í ÀÖ´Â ¹è¿­
+	 * @param bScroll_Escape(ë¯¸ì‚¬ìš©)
+	 * @return locx, locy, mapidì˜ ìˆœì„œì— ê²©ë‚©ë˜ê³  ìˆëŠ” ë°°ì—´
 	 */
 	public static int[] GetBack_Location(L1PcInstance pc, boolean bScroll_Escape) {
 
@@ -142,7 +142,7 @@ public class Getback {
 
 			loc = ReadGetbackInfo(getback, nPosition);
 
-			// town_id°¡ ÁöÁ¤µÇ°í ÀÖ´Â °æ¿ì´Â °Å±â¿¡ ±ÍÈ¯½ÃÅ²´Ù
+			// town_idê°€ ì§€ì •ë˜ê³  ìˆëŠ” ê²½ìš°ëŠ” ê±°ê¸°ì— ê·€í™˜ì‹œí‚¨ë‹¤
 			if (pc.isElf() && getback._getbackTownIdForElf > 0) {
 				loc = L1TownLocation.getGetBackLoc(getback._getbackTownIdForElf);
 			} else if (pc.isDarkelf() && getback._getbackTownIdForDarkelf > 0) {
@@ -151,7 +151,7 @@ public class Getback {
 				loc = L1TownLocation.getGetBackLoc(getback._getbackTownId);
 			}
 		}
-		// getback Å×ÀÌºí¿¡ µ¥ÀÌÅÍ°¡ ¾ø´Â °æ¿ì, SKT¿¡ ±ÍÈ¯
+		// getback í…Œì´ë¸”ì— ë°ì´í„°ê°€ ì—†ëŠ” ê²½ìš°, SKTì— ê·€í™˜
 		else {
 			loc[0] = 33089;
 			loc[1] = 33397;
@@ -165,7 +165,7 @@ public class Getback {
 		try {			
 			loc = GetBack_Location(pc, true);
 	
-			if (pc.getClanid() != 0) { // Å©¶õ ¼Ò¼Ó
+			if (pc.getClanid() != 0) { // í¬ë€ ì†Œì†
 				int castle_id = 0;
 				int house_id = 0;
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
@@ -173,16 +173,16 @@ public class Getback {
 					castle_id = clan.getCastleId();
 					house_id = clan.getHouseId();
 				}
-				if (castle_id != 0) { // ¼ºÁÖ Å©¶õ¿ø
+				if (castle_id != 0) { // ì„±ì£¼ í¬ë€ì›
 					loc = L1CastleLocation.getCastleLoc(castle_id);
-				} else if (house_id != 0) { // ¾ÆÁöÆ® ¼ÒÀ¯ Å©¶õ¿ø
+				} else if (house_id != 0) { // ì•„ì§€íŠ¸ ì†Œìœ  í¬ë€ì›
 					loc = L1HouseLocation.getHouseLoc(house_id);
 				}
 			}
 	
 			return loc;
 		} catch (Exception e) {
-			/** 2011.07.31 °íÁ¤¼ö º¹»ç ¹ö±× ¹æÁö */			
+			/** 2011.07.31 ê³ ì •ìˆ˜ ë³µì‚¬ ë²„ê·¸ ë°©ì§€ */			
 			loc[0] = 33437;
 			loc[1] = 32812;
 			loc[2] = 4;

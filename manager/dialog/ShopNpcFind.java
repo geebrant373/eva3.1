@@ -1,4 +1,4 @@
-package manager.dialog;
+ï»¿package manager.dialog;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyAdapter;
@@ -30,7 +30,7 @@ public class ShopNpcFind extends Dialog {
 	private Text text_1;
 	public static Display display;
 
-	static private String title = "»óÁ¡ ¿£ÇÇ¾¾ Ã£±â";
+	static private String title = "ìƒì  ì—”í”¼ì”¨ ì°¾ê¸°";
 
 	/**
 	 * Create the dialog.
@@ -68,8 +68,8 @@ public class ShopNpcFind extends Dialog {
 
 		shell = new Shell(getParent(), getStyle());
 		shell.setSize(270, 351);
-		shell.setText("»óÁ¡ ¿£ÇÇ¾¾ Ã£±â");
-		// È­¸éÁß¾ÓÀ¸·Î
+		shell.setText("ìƒì  ì—”í”¼ì”¨ ì°¾ê¸°");
+		// í™”ë©´ì¤‘ì•™ìœ¼ë¡œ
 		display = Display.getDefault();
 		shell.setBounds((display.getBounds().width / 2) - (shell.getBounds().width / 2),
 				(display.getBounds().height / 2) - (shell.getBounds().height / 2), shell.getBounds().width,
@@ -81,14 +81,14 @@ public class ShopNpcFind extends Dialog {
 		shell.setLayout(gl_shell);
 
 		Label lblNewLabel_2 = new Label(shell, SWT.NONE);
-		lblNewLabel_2.setText("°Ë»ö¸í");
+		lblNewLabel_2.setText("ê²€ìƒ‰ëª…");
 
 		text_1 = new Text(shell, SWT.BORDER);
 		text_1.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		text_1.setEditable(true);
 
 		Button lblNewButton = new Button(shell, SWT.PUSH);
-		lblNewButton.setText("°Ë »ö");
+		lblNewButton.setText("ê²€ ìƒ‰");
 
 		List list = new List(shell, SWT.BORDER | SWT.V_SCROLL | SWT.SINGLE);
 		GridData gd_list = new GridData(SWT.FILL, SWT.CENTER, false, false, 3, 1);
@@ -109,7 +109,7 @@ public class ShopNpcFind extends Dialog {
 						ShopEdit.open(npc.getNpcTemplate());
 						close();
 					} else {
-						LinAllManager.toMessageBox(title, "¿ùµå¿¡ Á¸ÀçÇÏÁö ¾Ê´Â ¿£ÇÇ¾¾ÀÔ´Ï´Ù.");
+						LinAllManager.toMessageBox(title, "ì›”ë“œì— ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì—”í”¼ì”¨ì…ë‹ˆë‹¤.");
 						close();
 					}
 					break;
@@ -118,12 +118,12 @@ public class ShopNpcFind extends Dialog {
 		};
 		list.addListener(SWT.MouseDoubleClick, listener);
 
-		// ÀÌº¥Æ® µî·Ï.
+		// ì´ë²¤íŠ¸ ë“±ë¡.
 		text_1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.keyCode == 13 || e.keyCode == 16777296)
-					// °Ë»ö
+					// ê²€ìƒ‰
 					toSearchItem(text_1, list);
 			}
 		});
@@ -131,7 +131,7 @@ public class ShopNpcFind extends Dialog {
 		lblNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// °Ë»ö
+				// ê²€ìƒ‰
 				toSearchItem(text_1, list);
 			}
 		});
@@ -151,10 +151,10 @@ public class ShopNpcFind extends Dialog {
 	static private void toSearchItem(Text text, List list) {
 		String name = text.getText().toLowerCase();
 
-		// ÀÌÀü ±â·Ï Á¦°Å
+		// ì´ì „ ê¸°ë¡ ì œê±°
 		list.removeAll();
 
-		// °Ë»ö¸íÀÌ ¾øÀ»°æ¿ì ÀüÃ¼ Ç¥Çö.
+		// ê²€ìƒ‰ëª…ì´ ì—†ì„ê²½ìš° ì „ì²´ í‘œí˜„.
 		if (name == null || name.length() <= 0) {
 			for (L1NpcInstance npc : L1World.getInstance().getAllNpc()) {
 				L1Shop npcshop = ShopTable.getInstance().get(npc.getNpcId());
@@ -175,11 +175,11 @@ public class ShopNpcFind extends Dialog {
 			}
 		}
 
-		// µî·ÏµÈ°Ô ¾øÀ»°æ¿ì ¾È³» ¸àÆ®.
+		// ë“±ë¡ëœê²Œ ì—†ì„ê²½ìš° ì•ˆë‚´ ë©˜íŠ¸.
 		if (list.getItemCount() <= 0)
-			LinAllManager.toMessageBox(title, "ÀÏÄ¡ÇÏ´Â ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.");
+			LinAllManager.toMessageBox(title, "ì¼ì¹˜í•˜ëŠ” ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.");
 
-		// Æ÷Ä¿½º.
+		// í¬ì»¤ìŠ¤.
 		text.setFocus();
 	}
 }

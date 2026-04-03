@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -80,7 +80,7 @@ public class LoginController {
 	public void login(LineageClient client, Account account)
 			throws GameServerFullException, AccountAlreadyLoginException {
 		if (!account.isValid()) {
-			throw new IllegalArgumentException("ÀÎÁõµÇÁö ¾ÊÀº °èÁ¤ÀÔ´Ï´Ù");
+			throw new IllegalArgumentException("ì¸ì¦ë˜ì§€ ì•Šì€ ê³„ì •ì…ë‹ˆë‹¤");
 		}
 		if ((getMaxAllowedOnlinePlayers() <= getOnlinePlayerCount()) && !account.isGameMaster()) {
 			throw new GameServerFullException();

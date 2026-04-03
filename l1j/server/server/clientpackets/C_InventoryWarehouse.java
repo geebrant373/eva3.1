@@ -1,4 +1,4 @@
-package l1j.server.server.clientpackets;
+﻿package l1j.server.server.clientpackets;
 
 
 import server.LineageClient;

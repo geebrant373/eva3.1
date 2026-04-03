@@ -1,7 +1,7 @@
-/**
- * °øÁö Ã¢ 
+ï»¿/**
+ * ê³µì§€ ì°½ 
  * 
- * Made by ÂÉ²¿
+ * Made by ìª¼ê¼¬
  */
 
 package l1j.server.server.serverpackets;
@@ -63,9 +63,9 @@ public class S_Notice extends ServerBasePacket{
 		writeS(s);
 	}
 	/**
-	 * °èÁ¤¸íÀ¸·Î ÀĞ¾î¾ßÇÒ °øÁö °¹¼ö ¸®ÅÏ
-	 * @param account °èÁ¤¸í
-	 * @return °øÁö °¹¼ö
+	 * ê³„ì •ëª…ìœ¼ë¡œ ì½ì–´ì•¼í•  ê³µì§€ ê°¯ìˆ˜ ë¦¬í„´
+	 * @param account ê³„ì •ëª…
+	 * @return ê³µì§€ ê°¯ìˆ˜
 	 */
 	public static int NoticeCount(String account){
 		int Count = 0;
@@ -88,9 +88,9 @@ public class S_Notice extends ServerBasePacket{
 	}
 	
 	/**
-	 * °èÁ¤ Å×ÀÌºí¿¡¼­ °èÁ¤À» »ó´ë·Î ÃÖÁ¾ °øÁö³¯Â¥¸¦ °¡Á®¿Â´Ù.
+	 * ê³„ì • í…Œì´ë¸”ì—ì„œ ê³„ì •ì„ ìƒëŒ€ë¡œ ìµœì¢… ê³µì§€ë‚ ì§œë¥¼ ê°€ì ¸ì˜¨ë‹¤.
 	 * @param client
-	 * @return ÃÖÁ¾ °øÁö¸¦ ÀĞÀº ³¯Â¥(yyyy-MM-dd)
+	 * @return ìµœì¢… ê³µì§€ë¥¼ ì½ì€ ë‚ ì§œ(yyyy-MM-dd)
 	 */
 	private String getDate(String account){
 		String sTemp = "";	
@@ -115,7 +115,7 @@ public class S_Notice extends ServerBasePacket{
 	}
 	
 	/**
-	 * °èÁ¤¸íÀ» ´ë»óÀ¸·Î ÃÖÁ¾ °øÁö³¯Â¥¸¦ Çö³¯Â¥·Î °»
+	 * ê³„ì •ëª…ì„ ëŒ€ìƒìœ¼ë¡œ ìµœì¢… ê³µì§€ë‚ ì§œë¥¼ í˜„ë‚ ì§œë¡œ ê°±
 	 * @param account
 	 */
 	private void UpDate(String account, String date){

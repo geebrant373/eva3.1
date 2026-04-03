@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,7 +47,7 @@ public class L1CreateItemSet implements L1CommandExecutor {
 			String name = new StringTokenizer(arg). nextToken();
 			List<L1ItemSetItem> list = GMCommandsConfig.ITEM_SETS.get(name);
 			if (list == null) {
-				pc.sendPackets(new S_SystemMessage(name + "Àº ¾ø½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage(name + "ì€ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
 			L1Item temp = null;
@@ -66,7 +66,7 @@ public class L1CreateItemSet implements L1CommandExecutor {
 				}
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".¼¼Æ®¾ÆÀÌÅÛ ¼¼Æ®¸íÀ¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(".ì„¸íŠ¸ì•„ì´í…œ ì„¸íŠ¸ëª…ìœ¼ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

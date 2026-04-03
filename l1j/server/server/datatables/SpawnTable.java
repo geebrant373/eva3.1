@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -63,7 +63,7 @@ public class SpawnTable {
 		PerformanceTimer timer = new PerformanceTimer();
 		System.out.print("[SpawnTable] spawning mob...");
 		fillSpawnTable();
-		_log.config("¹èÄ¡ ¸®½ºÆ® " + _spawntable.size() + "°Ç ·Îµå");
+		_log.config("ë°°ì¹˜ ë¦¬ìŠ¤íŠ¸ " + _spawntable.size() + "ê±´ ë¡œë“œ");
 		System.out.println("OK! " + timer.get() + " ms");
 	}
 	public void reload1() {
@@ -138,8 +138,8 @@ public class SpawnTable {
 					spawnDat.setName(template1.get_name());
 					spawnDat.setMent(rs.getString("ment"));
 					if (count > 1 && spawnDat.getLocX1() == 0) {
-						// º¹¼ö ¶ÇÇÑ °íÁ¤ spawnÀÇ °æ¿ì´Â, °³Ã¼¼ö * 6 ÀÇ ¹üÀ§ spawn·Î ¹Ù²Û´Ù.
-						// ´Ù¸¸ ¹üÀ§°¡ 30À» ³ÑÁö ¾Ê°Ô ÇÑ´Ù
+						// ë³µìˆ˜ ë˜í•œ ê³ ì • spawnì˜ ê²½ìš°ëŠ”, ê°œì²´ìˆ˜ * 6 ì˜ ë²”ìœ„ spawnë¡œ ë°”ê¾¼ë‹¤.
+						// ë‹¤ë§Œ ë²”ìœ„ê°€ 30ì„ ë„˜ì§€ ì•Šê²Œ í•œë‹¤
 						int range = Math.min(count * 6, 30);
 						spawnDat.setLocX1(spawnDat.getLocX() - range);
 						spawnDat.setLocY1(spawnDat.getLocY() - range);
@@ -168,7 +168,7 @@ public class SpawnTable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		_log.fine("ÃÑmonster¼ö " + spawnCount + "¸¶¸®");
+		_log.fine("ì´monsterìˆ˜ " + spawnCount + "ë§ˆë¦¬");
 	}
 	public int spawnMonsters(int mapId) {
 		int spawnCount = 0;
@@ -228,8 +228,8 @@ public class SpawnTable {
 					spawnDat.setName(template1.get_name());
 					
 					if (count > 1 && spawnDat.getLocX1() == 0) {
-						// º¹¼ö ¶ÇÇÑ °íÁ¤ spawnÀÇ °æ¿ì´Â, °³Ã¼¼ö * 6 ÀÇ ¹üÀ§ spawn·Î ¹Ù²Û´Ù.
-						// ´Ù¸¸ ¹üÀ§°¡ 30À» ³ÑÁö ¾Ê°Ô ÇÑ´Ù
+						// ë³µìˆ˜ ë˜í•œ ê³ ì • spawnì˜ ê²½ìš°ëŠ”, ê°œì²´ìˆ˜ * 6 ì˜ ë²”ìœ„ spawnë¡œ ë°”ê¾¼ë‹¤.
+						// ë‹¤ë§Œ ë²”ìœ„ê°€ 30ì„ ë„˜ì§€ ì•Šê²Œ í•œë‹¤
 						int range = Math.min(count * 6, 30);
 						spawnDat.setLocX1(spawnDat.getLocX() - range);
 						spawnDat.setLocY1(spawnDat.getLocY() - range);
@@ -258,7 +258,7 @@ public class SpawnTable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		_log.fine("ÃÑmonster¼ö " + spawnCount + "¸¶¸®");
+		_log.fine("ì´monsterìˆ˜ " + spawnCount + "ë§ˆë¦¬");
 		return spawnCount;
 	}
 	

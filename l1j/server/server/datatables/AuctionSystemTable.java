@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +21,7 @@ import l1j.server.server.serverpackets.S_SkillSound;
 import l1j.server.server.storage.CharactersItemStorage;
 import l1j.server.server.utils.SQLUtil;
 
-//TODO Áß°³ °Å·¡ °Ô½ÃÆÇ
+//TODO ì¤‘ê°œ ê±°ë˜ ê²Œì‹œíŒ
 public class AuctionSystemTable {
 
 	private static Logger _log = Logger.getLogger(AuctionSystemTable.class.getName());
@@ -112,7 +112,7 @@ public class AuctionSystemTable {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		String status = "ÆÇ¸Å¿Ï·á";
+		String status = "íŒë§¤ì™„ë£Œ";
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			pstm = con.prepareStatement(
@@ -167,7 +167,7 @@ public class AuctionSystemTable {
 		}
 	}
 	
-	/**±¸¹öÀü¿¡ ÆíÁö ½Ã½ºÅÛ¿¡ ¸Â°Ô Ãß°¡ by ¸í¿ùÀÌ*/
+	/**êµ¬ë²„ì „ì— í¸ì§€ ì‹œìŠ¤í…œì— ë§ê²Œ ì¶”ê°€ by ëª…ì›”ì´*/
 	public void writeLetterTrade(int itemObjectId, int code, String sender,
 			String receiver, String date, int templateId, String subject,
 			String content) {
@@ -256,5 +256,5 @@ public class AuctionSystemTable {
 			SQLUtil.close(con);
 		}
 	}
-	/**±¸¹öÀü¿¡ ÆíÁö ½Ã½ºÅÛ¿¡ ¸Â°Ô Ãß°¡ by ¸í¿ùÀÌ*/
+	/**êµ¬ë²„ì „ì— í¸ì§€ ì‹œìŠ¤í…œì— ë§ê²Œ ì¶”ê°€ by ëª…ì›”ì´*/
 }

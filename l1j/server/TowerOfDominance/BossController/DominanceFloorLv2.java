@@ -1,4 +1,4 @@
-package l1j.server.TowerOfDominance.BossController;
+ï»¿package l1j.server.TowerOfDominance.BossController;
 
 import java.util.ArrayList;
 
@@ -71,7 +71,7 @@ public class DominanceFloorLv2 implements Runnable {
 				case EVENT:
 					for (L1PcInstance pc : PcCK()) {
 						
-						pc.sendPackets(new S_BlueMessage(1416, "\\f=ÇØ´ç ¸ó½ºÅÍ°¡ ½ºÆù µÇ¾ú½À´Ï´Ù."));
+						pc.sendPackets(new S_BlueMessage(1416, "\\f=í•´ë‹¹ ëª¬ìŠ¤í„°ê°€ ìŠ¤í° ë˜ì—ˆìŠµë‹ˆë‹¤."));
 					}
 					spawn(_mapx, _mapy, (short) _mapid, 0, _npcid, ActionCodes.ACTION_Appear);
 					Thread.sleep(7000);
@@ -79,11 +79,11 @@ public class DominanceFloorLv2 implements Runnable {
 				case END:
 					if (_END == true) {
 						for (L1PcInstance pc : PcCK()) {
-							pc.sendPackets(new S_BlueMessage(1416, "\\f=ÇØ´ç ¸ó½ºÅÍ¸¦ ´©±º°¡°¡ Ã³Ä¡ ÇÏ¿´½À´Ï´Ù."));
+							pc.sendPackets(new S_BlueMessage(1416, "\\f=í•´ë‹¹ ëª¬ìŠ¤í„°ë¥¼ ëˆ„êµ°ê°€ê°€ ì²˜ì¹˜ í•˜ì˜€ìŠµë‹ˆë‹¤."));
 						}
 						Thread.sleep(7000);
 						for (L1PcInstance pc : PcCK()) {
-							pc.sendPackets(new S_BlueMessage(1416, "\\f=´ÙÀ½ º¸½º ½Ã°£¿¡ ¸¶Ãç °ø·« ÇÏ¿©ÁÖ¼¼¿ä."));
+							pc.sendPackets(new S_BlueMessage(1416, "\\f=ë‹¤ìŒ ë³´ìŠ¤ ì‹œê°„ì— ë§ˆì¶° ê³µëµ í•˜ì—¬ì£¼ì„¸ìš”."));
 						}
 						Running = false;
 						break;

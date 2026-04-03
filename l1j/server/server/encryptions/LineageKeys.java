@@ -1,4 +1,4 @@
-package l1j.server.server.encryptions;
+﻿package l1j.server.server.encryptions;
 
 public class LineageKeys {
 	public long[] encodeKey = { 0, 0 };

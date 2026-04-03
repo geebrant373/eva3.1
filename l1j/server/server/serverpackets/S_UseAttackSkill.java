@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -69,22 +69,22 @@ public class S_UseAttackSkill extends ServerBasePacket {
 	private void buildPacket(L1Character cha, int targetobj, int spellgfx,
 			int x, int y, int actionId, int isHit, boolean withCastMotion) {
 		if (cha instanceof L1PcInstance) {
-			// ±×¸²ÀÚ°è º¯½ÅÁß¿¡ °ø°İ ¸¶¹ıÀ» »ç¿ëÇÏ¸é(ÀÚ) Å¬¶óÀÌ¾ğÆ®°¡ ¶³¾îÁö±â (À§ÇØ)¶§¹®¿¡ ÀáÁ¤ ´ëÀÀ
+			// ê·¸ë¦¼ìê³„ ë³€ì‹ ì¤‘ì— ê³µê²© ë§ˆë²•ì„ ì‚¬ìš©í•˜ë©´(ì) í´ë¼ì´ì–¸íŠ¸ê°€ ë–¨ì–´ì§€ê¸° (ìœ„í•´)ë•Œë¬¸ì— ì ì • ëŒ€ì‘
 			if (cha.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.SHAPE_CHANGE)
 					&& actionId == ActionCodes.ACTION_SkillAttack) {
 				int tempchargfx = cha.getGfxId().getTempCharGfx();
 				if (tempchargfx == 5727 || tempchargfx == 5730) {
 					actionId = ActionCodes.ACTION_SkillBuff;
 				} else if (tempchargfx == 5733 || tempchargfx == 5736) {
-					// º¸Á¶ ¸¶¹ı ¸ğ¼ÇÀ¸·Î ÇÏ¸é(ÀÚ) °ø°İ ¸¶¹ıÀÇ ±×·¡ÇÈ°ú
-					// ´ë»ó¿¡ÀÇ µ¥¹ÌÁö ¸ğ¼ÇÀÌ ¹ß»ıÇÏÁö ¾Ê°Ô µÇ±â (À§ÇØ)¶§¹®¿¡
-					// °ø°İ ¸ğ¼ÇÀ¸·Î ´ë¿ë
+					// ë³´ì¡° ë§ˆë²• ëª¨ì…˜ìœ¼ë¡œ í•˜ë©´(ì) ê³µê²© ë§ˆë²•ì˜ ê·¸ë˜í”½ê³¼
+					// ëŒ€ìƒì—ì˜ ë°ë¯¸ì§€ ëª¨ì…˜ì´ ë°œìƒí•˜ì§€ ì•Šê²Œ ë˜ê¸° (ìœ„í•´)ë•Œë¬¸ì—
+					// ê³µê²© ëª¨ì…˜ìœ¼ë¡œ ëŒ€ìš©
 					actionId = ActionCodes.ACTION_Attack;
 				}
 			}
 		}
-		// È­·ÉÀÇ ÁÖÀÎÀÌ µğÆúÆ®¶ó¸é °ø°İ ¸¶¹ıÀÇ ±×·¡ÇÈÀÌ ¹ß»ıÇÏÁö ¾Ê±â ¶§¹®¿¡ °­Á¦ Ä¡È¯
-		// ¾îµò°¡ º°°³·Î °ü¸®ÇÏ´Â °ÍÀÌ ÁÁ¾Æ?
+		// í™”ë ¹ì˜ ì£¼ì¸ì´ ë””í´íŠ¸ë¼ë©´ ê³µê²© ë§ˆë²•ì˜ ê·¸ë˜í”½ì´ ë°œìƒí•˜ì§€ ì•Šê¸° ë•Œë¬¸ì— ê°•ì œ ì¹˜í™˜
+		// ì–´ë”˜ê°€ ë³„ê°œë¡œ ê´€ë¦¬í•˜ëŠ” ê²ƒì´ ì¢‹ì•„?
 		if (cha.getGfxId().getTempCharGfx() == 4013) {
 			actionId = ActionCodes.ACTION_Attack;
 		}
@@ -99,9 +99,9 @@ public class S_UseAttackSkill extends ServerBasePacket {
 		writeC(isHit);
 		writeC(0x00);
 		writeC(newheading);
-		writeD(autonum); // ¹øÈ£°¡ °ãÄ¡Áö ¾Ê°Ô º¸³½´Ù
+		writeD(autonum); // ë²ˆí˜¸ê°€ ê²¹ì¹˜ì§€ ì•Šê²Œ ë³´ë‚¸ë‹¤
 		writeH(spellgfx);
-		writeC(0); // ¹ìÆÄ-0 , ¿¡º¼- 6 Å¸ÄÏÁöÁ¾:6, ¹üÀ§&Å¸ÄÏÁöÁ¾:8, ¹üÀ§:0
+		writeC(0); // ë±€íŒŒ-0 , ì—ë³¼- 6 íƒ€ì¼“ì§€ì¢…:6, ë²”ìœ„&íƒ€ì¼“ì§€ì¢…:8, ë²”ìœ„:0
 		writeH(cha.getX());
 		writeH(cha.getY());
 		writeH(x);

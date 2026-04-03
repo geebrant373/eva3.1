@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Robot;
+ï»¿package l1j.server.GameSystem.Robot;
 
 import static l1j.server.server.model.skill.L1SkillId.HASTE;
 
@@ -33,7 +33,7 @@ import l1j.server.server.utils.SQLUtil;
 
 public class Robot_Hunt {
 
-	public static boolean ±â°¨ = false;
+	public static boolean ê¸°ê° = false;
 	private static Random _random = new Random(System.nanoTime());
 	private static Queue<L1RobotInstance> _queue;
 	private static Robot_Hunt _instance;
@@ -67,11 +67,11 @@ public class Robot_Hunt {
 		}
 	}
 
-	// ¿ë°è¸®´º¾ó·ÎÀÎÇØ Á¦¿Ü 15¸¶¸®
+	// ìš©ê³„ë¦¬ë‰´ì–¼ë¡œì¸í•´ ì œì™¸ 15ë§ˆë¦¬
 	private static final String[] mapName = { 
-			"±â°¨1Ãş", "±â°¨2Ãş", 
-			"¿ë´ø1Ãş", "¿ë´ø2Ãş", "¿ë´ø3Ãş", "¿ë´ø4Ãş", "¿ë´ø5Ãş", "¿ë´ø6Ãş", "¿ë´ø7Ãş",
-			"º»´ø1Ãş", "º»´ø2Ãş", "º»´ø3Ãş", "º»´ø4Ãş", "º»´ø5Ãş", "º»´ø6Ãş", "º»´ø7Ãş" };
+			"ê¸°ê°1ì¸µ", "ê¸°ê°2ì¸µ", 
+			"ìš©ë˜1ì¸µ", "ìš©ë˜2ì¸µ", "ìš©ë˜3ì¸µ", "ìš©ë˜4ì¸µ", "ìš©ë˜5ì¸µ", "ìš©ë˜6ì¸µ", "ìš©ë˜7ì¸µ",
+			"ë³¸ë˜1ì¸µ", "ë³¸ë˜2ì¸µ", "ë³¸ë˜3ì¸µ", "ë³¸ë˜4ì¸µ", "ë³¸ë˜5ì¸µ", "ë³¸ë˜6ì¸µ", "ë³¸ë˜7ì¸µ" };
 
 	private static final int[] mapCount = { 
 			10, 0, 
@@ -87,51 +87,51 @@ public class Robot_Hunt {
 					continue;
 				}
 				GeneralThreadPool.getInstance().schedule(new botVisible(bot, mapName[a]),
-						6000 + (_random.nextInt(120) + 1)); // ¿ø·¡ 120
+						6000 + (_random.nextInt(120) + 1)); // ì›ë˜ 120
 			}
 		}
 	}
 
-	private void direct_spawn(String À§Ä¡) {
+	private void direct_spawn(String ìœ„ì¹˜) {
 		if (!GMCommands.huntBot)
 			return;
 		synchronized (_queue) {
 			L1RobotInstance bot = _queue.poll();
 			if (bot == null)
 				return;
-			GeneralThreadPool.getInstance().schedule(new botVisible(bot, À§Ä¡), 1 * (_random.nextInt(2) + 1));
+			GeneralThreadPool.getInstance().schedule(new botVisible(bot, ìœ„ì¹˜), 1 * (_random.nextInt(2) + 1));
 		}
 	}
 
-	public void delay_spawn(String À§Ä¡, int time) {
+	public void delay_spawn(String ìœ„ì¹˜, int time) {
 		if (!GMCommands.huntBot)
 			return;
 		synchronized (_queue) {
 			L1RobotInstance bot = _queue.poll();
 			if (bot == null)
 				return;
-			GeneralThreadPool.getInstance().schedule(new botVisible(bot, À§Ä¡), time);
+			GeneralThreadPool.getInstance().schedule(new botVisible(bot, ìœ„ì¹˜), time);
 		}
 	}
 
 	// private static boolean spawning = false;
 	class botVisible implements Runnable {
 		private L1RobotInstance bot;
-		private String »ç³ÉÀ§Ä¡;
+		private String ì‚¬ëƒ¥ìœ„ì¹˜;
 
-		public botVisible(L1RobotInstance bot, String _»ç³ÉÀ§Ä¡) {
+		public botVisible(L1RobotInstance bot, String _ì‚¬ëƒ¥ìœ„ì¹˜) {
 			this.bot = bot;
-			this.»ç³ÉÀ§Ä¡ = _»ç³ÉÀ§Ä¡;
+			this.ì‚¬ëƒ¥ìœ„ì¹˜ = _ì‚¬ëƒ¥ìœ„ì¹˜;
 		}
 
 		@Override
 		public void run() {
-			// TODO ÀÚµ¿ »ı¼ºµÈ ¸Ş¼Òµå ½ºÅÓ
+			// TODO ìë™ ìƒì„±ëœ ë©”ì†Œë“œ ìŠ¤í…
 			try {
 				L1PcInstance rob = L1World.getInstance().getPlayer(bot.getName());
 				if (rob != null) {
 					put(bot);
-					direct_spawn(»ç³ÉÀ§Ä¡);
+					direct_spawn(ì‚¬ëƒ¥ìœ„ì¹˜);
 					return;
 				}
 				if (!GMCommands.huntBot) {
@@ -140,33 +140,33 @@ public class Robot_Hunt {
 				}
 				int map = _random.nextInt(5);
 				while (true) {
-					// ÁÂÇ¥ ¼³Á¤
+					// ì¢Œí‘œ ì„¤ì •
 					switch (map) {
-					case 0:// ±â¶õ
+					case 0:// ê¸°ë€
 						bot.setX(33432 + _random.nextInt(30));
 						bot.setY(32811 + _random.nextInt(30));
 						break;
-					case 1:// Àº±â»ç
+					case 1:// ì€ê¸°ì‚¬
 						bot.setX(33078 + _random.nextInt(10));
 						bot.setY(33386 + _random.nextInt(20));
 						break;
-					case 2:// ¿À·»
+					case 2:// ì˜¤ë Œ
 						bot.setX(34055 + _random.nextInt(30));
 						bot.setY(32278 + _random.nextInt(30));
 						break;
-					case 3:// ¾Æµ§
-					case 4:// ¾Æµ§
+					case 3:// ì•„ë´
+					case 4:// ì•„ë´
 						bot.setX(33927 + _random.nextInt(10));
 						bot.setY(33348 + _random.nextInt(10));
 						break;
-					case 5:// ÇÏÀÌ³×
+					case 5:// í•˜ì´ë„¤
 						bot.setX(33614 + _random.nextInt(20));
 						bot.setY(33245 + _random.nextInt(20));
 						break;
 					default:
 						break;
 					}
-					bot.setMap((short) 4); // º¿½ÃÀÛÀ§Ä¡
+					bot.setMap((short) 4); // ë´‡ì‹œì‘ìœ„ì¹˜
 					boolean ck = false;
 					if (ck)
 						continue;
@@ -183,9 +183,9 @@ public class Robot_Hunt {
 					bot.addHitup(50);
 					bot.addDmgup(100);
 				}
-				bot.»ç³Éº¿ = true;
-				bot.»ç³Éº¿_À§Ä¡ = »ç³ÉÀ§Ä¡;
-				bot._½º·¹µåÁ¾·á = false;
+				bot.ì‚¬ëƒ¥ë´‡ = true;
+				bot.ì‚¬ëƒ¥ë´‡_ìœ„ì¹˜ = ì‚¬ëƒ¥ìœ„ì¹˜;
+				bot._ìŠ¤ë ˆë“œì¢…ë£Œ = false;
 				bot.getMoveState().setHeading(_random.nextInt(8));
 				bot.getMoveState().setMoveSpeed(1);
 				bot.getSkillEffectTimerSet().setSkillEffect(HASTE, (_random.nextInt(400) + 1700) * 1000);
@@ -226,16 +226,16 @@ public class Robot_Hunt {
 				}
 				L1Clan clan = L1World.getInstance().getClan(bot.getClanname());
 				if (clan != null) {
-					if (bot.getClanid() == clan.getClanId() && // Å©¶õÀ» ÇØ»êÇØ, ÀçÂ÷,
-																// µ¿¸íÀÇ Å©¶õÀÌ Ã¢¼³µÇ¾úÀ»
-																// ¶§ÀÇ ´ëÃ¥
+					if (bot.getClanid() == clan.getClanId() && // í¬ë€ì„ í•´ì‚°í•´, ì¬ì°¨,
+																// ë™ëª…ì˜ í¬ë€ì´ ì°½ì„¤ë˜ì—ˆì„
+																// ë•Œì˜ ëŒ€ì±…
 							bot.getClanname().toLowerCase().equals(clan.getClanName().toLowerCase())) {
 						clan.addOnlineClanMember(bot.getName(), bot);
 						for (L1PcInstance clanMember : clan.getOnlineClanMember()) {
 							if (clanMember.getId() != bot.getId()) {
-								// Áö±İ, Ç÷¸Í¿øÀÇ%0%s°¡ °ÔÀÓ¿¡ Á¢¼ÓÇß½À´Ï´Ù.
+								// ì§€ê¸ˆ, í˜ˆë§¹ì›ì˜%0%sê°€ ê²Œì„ì— ì ‘ì†í–ˆìŠµë‹ˆë‹¤.
 								clanMember.sendPackets(
-										new S_SystemMessage("Ç÷¸Í¿ø " + bot.getName() + "´Ô²²¼­ ¹æ±İ °ÔÀÓ¿¡ Á¢¼ÓÇÏ¼Ì½À´Ï´Ù."), true);
+										new S_SystemMessage("í˜ˆë§¹ì› " + bot.getName() + "ë‹˜ê»˜ì„œ ë°©ê¸ˆ ê²Œì„ì— ì ‘ì†í•˜ì…¨ìŠµë‹ˆë‹¤."), true);
 							}
 						}
 					}
@@ -246,9 +246,9 @@ public class Robot_Hunt {
 				L1World.getInstance().addVisibleObject(bot);
 				Robot.clan_join(bot);
 				bot.updateconnect(true);
-				bot.µô·¹ÀÌ(3000 + _random.nextInt(15000));
-				// if ((_random.nextInt(100)+1) >= 60) //Å¸°İ±ÍÈ¯ ¿ø·¡ false
-				bot.Å¸°İ±ÍÈ¯¹«½Ã = true;
+				bot.ë”œë ˆì´(3000 + _random.nextInt(15000));
+				// if ((_random.nextInt(100)+1) >= 60) //íƒ€ê²©ê·€í™˜ ì›ë˜ false
+				bot.íƒ€ê²©ê·€í™˜ë¬´ì‹œ = true;
 				bot.Hunt_Exit_Time = System.currentTimeMillis() + (600000000 * (60 + _random.nextInt(40)));
 				bot.startAI();
 			} catch (Exception e) {
@@ -429,15 +429,15 @@ public class Robot_Hunt {
 
 	private int Robot_Weapon(L1RobotInstance bot) {
 		if (bot.isKnight()) {
-			itemid = 61; // ÁıÇà°Ë
+			itemid = 61; // ì§‘í–‰ê²€
 		} else if (bot.isElf()) {
-			itemid = 450009; // °İ³ë
+			itemid = 450009; // ê²©ë…¸
 		} else if (bot.isDarkelf()) {
-			itemid = 450010; // Æ÷È¿
+			itemid = 450010; // í¬íš¨
 		} else if (bot.isCrown()) {
-			itemid = 12; // ±ºÁÖÀÇ¹ø°³°Ë
+			itemid = 12; // êµ°ì£¼ì˜ë²ˆê°œê²€
 		} else if (bot.isWizard()) {
-			itemid = 134; // ¼ö°áÁö
+			itemid = 134; // ìˆ˜ê²°ì§€
 		}
 		return itemid;
 	}

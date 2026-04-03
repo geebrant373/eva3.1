@@ -1,4 +1,4 @@
-package l1j.server.MJTemplate;
+﻿package l1j.server.MJTemplate;
 
 import java.util.Random;
 

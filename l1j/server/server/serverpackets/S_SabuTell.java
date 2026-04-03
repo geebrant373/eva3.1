@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+ï»¿package l1j.server.server.serverpackets;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.skill.L1SkillId;
@@ -9,45 +9,45 @@ public class S_SabuTell extends ServerBasePacket {
 	private byte[] _byte = null;
 
 	public S_SabuTell(L1PcInstance pc) {
-		if (pc.ÅÚ´ë±â() || pc.isTeleport() || pc.isDead()
+		if (pc.í…”ëŒ€ê¸°() || pc.isTeleport() || pc.isDead()
 				) {
 			return;
 		}
-		if (pc.getTelType() != 4) { // »ª½ºÅÜ
+		if (pc.getTelType() != 4) { // ë¹½ìŠ¤í…
 			pc.getSkillEffectTimerSet().setSkillEffect(
 					L1SkillId.ABSOLUTE_BARRIER, 500);
 			pc.setTeleport(true);
 		}
-		pc.ÅÚ´ë±â(true);
+		pc.í…”ëŒ€ê¸°(true);
 		// if(pc.getTelType() == 1 || pc.getTelType() == 4 || pc.getTelType() ==
 		// 10){
 		
 	}
 
 	public S_SabuTell(L1PcInstance pc, int time) {
-		if (pc.ÅÚ´ë±â() || pc.isTeleport() || pc.isDead()) {
+		if (pc.í…”ëŒ€ê¸°() || pc.isTeleport() || pc.isDead()) {
 			return;
 		}
-		if (pc.getTelType() != 4) { // »ª½ºÅÜ
+		if (pc.getTelType() != 4) { // ë¹½ìŠ¤í…
 		
 			pc.setTeleport(true);
 		}
-		pc.ÅÚ´ë±â(true);
+		pc.í…”ëŒ€ê¸°(true);
 		// if(pc.getTelType() == 1 || pc.getTelType() == 4 || pc.getTelType() ==
 		// 10){
 		
 	}
 
-	// ¼øÁÜ °ü·Ã ÅÚ
+	// ìˆœì¤Œ ê´€ë ¨ í…”
 	public S_SabuTell(L1PcInstance pc, boolean ck) {
-		if (pc.ÅÚ´ë±â() || pc.isTeleport() || pc.isDead()) {
+		if (pc.í…”ëŒ€ê¸°() || pc.isTeleport() || pc.isDead()) {
 			return;
 		}
-		if (pc.getTelType() != 4) { // »ª½ºÅÜ
+		if (pc.getTelType() != 4) { // ë¹½ìŠ¤í…
 		
 			pc.setTeleport(true);
 		}
-		pc.ÅÚ´ë±â(true);
+		pc.í…”ëŒ€ê¸°(true);
 		
 	}
 

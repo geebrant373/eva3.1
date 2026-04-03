@@ -1,4 +1,4 @@
-package l1j.server.server.model.skill.skills;
+﻿package l1j.server.server.model.skill.skills;
 
 import static l1j.server.server.model.skill.L1SkillId.STATUS_FLOATING_EYE;
 import l1j.server.server.model.L1Character;

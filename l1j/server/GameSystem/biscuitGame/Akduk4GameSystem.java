@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -45,24 +45,24 @@ public class Akduk4GameSystem {
 					L1BuffNpcInstance Npc = (L1BuffNpcInstance) l1object;
 					if (Npc.getNpcTemplate().get_npcId() == 41923) {
 						
-						// ºñ½ºÅ¶ Ãß°¡, ºñ½ºÅ¶ ¼öÁ¤ µô·¯ µÚ·Î ÀÌµ¿
+						// ë¹„ìŠ¤í‚· ì¶”ê°€, ë¹„ìŠ¤í‚· ìˆ˜ì • ë”œëŸ¬ ë’¤ë¡œ ì´ë™
 						L1Teleport.teleport(player, 33445, 32821, (short) 4, 5, true);
 						
 						L1BuffNpcInstance dealer = Npc;
-						String chat = player.getName() + "´Ô " + bettingmoney
-								+ "¿ø ¹èÆÃÇÏ¼Ì½À´Ï´Ù.";
+						String chat = player.getName() + "ë‹˜ " + bettingmoney
+								+ "ì› ë°°íŒ…í•˜ì…¨ìŠµë‹ˆë‹¤.";
 						player.sendPackets(new S_NpcChatPacket(dealer, chat, 0));
 						Broadcaster.broadcastPacket(player,
 								new S_NpcChatPacket(dealer, chat, 0));
 												
 						Thread.sleep(3000);
-						String chat2 = "(¹¬,Âî,ºü)¸¦ ¾Õ¿¡¼­ ¸»¾¸ÇÏ¼¼¿ä~";
+						String chat2 = "(ë¬µ,ì°Œ,ë¹ )ë¥¼ ì•ì—ì„œ ë§ì”€í•˜ì„¸ìš”~";
 						player.sendPackets(new S_NpcChatPacket(dealer, chat2, 0));
 						Broadcaster.broadcastPacket(player,
 								new S_NpcChatPacket(dealer, chat2, 0));
 						player.setGamblingMoney4(bettingmoney);
 						player.setGambling4(true);
-					}// ¿©±â±îÁö
+					}// ì—¬ê¸°ê¹Œì§€
 				}
 			}
 		} catch (Throwable e) {
@@ -89,10 +89,10 @@ public class Akduk4GameSystem {
 					L1BuffNpcInstance Npc = (L1BuffNpcInstance) l1object;
 					if (Npc.getNpcTemplate().get_npcId() == 41923) {
 						L1BuffNpcInstance dealer = Npc;
-						String chat9 = pc.getName() + "Á³¾î¿ä! °°Àº°É ³»¾ß ½Â¸®ÇÕ´Ï´Ù.";
-						String chat10 = pc.getName() + " ³»°¡ Áö´Ù´Ï~ÇÑÆÇ´õÇØ! "
-								+ pc.getGamblingMoney4() + "¿øÀÇ 3¹è¸¦ ÀÔ±İÇß½À´Ï´Ù.";
-						String chat11 = pc.getName() + " Á³¾î¿ä! °°Àº°É ³»¾ß ½Â¸®ÇÕ´Ï´Ù.";
+						String chat9 = pc.getName() + "ì¡Œì–´ìš”! ê°™ì€ê±¸ ë‚´ì•¼ ìŠ¹ë¦¬í•©ë‹ˆë‹¤.";
+						String chat10 = pc.getName() + " ë‚´ê°€ ì§€ë‹¤ë‹ˆ~í•œíŒë”í•´! "
+								+ pc.getGamblingMoney4() + "ì›ì˜ 3ë°°ë¥¼ ì…ê¸ˆí–ˆìŠµë‹ˆë‹¤.";
+						String chat11 = pc.getName() + " ì¡Œì–´ìš”! ê°™ì€ê±¸ ë‚´ì•¼ ìŠ¹ë¦¬í•©ë‹ˆë‹¤.";
 						int gfxid = 3229 + random.nextInt(3);
 						int gfxid1 = 3229;
 						int gfxid2 = 3230;
@@ -100,7 +100,7 @@ public class Akduk4GameSystem {
 						switch (type) {
 						case 1:
 							Thread.sleep(500);
-							String chat2 = pc.getName() + "´Ô ¹¬À» ¼±ÅÃ ÇÏ¼Ì½À´Ï´Ù!";
+							String chat2 = pc.getName() + "ë‹˜ ë¬µì„ ì„ íƒ í•˜ì…¨ìŠµë‹ˆë‹¤!";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat2, 0));
 							pc.broadcastPacket(new S_NpcChatPacket(dealer,
 									chat2, 0));
@@ -135,7 +135,7 @@ public class Akduk4GameSystem {
 							break;
 						case 2:
 							Thread.sleep(500);
-							String chat = pc.getName() + "´Ô Âî¸¦ ¼±ÅÃ ÇÏ¼Ì½À´Ï´Ù!";
+							String chat = pc.getName() + "ë‹˜ ì°Œë¥¼ ì„ íƒ í•˜ì…¨ìŠµë‹ˆë‹¤!";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat, 0));
 							pc.broadcastPacket(new S_NpcChatPacket(dealer,
 									chat, 0));
@@ -170,7 +170,7 @@ public class Akduk4GameSystem {
 							break;
 						case 3:
 							Thread.sleep(500);
-							String chat3 = pc.getName() + "´Ô ºü¸¦ ¼±ÅÃ ÇÏ¼Ì½À´Ï´Ù!";
+							String chat3 = pc.getName() + "ë‹˜ ë¹ ë¥¼ ì„ íƒ í•˜ì…¨ìŠµë‹ˆë‹¤!";
 							pc.sendPackets(new S_NpcChatPacket(dealer, chat3, 0));
 							pc.broadcastPacket(new S_NpcChatPacket(dealer,
 									chat3, 0));

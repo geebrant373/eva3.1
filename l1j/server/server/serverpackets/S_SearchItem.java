@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -33,25 +33,25 @@ public class S_SearchItem extends ServerBasePacket {
 		writeS("searchitem");
 		writeC(0);
 		writeH(21);
-		writeS(searchname); // °Ë»ö¸í
+		writeS(searchname); // ê²€ìƒ‰ëª…
 
 		// \r\n
 
 		DecimalFormat priceformat = new DecimalFormat("#,###,###,###");
 		int sellcount = 0;
-		// ÆÇ¸Å¸ñ·Ï
+		// íŒë§¤ëª©ë¡
 		for (int i = 0; i < selllist.size(); i++) {
 			sellcount++;
 			L1PriceTemp selltemp = selllist.get(i);
 			if (selltemp != null) {
 				if (selltemp.enchant == 0) {
 					String itemName = selltemp.itemname;
-					String price = "±İ¾× : " + priceformat.format(selltemp.price) + "¾Æµ¥³ª";
+					String price = "ê¸ˆì•¡ : " + priceformat.format(selltemp.price) + "ì•„ë°ë‚˜";
 					writeS(itemName);
 					writeS(price);
 				} else {
 					String itemName = "+" + selltemp.enchant + " " + selltemp.itemname;
-					String price = "±İ¾× : " + priceformat.format(selltemp.price) + " ¾Æµ¥³ª";
+					String price = "ê¸ˆì•¡ : " + priceformat.format(selltemp.price) + " ì•„ë°ë‚˜";
 					writeS(itemName);
 					writeS(price);
 				}
@@ -70,7 +70,7 @@ public class S_SearchItem extends ServerBasePacket {
 
 		}
 
-		// ±¸¸Å¸ñ·Ï
+		// êµ¬ë§¤ëª©ë¡
 		int buycount = 0;
 		for (int i = 0; i < buylist.size(); i++) {
 			buycount++;
@@ -78,12 +78,12 @@ public class S_SearchItem extends ServerBasePacket {
 			if (buytemp != null) {
 				if (buytemp.enchant == 0) {
 					String itemName = buytemp.itemname;
-					String price = "±İ¾× : " + priceformat.format(buytemp.price) + " ¾Æµ¥³ª";
+					String price = "ê¸ˆì•¡ : " + priceformat.format(buytemp.price) + " ì•„ë°ë‚˜";
 					writeS(itemName);
 					writeS(price);
 				} else {
 					String itemName = "+" + buytemp.enchant + " " + buytemp.itemname;
-					String price = "±İ¾× : " + priceformat.format(buytemp.price) + " ¾Æµ¥³ª";
+					String price = "ê¸ˆì•¡ : " + priceformat.format(buytemp.price) + " ì•„ë°ë‚˜";
 					writeS(itemName);
 					writeS(price);
 				}

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -27,7 +27,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 public class S_Test extends ServerBasePacket {
 
 	public S_Test(/*int objid*/L1PcInstance pc, int codetest) {		
-		pc.sendPackets(new S_ChangeName(pc.getId(), "À¯´ÏÄÜ"));
+		pc.sendPackets(new S_ChangeName(pc.getId(), "ìœ ë‹ˆì½˜"));
 	}
 
 	@Override

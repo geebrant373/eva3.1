@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -152,7 +152,7 @@ public class L1Clan {
 		return (L1PcInstance[]) ClanListener.toArray(new L1PcInstance[ClanListener.size()]);
 	}
 
-	// ¿Â¶óÀÎÁßÀÇ Ç÷¿ø¼ö
+	// ì˜¨ë¼ì¸ì¤‘ì˜ í˜ˆì›ìˆ˜
 	public int getOnlineMemberCount() {
 		int count = 0;
 		for(int i = 0 ; i < clanMemberList.size() ; i++) {
@@ -163,7 +163,7 @@ public class L1Clan {
 		return count;
 	}
 
-	//	 ¿Â¶óÀÎÁß Ç÷¿ø ÀÎ½ºÅÏ½º ¸®½ºÆ®
+	//	 ì˜¨ë¼ì¸ì¤‘ í˜ˆì› ì¸ìŠ¤í„´ìŠ¤ ë¦¬ìŠ¤íŠ¸
 	public L1PcInstance[] getOnlineClanMember() {
 		ArrayList<L1PcInstance> onlineMembers = new ArrayList<L1PcInstance>();
 		L1PcInstance pc = null;
@@ -176,7 +176,7 @@ public class L1Clan {
 		return onlineMembers.toArray(new L1PcInstance[onlineMembers.size()]);
 	}
 
-	// ÀüÃ¼ Ç÷¿ø ³×ÀÓ ¸®½ºÆ®
+	// ì „ì²´ í˜ˆì› ë„¤ì„ ë¦¬ìŠ¤íŠ¸
 	public String getAllMembersFP() {
 		String result = "";
 		for(int i = 0 ; i < clanMemberList.size() ; i++) {
@@ -193,11 +193,11 @@ public class L1Clan {
 			}
 		}
 		int count = 0;
-		if ("Áß¸³".equals(getClanName())) {
-			String[] fakeMembers = { "¿î¸í", "È¯ÀåÇÏ°Í¼Ò", "»ç»ç»ñ", "Ç¥Á¤", "°í°î", "½ÂÁö´Ï", "Å×½ºÆ®Æ®", "¼ÛÁöÈ¿", "Ãµ¸¸½Ê", "½Å³ä"
-					, "ÄÚÀÎ»ç¿ä", "º»", "±İ¸Ş´Ş", "´ÙÅ«¿¤ÇÁ", "¿¡ÇÁÅ³·¯", "¿¥", "·¯ºê", "ÂïÅÏ·¯", "¸·½Ã¹«½º", "»ç¶÷", 
-					"È¯¼úÀÌ", "¸øµÈ¿Àºü", "·Î³ª", "À²ÀÌ¿ë±â»ç", "´ÙÀÌ", "Èæ¿ù","½´°¡", "ÄïÅ¸Å²Å×", "¾ç", "°­Åä"
-					, "±à", "±â¾È", "ÇĞÇĞ", "´«", "ÃµµÕº­¶ô", "°¡", "³ÉÆİÄ¡", "Äí", "³ªÀÌÅ°", "¸µ"};
+		if ("ì¤‘ë¦½".equals(getClanName())) {
+			String[] fakeMembers = { "ìš´ëª…", "í™˜ì¥í•˜ê²ƒì†Œ", "ì‚¬ì‚¬ì‚¿", "í‘œì •", "ê³ ê³¡", "ìŠ¹ì§€ë‹ˆ", "í…ŒìŠ¤íŠ¸íŠ¸", "ì†¡ì§€íš¨", "ì²œë§Œì‹­", "ì‹ ë…"
+					, "ì½”ì¸ì‚¬ìš”", "ë³¸", "ê¸ˆë©”ë‹¬", "ë‹¤í°ì—˜í”„", "ì—í”„í‚¬ëŸ¬", "ì— ", "ëŸ¬ë¸Œ", "ì°í„´ëŸ¬", "ë§‰ì‹œë¬´ìŠ¤", "ì‚¬ëŒ", 
+					"í™˜ìˆ ì´", "ëª»ëœì˜¤ë¹ ", "ë¡œë‚˜", "ìœ¨ì´ìš©ê¸°ì‚¬", "ë‹¤ì´", "í‘ì›”","ìŠˆê°€", "ì¿¤íƒ€í‚¨í…Œ", "ì–‘", "ê°•í† "
+					, "ê¸", "ê¸°ì•ˆ", "í•™í•™", "ëˆˆ", "ì²œë‘¥ë²¼ë½", "ê°€", "ëƒ¥í€ì¹˜", "ì¿ ", "ë‚˜ì´í‚¤", "ë§"};
 			 while (count < fakeMembers.length) {
 				 result = result + fakeMembers[count] + " ";
 				 count++;
@@ -231,7 +231,7 @@ public class L1Clan {
 	}
 	
 	/*
-	// ¿ÀÇÁ¶óÀÎÁßÀÇ Ç÷¿ø ³×ÀÓ ¸®½ºÆ®
+	// ì˜¤í”„ë¼ì¸ì¤‘ì˜ í˜ˆì› ë„¤ì„ ë¦¬ìŠ¤íŠ¸
 	public String getOfflineMembersFP() {
 		String result = "";
 		for (String name : membersNameList) {
@@ -242,7 +242,7 @@ public class L1Clan {
 		return result;
 	}
 	
-	// ¿ÀÇÁ¶óÀÎÁßÀÇ Ç÷¿ø ³×ÀÓ ¸®½ºÆ®
+	// ì˜¤í”„ë¼ì¸ì¤‘ì˜ í˜ˆì› ë„¤ì„ ë¦¬ìŠ¤íŠ¸
 	public String getOfflineMemberName(int c) {
 		int count = 0;
 		for (String name : membersNameList) {
@@ -255,7 +255,7 @@ public class L1Clan {
 		return null;
 	}
 	
-	// ¿Â¶óÀÎÁßÀÇ Ç÷¿ø ·©Å©
+	// ì˜¨ë¼ì¸ì¤‘ì˜ í˜ˆì› ë­í¬
 	public int getOnlineMemberRank(String member) {
 		String result = "";
 		L1PcInstance pc = null;
@@ -268,7 +268,7 @@ public class L1Clan {
 		return -1;
 	}
 		
-	// ¿ÀÇÁ¶óÀÎÁßÀÇ Ç÷¿ø ·©Å©
+	// ì˜¤í”„ë¼ì¸ì¤‘ì˜ í˜ˆì› ë­í¬
 	public int getOfflineMemberRank(String member) {
 		java.sql.Connection con = null;
 		PreparedStatement pstm = null;
@@ -325,13 +325,13 @@ public class L1Clan {
 		String rank = "";
 		if (pc != null) {
 			if (pc.getClanRank() == CLAN_RANK_PROBATION) {
-				rank = "[°ß½À±â»ç]";
+				rank = "[ê²¬ìŠµê¸°ì‚¬]";
 			} else if (pc.getClanRank() == CLAN_RANK_PUBLIC) {
-				rank = "[ÀÏ¹İ±â»ç]";
+				rank = "[ì¼ë°˜ê¸°ì‚¬]";
 			} else if (pc.getClanRank() == CLAN_RANK_GUARDIAN) {
-				rank = "[¼öÈ£±â»ç]";
+				rank = "[ìˆ˜í˜¸ê¸°ì‚¬]";
 			} else if (pc.getClanRank() == CLAN_RANK_PRINCE) {
-				rank = "[Ç÷¸Í±ºÁÖ]";
+				rank = "[í˜ˆë§¹êµ°ì£¼]";
 			} else {
 				rank = "";
 			}

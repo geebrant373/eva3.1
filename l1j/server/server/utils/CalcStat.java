@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -39,7 +39,7 @@ public class CalcStat {
 		7050, 7050, 7200, 7200, 7350, 7500, 7500, 7650, 7650	// 80~90
 	};	
 	
-	public static int ±Ù°Å¸®¸íÁß(int str) {
+	public static int ê·¼ê±°ë¦¬ëª…ì¤‘(int str) {
 		try {
 
 			if (str < 9)
@@ -52,14 +52,14 @@ public class CalcStat {
 			if (str >= 45)
 				temp += 3;
 
-			return temp/* ±Ù°Å¸®_´ë¹ÌÁö[str] */;
+			return temp/* ê·¼ê±°ë¦¬_ëŒ€ë¯¸ì§€[str] */;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return 2;
 		}
 	}
 	
-	public static int ¿ø°Å¸®¸íÁß(int dex) {
+	public static int ì›ê±°ë¦¬ëª…ì¤‘(int dex) {
 		try {
 			if (dex <= 7)
 				return -3;
@@ -71,7 +71,7 @@ public class CalcStat {
 			if (dex >= 45)
 				temp += 3;
 
-			return temp/* ±Ù°Å¸®_´ë¹ÌÁö[str] */;
+			return temp/* ê·¼ê±°ë¦¬_ëŒ€ë¯¸ì§€[str] */;
 		} catch (Exception e) {
 			e.printStackTrace();
 			return -3;
@@ -79,7 +79,7 @@ public class CalcStat {
 	}
 	
 	/**
-	 * ACº¸³Ê½º¸¦ µ¹·ÁÁØ´Ù
+	 * ACë³´ë„ˆìŠ¤ë¥¼ ëŒë ¤ì¤€ë‹¤
 	 * 
 	 * @param level
 	 * @param dex
@@ -98,7 +98,7 @@ public class CalcStat {
 		return acBonus;
 	}
 	/**
-	 * º£ÀÌ½º½ºÅİ¿¡ÀÇÇÑ ±Ù°Å¸® ¸íÁß
+	 * ë² ì´ìŠ¤ìŠ¤í…Ÿì—ì˜í•œ ê·¼ê±°ë¦¬ ëª…ì¤‘
 	 * 
 	 * @param pc
 	 * @param str
@@ -176,7 +176,7 @@ public class CalcStat {
 		return Hitup;
 	}
 	/**
-	 * º£ÀÌ½º ½ºÅİ¿¡ ÀÇÇÑ ±Ù°Å¸® µ¥¹ÌÁö
+	 * ë² ì´ìŠ¤ ìŠ¤í…Ÿì— ì˜í•œ ê·¼ê±°ë¦¬ ë°ë¯¸ì§€
 	 * 
 	 * @param pc
 	 * @param str
@@ -248,7 +248,7 @@ public class CalcStat {
 		return Dmgup;
 	}
 	/**
-	 * º£ÀÌ½º ½ºÅİ¿¡ ÀÇÇÑ ¿ø°Å¸® ¸íÁß·ü
+	 * ë² ì´ìŠ¤ ìŠ¤í…Ÿì— ì˜í•œ ì›ê±°ë¦¬ ëª…ì¤‘ë¥ 
 	 * 
 	 * @param pc
 	 * @param dex
@@ -295,7 +295,7 @@ public class CalcStat {
 		return BowHitup;
 	}
 	/**
-	 * º£ÀÌ½º ½ºÅİ¿¡ ÀÇÇÑ ¿ø°Å¸® µ¥¹ÌÁö
+	 * ë² ì´ìŠ¤ ìŠ¤í…Ÿì— ì˜í•œ ì›ê±°ë¦¬ ë°ë¯¸ì§€
 	 * 
 	 * @param pc
 	 * @param dex
@@ -342,7 +342,7 @@ public class CalcStat {
 	}
 	/**
 	 * 
-	 * º£ÀÌ½º ½ºÅÈ¿¡ ÀÇÇÑ ¸¶¹ı ¸íÁß
+	 * ë² ì´ìŠ¤ ìŠ¤íƒ¯ì— ì˜í•œ ë§ˆë²• ëª…ì¤‘
 	 * 
 	 * @param chartype
 	 * @param baseint
@@ -407,7 +407,7 @@ public class CalcStat {
 	}
 	/**
 	 * 
-	 * º£ÀÌ½º ½ºÅİ¿¡ ÀÇÇÑ ¸¶¹ı Ä¡¸íÅ¸ (%)
+	 * ë² ì´ìŠ¤ ìŠ¤í…Ÿì— ì˜í•œ ë§ˆë²• ì¹˜ëª…íƒ€ (%)
 	 * 
 	 * @param chartype
 	 * @param baseint
@@ -453,7 +453,7 @@ public class CalcStat {
 	}
 	/**
 	 * 
-	 * º£ÀÌ½º ½ºÅİ¿¡ ÀÇÇÑ ¸¶¹ı µ¥¹ÌÁö
+	 * ë² ì´ìŠ¤ ìŠ¤í…Ÿì— ì˜í•œ ë§ˆë²• ë°ë¯¸ì§€
 	 * 
 	 * @param chartype
 	 * @param baseint
@@ -500,7 +500,7 @@ public class CalcStat {
 	}
 	/**
 	 * 
-	 * º£ÀÌ½º ½ºÅİ¿¡ ÀÇÇÑ MP °¨¼Ò·®
+	 * ë² ì´ìŠ¤ ìŠ¤í…Ÿì— ì˜í•œ MP ê°ì†ŒëŸ‰
 	 * 
 	 * @param chartype
 	 * @param baseint
@@ -555,7 +555,7 @@ public class CalcStat {
 		return dmp;
 	}
 	/**
-	 * º£ÀÌ½º ½ºÅİ¿¡ ÀÇÇÑ ER(¿ø°Å¸® È¸ÇÇÀ²)
+	 * ë² ì´ìŠ¤ ìŠ¤í…Ÿì— ì˜í•œ ER(ì›ê±°ë¦¬ íšŒí”¼ìœ¨)
 	 * 
 	 * @param pc
 	 * @param dex
@@ -622,7 +622,7 @@ public class CalcStat {
 		return Er;
 	}
 	/**
-	 * º£ÀÌ½º ½ºÅİ¿¡ ÀÇÇÑ MR(¸¶¹ı ¹æ¾î·Â)
+	 * ë² ì´ìŠ¤ ìŠ¤í…Ÿì— ì˜í•œ MR(ë§ˆë²• ë°©ì–´ë ¥)
 	 * 
 	 * @param pc
 	 * @param wis
@@ -666,7 +666,7 @@ public class CalcStat {
 		return MR;
 	}
 	/**
-	 * º£ÀÌ½º½ºÅİ¿¡ÀÇÇÑ ACº¸³Ê½º¸¦ µ¹·ÁÁØ´Ù.
+	 * ë² ì´ìŠ¤ìŠ¤í…Ÿì—ì˜í•œ ACë³´ë„ˆìŠ¤ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param pc
 	 * @param dex
@@ -738,9 +738,9 @@ public class CalcStat {
 		return acBonus;
 	}
 	/**
-	 * º£ÀÌ½º½ºÅİ¿¡ÀÇÇÑ HP È¸º¹ º¸³Ê½º¸¦ µ¹·ÁÁØ´Ù.
+	 * ë² ì´ìŠ¤ìŠ¤í…Ÿì—ì˜í•œ HP íšŒë³µ ë³´ë„ˆìŠ¤ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @param chartype(Ä³¸¯ÅÍÅ¸ÀÔ)
+	 * @param chartype(ìºë¦­í„°íƒ€ì…)
 	 * @param con
 	 * @return BonusHpr
 	 * 
@@ -819,9 +819,9 @@ public class CalcStat {
 		return BonusHpr;
 	}
 	/**
-	 * º£ÀÌ½º½ºÅİ¿¡ÀÇÇÑ MP È¸º¹ º¸³Ê½º¸¦ µ¹·ÁÁØ´Ù.
+	 * ë² ì´ìŠ¤ìŠ¤í…Ÿì—ì˜í•œ MP íšŒë³µ ë³´ë„ˆìŠ¤ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @param chartype(Ä³¸¯ÅÍÅ¸ÀÔ)
+	 * @param chartype(ìºë¦­í„°íƒ€ì…)
 	 * @param con
 	 * @return BonusMpr
 	 * 
@@ -891,7 +891,7 @@ public class CalcStat {
 		return BonusMpr;
 	}
 		/**
-	 * ÀÎ¼öÀÇ WIS¿¡ ´ëÀÀÇÏ´Â MRº¸³Ê½º¸¦ µ¹·ÁÁØ´Ù
+	 * ì¸ìˆ˜ì˜ WISì— ëŒ€ì‘í•˜ëŠ” MRë³´ë„ˆìŠ¤ë¥¼ ëŒë ¤ì¤€ë‹¤
 	 * 
 	 * @param wis
 	 * @return mrBonus
@@ -935,18 +935,18 @@ public class CalcStat {
 	}
 
 	/**
-	 * °¢ Å¬·¡½ºÀÇ LVUP½ÃÀÇ HP»ó½ÂÄ¡¸¦ µ¹·ÁÁØ´Ù
+	 * ê° í´ë˜ìŠ¤ì˜ LVUPì‹œì˜ HPìƒìŠ¹ì¹˜ë¥¼ ëŒë ¤ì¤€ë‹¤
 	 * 
 	 * @param charType
 	 * @param baseMaxHp
 	 * @param baseCon
-	 * @return HP»ó½ÂÄ¡
+	 * @return HPìƒìŠ¹ì¹˜
 	 */
 	public static short calcStatHp(int charType, int baseMaxHp, byte baseCon) {
 		short randomhp = 0;
 		int addCon = 0;
 
-		if (charType == 0) { // ±ºÁÖ
+		if (charType == 0) { // êµ°ì£¼
 			int calCon = 10; 
 			switch(baseCon - calCon){
 			case 0 : case 1 : addCon = 1+ rnd.nextInt(2); break;
@@ -962,7 +962,7 @@ public class CalcStat {
 			if (baseMaxHp + randomhp > Config.PRINCE_MAX_HP) {
 				randomhp = (short) (Config.PRINCE_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 1) { // ±â»ç
+		} else if (charType == 1) { // ê¸°ì‚¬
 			int calCon = 14; 
 			switch(baseCon - calCon){
 			case 0 : addCon = 4 + rnd.nextInt(2); break;
@@ -978,7 +978,7 @@ public class CalcStat {
 			if (baseMaxHp + randomhp > Config.KNIGHT_MAX_HP) {
 				randomhp = (short) (Config.KNIGHT_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 2) { // ¿äÁ¤
+		} else if (charType == 2) { // ìš”ì •
 			int calCon = 12; 
 			switch(baseCon - calCon){
 			case 0 : addCon = 0 + rnd.nextInt(2); break;
@@ -993,7 +993,7 @@ public class CalcStat {
 			if (baseMaxHp + randomhp > Config.ELF_MAX_HP) {
 				randomhp = (short) (Config.ELF_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 3) { // ¸¶¹ı»ç
+		} else if (charType == 3) { // ë§ˆë²•ì‚¬
 			int calCon = 12; 
 			switch(baseCon - calCon){
 			case 0 : case 1 : addCon = 0 + rnd.nextInt(2); break;
@@ -1008,7 +1008,7 @@ public class CalcStat {
 			if (baseMaxHp + randomhp > Config.WIZARD_MAX_HP) {
 				randomhp = (short) (Config.WIZARD_MAX_HP - baseMaxHp);
 			}
-		} else if (charType == 4) { // ´ÙÅ©¿¤ÇÁ
+		} else if (charType == 4) { // ë‹¤í¬ì—˜í”„
 			int calCon = 8; 
 			switch(baseCon - calCon){
 			case 0 : case 1 : addCon = 0 + rnd.nextInt(2); break;
@@ -1032,17 +1032,17 @@ public class CalcStat {
 	}
 
 	/**
-	 * °¢ Å¬·¡½ºÀÇ LVUP½ÃÀÇ MP»ó½ÂÄ¡¸¦ µ¹·ÁÁØ´Ù
+	 * ê° í´ë˜ìŠ¤ì˜ LVUPì‹œì˜ MPìƒìŠ¹ì¹˜ë¥¼ ëŒë ¤ì¤€ë‹¤
 	 * 
 	 * @param charType
 	 * @param baseMaxMp
 	 * @param baseWis
-	 * @return MP»ó½ÂÄ¡
+	 * @return MPìƒìŠ¹ì¹˜
 	 */
 	public static short calcStatMp(int charType, int baseMaxMp, byte baseWis) {
 		int randommp = 0;
 
-		if (charType == 0) { // ÇÁ¸°½º
+		if (charType == 0) { // í”„ë¦°ìŠ¤
 			int addWis = 0;
 			int calWis = 11; 
 			switch(baseWis - calWis){
@@ -1057,7 +1057,7 @@ public class CalcStat {
 			if (baseMaxMp + randommp > Config.PRINCE_MAX_MP) {
 				randommp = Config.PRINCE_MAX_MP - baseMaxMp;
 			}
-		} else if (charType == 1) { // ³ªÀÌÆ®
+		} else if (charType == 1) { // ë‚˜ì´íŠ¸
 			int addWis = 0;
 			int calWis = 9; 
 			switch(baseWis - calWis){
@@ -1071,7 +1071,7 @@ public class CalcStat {
 			if (baseMaxMp + randommp > Config.KNIGHT_MAX_MP) {
 				randommp = Config.KNIGHT_MAX_MP - baseMaxMp;
 			}
-		} else if (charType == 2) { // ¿¡¸£ÇÁ
+		} else if (charType == 2) { // ì—ë¥´í”„
 			int addWis = 0;
 			int calWis = 12; 
 			switch(baseWis - calWis){
@@ -1086,7 +1086,7 @@ public class CalcStat {
 			if (baseMaxMp + randommp > Config.ELF_MAX_MP) {
 				randommp = Config.ELF_MAX_MP - baseMaxMp;
 			}
-		} else if (charType == 3) { // À§Àúµå
+		} else if (charType == 3) { // ìœ„ì €ë“œ
 			int addWis = 0;
 			int calWis = 12; 
 			switch(baseWis - calWis){
@@ -1102,7 +1102,7 @@ public class CalcStat {
 			if (baseMaxMp + randommp > Config.WIZARD_MAX_MP) {
 				randommp = Config.WIZARD_MAX_MP - baseMaxMp;
 			}
-		} else if (charType == 4) { // ´ÙÅ© ¿¡¸£ÇÁ
+		} else if (charType == 4) { // ë‹¤í¬ ì—ë¥´í”„
 			int addWis = 0;
 			int calWis = 10; 
 			switch(baseWis - calWis)

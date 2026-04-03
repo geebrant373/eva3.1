@@ -1,4 +1,4 @@
-package server.threads.pc;
+﻿package server.threads.pc;
 
 import l1j.server.server.GeneralThreadPool;
 import l1j.server.server.model.L1World;

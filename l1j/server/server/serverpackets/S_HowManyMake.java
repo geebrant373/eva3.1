@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -27,9 +27,9 @@ public class S_HowManyMake extends ServerBasePacket {
 		writeC(Opcodes.S_OPCODE_INPUTAMOUNT);
 		writeD(objId);
 		writeD(0); // ?
-		writeD(0); // ½ºÇÉ ÄÁÆ®·ÑÀÇ ÃÊ±â °¡°İ
-		writeD(0); // °¡°İÀÇ ÇÏÇÑ
-		writeD(max); // °¡°İÀÇ »óÇÑ
+		writeD(0); // ìŠ¤í•€ ì»¨íŠ¸ë¡¤ì˜ ì´ˆê¸° ê°€ê²©
+		writeD(0); // ê°€ê²©ì˜ í•˜í•œ
+		writeD(max); // ê°€ê²©ì˜ ìƒí•œ
 		writeH(0); // ?
 		writeS("request");
 		writeS(htmlId);

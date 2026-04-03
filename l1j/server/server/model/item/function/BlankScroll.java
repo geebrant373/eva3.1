@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -45,36 +45,36 @@ public class BlankScroll extends L1ItemInstance{
 			int blanksc_skillid = 0;
 			blanksc_skillid = packet.readC();
 			int itemId = useItem.getItemId();
-			if (pc.isWizard()) { // À§Àúµå
-				if (itemId == 40090 && blanksc_skillid <= 7 || // °ø¹é
-						// ½ºÅ©·Ñ(Lv1)·Î ·¹º§ 1 ÀÌÇÏÀÇ ¸¶¹ý
-						itemId == 40091 && blanksc_skillid <= 15 || // °ø¹é
-						// ½ºÅ©·Ñ(Lv2)·Î ·¹º§ 2 ÀÌÇÏÀÇ ¸¶¹ý
-						itemId == 40092 && blanksc_skillid <= 22 || // °ø¹é
-						// ½ºÅ©·Ñ(Lv3)·Î ·¹º§ 3 ÀÌÇÏÀÇ ¸¶¹ý
-						itemId == 40093 && blanksc_skillid <= 31 || // °ø¹é
-						// ½ºÅ©·Ñ(Lv4)·Î ·¹º§ 4 ÀÌÇÏÀÇ ¸¶¹ý
-						itemId == 40094 && blanksc_skillid <= 39) { // °ø¹é
-					// ½ºÅ©·Ñ(Lv5)·Î ·¹º§ 5 ÀÌÇÏÀÇ ¸¶¹ý
+			if (pc.isWizard()) { // ìœ„ì €ë“œ
+				if (itemId == 40090 && blanksc_skillid <= 7 || // ê³µë°±
+						// ìŠ¤í¬ë¡¤(Lv1)ë¡œ ë ˆë²¨ 1 ì´í•˜ì˜ ë§ˆë²•
+						itemId == 40091 && blanksc_skillid <= 15 || // ê³µë°±
+						// ìŠ¤í¬ë¡¤(Lv2)ë¡œ ë ˆë²¨ 2 ì´í•˜ì˜ ë§ˆë²•
+						itemId == 40092 && blanksc_skillid <= 22 || // ê³µë°±
+						// ìŠ¤í¬ë¡¤(Lv3)ë¡œ ë ˆë²¨ 3 ì´í•˜ì˜ ë§ˆë²•
+						itemId == 40093 && blanksc_skillid <= 31 || // ê³µë°±
+						// ìŠ¤í¬ë¡¤(Lv4)ë¡œ ë ˆë²¨ 4 ì´í•˜ì˜ ë§ˆë²•
+						itemId == 40094 && blanksc_skillid <= 39) { // ê³µë°±
+					// ìŠ¤í¬ë¡¤(Lv5)ë¡œ ë ˆë²¨ 5 ì´í•˜ì˜ ë§ˆë²•
 					L1ItemInstance spellsc = ItemTable.getInstance().createItem(40859 + blanksc_skillid);
 					if (spellsc != null) {
 						if (pc.getInventory().checkAddItem(spellsc, 1) == L1Inventory.OK) {
-							// blanksc_skillid´Â 0 ½ÃÀÛ
+							// blanksc_skillidëŠ” 0 ì‹œìž‘
 							L1Skills l1skills = SkillsTable.getInstance().getTemplate(blanksc_skillid + 1); 
 							if (pc.getCurrentHp() + 1 < l1skills.getHpConsume() + 1) {
 								pc.sendPackets(new S_ServerMessage(279)); 
-								// \f1HP°¡ ºÎÁ·ÇØ ¸¶¹ýÀ» »ç¿ëÇÒ ¼ö ÀÖÁö ¾Ê½À´Ï´Ù.
+								// \f1HPê°€ ë¶€ì¡±í•´ ë§ˆë²•ì„ ì‚¬ìš©í•  ìˆ˜ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 								return;
 							}
 							if (pc.getCurrentMp() < l1skills.getMpConsume()) {
 								pc.sendPackets(new S_ServerMessage(278)); 
-								// \f1MP°¡ ºÎÁ·ÇØ ¸¶¹ýÀ» »ç¿ëÇÒ ¼ö ÀÖÁö ¾Ê½À´Ï´Ù.
+								// \f1MPê°€ ë¶€ì¡±í•´ ë§ˆë²•ì„ ì‚¬ìš©í•  ìˆ˜ ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 								return;
 							}
-							if (l1skills.getItemConsumeId() != 0) { // Àç·á°¡ ÇÊ¿ä
+							if (l1skills.getItemConsumeId() != 0) { // ìž¬ë£Œê°€ í•„ìš”
 								if (!pc.getInventory().checkItem(l1skills.getItemConsumeId(), l1skills.getItemConsumeCount())) {
 									pc.sendPackets(new S_ServerMessage(299)); 
-									// \f1¸¶¹ýÀ» ¿µÃ¢ÇÏ±â À§ÇÑ Àç·á°¡ ÃæºÐÇÏÁö ¾Ê½À´Ï´Ù.
+									// \f1ë§ˆë²•ì„ ì˜ì°½í•˜ê¸° ìœ„í•œ ìž¬ë£Œê°€ ì¶©ë¶„í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
 									return;
 								}
 							}
@@ -84,7 +84,7 @@ public class BlankScroll extends L1ItemInstance{
 							if (lawful > 32767) { lawful = 32767; }
 							if (lawful < -32767) { lawful = -32767; }
 							pc.setLawful(lawful);
-							if (l1skills.getItemConsumeId() != 0) { // Àç·á°¡ ÇÊ¿ä
+							if (l1skills.getItemConsumeId() != 0) { // ìž¬ë£Œê°€ í•„ìš”
 								pc.getInventory().consumeItem(l1skills.getItemConsumeId(), l1skills.getItemConsumeCount());
 							}
 							pc.getInventory().removeItem(useItem, 1);
@@ -92,10 +92,10 @@ public class BlankScroll extends L1ItemInstance{
 						}
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(591)); // \f1½ºÅ©·ÑÀÌ ±×·¸°Ô °­ÇÑ ¸¶¹ýÀ» ±â·ÏÇÏ·Á¸é  ³Ê¹«³ª ¾àÇÕ´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(591)); // \f1ìŠ¤í¬ë¡¤ì´ ê·¸ë ‡ê²Œ ê°•í•œ ë§ˆë²•ì„ ê¸°ë¡í•˜ë ¤ë©´  ë„ˆë¬´ë‚˜ ì•½í•©ë‹ˆë‹¤.
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(264)); // \f1´ç½ÅÀÇ Å¬·¡½º¿¡¼­´Â ÀÌ ¾ÆÀÌÅÛÀº »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(264)); // \f1ë‹¹ì‹ ì˜ í´ëž˜ìŠ¤ì—ì„œëŠ” ì´ ì•„ì´í…œì€ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			}
 		}
 	}

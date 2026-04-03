@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -63,14 +63,14 @@ public class L1Present implements L1CommandExecutor {
 				itemid = ItemTable.getInstance().findItemIdByNameWithoutSpace(
 						nameid);
 				if (itemid == 0) {
-					pc.sendPackets(new S_SystemMessage("ÇØ´ç ¾ÆÀÌÅÛÀÌ ¹ß°ßµÇÁö ¾Ê¾Ò½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("í•´ë‹¹ ì•„ì´í…œì´ ë°œê²¬ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 					return;
 				}
 			}
 			L1Item temp = ItemTable.getInstance().getTemplate(itemid);
 			if (temp != null) {
 				/**if (!(itemid== 438003)){
-					pc.sendPackets(new S_SystemMessage("È«º¸¾ÆÀÌÅÛ¸¸ ¼±¹° °¡´É"));
+					pc.sendPackets(new S_SystemMessage("í™ë³´ì•„ì´í…œë§Œ ì„ ë¬¼ ê°€ëŠ¥"));
 					return;
 				}*/
 				if (temp.isStackable()) {
@@ -80,7 +80,7 @@ public class L1Present implements L1CommandExecutor {
 					item.setCount(count);
 					if (target.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 						target.getInventory().storeItem(item);
-						target.sendPackets(new S_ServerMessage(403, // %0¸¦ ¼Õ¿¡ ³Ö¾ú½À´Ï´Ù.
+						target.sendPackets(new S_ServerMessage(403, // %0ë¥¼ ì†ì— ë„£ì—ˆìŠµë‹ˆë‹¤.
 								item.getLogName() + "(ID:" + itemid + ")"));
 					}
 				} else {
@@ -96,18 +96,18 @@ public class L1Present implements L1CommandExecutor {
 						}
 					}
 					if (createCount > 0) {
-						target.sendPackets(new S_ServerMessage(403, // %0¸¦ ¼Õ¿¡ ³Ö¾ú½À´Ï´Ù.
+						target.sendPackets(new S_ServerMessage(403, // %0ë¥¼ ì†ì— ë„£ì—ˆìŠµë‹ˆë‹¤.
 								item.getLogName() + "(ID:" + itemid + ")"));
 					}
 				}
-				pc.sendPackets(new S_SystemMessage(temp.getNameId() + "¸¦ " + count
-						+ " °³ ¼±¹° Çß½À´Ï´Ù. ", true));
+				pc.sendPackets(new S_SystemMessage(temp.getNameId() + "ë¥¼ " + count
+						+ " ê°œ ì„ ë¬¼ í–ˆìŠµë‹ˆë‹¤. ", true));
 			} else {
-				pc.sendPackets(new S_SystemMessage("ÁöÁ¤ IDÀÇ ¾ÆÀÌÅÛÀº Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì§€ì • IDì˜ ì•„ì´í…œì€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤."));
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(
-							".[¼±¹°] [Ä³¸¯¸í] [¾ÆÀÌÅÛID] [ÀÎÃ¦Æ®¼ö] [°¹¼ö]·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. (¾îÄ«¿îÆ®¸í=*À¸·Î ¸ğµÎ)"));
+							".[ì„ ë¬¼] [ìºë¦­ëª…] [ì•„ì´í…œID] [ì¸ì±ˆíŠ¸ìˆ˜] [ê°¯ìˆ˜]ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”. (ì–´ì¹´ìš´íŠ¸ëª…=*ìœ¼ë¡œ ëª¨ë‘)"));
 		}
 	}
 }

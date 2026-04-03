@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -91,7 +91,7 @@ public class C_Attack extends ClientBasePacket {
 			return;
 		}
 		if (pc.getInventory().getWeight240() >= 200) {
-			pc.sendPackets(new S_ServerMessage(110)); // \f1¾ÆÀÌÅÛÀÌ ³Ê¹« ¹«°Å¿ö ÀüÅõÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(110)); // \f1ì•„ì´í…œì´ ë„ˆë¬´ ë¬´ê±°ì›Œ ì „íˆ¬í•  ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 		if (target instanceof L1LittleBugInstance) {
@@ -108,20 +108,20 @@ public class C_Attack extends ClientBasePacket {
 		 * if (Config.CHECK_ATTACK_INTERVAL) { int result; result =
 		 * pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.ATTACK);
 		 * if (result == AcceleratorChecker.R_DISCONNECTED) {
-		 * eva.LogBugAppend("½ºÇÙ:AW-"+(pc.getCurrentWeapon()+1), pc, 1); L1SkillUse
+		 * eva.LogBugAppend("ìŠ¤í•µ:AW-"+(pc.getCurrentWeapon()+1), pc, 1); L1SkillUse
 		 * l1skilluse = new L1SkillUse(); l1skilluse.handleCommands(pc,
 		 * L1SkillId.EARTH_BIND, pc.getId(), pc.getX(), pc.getY(), null, 0,
 		 * L1SkillUse.TYPE_NORMAL); pc.sendPackets(new
-		 * S_SystemMessage("Çã¿ëµÈ °ªÀ» ÃÊ°úÇÏ¿© Çàµ¿ÀÌ Á¦ÇÑµË´Ï´Ù.")); pc.addSpeedHackCount(1); return;
+		 * S_SystemMessage("í—ˆìš©ëœ ê°’ì„ ì´ˆê³¼í•˜ì—¬ í–‰ë™ì´ ì œí•œë©ë‹ˆë‹¤.")); pc.addSpeedHackCount(1); return;
 		 * } }
 		 * 
 		 */
 
 		if (Config.ASBUGCHECK_ALLBUF || pc.getCurrentSpriteId() != Config.ALLBUFF_POLYID) {
-			/** °ø¼Ó ¹ö±× */
+			/** ê³µì† ë²„ê·¸ */
 			long currentTime = System.currentTimeMillis();
 			if (pc.getAttack_Time_bug() > currentTime) {
-				pc.sendPackets(new S_SystemMessage("Çã¿ëµÈ °ªÀ» ÃÊ°úÇÏ¿© Çàµ¿ÀÌ Á¦ÇÑµË´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("í—ˆìš©ëœ ê°’ì„ ì´ˆê³¼í•˜ì—¬ í–‰ë™ì´ ì œí•œë©ë‹ˆë‹¤."));
 				return;
 			}
 			if (pc.getAttack_Time() > currentTime) {
@@ -129,7 +129,7 @@ public class C_Attack extends ClientBasePacket {
 				if (pc.getAttack_Time_count() >= 4) {
 					pc.setAttack_Time_count(0);
 					pc.setAttack_Time_bug(currentTime + 2000);
-					pc.sendPackets(new S_SystemMessage("Çã¿ëµÈ °ªÀ» ÃÊ°úÇÏ¿© Çàµ¿ÀÌ Á¦ÇÑµË´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("í—ˆìš©ëœ ê°’ì„ ì´ˆê³¼í•˜ì—¬ í–‰ë™ì´ ì œí•œë©ë‹ˆë‹¤."));
 					return;
 				} else {
 					pc.setAttack_Time(currentTime + 150);
@@ -140,7 +140,7 @@ public class C_Attack extends ClientBasePacket {
 			}	
 		}
 
-		// °ø°İ ¿ä±¸ °£°İÀ» Ã¼Å©ÇÑ´Ù
+		// ê³µê²© ìš”êµ¬ ê°„ê²©ì„ ì²´í¬í•œë‹¤
 		if (Config.CHECK_ATTACK_INTERVAL) {
 			int result;
 			result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.ATTACK);
@@ -148,7 +148,7 @@ public class C_Attack extends ClientBasePacket {
 			case AcceleratorChecker.R_DETECTED:
 			case AcceleratorChecker.R_DISCONNECTED:
 				if (pc.isGm()) {
-					System.out.println("¿î¿µÀÚ ½ºÇÙ °ËÃâ:" + pc.getName());
+					System.out.println("ìš´ì˜ì ìŠ¤í•µ ê²€ì¶œ:" + pc.getName());
 				}
 
 				if (Config.CHECK_SPELL_EARTH_BIND) {
@@ -156,13 +156,13 @@ public class C_Attack extends ClientBasePacket {
 					l1skilluse.handleCommands(pc, L1SkillId.EARTH_BIND, pc.getId(), pc.getX(), pc.getY(), null, 0,
 							L1SkillUse.TYPE_GMBUFF);
 				}
-				// pc.sendPackets(new S_SystemMessage("Çã¿ëµÈ °ªÀ» ÃÊ°úÇÏ¿© Çàµ¿ÀÌ Á¦ÇÑµË´Ï´Ù."));
+				// pc.sendPackets(new S_SystemMessage("í—ˆìš©ëœ ê°’ì„ ì´ˆê³¼í•˜ì—¬ í–‰ë™ì´ ì œí•œë©ë‹ˆë‹¤."));
 				return;
 			}
 		}
 
-		// °ø°İ ¾×¼ÇÀ» ÃëÇÒ ¼ö ÀÖ´Â °æ¿ìÀÇ Ã³¸®
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ABSOLUTE_BARRIER)) { // ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+		// ê³µê²© ì•¡ì…˜ì„ ì·¨í•  ìˆ˜ ìˆëŠ” ê²½ìš°ì˜ ì²˜ë¦¬
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ABSOLUTE_BARRIER)) { // ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 			pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.ABSOLUTE_BARRIER);
 			// pc.startHpRegeneration();
 			// pc.startMpRegeneration();
@@ -197,8 +197,8 @@ public class C_Attack extends ClientBasePacket {
 			} else {
 				client.getActiveChar().run = false;
 			}
-		} else { // ÇÏ´Ã °ø°İ
-			// TODO È°·Î Áö¸é¿¡ ÇÏ´Ã °ø°İÇßÀ» °æ¿ì´Â È­»ìÀÌ ³¯Áö ¾ÊÀ¸¸é ¾È µÈ´Ù
+		} else { // í•˜ëŠ˜ ê³µê²©
+			// TODO í™œë¡œ ì§€ë©´ì— í•˜ëŠ˜ ê³µê²©í–ˆì„ ê²½ìš°ëŠ” í™”ì‚´ì´ ë‚ ì§€ ì•Šìœ¼ë©´ ì•ˆ ëœë‹¤
 			int weaponId = 0;
 			int weaponType = 0;
 			L1ItemInstance weapon = pc.getWeapon();
@@ -214,7 +214,7 @@ public class C_Attack extends ClientBasePacket {
 					sting = pc.getInventory().getSting();
 				}
 			}
-			pc.getMoveState().setHeading(CharPosUtil.targetDirection(pc, x, y)); // ¹æÇâ¼¼Æ®
+			pc.getMoveState().setHeading(CharPosUtil.targetDirection(pc, x, y)); // ë°©í–¥ì„¸íŠ¸
 			if (weaponType == 20 && (weaponId == 190 || arrow != null)) {
 				calcOrbit(pc.getX(), pc.getY(), pc.getMoveState().getHeading());
 				if (arrow != null) {

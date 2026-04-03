@@ -1,4 +1,4 @@
-package l1j.server.AutoPotionSystem;
+ï»¿package l1j.server.AutoPotionSystem;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.monitor.L1PcMonitor;
@@ -25,7 +25,7 @@ public class AutoPotionController extends L1PcMonitor {
 
 	private void getSource() {
 		if (owner == null) {
-			removeAuto("ÀÚµ¿ ¹°¾à : OFF"); 
+			removeAuto("ìë™ ë¬¼ì•½ : OFF"); 
 			return;
 		}
 

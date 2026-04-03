@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,7 +42,7 @@ public class Firecracker extends L1ItemInstance{
 			L1ItemInstance useItem = pc.getInventory().getItem(this.getId());
 			int itemId = useItem.getItemId();
 			if (itemId >= 40136 && itemId <= 40161 
-					|| itemId == L1ItemId.GEMSTONE_POWDER) { // ºÒ²É
+					|| itemId == L1ItemId.GEMSTONE_POWDER) { // ë¶ˆê½ƒ
 				int soundid = 3198;
 				switch(itemId){
 				case 40136: soundid = 2046; break;
@@ -77,7 +77,7 @@ public class Firecracker extends L1ItemInstance{
 				pc.sendPackets(s_skillsound);
 				Broadcaster.broadcastPacket(pc, s_skillsound);
 				pc.getInventory().removeItem(useItem, 1);
-			} else if (itemId >= 41357 && itemId <= 41382) { // ¾ËÆÄºª ºÒ²É
+			} else if (itemId >= 41357 && itemId <= 41382) { // ì•ŒíŒŒë²³ ë¶ˆê½ƒ
 				int soundid =itemId - 34946;
 				S_SkillSound s_skillsound = new S_SkillSound(pc.getId(), soundid);
 				pc.sendPackets(s_skillsound);

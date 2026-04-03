@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -94,22 +94,22 @@ public class L1UltimateBattle {
 		case 3:
 		case 5:
 			if (curRound == 1) {
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 1 ±º ÅõÀÔ!"); // ½ºÅ¸Æ®
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 1 êµ° íˆ¬ì…!"); // ìŠ¤íƒ€íŠ¸
 			} else if (curRound == 2) {
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 2 ±º ÅõÀÔ!"); // ½ºÅ¸Æ®
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 2 êµ° íˆ¬ì…!"); // ìŠ¤íƒ€íŠ¸
 			} else if (curRound == 3) {
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 3 ±º ÅõÀÔ!"); // ½ºÅ¸Æ®
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 3 êµ° íˆ¬ì…!"); // ìŠ¤íƒ€íŠ¸
 			} else if (curRound == 4) {
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: ÃÖÁ¾Àü °³½Ã! Á¦ÇÑ ½Ã°£Àº 5ºĞ ÀÔ´Ï´Ù"); // ½ºÅ¸Æ®
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ìµœì¢…ì „ ê°œì‹œ! ì œí•œ ì‹œê°„ì€ 5ë¶„ ì…ë‹ˆë‹¤"); // ìŠ¤íƒ€íŠ¸
 			}
 			break;
 		case 4:
 			if (curRound == 1) {
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 1 ±º ÅõÀÔ!"); // ½ºÅ¸Æ®
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 1 êµ° íˆ¬ì…!"); // ìŠ¤íƒ€íŠ¸
 			} else if (curRound == 2) {
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 2 ±º ÅõÀÔ!"); // ½ºÅ¸Æ®
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 2 êµ° íˆ¬ì…!"); // ìŠ¤íƒ€íŠ¸
 			} else if (curRound == 3) {
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: ÃÖÁ¾Àü °³½Ã! Á¦ÇÑ ½Ã°£Àº 5ºĞ ÀÔ´Ï´Ù"); // ½ºÅ¸Æ®
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ìµœì¢…ì „ ê°œì‹œ! ì œí•œ ì‹œê°„ì€ 5ë¶„ ì…ë‹ˆë‹¤"); // ìŠ¤íƒ€íŠ¸
 			}
 			break;
 		}
@@ -126,8 +126,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 3, 20);
 				spawnGroundItem(40317, 1, 5);
 				spawnGroundItem(40079, 1, 10); 
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 1 ±ºÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 1ºĞ ÈÄ¿¡ Á¦ 2 ±ºÀÇ ÅõÀÔÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 1 êµ°ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 1ë¶„ í›„ì— ì œ 2 êµ°ì˜ íˆ¬ì…ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			} else if (curRound == 2) {
 				spawnGroundItem(L1ItemId.ADENA, 5000, 50);
 				spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 7, 20);
@@ -136,8 +136,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(40317, 1, 7); 
 				spawnGroundItem(40093, 1, 10);		
 				spawnGroundItem(40079, 1, 10); 
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 2 ±ºÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 2ºĞ ÈÄ¿¡ Á¦ 3 ±ºÀÇ ÅõÀÔÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 2 êµ°ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 2ë¶„ í›„ì— ì œ 3 êµ°ì˜ íˆ¬ì…ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			} else if (curRound == 3) {
 				spawnGroundItem(L1ItemId.ADENA, 10000, 30);
 				spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 7, 20);
@@ -146,8 +146,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(40317, 1, 10); 
 				spawnGroundItem(40094, 1, 10); 
 				spawnGroundItem(40079, 1, 10); 
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 3 ±º±îÁöÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 6ºĞ ÈÄ¿¡ ÃÖÁ¾ÀüÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 3 êµ°ê¹Œì§€ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 6ë¶„ í›„ì— ìµœì¢…ì „ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			}
 			break;
 		case 3:
@@ -158,8 +158,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 3, 20);
 				spawnGroundItem(40317, 1, 5);
 				spawnGroundItem(40079, 1, 10); 
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 1 ±ºÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 1ºĞ ÈÄ¿¡ Á¦ 2 ±ºÀÇ ÅõÀÔÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 1 êµ°ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 1ë¶„ í›„ì— ì œ 2 êµ°ì˜ íˆ¬ì…ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			} else if (curRound == 2) {
 				spawnGroundItem(L1ItemId.ADENA, 3000, 50);
 				spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 5, 20);
@@ -167,8 +167,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 5, 20);
 				spawnGroundItem(40317, 1, 7); 
 				spawnGroundItem(40093, 1, 10);	
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 2 ±ºÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 2ºĞ ÈÄ¿¡ Á¦ 3 ±ºÀÇ ÅõÀÔÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 2 êµ°ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 2ë¶„ í›„ì— ì œ 3 êµ°ì˜ íˆ¬ì…ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			} else if (curRound == 3) {
 				spawnGroundItem(L1ItemId.ADENA, 5000, 30);
 				spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 10, 20);
@@ -176,8 +176,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 7, 10);
 				spawnGroundItem(40317, 1, 10); 
 				spawnGroundItem(40094, 1, 10); 
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 3 ±º±îÁöÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 6ºĞ ÈÄ¿¡ ÃÖÁ¾ÀüÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 3 êµ°ê¹Œì§€ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 6ë¶„ í›„ì— ìµœì¢…ì „ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			}
 			break;
 		case 4:
@@ -187,8 +187,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(L1ItemId.POTION_OF_EXTRA_HEALING, 5, 20);
 				spawnGroundItem(40317, 1, 5);
 				spawnGroundItem(40079, 1, 10); 
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 1 ±ºÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 2ºĞ ÈÄ¿¡ Á¦ 2 ±ºÀÇ ÅõÀÔÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 1 êµ°ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 2ë¶„ í›„ì— ì œ 2 êµ°ì˜ íˆ¬ì…ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			} else if (curRound == 2) {
 				spawnGroundItem(L1ItemId.ADENA, 500, 50);
 				spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 7, 20);
@@ -196,8 +196,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 5, 20);
 				spawnGroundItem(40317, 1, 7); 
 				spawnGroundItem(40093, 1, 10);	
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 2 ±º±îÁöÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 6ºĞ ÈÄ¿¡ ÃÖÁ¾ÀüÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 2 êµ°ê¹Œì§€ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 6ë¶„ í›„ì— ìµœì¢…ì „ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			}
 			break;
 		case 5:
@@ -208,8 +208,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(L1ItemId.POTION_OF_GREATER_HEALING, 3, 20);
 				spawnGroundItem(40317, 1, 5);
 				spawnGroundItem(40079, 1, 10); 
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 1 ±ºÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 1ºĞ ÈÄ¿¡ Á¦ 2 ±ºÀÇ ÅõÀÔÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 1 êµ°ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 1ë¶„ í›„ì— ì œ 2 êµ°ì˜ íˆ¬ì…ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			} else if (curRound == 2) {
 				spawnGroundItem(L1ItemId.ADENA, 5000, 50);
 				spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 7, 20);
@@ -218,8 +218,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(40317, 1, 7); 
 				spawnGroundItem(40093, 1, 10);	
 				spawnGroundItem(40079, 1, 10); 
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 2 ±ºÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 2ºĞ ÈÄ¿¡ Á¦ 3 ±ºÀÇ ÅõÀÔÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 2 êµ°ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 2ë¶„ í›„ì— ì œ 3 êµ°ì˜ íˆ¬ì…ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			} else if (curRound == 3) {
 				spawnGroundItem(L1ItemId.ADENA, 10000, 30);
 				spawnGroundItem(L1ItemId.POTION_OF_CURE_POISON, 7, 20);
@@ -228,8 +228,8 @@ public class L1UltimateBattle {
 				spawnGroundItem(40317, 1, 10); 
 				spawnGroundItem(40094, 1, 10); 
 				spawnGroundItem(40079, 1, 10); 
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: Á¦ 3 ±º±îÁöÀÇ ÅõÀÔÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
-				sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 6ºĞ ÈÄ¿¡ ÃÖÁ¾ÀüÀÌ ½ÃÀÛµË´Ï´Ù.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì œ 3 êµ°ê¹Œì§€ì˜ íˆ¬ì…ì´ ì™„ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+				sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 6ë¶„ í›„ì— ìµœì¢…ì „ì´ ì‹œì‘ë©ë‹ˆë‹¤.");
 			}
 			break;
 		}
@@ -318,28 +318,28 @@ public class L1UltimateBattle {
 			}
 			removeRetiredMembers();
 			
-			sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: ÀÌÁ¦ °ğ ¸ó½ºÅÍµéÀÌ µîÀåÇÒ °ÍÀÔ´Ï´Ù. °ÇÅõ¸¦ º÷´Ï´Ù."); // 10ÃÊÀü
+			sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: ì´ì œ ê³§ ëª¬ìŠ¤í„°ë“¤ì´ ë“±ì¥í•  ê²ƒì…ë‹ˆë‹¤. ê±´íˆ¬ë¥¼ ë¹•ë‹ˆë‹¤."); // 10ì´ˆì „
 			Thread.sleep(5000);
-			sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 10ÃÊµÚ¿¡ °æ±â¸¦ ½ÃÀÛ ÇÕ´Ï´Ù."); // 10ÃÊÀü
+			sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 10ì´ˆë’¤ì— ê²½ê¸°ë¥¼ ì‹œì‘ í•©ë‹ˆë‹¤."); // 10ì´ˆì „
 				   
 			Thread.sleep(5000);
-			sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 5 !!"); // 5ÃÊÀü
+			sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 5 !!"); // 5ì´ˆì „
 				   
 	
 			Thread.sleep(1000);
-			sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 4 !!"); // 4ÃÊÀü
+			sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 4 !!"); // 4ì´ˆì „
 				   
 	
 			Thread.sleep(1000);
-			sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 3 !!"); // 3ÃÊÀü
+			sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 3 !!"); // 3ì´ˆì „
 				   
 	
 			Thread.sleep(1000);
-			sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 2 !!"); // 2ÃÊÀü
+			sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 2 !!"); // 2ì´ˆì „
 				   
 	
 			Thread.sleep(1000);
-			sendMessage("Äİ·Ô¼¼¿ò °ü¸®ÀÎ: 1 !!"); // 1ÃÊÀü
+			sendMessage("ì½œë¡¯ì„¸ì›€ ê´€ë¦¬ì¸: 1 !!"); // 1ì´ˆì „
 				   
 	
 			Thread.sleep(1000);
@@ -672,39 +672,39 @@ public class L1UltimateBattle {
 		String nextUbTime = getNextUbTime();
 		StringBuilder classesBuff = new StringBuilder();
 		if (_enterDarkelf) {
-			classesBuff.append("´ÙÅ©¿¤ÇÁ ");
+			classesBuff.append("ë‹¤í¬ì—˜í”„ ");
 		}
 		if (_enterMage) {
-			classesBuff.append("¸¶¹ı»ç ");
+			classesBuff.append("ë§ˆë²•ì‚¬ ");
 		}
 		if (_enterElf) {
-			classesBuff.append("¿äÁ¤ ");
+			classesBuff.append("ìš”ì • ");
 		}
 		if (_enterKnight) {
-			classesBuff.append("±â»ç ");
+			classesBuff.append("ê¸°ì‚¬ ");
 		}
 		if (_enterRoyal) {
-			classesBuff.append("±ºÁÖ ");
+			classesBuff.append("êµ°ì£¼ ");
 		}
 		String classes = classesBuff.toString().trim();
 		
 		StringBuilder sexBuff = new StringBuilder();
 		if (_enterMale) {
-			sexBuff.append("³²ÀÚ ");
+			sexBuff.append("ë‚¨ì ");
 		}
 		if (_enterFemale) {
-			sexBuff.append("¿©ÀÚ ");
+			sexBuff.append("ì—¬ì ");
 		}
 		String sex = sexBuff.toString().trim();
 		String loLevel = String.valueOf(_minLevel);
 		String hiLevel = String.valueOf(_maxLevel);
-		String teleport = _location.getMap().isEscapable() ? "°¡´É" : "ºÒ°¡´É";
-		String res = _location.getMap().isUseResurrection() ? "°¡´É" : "ºÒ°¡´É";
-		String pot = "°¡´É";
+		String teleport = _location.getMap().isEscapable() ? "ê°€ëŠ¥" : "ë¶ˆê°€ëŠ¥";
+		String res = _location.getMap().isUseResurrection() ? "ê°€ëŠ¥" : "ë¶ˆê°€ëŠ¥";
+		String pot = "ê°€ëŠ¥";
 		String hpr = String.valueOf(_hpr);
 		String mpr = String.valueOf(_mpr);
-		String summon = _location.getMap().isTakePets() ? "°¡´É" : "ºÒ°¡´É";
-		String summon2 = _location.getMap().isRecallPets() ? "°¡´É" : "ºÒ°¡´É";
+		String summon = _location.getMap().isTakePets() ? "ê°€ëŠ¥" : "ë¶ˆê°€ëŠ¥";
+		String summon2 = _location.getMap().isRecallPets() ? "ê°€ëŠ¥" : "ë¶ˆê°€ëŠ¥";
 		_ubInfo = new String[] { nextUbTime, classes, sex, loLevel, hiLevel,
 				teleport, res, pot, hpr, mpr, summon, summon2 };
 		return _ubInfo;

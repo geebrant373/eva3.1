@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+ï»¿package l1j.server.server.serverpackets;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -46,15 +46,15 @@ public class S_LetterList extends ServerBasePacket{
 				cnt = rs1.getInt(1);
 			}
 			writeC(Opcodes.S_OPCODE_LETTER);
-		    writeC(type); // 0:¸ŞÀÏÇÔ 1:Ç÷¸Í¸ŞÀÏÇÔ 2:º¸°üÇÔ
+		    writeC(type); // 0:ë©”ì¼í•¨ 1:í˜ˆë§¹ë©”ì¼í•¨ 2:ë³´ê´€í•¨
 		    
 		    writeH(cnt);
-		    //writeH(count); //Ç¥ÇöÇÒ ±Û °Ô¼ö (º¸°üÇÔ 10 ÀÏ¹İ ÆíÁö 20 Ç÷ÆíÁö 50°³)
+		    //writeH(count); //í‘œí˜„í•  ê¸€ ê²Œìˆ˜ (ë³´ê´€í•¨ 10 ì¼ë°˜ í¸ì§€ 20 í˜ˆí¸ì§€ 50ê°œ)
 		    
 		    String[] str;
 			while (rs.next()) {
 				   writeD(rs.getInt(1));
-			       writeC(rs.getInt(9)); // È®ÀÎ¿©ºÎ 0:¹ÌÈ®ÀÎ 1:È®ÀÎ
+			       writeC(rs.getInt(9)); // í™•ì¸ì—¬ë¶€ 0:ë¯¸í™•ì¸ 1:í™•ì¸
 			       str = null;
 			       str = rs.getString(5).split("/");
 			       writeC(Integer.parseInt(str[0]));

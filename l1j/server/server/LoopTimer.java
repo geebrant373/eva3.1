@@ -1,4 +1,4 @@
-package l1j.server.server;
+ï»¿package l1j.server.server;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,13 +19,13 @@ public class LoopTimer extends Thread {
 	private static Logger _log = Logger.getLogger(LoopTimer.class.getName());
 	private static LoopTimer _instance;
 
-	public boolean ÀØÇôÁø¼¶ = false;
-	public boolean º»´ø = false;
-	public boolean ¿À¸¸ÀÇÅ¾Á¤»ó = false;
-	public boolean Å×º£¶ó½º = false;
-	public boolean »ó¾ÆÅ¾8Ãş = false;
-	public boolean ½Ã°£Á¦¼±¹° = false;
-	public boolean ¹èÆ²Á¸ = false;
+	public boolean ìŠí˜€ì§„ì„¬ = false;
+	public boolean ë³¸ë˜ = false;
+	public boolean ì˜¤ë§Œì˜íƒ‘ì •ìƒ = false;
+	public boolean í…Œë² ë¼ìŠ¤ = false;
+	public boolean ìƒì•„íƒ‘8ì¸µ = false;
+	public boolean ì‹œê°„ì œì„ ë¬¼ = false;
+	public boolean ë°°í‹€ì¡´ = false;
 	
 	public static LoopTimer getInstance() {
 		if (_instance == null) {
@@ -43,55 +43,55 @@ public class LoopTimer extends Thread {
 			Thread.sleep(1000);
 			String nowtime = CommonUtil.dateFormat("HHmm");
 			String nowtimes = CommonUtil.dateFormat("HHmmss");
-			if (Config.¹èÆ²Á¸ÀÛµ¿À¯¹«) {
-				if (is¹èÆ²Á¸(nowtime)) {
-					¹èÆ²Á¸ = false;
+			if (Config.ë°°í‹€ì¡´ì‘ë™ìœ ë¬´) {
+				if (isë°°í‹€ì¡´(nowtime)) {
+					ë°°í‹€ì¡´ = false;
 					if (BattleZone.getInstance().getDuelStart() == false) {
 						BattleZone.getInstance().setGmStart(true);
-						System.out.println("¹èÆ²Á¸ ¿ÀÇÂ : " + nowtime);
+						System.out.println("ë°°í‹€ì¡´ ì˜¤í”ˆ : " + nowtime);
 					}
 				}
 			}
-			if (isº»´ø(nowtime)) {
-				º»´ø = false;
+			if (isë³¸ë˜(nowtime)) {
+				ë³¸ë˜ = false;
 				if (GludioDungeonController.getInstance().isgameStart == false) {
 					GludioDungeonController.getInstance().isgameStart = true;
-					System.out.println("º»´ø7 ¿ÀÇÂ : " + nowtime);
+					System.out.println("ë³¸ë˜7 ì˜¤í”ˆ : " + nowtime);
 				}
 			}
-			if (isÀØÇôÁø¼¶(nowtime)) {
-				ÀØÇôÁø¼¶ = false;
+			if (isìŠí˜€ì§„ì„¬(nowtime)) {
+				ìŠí˜€ì§„ì„¬ = false;
 				if (ForgottenIsleController.getInstance().isgameStart == false) {
 					ForgottenIsleController.getInstance().isgameStart = true;
-					System.out.println("ÀØÇôÁø¼¶ ¿ÀÇÂ : " + nowtime);
+					System.out.println("ìŠí˜€ì§„ì„¬ ì˜¤í”ˆ : " + nowtime);
 				}
 			}
-			if (is¿À¸¸ÀÇÅ¾Á¤»ó(nowtime)) {
-				¿À¸¸ÀÇÅ¾Á¤»ó = false;
+			if (isì˜¤ë§Œì˜íƒ‘ì •ìƒ(nowtime)) {
+				ì˜¤ë§Œì˜íƒ‘ì •ìƒ = false;
 				if (OmanTopFloorController.getInstance().isgameStart == false) {
 					OmanTopFloorController.getInstance().isgameStart = true;
-					System.out.println("¿À¸¸ÀÇÅ¾Á¤»ó ¿ÀÇÂ : " + nowtime);
+					System.out.println("ì˜¤ë§Œì˜íƒ‘ì •ìƒ ì˜¤í”ˆ : " + nowtime);
 				}
 			}
-			if (isÅ×º£¶ó½º(nowtime)) {
-				Å×º£¶ó½º = false;
+			if (isí…Œë² ë¼ìŠ¤(nowtime)) {
+				í…Œë² ë¼ìŠ¤ = false;
 				if (TebeController.getInstance().isgameStart == false) {
 					TebeController.getInstance().isgameStart = true;
-					System.out.println("Å×º£¶ó½º ¿ÀÇÂ : " + nowtime);
+					System.out.println("í…Œë² ë¼ìŠ¤ ì˜¤í”ˆ : " + nowtime);
 				}
 			}
-			if (is»ó¾ÆÅ¾8Ãş(nowtime)) {
-				»ó¾ÆÅ¾8Ãş = false;
+			if (isìƒì•„íƒ‘8ì¸µ(nowtime)) {
+				ìƒì•„íƒ‘8ì¸µ = false;
 				if (IvoryTowerController.getInstance().isgameStart == false) {
 					IvoryTowerController.getInstance().isgameStart = true;
-					System.out.println("»ó¾ÆÅ¾8Ãş ¿ÀÇÂ : " + nowtime);
+					System.out.println("ìƒì•„íƒ‘8ì¸µ ì˜¤í”ˆ : " + nowtime);
 				}
 			}
-			if (is½Ã°£Á¦¼±¹°(nowtimes)) {
-				½Ã°£Á¦¼±¹° = false;
+			if (isì‹œê°„ì œì„ ë¬¼(nowtimes)) {
+				ì‹œê°„ì œì„ ë¬¼ = false;
 				if (TimePresentController.getInstance().isgameStart == false) {
 					TimePresentController.getInstance().isgameStart = true;
-					System.out.println("½Ã°£Á¦¼±¹°Áö±Ş¿Ï·á : " + nowtimes);
+					System.out.println("ì‹œê°„ì œì„ ë¬¼ì§€ê¸‰ì™„ë£Œ : " + nowtimes);
 				}
 			}
 		} catch (Exception e) {
@@ -99,71 +99,71 @@ public class LoopTimer extends Thread {
 		}
 	}
 	
-	private boolean is¹èÆ²Á¸(String nowtime) {
-		if (¹èÆ²Á¸) {
+	private boolean isë°°í‹€ì¡´(String nowtime) {
+		if (ë°°í‹€ì¡´) {
 			return true;
 		}
-		if (Config.¹èÆ²Á¸_OPEN_TIME.contains(nowtime)) {
-			return true;
-		}
-		return false;
-	}
-	
-	private boolean isº»´ø(String nowtime) {
-		if (º»´ø) {
-			return true;
-		}
-		if (Config.º»´ø_OPEN_TIME.contains(nowtime)) {
+		if (Config.ë°°í‹€ì¡´_OPEN_TIME.contains(nowtime)) {
 			return true;
 		}
 		return false;
 	}
 	
-	private boolean isÀØÇôÁø¼¶(String nowtime) {
-		if (ÀØÇôÁø¼¶) {
+	private boolean isë³¸ë˜(String nowtime) {
+		if (ë³¸ë˜) {
 			return true;
 		}
-		if (Config.ÀØÇôÁø¼¶_OPEN_TIME.contains(nowtime)) {
-			return true;
-		}
-		return false;
-	}
-	
-	private boolean is¿À¸¸ÀÇÅ¾Á¤»ó(String nowtime) {
-		if (¿À¸¸ÀÇÅ¾Á¤»ó) {
-			return true;
-		}
-		if (Config.¿À¸¸ÀÇÅ¾Á¤»ó_OPEN_TIME.contains(nowtime)) {
+		if (Config.ë³¸ë˜_OPEN_TIME.contains(nowtime)) {
 			return true;
 		}
 		return false;
 	}
 	
-	private boolean isÅ×º£¶ó½º(String nowtime) {
-		if (Å×º£¶ó½º) {
+	private boolean isìŠí˜€ì§„ì„¬(String nowtime) {
+		if (ìŠí˜€ì§„ì„¬) {
 			return true;
 		}
-		if (Config.Å×º£¶ó½º_OPEN_TIME.contains(nowtime)) {
-			return true;
-		}
-		return false;
-	}
-	
-	private boolean is»ó¾ÆÅ¾8Ãş(String nowtime) {
-		if (»ó¾ÆÅ¾8Ãş) {
-			return true;
-		}
-		if (Config.»ó¾ÆÅ¾8Ãş_OPEN_TIME.contains(nowtime)) {
+		if (Config.ìŠí˜€ì§„ì„¬_OPEN_TIME.contains(nowtime)) {
 			return true;
 		}
 		return false;
 	}
 	
-	private boolean is½Ã°£Á¦¼±¹°(String nowtime) {
-		if (½Ã°£Á¦¼±¹°) {
+	private boolean isì˜¤ë§Œì˜íƒ‘ì •ìƒ(String nowtime) {
+		if (ì˜¤ë§Œì˜íƒ‘ì •ìƒ) {
 			return true;
 		}
-		if (Config.½Ã°£Á¦¼±¹°.contains(nowtime)) {
+		if (Config.ì˜¤ë§Œì˜íƒ‘ì •ìƒ_OPEN_TIME.contains(nowtime)) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isí…Œë² ë¼ìŠ¤(String nowtime) {
+		if (í…Œë² ë¼ìŠ¤) {
+			return true;
+		}
+		if (Config.í…Œë² ë¼ìŠ¤_OPEN_TIME.contains(nowtime)) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isìƒì•„íƒ‘8ì¸µ(String nowtime) {
+		if (ìƒì•„íƒ‘8ì¸µ) {
+			return true;
+		}
+		if (Config.ìƒì•„íƒ‘8ì¸µ_OPEN_TIME.contains(nowtime)) {
+			return true;
+		}
+		return false;
+	}
+	
+	private boolean isì‹œê°„ì œì„ ë¬¼(String nowtime) {
+		if (ì‹œê°„ì œì„ ë¬¼) {
+			return true;
+		}
+		if (Config.ì‹œê°„ì œì„ ë¬¼.contains(nowtime)) {
 			return true;
 		}
 		return false;

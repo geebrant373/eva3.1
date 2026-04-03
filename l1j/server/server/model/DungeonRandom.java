@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -93,7 +93,7 @@ public class DungeonRandom {
 				int heading = rs.getInt("new_heading");
 				newDungeonRandom = new NewDungeonRandom(newX, newY,	newMapId, heading);
 				if (_dungeonMap.containsKey(key)) {
-					//_log.log(Level.WARNING, "°°Àº Å°ÀÇ dungeon µ¥ÀÌÅÍ°¡ ÀÖ½À´Ï´Ù. key=" + key);
+					//_log.log(Level.WARNING, "ê°™ì€ í‚¤ì˜ dungeon ë°ì´í„°ê°€ ìˆìŠµë‹ˆë‹¤. key=" + key);
 				}
 				_dungeonMap.put(key, newDungeonRandom);
 			}
@@ -133,7 +133,7 @@ public class DungeonRandom {
 			int newY = newDungeonRandom._newY[rnd];
 			int heading = newDungeonRandom._heading;
 
-			// 2ÃÊ°£Àº ¹«Àû(¾Û¼Ö·çÆ® ¹è¸®¾î »óÅÂ)À¸·Î ÇÑ´Ù.
+			// 2ì´ˆê°„ì€ ë¬´ì (ì•±ì†”ë£¨íŠ¸ ë°°ë¦¬ì–´ ìƒíƒœ)ìœ¼ë¡œ í•œë‹¤.
 			pc.getSkillEffectTimerSet().setSkillEffect(L1SkillId.ABSOLUTE_BARRIER, 2000);
 			//pc.stopHpRegeneration();
 			//pc.stopMpRegeneration();

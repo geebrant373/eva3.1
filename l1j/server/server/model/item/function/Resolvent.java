@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -53,33 +53,33 @@ public class Resolvent extends L1ItemInstance{
 	
 	private void useResolvent(L1PcInstance pc, L1ItemInstance item, L1ItemInstance resolvent) {
 		if (item == null || resolvent == null) {
-			pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 			return;
 		}
-		if (item.getItem().getType2() == 1 || item.getItem().getType2() == 2) { // ¹«±â¡¤¹æ¾î¿ë ±â±¸
-			if (item.getEnchantLevel() != 0) { // °­È­°¡ ³¡³­ »óÅÂ
-				pc.sendPackets(new S_ServerMessage(1161)); // ¿ëÇØÇÒ ¼ö ¾ø½À´Ï´Ù.
+		if (item.getItem().getType2() == 1 || item.getItem().getType2() == 2) { // ë¬´ê¸°Â·ë°©ì–´ìš© ê¸°êµ¬
+			if (item.getEnchantLevel() != 0) { // ê°•í™”ê°€ ëë‚œ ìƒíƒœ
+				pc.sendPackets(new S_ServerMessage(1161)); // ìš©í•´í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				return;
 			}
-			if (item.isEquipped()) { // ÀåºñÁß
-				pc.sendPackets(new S_ServerMessage(1161)); // ¿ëÇØÇÒ ¼ö ¾ø½À´Ï´Ù.
+			if (item.isEquipped()) { // ì¥ë¹„ì¤‘
+				pc.sendPackets(new S_ServerMessage(1161)); // ìš©í•´í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				return;
 			}
-			if (item.getBless() >= 128) { // ºÀÀÎÁß
-				pc.sendPackets(new S_ServerMessage(1161)); // ¿ëÇØÇÒ ¼ö ¾ø½À´Ï´Ù.
+			if (item.getBless() >= 128) { // ë´‰ì¸ì¤‘
+				pc.sendPackets(new S_ServerMessage(1161)); // ìš©í•´í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				return;
 			}
 		}
 		int crystalCount = ResolventTable.getInstance().getCrystalCount(item.getItem().getItemId());
 		if (crystalCount == 0) {
-			pc.sendPackets(new S_ServerMessage(1161)); // ¿ëÇØÇÒ ¼ö ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(1161)); // ìš©í•´í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 
 		int rnd = _random.nextInt(100) + 1;
 		if (rnd >= 1 && rnd <= 20) {
 			crystalCount *= 1;
-			//pc.sendPackets(new S_ServerMessage(158, item.getName())); // \f1%0ÀÌ Áõ¹ßÇÏ°í ÀÖÁö ¾Ê°Ô µÇ¾ú½À´Ï´Ù.
+			//pc.sendPackets(new S_ServerMessage(158, item.getName())); // \f1%0ì´ ì¦ë°œí•˜ê³  ìˆì§€ ì•Šê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤.
 		} else if (rnd >= 21 && rnd <= 95) {
 			crystalCount *= 1;
 		} else if (rnd >= 96 && rnd <= 100) {
@@ -91,8 +91,8 @@ public class Resolvent extends L1ItemInstance{
 			crystal.setCount(crystalCount);
 			if (pc.getInventory().checkAddItem(crystal, 1) == L1Inventory.OK) {
 				pc.getInventory().storeItem(crystal);
-				pc.sendPackets(new S_ServerMessage(403, crystal.getLogName())); // %0¸¦ ¼Õ¿¡ ³Ö¾ú½À´Ï´Ù.
-			} else { // °¡Áú ¼ö  ¾ø´Â °æ¿ì´Â Áö¸é¿¡ ¶³¾î¶ß¸®´Â Ã³¸®ÀÇ Äµ½½Àº ÇÏÁö ¾Ê´Â´Ù(ºÎÁ¤ ¹æÁö)
+				pc.sendPackets(new S_ServerMessage(403, crystal.getLogName())); // %0ë¥¼ ì†ì— ë„£ì—ˆìŠµë‹ˆë‹¤.
+			} else { // ê°€ì§ˆ ìˆ˜  ì—†ëŠ” ê²½ìš°ëŠ” ì§€ë©´ì— ë–¨ì–´ëœ¨ë¦¬ëŠ” ì²˜ë¦¬ì˜ ìº”ìŠ¬ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤(ë¶€ì • ë°©ì§€)
 				L1World.getInstance().getInventory(pc.getX(), pc.getY(), pc.getMapId()).storeItem(crystal);
 			}
 		} 

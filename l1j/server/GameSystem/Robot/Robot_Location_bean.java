@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Robot;
+﻿package l1j.server.GameSystem.Robot;
 
 public class Robot_Location_bean {
 	int _locx;

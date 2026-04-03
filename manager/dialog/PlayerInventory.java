@@ -1,4 +1,4 @@
-package manager.dialog;
+ï»¿package manager.dialog;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -60,16 +60,16 @@ import manager.SWTResourceManager;
 public class PlayerInventory {
 
 	static private Shell shell;
-	// °¢ ½ºÅÇ¸¶´Ù º¯°æµÉ ºÎºĞ
+	// ê° ìŠ¤íƒ­ë§ˆë‹¤ ë³€ê²½ë  ë¶€ë¶„
 	static private Composite composite_controller;
-	// ¿ŞÂÊ ¹Ú½º¿¡ Ç¥ÇöµÉ ¶óº§
+	// ì™¼ìª½ ë°•ìŠ¤ì— í‘œí˜„ë  ë¼ë²¨
 	static private Label label_step1;
 	static private Label label_step2;
 	static private Label label_step3;
-	// ¿ŞÂÊ ¹Ú½º¿¡ Ç¥ÇöµÉ ±ÛÀÚ ÆùÆ® Á¤º¸
+	// ì™¼ìª½ ë°•ìŠ¤ì— í‘œí˜„ë  ê¸€ì í°íŠ¸ ì •ë³´
 	static private Font normal;
 	static private Font select;
-	// ÇØ´ç Ã¢¿¡ Å¸ÀÌÆ² ¸í
+	// í•´ë‹¹ ì°½ì— íƒ€ì´í‹€ ëª…
 	static private String title;
 	//
 	static private Connection con;
@@ -79,9 +79,9 @@ public class PlayerInventory {
 	public static Display display;
 
 	static {
-		normal = SWTResourceManager.getFont("¸¼Àº °íµñ", 9, SWT.NORMAL);
-		select = SWTResourceManager.getFont("¸¼Àº °íµñ", 9, SWT.BOLD);
-		title = "»ç¿ëÀÚ ÀÎº¥Åä¸®";
+		normal = SWTResourceManager.getFont("ë§‘ì€ ê³ ë”•", 9, SWT.NORMAL);
+		select = SWTResourceManager.getFont("ë§‘ì€ ê³ ë”•", 9, SWT.BOLD);
+		title = "ì‚¬ìš©ì ì¸ë²¤í† ë¦¬";
 	}
 
 	/**
@@ -95,7 +95,7 @@ public class PlayerInventory {
 
 		PlayerInventory.pc = pc;
 
-		// È­¸éÁß¾ÓÀ¸·Î
+		// í™”ë©´ì¤‘ì•™ìœ¼ë¡œ
 		shell = new Shell(LinAllManager.shlInbumserverManager, SWT.DIALOG_TRIM | SWT.APPLICATION_MODAL | SWT.MAX);
 		shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_NORMAL_SHADOW));
 		shell.setSize(676, 526);
@@ -116,13 +116,13 @@ public class PlayerInventory {
 		composite_status.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true, 1, 1));
 
 		label_step1 = new Label(composite_status, SWT.NONE);
-		label_step1.setText("¾ÆÀÌÅÛ ¼±º°");
+		label_step1.setText("ì•„ì´í…œ ì„ ë³„");
 
 		label_step2 = new Label(composite_status, SWT.NONE);
-		label_step2.setText("Á¤º¸ ¼öÁ¤");
+		label_step2.setText("ì •ë³´ ìˆ˜ì •");
 
 		label_step3 = new Label(composite_status, SWT.NONE);
-		label_step3.setText("¿Ï·á");
+		label_step3.setText("ì™„ë£Œ");
 
 		composite_controller = new Composite(shell, SWT.NONE);
 
@@ -146,7 +146,7 @@ public class PlayerInventory {
 	}
 
 	static private void step1() {
-		// ÀÌÀü ³»¿ëµé ´Ù Á¦°Å.
+		// ì´ì „ ë‚´ìš©ë“¤ ë‹¤ ì œê±°.
 		for (Control c : composite_controller.getChildren())
 			c.dispose();
 
@@ -173,10 +173,10 @@ public class PlayerInventory {
 		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 
 		Button button_4 = new Button(composite_1, SWT.NONE);
-		button_4.setText("°Ë»ö");
+		button_4.setText("ê²€ìƒ‰");
 
 		Group group_1 = new Group(composite_controller, SWT.NONE);
-		group_1.setText("¾ÆÀÌÅÛ");
+		group_1.setText("ì•„ì´í…œ");
 		GridLayout gl_group_1 = new GridLayout(1, false);
 		gl_group_1.verticalSpacing = 0;
 		gl_group_1.horizontalSpacing = 0;
@@ -195,7 +195,7 @@ public class PlayerInventory {
 		new Label(composite_controller, SWT.NONE);
 
 		Group group = new Group(composite_controller, SWT.NONE);
-		group.setText("ÀÎº¥Åä¸®");
+		group.setText("ì¸ë²¤í† ë¦¬");
 		GridLayout gl_group = new GridLayout(1, false);
 		gl_group.verticalSpacing = 0;
 		gl_group.horizontalSpacing = 0;
@@ -214,12 +214,12 @@ public class PlayerInventory {
 		dropTarget.setTransfer(new Transfer[] { TextTransfer.getInstance() });
 
 		Button button_1 = new Button(composite_controller, SWT.NONE);
-		button_1.setToolTipText("Ãß°¡");
+		button_1.setToolTipText("ì¶”ê°€");
 		button_1.setLayoutData(new GridData(SWT.LEFT, SWT.BOTTOM, false, true, 1, 1));
 		button_1.setText("->");
 
 		Button button_2 = new Button(composite_controller, SWT.NONE);
-		button_2.setToolTipText("Á¦°Å");
+		button_2.setToolTipText("ì œê±°");
 		button_2.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, true, 1, 1));
 		button_2.setText("<-");
 		new Label(composite_controller, SWT.NONE);
@@ -229,21 +229,21 @@ public class PlayerInventory {
 		GridData gd_button = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
 		gd_button.widthHint = 100;
 		button.setLayoutData(gd_button);
-		button.setText("´ÙÀ½");
+		button.setText("ë‹¤ìŒ");
 
-		// ÀÌº¥Æ® µî·Ï.
+		// ì´ë²¤íŠ¸ ë“±ë¡.
 		text.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if (e.keyCode == 13 || e.keyCode == 16777296)
-					// °Ë»ö
+					// ê²€ìƒ‰
 					toSearchItem(text, list);
 			}
 		});
 		button_4.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// °Ë»ö
+				// ê²€ìƒ‰
 				toSearchItem(text, list);
 			}
 		});
@@ -267,14 +267,14 @@ public class PlayerInventory {
 					int select = (Integer) list_1.getData("select");
 					int move_idx = list_1.getSelectionIndex();
 					if (select != move_idx) {
-						// À§Ä¡ ¹Ù²Ù±â.
+						// ìœ„ì¹˜ ë°”ê¾¸ê¸°.
 						String temp = list_1.getItem(select);
 						Object temp_o = list_1.getData(String.valueOf(select));
 						list_1.setItem(select, list_1.getItem(move_idx));
 						list_1.setData(String.valueOf(select), list_1.getData(String.valueOf(move_idx)));
 						list_1.setItem(move_idx, temp);
 						list_1.setData(String.valueOf(move_idx), temp_o);
-						// Á¤º¸ º¯°æ.
+						// ì •ë³´ ë³€ê²½.
 						list_1.setData("select", move_idx);
 						list_1.select(move_idx);
 					}
@@ -288,7 +288,7 @@ public class PlayerInventory {
 				case SWT.MouseDoubleClick:
 					if (list.getSelectionCount() <= 0)
 						return;
-					// Ãß°¡
+					// ì¶”ê°€
 					for (String name : list.getSelection())
 						list_1.add(name);
 					list_1.setTopIndex(list_1.getVerticalBar().getMaximum());
@@ -302,15 +302,15 @@ public class PlayerInventory {
 			public void keyReleased(KeyEvent e) {
 				if (list_1.getSelectionCount() <= 0)
 					return;
-				// »èÁ¦
+				// ì‚­ì œ
 				if (e.keyCode == SWT.DEL) {
 					int select = list_1.getSelectionIndex();
 					list_1.setData(String.valueOf(select), null);
 					list_1.remove(select);
 
-					// °»½Å.
+					// ê°±ì‹ .
 					for (int i = select; i < list_1.getItemCount(); ++i) {
-						// ¾Õ¿¡ ÀÌ¸§ ÃßÃâ.
+						// ì•ì— ì´ë¦„ ì¶”ì¶œ.
 						Object o = list_1.getData(String.valueOf(i + 1));
 						list_1.setData(String.valueOf(i), o);
 					}
@@ -328,9 +328,9 @@ public class PlayerInventory {
 					list_1.setData(String.valueOf(select), null);
 					list_1.remove(select);
 
-					// °»½Å.
+					// ê°±ì‹ .
 					for (int i = select; i < list_1.getItemCount(); ++i) {
-						// ¾Õ¿¡ ÀÌ¸§ ÃßÃâ.
+						// ì•ì— ì´ë¦„ ì¶”ì¶œ.
 						Object o = list_1.getData(String.valueOf(i + 1));
 						list_1.setData(String.valueOf(i), o);
 					}
@@ -360,7 +360,7 @@ public class PlayerInventory {
 			public void widgetSelected(SelectionEvent e) {
 				if (list.getSelectionCount() <= 0)
 					return;
-				// Ãß°¡
+				// ì¶”ê°€
 				for (String name : list.getSelection())
 					list_1.add(name);
 				list_1.setTopIndex(list_1.getVerticalBar().getMaximum());
@@ -371,14 +371,14 @@ public class PlayerInventory {
 			public void widgetSelected(SelectionEvent e) {
 				if (list_1.getSelectionCount() <= 0)
 					return;
-				// »èÁ¦
+				// ì‚­ì œ
 				int select = list_1.getSelectionIndex();
 				list_1.setData(String.valueOf(select), null);
 				list_1.remove(select);
 
-				// °»½Å.
+				// ê°±ì‹ .
 				for (int i = select; i < list_1.getItemCount(); ++i) {
-					// ¾Õ¿¡ ÀÌ¸§ ÃßÃâ.
+					// ì•ì— ì´ë¦„ ì¶”ì¶œ.
 					Object o = list_1.getData(String.valueOf(i + 1));
 					list_1.setData(String.valueOf(i), o);
 				}
@@ -389,15 +389,15 @@ public class PlayerInventory {
 			public void keyReleased(KeyEvent e) {
 				if (list_1.getSelectionCount() <= 0)
 					return;
-				// »èÁ¦
+				// ì‚­ì œ
 				if (e.keyCode == SWT.DEL) {
 					int select = list_1.getSelectionIndex();
 					list_1.setData(String.valueOf(select), null);
 					list_1.remove(select);
 
-					// °»½Å.
+					// ê°±ì‹ .
 					for (int i = select; i < list_1.getItemCount(); ++i) {
-						// ¾Õ¿¡ ÀÌ¸§ ÃßÃâ.
+						// ì•ì— ì´ë¦„ ì¶”ì¶œ.
 						Object o = list_1.getData(String.valueOf(i + 1));
 						list_1.setData(String.valueOf(i), o);
 					}
@@ -423,7 +423,7 @@ public class PlayerInventory {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				if (list_1.getItemCount() == 0) {
-					LinAllManager.toMessageBox("ÀÎº¥Åä¸®¸ñ·Ï¿¡ ¾ÆÀÌÅÛÀ» Ãß°¡ÇÏ¿© ÁÖ½Ê½Ã¿À.");
+					LinAllManager.toMessageBox("ì¸ë²¤í† ë¦¬ëª©ë¡ì— ì•„ì´í…œì„ ì¶”ê°€í•˜ì—¬ ì£¼ì‹­ì‹œì˜¤.");
 					return;
 				}
 				Map<Integer, Object> list = new HashMap<Integer, Object>();
@@ -447,18 +447,18 @@ public class PlayerInventory {
 	}
 
 	/**
-	 * ¾ÆÀÌÅÛ °Ë»ö
+	 * ì•„ì´í…œ ê²€ìƒ‰
 	 * 
 	 * @param text
 	 * @param list
 	 */
-	// È®ÀÎ¿Ï·á
+	// í™•ì¸ì™„ë£Œ
 	static private void toSearchItem(Text text, List list) {
 		String name = text.getText().toLowerCase();
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
-		// ÀÌÀü ±â·Ï Á¦°Å
+		// ì´ì „ ê¸°ë¡ ì œê±°
 		list.removeAll();
 
 		try {
@@ -502,16 +502,16 @@ public class PlayerInventory {
 			SQLUtil.close(rs, pstm, con);
 		}
 
-		// µî·ÏµÈ°Ô ¾øÀ»°æ¿ì ¾È³» ¸àÆ®.
+		// ë“±ë¡ëœê²Œ ì—†ì„ê²½ìš° ì•ˆë‚´ ë©˜íŠ¸.
 		if (list.getItemCount() <= 0)
-			LinAllManager.toMessageBox(title, "ÀÏÄ¡ÇÏ´Â ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.");
+			LinAllManager.toMessageBox(title, "ì¼ì¹˜í•˜ëŠ” ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.");
 
-		// Æ÷Ä¿½º.
+		// í¬ì»¤ìŠ¤.
 		text.setFocus();
 	}
 
 	static private void step2(String[] inv_list, Map<Integer, Object> list) {
-		// ÀÌÀü ³»¿ëµé ´Ù Á¦°Å.
+		// ì´ì „ ë‚´ìš©ë“¤ ë‹¤ ì œê±°.
 		for (Control c : composite_controller.getChildren())
 			c.dispose();
 
@@ -574,15 +574,15 @@ public class PlayerInventory {
 		GridData gd_button_3 = new GridData(SWT.RIGHT, SWT.CENTER, true, false, 1, 1);
 		gd_button_3.widthHint = 100;
 		button_3.setLayoutData(gd_button_3);
-		button_3.setText("ÀÌÀü");
+		button_3.setText("ì´ì „");
 
 		Button button_5 = new Button(composite_controller, SWT.NONE);
 		GridData gd_button_5 = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_button_5.widthHint = 100;
 		button_5.setLayoutData(gd_button_5);
-		button_5.setText("´ÙÀ½");
+		button_5.setText("ë‹¤ìŒ");
 
-		// ÀÌº¥Æ® µî·Ï.
+		// ì´ë²¤íŠ¸ ë“±ë¡.
 		table.addListener(SWT.MouseDown, new Listener() {
 			@Override
 			public void handleEvent(Event event) {
@@ -638,18 +638,18 @@ public class PlayerInventory {
 		button_3.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// ÀÌÀü
+				// ì´ì „
 				step1();
 			}
 		});
 		button_5.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// ´ÙÀ½
+				// ë‹¤ìŒ
 				step3(table);
 			}
 		});
-		// Á¤º¸ °»½Å
+		// ì •ë³´ ê°±ì‹ 
 		int idx = 0;
 		for (String s : inv_list) {
 			Object o = list.get(idx);
@@ -683,26 +683,26 @@ public class PlayerInventory {
 		if (checkBug())
 			return;
 
-		// »èÁ¦µÈ ¾ÆÀÌÅÛ ÃßÃâ.
+		// ì‚­ì œëœ ì•„ì´í…œ ì¶”ì¶œ.
 		java.util.List<L1ItemInstance> list_remove = new ArrayList<L1ItemInstance>();
 		for (L1ItemInstance ii : pc.getInventory().getItems()) {
 			L1ItemInstance find_ii = null;
-			// Ã³¸®¸ñ·Ï¿¡¼­ µÑ·¯º¸±â.
+			// ì²˜ë¦¬ëª©ë¡ì—ì„œ ë‘˜ëŸ¬ë³´ê¸°.
 			for (TableItem ti : table.getItems()) {
 				if (ii.getId() == Integer.valueOf(ti.getText(8))) {
 					find_ii = ii;
 					break;
 				}
 			}
-			// ¸øÃ£¾Ò´Ù¸é ÇöÀç ¾ÆÀÌÅÛ Á¦°Å¸ñ·Ï¿¡ µî·Ï.
+			// ëª»ì°¾ì•˜ë‹¤ë©´ í˜„ì¬ ì•„ì´í…œ ì œê±°ëª©ë¡ì— ë“±ë¡.
 			if (find_ii == null)
 				list_remove.add(ii);
 		}
-		// ¾ÆÀÌÅÛ »èÁ¦ Ã³¸®.
+		// ì•„ì´í…œ ì‚­ì œ ì²˜ë¦¬.
 		for (L1ItemInstance ii : list_remove) {
 			pc.getInventory().removeItem(ii);
 		}
-		// Á¤º¸ ¼öÁ¤ ¹× »õ·Î¿î ¾ÆÀÌÅÛ Ãß°¡.
+		// ì •ë³´ ìˆ˜ì • ë° ìƒˆë¡œìš´ ì•„ì´í…œ ì¶”ê°€.
 		for (TableItem ti : table.getItems()) {
 			int item_id = Integer.valueOf(ti.getText(0));
 			int count = Integer.valueOf(ti.getText(4));
@@ -718,7 +718,7 @@ public class PlayerInventory {
 				cc.setEnchantLevel(en);
 				cc.setBless(bress);
 				cc.setIdentified(cc.isIdentified());
-				pc.sendPackets(new S_SystemMessage("¿î¿µÀÚ´ÔÀÌ " + cc.getName() + " ¾ÆÀÌÅÛ Á¤º¸¸¦ º¯°æÇÏ¿´½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ìš´ì˜ìë‹˜ì´ " + cc.getName() + " ì•„ì´í…œ ì •ë³´ë¥¼ ë³€ê²½í•˜ì˜€ìŠµë‹ˆë‹¤."));
 				pc.getInventory().updateItem(cc);
 			} else {
 				L1ItemInstance ii = ItemTable.getInstance().createItem(item_id);
@@ -730,11 +730,11 @@ public class PlayerInventory {
 				ii.setIdentified(true);
 				L1ItemInstance giveItem = pc.getInventory().storeItem(ii);
 				pc.sendPackets(new S_SystemMessage(
-						"¿î¿µÀÚ´ÔÀÌ " + giveItem.getName() + "(" + giveItem.getCount() + ") À»(¸¦) Áö±ŞÇÏ¿´½À´Ï´Ù."));
+						"ìš´ì˜ìë‹˜ì´ " + giveItem.getName() + "(" + giveItem.getCount() + ") ì„(ë¥¼) ì§€ê¸‰í•˜ì˜€ìŠµë‹ˆë‹¤."));
 			}
 		}
 
-		// ÀÌÀü ³»¿ëµé ´Ù Á¦°Å.
+		// ì´ì „ ë‚´ìš©ë“¤ ë‹¤ ì œê±°.
 		for (Control c : composite_controller.getChildren())
 			c.dispose();
 
@@ -751,25 +751,25 @@ public class PlayerInventory {
 		GridData gd_button_6 = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
 		gd_button_6.widthHint = 100;
 		button_6.setLayoutData(gd_button_6);
-		button_6.setText("¿Ï·á");
+		button_6.setText("ì™„ë£Œ");
 
-		// ÀÌº¥Æ® µî·Ï.
+		// ì´ë²¤íŠ¸ ë“±ë¡.
 		button_6.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				// ´ÙÀ½
+				// ë‹¤ìŒ
 				shell.dispose();
 			}
 		});
 
-		// Ã³¸® 2.
-		list_2.add("¸Ş¸ğ¸® °»½Å ¿Ï·á.");
+		// ì²˜ë¦¬ 2.
+		list_2.add("ë©”ëª¨ë¦¬ ê°±ì‹  ì™„ë£Œ.");
 
 		composite_controller.layout();
 	}
 
 	/**
-	 * ½ºÅÇ¿¡ ¸ÂÃç¼­ ¿ŞÂÊ ±Û¾¾ ÆùÆ® º¯°æÇÏ±â.
+	 * ìŠ¤íƒ­ì— ë§ì¶°ì„œ ì™¼ìª½ ê¸€ì”¨ í°íŠ¸ ë³€ê²½í•˜ê¸°.
 	 * 
 	 * @param step
 	 */
@@ -787,18 +787,18 @@ public class PlayerInventory {
 	}
 
 	static private boolean checkBug() {
-		// ¹ö±× È®ÀÎ.
+		// ë²„ê·¸ í™•ì¸.
 		L1PcInstance target = L1World.getInstance().getPlayer(pc.getName());
 		if (target == null) {
 			MessageBox messageBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
-			messageBox.setMessage("¼±ÅÃµÈ À¯Àú°¡ ¾ø½À´Ï´Ù.");
+			messageBox.setMessage("ì„ íƒëœ ìœ ì €ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			messageBox.open();
 			return true;
 		}
 
 		if (pc.getOnlineStatus() == 0) {
 			MessageBox messageBox = new MessageBox(shell, SWT.OK | SWT.ICON_INFORMATION);
-			messageBox.setMessage("¼±ÅÃµÈ À¯Àú°¡ ¾ø½À´Ï´Ù.");
+			messageBox.setMessage("ì„ íƒëœ ìœ ì €ê°€ ì—†ìŠµë‹ˆë‹¤.");
 			messageBox.open();
 			return true;
 		}

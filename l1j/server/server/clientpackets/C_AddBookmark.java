@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -45,12 +45,12 @@ public class C_AddBookmark extends ClientBasePacket {
 					|| ((pc.getX() >= 33514 && pc.getX() <= 33809) && (pc.getY() >= 32216 && pc.getY() <= 32457) && pc.getMapId() == 4)
 					|| ((pc.getX() >= 34211 && pc.getX() <= 34287) && (pc.getY() >= 33103 && pc.getY() <= 33492) && pc.getMapId() == 4)
 					&& !pc.isGm()) {
-				pc.sendPackets(new S_ServerMessage(214)); // \f1¿©±â¸¦ ±â¾ïÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(214)); // \f1ì—¬ê¸°ë¥¼ ê¸°ì–µí•  ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			} else {
 				L1BookMark.addBookmark(pc, s);
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(214)); // \f1¿©±â¸¦ ±â¾ïÇÒ ¼ö°¡ ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(214)); // \f1ì—¬ê¸°ë¥¼ ê¸°ì–µí•  ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 		}
 	}
 

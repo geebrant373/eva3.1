@@ -1,4 +1,4 @@
-package l1j.server.MJTemplate.Frame;
+﻿package l1j.server.MJTemplate.Frame;
 
 /** 
  * MJFrameElement

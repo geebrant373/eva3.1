@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -34,7 +34,7 @@ public class L1PetMember {
 	private final ArrayList<L1PcInstance> _members = new ArrayList<L1PcInstance>();
 
 	/**
-	 * constructor¡¡ ¡¡.
+	 * constructorã€€ ã€€.
 	 */
 	public L1PetMember() {
 	}
@@ -42,7 +42,7 @@ public class L1PetMember {
 	class PetThread implements Runnable {
 
 		/**
-		 * thread ÇÁ·Î½ÃÀú.
+		 * thread í”„ë¡œì‹œì €.
 		 */
 		@Override
 		public void run() {
@@ -55,10 +55,10 @@ public class L1PetMember {
 	}
 
 	/**
-	 * ÇÃ·¹ÀÌ¾î¸¦ Âü°¡ ¸â¹ö ¸®½ºÆ®¿¡ Ãß°¡ÇÑ´Ù.
+	 * í”Œë ˆì´ì–´ë¥¼ ì°¸ê°€ ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ì— ì¶”ê°€í•œë‹¤.
 	 * 
 	 * @param pc
-	 *            »õ·Ó°Ô Âü°¡ÇÏ´Â ÇÃ·¹ÀÌ¾î
+	 *            ìƒˆë¡­ê²Œ ì°¸ê°€í•˜ëŠ” í”Œë ˆì´ì–´
 	 */
 	public void addMember(L1PcInstance pc) {
 		if (!_members.contains(pc)) {
@@ -68,10 +68,10 @@ public class L1PetMember {
 	
 
 	/**
-	 * ÇÃ·¹ÀÌ¾î¸¦ Âü°¡ ¸â¹ö ¸®½ºÆ®·ÎºÎÅÍ »èÁ¦ÇÑ´Ù.
+	 * í”Œë ˆì´ì–´ë¥¼ ì°¸ê°€ ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ë¡œë¶€í„° ì‚­ì œí•œë‹¤.
 	 * 
 	 * @param pc
-	 *            »èÁ¦ÇÏ´Â ÇÃ·¹ÀÌ¾î
+	 *            ì‚­ì œí•˜ëŠ” í”Œë ˆì´ì–´
 	 */
 	public void removeMember(L1PcInstance pc) {
 		_members.remove(pc);
@@ -79,18 +79,18 @@ public class L1PetMember {
 
 
 	/**
-	 * Âü°¡ ¸â¹ö ¸®½ºÆ®¸¦ Å¬¸®¾î ÇÑ´Ù.
+	 * ì°¸ê°€ ë©¤ë²„ ë¦¬ìŠ¤íŠ¸ë¥¼ í´ë¦¬ì–´ í•œë‹¤.
 	 */
 	public void clearMembers() {
 		_members.clear();
 	}
 
 	/**
-	 * ÇÃ·¹ÀÌ¾î°¡, Âü°¡ ¸â¹öÀÎÁö¸¦ µ¹·ÁÁØ´Ù.
+	 * í”Œë ˆì´ì–´ê°€, ì°¸ê°€ ë©¤ë²„ì¸ì§€ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param pc
-	 *            Á¶»çÇÏ´Â ÇÃ·¹ÀÌ¾î
-	 * @return Âü°¡ ¸â¹öÀÌ¸é true, ±×·¸Áö ¾ÊÀ¸¸é false.
+	 *            ì¡°ì‚¬í•˜ëŠ” í”Œë ˆì´ì–´
+	 * @return ì°¸ê°€ ë©¤ë²„ì´ë©´ true, ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ false.
 	 */
 	public boolean isMember(L1PcInstance pc) {
 		return _members.contains(pc);
@@ -98,18 +98,18 @@ public class L1PetMember {
 
 
 	/**
-	 * Âü°¡ ¸â¹öÀÇ ¹è¿­À» ÀÛ¼ºÇØ, µ¹·ÁÁØ´Ù.
+	 * ì°¸ê°€ ë©¤ë²„ì˜ ë°°ì—´ì„ ì‘ì„±í•´, ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return Âü°¡ ¸â¹öÀÇ ¹è¿­
+	 * @return ì°¸ê°€ ë©¤ë²„ì˜ ë°°ì—´
 	 */
 	public L1PcInstance[] getMembersArray() {
 		return _members.toArray(new L1PcInstance[_members.size()]);
 	}
 
 	/**
-	 * Âü°¡ ¸â¹ö¼ö¸¦ µ¹·ÁÁØ´Ù.
+	 * ì°¸ê°€ ë©¤ë²„ìˆ˜ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return Âü°¡ ¸â¹ö¼ö
+	 * @return ì°¸ê°€ ë©¤ë²„ìˆ˜
 	 */
 	public int getMembersCount() {
 		return _members.size();
@@ -118,16 +118,16 @@ public class L1PetMember {
 
 
 	/**
-	 * UBÁßÀÎÁö¸¦ ¼³Á¤ÇÑ´Ù.
+	 * UBì¤‘ì¸ì§€ë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
 	 * @param i
 	 *            true/false
 	 */
 
 	/**
-	 * °æ±â ÁßÀÎÁö¸¦ µ¹·ÁÁØ´Ù.
+	 * ê²½ê¸° ì¤‘ì¸ì§€ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return °æ±â ÁßÀÌ¸é true, ±×·¸Áö ¾ÊÀ¸¸é false.
+	 * @return ê²½ê¸° ì¤‘ì´ë©´ true, ê·¸ë ‡ì§€ ì•Šìœ¼ë©´ false.
 	 */
 	public boolean isNowPet() {
 		return _isNowPet;

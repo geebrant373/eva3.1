@@ -1,11 +1,11 @@
-package l1j.server.server.model.Instance;
+﻿package l1j.server.server.model.Instance;
 
 import l1j.server.server.ActionCodes;
 import l1j.server.server.serverpackets.S_DoActionShop;
 import l1j.server.server.serverpackets.S_NPCPack;
 import l1j.server.server.templates.L1Npc;
 
-// npc shop �߰�
+// npc shop 추가
 public class L1NpcShopInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 

@@ -1,4 +1,4 @@
-package server;
+ï»¿package server;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -35,8 +35,8 @@ public class Authorization {
 	
 	public  void auth(LineageClient client, String accountName, String password, String ip, String host) throws IOException {
 		if(checkDuplicatedIPConnection(ip)) {
-			_log.info("µ¿ÀÏÇÑ IPÀÇ Áßº¹ ·Î±×ÀÎÀ» °ÅºÎÇß½À´Ï´Ù. account=" + accountName + " host=" + host);
-			client.sendPacket(new S_Notice("µ¿ÀÏÇÑ IPÀÇ Áßº¹ ·Î±×ÀÎÀ» °ÅºÎÇß½À´Ï´Ù."));
+			_log.info("ë™ì¼í•œ IPì˜ ì¤‘ë³µ ë¡œê·¸ì¸ì„ ê±°ë¶€í–ˆìŠµë‹ˆë‹¤. account=" + accountName + " host=" + host);
+			client.sendPacket(new S_Notice("ë™ì¼í•œ IPì˜ ì¤‘ë³µ ë¡œê·¸ì¸ì„ ê±°ë¶€í–ˆìŠµë‹ˆë‹¤."));
 			disconnect(client);
 			return;
 		}
@@ -47,7 +47,7 @@ public class Authorization {
 		if (account == null) {			
 			if (Config.AUTO_CREATE_ACCOUNTS) {
 				if(Account.checkLoginIP(ip)) {
-					client.sendPacket(new S_Notice("°èÁ¤ »ı¼ºÀÌ ÃÊ°úµÇ¾ú½À´Ï´Ù."));
+					client.sendPacket(new S_Notice("ê³„ì • ìƒì„±ì´ ì´ˆê³¼ë˜ì—ˆìŠµë‹ˆë‹¤."));
 					try {
 						Thread.sleep(1500);
 						client.kick();
@@ -71,7 +71,7 @@ public class Authorization {
 		}
 
 		if (account.isBanned()) {
-			_log.info("BAN IPÀÇ ·Î±×ÀÎÀ» °ÅºÎÇß½À´Ï´Ù. account=" + accountName + " host=" + host);
+			_log.info("BAN IPì˜ ë¡œê·¸ì¸ì„ ê±°ë¶€í–ˆìŠµë‹ˆë‹¤. account=" + accountName + " host=" + host);
 			client.sendPacket(new S_LoginResult(S_LoginResult.REASON_BUG_WRONG));
 			disconnect(client);
 			return;
@@ -87,9 +87,9 @@ public class Authorization {
 					bugpc.setX(33080);
 					bugpc.setY(33392);
 					bugpc.setMap((short) 4);
-					System.out.println("¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡");
-					System.out.println("¹ö±×·Î ÆÇ´ÜµÇ¾î Á¾·á ÇÕ´Ï´Ù. Authorization - "+ accountName +"");
-					System.out.println("¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡¦¡");
+					System.out.println("â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€");
+					System.out.println("ë²„ê·¸ë¡œ íŒë‹¨ë˜ì–´ ì¢…ë£Œ í•©ë‹ˆë‹¤. Authorization - "+ accountName +"");
+					System.out.println("â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€");
 					bugpc.getNetConnection().sendPacket(new S_LoginResult(S_LoginResult.REASON_ACCOUNT_IN_USE));
 					bugpc.sendPackets(new S_Disconnect());
 					bugpc.getNetConnection().kick();
@@ -107,16 +107,16 @@ public class Authorization {
 
 		try {
 			LoginController.getInstance().login(client, account);
-			Account.updateLastActive(account); // ÃÖÁ¾ ·Î±×ÀÎÀÏÀ» °»½ÅÇÑ´Ù
+			Account.updateLastActive(account); // ìµœì¢… ë¡œê·¸ì¸ì¼ì„ ê°±ì‹ í•œë‹¤
 			client.setAccount(account);
 			sendNotice(client);
 		} catch (GameServerFullException e) {
 			disconnect(client);
-			_log.info("Á¢¼Ó ÀÎ¿ø¼ö¸¦ ÃÊ°úÇÏ¿´½À´Ï´Ù. (" + client.getHostname() + ")ÀÇ Á¢¼Ó ½Ãµµ¸¦ °­Á¦ Á¾·áÇß½À´Ï´Ù.");
+			_log.info("ì ‘ì† ì¸ì›ìˆ˜ë¥¼ ì´ˆê³¼í•˜ì˜€ìŠµë‹ˆë‹¤. (" + client.getHostname() + ")ì˜ ì ‘ì† ì‹œë„ë¥¼ ê°•ì œ ì¢…ë£Œí–ˆìŠµë‹ˆë‹¤.");
 			return;
 		} catch (AccountAlreadyLoginException e) {
-			_log.info("µ¿ÀÏÇÑ °èÁ¤ÀÇ Áßº¹ ·Î±×ÀÎÀ» °ÅºÎÇß½À´Ï´Ù. account=" + accountName + " host=" + host);
-			client.sendPacket(new S_Notice("ÀÌ¹Ì Á¢¼Ó Áß ÀÔ´Ï´Ù. Á¢¼ÓÀ» °­Á¦ Á¾·áÇÕ´Ï´Ù."));
+			_log.info("ë™ì¼í•œ ê³„ì •ì˜ ì¤‘ë³µ ë¡œê·¸ì¸ì„ ê±°ë¶€í–ˆìŠµë‹ˆë‹¤. account=" + accountName + " host=" + host);
+			client.sendPacket(new S_Notice("ì´ë¯¸ ì ‘ì† ì¤‘ ì…ë‹ˆë‹¤. ì ‘ì†ì„ ê°•ì œ ì¢…ë£Œí•©ë‹ˆë‹¤."));
 			disconnect(client);
 			return;
 		}
@@ -125,7 +125,7 @@ public class Authorization {
 	private void sendNotice(LineageClient client) {
 		String accountName = client.getAccountName();
 		
-		// ÀĞ¾î¾ßÇÒ °øÁö°¡ ÀÖ´ÂÁö Ã¼Å©
+		// ì½ì–´ì•¼í•  ê³µì§€ê°€ ìˆëŠ”ì§€ ì²´í¬
 		if(S_Notice.NoticeCount(accountName) > 0){
 			client.sendPacket(new S_Notice(accountName, client));
 		} else {
@@ -141,12 +141,12 @@ public class Authorization {
 
 	@SuppressWarnings("unused")
 	private Account loadAccountInfoFromDB(String accountName) {
-		/* ÀÚµ¿ °èÁ¤ »ı¼ºÀ» IP ±âÁØÀ¸·Î ¸·°í ÀÖÀ½, ÀÚµ¿ »ı¼ºÀº ¸·À½
+		/* ìë™ ê³„ì • ìƒì„±ì„ IP ê¸°ì¤€ìœ¼ë¡œ ë§‰ê³  ìˆìŒ, ìë™ ìƒì„±ì€ ë§‰ìŒ
 		if (account == null) {
 			if (Config.AUTO_CREATE_ACCOUNTS) {
 				
 				if(Account.checkLoginIP(ip)) {   
-					client.sendPacket(new S_CommonNews("µ¿ÀÏ IP·Î »ı¼ºÇÑ °èÁ¤ÀÌ 3°³ ÀÖ½À´Ï´Ù."));
+					client.sendPacket(new S_CommonNews("ë™ì¼ IPë¡œ ìƒì„±í•œ ê³„ì •ì´ 3ê°œ ìˆìŠµë‹ˆë‹¤."));
 					try {
 						Thread.sleep(1500);
 						client.kick();

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -55,13 +55,13 @@ public class L1Who implements L1CommandExecutor {
 			
 			S_WhoAmount s_whoamount = new S_WhoAmount(amount);
 			pc.sendPackets(s_whoamount);
-			pc.sendPackets(new S_SystemMessage("¹«ÀÎ»óÁ¡ : "+AutoShopUser));
-			pc.sendPackets(new S_SystemMessage("NPC¹«ÀÎ»óÁ¡ : "+amount2));
-			pc.sendPackets(new S_SystemMessage("¸¶³×Å· : "+amount1));
-			pc.sendPackets(new S_SystemMessage("»½Æ¢±â : "+CalcUser));
+			pc.sendPackets(new S_SystemMessage("ë¬´ì¸ìƒì  : "+AutoShopUser));
+			pc.sendPackets(new S_SystemMessage("NPCë¬´ì¸ìƒì  : "+amount2));
+			pc.sendPackets(new S_SystemMessage("ë§ˆë„¤í‚¹ : "+amount1));
+			pc.sendPackets(new S_SystemMessage("ë»¥íŠ€ê¸° : "+CalcUser));
 
-			// ¿Â¶óÀÎÀÇ ÇÃ·¹ÀÌ¾î ¸®½ºÆ®¸¦ Ç¥½Ã
-			if (arg.equalsIgnoreCase("ÀüÃ¼")) {
+			// ì˜¨ë¼ì¸ì˜ í”Œë ˆì´ì–´ ë¦¬ìŠ¤íŠ¸ë¥¼ í‘œì‹œ
+			if (arg.equalsIgnoreCase("ì „ì²´")) {
 				StringBuffer gmList = new StringBuffer();
 				StringBuffer playList = new StringBuffer();
 				StringBuffer shopList = new StringBuffer();
@@ -85,22 +85,22 @@ public class L1Who implements L1CommandExecutor {
 					}
 				}
 				if (gmList.length() > 0) {
-					pc.sendPackets(new S_SystemMessage("-- ¿î¿µÀÚ (" + countGM + "¸í)"));
+					pc.sendPackets(new S_SystemMessage("-- ìš´ì˜ì (" + countGM + "ëª…)"));
 					pc.sendPackets(new S_SystemMessage(gmList.toString()));
 				}
 				
 				if (playList.length() > 0) {
-					pc.sendPackets(new S_SystemMessage("-- ÇÃ·¹ÀÌ¾î (" + countPlayer + "¸í)"));
+					pc.sendPackets(new S_SystemMessage("-- í”Œë ˆì´ì–´ (" + countPlayer + "ëª…)"));
 					pc.sendPackets(new S_SystemMessage(playList.toString()));
 				}				
 				if (shopList.length() > 0) {
-					pc.sendPackets(new S_SystemMessage("-- °³ÀÎ»óÁ¡ (" + countShop + "¸í)"));
+					pc.sendPackets(new S_SystemMessage("-- ê°œì¸ìƒì  (" + countShop + "ëª…)"));
 					pc.sendPackets(new S_SystemMessage(shopList.toString()));
 				}
 			}
 			players = null;
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".´©±¸ [ÀüÃ¼] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(".ëˆ„êµ¬ [ì „ì²´] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

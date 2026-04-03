@@ -1,4 +1,4 @@
-package l1j.server.GameSystem;
+ï»¿package l1j.server.GameSystem;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -24,15 +24,15 @@ public class GomuSystem1 extends Thread {
 		_DevilStart = Devil;
 	}
 
-	private static long sTime = 0;// ¹ã12½Ã½Ã ±âÁØÀ¸·Î ½ÃÀÛ
+	private static long sTime = 0;// ë°¤12ì‹œì‹œ ê¸°ì¤€ìœ¼ë¡œ ì‹œì‘
 
 	private String NowTime = "";
-	// ½Ã°£ °£°İ
-	private static final int LOOP = 3;// 2½Ã°£¸¶´Ù ÇÑ¹ø¾¿ ¿ÀÇÂÇÑ´Ù´Â ¸»
+	// ì‹œê°„ ê°„ê²©
+	private static final int LOOP = 3;// 2ì‹œê°„ë§ˆë‹¤ í•œë²ˆì”© ì˜¤í”ˆí•œë‹¤ëŠ” ë§
 
-	private static final SimpleDateFormat s = new SimpleDateFormat("HH", Locale.KOREA); // ÇöÁ¦½Ã°¢
+	private static final SimpleDateFormat s = new SimpleDateFormat("HH", Locale.KOREA); // í˜„ì œì‹œê°
 
-	private static final SimpleDateFormat ss = new SimpleDateFormat("MM-dd HH:mm", Locale.KOREA); // ¿ÀÇÂ³¯Â¥½Ã°£
+	private static final SimpleDateFormat ss = new SimpleDateFormat("MM-dd HH:mm", Locale.KOREA); // ì˜¤í”ˆë‚ ì§œì‹œê°„
 
 	public static GomuSystem1 getInstance() {
 		if (_instance == null) {
@@ -47,34 +47,34 @@ public class GomuSystem1 extends Thread {
 			while (true) {
 				Thread.sleep(1000);
 	
-				/** ¿ÀÇÂ **/
+				/** ì˜¤í”ˆ **/
 				if (!isOpenDevil1())
 					continue;
 				if (L1World.getInstance().getAllPlayers().size() <= 0)
 					continue;
 
-				/** ¿ÀÇÂ ¸Ş¼¼Áö **/
-				System.out.println("¿ëÀÇ½°ÅÍ ¿ÀÇÂ");
-				L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "»ç³ÉÅÍ ¾Ë¸²: ¿ëÀÇ½°ÅÍ°¡ ¿­·È½À´Ï´Ù."));
-				L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("»ç³ÉÅÍ ¾Ë¸²: ¿ëÀÇ½°ÅÍ°¡ ¿­·È½À´Ï´Ù."));
-				L1World.getInstance().broadcastServerMessage("\\fW»ç³ÉÅÍ ¾Ë¸²: ¿ëÀÇ½°ÅÍ°¡ ¿­·È½À´Ï´Ù!");
+				/** ì˜¤í”ˆ ë©”ì„¸ì§€ **/
+				System.out.println("ìš©ì˜ì‰¼í„° ì˜¤í”ˆ");
+				L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "ì‚¬ëƒ¥í„° ì•Œë¦¼: ìš©ì˜ì‰¼í„°ê°€ ì—´ë ¸ìŠµë‹ˆë‹¤."));
+				L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ì‚¬ëƒ¥í„° ì•Œë¦¼: ìš©ì˜ì‰¼í„°ê°€ ì—´ë ¸ìŠµë‹ˆë‹¤."));
+				L1World.getInstance().broadcastServerMessage("\\fWì‚¬ëƒ¥í„° ì•Œë¦¼: ìš©ì˜ì‰¼í„°ê°€ ì—´ë ¸ìŠµë‹ˆë‹¤!");
 
-				/** ¾Ç¸¶¿Õ¿µÅä ½ÃÀÛ **/
+				/** ì•…ë§ˆì™•ì˜í†  ì‹œì‘ **/
 				setDevilStart1(true);
 
-				/** ½ÇÇà 1½Ã°£ ½ÃÀÛ **/
+				/** ì‹¤í–‰ 1ì‹œê°„ ì‹œì‘ **/
 
-				//Thread.sleep(3600000L); // 3800000L 1½Ã°£ 10ºĞÁ¤µµ
-				Thread.sleep(3600000L); // 3800000L 1½Ã°£ 10ºĞÁ¤µµ
-				//Ä«¿îÆ®´Ù¿î();
+				//Thread.sleep(3600000L); // 3800000L 1ì‹œê°„ 10ë¶„ì •ë„
+				Thread.sleep(3600000L); // 3800000L 1ì‹œê°„ 10ë¶„ì •ë„
+				//ì¹´ìš´íŠ¸ë‹¤ìš´();
 				//Thread.sleep(10000L);
-				/** 1½Ã°£ ÈÄ ÀÚµ¿ ÅÚ·¹Æ÷Æ® **/
+				/** 1ì‹œê°„ í›„ ìë™ í…”ë ˆí¬íŠ¸ **/
 				TelePort();
-				close(); // Ãß°¡(²À¿©±â¿¡ÇÏ»ï)
+				close(); // ì¶”ê°€(ê¼­ì—¬ê¸°ì—í•˜ì‚¼)
 				Thread.sleep(5000L);
 				TelePort2();
 
-				/** Á¾·á **/
+				/** ì¢…ë£Œ **/
 				End();
 			}
 
@@ -83,7 +83,7 @@ public class GomuSystem1 extends Thread {
 		}
 	}
 
-//	private void Ä«¿îÆ®´Ù¿î() {
+//	private void ì¹´ìš´íŠ¸ë‹¤ìš´() {
 //		for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 //			pc.sendPackets(new S_PacketBox(S_PacketBox.MINIGAME_10SECOND_COUNT));
 //		}
@@ -91,22 +91,22 @@ public class GomuSystem1 extends Thread {
 //	}
 
 	/**
-	 * ¿ÀÇÂ ½Ã°¢À» °¡Á®¿Â´Ù
+	 * ì˜¤í”ˆ ì‹œê°ì„ ê°€ì ¸ì˜¨ë‹¤
 	 *
-	 * @return (Strind) ¿ÀÇÂ ½Ã°¢(MM-dd HH:mm)
+	 * @return (Strind) ì˜¤í”ˆ ì‹œê°(MM-dd HH:mm)
 	 */
-	public String DevilOpenTime1() { // ÀÏ´Ü ¼öÁ¤ ÇØº½
+	public String DevilOpenTime1() { // ì¼ë‹¨ ìˆ˜ì • í•´ë´„
 		Calendar c = Calendar.getInstance();
 		c.setTimeInMillis(sTime);
 		return ss.format(c.getTime());
 	}
 
 	/**
-	 * ¿µÅä°¡ ¿­·ÁÀÖ´ÂÁö È®ÀÎ
+	 * ì˜í† ê°€ ì—´ë ¤ìˆëŠ”ì§€ í™•ì¸
 	 *
-	 * @return (boolean) ¿­·ÁÀÖ´Ù¸é true ´İÇôÀÖ´Ù¸é false
+	 * @return (boolean) ì—´ë ¤ìˆë‹¤ë©´ true ë‹«í˜€ìˆë‹¤ë©´ false
 	 */
-	private boolean isOpenDevil1() { // ÀÏ´Ü ¼öÁ¤ ÇØº½
+	private boolean isOpenDevil1() { // ì¼ë‹¨ ìˆ˜ì • í•´ë´„
 		NowTime = getTime();
 		if ((Integer.parseInt(NowTime) % LOOP) == 0)
 			return true;
@@ -114,23 +114,23 @@ public class GomuSystem1 extends Thread {
 	}
 
 	/**
-	 * ½ÇÁ¦ ÇöÀç½Ã°¢À» °¡Á®¿Â´Ù
+	 * ì‹¤ì œ í˜„ì¬ì‹œê°ì„ ê°€ì ¸ì˜¨ë‹¤
 	 *
-	 * @return (String) ÇöÀç ½Ã°¢(HH:mm)
+	 * @return (String) í˜„ì¬ ì‹œê°(HH:mm)
 	 */
 	private String getTime() {
 		return s.format(Calendar.getInstance().getTime());
 	}
 
-	/** ¾Æµ§¸¶À»·Î ÆÃ±â°Ô **/
+	/** ì•„ë´ë§ˆì„ë¡œ íŒ…ê¸°ê²Œ **/
 	private void TelePort() {
 		for (L1PcInstance c : L1World.getInstance().getAllPlayers()) {
 			switch (c.getMap().getId()) {
-			case 508: // °í¹« mapid
+			case 508: // ê³ ë¬´ mapid
 				c.stopHpRegenerationByDoll();
 				c.stopMpRegenerationByDoll();
 				L1Teleport.teleport(c, 33442, 32818, (short)4, c.getMoveState().getHeading(), true);	
-				c.sendPackets(new S_SystemMessage("¿ëÀÇ½°ÅÍ°¡ ´İÇû½À´Ï´Ù."));
+				c.sendPackets(new S_SystemMessage("ìš©ì˜ì‰¼í„°ê°€ ë‹«í˜”ìŠµë‹ˆë‹¤."));
 				break;
 			default:
 				break;
@@ -138,7 +138,7 @@ public class GomuSystem1 extends Thread {
 		}
 	}
 
-	/** ¾Æµ§¸¶À»·Î ÆÃ±â°Ô **/
+	/** ì•„ë´ë§ˆì„ë¡œ íŒ…ê¸°ê²Œ **/
 	private void TelePort2() {
 		for (L1PcInstance c : L1World.getInstance().getAllPlayers()) {
 			switch (c.getMap().getId()) {
@@ -146,7 +146,7 @@ public class GomuSystem1 extends Thread {
 				c.stopHpRegenerationByDoll();
 				c.stopMpRegenerationByDoll();
 				L1Teleport.teleport(c, 33442, 32818, (short)4, c.getMoveState().getHeading(), true);	
-				c.sendPackets(new S_SystemMessage("¿ëÀÇ½°ÅÍ°¡ ´İÇû½À´Ï´Ù."));
+				c.sendPackets(new S_SystemMessage("ìš©ì˜ì‰¼í„°ê°€ ë‹«í˜”ìŠµë‹ˆë‹¤."));
 				break;
 			default:
 				break;
@@ -154,7 +154,7 @@ public class GomuSystem1 extends Thread {
 		}
 	}
 
-	/** Ä³¸¯ÅÍ°¡ Á×¾ú´Ù¸é Á¾·á½ÃÅ°±â **/
+	/** ìºë¦­í„°ê°€ ì£½ì—ˆë‹¤ë©´ ì¢…ë£Œì‹œí‚¤ê¸° **/
 	private void close() {
 		for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 			if (pc.getMap().getId() == 72 && pc.isDead()) {
@@ -165,13 +165,13 @@ public class GomuSystem1 extends Thread {
 		}
 	}
 
-	/** Á¾·á **/
+	/** ì¢…ë£Œ **/
 	private void End() {
 		TelePort();
-		close(); //Ãß°¡
-		L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, " ¿ëÀÇ½°ÅÍ°¡ ´İÇû½À´Ï´Ù. 3½Ã°£µÚ¿¡ ´Ù½Ã ¿­¸³´Ï´Ù."));
-		L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(" ¿ëÀÇ½°ÅÍ°¡ ´İÇû½À´Ï´Ù. 3½Ã°£µÚ¿¡ ´Ù½Ã ¿­¸³´Ï´Ù."));
-		L1World.getInstance().broadcastServerMessage("\\fW¿ëÀÇ½°ÅÍ°¡ ´İÇû½À´Ï´Ù. »ç¶óÁ³½À´Ï´Ù. 3½Ã°£µÚ¿¡ ´Ù½Ã ¿­¸³´Ï´Ù.");
+		close(); //ì¶”ê°€
+		L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, " ìš©ì˜ì‰¼í„°ê°€ ë‹«í˜”ìŠµë‹ˆë‹¤. 3ì‹œê°„ë’¤ì— ë‹¤ì‹œ ì—´ë¦½ë‹ˆë‹¤."));
+		L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(" ìš©ì˜ì‰¼í„°ê°€ ë‹«í˜”ìŠµë‹ˆë‹¤. 3ì‹œê°„ë’¤ì— ë‹¤ì‹œ ì—´ë¦½ë‹ˆë‹¤."));
+		L1World.getInstance().broadcastServerMessage("\\fWìš©ì˜ì‰¼í„°ê°€ ë‹«í˜”ìŠµë‹ˆë‹¤. ì‚¬ë¼ì¡ŒìŠµë‹ˆë‹¤. 3ì‹œê°„ë’¤ì— ë‹¤ì‹œ ì—´ë¦½ë‹ˆë‹¤.");
 		setDevilStart1(false);
 	}
 }

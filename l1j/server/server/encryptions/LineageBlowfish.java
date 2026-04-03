@@ -1,4 +1,4 @@
-package l1j.server.server.encryptions;
+﻿package l1j.server.server.encryptions;
 
 import server.netty.coder.type.UChar8;
 import server.netty.coder.type.ULong32;

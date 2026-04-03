@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -38,7 +38,7 @@ public class S_RetrievePledgeList extends ServerBasePacket {
 		ClanWarehouse clanWarehouse = WarehouseManager.getInstance().getClanWarehouse(clan.getClanName());
 
 		if(!clanWarehouse.lock(pc.getId())) {
-			// \f1 Ç÷¸Í¿øÀÌ Ã¢°í¸¦ »ç¿ëÁßÀÔ´Ï´Ù.´çºĞ°£ Áö³ª°í ³ª¼­ ÀÌ¿ëÇØ ÁÖ¼¼¿ä.
+			// \f1 í˜ˆë§¹ì›ì´ ì°½ê³ ë¥¼ ì‚¬ìš©ì¤‘ì…ë‹ˆë‹¤.ë‹¹ë¶„ê°„ ì§€ë‚˜ê³  ë‚˜ì„œ ì´ìš©í•´ ì£¼ì„¸ìš”.
 			pc.sendPackets(new S_ServerMessage(209));
 			return;
 		}
@@ -50,7 +50,7 @@ public class S_RetrievePledgeList extends ServerBasePacket {
 				writeC(Opcodes.S_OPCODE_SHOWRETRIEVELIST);
 				writeD(objid);
 				writeH(size);
-				writeC(5); // Ç÷¸Í Ã¢°í
+				writeC(5); // í˜ˆë§¹ ì°½ê³ 
 				L1ItemInstance item = null;
 				for (Object itemObject : clanWarehouse.getItems()) {
 					item = (L1ItemInstance) itemObject;
@@ -64,7 +64,7 @@ public class S_RetrievePledgeList extends ServerBasePacket {
 				}
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(263)); // \f1ÇÑ»ç¶÷ÀÇ Ä³¸¯ÅÍ°¡ °¡Áö°í °ÉÀ» ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀº ÃÖ´ë 180°³±îÁöÀÔ´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(263)); // \f1í•œì‚¬ëŒì˜ ìºë¦­í„°ê°€ ê°€ì§€ê³  ê±¸ì„ ìˆ˜ ìˆëŠ” ì•„ì´í…œì€ ìµœëŒ€ 180ê°œê¹Œì§€ì…ë‹ˆë‹¤.
 		}
 	}
 

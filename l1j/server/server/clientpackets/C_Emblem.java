@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -78,7 +78,7 @@ public class C_Emblem extends ClientBasePacket {
 				//L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(),pc.getMoveState().getHeading(), false);	
 				pc.sendPackets(new S_ReturnedStat(pc.getId(), newEmblemId));
 				Broadcaster.broadcastPacket(pc, new S_ReturnedStat(pc.getId(), newEmblemId));
-				pc.sendPackets(new S_SystemMessage("Ç÷¸¶Å©°¡ º¯°æµÇ¾ú½À´Ï´Ù. ÀçÁ¢ÈÄ¿¡ Àû¿ëµË´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("í˜ˆë§ˆí¬ê°€ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤. ì¬ì ‘í›„ì— ì ìš©ë©ë‹ˆë‹¤."));
 			}
 		}
 	}

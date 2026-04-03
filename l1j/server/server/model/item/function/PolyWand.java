@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -61,7 +61,7 @@ public class PolyWand extends L1ItemInstance{
 			int itemId = this.getItemId();
 			
 			if (pc.getMapId() == 5153 ) {
-				pc.sendPackets(new S_SystemMessage("¹èÆ²Á¸¿¡¼­´Â º¯½Å °ü·Ã ¾ÆÀÌÅÛÀ» »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ë°°í‹€ì¡´ì—ì„œëŠ” ë³€ì‹  ê´€ë ¨ ì•„ì´í…œì„ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
 			String polyName = null;
@@ -81,7 +81,7 @@ public class PolyWand extends L1ItemInstance{
 			if (pc.getMapId() == 63 || pc.getMapId() == 552
 					|| pc.getMapId() == 555 || pc.getMapId() == 557
 					|| pc.getMapId() == 558
-					|| pc.getMapId() == 779){ // HC4f¡¤¹èÀÇ ¹¦Áö ¼öÁß¿¡¼­´Â »ç¿ë ºÒ°¡
+					|| pc.getMapId() == 779){ // HC4fÂ·ë°°ì˜ ë¬˜ì§€ ìˆ˜ì¤‘ì—ì„œëŠ” ì‚¬ìš© ë¶ˆê°€
 				pc.sendPackets(new S_ServerMessage(563));
 			} else {
 				int heding = CharPosUtil.targetDirection(pc, spellsc_x, spellsc_y);
@@ -151,14 +151,14 @@ public class PolyWand extends L1ItemInstance{
 				if (!pc.isShapeChange()) {
 					pc.setShapeChange(true);
 				}
-				pc.sendPackets(new S_ServerMessage(966)); // string-j.tbl:968ÇàÂ°
-				// ¸¶¹ıÀÇ Èû¿¡ ÀÇÇØ º¸È£µË´Ï´Ù.
-				// º¯½Å¶§ÀÇ ¸Ş¼¼Áö´Â, Å¸ÀÎÀÌ ÀÚ½ÅÀ» º¯½Å½ÃÄ×À» ¶§¿¡ ³ª¿À´Â ¸Ş¼¼Áö¿Í ·¹º§ÀÌ ºÎÁ·ÇÒ ¶§¿¡ ³ª¿À´Â ¸Ş¼¼Áö ÀÌ¿Ü´Â ¾ø½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(966)); // string-j.tbl:968í–‰ì§¸
+				// ë§ˆë²•ì˜ í˜ì— ì˜í•´ ë³´í˜¸ë©ë‹ˆë‹¤.
+				// ë³€ì‹ ë•Œì˜ ë©”ì„¸ì§€ëŠ”, íƒ€ì¸ì´ ìì‹ ì„ ë³€ì‹ ì‹œì¼°ì„ ë•Œì— ë‚˜ì˜¤ëŠ” ë©”ì„¸ì§€ì™€ ë ˆë²¨ì´ ë¶€ì¡±í•  ë•Œì— ë‚˜ì˜¤ëŠ” ë©”ì„¸ì§€ ì´ì™¸ëŠ” ì—†ìŠµë‹ˆë‹¤.
 			} else {
 				L1Skills skillTemp = SkillsTable.getInstance().getTemplate(SHAPE_CHANGE);
 				L1PolyMorph.doPoly(pc, polyId, skillTemp.getBuffDuration(), L1PolyMorph.MORPH_BY_ITEMMAGIC);
 				if (attacker.getId() != pc.getId()) {
-					pc.sendPackets(new S_ServerMessage(241, attacker.getName())); // %0°¡ ´ç½ÅÀ» º¯½Å½ÃÄ×½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(241, attacker.getName())); // %0ê°€ ë‹¹ì‹ ì„ ë³€ì‹ ì‹œì¼°ìŠµë‹ˆë‹¤.
 				}
 			}
 		} else if (cha instanceof L1MonsterInstance) {

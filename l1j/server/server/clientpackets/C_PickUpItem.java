@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -71,10 +71,10 @@ public class C_PickUpItem extends ClientBasePacket {
 		}
 		if (pc.isInvisble()) {
 			return;
-		} // ÀÎºñÁö »óÅÂ
+		} // ì¸ë¹„ì§€ ìƒíƒœ
 		if (pc.isInvisDelay()) {
 			return;
-		} // ÀÎºñÁöµğ·¹ÀÌ »óÅÂ
+		} // ì¸ë¹„ì§€ë””ë ˆì´ ìƒíƒœ
 		if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ABSOLUTE_BARRIER)) {
 			return;
 		}
@@ -83,7 +83,7 @@ public class C_PickUpItem extends ClientBasePacket {
 
 		if (object != null && !pc.isDead()) {
 			L1ItemInstance item = (L1ItemInstance) object;
-			// Åä±Û½Ã¿¡ ¾ÆÀÌÅÛ »èÁ¦½Ã°£À» ÃÊ±âÈ­ ÇÑ´Ù.
+			// í† ê¸€ì‹œì— ì•„ì´í…œ ì‚­ì œì‹œê°„ì„ ì´ˆê¸°í™” í•œë‹¤.
 			item.init_DeleteItemTime();
 
 			if (item.getItemOwner() != null) {
@@ -129,18 +129,18 @@ public class C_PickUpItem extends ClientBasePacket {
 				if (inventoryItem != null) {
 					inventoryItemCount = inventoryItem.getCount();
 				}
-				// ÁÖ¿î ÈÄ¿¡ 2 G¸¦ ÃÊ°úÇÏÁö ¾Ê°Ô Ã¼Å©
+				// ì£¼ìš´ í›„ì— 2 Gë¥¼ ì´ˆê³¼í•˜ì§€ ì•Šê²Œ ì²´í¬
 				if ((long) inventoryItemCount + (long) pickupCount > 2000000000L) {
-					pc.sendPackets(new S_ServerMessage(166, // \f1%0ÀÌ%4%1%3%2
-							"¼ÒÁöÇÏ°í ÀÖ´Â ¾Æµ¥³ª", "2,000,000,000À» ÃÊ°úÇÏ¹Ç·Î ÁÖ¿ï ¼ö ¾ø½À´Ï´Ù."));
+					pc.sendPackets(new S_ServerMessage(166, // \f1%0ì´%4%1%3%2
+							"ì†Œì§€í•˜ê³  ìˆëŠ” ì•„ë°ë‚˜", "2,000,000,000ì„ ì´ˆê³¼í•˜ë¯€ë¡œ ì£¼ìš¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 					return;
 				}
 			}
-			// ¿ë·® Áß·® È®ÀÎ ¹× ¸Ş¼¼Áö ¼Û½Å
+			// ìš©ëŸ‰ ì¤‘ëŸ‰ í™•ì¸ ë° ë©”ì„¸ì§€ ì†¡ì‹ 
 			if (pc.getInventory().checkAddItem(item, pickupCount) == L1Inventory.OK) {
 				if (item.getX() != 0 && item.getY() != 0) {
 					if (pc.isInParty()) {
-						// ÀÚµ¿ºĞ¹è Å¸ÀÔÀÎ°¡?
+						// ìë™ë¶„ë°° íƒ€ì…ì¸ê°€?
 						if (pc.getParty().getLeader().getPartyType() == 1 && item.isDropMobId() != 0) {
 							List<L1PcInstance> _membersList = new ArrayList<L1PcInstance>();
 							_membersList.add(pc);
@@ -149,11 +149,11 @@ public class C_PickUpItem extends ClientBasePacket {
 									_membersList.add(realUser);
 								}
 							}
-							// ·£´ıÀ¸·Î ´©±¸ ÇÑÅ× °¥²«Áö ¤»
+							// ëœë¤ìœ¼ë¡œ ëˆ„êµ¬ í•œí…Œ ê°ˆê»€ì§€ ã…‹
 							int luckuyNum = _random.nextInt(_membersList.size());
 							L1PcInstance luckyUser = _membersList.get(luckuyNum);
 
-							// ¾Æµ¥³ª ÀÎ°¡?
+							// ì•„ë°ë‚˜ ì¸ê°€?
 							if (item.getItemId() == L1ItemId.ADENA) {
 								int divAden = pickupCount / _membersList.size();
 								if (_membersList.size() > 1) {
@@ -183,7 +183,7 @@ public class C_PickUpItem extends ClientBasePacket {
 								}
 
 							}
-							// ¾Æ´Ï¸é ´Ù¸¥ ¾ÆÀÌÅÛÀÎ°¡?
+							// ì•„ë‹ˆë©´ ë‹¤ë¥¸ ì•„ì´í…œì¸ê°€?
 							else {
 								groundInventory.tradeItem(item, pickupCount, luckyUser.getInventory());
 								if (item.isDropMobId() != 0) {
@@ -199,7 +199,7 @@ public class C_PickUpItem extends ClientBasePacket {
 								}
 							}
 						}
-						// ¾Æ´Ï¸é ±×³ÉÀÎ°¡?
+						// ì•„ë‹ˆë©´ ê·¸ëƒ¥ì¸ê°€?
 						else {
 							groundInventory.tradeItem(item, pickupCount, pc.getInventory());
 							if (item.isDropMobId() != 0) {
@@ -214,7 +214,7 @@ public class C_PickUpItem extends ClientBasePacket {
 							}
 						}
 						pc.getLight().turnOnOffLight();
-					} else { // ÆÄÆ¼°¡¾Æ´Ò½Ã
+					} else { // íŒŒí‹°ê°€ì•„ë‹ì‹œ
 						groundInventory.tradeItem(item, pickupCount, pc.getInventory());
 						pc.getLight().turnOnOffLight();
 					}
@@ -231,14 +231,14 @@ public class C_PickUpItem extends ClientBasePacket {
 					if (item.getItemId() == Integer.parseInt(pickup_item[i])) {
 						String men = "";
 						if (Config.PickUpItem_UserName)
-							men = "" + pc.getName() + " ´Ô²²¼­";
+							men = "" + pc.getName() + " ë‹˜ê»˜ì„œ";
 						else
-							men = "´©±º°¡°¡";
+							men = "ëˆ„êµ°ê°€ê°€";
 
 						String itemName = item.getViewName();
 						if (itemName == null)
 							itemName = item.getName();
-						String message = String.format("" + men + "\\fH %s\\f2À»(¸¦) È¹µæÇÏ¿´½À´Ï´Ù.", itemName);
+						String message = String.format("" + men + "\\fH %s\\f2ì„(ë¥¼) íšë“í•˜ì˜€ìŠµë‹ˆë‹¤.", itemName);
 						L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, message));
 						L1World.getInstance().broadcastPacketToAll(new S_SystemMessage(message));
 					}

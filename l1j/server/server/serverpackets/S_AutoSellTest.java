@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -40,11 +40,11 @@ import l1j.server.server.templates.L1Item;
 public class S_AutoSellTest extends ServerBasePacket {
 
     public S_AutoSellTest(L1PcInstance pc, int npcId) {
-        pc._ÀÚµ¿ÆÇ¸ÅÃÊÀÌ½º¸®½ºÆ® = new ArrayList<>();
+        pc._ìë™íŒë§¤ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸ = new ArrayList<>();
         Map<Integer, Integer> npcItemPriceMap = getItemsWithPrice(npcId);
         L1ItemInstance dummy = new L1ItemInstance();
         L1Item template = null;
-        // ÀÚµ¿ÆÇ¸Å Á¶°Ç ÇÊÅÍ
+        // ìë™íŒë§¤ ì¡°ê±´ í•„í„°
 		for (L1ItemInstance item : pc.getInventory().getItems()) {
 			if (!npcItemPriceMap.containsKey(item.getItem().getItemId()))
 				continue;
@@ -57,20 +57,20 @@ public class S_AutoSellTest extends ServerBasePacket {
 			if (item.getItemId() == L1ItemId.ADENA)
 				continue;
 
-			pc._ÀÚµ¿ÆÇ¸ÅÃÊÀÌ½º¸®½ºÆ®.add(item);
+			pc._ìë™íŒë§¤ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.add(item);
 		}
 
-        int size = pc._ÀÚµ¿ÆÇ¸ÅÃÊÀÌ½º¸®½ºÆ®.size();
+        int size = pc._ìë™íŒë§¤ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.size();
         writeC(Opcodes.S_OPCODE_SHOWSHOPBUYLIST);
-        writeD(-1); // NPC ObjId ´ë½Å -1 »ç¿ë
+        writeD(-1); // NPC ObjId ëŒ€ì‹  -1 ì‚¬ìš©
         writeH(size);
 
-        for (L1ItemInstance item : pc._ÀÚµ¿ÆÇ¸ÅÃÊÀÌ½º¸®½ºÆ®) {
+        for (L1ItemInstance item : pc._ìë™íŒë§¤ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸) {
             int price = npcItemPriceMap.get(item.getItem().getItemId());
-            writeD(item.getId());              // ¿ÀºêÁ§Æ® ID
-            writeH(item.get_gfxid());          // ¾ÆÀÌÅÛ ¾ÆÀÌÄÜ
-            writeD(price);                     // ¾ÆÀÌÅÛ °¡°İ
-            writeS(item.getViewName());        // ¾ÆÀÌÅÛ ÀÌ¸§
+            writeD(item.getId());              // ì˜¤ë¸Œì íŠ¸ ID
+            writeH(item.get_gfxid());          // ì•„ì´í…œ ì•„ì´ì½˜
+            writeD(price);                     // ì•„ì´í…œ ê°€ê²©
+            writeS(item.getViewName());        // ì•„ì´í…œ ì´ë¦„
             
             template = ItemTable
     				.getInstance().getTemplate(item.getItemId());

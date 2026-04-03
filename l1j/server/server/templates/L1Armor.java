@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -30,10 +30,10 @@ public class L1Armor extends L1Item {
 	private int _ac = 0;
 	private int _damageReduction = 0;
 	private int _weightReduction = 0;
-	private int _Hitup = 0; // ¡Ü ±ÙÁ¢¹«±â ¸íÁß·ü
-	private int _Dmgup = 0; // ¡Ü ±ÙÁ¢¹«±â ÃßÅ¸À²
-	private int _bowHitup = 0; // ¡Ü È°ÀÇ ¸íÁßÀ²
-	private int _bowDmgup = 0; // ¡Ü È°ÀÇ ÃßÅ¸À²
+	private int _Hitup = 0; // â— ê·¼ì ‘ë¬´ê¸° ëª…ì¤‘ë¥ 
+	private int _Dmgup = 0; // â— ê·¼ì ‘ë¬´ê¸° ì¶”íƒ€ìœ¨
+	private int _bowHitup = 0; // â— í™œì˜ ëª…ì¤‘ìœ¨
+	private int _bowDmgup = 0; // â— í™œì˜ ì¶”íƒ€ìœ¨
 	private int _defense_water = 0;
 	private int _defense_wind = 0;
 	private int _defense_fire = 0;

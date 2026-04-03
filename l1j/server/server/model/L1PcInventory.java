@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,7 +47,7 @@ import l1j.server.server.templates.L1Item;
 
 public class L1PcInventory extends L1Inventory {
 
-	/** ³¯Â¥ ¹× ½Ã°£ ±â·Ï **/
+	/** ë‚ ì§œ ë° ì‹œê°„ ê¸°ë¡ **/
 	Calendar rightNow = Calendar.getInstance();
 	int day = rightNow.get(Calendar.DATE);
 	int hour = rightNow.get(Calendar.HOUR);
@@ -86,12 +86,12 @@ public class L1PcInventory extends L1Inventory {
 		return _owner;
 	}
 
-	// 240´Ü°èÀÇ ¹«°Ô ´ÜÀ§
+	// 240ë‹¨ê³„ì˜ ë¬´ê²Œ ë‹¨ìœ„
 	public int getWeight240() {
 		return calcWeight240(getWeight());
 	}
 
-	// 240´Ü°èÀÇ ¹«°Ô¸¦ °è»êÇÑ´Ù
+	// 240ë‹¨ê³„ì˜ ë¬´ê²Œë¥¼ ê³„ì‚°í•œë‹¤
 	public int calcWeight240(int weight) {
 		int weight240 = 0;
 		if (Config.RATE_WEIGHT_LIMIT != 0) {
@@ -105,7 +105,7 @@ public class L1PcInventory extends L1Inventory {
 				wpTemp = Math.round(wpTemp);
 				weight240 = (int) (wpTemp);
 			}
-		} else { // ¿şÀÌÆ® ·¹ÀÌÆ®°¡ 0ÀÌ¶ó¸é Áß·® Ç×»ó 0
+		} else { // ì›¨ì´íŠ¸ ë ˆì´íŠ¸ê°€ 0ì´ë¼ë©´ ì¤‘ëŸ‰ í•­ìƒ 0
 			weight240 = 0;
 		}
 		return weight240;
@@ -132,13 +132,13 @@ public class L1PcInventory extends L1Inventory {
 		int weight = getWeight() + item.getItem().getWeight() * count / 1000 + 1;
 		if (weight < 0 || (item.getItem().getWeight() * count / 1000) < 0) {
 			if (message) {
-				sendOverMessage(82); // ¾ÆÀÌÅÛÀÌ ³Ê¹« ¹«°Å¿ö, ´õ ÀÌ»ó °¡Áú ¼ö ¾ø½À´Ï´Ù.
+				sendOverMessage(82); // ì•„ì´í…œì´ ë„ˆë¬´ ë¬´ê±°ì›Œ, ë” ì´ìƒ ê°€ì§ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			}
 			return WEIGHT_OVER;
 		}
 		if (calcWeight240(weight) >= 240) {
 			if (message) {
-				sendOverMessage(82); // ¾ÆÀÌÅÛÀÌ ³Ê¹« ¹«°Å¿ö, ´õ ÀÌ»ó °¡Áú ¼ö ¾ø½À´Ï´Ù.
+				sendOverMessage(82); // ì•„ì´í…œì´ ë„ˆë¬´ ë¬´ê±°ì›Œ, ë” ì´ìƒ ê°€ì§ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			}
 			return WEIGHT_OVER;
 		}
@@ -146,8 +146,8 @@ public class L1PcInventory extends L1Inventory {
 		L1ItemInstance itemExist = findItemId(item.getItemId());
 		if (itemExist != null && (itemExist.getCount() + count) > MAX_AMOUNT) {
 			if (message) {
-				getOwner().sendPackets(new S_ServerMessage(166, "¼ÒÁöÇÏ°í ÀÖ´Â ¾Æµ¥³ª",
-				"2,000,000,000À» ÃÊ°úÇÏ°í ÀÖ½À´Ï´Ù.")); // \f1%0ÀÌ%4%1%3%2
+				getOwner().sendPackets(new S_ServerMessage(166, "ì†Œì§€í•˜ê³  ìˆëŠ” ì•„ë°ë‚˜",
+				"2,000,000,000ì„ ì´ˆê³¼í•˜ê³  ìˆìŠµë‹ˆë‹¤.")); // \f1%0ì´%4%1%3%2
 			}
 			return AMOUNT_OVER;
 		}
@@ -159,7 +159,7 @@ public class L1PcInventory extends L1Inventory {
 		_owner.sendPackets(new S_ServerMessage(message_id));
 	}
 
-	// DBÀÇ character_itemsÀÇ µ¶ÀÔ
+	// DBì˜ character_itemsì˜ ë…ì…
 	@Override
 	public void loadItems() {
 		try {
@@ -179,12 +179,12 @@ public class L1PcInventory extends L1Inventory {
 		}
 	}
 
-	// DBÀÇ character_items¿¡ µî·Ï
+	// DBì˜ character_itemsì— ë“±ë¡
 	@Override
 	public void insertItem(L1ItemInstance item) {
-//		System.out.println("¿©±â");
+//		System.out.println("ì—¬ê¸°");
 //		if (item.getItem().getItemId() == 40308) {
-//			System.out.println("¾Æµ¥³ªÁõ°¡");
+//			System.out.println("ì•„ë°ë‚˜ì¦ê°€");
 //		}
 		_owner.sendPackets(new S_AddItem(item));
 		if (item.getItem().getWeight() != 0) {
@@ -236,12 +236,12 @@ public class L1PcInventory extends L1Inventory {
 	}
 	
 	/**
-	 * ¸ñ·Ï³»ÀÇ ¾ÆÀÌÅÛ »óÅÂ¸¦ °»½ÅÇÑ´Ù.
+	 * ëª©ë¡ë‚´ì˜ ì•„ì´í…œ ìƒíƒœë¥¼ ê°±ì‹ í•œë‹¤.
 	 * 
 	 * @param item -
-	 *            °»½Å ´ë»óÀÇ ¾ÆÀÌÅÛ
+	 *            ê°±ì‹  ëŒ€ìƒì˜ ì•„ì´í…œ
 	 * @param column -
-	 *            °»½ÅÇÏ´Â ½ºÅ×ÀÌÅÍ½ºÀÇ Á¾·ù
+	 *            ê°±ì‹ í•˜ëŠ” ìŠ¤í…Œì´í„°ìŠ¤ì˜ ì¢…ë¥˜
 	 */
 	@Override
 	public void updateItem(L1ItemInstance item, int column) {
@@ -253,7 +253,7 @@ public class L1PcInventory extends L1Inventory {
 			this._owner.sendPackets(new S_ItemColor(item));
 			column -= 512;
 		}
-		if (column >= COL_REMAINING_TIME) { // »ç¿ë °¡´ÉÇÑ ³²Àº ½Ã°£
+		if (column >= COL_REMAINING_TIME) { // ì‚¬ìš© ê°€ëŠ¥í•œ ë‚¨ì€ ì‹œê°„
 			_owner.sendPackets(new S_ItemName(item));
 			column -= COL_REMAINING_TIME;
 		}
@@ -261,12 +261,12 @@ public class L1PcInventory extends L1Inventory {
 			_owner.sendPackets(new S_ItemName(item));
 			column -= COL_TRADE_CHA;
 		}
-		if (column >= COL_CHARGE_COUNT) { // »ç¿ë °¡´ÉÇÑ È½¼ö
+		if (column >= COL_CHARGE_COUNT) { // ì‚¬ìš© ê°€ëŠ¥í•œ íšŸìˆ˜
 			_owner.sendPackets(new S_ItemName(item));
 			//_owner.sendPackets(new S_ItemAmount(item));
 			column -= COL_CHARGE_COUNT;
 		}
-		if (column >= COL_ITEMID) {	// ´Ù¸¥ ¾ÆÀÌÅÛÀÌ µÇ´Â °æ¿ì(ÆíÁöÁö¸¦ °³ºÀÇßÀ» ¶§ µî)
+		if (column >= COL_ITEMID) {	// ë‹¤ë¥¸ ì•„ì´í…œì´ ë˜ëŠ” ê²½ìš°(í¸ì§€ì§€ë¥¼ ê°œë´‰í–ˆì„ ë•Œ ë“±)
 			_owner.sendPackets(new S_ItemStatus(item));
 			_owner.sendPackets(new S_ItemColor(item));
 			_owner.sendPackets(new S_PacketBox(
@@ -284,7 +284,7 @@ public class L1PcInventory extends L1Inventory {
 		if (column >= COL_DELAY_EFFECT) {
 			column -= COL_DELAY_EFFECT;
 		}
-		if (column >= COL_COUNT) {// Ä«¿îÆ®
+		if (column >= COL_COUNT) {// ì¹´ìš´íŠ¸
 			int weight = item.getWeight();
 			if (weight != item.getLastWeight()) {
 				item.setLastWeight(weight);
@@ -294,7 +294,7 @@ public class L1PcInventory extends L1Inventory {
 			}
 			_owner.sendPackets(new S_ItemStatus(item));
 			if (item.getItem().getWeight() != 0) {
-				// ¹«°Ô°¡ º¯ÇÏÁö ¾Ê¾ÒÀ» °æ¿ì ±×³É º¸³»µµ µÈ´Ù.
+				// ë¬´ê²Œê°€ ë³€í•˜ì§€ ì•Šì•˜ì„ ê²½ìš° ê·¸ëƒ¥ ë³´ë‚´ë„ ëœë‹¤.
 				_owner.sendPackets(new S_PacketBox(
 						S_PacketBox.WEIGHT, getWeight240()));
 			}
@@ -320,12 +320,12 @@ public class L1PcInventory extends L1Inventory {
 	}
 
 	/**
-	 * ¸ñ·Ï³»ÀÇ ¾ÆÀÌÅÛ »óÅÂ¸¦ DB¿¡ º¸Á¸ÇÑ´Ù.
+	 * ëª©ë¡ë‚´ì˜ ì•„ì´í…œ ìƒíƒœë¥¼ DBì— ë³´ì¡´í•œë‹¤.
 	 * 
 	 * @param item -
-	 *            °»½Å ´ë»óÀÇ ¾ÆÀÌÅÛ
+	 *            ê°±ì‹  ëŒ€ìƒì˜ ì•„ì´í…œ
 	 * @param column -
-	 *            °»½ÅÇÏ´Â ½ºÅ×ÀÌÅÍ½ºÀÇ Á¾·ù
+	 *            ê°±ì‹ í•˜ëŠ” ìŠ¤í…Œì´í„°ìŠ¤ì˜ ì¢…ë¥˜
 	 */
 	public void saveItem(L1ItemInstance item, int column) {
 		if (column == 0) {
@@ -396,7 +396,7 @@ public class L1PcInventory extends L1Inventory {
 		}
 	}
 
-	// DBÀÇ character_items·ÎºÎÅÍ »èÁ¦
+	// DBì˜ character_itemsë¡œë¶€í„° ì‚­ì œ
 	@Override
 	public void deleteItem(L1ItemInstance item) {
 		try {
@@ -416,7 +416,7 @@ public class L1PcInventory extends L1Inventory {
 		}
 	}
 
-	// ¾ÆÀÌÅÛÀ» ÀåÂø Å»Âø½ÃÅ²´Ù(L1ItemInstanceÀÇ º¯°æ, º¸Á¤Ä¡ÀÇ ¼³Á¤, character_itemsÀÇ °»½Å, ÆĞÅ¶ ¼Û½Å±îÁö °ü¸®)
+	// ì•„ì´í…œì„ ì¥ì°© íƒˆì°©ì‹œí‚¨ë‹¤(L1ItemInstanceì˜ ë³€ê²½, ë³´ì •ì¹˜ì˜ ì„¤ì •, character_itemsì˜ ê°±ì‹ , íŒ¨í‚· ì†¡ì‹ ê¹Œì§€ ê´€ë¦¬)
 	public void setEquipped(L1ItemInstance item, boolean equipped) {
 		setEquipped(item, equipped, false, false);
 	}
@@ -675,7 +675,7 @@ public class L1PcInventory extends L1Inventory {
 		for (Object itemObject : _items) {
 			item = (L1ItemInstance) itemObject;
 			if (item.isEquipped()) {
-				if (item.getItemId() == 329) { // ¸íÁöÃ³¸®
+				if (item.getItemId() == 329) { // ëª…ì§€ì²˜ë¦¬
 					mpr += item.getEnchantLevel();
 				}
 				mpr += item.getItem().get_addmpr();
@@ -689,10 +689,10 @@ public class L1PcInventory extends L1Inventory {
 	    
 	    for (L1ItemInstance item : _items) {
 	        if (item.getItem().getItemId() == L1ItemId.ADENA) {
-	            continue; // ¾Æµ¥³ª´Â Á¦¿Ü
+	            continue; // ì•„ë°ë‚˜ëŠ” ì œì™¸
 	        }
 	        if (!item.getItem().isTradable()) {
-	            continue; // °Å·¡ ºÒ°¡´ÉÇÑ ¾ÆÀÌÅÛ Á¦¿Ü
+	            continue; // ê±°ë˜ ë¶ˆê°€ëŠ¥í•œ ì•„ì´í…œ ì œì™¸
 	        }
 
 	        boolean isPetItem = false;
@@ -710,7 +710,7 @@ public class L1PcInventory extends L1Inventory {
 	        }
 	    }
 
-	    // ÇÊÅÍ¸µµÈ ¾ÆÀÌÅÛ Áß¿¡¼­ ÇÏ³ª ·£´ı ¼±ÅÃ
+	    // í•„í„°ë§ëœ ì•„ì´í…œ ì¤‘ì—ì„œ í•˜ë‚˜ ëœë¤ ì„ íƒ
 	    Random random = new Random(System.nanoTime());
 	    if (candidateItems.size() > 0) {
 	    	L1ItemInstance penaltyItem = candidateItems.get(random.nextInt(candidateItems.size()));
@@ -720,13 +720,13 @@ public class L1PcInventory extends L1Inventory {
 	   return null;
 	}	
 
-	/** Á¶¿ìÀÇ µ¹°ñ·½ (ÀÎÃ¦Æ® ¾ÆÀÌÅÛ »èÁ¦)
+	/** ì¡°ìš°ì˜ ëŒê³¨ë ˜ (ì¸ì±ˆíŠ¸ ì•„ì´í…œ ì‚­ì œ)
 	 *
 	 * @param itemid 
-	 * 			- Á¦·Ã½Ã ÇÊ¿äÇÑ ¹«±â¹øÈ£
+	 * 			- ì œë ¨ì‹œ í•„ìš”í•œ ë¬´ê¸°ë²ˆí˜¸
 	 * 
 	 * @param enchantLevel 
-	 * 			- Á¦·Ã½Ã ÇÊ¿äÇÑ ¹«±âÀÇ ÀÎÃ¦Æ®·¹º§
+	 * 			- ì œë ¨ì‹œ í•„ìš”í•œ ë¬´ê¸°ì˜ ì¸ì±ˆíŠ¸ë ˆë²¨
 	 */
 	public boolean MakeDeleteEnchant(int itemid, int enchantLevel) {
 		L1ItemInstance item = findItemId(itemid);
@@ -737,13 +737,13 @@ public class L1PcInventory extends L1Inventory {
 		return false;
 	}
 
-	/** Á¶¿ìÀÇ µ¹°ñ·½ (ÀÎÃ¦Æ® ¾ÆÀÌÅÛ °Ë»ç)
+	/** ì¡°ìš°ì˜ ëŒê³¨ë ˜ (ì¸ì±ˆíŠ¸ ì•„ì´í…œ ê²€ì‚¬)
 	 * 
 	 * @param id 
-	 * 			- Á¦·Ã½Ã ÇÊ¿äÇÑ ¹«±â¹øÈ£
+	 * 			- ì œë ¨ì‹œ í•„ìš”í•œ ë¬´ê¸°ë²ˆí˜¸
 	 * 	  
 	 * @param enchantLevel 
-	 * 			- Á¦·Ã½Ã ÇÊ¿äÇÑ ¹«±âÀÇ ÀÎÃ¦Æ® ·¹º§
+	 * 			- ì œë ¨ì‹œ í•„ìš”í•œ ë¬´ê¸°ì˜ ì¸ì±ˆíŠ¸ ë ˆë²¨
 	 *	 
 	 */
 	public boolean MakeCheckEnchant(int id, int enchantLevel) {
@@ -795,7 +795,7 @@ public class L1PcInventory extends L1Inventory {
 
 		return null;
 	}
-	 public int getEnchantCount(int id) {//ÀÎÃ¾ ·¹º§
+	 public int getEnchantCount(int id) {//ì¸ì²¸ ë ˆë²¨
 	        int cnt = 0;
 	        L1ItemInstance item = null;
 	        for (Object itemObject : _items) {

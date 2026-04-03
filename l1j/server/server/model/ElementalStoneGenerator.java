@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -18,9 +18,9 @@ public class ElementalStoneGenerator extends Thread {
 	private static Logger _log = Logger.getLogger(ElementalStoneGenerator.class.getName());
 
 	private static final int ELVEN_FOREST_MAPID = 4;
-	private static final int MAX_COUNT = Config.ELEMENTAL_STONE_AMOUNT; // ¼³Ä¡ °³¼ö
-	private static final int INTERVAL = 3; // ¼³Ä¡ °£°İÃÊ
-	private static final int SLEEP_TIME = 300; // ¼³Ä¡ Á¾·áÈÄ, Àç¼³Ä¡±îÁöÀÇ sleeve ½Ã°£ÃÊ
+	private static final int MAX_COUNT = Config.ELEMENTAL_STONE_AMOUNT; // ì„¤ì¹˜ ê°œìˆ˜
+	private static final int INTERVAL = 3; // ì„¤ì¹˜ ê°„ê²©ì´ˆ
+	private static final int SLEEP_TIME = 300; // ì„¤ì¹˜ ì¢…ë£Œí›„, ì¬ì„¤ì¹˜ê¹Œì§€ì˜ sleeve ì‹œê°„ì´ˆ
 	private static final int FIRST_X = 32911;
 	private static final int FIRST_Y = 32210;
 	private static final int LAST_X = 33141;
@@ -45,14 +45,14 @@ public class ElementalStoneGenerator extends Thread {
 	private final L1Object _dummy = new L1Object();
 
 	/**
-	 * ÁöÁ¤µÈ À§Ä¡¿¡ µ¹À» µÑ ¼ö ÀÖÀ»±î¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ìœ„ì¹˜ì— ëŒì„ ë‘˜ ìˆ˜ ìˆì„ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	private boolean canPut(L1Location loc) {
 		_dummy.setMap(loc.getMap());
 		_dummy.setX(loc.getX());
 		_dummy.setY(loc.getY());
 
-		// °¡½Ã ¹üÀ§ÀÇ ÇÃ·¹ÀÌ¾î Ã¼Å©
+		// ê°€ì‹œ ë²”ìœ„ì˜ í”Œë ˆì´ì–´ ì²´í¬
 		if (L1World.getInstance().getVisiblePlayer(_dummy).size() > 0) {
 			return false;
 		}
@@ -61,7 +61,7 @@ public class ElementalStoneGenerator extends Thread {
 
 
 	/**
-	 * ´ÙÀ½ÀÇ ¼³Ä¡ Æ÷ÀÎÆ®¸¦ °áÁ¤ÇÑ´Ù.
+	 * ë‹¤ìŒì˜ ì„¤ì¹˜ í¬ì¸íŠ¸ë¥¼ ê²°ì •í•œë‹¤.
 	 */
 	private Point nextPoint() {
 		int newX = _random.nextInt(LAST_X - FIRST_X) + FIRST_X;
@@ -72,7 +72,7 @@ public class ElementalStoneGenerator extends Thread {
 
 
 	/**
-	 * ÁÖ¿öÁø µ¹À» ¸®½ºÆ®·ÎºÎÅÍ »èÁ¦ÇÑ´Ù.
+	 * ì£¼ì›Œì§„ ëŒì„ ë¦¬ìŠ¤íŠ¸ë¡œë¶€í„° ì‚­ì œí•œë‹¤.
 	 */
 	private void removeItemsPickedUp() {
 		L1GroundInventory gInventory  = null;
@@ -86,7 +86,7 @@ public class ElementalStoneGenerator extends Thread {
 	}
 
 	/**
-	 * ÁöÁ¤µÈ À§Ä¡¿¡ µ¹À» µĞ´Ù.
+	 * ì§€ì •ëœ ìœ„ì¹˜ì— ëŒì„ ë‘”ë‹¤.
 	 */
 	private void putElementalStone(L1Location loc) {
 		L1GroundInventory gInventory = L1World.getInstance().getInventory(loc);
@@ -98,26 +98,26 @@ public class ElementalStoneGenerator extends Thread {
 	}
 
 	public void run() {
-		System.out.println(ElementalStoneGenerator.class.getName()  + " ½ÃÀÛ");
+		System.out.println(ElementalStoneGenerator.class.getName()  + " ì‹œì‘");
 		try {
 			L1Map map = L1WorldMap.getInstance().getMap((short) ELVEN_FOREST_MAPID);
 			L1Location loc = null;
 			while (true) {
 				removeItemsPickedUp();
 
-				while (_itemList.size() < MAX_COUNT) { // ÁÙ¾îµé°í ÀÖ´Â °æ¿ì ¼¼Æ®
+				while (_itemList.size() < MAX_COUNT) { // ì¤„ì–´ë“¤ê³  ìˆëŠ” ê²½ìš° ì„¸íŠ¸
 					loc = new L1Location(nextPoint(), map);
 
 					if (!canPut(loc)) {
-						// XXX ¼³Ä¡ ¹üÀ§³» ¸ğµÎ¿¡ PC°¡ ÀÖ¾úÀ» °æ¿ì ¿£µé·¹½º ·çÇÁ°¡ µÇÁö¸¸¡¦
+						// XXX ì„¤ì¹˜ ë²”ìœ„ë‚´ ëª¨ë‘ì— PCê°€ ìˆì—ˆì„ ê²½ìš° ì—”ë“¤ë ˆìŠ¤ ë£¨í”„ê°€ ë˜ì§€ë§Œâ€¦
 						continue;
 					}
 
 					putElementalStone(loc);
 
-					Thread.sleep(INTERVAL * 1000); // ÀÏÁ¤½Ã°£¸¶´Ù ¼³Ä¡
+					Thread.sleep(INTERVAL * 1000); // ì¼ì •ì‹œê°„ë§ˆë‹¤ ì„¤ì¹˜
 				}
-				Thread.sleep(SLEEP_TIME * 1000); // max±îÁö ¼³Ä¡ Á¾·áÈÄ ÀÏÁ¤½Ã°£Àº Àç¼³Ä¡ÇÏÁö ¾Ê´Â´Ù
+				Thread.sleep(SLEEP_TIME * 1000); // maxê¹Œì§€ ì„¤ì¹˜ ì¢…ë£Œí›„ ì¼ì •ì‹œê°„ì€ ì¬ì„¤ì¹˜í•˜ì§€ ì•ŠëŠ”ë‹¤
 			}
 		} catch (Throwable e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);

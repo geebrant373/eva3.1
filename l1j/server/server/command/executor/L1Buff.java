@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,11 +47,11 @@ public class L1Buff implements L1CommandExecutor {
 			StringTokenizer tok = new StringTokenizer(arg);
 			Collection<L1PcInstance> players = null;
 			String s = tok.nextToken();
-			if (s.equals("³ª")) {
+			if (s.equals("ë‚˜")) {
 				players = new ArrayList<L1PcInstance>();
 				players.add(pc);
 				s = tok.nextToken();
-			} else if (s.equals("ÀüÃ¼")) {
+			} else if (s.equals("ì „ì²´")) {
 				players = L1World.getInstance().getAllPlayers();
 				s = tok.nextToken();
 			} else {
@@ -79,11 +79,11 @@ public class L1Buff implements L1CommandExecutor {
 							L1SkillUse.TYPE_GMBUFF);
 				}
 			} else {
-				pc.sendPackets(new S_SystemMessage("¹öÇÁ°èÀÇ ½ºÅ³ÀÌ ¾Æ´Õ´Ï´Ù. "));
+				pc.sendPackets(new S_SystemMessage("ë²„í”„ê³„ì˜ ìŠ¤í‚¬ì´ ì•„ë‹™ë‹ˆë‹¤. "));
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(cmdName
-					+ " [ÀüÃ¼, ³ª] [½ºÅ³¾ÆÀÌµğ] [½Ã°£] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+					+ " [ì „ì²´, ë‚˜] [ìŠ¤í‚¬ì•„ì´ë””] [ì‹œê°„] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package l1j.server.server.model.Instance;
+ï»¿package l1j.server.server.model.Instance;
 
 import java.util.Arrays;
 import java.util.List;
@@ -212,7 +212,7 @@ public class L1SummonInstance extends L1NpcInstance {
 			}
 		} else if (!isDead()) 
 		{
-			System.out.println("°æ°í£º»ç¸óÀÇ HP°¨¼Ò Ã³¸®°¡ ¿Ã¹Ù¸£°Ô ÇàÇØÁöÁö ¾ÊÀº °³¼Ò°¡ ÀÖ½À´Ï´Ù.¡ØÈ¤Àº ÃÖÃÊºÎÅÍ HP0");
+			System.out.println("ê²½ê³ ï¼šì‚¬ëª¬ì˜ HPê°ì†Œ ì²˜ë¦¬ê°€ ì˜¬ë°”ë¥´ê²Œ í–‰í•´ì§€ì§€ ì•Šì€ ê°œì†Œê°€ ìˆìŠµë‹ˆë‹¤.â€»í˜¹ì€ ìµœì´ˆë¶€í„° HP0");
 			Death(attacker);
 		}
 	}

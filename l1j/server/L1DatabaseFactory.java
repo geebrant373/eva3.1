@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -28,25 +28,25 @@ import l1j.server.server.utils.LeakCheckedConnection;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 /**
- * DB¿¡ÀÇ ¾×¼¼½ºÇÏ±â À§ÇÑ °¢Á¾ ÀÎÅÍÆäÀÌ½º¸¦ Á¦°ø
+ * DBì—ì˜ ì•¡ì„¸ìŠ¤í•˜ê¸° ìœ„í•œ ê°ì¢… ì¸í„°í˜ì´ìŠ¤ë¥¼ ì œê³µ
  */
 public class L1DatabaseFactory {
 	private static L1DatabaseFactory _instance = null;
 
-	/** DBÁ¢¼Ó Á¤º¸¸¦ Áı°èÇÑ °Í? */
+	/** DBì ‘ì† ì •ë³´ë¥¼ ì§‘ê³„í•œ ê²ƒ? */
 	private ComboPooledDataSource _source;
 
-	/** ¸Ş¼¼Áö ·Î±×¿ë. */
+	/** ë©”ì„¸ì§€ ë¡œê·¸ìš©. */
 	private static Logger _log = Logger.getLogger(L1DatabaseFactory.class.getName());
 
-	/* DB ¾×¼¼½º¿¡ ÇÊ¿äÇÑ Á¤º¸µé */
-	/** DBÁ¢¼Ó µå¶óÀÌ¹ö. */
+	/* DB ì•¡ì„¸ìŠ¤ì— í•„ìš”í•œ ì •ë³´ë“¤ */
+	/** DBì ‘ì† ë“œë¼ì´ë²„. */
 	private static String _driver;
-	/** DB¼­¹öÀÇ URL. */
+	/** DBì„œë²„ì˜ URL. */
 	private static String _url;
-	/** DB¼­¹ö¿¡ Á¢¼ÓÇÏ´Â À¯Àú¸í. */
+	/** DBì„œë²„ì— ì ‘ì†í•˜ëŠ” ìœ ì €ëª…. */
 	private static String _user;
-	/** DB¼­¹ö¿¡ Á¢¼ÓÇÏ´Â ÆĞ½º¿öµå. */
+	/** DBì„œë²„ì— ì ‘ì†í•˜ëŠ” íŒ¨ìŠ¤ì›Œë“œ. */
 	private static String _password;
 
 	/**
@@ -66,16 +66,16 @@ public class L1DatabaseFactory {
 	}
 
 	/**
-	 * DB¿¡ÀÇ ¾×¼¼½º¿¡ ÇÊ¿äÇÑ Á¤º¸ ¼³Á¤
+	 * DBì—ì˜ ì•¡ì„¸ìŠ¤ì— í•„ìš”í•œ ì •ë³´ ì„¤ì •
 	 * 
 	 * @param driver
-	 *            DBÁ¢¼Ó µå¶óÀÌ¹ö
+	 *            DBì ‘ì† ë“œë¼ì´ë²„
 	 * @param url
-	 *            DB¼­¹ö URL
+	 *            DBì„œë²„ URL
 	 * @param user
-	 *            DB¼­¹ö¿¡ Á¢¼ÓÇÏ´Â À¯Àú¸í
+	 *            DBì„œë²„ì— ì ‘ì†í•˜ëŠ” ìœ ì €ëª…
 	 * @param password
-	 *            DB¼­¹ö¿¡ Á¢¼ÓÇÏ´Â ÆĞ½º¿öµå
+	 *            DBì„œë²„ì— ì ‘ì†í•˜ëŠ” íŒ¨ìŠ¤ì›Œë“œ
 	 */
 	public static void setDatabaseSettings(final String driver, final String url, final String user, final String password) {
 		_driver = driver;
@@ -128,9 +128,9 @@ public class L1DatabaseFactory {
 	}
 
 	/**
-	 * DBÁ¢¼ÓÀ» ÇØ, connection ¿ÀºêÁ§Æ®¸¦ µ¹·ÁÁØ´Ù.
+	 * DBì ‘ì†ì„ í•´, connection ì˜¤ë¸Œì íŠ¸ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return Connection connection ¿ÀºêÁ§Æ®
+	 * @return Connection connection ì˜¤ë¸Œì íŠ¸
 	 * @throws SQLException
 	 */
 	public Connection getConnection() {

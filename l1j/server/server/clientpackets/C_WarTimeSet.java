@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -37,7 +37,7 @@ public class C_WarTimeSet extends ClientBasePacket {
 		L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 		if (clan != null) {
 			int castle_id = clan.getCastleId();
-			if (castle_id != 0) { // ¼ºÁÖ Å©¶õ
+			if (castle_id != 0) { // ì„±ì£¼ í¬ë€
 				L1Castle l1castle = CastleTable.getInstance().getCastleTable(castle_id);
 
 				Calendar warTime = l1castle.getWarTime();
@@ -48,21 +48,21 @@ public class C_WarTimeSet extends ClientBasePacket {
 
 				switch (listNo) {
 				case 1: warTime.set(year, month, date, 18, 00);
-				msg = ""+year+"³â "+(month+1)+"¿ù "+date+"ÀÏ 18½Ã 00ºĞ"; break;
+				msg = ""+year+"ë…„ "+(month+1)+"ì›” "+date+"ì¼ 18ì‹œ 00ë¶„"; break;
 				case 2: warTime.set(year, month, date, 18, 30);
-				msg = ""+year+"³â "+(month+1)+"¿ù "+date+"ÀÏ 18½Ã 30ºĞ"; break;
+				msg = ""+year+"ë…„ "+(month+1)+"ì›” "+date+"ì¼ 18ì‹œ 30ë¶„"; break;
 				case 3: warTime.set(year, month, date, 19, 00);
-				msg = ""+year+"³â "+(month+1)+"¿ù "+date+"ÀÏ 19½Ã 00ºĞ"; break;
+				msg = ""+year+"ë…„ "+(month+1)+"ì›” "+date+"ì¼ 19ì‹œ 00ë¶„"; break;
 				case 4: warTime.set(year, month, date, 22, 00);
-				msg = ""+year+"³â "+(month+1)+"¿ù "+date+"ÀÏ 22½Ã 00ºĞ"; break;
+				msg = ""+year+"ë…„ "+(month+1)+"ì›” "+date+"ì¼ 22ì‹œ 00ë¶„"; break;
 				case 5: warTime.set(year, month, date, 22, 30);
-				msg = ""+year+"³â "+(month+1)+"¿ù "+date+"ÀÏ 22½Ã 30ºĞ"; break;
+				msg = ""+year+"ë…„ "+(month+1)+"ì›” "+date+"ì¼ 22ì‹œ 30ë¶„"; break;
 				case 6: warTime.set(year, month, date, 23, 00);
-				msg = ""+year+"³â "+(month+1)+"¿ù "+date+"ÀÏ 23½Ã 00ºĞ"; break;
+				msg = ""+year+"ë…„ "+(month+1)+"ì›” "+date+"ì¼ 23ì‹œ 00ë¶„"; break;
 					default : break;
 				}
 				CastleTable.getInstance().updateCastle(l1castle);
-				pc.sendPackets(new S_ServerMessage(304, msg));// ´ÙÀ½ °ø¼ºÀü ½Ã°£ÀÌ %0·Î °áÁ¤µÇ¾ú½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(304, msg));// ë‹¤ìŒ ê³µì„±ì „ ì‹œê°„ì´ %0ë¡œ ê²°ì •ë˜ì—ˆìŠµë‹ˆë‹¤.
 			}
 		}*/
 	}

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -64,8 +64,8 @@ public class S_DropItem extends ServerBasePacket {
 		if (item.isIdentified()) {
 			if (item.getItem().getType2() == 1
 					|| item.getItem().getType2() == 2) {
-				switch (item.getAttrEnchantLevel()) {// by»çºÎ
-				case 1:   //1~5È­ 6~10 ¼ö 11~15 Ç³ 16~20Áö
+				switch (item.getAttrEnchantLevel()) {// byì‚¬ë¶€
+				case 1:   //1~5í™” 6~10 ìˆ˜ 11~15 í’ 16~20ì§€
 					sb.append("$6115");
 					break; 
 				case 2:
@@ -130,11 +130,11 @@ public class S_DropItem extends ServerBasePacket {
 				default:
 					sb.append(" ");
 					break;
-				// ÁÖ¼®¾ÈÇÒ°æ¿ì ALT´­·¶À»¶§³ª ¸¶¿ì½º¿Ã·Á³ùÀ»¶§³ª ÀÎÃ¾Ç¥½Ã
-				// ÁÖ¼®ÇÒ°æ¿ì ALT´­·¶À»¶§¸¸ ÀÎÃ¾Ç¥½Ã (º»¼·)
+				// ì£¼ì„ì•ˆí• ê²½ìš° ALTëˆŒë €ì„ë•Œë‚˜ ë§ˆìš°ìŠ¤ì˜¬ë ¤ë†¨ì„ë•Œë‚˜ ì¸ì²¸í‘œì‹œ
+				// ì£¼ì„í• ê²½ìš° ALTëˆŒë €ì„ë•Œë§Œ ì¸ì²¸í‘œì‹œ (ë³¸ì„­)
 				}
-				// ÀÎÃ¾ +0 ÀÏ¶§µµ Ç¥±âµÇ°Ô ÇÏ½ÇºÐÀº ¹Ø¿¡ if (item.getEnchantLevel() >= 0) {·Î ±³Ã¼
-				// by»çºÎ
+				// ì¸ì²¸ +0 ì¼ë•Œë„ í‘œê¸°ë˜ê²Œ í•˜ì‹¤ë¶„ì€ ë°‘ì— if (item.getEnchantLevel() >= 0) {ë¡œ êµì²´
+				// byì‚¬ë¶€
 				if (item.getEnchantLevel() > 0) {
 					sb.append("+" + item.getEnchantLevel() + " ");
 				} else if (item.getEnchantLevel() < 0) {
@@ -159,7 +159,7 @@ public class S_DropItem extends ServerBasePacket {
 		}
 
 
-		writeS(sb.toString());// by»çºÎ
+		writeS(sb.toString());// byì‚¬ë¶€
 		/***********************************************************************
 		 ***********************************************************************/
 		

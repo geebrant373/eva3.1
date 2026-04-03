@@ -1,4 +1,4 @@
-package l1j.server.AutoHuntSystem;
+ï»¿package l1j.server.AutoHuntSystem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,12 +49,12 @@ public class AutoHuntController extends L1PcMonitor {
 	private final java.util.Map<L1Character, Integer> attackCountMap = new java.util.concurrent.ConcurrentHashMap<>();
 	private L1PcInstance owner;
 
-	// Å¬·¡½º »ó´Ü¿¡ Ãß°¡
+	// í´ë˜ìŠ¤ ìƒë‹¨ì— ì¶”ê°€
 	private long lastCleanupTime = System.currentTimeMillis();
 
 	private void cleanupAttackCountMap() {
 		long now = System.currentTimeMillis();
-		// 1ºĞ¸¶´Ù Á¤¸®
+		// 1ë¶„ë§ˆë‹¤ ì •ë¦¬
 		if (now - lastCleanupTime > 60000) {
 			attackCountMap.entrySet()
 					.removeIf(entry -> entry.getKey().isDead() || entry.getKey().getMapId() != owner.getMapId());
@@ -64,13 +64,13 @@ public class AutoHuntController extends L1PcMonitor {
 
 	private void getSource(L1PcInstance pc) {
 		if (owner == null) {
-			removeAuto("ÀÚµ¿ »ç³ÉÀ» Á¾·á ÇÕ´Ï´Ù.");
+			removeAuto("ìë™ ì‚¬ëƒ¥ì„ ì¢…ë£Œ í•©ë‹ˆë‹¤.");
 			return;
 		}
 
-		cleanupAttackCountMap(); // Ãß°¡
+		cleanupAttackCountMap(); // ì¶”ê°€
 
-		// ¿Ö ÀÚµ¿ÀÌ ¸ØÃß´ÂÁö Ã¼Å©ÇØº¸±â
+		// ì™œ ìë™ì´ ë©ˆì¶”ëŠ”ì§€ ì²´í¬í•´ë³´ê¸°
 		// System.out.println("========================================");
 		// System.out.println("AutoStatus: " + owner.getAutoStatus());
 		// System.out.println("AutoTarget: " + (owner.getAutoTarget() != null ?
@@ -80,8 +80,8 @@ public class AutoHuntController extends L1PcMonitor {
 		// System.out.println("========================================");
 
 		int percent = (int) Math.round(((double) owner.getCurrentHp() / (double) owner.getMaxHp()) * 100);
-		if (percent < owner.get_ÀÚµ¿±ÍÈ¯ÆÛ¼¾Æ®()) {
-			removeAuto("HPºÎÁ·À¸·Î ÀÚµ¿ »ç³ÉÀ» Á¾·á ÇÕ´Ï´Ù.");
+		if (percent < owner.get_ìë™ê·€í™˜í¼ì„¼íŠ¸()) {
+			removeAuto("HPë¶€ì¡±ìœ¼ë¡œ ìë™ ì‚¬ëƒ¥ì„ ì¢…ë£Œ í•©ë‹ˆë‹¤.");
 			AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
 			itemuse.toUseScroll(46175);
 			return;
@@ -93,14 +93,14 @@ public class AutoHuntController extends L1PcMonitor {
 				if (owner.getInventory().getArrow() == null) {
 					AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
 					itemuse.toUseScroll(46175);
-					removeAuto("È­»ìÀÌ ¶³¾îÁ®¼­ ÀÚµ¿ »ç³ÉÀ» Á¾·á ÇÕ´Ï´Ù.");
+					removeAuto("í™”ì‚´ì´ ë–¨ì–´ì ¸ì„œ ìë™ ì‚¬ëƒ¥ì„ ì¢…ë£Œ í•©ë‹ˆë‹¤.");
 					return;
 				}
 			}
 		}
 
 		if (!owner.getInventory().checkItem(40100)) {
-			removeAuto("¼ø°£ÀÌµ¿ ÁÖ¹®¼­°¡ ºÎÁ·ÇÏ¿© ÀÚµ¿»ç³ÉÀ» Á¾·á ÇÕ´Ï´Ù.");
+			removeAuto("ìˆœê°„ì´ë™ ì£¼ë¬¸ì„œê°€ ë¶€ì¡±í•˜ì—¬ ìë™ì‚¬ëƒ¥ì„ ì¢…ë£Œ í•©ë‹ˆë‹¤.");
 			AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
 			itemuse.toUseScroll(46175);
 			return;
@@ -124,7 +124,7 @@ public class AutoHuntController extends L1PcMonitor {
 		}
 
 		if (owner.isDead()) {
-			removeAuto("Ä³¸¯ÅÍ°¡ »ç¸ÁÇÏ¿© ÀÚµ¿»ç³ÉÀ» Á¾·á ÇÕ´Ï´Ù.");
+			removeAuto("ìºë¦­í„°ê°€ ì‚¬ë§í•˜ì—¬ ìë™ì‚¬ëƒ¥ì„ ì¢…ë£Œ í•©ë‹ˆë‹¤.");
 			return;
 
 		}
@@ -141,10 +141,10 @@ public class AutoHuntController extends L1PcMonitor {
 		//System.out.println("status = "+ owner.getAutoStatus());
 		switch (owner.getAutoStatus()) {
 		case AUTO_STATUS_WALK:
-			// System.out.println(">>> WALK ¸ğµå ÁøÀÔ"); //ÅÚÅ¸´Â°¡? Ã¼Å©Áß
+			// System.out.println(">>> WALK ëª¨ë“œ ì§„ì…"); //í…”íƒ€ëŠ”ê°€? ì²´í¬ì¤‘
 			searchTarget();
 			if (owner.getAutoTarget() == null) {
-				toRandomWalk(pc); // ¹Ù·ÎÅÚÅ¸¸é ºÒÇÊ¿äÇÔ! WALK¸ğµå ÁøÀÔ½Ã ¹Ù·Î ÅÚÅ¸±â´Â°Å È®ÀÎ
+				toRandomWalk(pc); // ë°”ë¡œí…”íƒ€ë©´ ë¶ˆí•„ìš”í•¨! WALKëª¨ë“œ ì§„ì…ì‹œ ë°”ë¡œ í…”íƒ€ê¸°ëŠ”ê±° í™•ì¸
 			}
 			if (pc.getAutoTell()) {
 				if (pc.getMap().isTeleportable()) {
@@ -192,8 +192,8 @@ public class AutoHuntController extends L1PcMonitor {
 		}
 	}
 
-	// Å¬·¡½º »ó´Ü
-	private int lastStuckTargetId = 0; // ¡ç °´Ã¼°¡ ¾Æ´Ñ ID!
+	// í´ë˜ìŠ¤ ìƒë‹¨
+	private int lastStuckTargetId = 0; // â† ê°ì²´ê°€ ì•„ë‹Œ ID!
 	private long stuckStartTime = 0;
 
 	private void toAttackMonster(L1PcInstance pc) {
@@ -212,17 +212,17 @@ public class AutoHuntController extends L1PcMonitor {
 				return;
 			}
 			
-			// ¡Ú ID·Î ºñ±³!
+			// â˜… IDë¡œ ë¹„êµ!
 			if (target != null) {
-				int currentTargetId = target.getId(); // ¸ó½ºÅÍ °íÀ¯ ID
+				int currentTargetId = target.getId(); // ëª¬ìŠ¤í„° ê³ ìœ  ID
 
 				if (currentTargetId == lastStuckTargetId && lastStuckTargetId != 0) {
 					if (stuckStartTime == 0) {
 						stuckStartTime = System.currentTimeMillis();
-						// System.out.println("DEBUG: Å¸ÀÌ¸Ó ½ÃÀÛ! ID=" + currentTargetId);
+						// System.out.println("DEBUG: íƒ€ì´ë¨¸ ì‹œì‘! ID=" + currentTargetId);
 					} else {
 						long elapsed = System.currentTimeMillis() - stuckStartTime;
-						// System.out.println("DEBUG: °æ°ú ½Ã°£=" + elapsed + "ms");
+						// System.out.println("DEBUG: ê²½ê³¼ ì‹œê°„=" + elapsed + "ms");
 
 						if (elapsed > 10000) {
 							owner.removeAutoTargetList(target);
@@ -231,13 +231,13 @@ public class AutoHuntController extends L1PcMonitor {
 							noTargetTeleport(owner);
 							lastStuckTargetId = 0;
 							stuckStartTime = 0;
-							System.out.println("Å¸°Ù À¯Áö: 10 °æ°ú! ÅÚ·¹Æ÷Æ®!");
+							System.out.println("íƒ€ê²Ÿ ìœ ì§€: 10 ê²½ê³¼! í…”ë ˆí¬íŠ¸!");
 							return;
 						}
 						//System.out.println("target="+elapsed);
 					}
 				} else {
-					// System.out.println("DEBUG: Å¸°Ù º¯°æ! " + lastStuckTargetId + " ¡æ " +
+					// System.out.println("DEBUG: íƒ€ê²Ÿ ë³€ê²½! " + lastStuckTargetId + " â†’ " +
 					// currentTargetId);
 					lastStuckTargetId = currentTargetId;
 					stuckStartTime = 0;
@@ -250,7 +250,7 @@ public class AutoHuntController extends L1PcMonitor {
 			if (target != null && target.isDead()) {
 				owner.removeAutoTargetList(target);
 				owner.setAutoTarget(null);
-				attackCountMap.remove(target); // Ãß°¡!
+				attackCountMap.remove(target); // ì¶”ê°€!
 
 				searchTarget();
 				return;
@@ -259,7 +259,7 @@ public class AutoHuntController extends L1PcMonitor {
 			if (owner.getAutoTarget() == null) {
 				searchTarget();
 
-				// Å¸°Ù ¸ø Ã£À¸¸é WALK
+				// íƒ€ê²Ÿ ëª» ì°¾ìœ¼ë©´ WALK
 				if (owner.getAutoTarget() == null) {
 					owner.setAutoStatus(AUTO_STATUS_WALK);
 				}
@@ -269,10 +269,10 @@ public class AutoHuntController extends L1PcMonitor {
 			if (!isAttack(target)) {
 				owner.removeAutoTargetList(target);
 				owner.setAutoTarget(null);
-				// lastStuckTarget = null; // º®µÚ ÀÎ½Ä ¸®¼Â
-				// stuckStartTime = 0; // º®µÚ ÀÎ½Ä ¸®¼Â
-				searchTarget(); // Ãß°¡
-				return; // Ãß°¡
+				// lastStuckTarget = null; // ë²½ë’¤ ì¸ì‹ ë¦¬ì…‹
+				// stuckStartTime = 0; // ë²½ë’¤ ì¸ì‹ ë¦¬ì…‹
+				searchTarget(); // ì¶”ê°€
+				return; // ì¶”ê°€
 			}
 
 			if (!isAutoAttackTime()) {
@@ -281,12 +281,12 @@ public class AutoHuntController extends L1PcMonitor {
 
 			if (owner.getAutoTarget() == null) {
 				owner.setAutoStatus(AUTO_STATUS_WALK);
-				searchTarget(); // Ãß°¡
+				searchTarget(); // ì¶”ê°€
 				return;
 			}
 
-			L1Character newTarget = getTarget(); // º¯¼ö¿¡ ¸ÕÀú ÀúÀå Ãß°¡
-			if (newTarget != null && target != null) { // Ãß°¡
+			L1Character newTarget = getTarget(); // ë³€ìˆ˜ì— ë¨¼ì € ì €ì¥ ì¶”ê°€
+			if (newTarget != null && target != null) { // ì¶”ê°€
 				if (owner.getLocation().getTileLineDistance(newTarget.getLocation()) < owner.getLocation()
 						.getTileLineDistance(target.getLocation())) {
 					owner.removeAutoTargetList(target);
@@ -295,7 +295,7 @@ public class AutoHuntController extends L1PcMonitor {
 				}
 			}
 
-			// checkTargetHpWithTimeout(owner, target); // ¿©±â°¡ ¿øÀ§Ä¡ (»ç°Å¸® ¹ØÀ¸·Î ³»·ÈÀ½)
+			// checkTargetHpWithTimeout(owner, target); // ì—¬ê¸°ê°€ ì›ìœ„ì¹˜ (ì‚¬ê±°ë¦¬ ë°‘ìœ¼ë¡œ ë‚´ë ¸ìŒ)
 
 			if (pc.isElf()) {
 				if (pc.getWeapon().getItem().getType1() == 20) {
@@ -303,19 +303,19 @@ public class AutoHuntController extends L1PcMonitor {
 				} else {
 					pc.setAttackRang(1);
 				}
-			} else if (pc.isWizard()) { // ¿ë±â»ç ¸¶¹ı»ç È¯¼ú»ç µÎÄ­ °ø°İ
+			} else if (pc.isWizard()) { // ìš©ê¸°ì‚¬ ë§ˆë²•ì‚¬ í™˜ìˆ ì‚¬ ë‘ì¹¸ ê³µê²©
 				pc.setAttackRang(2);
 			} else {
 				pc.setAttackRang(1);
 			}
 
-			// checkTargetHpWithTimeout(owner, target); // ÁÖ¼®À» ÇÏ³ª ¾ÈÇÏ³ª ¸ØÃß´Â°Ç ¸¶Âù°¡Áö ºÒÇÊ¿ä ÇÏ¿© ÁÖ¼®
+			// checkTargetHpWithTimeout(owner, target); // ì£¼ì„ì„ í•˜ë‚˜ ì•ˆí•˜ë‚˜ ë©ˆì¶”ëŠ”ê±´ ë§ˆì°¬ê°€ì§€ ë¶ˆí•„ìš” í•˜ì—¬ ì£¼ì„
 
 			if (isDistance(owner.getX(), owner.getY(), owner.getMapId(), target.getX(), target.getY(),
 					target.getMapId(), owner.getAttackRang())) {
 				if (owner.glanceCheck(target.getX(), target.getY())) {
 					toAttack();
-					moveDelayCount = 0; // ¾îÅÃ¼º°ø½Ã ¸®¼Â ºÒÇÊ¿äÇÑ ÅÚÇÏÁö¾Êµµ·Ï Ãß°¡
+					moveDelayCount = 0; // ì–´íƒì„±ê³µì‹œ ë¦¬ì…‹ ë¶ˆí•„ìš”í•œ í…”í•˜ì§€ì•Šë„ë¡ ì¶”ê°€
 				} else {
 					toMoving(target.getX(), target.getY(), 0, true);
 					moveDelayCount++;
@@ -333,7 +333,7 @@ public class AutoHuntController extends L1PcMonitor {
 						owner.setAutoAiTime(0);
 						owner.removeAutoTargetList(target);
 						owner.setAutoTarget(null);
-						return; // Ãß°¡
+						return; // ì¶”ê°€
 					}
 				}
 				toMoving(target.getX(), target.getY(), 0, true);
@@ -344,10 +344,10 @@ public class AutoHuntController extends L1PcMonitor {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace(); // ¿¡·¯ ·Î±× Ãâ·Â
+			e.printStackTrace(); // ì—ëŸ¬ ë¡œê·¸ ì¶œë ¥
 			owner.removeAutoTargetList(owner.getAutoTarget());
 			owner.setAutoTarget(null);
-			searchTarget(); // ¿¡·¯ ¹ß»ıÇØµµ Å¸°Ù Àç°Ë»ö Ãß°¡
+			searchTarget(); // ì—ëŸ¬ ë°œìƒí•´ë„ íƒ€ê²Ÿ ì¬ê²€ìƒ‰ ì¶”ê°€
 		}
 	}
 
@@ -362,7 +362,7 @@ public class AutoHuntController extends L1PcMonitor {
 			}
 
 			if (cha.getMap().isSafetyZone(cha.getLocation())) {
-				// Æ¯Á¤ ¸Ê¿¡¼­´Â ¾ÈÀüÁö´ë Ã¼Å© ¹«½Ã
+				// íŠ¹ì • ë§µì—ì„œëŠ” ì•ˆì „ì§€ëŒ€ ì²´í¬ ë¬´ì‹œ
 				int mapId = cha.getMapId();
 				if (mapId != 813 && mapId != 2 && mapId != 1700 && mapId != 785) {
 					return false;
@@ -374,7 +374,7 @@ public class AutoHuntController extends L1PcMonitor {
 
 			if (cha.isInvisble())
 				return false;
-			// HP 10¸¸ ÀÌ»ó ¸ó½ºÅÍ °ø°İÇÏÁö ¾ÊÀ½
+			// HP 10ë§Œ ì´ìƒ ëª¬ìŠ¤í„° ê³µê²©í•˜ì§€ ì•ŠìŒ
 			if (cha.getMaxHp() >= 100000) {
 				return false;
 			}
@@ -404,7 +404,7 @@ public class AutoHuntController extends L1PcMonitor {
 			attackCountMap.put(target, attackCountMap.getOrDefault(target, 0) + 1);
 
 			if (attackCountMap.get(target) >= 30) {
-				attackCountMap.remove(target); // Ä«¿îÆ® ÃÊ±âÈ­
+				attackCountMap.remove(target); // ì¹´ìš´íŠ¸ ì´ˆê¸°í™”
 				owner.removeAutoTargetList(target);
 				owner.setAutoTarget(null);
 				AutoHuntItemUse itemuse = new AutoHuntItemUse(owner);
@@ -419,7 +419,7 @@ public class AutoHuntController extends L1PcMonitor {
 			owner.delInvis();
 			if (owner.isElf() && owner.getWeapon().getItem().getType1() == 20) {
 				int chance = _rnd.nextInt(100) + 1;
-				if (chance <= Config.ÀÚµ¿»ç³ÉÆ®¸®ÇÃ¹ßµ¿È®·ü) {
+				if (chance <= Config.ìë™ì‚¬ëƒ¥íŠ¸ë¦¬í”Œë°œë™í™•ë¥ ) {
 					AutoHuntSkillUse skilluse = new AutoHuntSkillUse(owner);
 					skilluse.toTripleArrow(target);
 				} else {
@@ -429,23 +429,23 @@ public class AutoHuntController extends L1PcMonitor {
 				AutoHuntSkillUse skilluse = new AutoHuntSkillUse(owner);
 				int skillchance = _rnd.nextInt(100) + 1;
 				List<String> activeSkills = new ArrayList<>();
-				if (owner.getCurrentMpPercent() > owner.get_ÀÚµ¿±ÍÈ¯ÆÛ¼¾Æ®()) {
+				if (owner.getCurrentMpPercent() > owner.get_ìë™ê·€í™˜í¼ì„¼íŠ¸()) {
 					if (owner.getAutoskill1()) {
-						activeSkills.add("¾ÆÀÌ½º½ºÆÄÀÌÅ©");
+						activeSkills.add("ì•„ì´ìŠ¤ìŠ¤íŒŒì´í¬");
 					}
 					if (owner.getAutoskill2()) {
-						activeSkills.add("¹ÌÆ¼¾î");
+						activeSkills.add("ë¯¸í‹°ì–´");
 					}
 					if (!activeSkills.isEmpty()) {
 						Random random = new Random();
 						int randomIndex = random.nextInt(activeSkills.size());
 						String skillToUse = activeSkills.get(randomIndex);
-						if (skillchance <= Config.ÀÚµ¿»ç³É¹ı»ç°ø°İ½ºÅ³¹ßµ¿È®·ü) {
+						if (skillchance <= Config.ìë™ì‚¬ëƒ¥ë²•ì‚¬ê³µê²©ìŠ¤í‚¬ë°œë™í™•ë¥ ) {
 							switch (skillToUse) {
-							case "¾ÆÀÌ½º½ºÆÄÀÌÅ©":
+							case "ì•„ì´ìŠ¤ìŠ¤íŒŒì´í¬":
 								skilluse.toIceSpike(owner, target);
 								break;
-							case "¹ÌÆ¼¾î":
+							case "ë¯¸í‹°ì–´":
 								skilluse.toMeteorStrike(owner, target);
 								break;
 							}
@@ -467,14 +467,14 @@ public class AutoHuntController extends L1PcMonitor {
 				L1Character target = owner.getAutoTargetList().toTargetArrayList().get(i);
 				if (target.isDead()) {
 					owner.removeAutoTargetList(target);
-					attackCountMap.remove(target); // Ãß°¡
-					i--; // ¡ç ¹İº¹¹®¿¡¼­ ¸®½ºÆ®¸¦ Áö¿ï ¶§ ÀÎµ¦½º ¹®Á¦ ¹æÁö
+					attackCountMap.remove(target); // ì¶”ê°€
+					i--; // â† ë°˜ë³µë¬¸ì—ì„œ ë¦¬ìŠ¤íŠ¸ë¥¼ ì§€ìš¸ ë•Œ ì¸ë±ìŠ¤ ë¬¸ì œ ë°©ì§€
 					owner.setAutoTarget(null);
 					continue;
 				}
 				if (!owner.glanceCheck(target.getX(), target.getY())) {
 					owner.removeAutoTargetList(target);
-					i--; // ¡ç ¹İº¹¹®¿¡¼­ ¸®½ºÆ®¸¦ Áö¿ï ¶§ ÀÎµ¦½º ¹®Á¦ ¹æÁö
+					i--; // â† ë°˜ë³µë¬¸ì—ì„œ ë¦¬ìŠ¤íŠ¸ë¥¼ ì§€ìš¸ ë•Œ ì¸ë±ìŠ¤ ë¬¸ì œ ë°©ì§€
 					owner.setAutoTarget(null);
 					continue;
 				}
@@ -487,7 +487,7 @@ public class AutoHuntController extends L1PcMonitor {
 					realTarget = target;
 				}
 			}
-			// ¸®½ºÆ®¿¡¼­ ¸ø Ã£¾ÒÀ¸¸é searchTarget() È£Ãâ Ãß°¡
+			// ë¦¬ìŠ¤íŠ¸ì—ì„œ ëª» ì°¾ì•˜ìœ¼ë©´ searchTarget() í˜¸ì¶œ ì¶”ê°€
 			if (realTarget == null) {
 				searchTarget();
 				if (owner.getAutoTarget() != null) {
@@ -536,7 +536,7 @@ public class AutoHuntController extends L1PcMonitor {
 				if (mon.getHiddenStatus() >= 1) {
 					continue;
 				}
-				// HP 10¸¸ ÀÌ»ó ¸ó½ºÅÍ °Ç³Ê¶Ù±â
+				// HP 10ë§Œ ì´ìƒ ëª¬ìŠ¤í„° ê±´ë„ˆë›°ê¸°
 				if (mon.getMaxHp() >= 100000) {
 					continue;
 				}
@@ -558,7 +558,7 @@ public class AutoHuntController extends L1PcMonitor {
 			L1Character target = owner.getAutoTarget();
 			if (target == null || target.getMapId() != owner.getMapId() || target.isDead() || target.getCurrentHp() <= 0
 					|| (target.isInvisble() && !owner.getAutoTargetList().containsKey(target))
-					|| target.getMaxHp() >= 100000) { // HP 10¸¸ ÀÌ»ó ¸ó½ºÅÍ °Ç³Ê¶Ù±â
+					|| target.getMaxHp() >= 100000) { // HP 10ë§Œ ì´ìƒ ëª¬ìŠ¤í„° ê±´ë„ˆë›°ê¸°
 				if (target != null) {
 					tagertClear();
 				}
@@ -580,7 +580,7 @@ public class AutoHuntController extends L1PcMonitor {
 		}
 		owner.getAutoTargetList().remove(target);
 		owner.setAutoTarget(null);
-		attackCountMap.remove(target); // Ä«¿îÆ® ÃÊ±âÈ­
+		attackCountMap.remove(target); // ì¹´ìš´íŠ¸ ì´ˆê¸°í™”
 	}
 
 	private void toRandomWalk(L1PcInstance pc) {
@@ -609,12 +609,12 @@ public class AutoHuntController extends L1PcMonitor {
 			if (astar) {
 				owner.getAutoAstar().ResetPath();
 				owner.setAutoTail(owner.getAutoAstar().FindPath(owner, x, y, owner.getMapId(), null));
-				// Ãß°¡
+				// ì¶”ê°€
 				if (owner.getAutoTail() == null) {
 					owner.setAutoMoveCount(0);
 					return;
 				}
-				// Ãß°¡
+				// ì¶”ê°€
 				if (owner.getAutoTail() != null) {
 					owner._autoCurrentPath = -1;
 					owner.getAutoPath().clear();
@@ -655,7 +655,7 @@ public class AutoHuntController extends L1PcMonitor {
 			owner.sendPackets(new S_MoveCharPacket(owner));
 			owner.broadcastPacket(new S_MoveCharPacket(owner));
 			owner.setAutoMoveCount(owner.getAutoMoveCount() + 1);
-			if (owner.getAutoMoveCount() >= 8) { // ÀÚµ¿ È­¸é º¯°æÇÏ±â Ä«½Ã´Ô ±âº» 8
+			if (owner.getAutoMoveCount() >= 8) { // ìë™ í™”ë©´ ë³€ê²½í•˜ê¸° ì¹´ì‹œë‹˜ ê¸°ë³¸ 8
 				owner.setAutoMoveCount(0);
 				owner.toCharacterRefresh();
 			}
@@ -759,7 +759,7 @@ public class AutoHuntController extends L1PcMonitor {
 			owner.resetAuto();
 			owner.sendPackets(new S_SystemMessage(String.format("%s", ment)));
 		}
-		// Á¾·á½Ã Á¤¸® Ãß°¡
+		// ì¢…ë£Œì‹œ ì •ë¦¬ ì¶”ê°€
 		attackCountMap.clear();
 		owner.EndAutoController();
 	}

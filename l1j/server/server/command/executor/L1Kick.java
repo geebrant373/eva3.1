@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -43,15 +43,15 @@ public class L1Kick implements L1CommandExecutor {
 
 			if (target != null) {
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						. append(target.getName()). append(" ¸¦ Ãß¹æ Çß½À´Ï´Ù. ")
+						. append(target.getName()). append(" ë¥¼ ì¶”ë°© í–ˆìŠµë‹ˆë‹¤. ")
 						. toString()));
 				target.sendPackets(new S_Disconnect());
 			} else {
 				pc.sendPackets(new S_SystemMessage(
-						"±×·¯ÇÑ ÀÌ¸§ÀÇ Ä³¸¯ÅÍ´Â ¿ùµå³»¿¡´Â Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. "));
+						"ê·¸ëŸ¬í•œ ì´ë¦„ì˜ ìºë¦­í„°ëŠ” ì›”ë“œë‚´ì—ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. "));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [Ä³¸¯ÅÍ¸í] À¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [ìºë¦­í„°ëª…] ìœ¼ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

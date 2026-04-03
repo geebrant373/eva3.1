@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Lastabard;
+ï»¿package l1j.server.GameSystem.Lastabard;
 
 import java.util.Calendar;
 import java.util.List;
@@ -18,7 +18,7 @@ public class LastabardController {
 	private volatile RealTime currentTime = new RealTime();
 	private static LastabardController _instance;
 	private RealTime _previousTime = null;
-	private int [][] fourthFloor = new int[2][3]; // ¶ó´ø 4Ãş µÎ¹øÂ° ¹æ, ³×¹øÂ° ¹æ 
+	private int [][] fourthFloor = new int[2][3]; // ë¼ë˜ 4ì¸µ ë‘ë²ˆì§¸ ë°©, ë„¤ë²ˆì§¸ ë°© 
 	
 	public static LastabardController getInstance() {
 		if (_instance == null) {
@@ -94,7 +94,7 @@ public class LastabardController {
 		if (isFieldChanged(Calendar.SECOND)) {
 			for(LastabardTime time : timeList) {
 				if(time.isTimeOver(getRealTime().getSeconds())) {
-					// ÇØ´ç ¸ÊÀÇ ½Ã°£ÀÌ ³¡³², ÇØ´ç ¸ÊÀÇ ¸÷À» ½ºÆùÇÏ°í ÇØ´ç ¸ÊÀ¸·Î ÁøÀÔÇÏ±â À§ÇØ Åë°úÇÏ´Â ¹®À» ´İÀ½
+					// í•´ë‹¹ ë§µì˜ ì‹œê°„ì´ ëë‚¨, í•´ë‹¹ ë§µì˜ ëª¹ì„ ìŠ¤í°í•˜ê³  í•´ë‹¹ ë§µìœ¼ë¡œ ì§„ì…í•˜ê¸° ìœ„í•´ í†µê³¼í•˜ëŠ” ë¬¸ì„ ë‹«ìŒ
 					reset(time.getMapId(), time.getRelatedDoor()); 
 					timeList.remove(time);
 				}
@@ -111,7 +111,7 @@ public class LastabardController {
 		if(relatedDoor == 0) return;
 		L1DoorInstance door = DoorSpawnTable.getInstance().getDoor(relatedDoor);
 		if(door != null) {
-			door.setDead(false); // ÀÖÀ¸³ª ¸¶³ª?
+			door.setDead(false); // ìˆìœ¼ë‚˜ ë§ˆë‚˜?
 			door.close();
 		}
 	}

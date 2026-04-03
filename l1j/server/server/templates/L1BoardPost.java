@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -235,19 +235,19 @@ public class L1BoardPost {
 		return null;
 	}
 
-	public synchronized static L1BoardPost createGMªÁ≥…≈Õ¡§∫∏(String name, String title, String content) {
+	public synchronized static L1BoardPost createGMÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥(String name, String title, String content) {
 		Connection con = null;
 		PreparedStatement pstm1 = null;
 		ResultSet rs = null;
 		PreparedStatement pstm2 = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm1 = con.prepareStatement("SELECT max(id) + 1 as newid FROM board_ªÁ≥…≈Õ¡§∫∏");
+			pstm1 = con.prepareStatement("SELECT max(id) + 1 as newid FROM board_ÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥");
 			rs = pstm1.executeQuery();
 			rs.next();
 			int id = rs.getInt("newid");
 			L1BoardPost topic = new L1BoardPost(id, name, title, content);
-			pstm2 = con.prepareStatement("INSERT INTO board_ªÁ≥…≈Õ¡§∫∏ SET id=?, name=?, date=?, title=?, content=?");
+			pstm2 = con.prepareStatement("INSERT INTO board_ÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥ SET id=?, name=?, date=?, title=?, content=?");
 			pstm2.setInt(1, topic.getId());
 			pstm2.setString(2, topic.getName());
 			pstm2.setString(3, topic.getDate());
@@ -266,19 +266,19 @@ public class L1BoardPost {
 		return null;
 	}
 	
-	public synchronized static L1BoardPost createGM∫∏Ω∫¡§∫∏(String name, String title, String content) {
+	public synchronized static L1BoardPost createGMÎ≥¥Ïä§Ï†ïÎ≥¥(String name, String title, String content) {
 		Connection con = null;
 		PreparedStatement pstm1 = null;
 		ResultSet rs = null;
 		PreparedStatement pstm2 = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm1 = con.prepareStatement("SELECT max(id) + 1 as newid FROM board_∫∏Ω∫¡§∫∏");
+			pstm1 = con.prepareStatement("SELECT max(id) + 1 as newid FROM board_Î≥¥Ïä§Ï†ïÎ≥¥");
 			rs = pstm1.executeQuery();
 			rs.next();
 			int id = rs.getInt("newid");
 			L1BoardPost topic = new L1BoardPost(id, name, title, content);
-			pstm2 = con.prepareStatement("INSERT INTO board_∫∏Ω∫¡§∫∏ SET id=?, name=?, date=?, title=?, content=?");
+			pstm2 = con.prepareStatement("INSERT INTO board_Î≥¥Ïä§Ï†ïÎ≥¥ SET id=?, name=?, date=?, title=?, content=?");
 			pstm2.setInt(1, topic.getId());
 			pstm2.setString(2, topic.getName());
 			pstm2.setString(3, topic.getDate());
@@ -297,19 +297,19 @@ public class L1BoardPost {
 		return null;
 	}
 	
-	public synchronized static L1BoardPost createGMπ´±‚¡§∫∏(String name, String title, String content) {
+	public synchronized static L1BoardPost createGMÎ¨¥Í∏∞Ï†ïÎ≥¥(String name, String title, String content) {
 		Connection con = null;
 		PreparedStatement pstm1 = null;
 		ResultSet rs = null;
 		PreparedStatement pstm2 = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm1 = con.prepareStatement("SELECT max(id) + 1 as newid FROM board_π´±‚¡§∫∏");
+			pstm1 = con.prepareStatement("SELECT max(id) + 1 as newid FROM board_Î¨¥Í∏∞Ï†ïÎ≥¥");
 			rs = pstm1.executeQuery();
 			rs.next();
 			int id = rs.getInt("newid");
 			L1BoardPost topic = new L1BoardPost(id, name, title, content);
-			pstm2 = con.prepareStatement("INSERT INTO board_π´±‚¡§∫∏ SET id=?, name=?, date=?, title=?, content=?");
+			pstm2 = con.prepareStatement("INSERT INTO board_Î¨¥Í∏∞Ï†ïÎ≥¥ SET id=?, name=?, date=?, title=?, content=?");
 			pstm2.setInt(1, topic.getId());
 			pstm2.setString(2, topic.getName());
 			pstm2.setString(3, topic.getDate());
@@ -328,19 +328,19 @@ public class L1BoardPost {
 		return null;
 	}
 	
-	public synchronized static L1BoardPost createGMπÊæÓ±∏¡§∫∏(String name, String title, String content) {
+	public synchronized static L1BoardPost createGMÎ∞©Ïñ¥Íµ¨Ï†ïÎ≥¥(String name, String title, String content) {
 		Connection con = null;
 		PreparedStatement pstm1 = null;
 		ResultSet rs = null;
 		PreparedStatement pstm2 = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm1 = con.prepareStatement("SELECT max(id) + 1 as newid FROM board_πÊæÓ±∏¡§∫∏");
+			pstm1 = con.prepareStatement("SELECT max(id) + 1 as newid FROM board_Î∞©Ïñ¥Íµ¨Ï†ïÎ≥¥");
 			rs = pstm1.executeQuery();
 			rs.next();
 			int id = rs.getInt("newid");
 			L1BoardPost topic = new L1BoardPost(id, name, title, content);
-			pstm2 = con.prepareStatement("INSERT INTO board_πÊæÓ±∏¡§∫∏ SET id=?, name=?, date=?, title=?, content=?");
+			pstm2 = con.prepareStatement("INSERT INTO board_Î∞©Ïñ¥Íµ¨Ï†ïÎ≥¥ SET id=?, name=?, date=?, title=?, content=?");
 			pstm2.setInt(1, topic.getId());
 			pstm2.setString(2, topic.getName());
 			pstm2.setString(3, topic.getDate());
@@ -359,19 +359,19 @@ public class L1BoardPost {
 		return null;
 	}
 	
-	public synchronized static L1BoardPost createGM¿Œ√æ¿≤¡§∫∏(String name, String title, String content) {
+	public synchronized static L1BoardPost createGMÏù∏Ï≤∏Ïú®Ï†ïÎ≥¥(String name, String title, String content) {
 		Connection con = null;
 		PreparedStatement pstm1 = null;
 		ResultSet rs = null;
 		PreparedStatement pstm2 = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm1 = con.prepareStatement("SELECT max(id) + 1 as newid FROM board_¿Œ√æ¿≤¡§∫∏");
+			pstm1 = con.prepareStatement("SELECT max(id) + 1 as newid FROM board_Ïù∏Ï≤∏Ïú®Ï†ïÎ≥¥");
 			rs = pstm1.executeQuery();
 			rs.next();
 			int id = rs.getInt("newid");
 			L1BoardPost topic = new L1BoardPost(id, name, title, content);
-			pstm2 = con.prepareStatement("INSERT INTO board_¿Œ√æ¿≤¡§∫∏ SET id=?, name=?, date=?, title=?, content=?");
+			pstm2 = con.prepareStatement("INSERT INTO board_Ïù∏Ï≤∏Ïú®Ï†ïÎ≥¥ SET id=?, name=?, date=?, title=?, content=?");
 			pstm2.setInt(1, topic.getId());
 			pstm2.setString(2, topic.getName());
 			pstm2.setString(3, topic.getDate());
@@ -454,7 +454,7 @@ public class L1BoardPost {
 		return null;
 	}
 	
-	public void ¿⁄¿Ø∞‘Ω√∆«() {
+	public void ÏûêÏú†Í≤åÏãúÌåê() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
@@ -470,7 +470,7 @@ public class L1BoardPost {
 		}
 	}
 
-	public void º≠πˆ¡§∫∏() {
+	public void ÏÑúÎ≤ÑÏ†ïÎ≥¥() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
@@ -485,7 +485,7 @@ public class L1BoardPost {
 			SQLUtil.close(con);
 		}
 	}
-	public void øÓøµ¿⁄1() {
+	public void Ïö¥ÏòÅÏûê1() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
@@ -500,7 +500,7 @@ public class L1BoardPost {
 			SQLUtil.close(con);
 		}
 	}
-	public void øÓøµ¿⁄2() {
+	public void Ïö¥ÏòÅÏûê2() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
@@ -515,7 +515,7 @@ public class L1BoardPost {
 			SQLUtil.close(con);
 		}
 	}
-	public void øÓøµ¿⁄3() {
+	public void Ïö¥ÏòÅÏûê3() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
@@ -530,7 +530,7 @@ public class L1BoardPost {
 			SQLUtil.close(con);
 		}
 	}
-	public void ∞«¿«ªÁ«◊() {
+	public void Í±¥ÏùòÏÇ¨Ìï≠() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
@@ -754,13 +754,13 @@ public class L1BoardPost {
 		return result;
 	}
 
-	private static PreparedStatement makeIndexStatementGMªÁ≥…≈Õ¡§∫∏(Connection con, int id,int limit) throws SQLException {
+	private static PreparedStatement makeIndexStatementGMÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥(Connection con, int id,int limit) throws SQLException {
 		PreparedStatement result = null;
 		int offset = 1;
 		if (id == 0) {
-			result = con.prepareStatement("SELECT * FROM board_ªÁ≥…≈Õ¡§∫∏ ORDER BY id DESC LIMIT ?");
+			result = con.prepareStatement("SELECT * FROM board_ÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥ ORDER BY id DESC LIMIT ?");
 		} else {
-			result = con.prepareStatement("SELECT * FROM board_ªÁ≥…≈Õ¡§∫∏ WHERE id < ? ORDER BY id DESC LIMIT ?");
+			result = con.prepareStatement("SELECT * FROM board_ÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥ WHERE id < ? ORDER BY id DESC LIMIT ?");
 			result.setInt(1, id);
 			offset++;
 		}
@@ -768,13 +768,13 @@ public class L1BoardPost {
 		return result;
 	}
 	
-	private static PreparedStatement makeIndexStatementGM∫∏Ω∫¡§∫∏(Connection con, int id,int limit) throws SQLException {
+	private static PreparedStatement makeIndexStatementGMÎ≥¥Ïä§Ï†ïÎ≥¥(Connection con, int id,int limit) throws SQLException {
 		PreparedStatement result = null;
 		int offset = 1;
 		if (id == 0) {
-			result = con.prepareStatement("SELECT * FROM board_∫∏Ω∫¡§∫∏ ORDER BY id DESC LIMIT ?");
+			result = con.prepareStatement("SELECT * FROM board_Î≥¥Ïä§Ï†ïÎ≥¥ ORDER BY id DESC LIMIT ?");
 		} else {
-			result = con.prepareStatement("SELECT * FROM board_∫∏Ω∫¡§∫∏ WHERE id < ? ORDER BY id DESC LIMIT ?");
+			result = con.prepareStatement("SELECT * FROM board_Î≥¥Ïä§Ï†ïÎ≥¥ WHERE id < ? ORDER BY id DESC LIMIT ?");
 			result.setInt(1, id);
 			offset++;
 		}
@@ -782,13 +782,13 @@ public class L1BoardPost {
 		return result;
 	}
 	
-	private static PreparedStatement makeIndexStatementGMπ´±‚¡§∫∏(Connection con, int id,int limit) throws SQLException {
+	private static PreparedStatement makeIndexStatementGMÎ¨¥Í∏∞Ï†ïÎ≥¥(Connection con, int id,int limit) throws SQLException {
 		PreparedStatement result = null;
 		int offset = 1;
 		if (id == 0) {
-			result = con.prepareStatement("SELECT * FROM board_π´±‚¡§∫∏ ORDER BY id DESC LIMIT ?");
+			result = con.prepareStatement("SELECT * FROM board_Î¨¥Í∏∞Ï†ïÎ≥¥ ORDER BY id DESC LIMIT ?");
 		} else {
-			result = con.prepareStatement("SELECT * FROM board_π´±‚¡§∫∏ WHERE id < ? ORDER BY id DESC LIMIT ?");
+			result = con.prepareStatement("SELECT * FROM board_Î¨¥Í∏∞Ï†ïÎ≥¥ WHERE id < ? ORDER BY id DESC LIMIT ?");
 			result.setInt(1, id);
 			offset++;
 		}
@@ -796,13 +796,13 @@ public class L1BoardPost {
 		return result;
 	}
 	
-	private static PreparedStatement makeIndexStatementGMπÊæÓ±∏¡§∫∏(Connection con, int id,int limit) throws SQLException {
+	private static PreparedStatement makeIndexStatementGMÎ∞©Ïñ¥Íµ¨Ï†ïÎ≥¥(Connection con, int id,int limit) throws SQLException {
 		PreparedStatement result = null;
 		int offset = 1;
 		if (id == 0) {
-			result = con.prepareStatement("SELECT * FROM board_πÊæÓ±∏¡§∫∏ ORDER BY id DESC LIMIT ?");
+			result = con.prepareStatement("SELECT * FROM board_Î∞©Ïñ¥Íµ¨Ï†ïÎ≥¥ ORDER BY id DESC LIMIT ?");
 		} else {
-			result = con.prepareStatement("SELECT * FROM board_πÊæÓ±∏¡§∫∏ WHERE id < ? ORDER BY id DESC LIMIT ?");
+			result = con.prepareStatement("SELECT * FROM board_Î∞©Ïñ¥Íµ¨Ï†ïÎ≥¥ WHERE id < ? ORDER BY id DESC LIMIT ?");
 			result.setInt(1, id);
 			offset++;
 		}
@@ -810,13 +810,13 @@ public class L1BoardPost {
 		return result;
 	}
 	
-	private static PreparedStatement makeIndexStatementGM¿Œ√æ¿≤¡§∫∏(Connection con, int id,int limit) throws SQLException {
+	private static PreparedStatement makeIndexStatementGMÏù∏Ï≤∏Ïú®Ï†ïÎ≥¥(Connection con, int id,int limit) throws SQLException {
 		PreparedStatement result = null;
 		int offset = 1;
 		if (id == 0) {
-			result = con.prepareStatement("SELECT * FROM board_¿Œ√æ¿≤¡§∫∏ ORDER BY id DESC LIMIT ?");
+			result = con.prepareStatement("SELECT * FROM board_Ïù∏Ï≤∏Ïú®Ï†ïÎ≥¥ ORDER BY id DESC LIMIT ?");
 		} else {
-			result = con.prepareStatement("SELECT * FROM board_¿Œ√æ¿≤¡§∫∏ WHERE id < ? ORDER BY id DESC LIMIT ?");
+			result = con.prepareStatement("SELECT * FROM board_Ïù∏Ï≤∏Ïú®Ï†ïÎ≥¥ WHERE id < ? ORDER BY id DESC LIMIT ?");
 			result.setInt(1, id);
 			offset++;
 		}
@@ -958,14 +958,14 @@ public class L1BoardPost {
 		return null;
 	}
 	
-	public static List<L1BoardPost> indexGMªÁ≥…≈Õ¡§∫∏(int id, int limit) {
+	public static List<L1BoardPost> indexGMÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥(int id, int limit) {
 		List<L1BoardPost> result = new ArrayList<L1BoardPost>();
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = makeIndexStatementGMªÁ≥…≈Õ¡§∫∏(con, id, limit);
+			pstm = makeIndexStatementGMÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥(con, id, limit);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				result.add(new L1BoardPost(rs));
@@ -979,14 +979,14 @@ public class L1BoardPost {
 		return null;
 	}
 	
-	public static List<L1BoardPost> indexGM∫∏Ω∫¡§∫∏(int id, int limit) {
+	public static List<L1BoardPost> indexGMÎ≥¥Ïä§Ï†ïÎ≥¥(int id, int limit) {
 		List<L1BoardPost> result = new ArrayList<L1BoardPost>();
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = makeIndexStatementGM∫∏Ω∫¡§∫∏(con, id, limit);
+			pstm = makeIndexStatementGMÎ≥¥Ïä§Ï†ïÎ≥¥(con, id, limit);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				result.add(new L1BoardPost(rs));
@@ -1000,14 +1000,14 @@ public class L1BoardPost {
 		return null;
 	}
 	
-	public static List<L1BoardPost> indexGMπ´±‚¡§∫∏(int id, int limit) {
+	public static List<L1BoardPost> indexGMÎ¨¥Í∏∞Ï†ïÎ≥¥(int id, int limit) {
 		List<L1BoardPost> result = new ArrayList<L1BoardPost>();
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = makeIndexStatementGMπ´±‚¡§∫∏(con, id, limit);
+			pstm = makeIndexStatementGMÎ¨¥Í∏∞Ï†ïÎ≥¥(con, id, limit);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				result.add(new L1BoardPost(rs));
@@ -1021,14 +1021,14 @@ public class L1BoardPost {
 		return null;
 	}
 	
-	public static List<L1BoardPost> indexGMπÊæÓ±∏¡§∫∏(int id, int limit) {
+	public static List<L1BoardPost> indexGMÎ∞©Ïñ¥Íµ¨Ï†ïÎ≥¥(int id, int limit) {
 		List<L1BoardPost> result = new ArrayList<L1BoardPost>();
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = makeIndexStatementGMπÊæÓ±∏¡§∫∏(con, id, limit);
+			pstm = makeIndexStatementGMÎ∞©Ïñ¥Íµ¨Ï†ïÎ≥¥(con, id, limit);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				result.add(new L1BoardPost(rs));
@@ -1042,14 +1042,14 @@ public class L1BoardPost {
 		return null;
 	}
 	
-	public static List<L1BoardPost> indexGM¿Œ√æ¿≤¡§∫∏(int id, int limit) {
+	public static List<L1BoardPost> indexGMÏù∏Ï≤∏Ïú®Ï†ïÎ≥¥(int id, int limit) {
 		List<L1BoardPost> result = new ArrayList<L1BoardPost>();
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = makeIndexStatementGM¿Œ√æ¿≤¡§∫∏(con, id, limit);
+			pstm = makeIndexStatementGMÏù∏Ï≤∏Ïú®Ï†ïÎ≥¥(con, id, limit);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				result.add(new L1BoardPost(rs));

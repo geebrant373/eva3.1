@@ -1,4 +1,4 @@
-package manager.dialog;
+ï»¿package manager.dialog;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -83,14 +83,14 @@ public class PresentDialog extends Dialog {
 		
 		Button btnNewButton = new Button(shell, SWT.NONE);
 		btnNewButton.addSelectionListener(new SelectionAdapter() {
-			/**¼±¹° º¸³»±â*/
+			/**ì„ ë¬¼ ë³´ë‚´ê¸°*/
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				try{
 				
 				MessageBox dialog = new MessageBox(shell,SWT.OK|SWT.CANCEL|SWT.ICON_INFORMATION);
 				dialog.setText("Present"); 
-				dialog.setMessage("Á¤¸» ¼±¹°À» º¸³»½Ã°Ú½À´Ï±î?"); 
+				dialog.setMessage("ì •ë§ ì„ ë¬¼ì„ ë³´ë‚´ì‹œê² ìŠµë‹ˆê¹Œ?"); 
 				int flag = dialog.open();
 				if (flag != SWT.OK) { 
 					return;
@@ -112,7 +112,7 @@ public class PresentDialog extends Dialog {
     					item.setCount(count);
     					if (target .getInventory().checkAddItem(item, count) == L1Inventory.OK) {
     						target .getInventory().storeItem(item);
-    						//sendPackets(new S_SystemMessage(item.getViewName()+ "(À»)¸¦ ¼±¹°ÇÏ¿´½À´Ï´Ù."));
+    						//sendPackets(new S_SystemMessage(item.getViewName()+ "(ì„)ë¥¼ ì„ ë¬¼í•˜ì˜€ìŠµë‹ˆë‹¤."));
     					}
     				} else {
     					L1ItemInstance item = null;
@@ -127,24 +127,24 @@ public class PresentDialog extends Dialog {
     						}
     					}
     					if (createCount > 0) {
-    						//sendPackets(new S_SystemMessage(item.getViewName()+ "(À»)¸¦" + createCount + "°³¸¦ ¼±¹°ÇÏ¿´½À´Ï´Ù."));
+    						//sendPackets(new S_SystemMessage(item.getViewName()+ "(ì„)ë¥¼" + createCount + "ê°œë¥¼ ì„ ë¬¼í•˜ì˜€ìŠµë‹ˆë‹¤."));
     					}
     				}
                     MessageBox dialog2 = new MessageBox(shell, SWT.CANCEL|SWT.ICON_INFORMATION);
     				dialog2.setText("Present"); 
-    				dialog2.setMessage("¼±¹°À» Á¤»óÀûÀ¸·Î º¸³Â½À´Ï´Ù."); 
+    				dialog2.setMessage("ì„ ë¬¼ì„ ì •ìƒì ìœ¼ë¡œ ë³´ëƒˆìŠµë‹ˆë‹¤."); 
     				dialog2.open();
                     
 				}else {
 					MessageBox dialog2 = new MessageBox(shell, SWT.CANCEL|SWT.ICON_INFORMATION);
 					dialog2.setText("Present"); 
-					dialog2.setMessage(text.getText()+"´ÔÀº ¿ùµå¿¡ Á¸ÀçÇÏÁö¾Ê½À´Ï´Ù."); 
+					dialog2.setMessage(text.getText()+"ë‹˜ì€ ì›”ë“œì— ì¡´ì¬í•˜ì§€ì•ŠìŠµë‹ˆë‹¤."); 
 					dialog2.open();
 				}
 			}catch(Exception e1){
 				MessageBox dialog2 = new MessageBox(shell, SWT.CANCEL|SWT.ICON_INFORMATION);
 				dialog2.setText("Present"); 
-				dialog2.setMessage("°ªÀÌ Àß¸øµÇ¾ú½À´Ï´Ù."); 
+				dialog2.setMessage("ê°’ì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤."); 
 				dialog2.open();
 			}
 			}

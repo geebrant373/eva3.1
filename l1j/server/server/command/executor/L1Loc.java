@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,7 +42,7 @@ public class L1Loc implements L1CommandExecutor {
 			short mapid = pc.getMapId();
 			int gab = L1WorldMap.getInstance().getMap(mapid).getOriginalTile(locx, locy);
 
-			String msg = String.format("��ġ : X - %d, Y - %d, MAP - %d / Tile - %d", locx, locy, mapid, gab);
+			String msg = String.format("위치 : X - %d, Y - %d, MAP - %d / Tile - %d", locx, locy, mapid, gab);
 			pc.sendPackets(new S_SystemMessage(msg));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -75,7 +75,7 @@ public class NPCTalkDataTable {
 				l1npctalkdata.setTeleportURLA(rs.getString(5));
 				_datatable.put(new Integer(l1npctalkdata.getNpcID()), l1npctalkdata);
 			}
-			_log.config("NPC ¾×¼Ç ¸®½ºÆ® " + _datatable.size() + "°Ç ·Îµå");
+			_log.config("NPC ì•¡ì…˜ ë¦¬ìŠ¤íŠ¸ " + _datatable.size() + "ê±´ ë¡œë“œ");
 		} catch (SQLException e) {
 			_log.warning("error while creating npc action table " + e);
 		} finally {

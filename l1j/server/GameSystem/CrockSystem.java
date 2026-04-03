@@ -1,4 +1,4 @@
-package l1j.server.GameSystem;
+ï»¿package l1j.server.GameSystem;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,27 +35,27 @@ public class CrockSystem implements TimeListener{
 	}
 	
 	L1EvaSystem eva = EvaSystemTable.getInstance().getSystem(1);
-	private Calendar OpenTime = eva.getEvaTime();// ¿ÀÇÂ½Ã°£
-	private Calendar CloseTime = (Calendar) eva.getEvaTime().clone();// ´İ´Â½Ã°£
-	private Calendar BossTime = (Calendar) eva.getEvaTime().clone();// º¸½º ¿­¸®´Â ½Ã°£
-	private Calendar ContinuationTime = (Calendar) eva.getEvaTime().clone();// º¸½º°¡ ¿¬ÀåµÇ¾î
+	private Calendar OpenTime = eva.getEvaTime();// ì˜¤í”ˆì‹œê°„
+	private Calendar CloseTime = (Calendar) eva.getEvaTime().clone();// ë‹«ëŠ”ì‹œê°„
+	private Calendar BossTime = (Calendar) eva.getEvaTime().clone();// ë³´ìŠ¤ ì—´ë¦¬ëŠ” ì‹œê°„
+	private Calendar ContinuationTime = (Calendar) eva.getEvaTime().clone();// ë³´ìŠ¤ê°€ ì—°ì¥ë˜ì–´
 	
 	/**
-	 * ±Õ¿­ ½Ã°£ ¼³Á¤
+	 * ê· ì—´ ì‹œê°„ ì„¤ì •
 	 */
-	private static final int period = 1440; // ºĞ ´ÜÀ§ default : 24½Ã°£
-	private static final int extendperiod = 6; // ¿ÀÇÂ µÇ¾î ÀÖ´ø ½Ã°£±îÁö °è»êÇÑ´Ù 
+	private static final int period = 1440; // ë¶„ ë‹¨ìœ„ default : 24ì‹œê°„
+	private static final int extendperiod = 6; // ì˜¤í”ˆ ë˜ì–´ ìˆë˜ ì‹œê°„ê¹Œì§€ ê³„ì‚°í•œë‹¤ 
 
-	/** ±Õ¿­ÀÌ ¿­·È´ÂÁö ¾Æ´ÑÁö */
+	/** ê· ì—´ì´ ì—´ë ¸ëŠ”ì§€ ì•„ë‹Œì§€ */
 	private boolean isOpen = false;
 
-	/** º¸½º ½Ã°£ÀÌ ½ÃÀÛ µÇ¾ú´ÂÁö */
+	/** ë³´ìŠ¤ ì‹œê°„ì´ ì‹œì‘ ë˜ì—ˆëŠ”ì§€ */
 	private boolean isBossTime = false;
 
-	/** ½Ã°£ÀÇ ±Õ¿­ Å×º£ º¸½º È½¼ö */
+	/** ì‹œê°„ì˜ ê· ì—´ í…Œë²  ë³´ìŠ¤ íšŸìˆ˜ */
 	private static int dieCount = 0;
 
-	/** ±Õ¿­ ÁÂÇ¥ */
+	/** ê· ì—´ ì¢Œí‘œ */
 	private static final int[][] loc = {
 		{ 33425, 32829, 4 }, //11 0
 		{ 33425, 32829, 4 }, //12 1
@@ -68,15 +68,15 @@ public class CrockSystem implements TimeListener{
 		{ 33425, 32829, 4 }  //33 8
 		};
 	
-	/** º¸½º¹æ ¼±Âø¼ø 20¸íÀ» ´ã±â À§ÇÑ ¸®½ºÆ® */
+	/** ë³´ìŠ¤ë°© ì„ ì°©ìˆœ 20ëª…ì„ ë‹´ê¸° ìœ„í•œ ë¦¬ìŠ¤íŠ¸ */
 	private static final ArrayList<L1PcInstance> sList = new ArrayList<L1PcInstance>();
 	
-	/** ½Ã°¢ µ¥ÀÌÅÍ Æ÷¸Ë */
+	/** ì‹œê° ë°ì´í„° í¬ë§· */
 	private static final SimpleDateFormat ss = new SimpleDateFormat("MM-dd HH:mm", Locale.KOREA);
 	
 	private CrockSystem() {
-		CloseTime.add(Calendar.MINUTE, 179);// 3½Ã°£(180) 
-		BossTime.add(Calendar.MINUTE, 149);// 2½Ã°£ 30ºĞ
+		CloseTime.add(Calendar.MINUTE, 179);// 3ì‹œê°„(180) 
+		BossTime.add(Calendar.MINUTE, 149);// 2ì‹œê°„ 30ë¶„
 		if (eva.getOpenContinuation() == 1) {
 			isOpen = true;
 			ContinuationTime.add(Calendar.HOUR_OF_DAY, extendperiod);
@@ -85,31 +85,31 @@ public class CrockSystem implements TimeListener{
 	}
 
 	/**
-	 * ±Õ¿­ÀÌ ¿­·È´ÂÁö »óÅÂ.
+	 * ê· ì—´ì´ ì—´ë ¸ëŠ”ì§€ ìƒíƒœ.
 	 */
 	private void checkCrock(BaseTime time) {
 
 		if (eva.getOpenContinuation() == 1) {
-			if (ContinuationTime.before(time.getCalendar())) {// ¿¬Àå½Ã°£ÀÌ Áö³µ´Ù¸é..
+			if (ContinuationTime.before(time.getCalendar())) {// ì—°ì¥ì‹œê°„ì´ ì§€ë‚¬ë‹¤ë©´..
 				clear();
 			}
 			return;
 		}
 
-		if (OpenTime.before(time.getCalendar()) && CloseTime.after(time.getCalendar())) {// ¿ÀÇÂ½Ã°£
+		if (OpenTime.before(time.getCalendar()) && CloseTime.after(time.getCalendar())) {// ì˜¤í”ˆì‹œê°„
 			if (!isOpen()) {
 				setOpen(true);
 				ready();
-				L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(1469));// ¿­·È´Ù~
+				L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(1469));// ì—´ë ¸ë‹¤~
 			} else {
-				if (BossTime.before(time.getCalendar())) {// º¸½ºÅ¸ÀÓ ½ÃÀÛÀÌ Áö³µ´Ù¸é
+				if (BossTime.before(time.getCalendar())) {// ë³´ìŠ¤íƒ€ì„ ì‹œì‘ì´ ì§€ë‚¬ë‹¤ë©´
 					if (!isBossTime()) {
 						setBossTime(true);
 						bossStart();
 					}
 				}
 			}
-		} else if (CloseTime.before(time.getCalendar())) {// Á¾·á ½Ã°£ ÈÄ¶ó¸é
+		} else if (CloseTime.before(time.getCalendar())) {// ì¢…ë£Œ ì‹œê°„ í›„ë¼ë©´
 			if (isOpen()) {
 				if(isBossDie()){
 					CrockContinuation();
@@ -128,18 +128,18 @@ public class CrockSystem implements TimeListener{
 			eva.setMoveLocation((int) (Math.random() * 2 + 1));
 		}
 		int OL = eva.getOpenLocation();
-		L1SpawnUtil.spawn2(loc[OL][0], loc[OL][1], (short) loc[OL][2], 4500100, 0, 0, 0);// À§Ä¡¿¡ ½ºÆùÇÑ´Ù
+		L1SpawnUtil.spawn2(loc[OL][0], loc[OL][1], (short) loc[OL][2], 4500100, 0, 0, 0);// ìœ„ì¹˜ì— ìŠ¤í°í•œë‹¤
 		EvaSystemTable.getInstance().updateSystem(eva);
 	}
 
 	private void bossStart() {
-		// º¸½º¸¦ ½ºÆùÇÏ°í º¸½º Å¸ÀÓÀ» Àé´Ù
+		// ë³´ìŠ¤ë¥¼ ìŠ¤í°í•˜ê³  ë³´ìŠ¤ íƒ€ì„ì„ ì°ë‹¤
 		switch(eva.getMoveLocation()){
-		case 1:// Å×º£
+		case 1:// í…Œë² 
 			L1SpawnUtil.spawn2(32794, 32825, (short) 782, 400016, 0, 1920*1000, 0);
 			L1SpawnUtil.spawn2(32794, 32836, (short) 782, 400017, 0, 1920*1000, 0);
 			break;
-		case 2:// Æ¼Ä®
+		case 2:// í‹°ì¹¼
 			L1SpawnUtil.spawn2(32753, 32870, (short) 784, 4036016, 0, 1920*1000, 0);
 			L1SpawnUtil.spawn2(32751, 32859, (short) 784, 4036017, 0, 1920*1000, 0);
 			break;
@@ -148,8 +148,8 @@ public class CrockSystem implements TimeListener{
 	}
 
 	private void clear() {
-		// ¸ğµç »óÅÂ¸¦ ÃÊ±âÈ­ ÇÑ´Ù ±×¸®°í ´ÙÀ½ ¿ÀÇÂÀ» ÁØºñÇÑ´Ù
-		CrockMSG msg = new CrockMSG(0);// ÅÚ
+		// ëª¨ë“  ìƒíƒœë¥¼ ì´ˆê¸°í™” í•œë‹¤ ê·¸ë¦¬ê³  ë‹¤ìŒ ì˜¤í”ˆì„ ì¤€ë¹„í•œë‹¤
+		CrockMSG msg = new CrockMSG(0);// í…”
 		GeneralThreadPool.getInstance().execute(msg);
 		dieCount = 0;
 		sList.clear();
@@ -166,23 +166,23 @@ public class CrockSystem implements TimeListener{
 	}
 
 	/**
-	 * º¸½º°¡ µÑ´Ù ÀâÇô¼­ ¼±¹° ÁÖ°í ¿¬Àå±îÁö ¼³Á¤ÇÑ´Ù
+	 * ë³´ìŠ¤ê°€ ë‘˜ë‹¤ ì¡í˜€ì„œ ì„ ë¬¼ ì£¼ê³  ì—°ì¥ê¹Œì§€ ì„¤ì •í•œë‹¤
 	 */
 	public void CrockContinuation() {
 		setBossTime(false);
-		CrockMSG msg = new CrockMSG(1);// ¼±¹°
+		CrockMSG msg = new CrockMSG(1);// ì„ ë¬¼
 		GeneralThreadPool.getInstance().execute(msg);
 		if(eva.getMoveLocation() == 2)
-			BossDieBuff();// ¹öÇÁ¸¦ ÁÖ°í
-		ContinuationTime.add(Calendar.HOUR_OF_DAY, extendperiod);// ´İÈ÷´Â ½Ã°£¿¡¼­ ÇÏ·ç ´õÇÑ´Ù.
-		eva.setOpenContinuation(1);// ¿¬Àå »óÅÂ¸¦ º¯°æ
+			BossDieBuff();// ë²„í”„ë¥¼ ì£¼ê³ 
+		ContinuationTime.add(Calendar.HOUR_OF_DAY, extendperiod);// ë‹«íˆëŠ” ì‹œê°„ì—ì„œ í•˜ë£¨ ë”í•œë‹¤.
+		eva.setOpenContinuation(1);// ì—°ì¥ ìƒíƒœë¥¼ ë³€ê²½
 		EvaSystemTable.getInstance().updateSystem(eva);
 		msg = null;
 	}
 
 	/**
-	 * ½Ã°£ÀÇ ±Õ¿­ º¸½º°ø·« È®ÀÎ
-	 * @return	(boolean)	2º¸½º´Ù Á×¾ú´Ù¸é ture 1º¸½º ÀÌÇÏ Á×¿´´Ù¸é false
+	 * ì‹œê°„ì˜ ê· ì—´ ë³´ìŠ¤ê³µëµ í™•ì¸
+	 * @return	(boolean)	2ë³´ìŠ¤ë‹¤ ì£½ì—ˆë‹¤ë©´ ture 1ë³´ìŠ¤ ì´í•˜ ì£½ì˜€ë‹¤ë©´ false
 	*/
 	private boolean isBossDie() {
 		boolean sTemp = false;
@@ -194,21 +194,21 @@ public class CrockSystem implements TimeListener{
 	}
 
 	/**
-	 * ½Ã°£ÀÇ ±Õ¿­ Å×º£ º¸½º ´ÙÀÌ ¹İ³³
-	 * @return	(int)	dieCount	º¸½º ´ÙÀÌ È½¼ö
+	 * ì‹œê°„ì˜ ê· ì—´ í…Œë²  ë³´ìŠ¤ ë‹¤ì´ ë°˜ë‚©
+	 * @return	(int)	dieCount	ë³´ìŠ¤ ë‹¤ì´ íšŸìˆ˜
 	*/
 	public int dieCount(){	return dieCount;	}
 	public void dieCount(int dieCount){	CrockSystem.dieCount = dieCount;	}
 	
 	/**
-	 * ½Ã°£ÀÇ ±Õ¿­ ÀÌµ¿ »óÅÂ
-	 * @return	(boolean)	move	ÀÌµ¿ ¿©ºÎ
+	 * ì‹œê°„ì˜ ê· ì—´ ì´ë™ ìƒíƒœ
+	 * @return	(boolean)	move	ì´ë™ ì—¬ë¶€
 	*/
 	public boolean isOpen(){	return isOpen;	}
 	private void setOpen(boolean isOpen){	this.isOpen = isOpen;	}
 
 	/**
-	 * Å×º£³ª Æ¼Ä®ÀÌ º¸½º Å¸ÀÓÀÎÁö ¿©ºÎ
+	 * í…Œë² ë‚˜ í‹°ì¹¼ì´ ë³´ìŠ¤ íƒ€ì„ì¸ì§€ ì—¬ë¶€
 	 * @return
 	 */
 	public boolean isBossTime(){ return isBossTime; }
@@ -220,42 +220,42 @@ public class CrockSystem implements TimeListener{
 	}
 
 	/**
-	 * ÁöÁ¤µÈ npcId ¿¡ ´ëÇÑ loc À» ¹İ³³
-	 * @return	(int[])	loc		ÁÂÇ¥ ¹è¿­
+	 * ì§€ì •ëœ npcId ì— ëŒ€í•œ loc ì„ ë°˜ë‚©
+	 * @return	(int[])	loc		ì¢Œí‘œ ë°°ì—´
 	*/
 	public int[] loc(){
 		return loc[eva.getOpenLocation()];
 	}
 
 	/**
-	 * ¼±Âø¼ø 20¸í µî·Ï
+	 * ì„ ì°©ìˆœ 20ëª… ë“±ë¡
 	*/
 	public synchronized void add(L1PcInstance c){
-		/** µî·ÏµÇ¾î ÀÖÁö ¾Ê°í */
+		/** ë“±ë¡ë˜ì–´ ìˆì§€ ì•Šê³  */
 		if(!sList.contains(c)){
-			/** ¼±Âø¼ø 20¸í ÀÌÇÏ¶ó¸é */
+			/** ì„ ì°©ìˆœ 20ëª… ì´í•˜ë¼ë©´ */
 			if(sList.size() < 20) sList.add(c);
 		}
 	}
 	
 	/**
-	 * ¼±Âø¼ø ¸®½ºÆ® »çÀÌÁî ¹İ³³
-	 * @return	(int)	sList ÀÇ »çÀÌÁî
+	 * ì„ ì°©ìˆœ ë¦¬ìŠ¤íŠ¸ ì‚¬ì´ì¦ˆ ë°˜ë‚©
+	 * @return	(int)	sList ì˜ ì‚¬ì´ì¦ˆ
 	*/
 	public int size(){
 		return sList.size();
 	}
 	
 	/**
-	 * ¿ÀÇÂ ½Ã°¢À» °¡Á®¿Â´Ù
-	 * @return	(String)	¿ÀÇÂ ½Ã°¢(MM-dd HH:mm)
+	 * ì˜¤í”ˆ ì‹œê°ì„ ê°€ì ¸ì˜¨ë‹¤
+	 * @return	(String)	ì˜¤í”ˆ ì‹œê°(MM-dd HH:mm)
 	*/
 	public String OpenTime(){
 		return ss.format(OpenTime.getTime());
 	}
 
 	/**
-	 * Æ¼Ä® º¸½º°¡ ÀâÇûÀ¸´Ï ¿ùµå ÇÇ¾¾ Àü¿ø¿¡°Ô ¹öÇÁ¸¦ ÁØ´Ù.
+	 * í‹°ì¹¼ ë³´ìŠ¤ê°€ ì¡í˜”ìœ¼ë‹ˆ ì›”ë“œ í”¼ì”¨ ì „ì›ì—ê²Œ ë²„í”„ë¥¼ ì¤€ë‹¤.
 	 */
 	public void BossDieBuff() {
 		for(L1PcInstance pc : sList){
@@ -273,8 +273,8 @@ public class CrockSystem implements TimeListener{
 	}
 
 	/**
-	 * º¸½º°¡ ÀâÇô¼­ ¿¬Àå »óÅÂÀÎÁö µ¹·ÁÁØ´Ù
-	 * @return true : ¿¬Àå
+	 * ë³´ìŠ¤ê°€ ì¡í˜€ì„œ ì—°ì¥ ìƒíƒœì¸ì§€ ëŒë ¤ì¤€ë‹¤
+	 * @return true : ì—°ì¥
 	 */
 	public boolean isCrockIng(){
 		if(eva.getOpenContinuation() == 1) return true;
@@ -284,7 +284,7 @@ public class CrockSystem implements TimeListener{
 	static class CrockMSG implements Runnable {
 		private int _status;
 		
-		// ½Ã°£ÀÇ ±Õ¿­ - Å×º£ ¼±¹° ¾ÆÀÌÅÛ ¹øÈ£
+		// ì‹œê°„ì˜ ê· ì—´ - í…Œë²  ì„ ë¬¼ ì•„ì´í…œ ë²ˆí˜¸
 		private int[][] ItemId = {
 			{ 410010, 1}, { 410011, 1}, { 410012, 1}, { 410013, 1}, 
 			{ 420007, 1}, { 40074, 1}, { 40087, 1}, { 40076, 1}, 
@@ -302,18 +302,18 @@ public class CrockSystem implements TimeListener{
 		public void run() {
 			try{
 				switch(_status) {
-				case 0:// ÅÚ ½ÃÅ²´Ù
-					L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(1467));// ½Ã°£ÀÇ ±Õ¿­ÀÌ °ğ ´İÈü´Ï´Ù.
+				case 0:// í…” ì‹œí‚¨ë‹¤
+					L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(1467));// ì‹œê°„ì˜ ê· ì—´ì´ ê³§ ë‹«í™ë‹ˆë‹¤.
 					for(L1PcInstance pc : L1World.getInstance().getAllPlayers()){
 						if(pc.getMap().getId() >= 780 && pc.getMap().getId() <= 784){
 							
-							pc.sendPackets(new S_ServerMessage(1476));//½Ã½ºÅÛ ¸Ş½ÃÁö : 30ÃÊ ÈÄ¿¡ ÅÚ·¹Æ÷Æ® ÇÕ´Ï´Ù.
+							pc.sendPackets(new S_ServerMessage(1476));//ì‹œìŠ¤í…œ ë©”ì‹œì§€ : 30ì´ˆ í›„ì— í…”ë ˆí¬íŠ¸ í•©ë‹ˆë‹¤.
 						}
 					}
 					Thread.sleep(10000L);
 					for(L1PcInstance pc : L1World.getInstance().getAllPlayers()){
 						if(pc.getMap().getId() >= 780 && pc.getMap().getId() <= 784){
-							pc.sendPackets(new S_ServerMessage(1477));//½Ã½ºÅÛ ¸Ş½ÃÁö : 20ÃÊ ÈÄ¿¡ ÅÚ·¹Æ÷Æ® ÇÕ´Ï´Ù.
+							pc.sendPackets(new S_ServerMessage(1477));//ì‹œìŠ¤í…œ ë©”ì‹œì§€ : 20ì´ˆ í›„ì— í…”ë ˆí¬íŠ¸ í•©ë‹ˆë‹¤.
 						}
 					}
 					Thread.sleep(10000L);
@@ -321,7 +321,7 @@ public class CrockSystem implements TimeListener{
 						if(pc.getInventory().checkItem(L1ItemId.TEBEOSIRIS_KEY, 1))
 							pc.getInventory().consumeItem(L1ItemId.TEBEOSIRIS_KEY, 1);
 						if(pc.getMap().getId() >= 780 && pc.getMap().getId() <= 784){
-							pc.sendPackets(new S_ServerMessage(1478));//½Ã½ºÅÛ ¸Ş½ÃÁö : 10ÃÊ ÈÄ¿¡ ÅÚ·¹Æ÷Æ® ÇÕ´Ï´Ù.
+							pc.sendPackets(new S_ServerMessage(1478));//ì‹œìŠ¤í…œ ë©”ì‹œì§€ : 10ì´ˆ í›„ì— í…”ë ˆí¬íŠ¸ í•©ë‹ˆë‹¤.
 						}
 					}
 					
@@ -331,11 +331,11 @@ public class CrockSystem implements TimeListener{
 						case 780:
 						case 781:
 						case 782:
-							pc.sendPackets(new S_ServerMessage(1479));//Å×º£ ¿À½Ã¸®½º : ³ÊÈñµéÀº ½ÇÆĞÇß´Ù!!!
+							pc.sendPackets(new S_ServerMessage(1479));//í…Œë²  ì˜¤ì‹œë¦¬ìŠ¤ : ë„ˆí¬ë“¤ì€ ì‹¤íŒ¨í–ˆë‹¤!!!
 							break;
 						case 783:
 						case 784:
-							pc.sendPackets(new S_ServerMessage(1490));//ÄíÄğÄ­ : ³ÊÈñµéÀÇ ¹«¸ğÇÑ ¿ë±â¿Í ¾î¸®¼®À½À» ±â¾ï ÇÒÁö¾î´Ù!!!'
+							pc.sendPackets(new S_ServerMessage(1490));//ì¿ ì¿¨ì¹¸ : ë„ˆí¬ë“¤ì˜ ë¬´ëª¨í•œ ìš©ê¸°ì™€ ì–´ë¦¬ì„ìŒì„ ê¸°ì–µ í• ì§€ì–´ë‹¤!!!'
 							break;
 						}
 					}
@@ -378,7 +378,7 @@ public class CrockSystem implements TimeListener{
 							L1Teleport.teleport(pc, 33970, 33246, (short) 4, 4, true);
 						}
 					}
-					L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(1468));// ½Ã°£ÀÇ ±Õ¿­ÀÌ »ç¶óÁı´Ï´Ù
+					L1World.getInstance().broadcastPacketToAll(new S_ServerMessage(1468));// ì‹œê°„ì˜ ê· ì—´ì´ ì‚¬ë¼ì§‘ë‹ˆë‹¤
 					crockDelete();
 					break;
 
@@ -431,8 +431,8 @@ public class CrockSystem implements TimeListener{
 		}
 
 		/**
-		 * ¾ÆÀÌÅÛ Áö±Ş ¾ÆÀÌµğ ·£´ı ¹İ³³ - Å×º£
-		 * @return	(int[]) Itemid	Áö±Ş¹ŞÀ» ¾ÆÀÌÅÛ¾ÆÀÌµğ, °¹¼ö
+		 * ì•„ì´í…œ ì§€ê¸‰ ì•„ì´ë”” ëœë¤ ë°˜ë‚© - í…Œë² 
+		 * @return	(int[]) Itemid	ì§€ê¸‰ë°›ì„ ì•„ì´í…œì•„ì´ë””, ê°¯ìˆ˜
 		*/
 		@SuppressWarnings("unused")
 		private int[] Item(){
@@ -440,7 +440,7 @@ public class CrockSystem implements TimeListener{
 		}
 		
 		/**
-		 * ±Õ¿­À» »èÁ¦ÇÑ´Ù.
+		 * ê· ì—´ì„ ì‚­ì œí•œë‹¤.
 		 */
 		private void crockDelete() {
 			L1FieldObjectInstance f = null;

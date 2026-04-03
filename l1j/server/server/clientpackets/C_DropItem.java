@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -43,7 +43,7 @@ public class C_DropItem extends ClientBasePacket {
 
 		L1PcInstance pc = client.getActiveChar();
 
-		pc.sendPackets(new S_SystemMessage("¹Ù´Ú¿¡ ¾ÆÀÌÅÛÀ» ¶³±¼ ¼ö ¾ø½À´Ï´Ù."));
+		pc.sendPackets(new S_SystemMessage("ë°”ë‹¥ì— ì•„ì´í…œì„ ë–¨êµ´ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 	}
 
 	private boolean isTwoLogin(L1PcInstance c) {

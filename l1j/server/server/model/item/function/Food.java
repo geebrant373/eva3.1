@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -84,7 +84,7 @@ public class Food extends L1ItemInstance{
 			case 436000:
 			case 437022:
 				pc.getInventory().removeItem(useItem, 1);
-				// XXX À½½Ä ¸¶´ÙÀÇ ¸¸º¹µµ°¡ Â÷ÀÌ°¡ ³ªÁö ¾Ê´Â´Ù
+				// XXX ìŒì‹ ë§ˆë‹¤ì˜ ë§Œë³µë„ê°€ ì°¨ì´ê°€ ë‚˜ì§€ ì•ŠëŠ”ë‹¤
 				if (pc.get_food() < 225) { // 100%
 					int chargeCount = 1;
 					if(itemId == 436000){
@@ -99,19 +99,19 @@ public class Food extends L1ItemInstance{
 				} else if (pc.get_food() > 225) {
 					pc.set_food(225);
 				}
-				if (itemId == 40057) { // ÈÄ·ÎÆÃ¾ÆÀÌÀ°
+				if (itemId == 40057) { // í›„ë¡œíŒ…ì•„ì´ìœ¡
 					pc.getSkillEffectTimerSet().setSkillEffect(STATUS_FLOATING_EYE, 0);
 					if (pc.getSkillEffectTimerSet().hasSkillEffect(CURSE_BLIND) || pc.getSkillEffectTimerSet().hasSkillEffect(DARKNESS)) {
 						pc.sendPackets(new S_CurseBlind(2));
 					}
-					pc.sendPackets(new S_ServerMessage(152)); // \f1ÀÌ»óÇÏ°Ôµµ °¨°¢ÀÌ ¿¹¹ÎÇØÁø°Í °°½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(152)); // \f1ì´ìƒí•˜ê²Œë„ ê°ê°ì´ ì˜ˆë¯¼í•´ì§„ê²ƒ ê°™ìŠµë‹ˆë‹¤.
 				}
 				pc.sendPackets(new S_ServerMessage(76, useItem.getItem().getNameId()));
 				break;
 			}
 			if ((itemId >= 41277 && itemId <= 41292)
 					|| (itemId >= 49049 && itemId <= 49064)
-					|| (itemId >= L1ItemId.NORMAL_COOKFOOD_3RD_START && itemId <= L1ItemId.SPECIAL_COOKFOOD_3RD_END)){ // ¿ä¸®¾ÆÀÌÅÛ
+					|| (itemId >= L1ItemId.NORMAL_COOKFOOD_3RD_START && itemId <= L1ItemId.SPECIAL_COOKFOOD_3RD_END)){ // ìš”ë¦¬ì•„ì´í…œ
 				L1Cooking.useCookingItem(pc, useItem);
 			}
 		}

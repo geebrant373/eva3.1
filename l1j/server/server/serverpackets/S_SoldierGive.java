@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -35,12 +35,12 @@ public class S_SoldierGive extends ServerBasePacket {
 
 		writeC(Opcodes.S_OPCODE_SOLDIERGIVE);
 		writeD(objid);//objid
-		writeH(9);// ????(¾Æ¹«¼ıÀÚ³ª³ÖÀ½)
-		writeH(count);// ÇØ´ç¿ëº´ °í¿ëµÈ ¼ö  
-		writeH(type);// ¼ø¹ø
+		writeH(9);// ????(ì•„ë¬´ìˆ«ìë‚˜ë„£ìŒ)
+		writeH(count);// í•´ë‹¹ìš©ë³‘ ê³ ìš©ëœ ìˆ˜  
+		writeH(type);// ìˆœë²ˆ
 		writeS(pc.getName());
 		writeD(pc.getId());// pc.getId();
-		writeH(iscount);// ¹èÄ¡°¡´É ¿ëº´¼ö
+		writeH(iscount);// ë°°ì¹˜ê°€ëŠ¥ ìš©ë³‘ìˆ˜
 		writeC(0);
 	}
 

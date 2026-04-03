@@ -1,4 +1,4 @@
-package l1j.server.MJTemplate.MJSqlHelper.Executors;
+﻿package l1j.server.MJTemplate.MJSqlHelper.Executors;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

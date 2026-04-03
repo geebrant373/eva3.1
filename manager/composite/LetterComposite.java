@@ -1,4 +1,4 @@
-package manager.composite;
+ï»¿package manager.composite;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -92,10 +92,10 @@ public class LetterComposite extends Composite {
 		tblclmnNewColumn_4.setWidth(80);
 		tblclmnNewColumn_4.setText("\uBCF4\uB0B8\uB0A0\uC790");
 
-		//ÀÌºÎºĞ ¹®Á¦
+		//ì´ë¶€ë¶„ ë¬¸ì œ
 		reload();
 	}
-	// È®ÀÎ¿Ï·á
+	// í™•ì¸ì™„ë£Œ
 	public void delete(TableItem item) {
 		//
 		String[] letter_data = (String[])item.getData();
@@ -120,14 +120,14 @@ public class LetterComposite extends Composite {
 	public void clear() {
 		table.removeAll();
 	}
-	// È®ÀÎ¿Ï·á
+	// í™•ì¸ì™„ë£Œ
 	public void reload() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("select * from letter where receiver in ('¸ŞÆ¼½º', '¹Ì¼ÒÇÇ¾Æ', '¿î¿µÀÚ') ORDER BY item_object_id DESC");
+			pstm = con.prepareStatement("select * from letter where receiver in ('ë©”í‹°ìŠ¤', 'ë¯¸ì†Œí”¼ì•„', 'ìš´ì˜ì') ORDER BY item_object_id DESC");
 			rs = pstm.executeQuery();
 			
 			while (rs.next()) {

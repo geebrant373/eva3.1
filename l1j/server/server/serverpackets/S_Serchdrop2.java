@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+ï»¿package l1j.server.server.serverpackets;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -52,12 +52,12 @@ public class S_Serchdrop2 extends ServerBasePacket {
 			}		
 
 			writeC(Opcodes.S_OPCODE_BOARDREAD);
-			writeD(0);//³Ñ¹ö
-			writeS("¿î¿µÀÚ #5");//±Û¾´ÀÌ?
-			writeS("µå¶ø¸®½ºÆ®");
+			writeD(0);//ë„˜ë²„
+			writeS("ìš´ì˜ì #5");//ê¸€ì“´ì´?
+			writeS("ë“œëë¦¬ìŠ¤íŠ¸");
 			writeS("");
-			writeS("\r°Ë»öÇÒ ¸÷ : " + NpcTable.getInstance().getTemplate(npcid).get_name() + 
-				   "\n\n\r******  µå¶øÇÏ´Â ¾ÆÀÌÅÛ  ******" +
+			writeS("\rê²€ìƒ‰í•  ëª¹ : " + NpcTable.getInstance().getTemplate(npcid).get_name() + 
+				   "\n\n\r******  ë“œëí•˜ëŠ” ì•„ì´í…œ  ******" +
 				   "\n\n\r" + itemname[0] + " | " + itemname[1] + " | " + itemname[2] + " | " + itemname[3] + " | " + itemname[4] + " | " + itemname[5] + 
 				   " | " + itemname[6] + " | " + itemname[7] + " | " + itemname[8] + " | " + itemname[9] + " | " + itemname[10] + " | " + itemname[11] + 
 				   " | " + itemname[12] + " | " + itemname[13] + " | " + itemname[14] + " | " + itemname[15] + " | " + itemname[16] + " | " + itemname[17] +

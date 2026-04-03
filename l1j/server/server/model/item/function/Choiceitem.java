@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -49,11 +49,11 @@ public class Choiceitem extends L1ItemInstance{
 			L1ItemInstance l1iteminstance1 = pc.getInventory().getItem(packet.readD());
 			int itemId = this.getItemId();
 			if (itemId >= 40931 && 40942 >= itemId) {
-				//¡¡°¡°øµÈ º¸¼®·ù(»çÆÄÀÌ¾î¡¤·çºñ¡¤¿¡¸Ş¶öµå)
+				//ã€€ê°€ê³µëœ ë³´ì„ë¥˜(ì‚¬íŒŒì´ì–´Â·ë£¨ë¹„Â·ì—ë©”ë„ë“œ)
 				int earing3Id = l1iteminstance1.getItem().getItemId();
 				int earinglevel = 0;
 				if (earing3Id >= 41161 && 41172 >= earing3Id) {
-					// ½ÅºñÀûÀÎ ±Í ¸µ·ù
+					// ì‹ ë¹„ì ì¸ ê·€ ë§ë¥˜
 					if (earing3Id == (itemId + 230)) {
 						if ((_random.nextInt(99)+1) < Config.CREATE_CHANCE_PROCESSING) {
 							switch(earing3Id){
@@ -73,24 +73,24 @@ public class Choiceitem extends L1ItemInstance{
 							createNewItem(pc, earinglevel, 1);
 						} else {
 							pc.sendPackets(new S_ServerMessage(158, l1iteminstance1.getName())); 
-							// \f1%0ÀÌ Áõ¹ßÇÏ°í ÀÖÁö ¾Ê°Ô µÇ¾ú½À´Ï´Ù.
+							// \f1%0ì´ ì¦ë°œí•˜ê³  ìˆì§€ ì•Šê²Œ ë˜ì—ˆìŠµë‹ˆë‹¤.
 						}
 						pc.getInventory().removeItem(l1iteminstance1, 1);
 						pc.getInventory().removeItem(useItem, 1);
 					} else {
-						pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+						pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				}
 			} else if (itemId >= 40943 && 40958 >= itemId) {
-				//¡¡°¡°øµÈ ´ÙÀÌ¾Æ¸óµå(¿öÅ¸¡¤Áö±¸¡¤ÆÄÀÌ¾î¡¤À©µå)
+				//ã€€ê°€ê³µëœ ë‹¤ì´ì•„ëª¬ë“œ(ì›Œíƒ€Â·ì§€êµ¬Â·íŒŒì´ì–´Â·ìœˆë“œ)
 				int ringId = l1iteminstance1.getItem().getItemId();
 				int ringlevel = 0;
 				int gmas = 0;
 				int gmam = 0;
 				if (ringId >= 41185 && 41200 >= ringId) {
-					// ¼¼°øµÈ ¸µ·ù
+					// ì„¸ê³µëœ ë§ë¥˜
 					if (itemId == 40943 || itemId == 40947
 							|| itemId == 40951 || itemId == 40955) {
 						gmas = 443;
@@ -138,30 +138,30 @@ public class Choiceitem extends L1ItemInstance{
 							pc.getInventory().removeItem(useItem, 1);
 						}
 					} else {
-						pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+						pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				}
 			} else if (itemId >= 41048 && 41055 >= itemId ) {
-				// Ç®¸ÔÀÓ µÈ Ç×ÇØ ÀÏÁö ÆäÀÌÁö£º1~8 ÆäÀÌÁö
+				// í’€ë¨¹ì„ ëœ í•­í•´ ì¼ì§€ í˜ì´ì§€ï¼š1~8 í˜ì´ì§€
 				int logbookId = l1iteminstance1.getItem().getItemId();
 				if (logbookId == (itemId + 8034)) {
 					createNewItem(pc, logbookId + 2, 1);
 					pc.getInventory().removeItem(l1iteminstance1, 1);
 					pc.getInventory().removeItem(useItem, 1);
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				}
 			} else if (itemId == 41056 || itemId == 41057) {
-				// Ç®¸ÔÀÓ µÈ Ç×ÇØ ÀÏÁö ÆäÀÌÁö£º9, 10 ÆäÀÌÁö
+				// í’€ë¨¹ì„ ëœ í•­í•´ ì¼ì§€ í˜ì´ì§€ï¼š9, 10 í˜ì´ì§€
 				int logbookId = l1iteminstance1.getItem().getItemId();
 				if (logbookId == (itemId + 8034)) {
 					createNewItem(pc, 41058, 1);
 					pc.getInventory().removeItem(l1iteminstance1, 1);
 					pc.getInventory().removeItem(useItem, 1);
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				}
 			}
 		}
@@ -172,11 +172,11 @@ public class Choiceitem extends L1ItemInstance{
 			item.setCount(count);
 			if (pc.getInventory().checkAddItem(item, count) == L1Inventory.OK) {
 				pc.getInventory().storeItem(item);
-			} else { // °¡Áú ¼ö  ¾ø´Â °æ¿ì´Â Áö¸é¿¡ ¶³¾î¶ß¸®´Â Ã³¸®ÀÇ Äµ½½Àº ÇÏÁö ¾Ê´Â´Ù(ºÎÁ¤ ¹æÁö)
+			} else { // ê°€ì§ˆ ìˆ˜  ì—†ëŠ” ê²½ìš°ëŠ” ì§€ë©´ì— ë–¨ì–´ëœ¨ë¦¬ëŠ” ì²˜ë¦¬ì˜ ìº”ìŠ¬ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤(ë¶€ì • ë°©ì§€)
 				L1World.getInstance().getInventory(pc.getX(), pc.getY(),
 						pc.getMapId()).storeItem(item);
 			}
-			pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0¸¦ ¼Õ¿¡ ³Ö¾ú½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(403, item.getLogName())); // %0ë¥¼ ì†ì— ë„£ì—ˆìŠµë‹ˆë‹¤.
 			return true;
 		} else {
 			return false;

@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,15 +13,15 @@ public class DungeonQuitController implements Runnable {
 
 	private static DungeonQuitController _instance;
 
-	/** °ÔÀÓ¿ÀÇÂÀ¯¹« **/
+	/** ê²Œì„ì˜¤í”ˆìœ ë¬´ **/
 	public boolean isgameStart = false;
 
-	/** °ÔÀÓ»óÅÂ **/
-	public int Status = 0;// ÁøÇà »óÅÂ
-	private final int ´ë±â = 0;// ÁøÇà
-	private final int ¿ÀÇÂ = 1;
-	private final int ÁøÇà = 2;
-	private final int Á¾·á = 3;//
+	/** ê²Œì„ìƒíƒœ **/
+	public int Status = 0;// ì§„í–‰ ìƒíƒœ
+	private final int ëŒ€ê¸° = 0;// ì§„í–‰
+	private final int ì˜¤í”ˆ = 1;
+	private final int ì§„í–‰ = 2;
+	private final int ì¢…ë£Œ = 3;//
 
 	public static DungeonQuitController getInstance() {
 		if (_instance == null) {
@@ -35,19 +35,19 @@ public class DungeonQuitController implements Runnable {
 		try {
 			while (true) {
 				switch (Status) {
-				case ´ë±â:
+				case ëŒ€ê¸°:
 					Thread.sleep(10000);
 					if (isgameStart == false) {
 						continue;
 					}
-					Status = ¿ÀÇÂ;
+					Status = ì˜¤í”ˆ;
 					continue;
-				case ¿ÀÇÂ:
-					L1World.getInstance().broadcastServerMessage("¾Ë¸²: Àá½Ã ÈÄ ¸ğµç ÀÎ½ºÅÏ½º ´øÀü ½Ã°£ÀÌ ÃÊ±âÈ­ µË´Ï´Ù.");
+				case ì˜¤í”ˆ:
+					L1World.getInstance().broadcastServerMessage("ì•Œë¦¼: ì ì‹œ í›„ ëª¨ë“  ì¸ìŠ¤í„´ìŠ¤ ë˜ì „ ì‹œê°„ì´ ì´ˆê¸°í™” ë©ë‹ˆë‹¤.");
 					Thread.sleep(3000L);
-					Status = ÁøÇà;
+					Status = ì§„í–‰;
 					continue;
-				case ÁøÇà:
+				case ì§„í–‰:
 					Thread.sleep(5000L);
 					safeUpdate("dreamisland");
                     safeUpdate("giranprison");
@@ -55,7 +55,7 @@ public class DungeonQuitController implements Runnable {
                     safeUpdate("dragongludio");
                     safeUpdate("antdundeon");
                     safeUpdate("shadowtemple");
-                    // Á¢¼Ó Ä³¸¯ÅÍ ¸Ş¸ğ¸® ÃÊ±âÈ­
+                    // ì ‘ì† ìºë¦­í„° ë©”ëª¨ë¦¬ ì´ˆê¸°í™”
                     for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
                     	if (pc == null) continue;
                         if (pc.getAccount() == null) continue;
@@ -66,12 +66,12 @@ public class DungeonQuitController implements Runnable {
                         pc.getAccount().setAntDundeonTime(0);
                         pc.getAccount().setShadowTempleTime(0);
                     }
-					Status = Á¾·á;
+					Status = ì¢…ë£Œ;
 					continue;
-				case Á¾·á:
-					L1World.getInstance().broadcastServerMessage("¾Ë¸²: ¸ğµç ÀÎ½ºÅÏ½º ´øÀü ½Ã°£ÀÌ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.");
+				case ì¢…ë£Œ:
+					L1World.getInstance().broadcastServerMessage("ì•Œë¦¼: ëª¨ë“  ì¸ìŠ¤í„´ìŠ¤ ë˜ì „ ì‹œê°„ì´ ì´ˆê¸°í™” ë˜ì—ˆìŠµë‹ˆë‹¤.");
 					isgameStart = false;
-					Status = ´ë±â;
+					Status = ëŒ€ê¸°;
 					continue;
 				}
 			}

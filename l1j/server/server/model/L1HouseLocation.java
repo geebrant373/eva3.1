@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -56,11 +56,11 @@ public class L1HouseLocation {
 		boolean ret = false;		
 		int ls = locx+locy;
 		int lm = locy-locx;
-		// ¾ö¸¶³ª¹«
+		// ì—„ë§ˆë‚˜ë¬´
 		if ((ls >= 65374 && ls <= 65408) && (lm >= -734 && lm <= -701)  
 				&& mapid == 4 && pc.isElf()) {
 			ret = true;
-		// ¼ö»óÇÑ ¸¶À»
+		// ìˆ˜ìƒí•œ ë§ˆì„
 		} else if ((ls >= 65645 && ls <= 65665) && (lm >= 77 && lm <= 97) 
 				&& mapid == 621) {
 			ret = true;

@@ -1,4 +1,4 @@
-package l1j.server.server.model.item;
+ï»¿package l1j.server.server.model.item;
 
 import java.io.File;
 import java.util.HashMap;
@@ -141,12 +141,12 @@ public class L1TreasureBox {
 			_totalChance += each.getChance();
 			if (ItemTable.getInstance().getTemplate(each.getItemId()) == null) {
 				getItems().remove(each);
-				_log.warning("¾ÆÀÌÅÛ ID " + each.getItemId() + " ÀÇ ÅÛÇÃ¸´ÀÌ ¹ß°ßµÇÁö ¾Ê¾Ò½À´Ï´Ù.");
+				_log.warning("ì•„ì´í…œ ID " + each.getItemId() + " ì˜ í…œí”Œë¦¿ì´ ë°œê²¬ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 			}
 		}
 		if (getType() == TYPE.RANDOM && getTotalChance() != 1000000) {
-			_log.warning("ID " + getBoxId() + "ÀÇ È®·üÀÇ ÇÕ°è°¡ 100%°¡ µÇÁö ¾Ê½À´Ï´Ù.");
-			System.out.println("ID " + getBoxId() + "ÀÇ È®·üÀÇ ÇÕ°è°¡ 100%°¡ µÇÁö ¾Ê½À´Ï´Ù.");
+			_log.warning("ID " + getBoxId() + "ì˜ í™•ë¥ ì˜ í•©ê³„ê°€ 100%ê°€ ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+			System.out.println("ID " + getBoxId() + "ì˜ í™•ë¥ ì˜ í•©ê³„ê°€ 100%ê°€ ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		}
 	}
 
@@ -167,7 +167,7 @@ public class L1TreasureBox {
 				_dataMap.put(each.getBoxId(), each);
 			}
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, PATH + "ÀÇ ·Îµå¿¡ ½ÇÆĞ.", e);
+			_log.log(Level.SEVERE, PATH + "ì˜ ë¡œë“œì— ì‹¤íŒ¨.", e);
 			System.exit(0);
 		}
 		// System.out.println("OK! " + timer.get() + "ms");
@@ -178,11 +178,11 @@ public class L1TreasureBox {
 		Random random = null;
 		if (getType().equals(TYPE.SPECIFIC)) {
 			if (pc.getInventory().getSize() > 175) {
-				pc.sendPackets(new S_SystemMessage("¼ÒÁöÇÏ°í ÀÖ´Â ¾ÆÀÌÅÛÀÌ ³Ê¹« ¸¹½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì†Œì§€í•˜ê³  ìˆëŠ” ì•„ì´í…œì´ ë„ˆë¬´ ë§ìŠµë‹ˆë‹¤."));
 				return false;
 			}
 			if (pc.getInventory().getWeight240() >= 200) {
-				pc.sendPackets(new S_SystemMessage("ÀÎº¥ È®ÀÎ : ¹«°Ô ÃÊ°ú Çàµ¿ÀÌ Á¦ÇÑµË´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì¸ë²¤ í™•ì¸ : ë¬´ê²Œ ì´ˆê³¼ í–‰ë™ì´ ì œí•œë©ë‹ˆë‹¤."));
 				return false;
 			}
 			for (Item each : getItems()) {
@@ -205,11 +205,11 @@ public class L1TreasureBox {
 
 			int r = random.nextInt(getTotalChance());
 			if (pc.getInventory().getSize() > 175) {
-				pc.sendPackets(new S_SystemMessage("¼ÒÁöÇÏ°í ÀÖ´Â ¾ÆÀÌÅÛÀÌ ³Ê¹« ¸¹½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì†Œì§€í•˜ê³  ìˆëŠ” ì•„ì´í…œì´ ë„ˆë¬´ ë§ìŠµë‹ˆë‹¤."));
 				return false;
 			}
 			if (pc.getInventory().getWeight240() >= 200) {
-				pc.sendPackets(new S_SystemMessage("ÀÎº¥ È®ÀÎ : ¹«°Ô ÃÊ°ú Çàµ¿ÀÌ Á¦ÇÑµË´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì¸ë²¤ í™•ì¸ : ë¬´ê²Œ ì´ˆê³¼ í–‰ë™ì´ ì œí•œë©ë‹ˆë‹¤."));
 				return false;
 			}
 			for (Item each : getItems()) {
@@ -221,22 +221,22 @@ public class L1TreasureBox {
 				if (r < chance) {
 					item = ItemTable.getInstance().createItem(each.getItemId());
 					if (item != null) {
-						item.setCount(each.getCount());// °ãÄ¡±â½ÇÆĞ0303
-						item.setEnchantLevel(each.getEnchant());// °ãÄ¡±â½ÇÆĞ0303
-						item.setBless(each.getBless());// °ãÄ¡±â½ÇÆĞ0303
-						item.setIdentified(each.isIdentified());// °ãÄ¡±â½ÇÆĞ0303
-						// item.setCount(each.getCount());<<ÀÌµÎ°³·ÎÇÏ¸é ·£´ı¼­½ºÆÑÆ®È¿°ú
-						// item.setEnchantLevel(each.getEnchant());<<ÀÌµÎ°³·ÎÇÏ¸é ·£´ı¼­½ºÆÑÆ®È¿°ú
-						storeItem(pc, item);// °ãÄ¡±â½ÇÆĞ0303
+						item.setCount(each.getCount());// ê²¹ì¹˜ê¸°ì‹¤íŒ¨0303
+						item.setEnchantLevel(each.getEnchant());// ê²¹ì¹˜ê¸°ì‹¤íŒ¨0303
+						item.setBless(each.getBless());// ê²¹ì¹˜ê¸°ì‹¤íŒ¨0303
+						item.setIdentified(each.isIdentified());// ê²¹ì¹˜ê¸°ì‹¤íŒ¨0303
+						// item.setCount(each.getCount());<<ì´ë‘ê°œë¡œí•˜ë©´ ëœë¤ì„œìŠ¤íŒ©íŠ¸íš¨ê³¼
+						// item.setEnchantLevel(each.getEnchant());<<ì´ë‘ê°œë¡œí•˜ë©´ ëœë¤ì„œìŠ¤íŒ©íŠ¸íš¨ê³¼
+						storeItem(pc, item);// ê²¹ì¹˜ê¸°ì‹¤íŒ¨0303
 
 						if ((item.getItemId() >= 30152 && item.getItemId() <= 30155)
 								|| (each.getItemId() >= 210130 && each.getItemId() <= 210132)
 								|| each.getItemId() == 40222 || each.getItemId() == 41148 || each.getItemId() == 5559
 								|| each.getItemId() == 210125) {
 							L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE,
-									"¾Æµ§ ¿ùµåÀÇ ¾î´À ¿ë»ç°¡ " + item.getName() + " ¸¦(À») È¹µæÇÏ¿´½À´Ï´Ù."));
+									"ì•„ë´ ì›”ë“œì˜ ì–´ëŠ ìš©ì‚¬ê°€ " + item.getName() + " ë¥¼(ì„) íšë“í•˜ì˜€ìŠµë‹ˆë‹¤."));
 							L1World.getInstance().broadcastPacketToAll(
-									new S_SystemMessage("¾Æµ§ ¿ùµåÀÇ ¾î´À ¿ë»ç°¡ " + item.getName() + " ¸¦(À») È¹µæÇÏ¿´½À´Ï´Ù."));
+									new S_SystemMessage("ì•„ë´ ì›”ë“œì˜ ì–´ëŠ ìš©ì‚¬ê°€ " + item.getName() + " ë¥¼(ì„) íšë“í•˜ì˜€ìŠµë‹ˆë‹¤."));
 						}
 					}
 					break;
@@ -249,11 +249,11 @@ public class L1TreasureBox {
 
 			int r = random.nextInt(getTotalChance());
 			if (pc.getInventory().getSize() > 175) {
-				pc.sendPackets(new S_SystemMessage("¼ÒÁöÇÏ°í ÀÖ´Â ¾ÆÀÌÅÛÀÌ ³Ê¹« ¸¹½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì†Œì§€í•˜ê³  ìˆëŠ” ì•„ì´í…œì´ ë„ˆë¬´ ë§ìŠµë‹ˆë‹¤."));
 				return false;
 			}
 			if (pc.getInventory().getWeight240() >= 200) {
-				pc.sendPackets(new S_SystemMessage("ÀÎº¥ È®ÀÎ : ¹«°Ô ÃÊ°ú Çàµ¿ÀÌ Á¦ÇÑµË´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì¸ë²¤ í™•ì¸ : ë¬´ê²Œ ì´ˆê³¼ í–‰ë™ì´ ì œí•œë©ë‹ˆë‹¤."));
 				return false;
 			}
 			for (Item each : getItems()) {
@@ -278,9 +278,9 @@ public class L1TreasureBox {
 								|| each.getItemId() == 40222 || each.getItemId() == 41148 || each.getItemId() == 5559
 								|| each.getItemId() == 210125) {
 							L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE,
-									"¾Æµ§ ¿ùµåÀÇ ¾î´À ¿ë»ç°¡ " + item.getName() + " ¸¦(À») È¹µæÇÏ¿´½À´Ï´Ù."));
+									"ì•„ë´ ì›”ë“œì˜ ì–´ëŠ ìš©ì‚¬ê°€ " + item.getName() + " ë¥¼(ì„) íšë“í•˜ì˜€ìŠµë‹ˆë‹¤."));
 							L1World.getInstance().broadcastPacketToAll(
-									new S_SystemMessage("¾Æµ§ ¿ùµåÀÇ ¾î´À ¿ë»ç°¡ " + item.getName() + " ¸¦(À») È¹µæÇÏ¿´½À´Ï´Ù."));
+									new S_SystemMessage("ì•„ë´ ì›”ë“œì˜ ì–´ëŠ ìš©ì‚¬ê°€ " + item.getName() + " ë¥¼(ì„) íšë“í•˜ì˜€ìŠµë‹ˆë‹¤."));
 						}
 					}
 					break;

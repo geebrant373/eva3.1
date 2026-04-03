@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -26,7 +26,7 @@ public class S_ItemColor extends ServerBasePacket {
 	private static final String S_ITEM_COLOR = "[S] S_ItemColor";
 
 	/**
-	 * ¾ÆÀÌÅÛÀÇ »öÀ» º¯°æÇÑ´Ù. Ãàº¹¡¤ÀúÁÖ »óÅÂ°¡ º¯È­ÇßÀ» ¶§ µî¿¡ º¸³½´Ù
+	 * ì•„ì´í…œì˜ ìƒ‰ì„ ë³€ê²½í•œë‹¤. ì¶•ë³µÂ·ì €ì£¼ ìƒíƒœê°€ ë³€í™”í–ˆì„ ë•Œ ë“±ì— ë³´ë‚¸ë‹¤
 	 */
 	public S_ItemColor(L1ItemInstance item) {
 		if (item == null) {
@@ -45,13 +45,13 @@ public class S_ItemColor extends ServerBasePacket {
 	private void buildPacket(L1ItemInstance item) {
 		writeC(Opcodes.S_OPCODE_ITEMCOLOR);
 		writeD(item.getId());
-		writeC(item.getBless()); // 0:b 1:n 2:c -ÀÇ °ª:¾ÆÀÌÅÛÀÌ ºÀÀÎµÇ¾î?
+		writeC(item.getBless()); // 0:b 1:n 2:c -ì˜ ê°’:ì•„ì´í…œì´ ë´‰ì¸ë˜ì–´?
 	}
 	
 	private void buildPacket(L1ItemInstance item, int color) {
 		writeC(Opcodes.S_OPCODE_ITEMCOLOR);
 		writeD(item.getId());
-		// 0 : Ãàº¹ 1: º¸Åë 2: ÀúÁÖ 3: ¹ÌÈ®ÀÎ 128: ÃàºÀÀÎ 129: ºÀÀÎ 130: ÀúÁÖºÀÀÎ 131: ¹ÌÈ®ÀÎºÀÀÎ
+		// 0 : ì¶•ë³µ 1: ë³´í†µ 2: ì €ì£¼ 3: ë¯¸í™•ì¸ 128: ì¶•ë´‰ì¸ 129: ë´‰ì¸ 130: ì €ì£¼ë´‰ì¸ 131: ë¯¸í™•ì¸ë´‰ì¸
 		writeC(color);
 	}
 

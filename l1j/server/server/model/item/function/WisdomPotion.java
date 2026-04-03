@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -44,25 +44,25 @@ public class WisdomPotion extends L1ItemInstance {
 		if (pc.isWizard()) {
 			useWisdomPotion(pc, itemId);
 		} else {
-			pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 		}
 		pc.getInventory().removeItem(useItem, 1);
 	}
 
 	private static void useWisdomPotion(L1PcInstance pc, int item_id) {
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(71) == true) { // µğÄÉÀÌÆ÷¼Ç »óÅÂ
-			pc.sendPackets(new S_ServerMessage(698)); // \f1¸¶·Â¿¡ ÀÇÇØ ¾Æ¹«°Íµµ ¸¶½Ç ¼ö°¡ ¾ø½À´Ï´Ù.
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(71) == true) { // ë””ì¼€ì´í¬ì…˜ ìƒíƒœ
+			pc.sendPackets(new S_ServerMessage(698)); // \f1ë§ˆë ¥ì— ì˜í•´ ì•„ë¬´ê²ƒë„ ë§ˆì‹¤ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 
-		// ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+		// ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 		pc.cancelAbsoluteBarrier();
 
-		int time = 0; // ½Ã°£Àº 4ÀÇ ¹è¼ö·Î ÇÏ´Â °Í
-		if (item_id == L1ItemId.POTION_OF_EMOTION_WISDOM) { // À§Áî ´ï ÀÏºÎ
+		int time = 0; // ì‹œê°„ì€ 4ì˜ ë°°ìˆ˜ë¡œ í•˜ëŠ” ê²ƒ
+		if (item_id == L1ItemId.POTION_OF_EMOTION_WISDOM) { // ìœ„ì¦ˆ ëŒ ì¼ë¶€
 			time = 300;
-		} else if (item_id == L1ItemId.B_POTION_OF_EMOTION_WISDOM) { // Ãàº¹µÈ À§Áî ´ï
-			// ÀÏºÎ
+		} else if (item_id == L1ItemId.B_POTION_OF_EMOTION_WISDOM) { // ì¶•ë³µëœ ìœ„ì¦ˆ ëŒ
+			// ì¼ë¶€
 			time = 360;
 		}
 

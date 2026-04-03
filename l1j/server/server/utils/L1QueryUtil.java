@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -35,7 +35,7 @@ public class L1QueryUtil {
 		List<T> result = selectAll(factory, sql, args);
 		return result.isEmpty() ? null : result.get(0);
 	}
-	// »Æ¿Œ øœ∑·
+	// ÌôïÏù∏ ÏôÑÎ£å
 	public static <T> List<T> selectAll(EntityFactory<T> factory, String sql, Object[] args) {
 		List<T> result = Lists.newArrayList();
 		Connection con = null;
@@ -67,7 +67,7 @@ public class L1QueryUtil {
 		for (int i = 0; i < args.length; i++)
 			pstm.setObject(i + 1, args[i]);
 	}
-	// »Æ¿Œ øœ∑·
+	// ÌôïÏù∏ ÏôÑÎ£å
 	public static boolean execute(Connection con, String sql, Object... args) {
 		PreparedStatement pstm = null;
 		try {
@@ -81,7 +81,7 @@ public class L1QueryUtil {
 			SQLUtil.close(pstm);
 		}
 	}
-	// »Æ¿Œ øœ∑·
+	// ÌôïÏù∏ ÏôÑÎ£å
 	public static boolean execute(String sql, Object... args) {
 		Connection con = null;
 		try {

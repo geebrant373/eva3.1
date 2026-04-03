@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -49,13 +49,13 @@ public class DropEventTable {
 				int mapId = rs.getInt("map_id");
 				L1Map pobyMap = L1WorldMap.getInstance().getMap((short) mapId);
 				if (pobyMap == null) {
-					System.out.println("[DropEventData] - Á¸ÀçÇÏÁö ¾Ê´Â ¸Ê¹øÈ£: " + mapId);
+					System.out.println("[DropEventData] - ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ë§µë²ˆí˜¸: " + mapId);
 					continue;
 				}
 				int itemId = rs.getInt("item_id");
 				L1Item pobyItem = ItemTable.getInstance().getTemplate(itemId);
 				if (pobyItem == null) {
-					System.out.println("[DropEventData] - Á¸ÀçÇÏÁö ¾Ê´Â ¾ÆÀÌÅÛ¹øÈ£: " + itemId);
+					System.out.println("[DropEventData] - ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ì•„ì´í…œë²ˆí˜¸: " + itemId);
 					continue;
 				}
 

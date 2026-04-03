@@ -1,4 +1,4 @@
-package l1j.server.MJTemplate.Command;
+ï»¿package l1j.server.MJTemplate.Command;
 
 import l1j.server.MJTemplate.Exceptions.MJCommandArgsIndexException;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -50,7 +50,7 @@ public class MJCommandArgs {
 	
 	public void notify(String message){
 		if(_owner != null){
-			if(_owner.getName().equalsIgnoreCase("À¥°ü¸®ÀÚ")){
+			if(_owner.getName().equalsIgnoreCase("ì›¹ê´€ë¦¬ì")){
 				_owner.sendPackets(new S_SystemMessage(message));		
 			}else{
 				_owner.sendPackets(new S_ChatPacket(_owner, message));

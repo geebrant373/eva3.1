@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -44,8 +44,8 @@ public class BravePotion extends L1ItemInstance {
 	}
 
 	public static void checkCondition(L1PcInstance pc, L1ItemInstance item) {
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(71) == true) { // µğÄÉÀÌÆ÷¼Ç »óÅÂ
-			pc.sendPackets(new S_ServerMessage(698));// \f1¸¶·Â¿¡ ÀÇÇØ ¾Æ¹«°Íµµ ¸¶½Ç ¼ö°¡ ¾ø½À´Ï´Ù.
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(71) == true) { // ë””ì¼€ì´í¬ì…˜ ìƒíƒœ
+			pc.sendPackets(new S_ServerMessage(698));// \f1ë§ˆë ¥ì— ì˜í•´ ì•„ë¬´ê²ƒë„ ë§ˆì‹¤ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 		pc.cancelAbsoluteBarrier();
@@ -53,16 +53,16 @@ public class BravePotion extends L1ItemInstance {
 		L1ItemInstance useItem = pc.getInventory().getItem(item.getId());
 		int itemId = item.getItemId();
 
-		if ((itemId == L1ItemId.POTION_OF_EMOTION_BRAVERY // Ä¡¿ìÄ§ ÀÌºê ÀÏºÎ
-				|| itemId == L1ItemId.B_POTION_OF_EMOTION_BRAVERY // Ãàº¹µÈ Ä¡¿ìÄ§ ÀÌºê
+		if ((itemId == L1ItemId.POTION_OF_EMOTION_BRAVERY // ì¹˜ìš°ì¹¨ ì´ë¸Œ ì¼ë¶€
+				|| itemId == L1ItemId.B_POTION_OF_EMOTION_BRAVERY // ì¶•ë³µëœ ì¹˜ìš°ì¹¨ ì´ë¸Œ
 				|| itemId == 41415) && pc.isKnight()) {
 			useBravePotion(pc, itemId);
 		} else if ((itemId == 40068 || itemId == 140068) && pc.isElf()) {
 			useBravePotion(pc, itemId);
-		} else if (itemId == 40031 && pc.isCrown()) { // ¾Ç¸¶ÀÇÇÇ
+		} else if (itemId == 40031 && pc.isCrown()) { // ì•…ë§ˆì˜í”¼
 			useBravePotion(pc, itemId);
 		} else {
-			pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 			return;
 		}
 		pc.getInventory().removeItem(useItem, 1);
@@ -80,13 +80,13 @@ public class BravePotion extends L1ItemInstance {
 			break;
 		case 40068:
 			time = 600;
-			if (pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_BRAVE)) { // ¿ë±â¿Í´Â Áßº¹ ÇÏÁö ¾Ê´Â´Ù.
+			if (pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_BRAVE)) { // ìš©ê¸°ì™€ëŠ” ì¤‘ë³µ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 				pc.getSkillEffectTimerSet().killSkillEffectTimer(STATUS_BRAVE);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				Broadcaster.broadcastPacket(pc, new S_SkillBrave(pc.getId(), 0, 0));
 				pc.getMoveState().setBraveSpeed(0);
 			}
-			if (pc.getSkillEffectTimerSet().hasSkillEffect(WIND_WALK)) { // À©µå¿öÅ©¿Í´Â Áßº¹ ÇÏÁö ¾Ê´Â´Ù
+			if (pc.getSkillEffectTimerSet().hasSkillEffect(WIND_WALK)) { // ìœˆë“œì›Œí¬ì™€ëŠ” ì¤‘ë³µ í•˜ì§€ ì•ŠëŠ”ë‹¤
 				pc.getSkillEffectTimerSet().killSkillEffectTimer(WIND_WALK);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				Broadcaster.broadcastPacket(pc, new S_SkillBrave(pc.getId(), 0, 0));
@@ -101,25 +101,25 @@ public class BravePotion extends L1ItemInstance {
 				Broadcaster.broadcastPacket(pc, new S_SkillBrave(pc.getId(), 0, 0));
 				pc.getMoveState().setBraveSpeed(0);
 			}
-			if (pc.getSkillEffectTimerSet().hasSkillEffect(HOLY_WALK)) { // È£-¸® ¿öÅ©¿Í´Â Áßº¹ ÇÏÁö ¾Ê´Â´Ù
+			if (pc.getSkillEffectTimerSet().hasSkillEffect(HOLY_WALK)) { // í˜¸-ë¦¬ ì›Œí¬ì™€ëŠ” ì¤‘ë³µ í•˜ì§€ ì•ŠëŠ”ë‹¤
 				pc.getSkillEffectTimerSet().killSkillEffectTimer(HOLY_WALK);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				Broadcaster.broadcastPacket(pc, new S_SkillBrave(pc.getId(), 0, 0));
 				pc.getMoveState().setBraveSpeed(0);
 			}
-			if (pc.getSkillEffectTimerSet().hasSkillEffect(MOVING_ACCELERATION)) { // ¹«ºù ¾Ç ¼¼·¹ÀÌ¼Ç°ú´Â Áßº¹ ÇÏÁö ¾Ê´Â´Ù
+			if (pc.getSkillEffectTimerSet().hasSkillEffect(MOVING_ACCELERATION)) { // ë¬´ë¹™ ì•… ì„¸ë ˆì´ì…˜ê³¼ëŠ” ì¤‘ë³µ í•˜ì§€ ì•ŠëŠ”ë‹¤
 				pc.getSkillEffectTimerSet().killSkillEffectTimer(MOVING_ACCELERATION);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				Broadcaster.broadcastPacket(pc, new S_SkillBrave(pc.getId(), 0, 0));
 				pc.getMoveState().setBraveSpeed(0);
 			}
-			if (pc.getSkillEffectTimerSet().hasSkillEffect(WIND_WALK)) { // À©µå¿öÅ©¿Í´Â Áßº¹ ÇÏÁö ¾Ê´Â´Ù
+			if (pc.getSkillEffectTimerSet().hasSkillEffect(WIND_WALK)) { // ìœˆë“œì›Œí¬ì™€ëŠ” ì¤‘ë³µ í•˜ì§€ ì•ŠëŠ”ë‹¤
 				pc.getSkillEffectTimerSet().killSkillEffectTimer(WIND_WALK);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				Broadcaster.broadcastPacket(pc, new S_SkillBrave(pc.getId(), 0, 0));
 				pc.getMoveState().setBraveSpeed(0);
 			}
-			if (pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_FRUIT)) { // À¯±×µå¶ó¿­¸Å¿Í´Â Áßº¹¾ÈµÊ
+			if (pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_FRUIT)) { // ìœ ê·¸ë“œë¼ì—´ë§¤ì™€ëŠ” ì¤‘ë³µì•ˆë¨
 				pc.getSkillEffectTimerSet().killSkillEffectTimer(STATUS_FRUIT);
 				// pc.sendPackets(new S_SkillFruit(pc.getId(), 0, 0));
 				pc.getMoveState().setBraveSpeed(0);
@@ -133,13 +133,13 @@ public class BravePotion extends L1ItemInstance {
 			break;
 		case 140068:
 			time = 700;
-			if (pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_BRAVE)) { // ¿ë±â È¿°ú¿Í´Â Áßº¹ ÇÏÁö ¾Ê´Â´Ù.
+			if (pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_BRAVE)) { // ìš©ê¸° íš¨ê³¼ì™€ëŠ” ì¤‘ë³µ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 				pc.getSkillEffectTimerSet().killSkillEffectTimer(STATUS_BRAVE);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				Broadcaster.broadcastPacket(pc, new S_SkillBrave(pc.getId(), 0, 0));
 				pc.getMoveState().setBraveSpeed(0);
 			}
-			if (pc.getSkillEffectTimerSet().hasSkillEffect(WIND_WALK)) { // À©µå¿öÅ©¿Í´Â Áßº¹ ÇÏÁö ¾Ê´Â´Ù
+			if (pc.getSkillEffectTimerSet().hasSkillEffect(WIND_WALK)) { // ìœˆë“œì›Œí¬ì™€ëŠ” ì¤‘ë³µ í•˜ì§€ ì•ŠëŠ”ë‹¤
 				pc.getSkillEffectTimerSet().killSkillEffectTimer(WIND_WALK);
 				pc.sendPackets(new S_SkillBrave(pc.getId(), 0, 0));
 				Broadcaster.broadcastPacket(pc, new S_SkillBrave(pc.getId(), 0, 0));
@@ -148,7 +148,7 @@ public class BravePotion extends L1ItemInstance {
 			break;
 		}
 
-		if (item_id == 40068 || item_id == 140068) { // ¿¤ºì ¿ÍÆÛ 3¿¡¼­ 1·Î
+		if (item_id == 40068 || item_id == 140068) { // ì—˜ë¸ ì™€í¼ 3ì—ì„œ 1ë¡œ
 			pc.sendPackets(new S_SkillBrave(pc.getId(), 1, time));
 			Broadcaster.broadcastPacket(pc, new S_SkillBrave(pc.getId(), 1, 0));
 			pc.getSkillEffectTimerSet().setSkillEffect(STATUS_ELFBRAVE, time * 1000);

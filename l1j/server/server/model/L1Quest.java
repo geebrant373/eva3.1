@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +21,7 @@ public class L1Quest {
 	public static final int QUEST_LEVEL50 = 4;
 	public static final int QUEST_LEVEL70 = 5;
 
-	public static final int QUEST_FIRSTQUEST = 40; //## A70 ¸»ÇÏ´Â µÎ·ç¸¶¸® Äù½ºÆ® Ãß°¡ 
+	public static final int QUEST_FIRSTQUEST = 40; //## A70 ë§í•˜ëŠ” ë‘ë£¨ë§ˆë¦¬ í€˜ìŠ¤íŠ¸ ì¶”ê°€ 
 
 	public static final int QUEST_LYRA = 10;
 	public static final int QUEST_OILSKINMANT = 11;

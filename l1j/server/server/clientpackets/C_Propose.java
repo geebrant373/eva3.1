@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -37,21 +37,21 @@ public class C_Propose extends ClientBasePacket {
 		int c = readC();
 
 		L1PcInstance pc = clientthread.getActiveChar();
-		if (c == 0) { // /propose(/ÇÁ·ÎÆ÷Áî)
+		if (c == 0) { // /propose(/í”„ë¡œí¬ì¦ˆ)
 			if (pc.isGhost()) {	return;	}
 			L1PcInstance target = FaceToFace.faceToFace(pc);
 			
 			if (target != null) {
 				if (pc.getPartnerId() > 0) {
-					pc.sendPackets(new S_ServerMessage(657)); // \f1´ç½ÅÀº ¹ú½á °áÈ¥Çß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(657)); // \f1ë‹¹ì‹ ì€ ë²Œì¨ ê²°í˜¼í–ˆìŠµë‹ˆë‹¤.
 					return;
 				}
 				if (target.getPartnerId() > 0) {
-					pc.sendPackets(new S_ServerMessage(658)); // \f1 ±× »ó´ë´Â ¹ú½á °áÈ¥Çß½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(658)); // \f1 ê·¸ ìƒëŒ€ëŠ” ë²Œì¨ ê²°í˜¼í–ˆìŠµë‹ˆë‹¤.
 					return;
 				}
 				if (pc.get_sex() == target.get_sex()) {
-					pc.sendPackets(new S_ServerMessage(661)); // \f1°áÈ¥»ó´ë´Â ÀÌ¼ºÀÌ ¾Æ´Ï¸é ¾ÈµË´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(661)); // \f1ê²°í˜¼ìƒëŒ€ëŠ” ì´ì„±ì´ ì•„ë‹ˆë©´ ì•ˆë©ë‹ˆë‹¤.
 					return;
 				}
 				if (!pc.getInventory().checkItem(40903)
@@ -60,7 +60,7 @@ public class C_Propose extends ClientBasePacket {
 						|| !pc.getInventory().checkItem(40906)
 						|| !pc.getInventory().checkItem(40907)
 						|| !pc.getInventory().checkItem(40908)) {
-					pc.sendPackets(new S_ServerMessage(659)); // \f1´ç½ÅÀº °áÈ¥¹ÝÁö¸¦ °¡Áö°í ÀÖÁö ¾Ê½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(659)); // \f1ë‹¹ì‹ ì€ ê²°í˜¼ë°˜ì§€ë¥¼ ê°€ì§€ê³  ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 				}
 				if (!target.getInventory().checkItem(40903)
 						|| !target.getInventory().checkItem(40904)
@@ -68,23 +68,23 @@ public class C_Propose extends ClientBasePacket {
 						|| !target.getInventory().checkItem(40906)
 						|| !target.getInventory().checkItem(40907)
 						|| !target.getInventory().checkItem(40908)) {
-					pc.sendPackets(new S_ServerMessage(660)); // \f1´ç½ÅÀÌ Ã»È¥ÇÑ »ç¶÷Àº °áÈ¥¹ÝÁö¸¦ °¡Áö°í ÀÖÁö ¾Ê½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(660)); // \f1ë‹¹ì‹ ì´ ì²­í˜¼í•œ ì‚¬ëžŒì€ ê²°í˜¼ë°˜ì§€ë¥¼ ê°€ì§€ê³  ìžˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 				}
 				if (pc.getX() >= 33974 && pc.getX() <= 33976
 						&& pc.getY() >= 33362 && pc.getY() <= 33365
 						&& pc.getMapId() == 4 && target.getX() >= 33974
 						&& target.getX() <= 33976 && target.getY() >= 33362
 						&& target.getY() <= 33365 && target.getMapId() == 4) {
-					target.setTempID(pc.getId()); // »ó´ëÀÇ ¿ÀºêÁ§Æ® ID¸¦ º¸Á¸ÇØ µÐ´Ù
-					target.sendPackets(new S_Message_YN(654, pc.getName())); // %0%s´ç½Å°ú °áÈ¥ ÇÏ°í ½Í¾îÇÏ°í ÀÖ½À´Ï´Ù. %0°ú °áÈ¥ÇÕ´Ï±î? (Y/N)
+					target.setTempID(pc.getId()); // ìƒëŒ€ì˜ ì˜¤ë¸Œì íŠ¸ IDë¥¼ ë³´ì¡´í•´ ë‘”ë‹¤
+					target.sendPackets(new S_Message_YN(654, pc.getName())); // %0%së‹¹ì‹ ê³¼ ê²°í˜¼ í•˜ê³  ì‹¶ì–´í•˜ê³  ìžˆìŠµë‹ˆë‹¤. %0ê³¼ ê²°í˜¼í•©ë‹ˆê¹Œ? (Y/N)
 				}
 			}
-		} else if (c == 1) { // /divorce(/ÀÌÈ¥)
+		} else if (c == 1) { // /divorce(/ì´í˜¼)
 			if (pc.getPartnerId() == 0) {
-				pc.sendPackets(new S_ServerMessage(662)); // \f1´ç½ÅÀº °áÈ¥ÇÏÁö ¾Ê¾Ò½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(662)); // \f1ë‹¹ì‹ ì€ ê²°í˜¼í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
-			pc.sendPackets(new S_Message_YN(653, "")); // ÀÌÈ¥À» ÇÏ¸é(ÀÚ) ¸µÀº »ç¶óÁ® ¹ö¸³´Ï´Ù. ÀÌÈ¥À» ¹Ù¶ø´Ï±î? (Y/N)
+			pc.sendPackets(new S_Message_YN(653, "")); // ì´í˜¼ì„ í•˜ë©´(ìž) ë§ì€ ì‚¬ë¼ì ¸ ë²„ë¦½ë‹ˆë‹¤. ì´í˜¼ì„ ë°”ëžë‹ˆê¹Œ? (Y/N)
 		}
 	}
 

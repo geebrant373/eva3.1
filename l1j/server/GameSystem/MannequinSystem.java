@@ -1,4 +1,4 @@
-
+ï»¿
 package l1j.server.GameSystem;
 
 import java.util.ArrayList;
@@ -75,22 +75,22 @@ public class MannequinSystem implements TimeListener{
 					npc.setTitle(npc.getTitle());
 					npc.setTempLawful(npc.getLawful());
 					switch(npc.getGfxId().getGfxId()) {
-					case 48: //¿©±â»ç
+					case 48: //ì—¬ê¸°ì‚¬
 						npc.setActionStatus(50);
 						break;
 					case 61:
 						npc.setActionStatus(4);
 						break;
-					case 37: //¿©¿äÁ¤
-					case 138: //³²¿äÁ¤
+					case 37: //ì—¬ìš”ì •
+					case 138: //ë‚¨ìš”ì •
 						npc.setActionStatus(20);
 						break;
-					case 734: //³²¹ı»ç
-					case 1186://¿©¹ı»ç
+					case 734: //ë‚¨ë²•ì‚¬
+					case 1186://ì—¬ë²•ì‚¬
 						npc.setActionStatus(40);
 						break;	
 					case 2786:
-					case 2796://³²´Ù¿¤
+					case 2796://ë‚¨ë‹¤ì—˜
 						npc.setActionStatus(54);
 						break;
 					}
@@ -148,54 +148,54 @@ public class MannequinSystem implements TimeListener{
 			int chance = _random.nextInt(gfxId.length);
 			if(npc.getMapId() != 4) continue;
 			switch(npc.getGfxId().getGfxId()){
-			case 37: //¿©¿äÁ¤
+			case 37: //ì—¬ìš”ì •
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 2178));
 				}
 				break;
-			case 61: //³²±â»ç
+			case 61: //ë‚¨ê¸°ì‚¬
 				if (action == 1){
 				Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				} else if (action == 2) {
 				Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 751));
 				} else if (action == 3) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
 				}
 				break;
-			case 138: //³²¿äÁ¤
+			case 138: //ë‚¨ìš”ì •
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				} else if (action == 2) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance]));// ¹°¾à
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance]));// ë¬¼ì•½
 				}
 				break;
-			case 734: //³²¹ı»ç
+			case 734: //ë‚¨ë²•ì‚¬
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //ÆÄ·©ÀÌ
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //íŒŒë­ì´
 
 				} else if (action == 2) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
 				} else if (action == 3) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 3936)); //È¦¸®
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 3936)); //í™€ë¦¬
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				}
 				break;
 
-			case 6137: //52µ¥½º
+			case 6137: //52ë°ìŠ¤
 				if (action == 1) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
 				} else if (action == 2) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 191)); //ÃÍ±â
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 191)); //ì´ê¸°
 				} else if (action == 3) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				}
 				break;
-			case 6140: //52´ÙÅ©¿¤ÇÁ
+			case 6140: //52ë‹¤í¬ì—˜í”„
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
@@ -204,124 +204,124 @@ public class MannequinSystem implements TimeListener{
 
 				}
 				break;
-			case 6267: //´ÙÅ©³ªÀÌÆ®
+			case 6267: //ë‹¤í¬ë‚˜ì´íŠ¸
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				} else if (action == 2) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 191)); //ÃÍ±â
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 191)); //ì´ê¸°
 				} else if (action == 3) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
 				}
 				break;
-			case 6268: //´ÙÅ©¸ŞÀÌÁö
+			case 6268: //ë‹¤í¬ë©”ì´ì§€
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				}
 				break;
-			case 6269: //´ÙÅ©½ºÄ«¿ìÅÍ
+			case 6269: //ë‹¤í¬ìŠ¤ì¹´ìš°í„°
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				} else if (action == 2) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
 				}
 				break;
-			case 6279: //´ÙÅ©¾î½Ø½Å
+			case 6279: //ë‹¤í¬ì–´ìŒ”ì‹ 
 				if (action == 1) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
 				}
 				break;
-			case 6270: //½Ç¹ö³ªÀÌÆ®
+			case 6270: //ì‹¤ë²„ë‚˜ì´íŠ¸
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //ÆÄ·©ÀÌ
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //íŒŒë­ì´
 				}
 				break;
-			case 6271: //½Ç¹ö¸ŞÀÌÁö
-				Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 3936)); //È¦¸®
+			case 6271: //ì‹¤ë²„ë©”ì´ì§€
+				Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 3936)); //í™€ë¦¬
 				Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
-				Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //ÆÄ·©ÀÌ
+				Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //íŒŒë­ì´
 				break;
-			case 6272: //½Ç¹ö½ºÄ«¿ìÅÍ
+			case 6272: //ì‹¤ë²„ìŠ¤ì¹´ìš°í„°
 				if (action == 1) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				}
 				break;
-			case 6280: //½Ç¹ö¾î½Ø½Å
-				if (action == 1) {//´õºíºê·¹ÀÌÅ©
+			case 6280: //ì‹¤ë²„ì–´ìŒ”ì‹ 
+				if (action == 1) {//ë”ë¸”ë¸Œë ˆì´í¬
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 2949));
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //ÆÄ·©ÀÌ
-				} else if (action == 2) {//µå·¹½º¸¶ÀÌÆ¼
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //íŒŒë­ì´
+				} else if (action == 2) {//ë“œë ˆìŠ¤ë§ˆì´í‹°
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 3909));
 				}
 				break;
-			case 6273: //¼Òµå³ªÀÌÆ®
+			case 6273: //ì†Œë“œë‚˜ì´íŠ¸
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				} else if (action == 2) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 191)); //ÃÍ±â
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 191)); //ì´ê¸°
 				}
 				break;
-			case 6274: //¼Òµå¸ŞÀÌÁö
+			case 6274: //ì†Œë“œë©”ì´ì§€
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				}
 				break;
-			case 6275: //¼Òµå½ºÄ«¿ìÅÍ
+			case 6275: //ì†Œë“œìŠ¤ì¹´ìš°í„°
 				if (action == 1) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				}
 				break;
-			case 6281:// ¼Òµå¾î½Ø½Å
+			case 6281:// ì†Œë“œì–´ìŒ”ì‹ 
 				if (action == 1) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //¹°¾à
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), gfxId[chance])); //ë¬¼ì•½
 				}
 				break;
-			case 6276: //¾ÆÅ©³ªÀÌÆ®
-				if (action == 1) {
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
-					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //ÆÄ·©ÀÌ
-				}
-				break;
-			case 6277: //¾ÆÅ©¸ŞÀÌÁö
+			case 6276: //ì•„í¬ë‚˜ì´íŠ¸
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //ÆÄ·©ÀÌ
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //íŒŒë­ì´
 				}
 				break;
-			case 6278: //¾ÆÅ©½ºÄ«¿ìÅÍ
+			case 6277: //ì•„í¬ë©”ì´ì§€
+				if (action == 1) {
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
+					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 190)); //íŒŒë­ì´
+				}
+				break;
+			case 6278: //ì•„í¬ìŠ¤ì¹´ìš°í„°
 				if (action == 1) {
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 830));
 					Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_SkillBuff));
 				} else if (action ==2){
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 191)); //ÃÍ±â
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 191)); //ì´ê¸°
 				}
 				break;
-			case 6282: //¾ÆÅ©¾î½Ø½Å
-				if (action == 1) {//´õºíºê·¹ÀÌÅ©
+			case 6282: //ì•„í¬ì–´ìŒ”ì‹ 
+				if (action == 1) {//ë”ë¸”ë¸Œë ˆì´í¬
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 2949));
-				} else if (action == 2) {//µå·¹½º¸¶ÀÌÆ¼
+				} else if (action == 2) {//ë“œë ˆìŠ¤ë§ˆì´í‹°
 					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 3909));
-					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 191)); //ÃÍ±â
+					Broadcaster.broadcastPacket(npc, new S_SkillSound(npc.getId(), 191)); //ì´ê¸°
 				}
 				break;
-			case 2786: //³²´Ù¿¤
+			case 2786: //ë‚¨ë‹¤ì—˜
 				break;
-			case 2796: //¿©´Ù¿¤
+			case 2796: //ì—¬ë‹¤ì—˜
 				break;
 			}
 		}*/

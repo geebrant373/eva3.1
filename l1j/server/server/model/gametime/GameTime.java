@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -19,7 +19,7 @@
 package l1j.server.server.model.gametime;
 
 public class GameTime extends BaseTime {
-	// 2003³â 7¿ù 3ÀÏ 12:00(UTC)ÀÌ 1¿ù 1ÀÏ00:00
+	// 2003ë…„ 7ì›” 3ì¼ 12:00(UTC)ì´ 1ì›” 1ì¼00:00
 	protected static final long BASE_TIME_IN_MILLIS_REAL = 1751860800000L;
 	
 	@Override
@@ -34,7 +34,7 @@ public class GameTime extends BaseTime {
 			throw new IllegalArgumentException();
 		}
 		int t2 = (int) ((t1 * 6) / 1000L);
-		int t3 = t2 % 3; // ½Ã°£ÀÌ 3ÀÇ ¹è¼ö°¡ µÇµµ·Ï(µíÀÌ) Á¶Á¤
+		int t3 = t2 % 3; // ì‹œê°„ì´ 3ì˜ ë°°ìˆ˜ê°€ ë˜ë„ë¡(ë“¯ì´) ì¡°ì •
 		return t2 - t3;
 	}
 }

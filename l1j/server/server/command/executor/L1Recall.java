@@ -1,4 +1,4 @@
-
+ï»¿
 package l1j.server.server.command.executor;
 
 import java.util.ArrayList;
@@ -25,13 +25,13 @@ public class L1Recall implements L1CommandExecutor {
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		try {
 			Collection<L1PcInstance> targets = null;
-			if (arg.equalsIgnoreCase("ÀüÃ¼")) {
+			if (arg.equalsIgnoreCase("ì „ì²´")) {
 				targets = L1World.getInstance().getAllPlayers();
 			} else {
 				targets = new ArrayList<L1PcInstance>();
 				L1PcInstance tg = L1World.getInstance().getPlayer(arg);
 				if (tg == null) {
-					pc.sendPackets(new S_SystemMessage("±×·¯ÇÑ Ä³¸¯ÅÍ´Â ¾ø½À´Ï´Ù. "));
+					pc.sendPackets(new S_SystemMessage("ê·¸ëŸ¬í•œ ìºë¦­í„°ëŠ” ì—†ìŠµë‹ˆë‹¤. "));
 					return;
 				}
 				targets.add(tg);
@@ -39,18 +39,18 @@ public class L1Recall implements L1CommandExecutor {
 
 			for (L1PcInstance target : targets) {	
 				if (target.isPrivateShop() || target.isAutoClanjoin()){
-					pc.sendPackets(new S_SystemMessage(target.getName()+" Ä³¸¯Àº °³ÀÎ»óÁ¡¸ğµåÀÔ´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage(target.getName()+" ìºë¦­ì€ ê°œì¸ìƒì ëª¨ë“œì…ë‹ˆë‹¤."));
 					return;
 				}
 				L1Teleport.teleportToTargetFront(target, pc, 2);
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						.append(target.getName()).append(" ¸¦ ¼ÒÈ¯Çß½À´Ï´Ù. ")
+						.append(target.getName()).append(" ë¥¼ ì†Œí™˜í–ˆìŠµë‹ˆë‹¤. ")
 						.toString()));
-				target.sendPackets(new S_SystemMessage("°ÔÀÓ ¸¶½ºÅÍ¿¡ ¼ÒÈ¯µÇ¾ú½À´Ï´Ù. "));
+				target.sendPackets(new S_SystemMessage("ê²Œì„ ë§ˆìŠ¤í„°ì— ì†Œí™˜ë˜ì—ˆìŠµë‹ˆë‹¤. "));
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(cmdName
-					+ " [ÀüÃ¼, Ä³¸¯ÅÍ¸í]À¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+					+ " [ì „ì²´, ìºë¦­í„°ëª…]ìœ¼ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

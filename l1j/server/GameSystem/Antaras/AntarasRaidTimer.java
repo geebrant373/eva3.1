@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Antaras;
+﻿package l1j.server.GameSystem.Antaras;
 
 import java.util.Timer;
 import java.util.TimerTask;

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -35,61 +35,61 @@ public class CharBuffTable {
 	private static Logger _log = Logger
 			.getLogger(CharBuffTable.class.getName());
 
-	private static final int[] buffSkill = { 2, 67, // ¶óÀÌÆ®, ¼ÎÀÌÇÁ Ã¼ÀÎÁö
-			3, 99, 151, 159, 168, // ½¯µå(shield), ±×¸²ÀÚ ¾Æ¸ð, Áö±¸ ½ºÅ², Áö±¸ È£Èí, ¾ÆÀÌ¾ð ½ºÅ²
-			43, 54, 1000, 1001, STATUS_ELFBRAVE, // ÇìÀÌ ÆÄ¾÷, ±×·¹ÀÌÅÍ ÇìÀÌ ÆÄ¾÷, Ä¡¿ìÄ§ ÀÌºê ÀÏºÎ, ±×¸° ÀÏºÎ, ¿¤ºì ¿ÍÆÛ
-			52, 101, 150, // È£-¸® ¿öÅ©, ¹«ºù ¾Ç ¼¼·¹ÀÌ¼Ç, À©µå¿öÅ©
-			26, 42, 109, 110, // PE:DEX, PE:STR, µå·¹½º¸¶ÀÌÆ¼, µå·¹½ºµ¥Å©½ºÅ¸¸®Æ¼
-			114, 115, 117, // ±×·ÎÀ®¿À¶ó, »þÀÌ´×¿À¶ó, Ä¡¿ìÄ§ ÀÌºê ¾Æ¿ì¶ó
-			148, 155, 163, // ÆÄÀÌ¾Æ¿þÆù, ÆÄÀÌ¾î È£Èí, ¹Ù´×¿þÆù
-			149, 156, 166, // À©µµ¿ì ¼îÆ®, ½ºÅä¹«¾ÆÀÌ, ½ºÅè ¼îÆ®
-			1002, STATUS_CHAT_PROHIBITED , // ºí·ç ÀÏºÎ, Ã¤ÆÃ ±ÝÁö
-			/** ¹öÇÁÀúÀå ÆÐÅ¶ Â÷·Ê */
+	private static final int[] buffSkill = { 2, 67, // ë¼ì´íŠ¸, ì…°ì´í”„ ì²´ì¸ì§€
+			3, 99, 151, 159, 168, // ì‰´ë“œ(shield), ê·¸ë¦¼ìž ì•„ëª¨, ì§€êµ¬ ìŠ¤í‚¨, ì§€êµ¬ í˜¸í¡, ì•„ì´ì–¸ ìŠ¤í‚¨
+			43, 54, 1000, 1001, STATUS_ELFBRAVE, // í—¤ì´ íŒŒì—…, ê·¸ë ˆì´í„° í—¤ì´ íŒŒì—…, ì¹˜ìš°ì¹¨ ì´ë¸Œ ì¼ë¶€, ê·¸ë¦° ì¼ë¶€, ì—˜ë¸ ì™€í¼
+			52, 101, 150, // í˜¸-ë¦¬ ì›Œí¬, ë¬´ë¹™ ì•… ì„¸ë ˆì´ì…˜, ìœˆë“œì›Œí¬
+			26, 42, 109, 110, // PE:DEX, PE:STR, ë“œë ˆìŠ¤ë§ˆì´í‹°, ë“œë ˆìŠ¤ë°í¬ìŠ¤íƒ€ë¦¬í‹°
+			114, 115, 117, // ê·¸ë¡œìœ™ì˜¤ë¼, ìƒ¤ì´ë‹ì˜¤ë¼, ì¹˜ìš°ì¹¨ ì´ë¸Œ ì•„ìš°ë¼
+			148, 155, 163, // íŒŒì´ì•„ì›¨í°, íŒŒì´ì–´ í˜¸í¡, ë°”ë‹ì›¨í°
+			149, 156, 166, // ìœˆë„ìš° ì‡¼íŠ¸, ìŠ¤í† ë¬´ì•„ì´, ìŠ¤í†° ì‡¼íŠ¸
+			1002, STATUS_CHAT_PROHIBITED , // ë¸”ë£¨ ì¼ë¶€, ì±„íŒ… ê¸ˆì§€
+			/** ë²„í”„ì €ìž¥ íŒ¨í‚· ì°¨ë¡€ */
 			DECREASE_WEIGHT, DECAY_POTION, SILENCE, VENOM_RESIST, WEAKNESS, DISEASE,
 			DRESS_EVASION, BERSERKERS, NATURES_TOUCH, WIND_SHACKLE,
 			ERASE_MAGIC, ADDITIONAL_FIRE, ELEMENTAL_FALL_DOWN, ELEMENTAL_FIRE,
 			STRIKER_GALE, SOUL_OF_FLAME, POLLUTE_WATER,
 			STATUS_TIKAL_BOSSDIE,
-			ÀÚµ¿»ç³É½Ã°£,	
-			/** ¿äÁ¤ Àü¿ë ¹öÇÁ */
+			ìžë™ì‚¬ëƒ¥ì‹œê°„,	
+			/** ìš”ì • ì „ìš© ë²„í”„ */
 			RESIST_MAGIC, CLEAR_MIND, RESIST_ELEMENTAL, ELEMENTAL_PROTECTION,
 
-			/** ÄÃ·¯Ç® ÆÐÅ°Áö ¾ÆÀÌÅÛ ¹× Ãµ»óÀÇ ¹°¾à */
+			/** ì»¬ëŸ¬í’€ íŒ¨í‚¤ì§€ ì•„ì´í…œ ë° ì²œìƒì˜ ë¬¼ì•½ */
 			EXP_POTION, STATUS_BLUE_POTION2, STATUS_FRUIT, STATUS_EXP_UP_II,
 			STATUS_CASHSCROLL, STATUS_CASHSCROLL2, STATUS_CASHSCROLL3,
 			STATUS_COMA_3, STATUS_COMA_5,
 
-			/** ½ºÆä¼È ¿ä¸®*/
+			/** ìŠ¤íŽ˜ì…œ ìš”ë¦¬*/
 			SPECIAL_COOKING,
 
-			/** µå·¡°ïÀÇ ¿¡¸Þ¶öµå   - playeva.net */
+			/** ë“œëž˜ê³¤ì˜ ì—ë©”ëž„ë“œ   - playeva.net */
 			DRAGON_EMERALD_NO, DRAGON_EMERALD_YES,
 
-			/** Å©·¹ÀÌ, »ç¹«¿¤¹öÇÁ**/
+			/** í¬ë ˆì´, ì‚¬ë¬´ì—˜ë²„í”„**/
 			BUFF_CRAY, BUFF_SAMUEL,
 			
-			/** ¸¶¾È ¹öÇÁ */
+			/** ë§ˆì•ˆ ë²„í”„ */
 			STATUS_DRAGONMAAN_EARTH, STATUS_DRAGONMAAN_WATER, STATUS_DRAGONMAAN_FIRE, STATUS_DRAGONMAAN_WIND,
 			STATUS_DRAGONMAAN_BIRTH, STATUS_DRAGONMAAN_SHAPE, STATUS_DRAGONMAAN_LIFE,
 			
 			
-			/** ¼ö»óÇÑ ¸¶À» ¸®´º¾ó °ü·Ã ¾ÆÀÌÅÛ */
+			/** ìˆ˜ìƒí•œ ë§ˆì„ ë¦¬ë‰´ì–¼ ê´€ë ¨ ì•„ì´í…œ */
 			STATUS_BLUE_POTION3,
 			FEATHER_BUFF_A, FEATHER_BUFF_B, FEATHER_BUFF_C, FEATHER_BUFF_D,
 
-			/** ¿ä¸® 1´Ü°è È¿°ú ÀçºÎ¿© */
-			COOKING_1_0_N, COOKING_1_0_S, COOKING_1_1_N, COOKING_1_1_S, // ¿ä¸®
+			/** ìš”ë¦¬ 1ë‹¨ê³„ íš¨ê³¼ ìž¬ë¶€ì—¬ */
+			COOKING_1_0_N, COOKING_1_0_S, COOKING_1_1_N, COOKING_1_1_S, // ìš”ë¦¬
 			COOKING_1_2_N, COOKING_1_2_S, COOKING_1_3_N, COOKING_1_3_S,
 			COOKING_1_4_N, COOKING_1_4_S, COOKING_1_5_N, COOKING_1_5_S,
 			COOKING_1_6_N, COOKING_1_6_S,
 
-			/** ¿ä¸® 2´Ü°è È¿°ú ÀçºÎ¿© */
+			/** ìš”ë¦¬ 2ë‹¨ê³„ íš¨ê³¼ ìž¬ë¶€ì—¬ */
 			COOKING_1_8_N, COOKING_1_8_S, COOKING_1_9_N, COOKING_1_9_S,
 			COOKING_1_10_N, COOKING_1_10_S, COOKING_1_11_N, COOKING_1_11_S,
 			COOKING_1_12_N, COOKING_1_12_S, COOKING_1_13_N, COOKING_1_13_S,
 			COOKING_1_14_N, COOKING_1_14_S,
 
-			/** ¿ä¸® 3´Ü°è È¿°ú ÀçºÎ¿© */
+			/** ìš”ë¦¬ 3ë‹¨ê³„ íš¨ê³¼ ìž¬ë¶€ì—¬ */
 			COOKING_1_16_N, COOKING_1_16_S, COOKING_1_17_N, COOKING_1_17_S,
 			COOKING_1_18_N, COOKING_1_18_S, COOKING_1_19_N, COOKING_1_19_S,
 			COOKING_1_20_N, COOKING_1_20_S, COOKING_1_21_N, COOKING_1_21_S,

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,11 +47,11 @@ public class L1Adena implements L1CommandExecutor {
 					count);
 			if (adena != null) {
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						. append(count). append("¾Æµ¥³ª¸¦ »ı¼ºÇß½À´Ï´Ù. "). toString()));
+						. append(count). append("ì•„ë°ë‚˜ë¥¼ ìƒì„±í–ˆìŠµë‹ˆë‹¤. "). toString()));
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage((new StringBuilder()). append(
-					".¾Æµ¥³ª [¾×¼ö]·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "). toString()));
+					".ì•„ë°ë‚˜ [ì•¡ìˆ˜]ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”. "). toString()));
 		}
 	}
 }

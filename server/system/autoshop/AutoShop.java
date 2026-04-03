@@ -1,4 +1,4 @@
-package server.system.autoshop;
+﻿package server.system.autoshop;
 
 public interface AutoShop {
 	String getName();

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -54,7 +54,7 @@ public class C_UsePetItem extends ClientBasePacket {
 		L1ItemInstance item = pet.getInventory().getItems().get(listNo);
 		if (item == null) { return; }
 		
-		// Á¾º°:¹æ¾î±¸ -Æê ¾ÆÀÌÅÛ
+		// ì¢…ë³„:ë°©ì–´êµ¬ -íŽ« ì•„ì´í…œ
 		if (item.getItem().getType2() == 2 && item.getItem().isUseHighPet()) {
 			int itemId = item.getItem().getItemId();
 			if (itemId >= 427100 && itemId <= 427109) {
@@ -64,10 +64,10 @@ public class C_UsePetItem extends ClientBasePacket {
 				pet.usePetArmor(item);
 				pc.sendPackets(new S_PacketBox(S_PacketBox.PET_ITEM, data, pet.getId(), pet.getAC().getAc()));
 			} else {
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 		}
 	}
 

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -63,7 +63,7 @@ public class C_SkillBuyOK extends ClientBasePacket {
 			} 
 
 			switch (sid[i]) {
-			// Lv1 ¸¶¹ı
+			// Lv1 ë§ˆë²•
 			case 0:
 				level1 += 1;
 				level1_cost += 100;
@@ -97,7 +97,7 @@ public class C_SkillBuyOK extends ClientBasePacket {
 				level1_cost += 100;
 				break;
 
-			// Lv2 ¸¶¹ı
+			// Lv2 ë§ˆë²•
 			case 8:
 				level2 += 1;
 				level2_cost += 400;
@@ -131,7 +131,7 @@ public class C_SkillBuyOK extends ClientBasePacket {
 				level2_cost += 400;
 				break;
 
-			// Lv3 ¸¶¹ı
+			// Lv3 ë§ˆë²•
 			case 16:
 				level3 += 1;
 				level3_cost += 900;
@@ -398,7 +398,7 @@ public class C_SkillBuyOK extends ClientBasePacket {
 				SkillsTable.getInstance().spellMastery(pc.getId(), skill_id, skill_name, 0, 0);
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(189)); // \f1¾Æµ¥³ª°¡ ºÎÁ·ÇÕ´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(189)); // \f1ì•„ë°ë‚˜ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤.
 		}
 	}
 

@@ -1,4 +1,4 @@
-package l1j.server.TowerOfDominance;
+﻿package l1j.server.TowerOfDominance;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -69,7 +69,7 @@ public class DominanceDataLoader {
 					DT.setRandomSpawn(rs.getInt("spawn_fail_per"));
 					DT.setRndMinuteTime(rnd_time_min);
 					
-					String[] spawn_yoil = new String[] { "��ü" };
+					String[] spawn_yoil = new String[] { "전체" };
 					try {
 						StringTokenizer stt = new StringTokenizer(rs.getString("spawn_day"), ",");// |
 						spawn_yoil = new String[stt.countTokens()];

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -50,7 +50,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			rs = pstm.executeQuery();
 
 			if (!rs.next()) {
-				// SELECT°¡ °á°ú¸¦ µ¹·ÁÁÖÁö ¾Ê¾Ò´Ù.
+				// SELECTê°€ ê²°ê³¼ë¥¼ ëŒë ¤ì£¼ì§€ ì•Šì•˜ë‹¤.
 				return null;
 			}
 
@@ -103,7 +103,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			 * resultset.getInt("locY"); short map =
 			 * resultset.getShort("MapID"); if (locX < 30000 || locX > 40000 ||
 			 * locY < 30000 || locY > 40000) { locX = 32564; locY = 32955; } if
-			 * (map == 70) { locX = 32828; locY = 32848; } // °­Á¦ ÀÌµ¿ short
+			 * (map == 70) { locX = 32828; locY = 32848; } // ê°•ì œ ì´ë™ short
 			 * moveflag = Config.RANGE_RACE_RECOGNIT; if (moveflag != 1) {
 			 * Random random = new Random(); //  int rndmap = 1 +
 			 * random.nextInt(5); switch (rndmap) { case 1: // skt locX = 33080;
@@ -147,7 +147,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 				pc.setMonitor(false);
 			}
 			pc.setOnlineStatus(rs.getInt("OnlineStatus"));
-			pc.set·ÎÅ×½ÃÀÛ(rs.getInt("·ÎÅ×ÀÌ¼Ç"));
+			pc.setë¡œí…Œì‹œì‘(rs.getInt("ë¡œí…Œì´ì…˜"));
 			pc.setHomeTownId(rs.getInt("HomeTownID"));
 			pc.setContribution(rs.getInt("Contribution"));
 			pc.setHellTime(rs.getInt("HellTime"));
@@ -165,7 +165,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pc.setKills(rs.getInt("PC_Kill"));
 			pc.setDeaths(rs.getInt("PC_Death"));
 			pc.setRankLevel(rs.getInt("rank_level"));
-			pc.setHuntPrice(rs.getInt("HuntPrice")); //Çö»ó±İ
+			pc.setHuntPrice(rs.getInt("HuntPrice")); //í˜„ìƒê¸ˆ
 			pc.setWanted(rs.getInt("wanted"));
 			pc.setMaanDelay(rs.getTimestamp("MaanDelay"));
 			pc.setAddDamage(rs.getInt("AddDamage"));
@@ -224,7 +224,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 		try {
 			int i = 0;
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("INSERT INTO characters SET account_name=?,objid=?,char_name=?,level=?,HighLevel=?,Exp=?,MaxHp=?,CurHp=?,MaxMp=?,CurMp=?,Ac=?,Str=?,BaseStr=?,Con=?,BaseCon=?,Dex=?,BaseDex=?,Cha=?,BaseCha=?,Intel=?,BaseIntel=?,Wis=?,BaseWis=?,Status=?,Class=?,Sex=?,Type=?,Heading=?,LocX=?,LocY=?,MapID=?,Food=?,Lawful=?,Title=?,ClanID=?,Clanname=?,ClanRank=?,BonusStatus=?,ElixirStatus=?,ElfAttr=?,PKcount=?,ExpRes=?,PartnerID=?,AccessLevel=?,OnlineStatus=?,·ÎÅ×ÀÌ¼Ç=?,HomeTownID=?,Contribution=?,Pay=?,HellTime=?,Banned=?,Karma=?,LastPk=?,DeleteTime=?,ReturnStat=?,GdungeonTime=?,Ainhasad_Exp=?,Logout_time=?, age=?, membership=?, vip_level=?, PC_Kill=?, PC_Death=?, rank_level=?,HuntPrice=?,wanted=?, AddDamage=?,AddDamageRate=?,AddReduction=?,AddReductionRate=?,Birth_day=?");
+			pstm = con.prepareStatement("INSERT INTO characters SET account_name=?,objid=?,char_name=?,level=?,HighLevel=?,Exp=?,MaxHp=?,CurHp=?,MaxMp=?,CurMp=?,Ac=?,Str=?,BaseStr=?,Con=?,BaseCon=?,Dex=?,BaseDex=?,Cha=?,BaseCha=?,Intel=?,BaseIntel=?,Wis=?,BaseWis=?,Status=?,Class=?,Sex=?,Type=?,Heading=?,LocX=?,LocY=?,MapID=?,Food=?,Lawful=?,Title=?,ClanID=?,Clanname=?,ClanRank=?,BonusStatus=?,ElixirStatus=?,ElfAttr=?,PKcount=?,ExpRes=?,PartnerID=?,AccessLevel=?,OnlineStatus=?,ë¡œí…Œì´ì…˜=?,HomeTownID=?,Contribution=?,Pay=?,HellTime=?,Banned=?,Karma=?,LastPk=?,DeleteTime=?,ReturnStat=?,GdungeonTime=?,Ainhasad_Exp=?,Logout_time=?, age=?, membership=?, vip_level=?, PC_Kill=?, PC_Death=?, rank_level=?,HuntPrice=?,wanted=?, AddDamage=?,AddDamageRate=?,AddReduction=?,AddReductionRate=?,Birth_day=?");
 			pstm.setString(++i, pc.getAccountName());
 			pstm.setInt(++i, pc.getId());
 			pstm.setString(++i, pc.getName());
@@ -274,7 +274,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pstm.setInt(++i, pc.getPartnerId());
 			pstm.setShort(++i, pc.getAccessLevel());
 			pstm.setInt(++i, pc.getOnlineStatus());
-			pstm.setInt(++i, pc.get·ÎÅ×½ÃÀÛ());
+			pstm.setInt(++i, pc.getë¡œí…Œì‹œì‘());
 			pstm.setInt(++i, pc.getHomeTownId());
 			pstm.setInt(++i, pc.getContribution());
 			pstm.setInt(++i, 0);
@@ -320,7 +320,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 	    try {
 	        con = L1DatabaseFactory.getInstance().getConnection();
 
-	        // 1. Á¸Àç ¿©ºÎ È®ÀÎ
+	        // 1. ì¡´ì¬ ì—¬ë¶€ í™•ì¸
 	        pstm = con.prepareStatement(
 	            "SELECT objid FROM characters WHERE account_name=? AND char_name=?");
 	        pstm.setString(1, accountName);
@@ -335,7 +335,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 	        SQLUtil.close(rs);
 	        SQLUtil.close(pstm);
 
-	        // 2. »èÁ¦ Äõ¸®µé
+	        // 2. ì‚­ì œ ì¿¼ë¦¬ë“¤
 	        String[] sqls = {
 	            "DELETE FROM character_buddys WHERE char_id IN (SELECT objid FROM characters WHERE char_name=?)",
 	            "DELETE FROM character_buff WHERE char_obj_id IN (SELECT objid FROM characters WHERE char_name=?)",
@@ -435,7 +435,7 @@ public class MySqlCharacterStorage implements CharacterStorage {
 			pstm.setInt(++i, pc.getRankLevel());
 			pstm.setInt(++i, pc.getHuntPrice());
 			pstm.setInt(++i, pc.getWanted());
-			/** 2011.10.01 °íÁ¤¼ö ¸¶¾Èµô·¹ÀÌ */
+			/** 2011.10.01 ê³ ì •ìˆ˜ ë§ˆì•ˆë”œë ˆì´ */
 			pstm.setTimestamp(++i, pc.getMaanDelay());
 			pstm.setInt(++i, pc.getAddDamage());
 			pstm.setInt(++i, pc.getAddDamageRate());

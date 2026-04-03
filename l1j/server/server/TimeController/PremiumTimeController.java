@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import l1j.server.Config;
 
@@ -9,7 +9,7 @@ import l1j.server.server.serverpackets.S_SystemMessage;
 
 public class PremiumTimeController implements Runnable {
 
-	public static final int SLEEP_TIME = Config.FEATHER_TIME * 60000; // ¿øº» 600ÃÊ
+	public static final int SLEEP_TIME = Config.FEATHER_TIME * 60000; // ì›ë³¸ 600ì´ˆ
 
 	private static PremiumTimeController _instance;
 
@@ -28,33 +28,33 @@ public class PremiumTimeController implements Runnable {
 		}
 	}
 
-	private void checkPremiumTime() {// ÀÏÁ¤½Ã°£ ±êÅĞÁö±Ş
+	private void checkPremiumTime() {// ì¼ì •ì‹œê°„ ê¹ƒí„¸ì§€ê¸‰
 		for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 			if (!pc.isAutoClanjoin() && !pc.isPrivateShop() && !pc.noPlayerCK && pc != null && !pc.isDead()) {
 				int FN = Config.FEATHER_NUM;
 				int CLN = Config.FEATHER_NUM1;
 				int CAN = Config.FEATHER_NUM2;
-				int FN2 = Config.useritem;// ¾ÆÀÌÅÛ¹øÈ£
-				int FN3 = Config.usercount;// °¹¼ö
+				int FN2 = Config.useritem;// ì•„ì´í…œë²ˆí˜¸
+				int FN3 = Config.usercount;// ê°¯ìˆ˜
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
-				if (Config.ÀüÃ¼¼±¹°ÀÛµ¿À¯¹«) {
+				if (Config.ì „ì²´ì„ ë¬¼ì‘ë™ìœ ë¬´) {
 					if (pc.getInventory().countItems(FN2) <= 100) {
 						pc.getInventory().storeItem(FN2, FN3);
-						pc.sendPackets(new S_SystemMessage("¾Ë¸²: °æÇèÄ¡¹°¾à (" + FN3 + ") È¹µæ ÇÏ¼Ì½À´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("ì•Œë¦¼: ê²½í—˜ì¹˜ë¬¼ì•½ (" + FN3 + ") íšë“ í•˜ì…¨ìŠµë‹ˆë‹¤."));
 					}
 				}
-				if (pc.getClanid() == 0) { // ¹«Ç÷
+				if (pc.getClanid() == 0) { // ë¬´í˜ˆ
 					pc.getInventory().storeItem(41159, FN);
-					pc.sendPackets(new S_SystemMessage("¾Ë¸²: ±êÅĞ (" + FN + ") È¹µæ ÇÏ¼Ì½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ì•Œë¦¼: ê¹ƒí„¸ (" + FN + ") íšë“ í•˜ì…¨ìŠµë‹ˆë‹¤."));
 				}
 				if (clan != null) {
-					if (clan.getCastleId() == 0 && pc.getClanid() != 0) { // Ç÷¸Í
+					if (clan.getCastleId() == 0 && pc.getClanid() != 0) { // í˜ˆë§¹
 						pc.getInventory().storeItem(41159, (CLN + FN));
-						pc.sendPackets(new S_SystemMessage("¾Ë¸²: ±êÅĞ (" + (FN + CLN) + ") È¹µæ ÇÏ¼Ì½À´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("ì•Œë¦¼: ê¹ƒí„¸ (" + (FN + CLN) + ") íšë“ í•˜ì…¨ìŠµë‹ˆë‹¤."));
 					}
-					if (clan.getCastleId() != 0) { // ¼ºÇ÷
+					if (clan.getCastleId() != 0) { // ì„±í˜ˆ
 						pc.getInventory().storeItem(41159, (CAN + FN));
-						pc.sendPackets(new S_SystemMessage("¾Ë¸²: ±êÅĞ (" + (FN + CAN) + ") È¹µæÇÏ¼Ì½À´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("ì•Œë¦¼: ê¹ƒí„¸ (" + (FN + CAN) + ") íšë“í•˜ì…¨ìŠµë‹ˆë‹¤."));
 					}
 				}
 			}

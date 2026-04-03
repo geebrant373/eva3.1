@@ -1,4 +1,4 @@
-
+ï»¿
 package l1j.server.server.clientpackets;
 
 import java.util.logging.Logger;
@@ -19,7 +19,7 @@ public class C_WarehousePassword extends ClientBasePacket{
 	
 	/**
 	 * (0e) (00) (0e 64 03) 00 (0e 64 03) 00 00 00
-	 *  ¿É	 Å¸ÀÔ   ÇöÀç          ´ÙÀ½
+	 *  ì˜µ	 íƒ€ì…   í˜„ì¬          ë‹¤ìŒ
 	 */
 	
 	public C_WarehousePassword(byte[] data, LineageClient client){
@@ -27,7 +27,7 @@ public class C_WarehousePassword extends ClientBasePacket{
 		L1PcInstance pc = client.getActiveChar();
 		int gamepassword = client.getAccount().getGamePassword();
 		int type = readC();
-		if(type == 0){	/** ¼³Á¤ */			
+		if(type == 0){	/** ì„¤ì • */			
 			int oldpass = readCH();		
 			readC();	// dummy
 			int newpass = readCH();
@@ -36,7 +36,7 @@ public class C_WarehousePassword extends ClientBasePacket{
 			}else{
 				pc.sendPackets(new S_ServerMessage(835));
 			}			
-		}else if(type == 1){	/** Ã¢°í Ã£±â */
+		}else if(type == 1){	/** ì°½ê³  ì°¾ê¸° */
 			int chkpass = readCH();							
 			readC();	// dummy
 			int objId = readD();			

@@ -1,4 +1,4 @@
-package l1j.server.server.model.gametime;
+ï»¿package l1j.server.server.model.gametime;
 
 import java.util.Calendar;
 import java.util.TimeZone;
@@ -6,7 +6,7 @@ import java.util.TimeZone;
 public class RealTime extends BaseTime {
 	@Override
 	protected Calendar makeCalendar(int time) {
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+9")); // ÇÑ±¹ ½Ã°£
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+9")); // í•œêµ­ ì‹œê°„
 		cal.setTimeInMillis(0);
 		cal.add(Calendar.SECOND, _time);
 		return cal;

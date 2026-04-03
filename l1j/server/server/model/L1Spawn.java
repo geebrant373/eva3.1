@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -331,8 +331,8 @@ public class L1Spawn {
 			doCrystalCave(npcId);
 			doAntCaveCloseDoor(getId());
 			/**
-			 * ±¤¿ªÀ¸·Î ½ºÆùµÇ´Â ¸÷Áß È¨Æ÷ÀÎÆ® ¾÷´Â ¸÷µé 
-			 * ¸ó½ºÅÍ : ÀúÁÖ¹ŞÀºÇã¼ö¾Æºñ, ºÓÀº¿ÀÅ©, ¹ö±×º£¾î(Ãß¼®ÀÌº¥Æ®¿ë)
+			 * ê´‘ì—­ìœ¼ë¡œ ìŠ¤í°ë˜ëŠ” ëª¹ì¤‘ í™ˆí¬ì¸íŠ¸ ì—…ëŠ” ëª¹ë“¤ 
+			 * ëª¬ìŠ¤í„° : ì €ì£¼ë°›ì€í—ˆìˆ˜ì•„ë¹„, ë¶‰ì€ì˜¤í¬, ë²„ê·¸ë² ì–´(ì¶”ì„ì´ë²¤íŠ¸ìš©)
 			 */
 			if (mob.getNpcId() == 45166 || mob.getNpcId() == 4035000 || mob.getNpcId() == 4030002){
 				_homePoint.remove(spawnNumber);
@@ -362,7 +362,7 @@ public class L1Spawn {
 						new S_SystemMessage(getMent()));
 			}
 		} catch (Exception e) {
-			System.out.println("¿£ÇÇ¾¾¾ÆÀÌµğ: "+ mob.getNpcId());
+			System.out.println("ì—”í”¼ì”¨ì•„ì´ë””: "+ mob.getNpcId());
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		}
 	}

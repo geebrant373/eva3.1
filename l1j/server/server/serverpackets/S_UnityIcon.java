@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,14 +42,14 @@ public class S_UnityIcon extends ServerBasePacket {
 		writeC(0x00);
 		writeC(0x00);
 		writeC(0x00);
-		writeC(DECREASE); // µğÅ©¸®Áî ¿şÀÌÆ® DECREASE
-		writeC(DECAY_POTION); // µğÄÉÀÌ Æ÷¼Ç
+		writeC(DECREASE); // ë””í¬ë¦¬ì¦ˆ ì›¨ì´íŠ¸ DECREASE
+		writeC(DECAY_POTION); // ë””ì¼€ì´ í¬ì…˜
 		writeC(0x00);
-		writeC(SILENCE); // »çÀÏ·±½º
-		writeC(VENOM_RESIST); // º£³ğ ·¹Áö½ºÆ®
+		writeC(SILENCE); // ì‚¬ì¼ëŸ°ìŠ¤
+		writeC(VENOM_RESIST); // ë² ë†ˆ ë ˆì§€ìŠ¤íŠ¸
 		//10
-		writeC(WEAKNESS); // À§Å©´Ï½º
-		writeC(DISEASE); // µğÁöÁî
+		writeC(WEAKNESS); // ìœ„í¬ë‹ˆìŠ¤
+		writeC(DISEASE); // ë””ì§€ì¦ˆ
 		writeC(0x00);
 		writeC(0x00);
 		writeC(0x00);
@@ -57,28 +57,28 @@ public class S_UnityIcon extends ServerBasePacket {
 		writeC(0x00);
 		writeC(0x00);
 		writeC(0x00);
-		writeC(DRESS_EVASION);                      //µå·¹½ºÀÌº£ÀÌÀü !
+		writeC(DRESS_EVASION);                      //ë“œë ˆìŠ¤ì´ë² ì´ì „ !
 		//20
-		writeC(BERSERKERS);                        //¹ö¼­Ä¿½º !
-		writeC(NATURES_TOUCH);                       //³×ÀÌÃÄ½ºÅÍÄ¡
-		writeC(WIND_SHACKLE);                         //À©µå¼ÎÅ¬
-		writeC(ERASE_MAGIC);                         //ÀÌ·¹ÀÌÁî¸ÅÁ÷
-		writeC(0x00);                              //µğÁöÁî¾ÆÀÌÄÜÀÎµ¥ ¼³¸íÀº Ä«¿îÅÍ¹Ì·¯È¿°ú¶ó°í µÇÀÖÀ½
-		writeC(ADDITIONAL_FIRE);                               //¾îµğ¼Å³Î ÆÄÀÌ¾î
-		writeC(ELEMENTAL_FALL_DOWN);                //¿¤¸®¸ÇÅ»Æú´Ù¿î   
+		writeC(BERSERKERS);                        //ë²„ì„œì»¤ìŠ¤ !
+		writeC(NATURES_TOUCH);                       //ë„¤ì´ì³ìŠ¤í„°ì¹˜
+		writeC(WIND_SHACKLE);                         //ìœˆë“œì…°í´
+		writeC(ERASE_MAGIC);                         //ì´ë ˆì´ì¦ˆë§¤ì§
+		writeC(0x00);                              //ë””ì§€ì¦ˆì•„ì´ì½˜ì¸ë° ì„¤ëª…ì€ ì¹´ìš´í„°ë¯¸ëŸ¬íš¨ê³¼ë¼ê³  ë˜ìˆìŒ
+		writeC(ADDITIONAL_FIRE);                               //ì–´ë””ì…”ë„ íŒŒì´ì–´
+		writeC(ELEMENTAL_FALL_DOWN);                //ì—˜ë¦¬ë§¨íƒˆí´ë‹¤ìš´   
 		writeC(0x00);
-		writeC(ELEMENTAL_FIRE);                     //¿¤¸®¸ÇÅ» ÆÄÀÌ¾î
+		writeC(ELEMENTAL_FIRE);                     //ì—˜ë¦¬ë§¨íƒˆ íŒŒì´ì–´
 		writeC(0x00);
 		//30
-		writeC(0x00);              //±âÃ´À»Áö¿ö ±«¹°µéÀÌ ´«Ä¡Ã¤Áö¸øÇÏ°ÔÇÕ´Ï´Ù???¾ÆÀÌÄÜµµÀÌ»óÇÔ
+		writeC(0x00);              //ê¸°ì²™ì„ì§€ì›Œ ê´´ë¬¼ë“¤ì´ ëˆˆì¹˜ì±„ì§€ëª»í•˜ê²Œí•©ë‹ˆë‹¤???ì•„ì´ì½˜ë„ì´ìƒí•¨
 		writeC(0x00);
-		writeC(STRIKER_GALE);                        // ½ºÆ®¶óÀÌÄ¿°ÔÀÏ
-		writeC(SOUL_OF_FLAME);                     //¼Ò¿ï¿Àºê ÇÁ·¹ÀÓ
-		writeC(POLLUTE_WATER);                          //ÇÃ·çÅõ¿öÅÍ
+		writeC(STRIKER_GALE);                        // ìŠ¤íŠ¸ë¼ì´ì»¤ê²Œì¼
+		writeC(SOUL_OF_FLAME);                     //ì†Œìš¸ì˜¤ë¸Œ í”„ë ˆì„
+		writeC(POLLUTE_WATER);                          //í”Œë£¨íˆ¬ì›Œí„°
 		writeC(0x00);
 		writeC(0x00);
 		writeC(0x00);
-		writeC(0x00);                //¼Ó¼ºÀúÇ×·Â 10? 
+		writeC(0x00);                //ì†ì„±ì €í•­ë ¥ 10? 
 		writeC(0x00);
 		//40
 		writeC(0x00);
@@ -89,28 +89,28 @@ public class S_UnityIcon extends ServerBasePacket {
 		writeC(0x00);
 		writeC(0x00);             //sp
 		writeC(EXP_POTION);            //exp
-		writeC(SCROLL);      //ÀüÅõ°­È­ÁÖ¹®¼­ 123 ´ÙÀÖÀ½?
-		writeC(SCROLLTPYE);             //0-hp50hpr4, 1-mp40mpr4, 2-ÃßÅ¸3°ø¼º3sp3
+		writeC(SCROLL);      //ì „íˆ¬ê°•í™”ì£¼ë¬¸ì„œ 123 ë‹¤ìˆìŒ?
+		writeC(SCROLLTPYE);             //0-hp50hpr4, 1-mp40mpr4, 2-ì¶”íƒ€3ê³µì„±3sp3
 		//50
 		writeC(0x00);
 		writeC(0x00);
-		writeC(TIKALBOSSDIE);//		writeC(0xa2);  »ó¾ÆÅ¾ÀÇ Ãàº¹
-		writeC(0x22);//		writeC(0x22);  »ó¾ÆÅ¾ÀÇ Ãàº¹
-		writeC(CONCENTRATION);                         //ÄÁ¼¾Æ®·¹ÀÌ¼Ç
-		writeC(INSIGHT);                        //ÀÎ»çÀÌÆ®
-		writeC(PANIC);                       //ÆĞ´Ğ
-		writeC(MORTAL_BODY);                       //¸ğÅ»¹Ùµğ                 
-		writeC(HORROR_OF_DEATH);                       //È£¾î¿Àºêµ¥½º
-		writeC(FEAR);                     //ÇÇ¾î
+		writeC(TIKALBOSSDIE);//		writeC(0xa2);  ìƒì•„íƒ‘ì˜ ì¶•ë³µ
+		writeC(0x22);//		writeC(0x22);  ìƒì•„íƒ‘ì˜ ì¶•ë³µ
+		writeC(CONCENTRATION);                         //ì»¨ì„¼íŠ¸ë ˆì´ì…˜
+		writeC(INSIGHT);                        //ì¸ì‚¬ì´íŠ¸
+		writeC(PANIC);                       //íŒ¨ë‹‰
+		writeC(MORTAL_BODY);                       //ëª¨íƒˆë°”ë””                 
+		writeC(HORROR_OF_DEATH);                       //í˜¸ì–´ì˜¤ë¸Œë°ìŠ¤
+		writeC(FEAR);                     //í”¼ì–´
 		//60
-		writeC(PATIENCE);                      //ÆäÀÌ¼Ç½º
-		writeC(GUARD_BREAK);                      //°¡µåºê·¹ÀÌÅ©
-		writeC(DRAGON_SKIN);                   //µå·¡°ï½ºÅ²
-		writeC(STATUS_FRUIT);             //À¯±×µå¶ó
+		writeC(PATIENCE);                      //í˜ì´ì…˜ìŠ¤
+		writeC(GUARD_BREAK);                      //ê°€ë“œë¸Œë ˆì´í¬
+		writeC(DRAGON_SKIN);                   //ë“œë˜ê³¤ìŠ¤í‚¨
+		writeC(STATUS_FRUIT);             //ìœ ê·¸ë“œë¼
 		writeC(0x14);
 		writeC(0x00);
-		writeC(COMA);//½Ã°£
-		writeC(COMA_TYPE);//Å¸ÀÔ
+		writeC(COMA);//ì‹œê°„
+		writeC(COMA_TYPE);//íƒ€ì…
 		writeC(0x00);
 		writeC(0x00);
 		//70
@@ -142,8 +142,8 @@ public class S_UnityIcon extends ServerBasePacket {
 		writeC(0x00);
 		writeC(0x00);
 		writeC(0x00);
-		writeC(FEATHER_BUFF);//¿î¼¼¿¡ µû¸¥ ±êÅĞ ¹öÇÁ
-		writeC(FEATHER_TYPE); // 0x46 ¸Å¿ìÁÁÀº 0x47 ÁÁÀº 0x48 º¸Åë 0x49 ³ª»Û
+		writeC(FEATHER_BUFF);//ìš´ì„¸ì— ë”°ë¥¸ ê¹ƒí„¸ ë²„í”„
+		writeC(FEATHER_TYPE); // 0x46 ë§¤ìš°ì¢‹ì€ 0x47 ì¢‹ì€ 0x48 ë³´í†µ 0x49 ë‚˜ìœ
 		writeC(0x00);
 		writeC(0x00);
 		//100

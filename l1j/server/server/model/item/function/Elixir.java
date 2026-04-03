@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,11 +47,11 @@ public class Elixir extends L1ItemInstance{
 
 				if (item_minlvl != 0 && item_minlvl > pc.getLevel() && !pc.isGm()) {
 					pc.sendPackets(new S_ServerMessage(318, String.valueOf(item_minlvl))); 
-					// ÀÌ ¾ÆÀÌÅÛÀº%0·¹º§ ÀÌ»óÀÌ µÇÁö ¾ÊÀ¸¸é »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+					// ì´ ì•„ì´í…œì€%0ë ˆë²¨ ì´ìƒì´ ë˜ì§€ ì•Šìœ¼ë©´ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 					return;
 				} else if (item_maxlvl != 0 && item_maxlvl < pc.getLevel() && !pc.isGm()) {
 					pc.sendPackets(new S_ServerMessage(673, String.valueOf(item_maxlvl)));
-					// ÀÌ ¾ÆÀÌÅÛÀº%d·¹º§ ÀÌ»ó¸¸ »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
+					// ì´ ì•„ì´í…œì€%dë ˆë²¨ ì´ìƒë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 					return;
 				}
 				switch(itemId){
@@ -63,7 +63,7 @@ public class Elixir extends L1ItemInstance{
 						pc.sendPackets(new S_OwnCharStatus2(pc));
 						pc.save();
 					} else {
-						pc.sendPackets(new S_ServerMessage(481)); // \f1 ÇÏ³ªÀÇ ´É·ÂÄ¡ÀÇ ÃÖ´ëÄ¡´Â 25ÀÔ´Ï´Ù. ´Ù¸¥ ´É·ÂÄ¡¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä.
+						pc.sendPackets(new S_ServerMessage(481)); // \f1 í•˜ë‚˜ì˜ ëŠ¥ë ¥ì¹˜ì˜ ìµœëŒ€ì¹˜ëŠ” 25ì…ë‹ˆë‹¤. ë‹¤ë¥¸ ëŠ¥ë ¥ì¹˜ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”.
 					}
 					break;
 				case 40034:
@@ -74,7 +74,7 @@ public class Elixir extends L1ItemInstance{
 						pc.sendPackets(new S_OwnCharStatus2(pc));
 						pc.save();
 					} else {
-						pc.sendPackets(new S_ServerMessage(481)); // \f1 ÇÏ³ªÀÇ ´É·ÂÄ¡ÀÇ ÃÖ´ëÄ¡´Â 25ÀÔ´Ï´Ù. ´Ù¸¥ ´É·ÂÄ¡¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä.
+						pc.sendPackets(new S_ServerMessage(481)); // \f1 í•˜ë‚˜ì˜ ëŠ¥ë ¥ì¹˜ì˜ ìµœëŒ€ì¹˜ëŠ” 25ì…ë‹ˆë‹¤. ë‹¤ë¥¸ ëŠ¥ë ¥ì¹˜ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”.
 					}
 					break;
 				case 40035:
@@ -86,7 +86,7 @@ public class Elixir extends L1ItemInstance{
 						pc.sendPackets(new S_OwnCharStatus2(pc));
 						pc.save();
 					} else {
-						pc.sendPackets(new S_ServerMessage(481)); // \f1 ÇÏ³ªÀÇ ´É·ÂÄ¡ÀÇ ÃÖ´ëÄ¡´Â 25ÀÔ´Ï´Ù. ´Ù¸¥ ´É·ÂÄ¡¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä.
+						pc.sendPackets(new S_ServerMessage(481)); // \f1 í•˜ë‚˜ì˜ ëŠ¥ë ¥ì¹˜ì˜ ìµœëŒ€ì¹˜ëŠ” 25ì…ë‹ˆë‹¤. ë‹¤ë¥¸ ëŠ¥ë ¥ì¹˜ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”.
 					}
 					break;
 				case 40036:
@@ -97,7 +97,7 @@ public class Elixir extends L1ItemInstance{
 						pc.sendPackets(new S_OwnCharStatus2(pc));
 						pc.save();
 					} else {
-						pc.sendPackets(new S_ServerMessage(481)); // \f1 ÇÏ³ªÀÇ ´É·ÂÄ¡ÀÇ ÃÖ´ëÄ¡´Â 25ÀÔ´Ï´Ù. ´Ù¸¥ ´É·ÂÄ¡¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä.
+						pc.sendPackets(new S_ServerMessage(481)); // \f1 í•˜ë‚˜ì˜ ëŠ¥ë ¥ì¹˜ì˜ ìµœëŒ€ì¹˜ëŠ” 25ì…ë‹ˆë‹¤. ë‹¤ë¥¸ ëŠ¥ë ¥ì¹˜ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”.
 					}
 					break;
 				case 40037:
@@ -109,7 +109,7 @@ public class Elixir extends L1ItemInstance{
 						pc.sendPackets(new S_OwnCharStatus2(pc));
 						pc.save();
 					} else {
-						pc.sendPackets(new S_ServerMessage(481)); // \f1 ÇÏ³ªÀÇ ´É·ÂÄ¡ÀÇ ÃÖ´ëÄ¡´Â 25ÀÔ´Ï´Ù. ´Ù¸¥ ´É·ÂÄ¡¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä.
+						pc.sendPackets(new S_ServerMessage(481)); // \f1 í•˜ë‚˜ì˜ ëŠ¥ë ¥ì¹˜ì˜ ìµœëŒ€ì¹˜ëŠ” 25ì…ë‹ˆë‹¤. ë‹¤ë¥¸ ëŠ¥ë ¥ì¹˜ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”.
 					}
 					break;
 				case 40038:
@@ -120,7 +120,7 @@ public class Elixir extends L1ItemInstance{
 						pc.sendPackets(new S_OwnCharStatus2(pc));
 						pc.save();						
 					} else {
-						pc.sendPackets(new S_ServerMessage(481)); // \f1 ÇÏ³ªÀÇ ´É·ÂÄ¡ÀÇ ÃÖ´ëÄ¡´Â 25ÀÔ´Ï´Ù. ´Ù¸¥ ´É·ÂÄ¡¸¦ ¼±ÅÃÇØ ÁÖ¼¼¿ä.
+						pc.sendPackets(new S_ServerMessage(481)); // \f1 í•˜ë‚˜ì˜ ëŠ¥ë ¥ì¹˜ì˜ ìµœëŒ€ì¹˜ëŠ” 25ì…ë‹ˆë‹¤. ë‹¤ë¥¸ ëŠ¥ë ¥ì¹˜ë¥¼ ì„ íƒí•´ ì£¼ì„¸ìš”.
 					}
 					break;
 				}

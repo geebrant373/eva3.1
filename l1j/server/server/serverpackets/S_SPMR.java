@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -34,13 +34,13 @@ public class S_SPMR extends ServerBasePacket {
 
 	private void buildPacket(L1PcInstance pc) {
 		writeC(Opcodes.S_OPCODE_SPMR);
-		// À§Áî ´ï ÀÏºÎÀÇ SP´Â S_SkillBrave ¼Û½Å½Ã¿¡ °»½ÅµÇ±â (À§ÇØ)¶§¹®¿¡ °øÁ¦ÇØ µĞ´Ù
+		// ìœ„ì¦ˆ ëŒ ì¼ë¶€ì˜ SPëŠ” S_SkillBrave ì†¡ì‹ ì‹œì— ê°±ì‹ ë˜ê¸° (ìœ„í•´)ë•Œë¬¸ì— ê³µì œí•´ ë‘”ë‹¤
 		if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_WISDOM_POTION)) {
-			writeC(pc.getAbility().getSp() - pc.getAbility().getTrueSp() - 2); // Àåºñ Áõ°¡ÇÑ SP
+			writeC(pc.getAbility().getSp() - pc.getAbility().getTrueSp() - 2); // ì¥ë¹„ ì¦ê°€í•œ SP
 		} else {
-			writeC(pc.getAbility().getSp() - pc.getAbility().getTrueSp()); // Àåºñ Áõ°¡ÇÑ SP
+			writeC(pc.getAbility().getSp() - pc.getAbility().getTrueSp()); // ì¥ë¹„ ì¦ê°€í•œ SP
 		}
-		writeC(pc.getResistance().getMr() - pc.getResistance().getBaseMr()); // Àåºñ³ª ¸¶¹ıÀ¸·Î Áõ°¡ÇÑ MR
+		writeC(pc.getResistance().getMr() - pc.getResistance().getBaseMr()); // ì¥ë¹„ë‚˜ ë§ˆë²•ìœ¼ë¡œ ì¦ê°€í•œ MR
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import l1j.server.Config;
 import l1j.server.server.model.L1Teleport;
@@ -10,7 +10,7 @@ public class DungeonTimer implements Runnable {
 
 	private static DungeonTimer instance;
 
-	public static final int SleepTime = 1 * 60 * 1000; //1ºĞ ¸¶´Ù Ã¼Å©
+	public static final int SleepTime = 1 * 60 * 1000; //1ë¶„ ë§ˆë‹¤ ì²´í¬
 	
 	public static DungeonTimer getInstance(){
 		if (instance == null){
@@ -27,22 +27,22 @@ public class DungeonTimer implements Runnable {
 					continue;
 				} else {
 					try {
-						if (use.getMapId() >= 49 && use.getMapId() <= 51) { // °³¹Ì´øÀü
+						if (use.getMapId() >= 49 && use.getMapId() <= 51) { // ê°œë¯¸ë˜ì „
 							AntDundeonCheck(use);
 						}
-						if (use.getMapId() >= 522 && use.getMapId() <= 524) { // ±×¸²ÀÚ½ÅÀü
+						if (use.getMapId() >= 522 && use.getMapId() <= 524) { // ê·¸ë¦¼ìì‹ ì „
 							ShadowTempleCheck(use);
 						}
-						if (use.getMapId() == 13 || use.getMapId() == 36) { // ¿ë´øº»´ø
+						if (use.getMapId() == 13 || use.getMapId() == 36) { // ìš©ë˜ë³¸ë˜
 							DragonGludioCheck(use);
 						}
-						if (use.getMapId() >= 53 && use.getMapId() <= 54) { // ±â°¨
+						if (use.getMapId() >= 53 && use.getMapId() <= 54) { // ê¸°ê°
 							GiranPrisonCheck(use);
 						}
-						if (use.getMapId() == 303) { // ¸ù¼¶
+						if (use.getMapId() == 303) { // ëª½ì„¬
 							DreamislandCheck(use);
 						}
-						if (use.getMapId() >= 530 && use.getMapId() <= 533) { // ¶ó½ºÅ¸¹Ùµå
+						if (use.getMapId() >= 530 && use.getMapId() <= 533) { // ë¼ìŠ¤íƒ€ë°”ë“œ
 							LastabardCheck(use);
 						}
 					} catch (Exception a){
@@ -50,65 +50,65 @@ public class DungeonTimer implements Runnable {
 				}
 			}
 		} catch (Exception a){
-			System.out.println("DungeonTimer ¿¡·¯~~~");
+			System.out.println("DungeonTimer ì—ëŸ¬~~~");
 		}
 	}
 	
 	private void DragonGludioCheck(L1PcInstance pc) {
-		if (pc.getAccount().getDragonGludioTime() >= Config.¿ë´øº»´ø½Ã°£){
+		if (pc.getAccount().getDragonGludioTime() >= Config.ìš©ë˜ë³¸ë˜ì‹œê°„){
 			L1Teleport.teleport(pc, 33429, 32814, (short) 4, 0, true);
-			pc.sendPackets(new S_SystemMessage("°æ°í: [¿ë´ø6Ãş&º»´ø7Ãş] ´øÀü ½Ã°£ÀÌ ¸¸·áµÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("ê²½ê³ : [ìš©ë˜6ì¸µ&ë³¸ë˜7ì¸µ] ë˜ì „ ì‹œê°„ì´ ë§Œë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 		}
 		pc.getAccount().setDragonGludioTime(pc.getAccount().getDragonGludioTime() + 1);
 		pc.getAccount().updateDragonGludio();
 	}
 	
 	private void LastabardCheck(L1PcInstance pc) {
-		if (pc.getAccount().getLastabardTime() >= Config.¶ó´ø½Ã°£ ){
+		if (pc.getAccount().getLastabardTime() >= Config.ë¼ë˜ì‹œê°„ ){
 			L1Teleport.teleport(pc, 33429, 32814, (short) 4, 0, true);
-			pc.sendPackets(new S_SystemMessage("°æ°í: [¶ó½ºÅ¸¹Ùµå] ´øÀü ½Ã°£ÀÌ ¸¸·áµÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("ê²½ê³ : [ë¼ìŠ¤íƒ€ë°”ë“œ] ë˜ì „ ì‹œê°„ì´ ë§Œë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 		}
 		pc.getAccount().setLastabardTime(pc.getAccount().getLastabardTime() + 1);
 		pc.getAccount().updateLastabard();
 	}
 	
 	private void GiranPrisonCheck(L1PcInstance pc) {
-		if (pc.getAccount().getGiranPrisonTime() >= Config.±â°¨½Ã°£){
+		if (pc.getAccount().getGiranPrisonTime() >= Config.ê¸°ê°ì‹œê°„){
 			L1Teleport.teleport(pc, 33429, 32814, (short) 4, 0, true);
-			pc.sendPackets(new S_SystemMessage("°æ°í: [±â°¨] ´øÀü ½Ã°£ÀÌ ¸¸·áµÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("ê²½ê³ : [ê¸°ê°] ë˜ì „ ì‹œê°„ì´ ë§Œë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 		}
 		pc.getAccount().setGiranPrisonTime(pc.getAccount().getGiranPrisonTime() + 1);
 		pc.getAccount().updateGiranPrison();
 	}
 	
 	private void AntDundeonCheck(L1PcInstance pc) {
-		if (pc.getAccount().getAntDundeonTime() >= Config.°³¹Ì´øÀü½Ã°£){
+		if (pc.getAccount().getAntDundeonTime() >= Config.ê°œë¯¸ë˜ì „ì‹œê°„){
 			if (pc.getAutoHunt()) {
-				removeAuto(pc,"´øÀü ½Ã°£ ¸¸·áµÇ¾î ÀÚµ¿ »ç³ÉÀÌ Á¾·áµË´Ï´Ù.");
+				removeAuto(pc,"ë˜ì „ ì‹œê°„ ë§Œë£Œë˜ì–´ ìë™ ì‚¬ëƒ¥ì´ ì¢…ë£Œë©ë‹ˆë‹¤.");
 			}
 			L1Teleport.teleport(pc, 33429, 32814, (short) 4, 0, true);
-			pc.sendPackets(new S_SystemMessage("°æ°í: [°³¹Ì´øÀü] ´øÀü ½Ã°£ÀÌ ¸¸·áµÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("ê²½ê³ : [ê°œë¯¸ë˜ì „] ë˜ì „ ì‹œê°„ì´ ë§Œë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 		}
 		pc.getAccount().setAntDundeonTime(pc.getAccount().getAntDundeonTime() + 1);
 		pc.getAccount().updateAntDundeon();
 	}
 	
 	private void ShadowTempleCheck(L1PcInstance pc) {
-		if (pc.getAccount().getShadowTempleTime() >= Config.±×¸²ÀÚ½ÅÀü½Ã°£){
+		if (pc.getAccount().getShadowTempleTime() >= Config.ê·¸ë¦¼ìì‹ ì „ì‹œê°„){
 			if (pc.getAutoHunt()) {
-				removeAuto(pc,"´øÀü ½Ã°£ ¸¸·áµÇ¾î ÀÚµ¿ »ç³ÉÀÌ Á¾·áµË´Ï´Ù.");
+				removeAuto(pc,"ë˜ì „ ì‹œê°„ ë§Œë£Œë˜ì–´ ìë™ ì‚¬ëƒ¥ì´ ì¢…ë£Œë©ë‹ˆë‹¤.");
 			}
 			L1Teleport.teleport(pc, 33429, 32814, (short) 4, 0, true);
-			pc.sendPackets(new S_SystemMessage("°æ°í: [±×¸²ÀÚ½ÅÀü] ´øÀü ½Ã°£ÀÌ ¸¸·áµÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("ê²½ê³ : [ê·¸ë¦¼ìì‹ ì „] ë˜ì „ ì‹œê°„ì´ ë§Œë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 		}
 		pc.getAccount().setShadowTempleTime(pc.getAccount().getShadowTempleTime() + 1);
 		pc.getAccount().updateShadowTemple();
 	}
 	
 	private void DreamislandCheck(L1PcInstance pc){
-		if (pc.getAccount().getDreamIslandTime() >= Config.¸ù¼¶½Ã°£){
+		if (pc.getAccount().getDreamIslandTime() >= Config.ëª½ì„¬ì‹œê°„){
 			L1Teleport.teleport(pc, 33429, 32814, (short) 4, 0, true);
-			pc.sendPackets(new S_SystemMessage("°æ°í: [¸ùÈ¯ÀÇ ¼¶] ½Ã°£ÀÌ ¸¸·áµÇ¾ú½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("ê²½ê³ : [ëª½í™˜ì˜ ì„¬] ì‹œê°„ì´ ë§Œë£Œë˜ì—ˆìŠµë‹ˆë‹¤."));
 		}
 		pc.getAccount().setDreamIslandTime(pc.getAccount().getDreamIslandTime() + 1);
 		pc.getAccount().updateDreamIsland();

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -80,19 +80,19 @@ public class HomeTownController {
 	}
 
 	public void dailyProc() {
-		//_log.info("È¨ Å¸¿î ½Ã½ºÅÛ£ºÀÏÀÏ Ã³¸® °³½Ã");
+		//_log.info("í™ˆ íƒ€ìš´ ì‹œìŠ¤í…œï¼šì¼ì¼ ì²˜ë¦¬ ê°œì‹œ");
 		TownTable.getInstance().updateTaxRate();
 		TownTable.getInstance().updateSalesMoneyYesterday();
 		TownTable.getInstance().load();
 	}
 
 	public void monthlyProc() {
-		//_log.info("È¨ Å¸¿î ½Ã½ºÅÛ£º¿ù Ã³¸® °³½Ã");
+		//_log.info("í™ˆ íƒ€ìš´ ì‹œìŠ¤í…œï¼šì›” ì²˜ë¦¬ ê°œì‹œ");
 		L1World.getInstance().setProcessingContributionTotal(true);
 		for (L1PcInstance pc : L1World.getInstance()
 				.getAllPlayers()) {
 			try {
-				// DB¿¡ Ä³¸¯ÅÍ Á¤º¸¸¦ ±âÀÔÇÑ´Ù
+				// DBì— ìºë¦­í„° ì •ë³´ë¥¼ ê¸°ì…í•œë‹¤
 				pc.save();
 			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -122,7 +122,7 @@ public class HomeTownController {
 			}
 			pc.setContribution(0);
 			try {
-				// DB¿¡ Ä³¸¯ÅÍ Á¤º¸¸¦ ±âÀÔÇÑ´Ù
+				// DBì— ìºë¦­í„° ì •ë³´ë¥¼ ê¸°ì…í•œë‹¤
 				pc.save();
 			} catch (Exception e) {
 				_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -223,9 +223,9 @@ public class HomeTownController {
 	}
 
 	/**
-	 * º¸¼ö¸¦ ÃëµæÇØ Å¬¸®¾î ÇÑ´Ù
+	 * ë³´ìˆ˜ë¥¼ ì·¨ë“í•´ í´ë¦¬ì–´ í•œë‹¤
 	 * 
-	 * @return º¸¼ö
+	 * @return ë³´ìˆ˜
 	 */
 	public static int getPay(int objid) {
 		Connection con = null;

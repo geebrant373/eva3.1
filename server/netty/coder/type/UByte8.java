@@ -1,4 +1,4 @@
-package server.netty.coder.type;
+﻿package server.netty.coder.type;
 
 public class UByte8 {
 	/**

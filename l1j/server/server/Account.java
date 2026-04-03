@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -33,29 +33,29 @@ import l1j.server.server.utils.SQLUtil;
 import manager.LinAllManagerInfoThread;
 
 public class Account {
-	/** °èÁ¤¸í */
+	/** ê³„ì •ëª… */
 	private String _name;
-	/** Á¢¼ÓÀÚ IPÁÖ¼Ò */
+	/** ì ‘ì†ì IPì£¼ì†Œ */
 	private String _ip;
-	/** ÆĞ½º¿öµå(¾ÏÈ£È­ µÊ) */
+	/** íŒ¨ìŠ¤ì›Œë“œ(ì•”í˜¸í™” ë¨) */
 	private String _password;
-	/** ÃÖ±Ù Á¢¼ÓÀÏ */
+	/** ìµœê·¼ ì ‘ì†ì¼ */
 	private Timestamp _lastActive;
-	/** ¿¢¼¼½º µî±Ş(GMÀÎ°¡?) */
+	/** ì—‘ì„¸ìŠ¤ ë“±ê¸‰(GMì¸ê°€?) */
 	private int _accessLevel;
-	/** Á¢¼ÓÀÚ È£½ºÆ®¸í */
+	/** ì ‘ì†ì í˜¸ìŠ¤íŠ¸ëª… */
 	private String _host;
-	/** ¹ê À¯¹«(True == ±İÁö) */
+	/** ë°´ ìœ ë¬´(True == ê¸ˆì§€) */
 	private boolean _banned;
-	/** °èÁ¤ À¯È¿ À¯¹«(True == À¯È¿) */
+	/** ê³„ì • ìœ íš¨ ìœ ë¬´(True == ìœ íš¨) */
 	private boolean _isValid = false;
-	/** Ä³¸¯ÅÍ ½½·Ô(ÅÂ°íÀÇ¿Á¼â) */
+	/** ìºë¦­í„° ìŠ¬ë¡¯(íƒœê³ ì˜ì˜¥ì‡„) */
 	private int _charslot;
-	/** Ã¢°í ºñ¹Ğ¹øÈ£ */
+	/** ì°½ê³  ë¹„ë°€ë²ˆí˜¸ */
 	private int _GamePassword;
-	/** °èÁ¤ ½Ã°£ */
+	/** ê³„ì • ì‹œê°„ */
 	private int _AccountTime;
-	/** °èÁ¤ ½Ã°£ ¿¹¾à °ª */
+	/** ê³„ì • ì‹œê°„ ì˜ˆì•½ ê°’ */
 	private int _AccountTimeRead;
 	public int dragongludio;
 	public int dreamisland;
@@ -63,20 +63,20 @@ public class Account {
 	public int lastabard;
 	public int antdundeon;
 	public int shadowtemple;
-	/** ¸Ş¼¼Áö ·Î±×¿ë */
+	/** ë©”ì„¸ì§€ ë¡œê·¸ìš© */
 	private static Logger _log = Logger.getLogger(Account.class.getName());
 
 	public Account() {}
 
 	/**
-	 * ÆĞ½º¿öµå¸¦ ¾ÏÈ£È­ÇÑ´Ù.
+	 * íŒ¨ìŠ¤ì›Œë“œë¥¼ ì•”í˜¸í™”í•œë‹¤.
 	 *
-	 * @param rawPassword ÆĞ½º¿öµå
+	 * @param rawPassword íŒ¨ìŠ¤ì›Œë“œ
 	 * @return String
 	 * @throws NoSuchAlgorithmException
-	 *             ¾ÏÈ£È­ ¾Ë°í¸®ÁòÀ» »ç¿ëÇÒ ¼ö ¾øÀ» ¶§
+	 *             ì•”í˜¸í™” ì•Œê³ ë¦¬ì¦˜ì„ ì‚¬ìš©í•  ìˆ˜ ì—†ì„ ë•Œ
 	 * @throws UnsupportedEncodingException
-	 *             ÀÎÄÚµùÀÌ Áö¿øµÇÁö ¾ÊÀ» ¶§
+	 *             ì¸ì½”ë”©ì´ ì§€ì›ë˜ì§€ ì•Šì„ ë•Œ
 	 */
 //	private static String encodePassword(final String rawPassword)
 //	throws NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -87,12 +87,12 @@ public class Account {
 //	}
 
 	/**
-	 * ½Å±Ô °èÁ¤ »ı¼º
+	 * ì‹ ê·œ ê³„ì • ìƒì„±
 	 *
-	 * @param name °èÁ¤¸í
-	 * @param rawPassword ÆĞ½º¿öµå
-	 * @param ip Á¢¼ÓÀÚ IPÁÖ¼Ò
-	 * @param host Á¢¼ÓÀÚ È£½ºÆ®¸í
+	 * @param name ê³„ì •ëª…
+	 * @param rawPassword íŒ¨ìŠ¤ì›Œë“œ
+	 * @param ip ì ‘ì†ì IPì£¼ì†Œ
+	 * @param host ì ‘ì†ì í˜¸ìŠ¤íŠ¸ëª…
 	 * @return Account
 	 */
 	public static Account create(final String name, final String rawPassword,
@@ -138,9 +138,9 @@ public class Account {
 	}
 
 	/**
-	 * DB¿¡¼­ °èÁ¤ Á¤º¸ ºÒ·¯¿À±â 
+	 * DBì—ì„œ ê³„ì • ì •ë³´ ë¶ˆëŸ¬ì˜¤ê¸° 
 	 *
-	 * @param name °èÁ¤¸í
+	 * @param name ê³„ì •ëª…
 	 * @return Account
 	 */
 
@@ -223,9 +223,9 @@ public class Account {
 		}
 	}
 	/**
-	 * DB¿¡ ÃÖ±Ù Á¢¼ÓÀÏ ¾÷µ¥ÀÌÆ®
+	 * DBì— ìµœê·¼ ì ‘ì†ì¼ ì—…ë°ì´íŠ¸
 	 *
-	 * @param account °èÁ¤¸í
+	 * @param account ê³„ì •ëª…
 	 */
 	public static void updateLastActive(final Account account) {
 		Connection con = null;
@@ -250,9 +250,9 @@ public class Account {
 	}
 
 	/**
-	 * À¥ÆĞ½º¿öµå°ü·ÃÀÓ; 
+	 * ì›¹íŒ¨ìŠ¤ì›Œë“œê´€ë ¨ì„; 
 	 *
-	 * @param account °èÁ¤¸í
+	 * @param account ê³„ì •ëª…
 	 */
 	public static void updateWebPwd(String AccountName, String pwd) {
 		Connection con = null;
@@ -274,9 +274,9 @@ public class Account {
 	}
 
 	/**
-	 * ÇØ´ç °èÁ¤ÀÇ Ä³¸¯ÅÍ¼ö¸¦ ¼À
+	 * í•´ë‹¹ ê³„ì •ì˜ ìºë¦­í„°ìˆ˜ë¥¼ ì…ˆ
 	 *
-	 * @return result Ä³¸¯ÅÍ¼ö
+	 * @return result ìºë¦­í„°ìˆ˜
 	 */
 	public int countCharacters() {
 		int result = 0;
@@ -320,20 +320,20 @@ public class Account {
 	}
 
 	/**
-	 * ÀÔ·ÂµÈ ºñ¹Ğ¹øÈ£¿Í DB¿¡ ÀúÀåµÈ ÆĞ½º¿öµå¸¦ ºñ±³
+	 * ì…ë ¥ëœ ë¹„ë°€ë²ˆí˜¸ì™€ DBì— ì €ì¥ëœ íŒ¨ìŠ¤ì›Œë“œë¥¼ ë¹„êµ
 	 *
-	 * @param rawPassword ÆĞ½º¿öµå
+	 * @param rawPassword íŒ¨ìŠ¤ì›Œë“œ
 	 * @return boolean
 	 */
 	public boolean validatePassword(String accountName, final String rawPassword) {
-		// ÀÎÁõ ¼º°ø ÈÄ¿¡ ÀçÂ÷ ÀÎÁõµÇ¾úÀ» °æ¿ì´Â ½ÇÆĞ½ÃÅ²´Ù.
+		// ì¸ì¦ ì„±ê³µ í›„ì— ì¬ì°¨ ì¸ì¦ë˜ì—ˆì„ ê²½ìš°ëŠ” ì‹¤íŒ¨ì‹œí‚¨ë‹¤.
 //		if (_isValid) {
 //		return false;
 //		}
 		try {
 			_isValid = (_password.equals(rawPassword) || checkPassword(accountName, _password, rawPassword));
 			if (_isValid) {
-				_password = null; // ÀÎÁõÀÌ ¼º°øÇßÀ» °æ¿ì, ÆĞ½º¿öµå¸¦ ÆÄ±âÇÑ´Ù.
+				_password = null; // ì¸ì¦ì´ ì„±ê³µí–ˆì„ ê²½ìš°, íŒ¨ìŠ¤ì›Œë“œë¥¼ íŒŒê¸°í•œë‹¤.
 			}
 			return _isValid;
 		} catch (Exception e) {
@@ -343,7 +343,7 @@ public class Account {
 	}
 
 	/**
-	 * À¯È¿ÇÑ °èÁ¤ÀÎ°¡ 
+	 * ìœ íš¨í•œ ê³„ì •ì¸ê°€ 
 	 *
 	 * @return boolean
 	 */
@@ -352,7 +352,7 @@ public class Account {
 	}
 
 	/**
-	 * GM °èÁ¤ÀÎ°¡
+	 * GM ê³„ì •ì¸ê°€
 	 *
 	 * @return boolean
 	 */
@@ -441,7 +441,7 @@ public class Account {
 	}
 	
 	/**
-	 * ÄÉ¸¯ÅÍ ½½·Ô¼ö ¼³Á¤ 
+	 * ì¼€ë¦­í„° ìŠ¬ë¡¯ìˆ˜ ì„¤ì • 
 	 *
 	 * @return boolean
 	 */
@@ -483,7 +483,7 @@ public class Account {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 
-			// µ¿ÀÏ IP·Î »ı¼ºµÈ °èÁ¤ÀÌ 2°³ ¹Ì¸¸ÀÎ °æ¿ì
+			// ë™ì¼ IPë¡œ ìƒì„±ëœ ê³„ì •ì´ 2ê°œ ë¯¸ë§Œì¸ ê²½ìš°
 			if (num < Config.ipCount) return false;
 			else 		 return true;
 		}catch (Exception e) {
@@ -495,7 +495,7 @@ public class Account {
 		}return false;
 	}
 
-	//À¥ ¿¬µ¿À» À§ÇÑ ¸Ş¼Òµå Ãß°¡ - By Sini
+	//ì›¹ ì—°ë™ì„ ìœ„í•œ ë©”ì†Œë“œ ì¶”ê°€ - By Sini
 	public static boolean checkPassword(String accountName, String _pwd, String rawPassword) {
 		String _inputPwd = null;
 		Connection con = null;
@@ -513,7 +513,7 @@ public class Account {
 			SQLUtil.close(rs);
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
-			if (_pwd.equals(_inputPwd)) { // µ¿ÀÏÇÏ´Ù¸é
+			if (_pwd.equals(_inputPwd)) { // ë™ì¼í•˜ë‹¤ë©´
 				return true;
 			} else
 				return false;
@@ -528,7 +528,7 @@ public class Account {
 	}
 
 	/**
-	 * Ã¢°í ºñ¹ø
+	 * ì°½ê³  ë¹„ë²ˆ
 	 *
 	 * @return boolean
 	 */
@@ -556,9 +556,9 @@ public class Account {
 	}
 	
 	/**
-	 * ·Î±×¾Æ¿ô½Ã ³²Àº Æ÷ÀÎÆ® °áÁ¦ÇÑ Å¸ÀÓÀ» ÀúÀå½ÃÅ²´Ù; 
+	 * ë¡œê·¸ì•„ì›ƒì‹œ ë‚¨ì€ í¬ì¸íŠ¸ ê²°ì œí•œ íƒ€ì„ì„ ì €ì¥ì‹œí‚¨ë‹¤; 
 	 *
-	 * @param account °èÁ¤¸í
+	 * @param account ê³„ì •ëª…
 	 */
 	public static void updatePointAccount(String AccountName, long time) {
 		Connection con = null;

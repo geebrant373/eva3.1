@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -36,7 +36,7 @@ import l1j.server.server.model.item.L1ItemId;
 
 public class S_AutoSellList extends ServerBasePacket {
 	public S_AutoSellList(L1PcInstance pc) {
-		pc._ÀÚµ¿ÆÇ¸ÅÃÊÀÌ½º¸®½ºÆ® = new ArrayList<L1ItemInstance>();
+		pc._ìë™íŒë§¤ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸ = new ArrayList<L1ItemInstance>();
 		Set<Integer> npcItems = getItemsForNPC(70037);
 		for (L1ItemInstance item : pc.getInventory().getItems()) {
 			if (npcItems.contains(item.getItem().getItemId())) {
@@ -52,16 +52,16 @@ public class S_AutoSellList extends ServerBasePacket {
 				if (item.getItemId() == L1ItemId.ADENA) {
 					continue;
 				}
-				pc._ÀÚµ¿ÆÇ¸ÅÃÊÀÌ½º¸®½ºÆ®.add(item);
+				pc._ìë™íŒë§¤ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.add(item);
 			}
 		}
-		int size = pc._ÀÚµ¿ÆÇ¸ÅÃÊÀÌ½º¸®½ºÆ®.size();
+		int size = pc._ìë™íŒë§¤ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.size();
 		if (size > 0) {
 			writeC(Opcodes.S_OPCODE_SHOWRETRIEVELIST);
 			writeD(-1);
 			writeH(size);
-			writeC(3); // °³ÀÎ Ã¢°í
-			for (L1ItemInstance item : pc._ÀÚµ¿ÆÇ¸ÅÃÊÀÌ½º¸®½ºÆ®) {
+			writeC(3); // ê°œì¸ ì°½ê³ 
+			for (L1ItemInstance item : pc._ìë™íŒë§¤ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸) {
 				writeD(item.getId());
 				writeC(0);
 				writeH(item.get_gfxid());

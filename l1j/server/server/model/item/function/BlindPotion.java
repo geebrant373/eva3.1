@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -50,11 +50,11 @@ public class BlindPotion extends L1ItemInstance{
 	
 	private void useBlindPotion(L1PcInstance pc) {
 		if (pc.getSkillEffectTimerSet().hasSkillEffect(DECAY_POTION)) {
-			pc.sendPackets(new S_ServerMessage(698)); // \f1¸¶·Â¿¡ ÀÇÇØ ¾Æ¹«°Íµµ ¸¶½Ç ¼ö°¡ ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(698)); // \f1ë§ˆë ¥ì— ì˜í•´ ì•„ë¬´ê²ƒë„ ë§ˆì‹¤ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 
-		// ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+		// ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 		pc.cancelAbsoluteBarrier();
 
 		int time = 450;

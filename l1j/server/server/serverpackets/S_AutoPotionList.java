@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -30,22 +30,22 @@ import l1j.server.server.model.Instance.L1PcInstance;
 public class S_AutoPotionList extends ServerBasePacket {
 	public S_AutoPotionList(L1PcInstance pc) {
 		
-		pc._ÀÚµ¿¹°¾àÃÊÀÌ½º¸®½ºÆ® = new ArrayList<L1ItemInstance>();
+		pc._ìë™ë¬¼ì•½ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸ = new ArrayList<L1ItemInstance>();
 
 		for (L1ItemInstance item : pc.getInventory().getItems()) {
 			if (item.getItem().getType2() == 0) {
-				if (pc.getType() == 0) { // ±ºÁÖ
+				if (pc.getType() == 0) { // êµ°ì£¼
 					if (item.getItemId() == 40010
 							|| item.getItemId() == 40011
 							|| item.getItemId() == 40012
 							|| item.getItemId() == 40013
 							//|| item.getItemId() == 437011
-							|| item.getItemId() == 437004 // ÀüÅõ °­È­ÀÇ ÁÖ¹®¼­
-							|| item.getItemId() == 31117 // ¹öÇÁ ¹°¾à : ±Ù°Å¸®
-							|| item.getItemId() == 40018 // °­È­ ¼ÓµµÇâ»ó ¹°¾à
-							|| item.getItemId() == 40031 // ¾Ç¸¶ÀÇ ÇÇ
-							|| item.getItemId() == 40015 // ¸¶·Â È¸º¹ ¹°¾à
-							|| item.getItemId() == 40017 // ÇØµ¶Á¦
+							|| item.getItemId() == 437004 // ì „íˆ¬ ê°•í™”ì˜ ì£¼ë¬¸ì„œ
+							|| item.getItemId() == 31117 // ë²„í”„ ë¬¼ì•½ : ê·¼ê±°ë¦¬
+							|| item.getItemId() == 40018 // ê°•í™” ì†ë„í–¥ìƒ ë¬¼ì•½
+							|| item.getItemId() == 40031 // ì•…ë§ˆì˜ í”¼
+							|| item.getItemId() == 40015 // ë§ˆë ¥ íšŒë³µ ë¬¼ì•½
+							|| item.getItemId() == 40017 // í•´ë…ì œ
 							|| item.getItemId() == 40507
 							|| item.getItemId() == 437010
 							|| item.getItemId() == 437011
@@ -56,21 +56,21 @@ public class S_AutoPotionList extends ServerBasePacket {
 							|| item.getItemId() == 41292
 							|| item.getItemId() == 40879
 							) {
-						pc._ÀÚµ¿¹°¾àÃÊÀÌ½º¸®½ºÆ®.add(item);
+						pc._ìë™ë¬¼ì•½ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.add(item);
 					}
-				} else if (pc.getType() == 1) { // ±â»ç
+				} else if (pc.getType() == 1) { // ê¸°ì‚¬
 					if (item.getItemId() == 40010
 							|| item.getItemId() == 40011
 							|| item.getItemId() == 40012
 							|| item.getItemId() == 40013
 							//|| item.getItemId() == 437011
-							|| item.getItemId() == 437004 // ÀüÅõ °­È­ÀÇ ÁÖ¹®¼­
-							|| item.getItemId() == 31117 // ¹öÇÁ ¹°¾à : ±Ù°Å¸®
-							|| item.getItemId() == 40018 // °­È­ ¼ÓµµÇâ»ó ¹°¾à
-							|| item.getItemId() == 41415 // °­È­ ¿ë±âÀÇ ¹°¾à
+							|| item.getItemId() == 437004 // ì „íˆ¬ ê°•í™”ì˜ ì£¼ë¬¸ì„œ
+							|| item.getItemId() == 31117 // ë²„í”„ ë¬¼ì•½ : ê·¼ê±°ë¦¬
+							|| item.getItemId() == 40018 // ê°•í™” ì†ë„í–¥ìƒ ë¬¼ì•½
+							|| item.getItemId() == 41415 // ê°•í™” ìš©ê¸°ì˜ ë¬¼ì•½
 							|| item.getItemId() == 40014
-							|| item.getItemId() == 40015 // ¸¶·Â È¸º¹ ¹°¾à
-							|| item.getItemId() == 40017 // ÇØµ¶Á¦
+							|| item.getItemId() == 40015 // ë§ˆë ¥ íšŒë³µ ë¬¼ì•½
+							|| item.getItemId() == 40017 // í•´ë…ì œ
 							|| item.getItemId() == 40507
 							|| item.getItemId() == 437010
 							|| item.getItemId() == 437011
@@ -81,21 +81,21 @@ public class S_AutoPotionList extends ServerBasePacket {
 							|| item.getItemId() == 41292
 							|| item.getItemId() == 40879
 							) {
-						pc._ÀÚµ¿¹°¾àÃÊÀÌ½º¸®½ºÆ®.add(item);
+						pc._ìë™ë¬¼ì•½ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.add(item);
 					}
-				} else if (pc.getType() == 2) { // ¿äÁ¤
+				} else if (pc.getType() == 2) { // ìš”ì •
 					if (item.getItemId() == 40010
 							|| item.getItemId() == 40011
 							|| item.getItemId() == 40012
 							|| item.getItemId() == 40013
 							//|| item.getItemId() == 437011
-							|| item.getItemId() == 437004 // ÀüÅõ °­È­ÀÇ ÁÖ¹®¼­
-							|| item.getItemId() == 31118 // ¹öÇÁ ¹°¾à : ¿ø°Å¸®
-							|| item.getItemId() == 40018 // °­È­ ¼ÓµµÇâ»ó ¹°¾à
-							|| item.getItemId() == 40068 // ¿¤ºì ¿ÍÆÛ
-							|| item.getItemId() == 40015 // ¸¶·Â È¸º¹ ¹°¾à
-							|| item.getItemId() == 40016 // ÁöÇıÀÇ ¹°¾à
-							|| item.getItemId() == 40017 // ÇØµ¶Á¦
+							|| item.getItemId() == 437004 // ì „íˆ¬ ê°•í™”ì˜ ì£¼ë¬¸ì„œ
+							|| item.getItemId() == 31118 // ë²„í”„ ë¬¼ì•½ : ì›ê±°ë¦¬
+							|| item.getItemId() == 40018 // ê°•í™” ì†ë„í–¥ìƒ ë¬¼ì•½
+							|| item.getItemId() == 40068 // ì—˜ë¸ ì™€í¼
+							|| item.getItemId() == 40015 // ë§ˆë ¥ íšŒë³µ ë¬¼ì•½
+							|| item.getItemId() == 40016 // ì§€í˜œì˜ ë¬¼ì•½
+							|| item.getItemId() == 40017 // í•´ë…ì œ
 							|| item.getItemId() == 40507
 							|| item.getItemId() == 437010
 							|| item.getItemId() == 437011
@@ -106,20 +106,20 @@ public class S_AutoPotionList extends ServerBasePacket {
 							|| item.getItemId() == 41292
 							|| item.getItemId() == 40879
 							) {
-						pc._ÀÚµ¿¹°¾àÃÊÀÌ½º¸®½ºÆ®.add(item);
+						pc._ìë™ë¬¼ì•½ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.add(item);
 					}
-				} else if (pc.getType() == 3 ) { // ¹ı»ç
+				} else if (pc.getType() == 3 ) { // ë²•ì‚¬
 					if (item.getItemId() == 40010
 							|| item.getItemId() == 40011
 							|| item.getItemId() == 40012
 							|| item.getItemId() == 40013
 							//|| item.getItemId() == 437011
-							|| item.getItemId() == 437003 // ¸¶·Â Áõ°­ÀÇ ÁÖ¹®¼­
-							|| item.getItemId() == 31117 // ¹öÇÁ ¹°¾à : ±Ù°Å¸®
-							|| item.getItemId() == 40018 // °­È­ ¼ÓµµÇâ»ó ¹°¾à
-							|| item.getItemId() == 40016 // ÁöÇıÀÇ ¹°¾à
-							|| item.getItemId() == 40015 // ¸¶·Â È¸º¹ ¹°¾à
-							|| item.getItemId() == 40017 // ÇØµ¶Á¦
+							|| item.getItemId() == 437003 // ë§ˆë ¥ ì¦ê°•ì˜ ì£¼ë¬¸ì„œ
+							|| item.getItemId() == 31117 // ë²„í”„ ë¬¼ì•½ : ê·¼ê±°ë¦¬
+							|| item.getItemId() == 40018 // ê°•í™” ì†ë„í–¥ìƒ ë¬¼ì•½
+							|| item.getItemId() == 40016 // ì§€í˜œì˜ ë¬¼ì•½
+							|| item.getItemId() == 40015 // ë§ˆë ¥ íšŒë³µ ë¬¼ì•½
+							|| item.getItemId() == 40017 // í•´ë…ì œ
 							|| item.getItemId() == 40507
 							|| item.getItemId() == 437010
 							|| item.getItemId() == 437011
@@ -130,19 +130,19 @@ public class S_AutoPotionList extends ServerBasePacket {
 							|| item.getItemId() == 41292
 							|| item.getItemId() == 40879
 							) {
-						pc._ÀÚµ¿¹°¾àÃÊÀÌ½º¸®½ºÆ®.add(item);
+						pc._ìë™ë¬¼ì•½ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.add(item);
 					}
-				} else if (pc.getType() == 4) { // ´Ù¿¤
+				} else if (pc.getType() == 4) { // ë‹¤ì—˜
 					if (item.getItemId() == 40010
 							|| item.getItemId() == 40011
 							|| item.getItemId() == 40012
 							|| item.getItemId() == 40013
 							//|| item.getItemId() == 437011
-							|| item.getItemId() == 437004 // ÀüÅõ °­È­ÀÇ ÁÖ¹®¼­
-							|| item.getItemId() == 31117 // ¹öÇÁ ¹°¾à : ±Ù°Å¸®
-							|| item.getItemId() == 40018 // °­È­ ¼ÓµµÇâ»ó ¹°¾à
-							|| item.getItemId() == 40015 // ¸¶·Â È¸º¹ ¹°¾à
-							|| item.getItemId() == 40017 // ÇØµ¶Á¦
+							|| item.getItemId() == 437004 // ì „íˆ¬ ê°•í™”ì˜ ì£¼ë¬¸ì„œ
+							|| item.getItemId() == 31117 // ë²„í”„ ë¬¼ì•½ : ê·¼ê±°ë¦¬
+							|| item.getItemId() == 40018 // ê°•í™” ì†ë„í–¥ìƒ ë¬¼ì•½
+							|| item.getItemId() == 40015 // ë§ˆë ¥ íšŒë³µ ë¬¼ì•½
+							|| item.getItemId() == 40017 // í•´ë…ì œ
 							|| item.getItemId() == 40507
 							|| item.getItemId() == 437010
 							|| item.getItemId() == 437011
@@ -153,18 +153,18 @@ public class S_AutoPotionList extends ServerBasePacket {
 							|| item.getItemId() == 41292
 							|| item.getItemId() == 40879
 							) {
-						pc._ÀÚµ¿¹°¾àÃÊÀÌ½º¸®½ºÆ®.add(item);
+						pc._ìë™ë¬¼ì•½ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.add(item);
 					}
 				}
 			}
 		}
-		int size = pc._ÀÚµ¿¹°¾àÃÊÀÌ½º¸®½ºÆ®.size();
+		int size = pc._ìë™ë¬¼ì•½ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.size();
 		if (size > 0) {
 			writeC(Opcodes.S_OPCODE_SHOWRETRIEVELIST);
 			writeD(-1);
 			writeH(size);
-			writeC(3); // °³ÀÎ Ã¢°í
-			for (L1ItemInstance item : pc._ÀÚµ¿¹°¾àÃÊÀÌ½º¸®½ºÆ®) {
+			writeC(3); // ê°œì¸ ì°½ê³ 
+			for (L1ItemInstance item : pc._ìë™ë¬¼ì•½ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸) {
 				writeD(item.getId());
 				writeC(0);
 				writeH(item.get_gfxid());

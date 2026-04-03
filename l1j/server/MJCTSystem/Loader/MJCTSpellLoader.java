@@ -1,4 +1,4 @@
-package l1j.server.MJCTSystem.Loader;
+ï»¿package l1j.server.MJCTSystem.Loader;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -39,7 +39,7 @@ public class MJCTSpellLoader {
 			rs		= pstm.executeQuery();
 			while(rs.next()){
 				sp 			= new MJCTSpell();
-				sp.id		= rs.getInt("spellId")/* + 1*/;//º»¼·Àº 0ºÎÅÍ ½ÃÀÛÀÓ ±×·¡¼­ +1½ÃÄÑÁÜ
+				sp.id		= rs.getInt("spellId")/* + 1*/;//ë³¸ì„­ì€ 0ë¶€í„° ì‹œì‘ì„ ê·¸ë˜ì„œ +1ì‹œì¼œì¤Œ
 				sp.name		= rs.getString("name");
 				sp.icon		= rs.getInt("icon");
 				sp.xicon	= rs.getInt("xicon");

@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import l1j.server.GameSystem.Astar.World;
 import l1j.server.server.model.Instance.L1CastleGuardInstance;
@@ -10,9 +10,9 @@ public class CharPosUtil {
 	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };	
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 	/**
-	 * Ä³¸¯ÅÍÀÇ Á¤¸éÀÇ ÁÂÇ¥¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ ì •ë©´ì˜ ì¢Œí‘œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return Á¤¸éÀÇ ÁÂÇ¥
+	 * @return ì •ë©´ì˜ ì¢Œí‘œ
 	 */
 	public static int[] getFrontLoc(int x, int y, int heading) {
 		int[] loc = new int[2];
@@ -27,23 +27,23 @@ public class CharPosUtil {
 	}
 
 	/**
-	 * ÁöÁ¤µÈ ÁÂÇ¥¿¡ ´ëÇÒ ¹æÇâÀ» µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì¢Œí‘œì— ëŒ€í•  ë°©í–¥ì„ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param tx
-	 *            ÁÂÇ¥ÀÇ XÄ¡
+	 *            ì¢Œí‘œì˜ Xì¹˜
 	 * @param ty
-	 *            ÁÂÇ¥ÀÇ YÄ¡
-	 * @return ÁöÁ¤µÈ ÁÂÇ¥¿¡ ´ëÇÒ ¹æÇâ
+	 *            ì¢Œí‘œì˜ Yì¹˜
+	 * @return ì§€ì •ëœ ì¢Œí‘œì— ëŒ€í•  ë°©í–¥
 	 */
 	public static int targetDirection(L1Character cha, int tx, int ty) {
-		float dis_x = Math.abs(cha.getX() - tx); // X¹æÇâÀÇ Å¸°Ù±îÁöÀÇ °Å¸®
-		float dis_y = Math.abs(cha.getY() - ty); // Y¹æÇâÀÇ Å¸°Ù±îÁöÀÇ °Å¸®
-		float dis = Math.max(dis_x, dis_y);  // Å¸°Ù±îÁöÀÇ °Å¸®
+		float dis_x = Math.abs(cha.getX() - tx); // Xë°©í–¥ì˜ íƒ€ê²Ÿê¹Œì§€ì˜ ê±°ë¦¬
+		float dis_y = Math.abs(cha.getY() - ty); // Yë°©í–¥ì˜ íƒ€ê²Ÿê¹Œì§€ì˜ ê±°ë¦¬
+		float dis = Math.max(dis_x, dis_y);  // íƒ€ê²Ÿê¹Œì§€ì˜ ê±°ë¦¬
 
 		if (dis == 0) 	return cha.getMoveState().getHeading(); 
 
-		int avg_x = (int) Math.floor((dis_x / dis) + 0.59f); // »óÇÏ ÁÂ¿ì°¡ Á¶±İ ¿ì¼±ÀÎ µÕ±Ù
-		int avg_y = (int) Math.floor((dis_y / dis) + 0.59f); // »óÇÏ ÁÂ¿ì°¡ Á¶±İ ¿ì¼±ÀÎ µÕ±Ù
+		int avg_x = (int) Math.floor((dis_x / dis) + 0.59f); // ìƒí•˜ ì¢Œìš°ê°€ ì¡°ê¸ˆ ìš°ì„ ì¸ ë‘¥ê·¼
+		int avg_y = (int) Math.floor((dis_y / dis) + 0.59f); // ìƒí•˜ ì¢Œìš°ê°€ ì¡°ê¸ˆ ìš°ì„ ì¸ ë‘¥ê·¼
 
 		int dir_x = 0;
 		int dir_y = 0;
@@ -57,27 +57,27 @@ public class CharPosUtil {
 		if (avg_x == 0) 	dir_x =  0;
 		if (avg_y == 0) 	dir_y =  0;
 
-		if (dir_x ==  1 && dir_y == -1) 		return 1; // »ó
-		if (dir_x ==  1 && dir_y ==  0) 		return 2; // ¿ì»ó
-		if (dir_x ==  1 && dir_y ==  1) 		return 3; // ¿À¸¥ÂÊ
-		if (dir_x ==  0 && dir_y ==  1) 		return 4; // ¿ìÇÏ
-		if (dir_x == -1 && dir_y ==  1) 		return 5; // ÇÏ
-		if (dir_x == -1 && dir_y ==  0) 		return 6; // ÁÂÇÏ
-		if (dir_x == -1 && dir_y == -1) 		return 7; // ¿ŞÂÊ
-		if (dir_x ==  0 && dir_y == -1) 		return 0; // ÁÂ»ó
+		if (dir_x ==  1 && dir_y == -1) 		return 1; // ìƒ
+		if (dir_x ==  1 && dir_y ==  0) 		return 2; // ìš°ìƒ
+		if (dir_x ==  1 && dir_y ==  1) 		return 3; // ì˜¤ë¥¸ìª½
+		if (dir_x ==  0 && dir_y ==  1) 		return 4; // ìš°í•˜
+		if (dir_x == -1 && dir_y ==  1) 		return 5; // í•˜
+		if (dir_x == -1 && dir_y ==  0) 		return 6; // ì¢Œí•˜
+		if (dir_x == -1 && dir_y == -1) 		return 7; // ì™¼ìª½
+		if (dir_x ==  0 && dir_y == -1) 		return 0; // ì¢Œìƒ
 
 		return cha.getMoveState().getHeading(); 
 	}
 	
 
 	/**
-	 * ÁöÁ¤µÈ ÁÂÇ¥±îÁöÀÇ Á÷¼±»ó¿¡, Àå¾Ö¹°ÀÌ Á¸Àç*ÇÏÁö ¾Ê´Â°¡*¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì¢Œí‘œê¹Œì§€ì˜ ì§ì„ ìƒì—, ì¥ì• ë¬¼ì´ ì¡´ì¬*í•˜ì§€ ì•ŠëŠ”ê°€*ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param tx
-	 *            ÁÂÇ¥ÀÇ XÄ¡
+	 *            ì¢Œí‘œì˜ Xì¹˜
 	 * @param ty
-	 *            ÁÂÇ¥ÀÇ YÄ¡
-	 * @return Àå¾Ö¹°ÀÌ ¾øÀ¸¸é true, ¾î´À false¸¦ µ¹·ÁÁØ´Ù.
+	 *            ì¢Œí‘œì˜ Yì¹˜
+	 * @return ì¥ì• ë¬¼ì´ ì—†ìœ¼ë©´ true, ì–´ëŠ falseë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public static boolean glanceCheck(L1Character cha, int tx, int ty) {
 		L1Map map = cha.getMap();
@@ -108,18 +108,18 @@ public class CharPosUtil {
 	}
 
 	/**
-	 * ÁöÁ¤µÈ ÁÂÇ¥¿¡ °ø°İ °¡´ÉÇÑ°¡¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì¢Œí‘œì— ê³µê²© ê°€ëŠ¥í•œê°€ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param x
-	 *            ÁÂÇ¥ÀÇ XÄ¡.
+	 *            ì¢Œí‘œì˜ Xì¹˜.
 	 * @param y
-	 *            ÁÂÇ¥ÀÇ YÄ¡.
+	 *            ì¢Œí‘œì˜ Yì¹˜.
 	 * @param range
-	 *            °ø°İ °¡´ÉÇÑ ¹üÀ§(Å¸ÀÏ¼ö)
-	 * @return °ø°İ °¡´ÉÇÏ¸é true, ºÒ°¡´ÉÇÏ¸é false
+	 *            ê³µê²© ê°€ëŠ¥í•œ ë²”ìœ„(íƒ€ì¼ìˆ˜)
+	 * @return ê³µê²© ê°€ëŠ¥í•˜ë©´ true, ë¶ˆê°€ëŠ¥í•˜ë©´ false
 	 */
 	public static boolean isAttackPosition(L1Character cha, int x, int y, int range) {
-		if (range >= 7) {// ¿ø°İ ¹«±â(7ÀÌ»óÀÇ °æ¿ì ±â¿ï±â¸¦ °í·ÁÇÏ¸é(ÀÚ) È­¸é¿Ü¿¡ ³ª¿Â´Ù)
+		if (range >= 7) {// ì›ê²© ë¬´ê¸°(7ì´ìƒì˜ ê²½ìš° ê¸°ìš¸ê¸°ë¥¼ ê³ ë ¤í•˜ë©´(ì) í™”ë©´ì™¸ì— ë‚˜ì˜¨ë‹¤)
 			if (cha.getLocation().getTileDistance(new Point(x, y)) > range) 
 				return false;
 		} else {
@@ -136,7 +136,7 @@ public class CharPosUtil {
 	}
 	
 	public static boolean isAttackPosition(L1Character cha, int x, int y, int mapid, int range) {
-		if (range >= 7) {// ¿ø°İ ¹«±â(7ÀÌ»óÀÇ °æ¿ì ±â¿ï±â¸¦ °í·ÁÇÏ¸é(ÀÚ) È­¸é¿Ü¿¡ ³ª¿Â´Ù)
+		if (range >= 7) {// ì›ê²© ë¬´ê¸°(7ì´ìƒì˜ ê²½ìš° ê¸°ìš¸ê¸°ë¥¼ ê³ ë ¤í•˜ë©´(ì) í™”ë©´ì™¸ì— ë‚˜ì˜¨ë‹¤)
 			if (cha.getLocation().getTileDistance(new Point(x, y)) > range)
 				return false;
 		} else {
@@ -154,7 +154,7 @@ public class CharPosUtil {
 	}
 	
 	/**
-	 * ¿øÇÏ´Â Å¸ÄÏ¿¡°Ô Àå°Å¸® °ø°İ ¹× ±Ù°Å¸® °ø°İÀÌ °¡´ÉÇÑÁö Ã¼Å©
+	 * ì›í•˜ëŠ” íƒ€ì¼“ì—ê²Œ ì¥ê±°ë¦¬ ê³µê²© ë° ê·¼ê±°ë¦¬ ê³µê²©ì´ ê°€ëŠ¥í•œì§€ ì²´í¬
 	 */
 	static public boolean isAreaAttack(L1Character o, int tx, int ty, int tm) {
 		L1Map map = o.getMap();
@@ -176,7 +176,7 @@ public class CharPosUtil {
 				// System.out.println(chx+" "+chy);
 				if (!World.isThroughAttack(chx, chy, map.getId(),
 						calcheading(chx, chy, tx, ty))) {
-					// System.out.println("¾Æ ¾¾¹ß");
+					// System.out.println("ì•„ ì”¨ë°œ");
 					return false;
 				}
 
@@ -215,7 +215,7 @@ public class CharPosUtil {
 	}
 	
 	/**
-	 * ÇØ´çÇÏ´Â ÁÂÇ¥·Î ¹æÇâÀ» ÀüÈ¯ÇÒ¶§ »ç¿ë.
+	 * í•´ë‹¹í•˜ëŠ” ì¢Œí‘œë¡œ ë°©í–¥ì„ ì „í™˜í• ë•Œ ì‚¬ìš©.
 	 */
 	public static int calcheading(int myx, int myy, int tx, int ty) {
 		if (tx > myx && ty > myy) {
@@ -238,9 +238,9 @@ public class CharPosUtil {
 	}
 	
 	/**
-	 * Ä³¸¯ÅÍ°¡ Á¸ÀçÇÏ´Â ÁÂÇ¥°¡, ¾î´À Á¸¿¡ ¼ÓÇÏ°í ÀÖÀ»±î¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ê°€ ì¡´ì¬í•˜ëŠ” ì¢Œí‘œê°€, ì–´ëŠ ì¡´ì— ì†í•˜ê³  ìˆì„ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return ÁÂÇ¥ÀÇ Á¸À» ³ªÅ¸³»´Â °ª. ¼¼ÀÌÇÁÆ¼ Á¸ÀÌ¸é 1, ÄÄ¹èÆ® Á¸ÀÌ¸é¡ª1, ³ë¸Ö Á¸ÀÌ¸é 0.
+	 * @return ì¢Œí‘œì˜ ì¡´ì„ ë‚˜íƒ€ë‚´ëŠ” ê°’. ì„¸ì´í”„í‹° ì¡´ì´ë©´ 1, ì»´ë°°íŠ¸ ì¡´ì´ë©´â€•1, ë…¸ë©€ ì¡´ì´ë©´ 0.
 	 */
 	public static int getZoneType(L1Character cha) {
 		if (cha.getMap().isSafetyZone(cha.getLocation())) 		return 1;

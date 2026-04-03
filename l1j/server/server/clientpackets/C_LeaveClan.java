@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -50,10 +50,10 @@ public class C_LeaveClan extends ClientBasePacket {
 		L1Clan clan = L1World.getInstance().getClan(player.getClanname());
 		if (clan == null) return;
 
-		// ÇØ´ç Ç÷ÀÇ ±ºÁÖÀÎ°¡?
+		// í•´ë‹¹ í˜ˆì˜ êµ°ì£¼ì¸ê°€?
 		if (player.isCrown() && player.getId() == clan.getLeaderId()) {
 			leaveClanBoss(clan, player);
-		} else { // ±ºÁÖ°¡ ¾Æ´Ñ Ç÷¸Í¿øÀÇ Å»Åğ
+		} else { // êµ°ì£¼ê°€ ì•„ë‹Œ í˜ˆë§¹ì›ì˜ íƒˆí‡´
 			leaveClanMember(clan, player);
 		} 
 	}
@@ -80,16 +80,16 @@ public class C_LeaveClan extends ClientBasePacket {
 		}
 
 		L1PcInstance pc = null;
-		for (int i = 0; i < clan.getClanMemberList().size() ; i++) { // Ç÷¸Í¿øµéÀÇ Ç÷¸Í Á¤º¸¸¦ ÃÊ±âÈ­ 
+		for (int i = 0; i < clan.getClanMemberList().size() ; i++) { // í˜ˆë§¹ì›ë“¤ì˜ í˜ˆë§¹ ì •ë³´ë¥¼ ì´ˆê¸°í™” 
 			pc = L1World.getInstance().getPlayer(clan.getClanMemberList().get(i).name);
 
-			if (pc == null) { // Ç÷¸Í¿øÀÌ ¿ÀÇÁ¶óÀÎÀÎ °æ¿ì
+			if (pc == null) { // í˜ˆë§¹ì›ì´ ì˜¤í”„ë¼ì¸ì¸ ê²½ìš°
 				pc = CharacterTable.getInstance().restoreCharacter(clan.getClanMemberList().get(i).name);
-			} else { // %1Ç÷¸ÍÀÇ ±ºÁÖ %0°¡ Ç÷¸ÍÀ» ÇØ»ê½ÃÄ×½À´Ï´Ù.
+			} else { // %1í˜ˆë§¹ì˜ êµ°ì£¼ %0ê°€ í˜ˆë§¹ì„ í•´ì‚°ì‹œì¼°ìŠµë‹ˆë‹¤.
 				pc.sendPackets(new S_ServerMessage(269, player_name, clan_name)); 
 			}
 			pc.ClearPlayerClanData(clan);
-			pc.sendPackets(new S_SkillSound(pc.getId(), 8953)); // Ç÷¸Í¹öÇÁ Á¾·á
+			pc.sendPackets(new S_SkillSound(pc.getId(), 8953)); // í˜ˆë§¹ë²„í”„ ì¢…ë£Œ
 		}
 
 		String emblem_file = String.valueOf(player.getClanid());
@@ -105,9 +105,9 @@ public class C_LeaveClan extends ClientBasePacket {
 		L1PcInstance clanMember[] = clan.getOnlineClanMember();
 
 		for (int i = 0; i < clanMember.length; i++) {
-			clanMember[i].sendPackets(new S_ServerMessage(ServerMessage.LEAVE_CLAN, player_name, clan_name)); // \f1%0ÀÌ %1Ç÷¸ÍÀ» Å»ÅğÇß½À´Ï´Ù. 
+			clanMember[i].sendPackets(new S_ServerMessage(ServerMessage.LEAVE_CLAN, player_name, clan_name)); // \f1%0ì´ %1í˜ˆë§¹ì„ íƒˆí‡´í–ˆìŠµë‹ˆë‹¤. 
 		}
-		player.sendPackets(new S_SkillSound(player.getId(), 8953)); // Ç÷¸Í¹öÇÁ Á¾·á
+		player.sendPackets(new S_SkillSound(player.getId(), 8953)); // í˜ˆë§¹ë²„í”„ ì¢…ë£Œ
 		player.ClearPlayerClanData(clan);
 		clan.removeClanMember(player_name);
 	}

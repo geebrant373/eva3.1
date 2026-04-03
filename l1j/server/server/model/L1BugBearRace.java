@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -202,9 +202,9 @@ public class L1BugBearRace {
 	}
 
 	private void broadCastWinner(String winner) {
-		String chat = "Á¦ " + getRound() + "$366" + " '" + winner + "' " + "$367";
+		String chat = "ì œ " + getRound() + "$366" + " '" + winner + "' " + "$367";
 		for (L1NpcInstance npc : _merchant) {
-			if (npc.getNpcTemplate().get_npcId() == 70035) { // ¼¼½Ç
+			if (npc.getNpcTemplate().get_npcId() == 70035) { // ì„¸ì‹¤
 				Broadcaster.wideBroadcastPacket(npc, new S_NpcChatPacket(npc, chat, 2));
 			}
 		}
@@ -337,7 +337,7 @@ public class L1BugBearRace {
 		@Override
 		public void run() {
 			buyTickets = true;
-			broadCastTime("·¹ÀÌ½º Ç¥ ÆÇ¸Å°¡ ½ÃÀÛµÇ¾ú½À´Ï´Ù.");
+			broadCastTime("ë ˆì´ìŠ¤ í‘œ íŒë§¤ê°€ ì‹œìž‘ë˜ì—ˆìŠµë‹ˆë‹¤.");
 			for (int time = 5; time > 0; time--) {
 				if (time <= 5) {
 					broadCastTime("$376 " + time + " $377");
@@ -348,7 +348,7 @@ public class L1BugBearRace {
 				}
 			}
 			buyTickets = false;
-			broadCastTime("·¹ÀÌ½ºÇ¥ ÆÇ¸Å°¡ Á¾·áµÇ¾ú½À´Ï´Ù.");
+			broadCastTime("ë ˆì´ìŠ¤í‘œ íŒë§¤ê°€ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
 			L1BroadCastDividend bcd = new L1BroadCastDividend();
 			GeneralThreadPool.getInstance().execute(bcd);
 		}
@@ -359,7 +359,7 @@ public class L1BugBearRace {
 
 		public L1BroadCastDividend() {
 			for (L1NpcInstance npc : _merchant) {
-				if (npc.getNpcTemplate().get_npcId() == 70041) { // ÆÛÅ²
+				if (npc.getNpcTemplate().get_npcId() == 70041) { // í¼í‚¨
 					_npc = npc;
 				}
 			}

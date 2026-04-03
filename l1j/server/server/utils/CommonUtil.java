@@ -1,4 +1,4 @@
-package l1j.server.server.utils;
+ï»¿package l1j.server.server.utils;
 
 import java.sql.Timestamp;
 import java.text.NumberFormat;
@@ -11,7 +11,7 @@ import l1j.server.server.model.Instance.L1ItemInstance;
 
 public class CommonUtil {
 	/**
-	 * 2011.08.05 ±İ¾×Ç¥½Ã
+	 * 2011.08.05 ê¸ˆì•¡í‘œì‹œ
 	 * 
 	 * @param number
 	 * @return
@@ -27,7 +27,7 @@ public class CommonUtil {
 	}
 
 	/**
-	 * 2011.08.05 ·£´ıÇÔ¼ö
+	 * 2011.08.05 ëœë¤í•¨ìˆ˜
 	 * 
 	 * @param number
 	 * @return
@@ -39,7 +39,7 @@ public class CommonUtil {
 	}
 
 	/**
-	 * 2011.08.05 ·£´ıÇÔ¼ö
+	 * 2011.08.05 ëœë¤í•¨ìˆ˜
 	 * 
 	 * @param lbound
 	 * @param ubound
@@ -50,7 +50,7 @@ public class CommonUtil {
 	}
 
 	/**
-	 * 2011.08.30 µ¥ÀÌÅÍÆ÷¸Ë
+	 * 2011.08.30 ë°ì´í„°í¬ë§·
 	 * 
 	 * @param type
 	 * @return
@@ -61,7 +61,7 @@ public class CommonUtil {
 	}
 
 	/**
-	 * 2011.08.30 µ¥ÀÌÅÍÆ÷¸Ë
+	 * 2011.08.30 ë°ì´í„°í¬ë§·
 	 * 
 	 * @param type
 	 * @return
@@ -72,7 +72,7 @@ public class CommonUtil {
 	}
 
 	/**
-	 * 2011.08.31 ¾ÆÀÌÅÛ Á¾·á ½Ã°£
+	 * 2011.08.31 ì•„ì´í…œ ì¢…ë£Œ ì‹œê°„
 	 * 
 	 * @param item
 	 * @param minute
@@ -85,7 +85,7 @@ public class CommonUtil {
 	}
 
 	/**
-	 * 2011.08.31 ¾ÆÀÌÅÛ Á¾·á ½Ã°£ ÁöÁ¤(¿À´Ã ³²Àº ½Ã°£ °è»ê) - ·Î¶Ç ½Ã½ºÅÛ
+	 * 2011.08.31 ì•„ì´í…œ ì¢…ë£Œ ì‹œê°„ ì§€ì •(ì˜¤ëŠ˜ ë‚¨ì€ ì‹œê°„ ê³„ì‚°) - ë¡œë˜ ì‹œìŠ¤í…œ
 	 * 
 	 * @param item
 	 */
@@ -107,7 +107,7 @@ public class CommonUtil {
 	}
 
 	/**
-	 * 2011.08.31 ÁöÁ¤½Ã°£±îÁö ³²Àº ½Ã°£
+	 * 2011.08.31 ì§€ì •ì‹œê°„ê¹Œì§€ ë‚¨ì€ ì‹œê°„
 	 * 
 	 * @param item
 	 */

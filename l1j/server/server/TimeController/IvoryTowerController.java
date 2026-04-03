@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1World;
@@ -12,10 +12,10 @@ public class IvoryTowerController implements Runnable {
     private static IvoryTowerController _instance;
     public boolean isgameStart = false;
     public int Status = 0;
-    private final int ´ë±â = 0;
-    private final int ¿ÀÇÂ = 1;
-    private final int ÁøÇà = 2;
-    private final int Á¾·á = 3;
+    private final int ëŒ€ê¸° = 0;
+    private final int ì˜¤í”ˆ = 1;
+    private final int ì§„í–‰ = 2;
+    private final int ì¢…ë£Œ = 3;
 
     public static IvoryTowerController getInstance() {
         if (_instance == null) {
@@ -29,25 +29,25 @@ public class IvoryTowerController implements Runnable {
         try {
             while (true) {
                 switch (Status) {
-                case ´ë±â:
+                case ëŒ€ê¸°:
                     Thread.sleep(10000);
                     if (isgameStart == false) {
                         continue;
                     }
-                    Status = ¿ÀÇÂ;
-                    L1World.getInstance().broadcastServerMessage("\\aH¾Ë¸²: Àá½ÃÈÄ [»ó¾ÆÅ¾8Ãş] ÀÔÀåÀÌ °¡´ÉÇÕ´Ï´Ù.");
+                    Status = ì˜¤í”ˆ;
+                    L1World.getInstance().broadcastServerMessage("\\aHì•Œë¦¼: ì ì‹œí›„ [ìƒì•„íƒ‘8ì¸µ] ì…ì¥ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
                     continue;
-                case ¿ÀÇÂ:
-                    L1World.getInstance().broadcastServerMessage("\\aH¾Ë¸²: »ó¾ÆÅ¾8Ãş 2½Ã°£ »ç³É°¡´ÉÇÏ¿À´Ï,Á¶½ÉÇÏ¼¼¿ä.");
-                    L1World.getInstance().broadcastServerMessage("\\aH¾Ë¸²: ½Ã°£ÀÌ µÇ¸é °­Á¦±ÍÈ¯ µË´Ï´Ù.");
-                    System.out.println("...... »ó¾ÆÅ¾8Ãş ¿­¸²");
-                    Status = ÁøÇà;
+                case ì˜¤í”ˆ:
+                    L1World.getInstance().broadcastServerMessage("\\aHì•Œë¦¼: ìƒì•„íƒ‘8ì¸µ 2ì‹œê°„ ì‚¬ëƒ¥ê°€ëŠ¥í•˜ì˜¤ë‹ˆ,ì¡°ì‹¬í•˜ì„¸ìš”.");
+                    L1World.getInstance().broadcastServerMessage("\\aHì•Œë¦¼: ì‹œê°„ì´ ë˜ë©´ ê°•ì œê·€í™˜ ë©ë‹ˆë‹¤.");
+                    System.out.println("...... ìƒì•„íƒ‘8ì¸µ ì—´ë¦¼");
+                    Status = ì§„í–‰;
                     continue;
-                case ÁøÇà:
+                case ì§„í–‰:
                     Thread.sleep(3 * 1000);
                     for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
-                    	pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "\\aI5ºĞµÚ »ó¾ÆÅ¾8Ãş º¸½º µ¥¸óÀÌ ÃâÇöÇÕ´Ï´Ù."));
-                    	pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "\\aI5ºĞµÚ »ó¾ÆÅ¾8Ãş º¸½º µ¥¸óÀÌ ÃâÇöÇÕ´Ï´Ù."));
+                    	pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "\\aI5ë¶„ë’¤ ìƒì•„íƒ‘8ì¸µ ë³´ìŠ¤ ë°ëª¬ì´ ì¶œí˜„í•©ë‹ˆë‹¤."));
+                    	pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "\\aI5ë¶„ë’¤ ìƒì•„íƒ‘8ì¸µ ë³´ìŠ¤ ë°ëª¬ì´ ì¶œí˜„í•©ë‹ˆë‹¤."));
                     }
                     Thread.sleep(300 * 1000);
                     L1SpawnUtil.spawn2(32717, 32829, (short) 82, 45649, 0, 3600 * 1000, 0);
@@ -56,13 +56,13 @@ public class IvoryTowerController implements Runnable {
                     close();
                     Thread.sleep(5000L);
                     TelePort2();
-                    Status = Á¾·á;
+                    Status = ì¢…ë£Œ;
                     continue;
-                case Á¾·á:
-                    L1World.getInstance().broadcastServerMessage("\\aH¾Ë¸²: »ó¾ÆÅ¾8Ãş Á¾·áµÇ¾ú½À´Ï´Ù.");
-                    System.out.println("...... »ó¾ÆÅ¾8Ãş Á¾·áµÊ");
+                case ì¢…ë£Œ:
+                    L1World.getInstance().broadcastServerMessage("\\aHì•Œë¦¼: ìƒì•„íƒ‘8ì¸µ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤.");
+                    System.out.println("...... ìƒì•„íƒ‘8ì¸µ ì¢…ë£Œë¨");
                     isgameStart = false;
-                    Status = ´ë±â;
+                    Status = ëŒ€ê¸°;
                     continue;
                 }
             }
@@ -78,7 +78,7 @@ public class IvoryTowerController implements Runnable {
                 c.stopHpRegenerationByDoll();
                 c.stopMpRegenerationByDoll();
                 L1Teleport.teleport(c, 33970, 33246, (short) 4, 0, true);
-                c.sendPackets(new S_SystemMessage("»ó¾ÆÅ¾8Ãş ´İÇû½À´Ï´Ù."));
+                c.sendPackets(new S_SystemMessage("ìƒì•„íƒ‘8ì¸µ ë‹«í˜”ìŠµë‹ˆë‹¤."));
                 break;
             default:
                 break;
@@ -103,7 +103,7 @@ public class IvoryTowerController implements Runnable {
                 c.stopHpRegenerationByDoll();
                 c.stopMpRegenerationByDoll();
                 L1Teleport.teleport(c, 33970, 33246, (short) 4, 0, true);
-                c.sendPackets(new S_SystemMessage("»ó¾ÆÅ¾8Ãş ´İÇû½À´Ï´Ù."));
+                c.sendPackets(new S_SystemMessage("ìƒì•„íƒ‘8ì¸µ ë‹«í˜”ìŠµë‹ˆë‹¤."));
                 break;
             default:
                 break;

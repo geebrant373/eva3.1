@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+﻿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

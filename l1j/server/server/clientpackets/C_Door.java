@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -50,7 +50,7 @@ public class C_Door extends ClientBasePacket {
 
 		L1PcInstance pc = client.getActiveChar();
 		L1DoorInstance door = (L1DoorInstance)L1World.getInstance().findObject(objectId);
-		//System.out.println("ÇöÀç ¹® ¹øÈ£ : "+door.getDoorId());
+		//System.out.println("í˜„ìž¬ ë¬¸ ë²ˆí˜¸ : "+door.getDoorId());
 
 		if (door.getDoorId() == 7200 || door.getDoorId() == 7300 || door.getDoorId() == 7510 || door.getDoorId() == 7511
 				|| door.getDoorId() == 7520 || door.getDoorId() == 7530 || door.getDoorId() == 7540 || door.getDoorId() == 7550){

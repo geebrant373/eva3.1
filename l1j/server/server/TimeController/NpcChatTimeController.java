@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -45,10 +45,10 @@ public class NpcChatTimeController extends Thread {
 	}
 
 	public void run() {
-		System.out.println(NpcChatTimeController.class.getName()  + " ½ÃÀÛ");
+		System.out.println(NpcChatTimeController.class.getName()  + " ì‹œì‘");
 		try {
 			while (true) {
-				checkNpcChatTime(); // Ã¤ÆÃ °³½Ã ½Ã°£À» Ã¼Å©
+				checkNpcChatTime(); // ì±„íŒ… ê°œì‹œ ì‹œê°„ì„ ì²´í¬
 				Thread.sleep(60000);
 			}
 		} catch (Exception e1) {

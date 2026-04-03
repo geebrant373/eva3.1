@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,7 +36,7 @@ public class AccessoryEnchantInformationTable1 {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("SELECT * FROM Àå½Å±¸ÁÖ¹®¼­_ÀÎÃ¦È®·ü WHERE item_id = ?");
+			pstm = con.prepareStatement("SELECT * FROM ì¥ì‹ êµ¬ì£¼ë¬¸ì„œ_ì¸ì±ˆí™•ë¥  WHERE item_id = ?");
 			for(int items : enumItemIds()) {
 				HashMap<Integer, Integer> _optionMap = new HashMap<Integer, Integer>();
 				pstm.setInt(1, items);
@@ -62,7 +62,7 @@ public class AccessoryEnchantInformationTable1 {
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("SELECT DISTINCT item_id FROM Àå½Å±¸ÁÖ¹®¼­_ÀÎÃ¦È®·ü");
+			pstm = con.prepareStatement("SELECT DISTINCT item_id FROM ì¥ì‹ êµ¬ì£¼ë¬¸ì„œ_ì¸ì±ˆí™•ë¥ ");
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				ids.add(rs.getInt("item_id"));

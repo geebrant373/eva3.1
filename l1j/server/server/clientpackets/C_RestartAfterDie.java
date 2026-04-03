@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -50,7 +50,7 @@ public class C_RestartAfterDie extends ClientBasePacket {
 			loc[1] = 32777;
 			loc[2] = 666;
 		} else {
-			//loc = Getback.GetBack_Location(pc, true); ÁÖ¼®
+			//loc = Getback.GetBack_Location(pc, true); ì£¼ì„
 			loc = Getback.GetBack_Restart(pc);
 		}
 
@@ -58,7 +58,7 @@ public class C_RestartAfterDie extends ClientBasePacket {
 		Broadcaster.broadcastPacket(pc, new S_RemoveObject(pc));
 
 		pc.setCurrentHp(pc.getLevel());
-		pc.set_food(39); // Á×¾úÀ»¶§ °ÙÁö? 10%
+		pc.set_food(39); // ì£½ì—ˆì„ë•Œ ê²Ÿì§€? 10%
 		pc.setDead(false);
 		pc.setActionStatus(0);
 		L1World.getInstance().moveVisibleObject(pc, loc[2]);

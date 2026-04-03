@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -13,8 +13,8 @@ public class TimePresentscheduler {
             Executors.newSingleThreadScheduledExecutor();
 
     public static void start() {
-        long initialDelay = 0; // ¼­¹ö ½ÃÀÛ ÈÄ ¹Ù·Î ½ÇÇà (ÇÊ¿ä½Ã Á¶Àı °¡´É)
-        long period = 3 * 60 * 60; // 3½Ã°£ (ÃÊ ´ÜÀ§)
+        long initialDelay = 0; // ì„œë²„ ì‹œì‘ í›„ ë°”ë¡œ ì‹¤í–‰ (í•„ìš”ì‹œ ì¡°ì ˆ ê°€ëŠ¥)
+        long period = 3 * 60 * 60; // 3ì‹œê°„ (ì´ˆ ë‹¨ìœ„)
 
         scheduler.scheduleAtFixedRate(() -> {
             try {
@@ -28,7 +28,7 @@ public class TimePresentscheduler {
     private static void givepresent() {
     	for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
     		if (!pc.isAutoClanjoin() && !pc.isPrivateShop() && !pc.noPlayerCK && pc != null && !pc.isDead()) {
-    			pc.sendPackets(new S_SystemMessage("ÀÚµ¿½Ã°£ ÃæÀü¼®ÀÌ Áö±ŞµÇ¾ú½À´Ï´Ù."));
+    			pc.sendPackets(new S_SystemMessage("ìë™ì‹œê°„ ì¶©ì „ì„ì´ ì§€ê¸‰ë˜ì—ˆìŠµë‹ˆë‹¤."));
     			pc.getInventory().storeItem(875640508, 1);
     		}
     	}

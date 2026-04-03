@@ -1,4 +1,4 @@
-package server.system.autoshop;
+﻿package server.system.autoshop;
 
 import java.util.Vector;
 

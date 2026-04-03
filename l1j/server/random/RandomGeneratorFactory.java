@@ -1,4 +1,4 @@
-package l1j.server.random;
+﻿package l1j.server.random;
 
 public class RandomGeneratorFactory {
 	private static RandomGenerator _random = null;

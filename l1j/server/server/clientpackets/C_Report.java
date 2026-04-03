@@ -1,6 +1,6 @@
-/*
+﻿/*
  * make by Eva Team (http://eva.gg.gg)
- *	/�Ű� 
+ *	/신고 
  * 
  */
 

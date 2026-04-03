@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -35,9 +35,9 @@ public class S_LoginResult extends ServerBasePacket {
 
 	public static final int REASON_BUG_WRONG = 0x26;
 	
-//	06-°°Àº Ä³¸¯ÅÍ°¡ ÀÌ¹Ì ÀÖ´Ù 9-ÀÌ¸§Àß¸ø 24-ipÁ¤·®Á¦ 26-°¡»ó ipº¹¼öÁ¢¼Ó
-//	28-ºñ¹øº¯°æÇØ¶ó  29-Áú¹®´ä 31-°èÁÂÀÌÃ¼ 32-½Ã°£³²Àº°Ô ¾ø´Ù 34-ÀÌÄÉ¸¯ÅÍ »ç¿ëÀÌ ±İÁö
-//	35-°ÔÀÓ³»ºñ¹øº¯°æºÒ°¡ 36-¿ä±İ¹®Á¦·ÎÁ¤Áö 37-µµ¿ë½Å°í 38-¹ö±×»ç¿ë ¹ê 39-Çö°Å·¡¹ê
+//	06-ê°™ì€ ìºë¦­í„°ê°€ ì´ë¯¸ ìˆë‹¤ 9-ì´ë¦„ì˜ëª» 24-ipì •ëŸ‰ì œ 26-ê°€ìƒ ipë³µìˆ˜ì ‘ì†
+//	28-ë¹„ë²ˆë³€ê²½í•´ë¼  29-ì§ˆë¬¸ë‹µ 31-ê³„ì¢Œì´ì²´ 32-ì‹œê°„ë‚¨ì€ê²Œ ì—†ë‹¤ 34-ì´ì¼€ë¦­í„° ì‚¬ìš©ì´ ê¸ˆì§€
+//	35-ê²Œì„ë‚´ë¹„ë²ˆë³€ê²½ë¶ˆê°€ 36-ìš”ê¸ˆë¬¸ì œë¡œì •ì§€ 37-ë„ìš©ì‹ ê³  38-ë²„ê·¸ì‚¬ìš© ë°´ 39-í˜„ê±°ë˜ë°´
 
 	// public static int REASON_SYSTEM_ERROR = 0x01;
 

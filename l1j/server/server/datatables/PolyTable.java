@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -99,7 +99,7 @@ public class PolyTable {
 			_polyIdIndex.put(polyId, poly);
 		}
 
-		_log.config("º¯½Å ¸®½ºÆ® " + _polymorphs.size() + "°Ç ·Îµå");
+		_log.config("ë³€ì‹  ë¦¬ìŠ¤íŠ¸ " + _polymorphs.size() + "ê±´ ë¡œë“œ");
 	}
 
 	public L1PolyMorph getTemplate(String name) {

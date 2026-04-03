@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -30,14 +30,14 @@ public class S_TradeAddItem extends ServerBasePacket {
 
 	public S_TradeAddItem(L1ItemInstance item, int count, int type) {
 		writeC(Opcodes.S_OPCODE_TRADEADDITEM);
-		writeC(type); // 0:±³È¯Ã¢ »ó´Ü  1:±³È¯Ã¢ ÇÏ´Ü
+		writeC(type); // 0:êµí™˜ì°½ ìƒë‹¨  1:êµí™˜ì°½ í•˜ë‹¨
 		writeH(item.getItem().getGfxId());
 		writeS(item.getNumberedViewName(count));
 
-		// 0:Ãàº¹ 1:Åë»ó 2:ÀúÁÖ 3:¹Ì°¨Á¤
-		if (!item.isIdentified()) { // ¹ÌÈ®ÀÎ
+		// 0:ì¶•ë³µ 1:í†µìƒ 2:ì €ì£¼ 3:ë¯¸ê°ì •
+		if (!item.isIdentified()) { // ë¯¸í™•ì¸
 			writeC(3);
-		} else { // ±³È¯ÀÌ ³¡³­ »óÅÂ
+		} else { // êµí™˜ì´ ëë‚œ ìƒíƒœ
 			byte[] status = null;
 			int bless = item.getBless();
 			writeC(bless);
@@ -53,11 +53,11 @@ public class S_TradeAddItem extends ServerBasePacket {
 		writeC(Opcodes.S_OPCODE_TRADEADDITEM);
 		writeC(type);
 		writeH(item.getItem().getGfxId());
-		writeS("Ä³¸¯ÅÍ ±³È¯¼­ - " + player + "/·¹º§[" + playerLevel + "]");
+		writeS("ìºë¦­í„° êµí™˜ì„œ - " + player + "/ë ˆë²¨[" + playerLevel + "]");
 
 		if (!item.isIdentified()) {
 			writeC(3);
-		} else { // °¨Á¤ÀÌ ³¡³­ »óÅÂ
+		} else { // ê°ì •ì´ ëë‚œ ìƒíƒœ
 			if (item.getItem().getBless() == 0) {
 				writeC(0);
 			} else if (item.getItem().getBless() == 1) {

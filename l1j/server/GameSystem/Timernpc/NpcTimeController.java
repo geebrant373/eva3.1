@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Timernpc;
+ï»¿package l1j.server.GameSystem.Timernpc;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -111,7 +111,7 @@ public class NpcTimeController implements Runnable {
 				}
 				if (temp.npcid == 9000014) {
 					TebeController.getInstance().isgameStart = true;
-					TebeController.getInstance().Å×º£½Ã°£ = temp.DeleteTime;
+					TebeController.getInstance().í…Œë² ì‹œê°„ = temp.DeleteTime;
 				}
 				StoreBoss(temp.npcid, temp.SpawnLoc, temp.rndLoc, temp.Groupid, temp.isYn, temp.isMent, temp.Ment,temp.DeleteTime);
 			}catch(Exception e){}
@@ -123,7 +123,7 @@ public class NpcTimeController implements Runnable {
 			L1Npc template = NpcTable.getInstance().getTemplate(npcid);
 			if (template == null) {
 				_log.warning("Npc data for id:" + npcid + " missing in npc table");
-				System.out.println("Å¸ÀÓ¿£ÇÇ¾¾½ºÆù ÄÁÆ®·Ñ·¯ º¸½º npcid " + npcid + "°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+				System.out.println("íƒ€ì„ì—”í”¼ì”¨ìŠ¤í° ì»¨íŠ¸ë¡¤ëŸ¬ ë³´ìŠ¤ npcid " + npcid + "ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 				return;
 			}
 			L1NpcInstance npc = NpcTable.getInstance().newNpcInstance(npcid);

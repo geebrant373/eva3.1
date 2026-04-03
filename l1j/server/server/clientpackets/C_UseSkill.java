@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -73,22 +73,22 @@ public class C_UseSkill extends ClientBasePacket {
 			return;
 		}
 		if (!pc.getMap().isUsableSkill()) {
-			pc.sendPackets(new S_ServerMessage(563)); // \f1 ¿©±â¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(563)); // \f1 ì—¬ê¸°ì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 		if (skillId == L1SkillId.SHAPE_CHANGE) {
 			if (pc.getMapId() == 5153 || pc.getMapId() == 5001) {
-				pc.sendPackets(new S_SystemMessage("ÇöÀç¸Ê¿¡¼­´Â º¯½ÅÇÒ ¼ö ¾ø½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("í˜„ì¬ë§µì—ì„œëŠ” ë³€ì‹ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
 		}
 		if (pc.getClan().getClanId() == 0) {
 			return;
 		}
-		// ¿ä±¸ °£°İÀ» Ã¼Å©ÇÑ´Ù
+		// ìš”êµ¬ ê°„ê²©ì„ ì²´í¬í•œë‹¤
 		if (Config.CHECK_SPELL_INTERVAL) {
 			int result;
-			// FIXME ¾î´À ½ºÅ³ÀÌ dir/no dirÀÏ±îÀÇ ÆÇ´ÜÀÌ Àû´ç
+			// FIXME ì–´ëŠ ìŠ¤í‚¬ì´ dir/no dirì¼ê¹Œì˜ íŒë‹¨ì´ ì ë‹¹
 			if (SkillsTable.getInstance().getTemplate(skillId).getActionId() == ActionCodes.ACTION_SkillAttack) {
 				result = pc.getAcceleratorChecker().checkInterval(AcceleratorChecker.ACT_TYPE.SPELL_DIR);
 			} else {
@@ -134,7 +134,7 @@ public class C_UseSkill extends ClientBasePacket {
 			}
 		}
 
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER)) { // ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER)) { // ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 			pc.getSkillEffectTimerSet().killSkillEffectTimer(ABSOLUTE_BARRIER);
 			pc.startHpRegenerationByDoll();
 			pc.startMpRegenerationByDoll();
@@ -177,11 +177,11 @@ public class C_UseSkill extends ClientBasePacket {
 				}
 			}
 			/*
-			 * switch(skillId){ case 4: //¿¡³ÊÁö º¼Æ® case 6: //¾ÆÀÌ½º ´ë°Å case 7: //À©µå Ä¿ÅÍ case 10:
-			 * //Ä¥ ÅÍÄ¡ case 15: //ÆÄÀÌ¾î ¾Ö·Î¿ì case 16: //½ºÅ»¶ô case 28: //¹ìÆÄÀÌ¾î¸¯ ÅÍÄ¡ case 30: //¾î½º ÀçÀÏ
-			 * case 34: //Äİ ¶óÀÌÆ®´× case 38: //ÄÜ ¿Àºê Äİµå case 45: //ÀÌ·´¼Ç case 46: //¼± ¹ö½ºÆ® case 77:
-			 * //µğ½ºÀÎÆ¼±×·¹ÀÌÆ® case 108: //ÆÄÀÌ³Î ¹ø case 132: //Æ®¸®ÇÃ ¾Ö·Î¿ì case 187: //Æ÷¿ì ½½·¹ÀÌ¾î case
-			 * 203: //½º¸Å½¬ new AttackSkill(pc, skillId, targetId, targetX, targetY); return;
+			 * switch(skillId){ case 4: //ì—ë„ˆì§€ ë³¼íŠ¸ case 6: //ì•„ì´ìŠ¤ ëŒ€ê±° case 7: //ìœˆë“œ ì»¤í„° case 10:
+			 * //ì¹  í„°ì¹˜ case 15: //íŒŒì´ì–´ ì• ë¡œìš° case 16: //ìŠ¤íƒˆë½ case 28: //ë±€íŒŒì´ì–´ë¦­ í„°ì¹˜ case 30: //ì–´ìŠ¤ ì¬ì¼
+			 * case 34: //ì½œ ë¼ì´íŠ¸ë‹ case 38: //ì½˜ ì˜¤ë¸Œ ì½œë“œ case 45: //ì´ëŸ½ì…˜ case 46: //ì„  ë²„ìŠ¤íŠ¸ case 77:
+			 * //ë””ìŠ¤ì¸í‹°ê·¸ë ˆì´íŠ¸ case 108: //íŒŒì´ë„ ë²ˆ case 132: //íŠ¸ë¦¬í”Œ ì• ë¡œìš° case 187: //í¬ìš° ìŠ¬ë ˆì´ì–´ case
+			 * 203: //ìŠ¤ë§¤ì‰¬ new AttackSkill(pc, skillId, targetId, targetX, targetY); return;
 			 * }
 			 */
 

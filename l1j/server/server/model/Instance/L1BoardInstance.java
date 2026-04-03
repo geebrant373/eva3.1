@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -96,10 +96,10 @@ public class L1BoardInstance extends L1NpcInstance {
 						}
 					}
 				}
-			} else if(this.getNpcTemplate().get_npcId() == 82001){ //¾Æµ¥³ª À¯Àú °Å·¡ °Ô½ÃÆÇ
+			} else if(this.getNpcTemplate().get_npcId() == 82001){ //ì•„ë°ë‚˜ ìœ ì € ê±°ë˜ ê²Œì‹œíŒ
 				player.sendPackets(new S_BoardAdena(this));
-				player.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, Config.¾Æµ¥³ª°Ô½ÃÆÇ¸àÆ®));
-				player.sendPackets(new S_SystemMessage(Config.¾Æµ¥³ª°Ô½ÃÆÇ¸àÆ®));
+				player.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, Config.ì•„ë°ë‚˜ê²Œì‹œíŒë©˜íŠ¸));
+				player.sendPackets(new S_SystemMessage(Config.ì•„ë°ë‚˜ê²Œì‹œíŒë©˜íŠ¸));
 			} else if (this.getNpcTemplate().get_npcId() == 45000178) {
 				player.sendPackets(new S_AuctionSystemBoard(this));
 			} else {
@@ -110,7 +110,7 @@ public class L1BoardInstance extends L1NpcInstance {
 	public void onAction(L1PcInstance player, int number) {
 		if (this.getNpcTemplate().get_npcId() == 45000178) {
 			player.sendPackets(new S_AuctionSystemBoard(this, number));
-		} else if(this.getNpcTemplate().get_npcId() == 82001){ //¾Æµ¥³ª À¯Àú °Å·¡ °Ô½ÃÆÇ
+		} else if(this.getNpcTemplate().get_npcId() == 82001){ //ì•„ë°ë‚˜ ìœ ì € ê±°ë˜ ê²Œì‹œíŒ
 			player.sendPackets(new S_BoardAdena(this, number));
 		}
 		else {
@@ -119,12 +119,12 @@ public class L1BoardInstance extends L1NpcInstance {
 	}
 
 	public void onActionRead(L1PcInstance player, int number) {
-		// TODO Áß°³ °Å·¡ °Ô½ÃÆÇ
+		// TODO ì¤‘ê°œ ê±°ë˜ ê²Œì‹œíŒ
 		if (this.getNpcTemplate().get_npcId() == 45000178) {
 			player.sendPackets(new S_AuctionSystemBoard(number));
-		} else if (this.getNpcTemplate().get_npcId() == 82001) { // ¾Æµ¥³ª À¯Àú °Å·¡ °Ô½ÃÆÇ
+		} else if (this.getNpcTemplate().get_npcId() == 82001) { // ì•„ë°ë‚˜ ìœ ì € ê±°ë˜ ê²Œì‹œíŒ
 			player.sendPackets(new S_BoardReadAdena(number));
-		} else if (this.getNpcTemplate().get_npcId() == 500001) {// ·©Å· °Ô½ÃÆÇ
+		} else if (this.getNpcTemplate().get_npcId() == 500001) {// ë­í‚¹ ê²Œì‹œíŒ
 			player.sendPackets(new S_Ranking(player, number));
 		} else {
 			player.sendPackets(new S_BoardRead(this, number));
@@ -135,10 +135,10 @@ public class L1BoardInstance extends L1NpcInstance {
 	}
 	
 	
-	public void onAdenaTraidActionRead(L1PcInstance player, int number) { // °Ô½Ã¹° Å¬¸¯½Ã
-		if (player.getAdenaSellCount() == number) { // ³»°¡ ½ÅÃ»ÇÑ °Ô½Ã¹°
+	public void onAdenaTraidActionRead(L1PcInstance player, int number) { // ê²Œì‹œë¬¼ í´ë¦­ì‹œ
+		if (player.getAdenaSellCount() == number) { // ë‚´ê°€ ì‹ ì²­í•œ ê²Œì‹œë¬¼
 			player.sendPackets(new S_BoardRead_AdenaTraiding(number)); 
-		} else { // ½ÅÃ» ÇÏÁö ¾ÊÀº °Ô½Ã¹°
+		} else { // ì‹ ì²­ í•˜ì§€ ì•Šì€ ê²Œì‹œë¬¼
 			player.sendPackets(new S_BoardRead_AdenaTraid(number));
 		}
 	}

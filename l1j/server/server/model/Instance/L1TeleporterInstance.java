@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -84,9 +84,9 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				}
 				break;
 			case 50014:
-				if (player.isWizard()) { // À§Àúµå
+				if (player.isWizard()) { // ìœ„ì €ë“œ
 					if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1
-							&& !player.getInventory().checkItem(40579)) { // ¾È µ¥µåÀÇ »À
+							&& !player.getInventory().checkItem(40579)) { // ì•ˆ ë°ë“œì˜ ë¼ˆ
 						htmlid = "dilong1";
 					} else {
 						htmlid = "dilong3";
@@ -97,9 +97,9 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				if (player.getLevel() >= 13) htmlid = "zeno2";
 				break;
 			case 50031:
-				if (player.isElf()) { // ¿¡¸£ÇÁ
+				if (player.isElf()) { // ì—ë¥´í”„
 					if (quest.get_step(L1Quest.QUEST_LEVEL45) == 2) {
-						if (!player.getInventory().checkItem(40602)) { // ºí·ç ÇÃ·í
+						if (!player.getInventory().checkItem(40602)) { // ë¸”ë£¨ í”Œë£»
 							htmlid = "sepia1";
 						}
 					}
@@ -108,14 +108,14 @@ public class L1TeleporterInstance extends L1NpcInstance {
 			case 50043:
 				if (quest.get_step(L1Quest.QUEST_LEVEL50) == L1Quest.QUEST_END) {
 					htmlid = "ramuda2";
-				} else if (quest.get_step(L1Quest.QUEST_LEVEL50) == 1) { // µğ°¡¸£µò µ¿ÀÇ°¡ ³¡³­ »óÅÂ
-					if (player.isCrown()) { // ±ºÁÖ
-						if (_isNowDely) { // ÅÚ·¹Æ÷Æ® Áö¿¬Áß
+				} else if (quest.get_step(L1Quest.QUEST_LEVEL50) == 1) { // ë””ê°€ë¥´ë”˜ ë™ì˜ê°€ ëë‚œ ìƒíƒœ
+					if (player.isCrown()) { // êµ°ì£¼
+						if (_isNowDely) { // í…”ë ˆí¬íŠ¸ ì§€ì—°ì¤‘
 							htmlid = "ramuda4";
 						} else {
 							htmlid = "ramudap1";
 						}
-					} else { // ±ºÁÖ ÀÌ¿Ü
+					} else { // êµ°ì£¼ ì´ì™¸
 						htmlid = "ramuda1";
 					}
 				} else {
@@ -130,32 +130,32 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				else if (player.getLevel() >= 13 ) 	htmlid = "enya4";
 				break;
 			case 70779:
-				if (player.getGfxId().getTempCharGfx() == 1037) { // ÀğÀÌ¾ÈÆ®¾ÈÆ® º¯½Å
+				if (player.getGfxId().getTempCharGfx() == 1037) { // ìŸˆì´ì•ˆíŠ¸ì•ˆíŠ¸ ë³€ì‹ 
 					htmlid = "ants3";
-				} else if (player.getGfxId().getTempCharGfx() == 1039) {// ÀğÀÌ¾ÈÆ®¾ÈÆ®¼Ò¸£Àğ º¯½Å
-					if (player.isCrown()) { // ±ºÁÖ
+				} else if (player.getGfxId().getTempCharGfx() == 1039) {// ìŸˆì´ì•ˆíŠ¸ì•ˆíŠ¸ì†Œë¥´ìŸˆ ë³€ì‹ 
+					if (player.isCrown()) { // êµ°ì£¼
 						if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1) {
-							if (player.getInventory().checkItem(40547)) { // ÁÖ¹ÎµéÀÇ À¯Ç°
+							if (player.getInventory().checkItem(40547)) { // ì£¼ë¯¼ë“¤ì˜ ìœ í’ˆ
 								htmlid = "antsn";
 							} else {
 								htmlid = "ants1";
 							}
-						} else { // Step1 ÀÌ¿Ü
+						} else { // Step1 ì´ì™¸
 							htmlid = "antsn";
 						}
-					} else { // ±ºÁÖ ÀÌ¿Ü
+					} else { // êµ°ì£¼ ì´ì™¸
 						htmlid = "antsn";
 					}
 				}
 				break;
 			case 70853:
-				if (player.isElf()) { // ¿¡¸£ÇÁ
+				if (player.isElf()) { // ì—ë¥´í”„
 					if (quest.get_step(L1Quest.QUEST_LEVEL30) == 1) {
-						if (!player.getInventory().checkItem(40592)) { // ÀúÁÖÇØÁø Á¤·É¼­
+						if (!player.getInventory().checkItem(40592)) { // ì €ì£¼í•´ì§„ ì •ë ¹ì„œ
 							Random random = new Random();
-							if (random.nextInt(100) < 50) { // 50%·Î ´ÙÅ©¸¶¸£´ÜÁ¯
+							if (random.nextInt(100) < 50) { // 50%ë¡œ ë‹¤í¬ë§ˆë¥´ë‹¨ì ¼
 								htmlid = "fairyp2";
-							} else { // ´ÙÅ© ¿¡¸£ÇÁ ÁöÇÏ °¨¿Á
+							} else { // ë‹¤í¬ ì—ë¥´í”„ ì§€í•˜ ê°ì˜¥
 								htmlid = "fairyp1";
 							}
 						}
@@ -163,11 +163,11 @@ public class L1TeleporterInstance extends L1NpcInstance {
 				}
 				break;
 			}
-			// html Ç¥½Ã
-			if (htmlid != null) { // htmlid°¡ ÁöÁ¤µÇ°í ÀÖ´Â °æ¿ì
+			// html í‘œì‹œ
+			if (htmlid != null) { // htmlidê°€ ì§€ì •ë˜ê³  ìˆëŠ” ê²½ìš°
 				player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
 			} else {
-				if (player.getLawful() < -1000) { // ÇÃ·¹ÀÌ¾î°¡ Ä«¿ÀÆ½
+				if (player.getLawful() < -1000) { // í”Œë ˆì´ì–´ê°€ ì¹´ì˜¤í‹±
 					player.sendPackets(new S_NPCTalkReturn(talking, objid, 2));
 				} else {
 					player.sendPackets(new S_NPCTalkReturn(talking, objid, 1));
@@ -187,95 +187,95 @@ public class L1TeleporterInstance extends L1NpcInstance {
 			String[] price = null;
 			int npcid = getNpcTemplate().get_npcId();
 			switch(npcid){
-			case 50015: // ¸»ÇÏ´Â¼¶ ·çÄ«
+			case 50015: // ë§í•˜ëŠ”ì„¬ ë£¨ì¹´
 				price = new String[]{"1500"};
 				break;
-			case 50017: // ¸»ÇÏ´Â ¼¶ ÄÉÀÌ½º
+			case 50017: // ë§í•˜ëŠ” ì„¬ ì¼€ì´ìŠ¤
 				price = new String[]{"50"};
 				break;
-			case 50020: // ÄËÆ® ½ºÅÄ¸®
+			case 50020: // ì¼„íŠ¸ ìŠ¤íƒ ë¦¬
 				price = new String[]{ "50","50","50","120","120","120","120","180","180","200","200","600","7100"};
 				break;
-			case 50024: // ±Û·çµğ¿À ¾Æ½ºÅÍ
+			case 50024: // ê¸€ë£¨ë””ì˜¤ ì•„ìŠ¤í„°
 				price = new String[]{ "75","75","75","180","180","270","270","270","360","360","360","300","300","750","10200" };
 				break;
-			case 50026: // ±×¸£µò ½ÃÀå¢¡±â¶õ ½ÃÀå, ¿À·» ½ÃÀå, ½Ç¹ö ³ªÀÌÆ® Å¸¿î ½ÃÀå
+			case 50026: // ê·¸ë¥´ë”˜ ì‹œì¥â‡’ê¸°ë€ ì‹œì¥, ì˜¤ë Œ ì‹œì¥, ì‹¤ë²„ ë‚˜ì´íŠ¸ íƒ€ìš´ ì‹œì¥
 				price = new String[]{ "550","700","810"};
 				break;
-			case 50033: // ±â¶õ ½ÃÀå¢¡±×¸£µò ½ÃÀå, ¿À·» ½ÃÀå, ½Ç¹ö ³ªÀÌÆ® Å¸¿î ½ÃÀå
+			case 50033: // ê¸°ë€ ì‹œì¥â‡’ê·¸ë¥´ë”˜ ì‹œì¥, ì˜¤ë Œ ì‹œì¥, ì‹¤ë²„ ë‚˜ì´íŠ¸ íƒ€ìš´ ì‹œì¥
 				price = new String[]{ "560","720","560"};
 				break;
-			case 50035: // ±â¶õ¼º °ÔÀÌÆ® ±âÆÛ
+			case 50035: // ê¸°ë€ì„± ê²Œì´íŠ¸ ê¸°í¼
 				price = new String[]{ "210", "210", "420", "210" };
 				break;
-			case 50036: // ±â¶õ Àª¸¶
+			case 50036: // ê¸°ë€ ìœŒë§ˆ
 				price = new String[]{ "75","75","75","180","180","180","180","270","270","450","450","1050","11100" };
 				break;
-			case 50039:  // À£´ø ·¹½½¸®
+			case 50039:  // ì›°ë˜ ë ˆìŠ¬ë¦¬
 				price = new String[]{ "72","72","174","174","261","261","261","348","348","580","580","1160","11165" };
 				break;
-			case 50040:	// ³­¼º °ÔÀÌÆ® Å°ÆÛ
+			case 50040:	// ë‚œì„± ê²Œì´íŠ¸ í‚¤í¼
 				price = new String[]{ "210","420","210"};
 				break;
-			case 50044:  // ¾Æµ§ ½Ã¸®¿ì½º
-			case 50046:  // ¾Æµ§ ¿¤·¹¸®½º
+			case 50044:  // ì•„ë´ ì‹œë¦¬ìš°ìŠ¤
+			case 50046:  // ì•„ë´ ì—˜ë ˆë¦¬ìŠ¤
 				price = new String[]{ "70","168","168","252","252","252","336","336","420","700","700","1260","10360" };
 				break;
-			case 50049:  // ¿À·» ½ÃÀå¢¡±×¸£µò ½ÃÀå, ±â¶õ ½ÃÀå, ½Ç¹ö ³ªÀÌÆ® Å¸¿î ½ÃÀå
+			case 50049:  // ì˜¤ë Œ ì‹œì¥â‡’ê·¸ë¥´ë”˜ ì‹œì¥, ê¸°ë€ ì‹œì¥, ì‹¤ë²„ ë‚˜ì´íŠ¸ íƒ€ìš´ ì‹œì¥
 				price = new String[]{ "1150","980","590"};
 				break;
-			case 50051: // ¿À·»Å°¸®¿ì½º
+			case 50051: // ì˜¤ë Œí‚¤ë¦¬ìš°ìŠ¤
 				price = new String[]{ "75","180","270","270","360","360","360","450","450","750","750","1350","12000" };
 				break;
-			case 50054: // À©´Ù¿ìµåÆ®·¹ÀÌ
+			case 50054: // ìœˆë‹¤ìš°ë“œíŠ¸ë ˆì´
 				price = new String[]{ "75","75","180","180","180","270","270","360","450","300","300","750","9750" };
 				break;
-			case 50056:  // Àº±â»ç¸¶À» ¸ŞÆ®
+			case 50056:  // ì€ê¸°ì‚¬ë§ˆì„ ë©”íŠ¸
 				price = new String[]{"75","75","75","180","180","180","270","270","270","360","360","450","450","1050","10200"};
 				break;
-			case 50059:  // ½Ç¹ö ³ªÀÌÆ® Å¸¿î ½ÃÀå¢¡±×¸£µò ½ÃÀå, ±â¶õ ½ÃÀå, ¿À·» ½ÃÀå
+			case 50059:  // ì‹¤ë²„ ë‚˜ì´íŠ¸ íƒ€ìš´ ì‹œì¥â‡’ê·¸ë¥´ë”˜ ì‹œì¥, ê¸°ë€ ì‹œì¥, ì˜¤ë Œ ì‹œì¥
 				price = new String[]{ "580","680","680"};
 				break;
-			case 50063:	// ¿ÀÅ© ¿ä»õ °ÔÀÌÆ® Å°ÆÛ
+			case 50063:	// ì˜¤í¬ ìš”ìƒˆ ê²Œì´íŠ¸ í‚¤í¼
 				price = new String[]{ "210","420","210"};
 				break;
-			case 50066: // ÇÏÀÌ³×¸®¿Ã
+			case 50066: // í•˜ì´ë„¤ë¦¬ì˜¬
 				price = new String[]{ "990","450","400","550","400","710","350","680","1000","180","180","3200","6900" };
 				break;
-			case 50068:  // µğ¾Æ³ë½º
+			case 50068:  // ë””ì•„ë…¸ìŠ¤
 				price = new String[]{ "1500","800","600","1800","1800","1000" };
 				break;
-			case 50072: // °ø°£ÀÌµ¿»ç µğ¾Æ·çÁî
+			case 50072: // ê³µê°„ì´ë™ì‚¬ ë””ì•„ë£¨ì¦ˆ
 				price = new String[]{ "2200","1800","1000","1600","2200","1200","1300","2000","2000" };			    
 				break;
-			case 50073: // °ø°£ÀÌµ¿»ç µğ¾Æº£½º
+			case 50073: // ê³µê°„ì´ë™ì‚¬ ë””ì•„ë² ìŠ¤
 				price = new String[]{ "380","850","290","290","290","180","480","150","150","380","480","380","850","1000" };	    
 				break;
-			case 50079: // ¸¶¹ı»ç ´Ù´Ï¿¤
+			case 50079: // ë§ˆë²•ì‚¬ ë‹¤ë‹ˆì—˜
 				price = new String[]{ "550","550","550","600","600","600","650","700","750","750","500","500","700"};
 				break;
-			case 4208002: // ¸¶¹ı»ç¸Ö¸°
+			case 4208002: // ë§ˆë²•ì‚¬ë©€ë¦°
 				break;
-			case 9000014: // Å×º£
+			case 9000014: // í…Œë² 
 				break;
-			case 9000015: // ¶ó¹Ù
+			case 9000015: // ë¼ë°”
 				break;
-			case 9000016: // ÀØ¼¶
+			case 9000016: // ìŠì„¬
 				break;
-			case 9000017: // »ó¾ÆÅ¾8Ãş
+			case 9000017: // ìƒì•„íƒ‘8ì¸µ
 				break;
-			case 50045: // »ó¾ÆÅ¾8Ãş
+			case 50045: // ìƒì•„íƒ‘8ì¸µ
 				break;
-			case 4918000: // µ¥Ä«ºñ¾Æ º£È÷¸ğ½º
+			case 4918000: // ë°ì¹´ë¹„ì•„ ë² íˆëª¨ìŠ¤
 				price = new String[]{ "50","50","50","50","120","120","180","180","180","240","240","400","400","800","7700" };  
 				break;
-			case 4919000: // ½Çº£¸®¾Æ »ş¸®¿¤
+			case 4919000: // ì‹¤ë² ë¦¬ì•„ ìƒ¤ë¦¬ì—˜
 				price = new String[]{ "50","50","50","120","180","180","240","240","240","300","300","500","500","900","8000" };		    
 				break;
-			case 6000014:  // ½ÃÁ¾Àå ¸¾¸ó
+			case 6000014:  // ì‹œì¢…ì¥ ë§˜ëª¬
 				price = new String[]{"14000"};
 				break;
-			case 6000016:  // ½Å³à ÇÃ·Î¶ó
+			case 6000016:  // ì‹ ë…€ í”Œë¡œë¼
 				price = new String[]{"1000"};	
 				break;
 			default:
@@ -365,17 +365,17 @@ public class L1TeleporterInstance extends L1NpcInstance {
 		String htmlid = null;
 		boolean isTeleport = true;
 
-		if (npcid == 50014) { // µğ ·Ğ
-			if (!player.getInventory().checkItem(40581)) { // ¾È µ¥µåÀÇ Å°
+		if (npcid == 50014) { // ë”” ë¡ 
+			if (!player.getInventory().checkItem(40581)) { // ì•ˆ ë°ë“œì˜ í‚¤
 				isTeleport = false;
 				htmlid = "dilongn";
 			}
 		} else if (npcid == 50043) { // Lambda
-			if (_isNowDely) { // ÅÚ·¹Æ÷Æ® Áö¿¬Áß
+			if (_isNowDely) { // í…”ë ˆí¬íŠ¸ ì§€ì—°ì¤‘
 				isTeleport = false;
 			}
-		} else if (npcid == 50625) { // °í´ëÀÎ(Lv50 Äù½ºÆ® °í´ëÀÇ °ø°£ 2 F)
-			if (_isNowDely) { // ÅÚ·¹Æ÷Æ® Áö¿¬Áß
+		} else if (npcid == 50625) { // ê³ ëŒ€ì¸(Lv50 í€˜ìŠ¤íŠ¸ ê³ ëŒ€ì˜ ê³µê°„ 2 F)
+			if (_isNowDely) { // í…”ë ˆí¬íŠ¸ ì§€ì—°ì¤‘
 				isTeleport = false;
 			}
 		} if (isTeleport) {
@@ -397,24 +397,24 @@ public class L1TeleporterInstance extends L1NpcInstance {
 					L1Quest quest = null;
 					for (L1PcInstance otherPc : L1World.getInstance().getVisiblePlayer(player, 3)) {
 						quest = otherPc.getQuest();
-						if (otherPc.isKnight() // ³ªÀÌÆ®
-								&& quest.get_step(L1Quest.QUEST_LEVEL50) == 1) { // µğ°¡¸£µò µ¿ÀÇ°¡ ³¡³­ »óÅÂ
+						if (otherPc.isKnight() // ë‚˜ì´íŠ¸
+								&& quest.get_step(L1Quest.QUEST_LEVEL50) == 1) { // ë””ê°€ë¥´ë”˜ ë™ì˜ê°€ ëë‚œ ìƒíƒœ
 							if (kni == null) {
 								kni = otherPc;
 							}
-						} else if (otherPc.isElf() // ¿äÁ¤
-								&& quest.get_step(L1Quest.QUEST_LEVEL50) == 1) { // µğ°¡¸£µò µ¿ÀÇ°¡ ³¡³­ »óÅÂ
+						} else if (otherPc.isElf() // ìš”ì •
+								&& quest.get_step(L1Quest.QUEST_LEVEL50) == 1) { // ë””ê°€ë¥´ë”˜ ë™ì˜ê°€ ëë‚œ ìƒíƒœ
 							if (elf == null) {
 								elf = otherPc;
 							}
-						} else if (otherPc.isWizard() // ¸¶¹ı»ç
-								&& quest.get_step(L1Quest.QUEST_LEVEL50) == 1) { // µğ°¡¸£µò µ¿ÀÇ°¡ ³¡³­ »óÅÂ
+						} else if (otherPc.isWizard() // ë§ˆë²•ì‚¬
+								&& quest.get_step(L1Quest.QUEST_LEVEL50) == 1) { // ë””ê°€ë¥´ë”˜ ë™ì˜ê°€ ëë‚œ ìƒíƒœ
 							if (wiz == null) {
 								wiz = otherPc;
 							}
 						}
 					} 
-					if (kni != null && elf != null && wiz != null) { // ÀüÅ¬·¡½º °®Ãß¾îÁ® ÀÖ´Ù
+					if (kni != null && elf != null && wiz != null) { // ì „í´ë˜ìŠ¤ ê°–ì¶”ì–´ì ¸ ìˆë‹¤
 						L1Teleport.teleport(player, 32723, 32850, (short) 2000, 2, true);
 						L1Teleport.teleport(kni, 32750, 32851, (short) 2000, 6, true);
 						L1Teleport.teleport(elf, 32878, 32980, (short) 2000, 6, true);
@@ -422,55 +422,55 @@ public class L1TeleporterInstance extends L1NpcInstance {
 						TeleportDelyTimer timer = new TeleportDelyTimer();
 						GeneralThreadPool.getInstance().execute(timer);
 					}
-				} else if (action.equalsIgnoreCase("teleport barlog_la")) { // °í´ëÀÎ(Lv50 Äù½ºÆ® °í´ëÀÇ °ø°£ 2 F)
+				} else if (action.equalsIgnoreCase("teleport barlog_la")) { // ê³ ëŒ€ì¸(Lv50 í€˜ìŠ¤íŠ¸ ê³ ëŒ€ì˜ ê³µê°„ 2 F)
 					L1Teleport.teleport(player, 32755, 32844, (short) 2002, 5, true);
 					TeleportDelyTimer timer = new TeleportDelyTimer();
 					GeneralThreadPool.getInstance().execute(timer);
-				} else if (action.equalsIgnoreCase("teleport phantasm-island")) { // ¸ù¼¶
+				} else if (action.equalsIgnoreCase("teleport phantasm-island")) { // ëª½ì„¬
 					L1Teleport.teleport(player, 32633, 32817, (short) 303, 2, true);
-				} else if (action.equalsIgnoreCase("teleport teberas")) { // Å×º£¶ó½º
+				} else if (action.equalsIgnoreCase("teleport teberas")) { // í…Œë² ë¼ìŠ¤
 					if (player.getWanted() == 0  && WantedTeleportTable.getInstance().isWantedTeleportMap(781)) {
-						player.sendPackets(new S_SystemMessage("\\fT¼ö¹è »óÅÂ¿¡¼­¸¸ »ç³ÉÅÍ·Î ÀÌµ¿ °¡´ÉÇÕ´Ï´Ù."));
+						player.sendPackets(new S_SystemMessage("\\fTìˆ˜ë°° ìƒíƒœì—ì„œë§Œ ì‚¬ëƒ¥í„°ë¡œ ì´ë™ ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 						return;
 					}
-					if (player.getLevel() >= Config.Å×º£·¾Á¦) {
+					if (player.getLevel() >= Config.í…Œë² ë ™ì œ) {
 						L1Location loc = new L1Location(32743, 32796, 781);
 						L1Location location = L1Location.randomLocation(loc, 0, 100, true);
 						L1Teleport.teleport(player, location.getX(), location.getY(), (short) location.getMapId(), player.getHeading(), true);
 					} else {
-						player.sendPackets(new S_SystemMessage(Config.Å×º£·¾Á¦ + "·¾ºÎÅÍ Å×º£¶ó½º »ç³ÉÀÌ °¡´ÉÇÕ´Ï´Ù."));
+						player.sendPackets(new S_SystemMessage(Config.í…Œë² ë ™ì œ + "ë ™ë¶€í„° í…Œë² ë¼ìŠ¤ ì‚¬ëƒ¥ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 					}
-				} else if (action.equalsIgnoreCase("teleport lastabad")) { // ¶ó½ºÅ¸¹Ùµå
+				} else if (action.equalsIgnoreCase("teleport lastabad")) { // ë¼ìŠ¤íƒ€ë°”ë“œ
 					L1Teleport.teleport(player, 32729, 32851, (short) 453, 2, true);
-				} else if (action.equalsIgnoreCase("teleport Island")) { // ÀØÇôÁø¼¶
+				} else if (action.equalsIgnoreCase("teleport Island")) { // ìŠí˜€ì§„ì„¬
 					if (ForgottenIsleController.getInstance().isgameStart == true) {
 						L1Teleport.teleport(player, 32832, 32849, (short) 70, 2, true);
 					} else {
-						player.sendPackets(new S_SystemMessage("\\fYÀØÇôÁø ¼¶ÀÌ ¿­·ÁÀÖÁö ¾Ê½À´Ï´Ù."));
+						player.sendPackets(new S_SystemMessage("\\fYìŠí˜€ì§„ ì„¬ì´ ì—´ë ¤ìˆì§€ ì•ŠìŠµë‹ˆë‹¤."));
 					}
-				} else if (action.equalsIgnoreCase("teleport sangatop")) { // »ó¾ÆÅ¾
+				} else if (action.equalsIgnoreCase("teleport sangatop")) { // ìƒì•„íƒ‘
 					if (IvoryTowerController.getInstance().isgameStart == true) {
 						L1Teleport.teleport(player, 32698, 32823, (short) 82, 2, true);
 					} else {
-						player.sendPackets(new S_SystemMessage("\\fY»ó¾ÆÅ¾8ÃşÀÌ ¿­·ÁÀÖÁö ¾Ê½À´Ï´Ù."));
+						player.sendPackets(new S_SystemMessage("\\fYìƒì•„íƒ‘8ì¸µì´ ì—´ë ¤ìˆì§€ ì•ŠìŠµë‹ˆë‹¤."));
 					}
-				} else if (action.equalsIgnoreCase("teleport gludio")) { // º»´ø
+				} else if (action.equalsIgnoreCase("teleport gludio")) { // ë³¸ë˜
 					if (GludioDungeonController.getInstance().isgameStart == true) {
 						L1Teleport.teleport(player, 32726, 32729, (short) 13, 2, true);
 					} else {
-						player.sendPackets(new S_SystemMessage("\\fYº»´ø7ÃşÀÌ ¿­·ÁÀÖÁö ¾Ê½À´Ï´Ù."));
+						player.sendPackets(new S_SystemMessage("\\fYë³¸ë˜7ì¸µì´ ì—´ë ¤ìˆì§€ ì•ŠìŠµë‹ˆë‹¤."));
 					}
-				} else if (action.equalsIgnoreCase("teleport omantop")) { // ¿À¸¸ÀÇÅ¾Á¤»óÃş
+				} else if (action.equalsIgnoreCase("teleport omantop")) { // ì˜¤ë§Œì˜íƒ‘ì •ìƒì¸µ
 					if (OmanTopFloorController.getInstance().isgameStart == true) {
 						L1Teleport.teleport(player, 32734, 32864, (short) 200, 2, true);
 					} else {
-						player.sendPackets(new S_SystemMessage("\\fY¿À¸¸ÀÇÅ¾Á¤»óÃşÀÌ ¿­·ÁÀÖÁö ¾Ê½À´Ï´Ù."));
+						player.sendPackets(new S_SystemMessage("\\fYì˜¤ë§Œì˜íƒ‘ì •ìƒì¸µì´ ì—´ë ¤ìˆì§€ ì•ŠìŠµë‹ˆë‹¤."));
 					}
 				}
 			} catch (Exception e) {
 			}
 		}
-		if (htmlid != null) { // Ç¥½ÃÇÏ´Â html°¡ ÀÖ´Â °æ¿ì
+		if (htmlid != null) { // í‘œì‹œí•˜ëŠ” htmlê°€ ìˆëŠ” ê²½ìš°
 			player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
 		}
 	}
@@ -483,7 +483,7 @@ public class L1TeleporterInstance extends L1NpcInstance {
 		public void run() {
 			try {
 				_isNowDely = true;
-				Thread.sleep(900000); // 15ºĞ
+				Thread.sleep(900000); // 15ë¶„
 			} catch (Exception e) {
 				_isNowDely = false;
 			}

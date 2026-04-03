@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -59,10 +59,10 @@ public class TeleportScroll extends L1ItemInstance {
 			pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_TELEPORT_UNLOCK, false));
 			int itemId = useItem.getItemId();
 			int delay_id = 0;
-			if (useItem.getItem().getType2() == 0) { // Á¾º°£º±× ¿ÜÀÇ ¾ÆÀÌÅÛ
+			if (useItem.getItem().getType2() == 0) { // ì¢…ë³„ï¼šê·¸ ì™¸ì˜ ì•„ì´í…œ
 				delay_id = ((L1EtcItem) useItem.getItem()).get_delayid();
 			}
-			if (delay_id != 0) { // Áö¿¬ ¼³Á¤ ÀÖ¾î
+			if (delay_id != 0) { // ì§€ì—° ì„¤ì • ìˆì–´
 				if (pc.hasItemDelay(delay_id) == true) {
 					return;
 				}
@@ -74,7 +74,7 @@ public class TeleportScroll extends L1ItemInstance {
 			}
 			if (itemId == 140100 || itemId == 40100 || itemId == 40099 || itemId == 40086 || itemId == 40863) {
 				L1BookMark bookm = pc.getBookMark(packet.readD());
-				if (bookm != null) { // ºÏ¸¶Å©¸¦ Ãëµæ ÇÒ ¼ö ÀÖÀ¸¸é(ÀÚ) ÅÚ·¹Æ÷Æ®
+				if (bookm != null) { // ë¶ë§ˆí¬ë¥¼ ì·¨ë“ í•  ìˆ˜ ìˆìœ¼ë©´(ì) í…”ë ˆí¬íŠ¸
 					if (bookm.getRandomX() > 0 || bookm.getRandomY() > 0) {
 						if (pc.getMap().isEscapable() || pc.isGm()) {
 							L1Teleport.randomBookmarkTeleport(pc, bookm, pc.getMoveState().getHeading(), true);
@@ -87,7 +87,7 @@ public class TeleportScroll extends L1ItemInstance {
 						int newX = bookm.getLocX();
 						int newY = bookm.getLocY();
 						short mapId = bookm.getMapId();
-						if (itemId == 40086) { // ¸Å½º ÅÚ·¹Æ÷Æ® ÁÖ¹®¼­
+						if (itemId == 40086) { // ë§¤ìŠ¤ í…”ë ˆí¬íŠ¸ ì£¼ë¬¸ì„œ
 							for (L1PcInstance member : L1World.getInstance().getVisiblePlayer(pc)) {
 								if (pc.getLocation().getTileLineDistance(member.getLocation()) <= 3
 										&& member.getClanid() == pc.getClanid() && pc.getClanid() != 0
@@ -109,12 +109,12 @@ public class TeleportScroll extends L1ItemInstance {
 						pc.sendPackets(new S_ServerMessage(79));
 					}
 				} else {
-					if ((pc.getMap().isTeleportable(pc.getX(), pc.getY()) && pc.getMap().isTeleportable()) || pc.isGm() || pc.is¿À¸¸ÅÚ()) {
+					if ((pc.getMap().isTeleportable(pc.getX(), pc.getY()) && pc.getMap().isTeleportable()) || pc.isGm() || pc.isì˜¤ë§Œí…”()) {
 						L1Location newLocation = pc.getLocation().randomLocation(200, true);
 						int newX = newLocation.getX();
 						int newY = newLocation.getY();
 						short mapId = (short) newLocation.getMapId();
-						if (itemId == 40086) { // ¸Å½ºÅÚ·¹Æ÷Æ®ÁÖ¹®¼­
+						if (itemId == 40086) { // ë§¤ìŠ¤í…”ë ˆí¬íŠ¸ì£¼ë¬¸ì„œ
 							for (L1PcInstance member : L1World.getInstance().getVisiblePlayer(pc)) {
 								if (pc.getLocation().getTileLineDistance(member.getLocation()) <= 3
 										&& member.getClanid() == pc.getClanid() && pc.getClanid() != 0
@@ -133,13 +133,13 @@ public class TeleportScroll extends L1ItemInstance {
 						pc.sendPackets(new S_ServerMessage(276));
 					}
 				}
-				pc.cancelAbsoluteBarrier(); // ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+				pc.cancelAbsoluteBarrier(); // ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 			}
 
-			else if (itemId == 240100) { // ÀúÁÖÇØÁø ÅÚ·¹Æ÷Æ® ½ºÅ©·Ñ(¿À¸®Áö³¯ ¾ÆÀÌÅÛ)
+			else if (itemId == 240100) { // ì €ì£¼í•´ì§„ í…”ë ˆí¬íŠ¸ ìŠ¤í¬ë¡¤(ì˜¤ë¦¬ì§€ë‚  ì•„ì´í…œ)
 				L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc.getMoveState().getHeading(), true);
 				pc.getInventory().removeItem(useItem, 1);
-				pc.cancelAbsoluteBarrier(); // ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+				pc.cancelAbsoluteBarrier(); // ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 			} else if (itemId == 40079 || itemId == 40095 || itemId == 40521) {
 				if (pc.getMap().isEscapable() || pc.isGm()) {
 					int[] loc = Getback.GetBack_Location(pc, true);
@@ -151,18 +151,18 @@ public class TeleportScroll extends L1ItemInstance {
 					pc.sendPackets(new S_ServerMessage(647));
 				}
 				pc.cancelAbsoluteBarrier();
-			} else if (itemId == 40124) { // Ç÷¸Í ±ÍÈ¯ ½ºÅ©·Ñ
+			} else if (itemId == 40124) { // í˜ˆë§¹ ê·€í™˜ ìŠ¤í¬ë¡¤
 				if (pc.getMap().isEscapable() || pc.isGm()) {
 					int castle_id = 0;
 					int house_id = 0;
-					if (pc.getClanid() != 0) { // Å©¶õ ¼Ò¼Ó
+					if (pc.getClanid() != 0) { // í¬ë€ ì†Œì†
 						L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 						if (clan != null) {
 							castle_id = clan.getCastleId();
 							house_id = clan.getHouseId();
 						}
 					}
-					if (castle_id != 0) { // ¼ºÁÖ Å©¶õ¿ø
+					if (castle_id != 0) { // ì„±ì£¼ í¬ë€ì›
 						if (pc.getMap().isEscapable() || pc.isGm()) {
 							int[] loc = new int[3];
 							loc = L1CastleLocation.getCastleLoc(castle_id);
@@ -176,7 +176,7 @@ public class TeleportScroll extends L1ItemInstance {
 						} else {
 							pc.sendPackets(new S_ServerMessage(647));
 						}
-					} else if (house_id != 0) { // ¾ÆÁöÆ® ¼ÒÀ¯ Å©¶õ¿ø
+					} else if (house_id != 0) { // ì•„ì§€íŠ¸ ì†Œìœ  í¬ë€ì›
 						if (pc.getMap().isEscapable() || pc.isGm()) {
 							int[] loc = new int[3];
 							loc = L1HouseLocation.getHouseLoc(house_id);
@@ -211,9 +211,9 @@ public class TeleportScroll extends L1ItemInstance {
 				} else {
 					pc.sendPackets(new S_ServerMessage(647));
 				}
-				pc.cancelAbsoluteBarrier(); // ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+				pc.cancelAbsoluteBarrier(); // ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 			}
-			L1ItemDelay.onItemUse(pc, useItem); // ¾ÆÀÌÅÛ Áö¿¬ °³½Ã
+			L1ItemDelay.onItemUse(pc, useItem); // ì•„ì´í…œ ì§€ì—° ê°œì‹œ
 		}
 	}
 }

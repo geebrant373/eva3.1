@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -246,7 +246,7 @@ public class BoardTable {
 	}
 	
 	/**
-	 * µî·ÏµÈ »ç¶÷ÀÌ ÀÖ³ª Ã£´Â´Ù (µå·¡°ï Å°)
+	 * ë“±ë¡ëœ ì‚¬ëŒì´ ìˆë‚˜ ì°¾ëŠ”ë‹¤ (ë“œë˜ê³¤ í‚¤)
 	 * @param name
 	 * @param npcid
 	 * @return
@@ -274,8 +274,8 @@ public class BoardTable {
 	}
 	
 	/**
-	 * °Ô½ÃÆÇ¿¡¼­ ÇØ´ç Å° ³»¿ëÀ» »èÁ¦ÇÑ´Ù
-	 * @param id (¾ÆÀÌÅÛ id)
+	 * ê²Œì‹œíŒì—ì„œ í•´ë‹¹ í‚¤ ë‚´ìš©ì„ ì‚­ì œí•œë‹¤
+	 * @param id (ì•„ì´í…œ id)
 	 */
 	public void delDayExpire(int id) {
 		Connection con = null;

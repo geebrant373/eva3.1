@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -58,7 +58,7 @@ public class CharacterBalance {
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				ed = new L1PvpDmg();
-				int type = rs.getInt("Å¬·¡½ºÅ¸ÀÔ");
+				int type = rs.getInt("í´ë˜ìŠ¤íƒ€ì…");
 				edlist = list.get(type);
 
 				if (edlist == null) {
@@ -66,14 +66,14 @@ public class CharacterBalance {
 					list.put(type, edlist);
 				}
 
-				double dmg_rate = rs.getInt("´ë¹ÌÁö¹èÀ²") * 0.01;
-				double magic_dmg_rate = rs.getInt("¸¶¹ı´ë¹ÌÁö¹èÀ²") * 0.01;
+				double dmg_rate = rs.getInt("ëŒ€ë¯¸ì§€ë°°ìœ¨") * 0.01;
+				double magic_dmg_rate = rs.getInt("ë§ˆë²•ëŒ€ë¯¸ì§€ë°°ìœ¨") * 0.01;
 				
-				ed.setTargetType(rs.getInt("´ë»óÅ¬·¡½ºÅ¸ÀÔ"));
-				ed.setDmg(rs.getInt("Ãß°¡´ë¹ÌÁö"));
-				ed.setHit(rs.getInt("Ãß°¡¸íÁß"));
-				ed.setMagicDmg(rs.getInt("¸¶¹ıÃß°¡´ë¹ÌÁö"));
-				ed.setMagicHit(rs.getInt("¸¶¹ıÃß°¡¸íÁß"));
+				ed.setTargetType(rs.getInt("ëŒ€ìƒí´ë˜ìŠ¤íƒ€ì…"));
+				ed.setDmg(rs.getInt("ì¶”ê°€ëŒ€ë¯¸ì§€"));
+				ed.setHit(rs.getInt("ì¶”ê°€ëª…ì¤‘"));
+				ed.setMagicDmg(rs.getInt("ë§ˆë²•ì¶”ê°€ëŒ€ë¯¸ì§€"));
+				ed.setMagicHit(rs.getInt("ë§ˆë²•ì¶”ê°€ëª…ì¤‘"));
 				ed.setDmgRate(dmg_rate);
 				ed.setMagicDmgRate(magic_dmg_rate);
 

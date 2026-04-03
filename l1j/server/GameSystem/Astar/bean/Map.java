@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Astar.bean;
+﻿package l1j.server.GameSystem.Astar.bean;
 
 public class Map {
 	public int mapid;

@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -30,20 +30,20 @@ public class InvenTimeController implements Runnable {
 	private void checkPremiumTime() {
 		for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
 			if (pc.getInventory().checkItem(120288)) {
-				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.Áö¹èÀÌ¹İ¹öÇÁ)) {
+				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ì§€ë°°ì´ë°˜ë²„í”„)) {
 					pc.addDamageReductionByArmor(4);
 					pc.addMaxHp(200);
 					pc.addDmgup(5);
 					pc.addBowDmgup(5);
 					pc.getAbility().addSp(5);
 					pc.sendPackets(new S_SPMR(pc));
-					pc.sendPackets(new S_SystemMessage("\\fTÁö¹èÀÌ¹İÈ¿°ú°¡ ¹ßµ¿µÇ¾ú½À´Ï´Ù."));
-					pc.getSkillEffectTimerSet().setSkillEffect(L1SkillId.Áö¹èÀÌ¹İ¹öÇÁ, 1000 * 60 * 60 * 24 * 1);
+					pc.sendPackets(new S_SystemMessage("\\fTì§€ë°°ì´ë°˜íš¨ê³¼ê°€ ë°œë™ë˜ì—ˆìŠµë‹ˆë‹¤."));
+					pc.getSkillEffectTimerSet().setSkillEffect(L1SkillId.ì§€ë°°ì´ë°˜ë²„í”„, 1000 * 60 * 60 * 24 * 1);
 				}
 			} else {
-				if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.Áö¹èÀÌ¹İ¹öÇÁ)) {
-					pc.getSkillEffectTimerSet().removeSkillEffect(L1SkillId.Áö¹èÀÌ¹İ¹öÇÁ);
-					pc.sendPackets(new S_SystemMessage("\\fTÁö¹èÀÌ¹İÈ¿°ú°¡ »ç¶óÁ³½À´Ï´Ù."));
+				if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ì§€ë°°ì´ë°˜ë²„í”„)) {
+					pc.getSkillEffectTimerSet().removeSkillEffect(L1SkillId.ì§€ë°°ì´ë°˜ë²„í”„);
+					pc.sendPackets(new S_SystemMessage("\\fTì§€ë°°ì´ë°˜íš¨ê³¼ê°€ ì‚¬ë¼ì¡ŒìŠµë‹ˆë‹¤."));
 				}
 			}
 		}

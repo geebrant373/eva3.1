@@ -1,4 +1,4 @@
-package l1j.server.MJTemplate.MJSqlHelper.Handler;
+﻿package l1j.server.MJTemplate.MJSqlHelper.Handler;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

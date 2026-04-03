@@ -1,4 +1,4 @@
-package l1j.server.ParseHelper;
+﻿package l1j.server.ParseHelper;
 
 public class FrameElement {
 	private static final double BASIC_MILLIS = 1000.0D;

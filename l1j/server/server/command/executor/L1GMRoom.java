@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,81 +47,81 @@ public class L1GMRoom implements L1CommandExecutor {
 			}
 
 			if (i == 1) {
-				L1Teleport.teleport(pc, 32737, 32796, (short) 99, 5, false); // ¿µÀÚ¹æ
+				L1Teleport.teleport(pc, 32737, 32796, (short) 99, 5, false); // ì˜ìžë°©
 			} else if (i == 2) {
-				L1Teleport.teleport(pc , 33052, 32339, (short) 4, 5, false); // ¿äÁ¤½£
+				L1Teleport.teleport(pc , 33052, 32339, (short) 4, 5, false); // ìš”ì •ìˆ²
 			} else if (i == 3) {
-				L1Teleport.teleport(pc, 32644, 32955, (short) 0, 5, false); // ÆÇµµ¶ó
+				L1Teleport.teleport(pc, 32644, 32955, (short) 0, 5, false); // íŒë„ë¼
 			} else if (i == 4) {
-				L1Teleport.teleport(pc , 34055, 32290, (short) 4, 5, false); // ¿À·»
+				L1Teleport.teleport(pc , 34055, 32290, (short) 4, 5, false); // ì˜¤ë Œ
 			} else if (i == 5) {
-				L1Teleport.teleport(pc , 33429, 32814, (short) 4, 5, false); // ±â¶õ
+				L1Teleport.teleport(pc , 33429, 32814, (short) 4, 5, false); // ê¸°ëž€
 			} else if (i == 6) {
-				L1Teleport.teleport(pc , 33047, 32761, (short) 4, 5, false); // ÄË¸»
+				L1Teleport.teleport(pc , 33047, 32761, (short) 4, 5, false); // ì¼„ë§
 			} else if (i == 7) {
-				L1Teleport.teleport(pc , 32612, 33191, (short) 4, 5, false); // À©´Ù¿ìµå
+				L1Teleport.teleport(pc , 32612, 33191, (short) 4, 5, false); // ìœˆë‹¤ìš°ë“œ
 			} else if (i == 8) {
-				L1Teleport.teleport(pc , 33611, 33253, (short) 4, 5, false); // ÇÏÀÌ³×
+				L1Teleport.teleport(pc , 33611, 33253, (short) 4, 5, false); // í•˜ì´ë„¤
 			} else if (i == 9) {
-				L1Teleport.teleport(pc , 33082, 33390, (short) 4, 5, false); // Àº¸»
+				L1Teleport.teleport(pc , 33082, 33390, (short) 4, 5, false); // ì€ë§
 			} else if (i == 10) {
-				L1Teleport.teleport(pc , 32572, 32944, (short) 0, 5, false); // ¸»¼¶
+				L1Teleport.teleport(pc , 32572, 32944, (short) 0, 5, false); // ë§ì„¬
 			} else if (i == 11) {
-				L1Teleport.teleport(pc , 33964, 33254, (short) 4, 5, false); // ¾Æµ§
+				L1Teleport.teleport(pc , 33964, 33254, (short) 4, 5, false); // ì•„ë´
 			} else if (i == 12) {
-				L1Teleport.teleport(pc , 32635, 32818, (short) 303, 5, false); // ¸ù¼¶
+				L1Teleport.teleport(pc , 32635, 32818, (short) 303, 5, false); // ëª½ì„¬
 			} else if (i == 13) {
-				L1Teleport.teleport(pc , 32828, 32848, (short) 70, 5, false); // ÀØ¼¶
+				L1Teleport.teleport(pc , 32828, 32848, (short) 70, 5, false); // ìžŠì„¬
 			} else if (i == 14) {
-				L1Teleport.teleport(pc , 32736, 32787, (short) 15, 5, false); // ÄË¼º
+				L1Teleport.teleport(pc , 32736, 32787, (short) 15, 5, false); // ì¼„ì„±
 			} else if (i == 15) {
-				L1Teleport.teleport(pc , 32735, 32788, (short) 29, 5, false); // À©¼º
+				L1Teleport.teleport(pc , 32735, 32788, (short) 29, 5, false); // ìœˆì„±
 			} else if (i == 16) {
-				L1Teleport.teleport(pc , 32730, 32802, (short) 52, 5, false); // ±â¶õ
+				L1Teleport.teleport(pc , 32730, 32802, (short) 52, 5, false); // ê¸°ëž€
 			} else if (i == 17) {
-				L1Teleport.teleport(pc , 32572, 32826, (short) 64, 5, false); // ÇÏÀÌ³×¼º
+				L1Teleport.teleport(pc , 32572, 32826, (short) 64, 5, false); // í•˜ì´ë„¤ì„±
 			} else if (i == 18) {
-				L1Teleport.teleport(pc , 32895, 32533, (short) 300, 5, false); // ¾Æµ§¼º
+				L1Teleport.teleport(pc , 32895, 32533, (short) 300, 5, false); // ì•„ë´ì„±
 			} else if (i == 19) {
-				L1Teleport.teleport(pc , 33167, 32775, (short) 4, 5, false); // ÄË¼º ¼öÈ£Å¾
+				L1Teleport.teleport(pc , 33167, 32775, (short) 4, 5, false); // ì¼„ì„± ìˆ˜í˜¸íƒ‘
 			} else if (i == 20) {
-				L1Teleport.teleport(pc , 32674, 33408, (short) 4, 5, false); // À©¼º ¼öÈ£Å¾
+				L1Teleport.teleport(pc , 32674, 33408, (short) 4, 5, false); // ìœˆì„± ìˆ˜í˜¸íƒ‘
 			} else if (i == 21) {
-				L1Teleport.teleport(pc , 33630, 32677, (short) 4, 5, false); // ±â¶õ ¼öÈ£Å¾
+				L1Teleport.teleport(pc , 33630, 32677, (short) 4, 5, false); // ê¸°ëž€ ìˆ˜í˜¸íƒ‘
 			} else if (i == 22) {
-				L1Teleport.teleport(pc , 33524, 33394, (short) 4, 5, false); // ÇÏÀÌ³× ¼öÈ£Å¾
+				L1Teleport.teleport(pc , 33524, 33394, (short) 4, 5, false); // í•˜ì´ë„¤ ìˆ˜í˜¸íƒ‘
 			} else if (i == 23) {
-				L1Teleport.teleport(pc , 32424, 33068, (short) 440, 5, false); // ÇØÀû¼¶
+				L1Teleport.teleport(pc , 32424, 33068, (short) 440, 5, false); // í•´ì ì„¬
 			} else if (i == 24) {
-				L1Teleport.teleport(pc , 32800, 32868, (short) 1001, 5, false); // º£Çì¸ð½º
+				L1Teleport.teleport(pc , 32800, 32868, (short) 1001, 5, false); // ë² í—¤ëª¨ìŠ¤
 			} else if (i == 25) {
-				L1Teleport.teleport(pc , 32800, 32856, (short) 1000, 5, false); // ½Çº£¸®¾Æ
+				L1Teleport.teleport(pc , 32800, 32856, (short) 1000, 5, false); // ì‹¤ë² ë¦¬ì•„
 			} else if (i == 26) {
-				L1Teleport.teleport(pc , 32630, 32903, (short) 780, 5, false); // Å×º£»ç¸·
+				L1Teleport.teleport(pc , 32630, 32903, (short) 780, 5, false); // í…Œë² ì‚¬ë§‰
 			} else if (i == 27) {
-				L1Teleport.teleport(pc , 32743, 32799, (short) 781, 5, false); // Å×º£ ÇÇ¶ó¹Ìµå ³»ºÎ
+				L1Teleport.teleport(pc , 32743, 32799, (short) 781, 5, false); // í…Œë²  í”¼ë¼ë¯¸ë“œ ë‚´ë¶€
 			} else if (i == 28) {
-				L1Teleport.teleport(pc , 32735, 32830, (short) 782, 5, false); // Å×º£ ¿À¸®½Ã½º Á¦´Ü
+				L1Teleport.teleport(pc , 32735, 32830, (short) 782, 5, false); // í…Œë²  ì˜¤ë¦¬ì‹œìŠ¤ ì œë‹¨
 			} else {
 				L1Location loc = GMCommandsConfig.ROOMS.get(arg.toLowerCase());
 				if (loc == null) {
-					pc.sendPackets(new S_SystemMessage("1.GMroom 2.¿ä½£ 3.ÆÇµµ¶ó 4.¿À·» 5.±â¶õ 6.ÄË¸»"));
-					pc.sendPackets(new S_SystemMessage("7.À©´Ù 8.ÇÏÀÌ³× 9.Àº¸» 10.¸»¼¶ 11.¾Æµ§ 12.¸ù¼¶"));
-					pc.sendPackets(new S_SystemMessage("13.ÀØ¼¶ 14.ÄË¼º 15.À©¼º 16.±â¶õ¼º 17.ÇÏÀÌ³×¼º"));
-					pc.sendPackets(new S_SystemMessage("18.¾Æµ§¼º 19.ÄË¼º¼öÅ¾ 20.À©¼º¼öÅ¾ 21.±â¶õ¼öÅ¾"));
-					pc.sendPackets(new S_SystemMessage("22.ÇÏÀÌ³×¼öÅ¾ 23.ÇØÀû¼¶ 24.º£Çì¸ð½º 25.½Çº£¸®¾Æ"));
-					pc.sendPackets(new S_SystemMessage("26.Å×º£»ç¸· 27.ÇÇ¶ó¹Ìµå³»ºÎ 28.¿À¸®½Ã½ºÁ¦´Ü"));					
+					pc.sendPackets(new S_SystemMessage("1.GMroom 2.ìš”ìˆ² 3.íŒë„ë¼ 4.ì˜¤ë Œ 5.ê¸°ëž€ 6.ì¼„ë§"));
+					pc.sendPackets(new S_SystemMessage("7.ìœˆë‹¤ 8.í•˜ì´ë„¤ 9.ì€ë§ 10.ë§ì„¬ 11.ì•„ë´ 12.ëª½ì„¬"));
+					pc.sendPackets(new S_SystemMessage("13.ìžŠì„¬ 14.ì¼„ì„± 15.ìœˆì„± 16.ê¸°ëž€ì„± 17.í•˜ì´ë„¤ì„±"));
+					pc.sendPackets(new S_SystemMessage("18.ì•„ë´ì„± 19.ì¼„ì„±ìˆ˜íƒ‘ 20.ìœˆì„±ìˆ˜íƒ‘ 21.ê¸°ëž€ìˆ˜íƒ‘"));
+					pc.sendPackets(new S_SystemMessage("22.í•˜ì´ë„¤ìˆ˜íƒ‘ 23.í•´ì ì„¬ 24.ë² í—¤ëª¨ìŠ¤ 25.ì‹¤ë² ë¦¬ì•„"));
+					pc.sendPackets(new S_SystemMessage("26.í…Œë² ì‚¬ë§‰ 27.í”¼ë¼ë¯¸ë“œë‚´ë¶€ 28.ì˜¤ë¦¬ì‹œìŠ¤ì œë‹¨"));					
 					return;
 				}
 				L1Teleport.teleport(pc, loc.getX(), loc.getY(), (short) loc.getMapId(), 5, false);
 			}
 			
 			if(i > 0 && i < 28) {
-				pc.sendPackets(new S_SystemMessage("¿î¿µÀÚ ±ÍÈ¯("+ i + ")¹øÀ¸·Î ÀÌµ¿Çß½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ìš´ì˜ìž ê·€í™˜("+ i + ")ë²ˆìœ¼ë¡œ ì´ë™í–ˆìŠµë‹ˆë‹¤."));
 			}
 		} catch (Exception exception) {
 			pc.sendPackets(new S_SystemMessage(
-					".±ÍÈ¯ [Àå¼Ò¸í]À» ÀÔ·Â ÇØÁÖ¼¼¿ä.(Àå¼Ò¸íÀº GMCommands.xmlÀ» ÂüÁ¶)"));
+					".ê·€í™˜ [ìž¥ì†Œëª…]ì„ ìž…ë ¥ í•´ì£¼ì„¸ìš”.(ìž¥ì†Œëª…ì€ GMCommands.xmlì„ ì°¸ì¡°)"));
 		}
 	}
 }

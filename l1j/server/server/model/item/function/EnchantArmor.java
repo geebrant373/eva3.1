@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -55,7 +55,7 @@ public class EnchantArmor extends Enchant {
 			
 			if(Config.KEYWORD_USE) {
 				if(!pc.getNetConnection().keyword) {
-					pc.sendPackets("Å°¿öµå ÀÎÁõ ÈÄ¿¡ »ç¿ëÀÌ °¡´ÉÇÕ´Ï´Ù.");
+					pc.sendPackets("í‚¤ì›Œë“œ ì¸ì¦ í›„ì— ì‚¬ìš©ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤.");
 					return;
 				}
 			}
@@ -69,17 +69,17 @@ public class EnchantArmor extends Enchant {
 				return;
 			}
 			if (l1iteminstance1 == null || l1iteminstance1.getItem().getType2() != 2) {
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
-			if (l1iteminstance1.getBless() >= 128) { // ºÀÀÎÅÛ
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+			if (l1iteminstance1.getBless() >= 128) { // ë´‰ì¸í…œ
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
 			int safe_enchant = ((L1Armor) l1iteminstance1.getItem()).get_safeenchant();
 
-			if (safe_enchant < 0) { // °­È­ ºÒ°¡
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+			if (safe_enchant < 0) { // ê°•í™” ë¶ˆê°€
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
 			int armorId = l1iteminstance1.getItem().getItemId();
@@ -99,7 +99,7 @@ public class EnchantArmor extends Enchant {
 					return;
 				}
 			}
-			/** È¯»óÀÇ °©¿Ê ¸¶¹ı ÁÖ¹®¼­ **/
+			/** í™˜ìƒì˜ ê°‘ì˜· ë§ˆë²• ì£¼ë¬¸ì„œ **/
 			if (armorId >= 423000 && armorId <= 423008) {
 				if (itemId == L1ItemId.SCROLL_OF_ENCHANT_FANTASY_ARMOR) {
 				} else {
@@ -114,9 +114,9 @@ public class EnchantArmor extends Enchant {
 					return;
 				}
 			}
-			/** È¯»óÀÇ °©¿Ê ¸¶¹ı ÁÖ¹®¼­ **/
+			/** í™˜ìƒì˜ ê°‘ì˜· ë§ˆë²• ì£¼ë¬¸ì„œ **/
 
-			/** Ã¢ÃµÀÇ °©¿Ê ¸¶¹ı ÁÖ¹®¼­ **/
+			/** ì°½ì²œì˜ ê°‘ì˜· ë§ˆë²• ì£¼ë¬¸ì„œ **/
 			if (armorId >= 422000 && armorId <= 422020) {
 				if (itemId == L1ItemId.CHANGCHUN_ENCHANT_ARMOR_SCROLL) {
 				} else {
@@ -131,10 +131,10 @@ public class EnchantArmor extends Enchant {
 					return;
 				}
 			}
-			/** Ã¢ÃµÀÇ °©¿Ê ¸¶¹ı ÁÖ¹®¼­ **/
+			/** ì°½ì²œì˜ ê°‘ì˜· ë§ˆë²• ì£¼ë¬¸ì„œ **/
 
 			/**
-			 * ·é ÀÎÃ¾ º¸È£ÁÖ¹®¼­
+			 * ë£¬ ì¸ì²¸ ë³´í˜¸ì£¼ë¬¸ì„œ
 			 */
 			if (itemId == 5370632 || itemId == 5370634) {
 				if (armortype == 14) {
@@ -150,7 +150,7 @@ public class EnchantArmor extends Enchant {
 					return;
 				}
 			}
-			/** Àå½Å±¸ °­È­ ÁÖ¹®¼­ */
+			/** ì¥ì‹ êµ¬ ê°•í™” ì£¼ë¬¸ì„œ */
 			if (itemId == L1ItemId.ACCESSORY_ENCHANT_SCROLL || itemId == L1ItemId.ORIM_ACCESSORY_ENCHANT_SCROLL
 					|| itemId == L1ItemId.ORIM_ACCESSORY_ENCHANT_SCROLL_B || itemId == 5000500 || itemId == 5000501) {
 				if (armortype >= 8 && armortype <= 12) {
@@ -168,20 +168,20 @@ public class EnchantArmor extends Enchant {
 				}
 			}
 
-			/** Àå½Å±¸ °­È­ ÁÖ¹®¼­ */
+			/** ì¥ì‹ êµ¬ ê°•í™” ì£¼ë¬¸ì„œ */
 
 			int enchant_level = l1iteminstance1.getEnchantLevel();
 
-			/** ¿ëÀÇ Æ¼¼ÅÃ÷ Àü¿ë °­È­ ÁÖ¹®¼­ */
+			/** ìš©ì˜ í‹°ì…”ì¸  ì „ìš© ê°•í™” ì£¼ë¬¸ì„œ */
 			if (itemId == 430042 || itemId == 1430042 || itemId == 2430042) {
 				if (enchant_level >= Config.MAX_ARMOR) {
-					pc.sendPackets(new S_SystemMessage("¿ëÀÇ Æ¼¼ÅÃ÷´Â" + Config.MAX_ARMOR + "±îÁö¸¸ ÇöÀç ÀÎÃ¾Æ® µË´Ï´Ù"));
+					pc.sendPackets(new S_SystemMessage("ìš©ì˜ í‹°ì…”ì¸ ëŠ”" + Config.MAX_ARMOR + "ê¹Œì§€ë§Œ í˜„ì¬ ì¸ì²¸íŠ¸ ë©ë‹ˆë‹¤"));
 					return;
 				}
 				if (armorId == 91140 || armorId == 91150 || armorId == 91160 || armorId == 91170 || armorId == 9114 || armorId == 9115
 						|| armorId == 9116 || armorId == 9117) {
 				} else {
-					pc.sendPackets(new S_SystemMessage("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 					return;
 				}
 			}
@@ -189,12 +189,12 @@ public class EnchantArmor extends Enchant {
 			if (armorId == 91140 || armorId == 91150 || armorId == 91160 || armorId == 91170 || armorId == 9114 || armorId == 9115 || armorId == 9116
 					|| armorId == 9117) {
 				if (enchant_level >= Config.MAX_ARMOR) {
-					pc.sendPackets(new S_SystemMessage("¿ëÀÇ Æ¼¼ÅÃ÷´Â" + Config.MAX_ARMOR + "±îÁö¸¸ ÇöÀç ÀÎÃ¾Æ® µË´Ï´Ù"));
+					pc.sendPackets(new S_SystemMessage("ìš©ì˜ í‹°ì…”ì¸ ëŠ”" + Config.MAX_ARMOR + "ê¹Œì§€ë§Œ í˜„ì¬ ì¸ì²¸íŠ¸ ë©ë‹ˆë‹¤"));
 					return;
 				}
 				if (itemId == 430042 || itemId == 1430042 || itemId == 2430042) {
 				} else {
-					pc.sendPackets(new S_SystemMessage("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 					return;
 				}
 			}
@@ -203,93 +203,93 @@ public class EnchantArmor extends Enchant {
 			 * if (armorId == 200852 || armorId == 200851 || armorId == 200853
 			 * || armorId == 200854 || armorId ==30030 || armorId ==30031 ||
 			 * armorId ==30032 || armorId ==30033) { if (enchant_level >=
-			 * Config.MAX_ARMOR) { pc.sendPackets(new S_SystemMessage("¿ëÀÇ Æ¼¼ÅÃ÷´Â"+
-			 * Config.MAX_ARMOR +"±îÁö¸¸ ÇöÀç ÀÎÃ¾Æ® µË´Ï´Ù")); return; } if (itemId ==
+			 * Config.MAX_ARMOR) { pc.sendPackets(new S_SystemMessage("ìš©ì˜ í‹°ì…”ì¸ ëŠ”"+
+			 * Config.MAX_ARMOR +"ê¹Œì§€ë§Œ í˜„ì¬ ì¸ì²¸íŠ¸ ë©ë‹ˆë‹¤")); return; } if (itemId ==
 			 * 430042 || itemId == 1430042 || itemId == 2430042) { } else {
-			 * pc.sendPackets(new S_SystemMessage("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.")); return;
+			 * pc.sendPackets(new S_SystemMessage("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.")); return;
 			 * } }
 			 */
-			if (enchant_level >= Config.Àå½Å±¸ÃÖ´ëÀÎÃ¦) {
-				if (armortype >= 8 && armortype <= 12) { // °­µµ : Æ¯
-					pc.sendPackets(new S_SystemMessage("\\fWÀå½Å±¸´Â " + Config.Àå½Å±¸ÃÖ´ëÀÎÃ¦ + "ÀÌ»óÀº ÀÎÃ¦Æ® ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+			if (enchant_level >= Config.ì¥ì‹ êµ¬ìµœëŒ€ì¸ì±ˆ) {
+				if (armortype >= 8 && armortype <= 12) { // ê°•ë„ : íŠ¹
+					pc.sendPackets(new S_SystemMessage("\\fWì¥ì‹ êµ¬ëŠ” " + Config.ì¥ì‹ êµ¬ìµœëŒ€ì¸ì±ˆ + "ì´ìƒì€ ì¸ì±ˆíŠ¸ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 					return;
 				}
 			}
 			if (!(armortype >= 8 && armortype <= 12)) {
 				if (enchant_level >= Config.MAX_ARMOR) {
-					pc.sendPackets(new S_SystemMessage("\\f:¸ğµç ¹æ¾î±¸´Â ÇöÀç +" + Config.MAX_ARMOR + "ÀÌ»óÀº ÀÎÃ¦ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("\\f:ëª¨ë“  ë°©ì–´êµ¬ëŠ” í˜„ì¬ +" + Config.MAX_ARMOR + "ì´ìƒì€ ì¸ì±ˆí•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 					return;
 				}
 			}
 			/**
-			 * ·éÀÎÃ¾ º¸È£ÁÖ¹®¼­
+			 * ë£¬ì¸ì²¸ ë³´í˜¸ì£¼ë¬¸ì„œ
 			 */
 			if (itemId == 5370632 || itemId == 5370634) {
 				if ((armorId == 21156)) {
-					if (enchant_level >= Config.·éÃÖ´ëÀÎÃ¦) {
-						pc.sendPackets(new S_SystemMessage("\\fWÃàº¹ÀÇ ·éÀº " + Config.·éÃÖ´ëÀÎÃ¦ + "ÀÌ»óÀº ÀÎÃ¦Æ® ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+					if (enchant_level >= Config.ë£¬ìµœëŒ€ì¸ì±ˆ) {
+						pc.sendPackets(new S_SystemMessage("\\fWì¶•ë³µì˜ ë£¬ì€ " + Config.ë£¬ìµœëŒ€ì¸ì±ˆ + "ì´ìƒì€ ì¸ì±ˆíŠ¸ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 						return;
 					}
 				} else {
-					pc.sendPackets(new S_SystemMessage("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 					return;
 				}
 
 			}
 			if ((armorId == 21156)) {
 				if (itemId == 5370632 || itemId == 5370634) {
-					if (enchant_level >= Config.·éÃÖ´ëÀÎÃ¦) {
-						pc.sendPackets(new S_SystemMessage("\\fWÃàº¹ÀÇ ·éÀº " + Config.·éÃÖ´ëÀÎÃ¦ + "ÀÌ»óÀº ÀÎÃ¦Æ® ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+					if (enchant_level >= Config.ë£¬ìµœëŒ€ì¸ì±ˆ) {
+						pc.sendPackets(new S_SystemMessage("\\fWì¶•ë³µì˜ ë£¬ì€ " + Config.ë£¬ìµœëŒ€ì¸ì±ˆ + "ì´ìƒì€ ì¸ì±ˆíŠ¸ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 						return;
 					}
 				} else {
-					pc.sendPackets(new S_SystemMessage("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 					return;
 				}
 			}
-			/** ·ëÆ¼½º °­È­ ÁÖ¹®¼­ **/
+			/** ë£¸í‹°ìŠ¤ ê°•í™” ì£¼ë¬¸ì„œ **/
 			if (itemId == 5000500 || itemId == 5000550) {
 				if ((armorId >= 427110 && armorId <= 427115)) {
-					if (enchant_level >= Config.·ëÆ¼½ºÃÖ´ëÀÎÃ¦) {
-						pc.sendPackets(new S_SystemMessage("\\fW·ëÆ¼½º ±Í°ÉÀÌ´Â " + Config.·ëÆ¼½ºÃÖ´ëÀÎÃ¦ + "ÀÌ»óÀº ÀÎÃ¦Æ® ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+					if (enchant_level >= Config.ë£¸í‹°ìŠ¤ìµœëŒ€ì¸ì±ˆ) {
+						pc.sendPackets(new S_SystemMessage("\\fWë£¸í‹°ìŠ¤ ê·€ê±¸ì´ëŠ” " + Config.ë£¸í‹°ìŠ¤ìµœëŒ€ì¸ì±ˆ + "ì´ìƒì€ ì¸ì±ˆíŠ¸ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 						return;
 					}
 				} else {
-					pc.sendPackets(new S_SystemMessage("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 					return;
 				}
 
 			}
 			if ((armorId >= 427110 && armorId <= 427115)) {
 				if (itemId == 5000500 || itemId == 5000550) {
-					if (enchant_level >= Config.·ëÆ¼½ºÃÖ´ëÀÎÃ¦) {
-						pc.sendPackets(new S_SystemMessage("\\fW·ëÆ¼½º ±Í°ÉÀÌ´Â " + Config.·ëÆ¼½ºÃÖ´ëÀÎÃ¦ + "ÀÌ»óÀº ÀÎÃ¦Æ® ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+					if (enchant_level >= Config.ë£¸í‹°ìŠ¤ìµœëŒ€ì¸ì±ˆ) {
+						pc.sendPackets(new S_SystemMessage("\\fWë£¸í‹°ìŠ¤ ê·€ê±¸ì´ëŠ” " + Config.ë£¸í‹°ìŠ¤ìµœëŒ€ì¸ì±ˆ + "ì´ìƒì€ ì¸ì±ˆíŠ¸ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 						return;
 					}
 				} else {
-					pc.sendPackets(new S_SystemMessage("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 					return;
 				}
-				/** ½º³ÀÆÛÀÇ ¹İÁö °­È­ ÁÖ¹®¼­ */
+				/** ìŠ¤ëƒ…í¼ì˜ ë°˜ì§€ ê°•í™” ì£¼ë¬¸ì„œ */
 				if (itemId == 5000501 || itemId == 5000551) {
 					if (armorId >= 427116 && armorId <= 427123) {
-						if (enchant_level >= Config.½º³ÀÆÛÃÖ´ëÀÎÃ¦) {
-							pc.sendPackets(new S_SystemMessage("\\fW½º³ÀÆÛ¹İÁö´Â " + Config.½º³ÀÆÛÃÖ´ëÀÎÃ¦ + "ÀÌ»óÀº ÀÎÃ¦Æ® ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+						if (enchant_level >= Config.ìŠ¤ëƒ…í¼ìµœëŒ€ì¸ì±ˆ) {
+							pc.sendPackets(new S_SystemMessage("\\fWìŠ¤ëƒ…í¼ë°˜ì§€ëŠ” " + Config.ìŠ¤ëƒ…í¼ìµœëŒ€ì¸ì±ˆ + "ì´ìƒì€ ì¸ì±ˆíŠ¸ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 							return;
 						}
 					} else {
-						pc.sendPackets(new S_SystemMessage("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 						return;
 					}
 				}
 				if (armorId >= 5000501 && armorId <= 21253) {
 					if (itemId == 60417 || itemId == 5000551) {
-						if (enchant_level >= Config.½º³ÀÆÛÃÖ´ëÀÎÃ¦) {
-							pc.sendPackets(new S_SystemMessage("\\fW½º³ÀÆÛ¹İÁö´Â " + Config.½º³ÀÆÛÃÖ´ëÀÎÃ¦ + "ÀÌ»óÀº ÀÎÃ¦Æ® ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+						if (enchant_level >= Config.ìŠ¤ëƒ…í¼ìµœëŒ€ì¸ì±ˆ) {
+							pc.sendPackets(new S_SystemMessage("\\fWìŠ¤ëƒ…í¼ë°˜ì§€ëŠ” " + Config.ìŠ¤ëƒ…í¼ìµœëŒ€ì¸ì±ˆ + "ì´ìƒì€ ì¸ì±ˆíŠ¸ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 							return;
 						}
 					} else {
-						pc.sendPackets(new S_SystemMessage("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 						return;
 					}
 
@@ -298,13 +298,13 @@ public class EnchantArmor extends Enchant {
 
 			if (itemId == 7323 || itemId == 7324 || itemId == 430014) {
 				if (armorId >= 23093 && armorId <= 23098) {
-					pc.sendPackets(new S_SystemMessage("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 					return;
 				}
 			}
 
 			if (Config.GAME_SERVER_TYPE == 1 && enchant_level >= safe_enchant + 3) {
-				pc.sendPackets(new S_SystemMessage("Å×½ºÆ®¼­¹ö¿¡¼­´Â ¾ÈÀüÀÎÃ¦+3 ÀÌ»óÀº ÀÎÃ¦ÇÏ½Ç¼ö ¾ø½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("í…ŒìŠ¤íŠ¸ì„œë²„ì—ì„œëŠ” ì•ˆì „ì¸ì±ˆ+3 ì´ìƒì€ ì¸ì±ˆí•˜ì‹¤ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
 
@@ -316,31 +316,31 @@ public class EnchantArmor extends Enchant {
 					return;
 				}
 				if (enchant_level < -6) {
-					// -7ÀÌ»óÀº ÇÒ ¼ö ¾ø´Ù.
+					// -7ì´ìƒì€ í•  ìˆ˜ ì—†ë‹¤.
 					FailureEnchant(pc, l1iteminstance1);
 				} else {
 					SuccessEnchant(pc, l1iteminstance1, -1);
 				}
-			} else if (itemId == 90000032) { // ¿ë°© °­È­ ÁÖ¹®¼­
+			} else if (itemId == 90000032) { // ìš©ê°‘ ê°•í™” ì£¼ë¬¸ì„œ
 				if (l1iteminstance1 != null && l1iteminstance1.getItem().getType2() == 2 && ( l1iteminstance1.getItem().getItemId() >= 420100 &&
 							 l1iteminstance1.getItem().getItemId() <= 420115) ) {
-					if (enchant_level >= Config.¿ë°©) {
-						pc.sendPackets(new S_SystemMessage("´õ ÀÌ»ó ÀÎÃ¦ÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù."));
+					if (enchant_level >= Config.ìš©ê°‘) {
+						pc.sendPackets(new S_SystemMessage("ë” ì´ìƒ ì¸ì±ˆì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤."));
 						return;
 					}
 					int enchant = enchant_level < 0 ? 0
-							: enchant_level >= Config.¿ë°©ÀÎÃ¦.length ? Config.¿ë°©ÀÎÃ¦.length - 1 : enchant_level;
-					if (MJRnd.isWinning(100, Config.¿ë°©ÀÎÃ¦[enchant])) {
+							: enchant_level >= Config.ìš©ê°‘ì¸ì±ˆ.length ? Config.ìš©ê°‘ì¸ì±ˆ.length - 1 : enchant_level;
+					if (MJRnd.isWinning(100, Config.ìš©ê°‘ì¸ì±ˆ[enchant])) {
 						SuccessEnchant(pc, l1iteminstance1, 1);
-						pc.sendPackets(new S_SystemMessage("¼ø°£ °­·ÄÇÏ°Ô ºûÀ» ³»¾î ÀÎÃ¦Æ®¿¡ ¼º°ø ÇÏ¿´½À´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("ìˆœê°„ ê°•ë ¬í•˜ê²Œ ë¹›ì„ ë‚´ì–´ ì¸ì±ˆíŠ¸ì— ì„±ê³µ í•˜ì˜€ìŠµë‹ˆë‹¤."));
 						pc.getInventory().removeItem(useItem, 1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("ÇÑ ¼ø°£ °­·ÄÇÏ°Ô ºû³µÁö¸¸ ÀÎÃ¦Æ®¿¡ ½ÇÆĞ ÇÏ¿´½À´Ï´Ù."));
+						pc.sendPackets(new S_SystemMessage("í•œ ìˆœê°„ ê°•ë ¬í•˜ê²Œ ë¹›ë‚¬ì§€ë§Œ ì¸ì±ˆíŠ¸ì— ì‹¤íŒ¨ í•˜ì˜€ìŠµë‹ˆë‹¤."));
 						FailureEnchant(pc, l1iteminstance1);
 						pc.getInventory().removeItem(useItem, 1);
 					}
 				}
-			} else if (itemId == 1430633) { // ÀåÀÎÀÇ ¹æ¾î±¸ ¸¶¹ı ÁÖ¹®¼­
+			} else if (itemId == 1430633) { // ì¥ì¸ì˜ ë°©ì–´êµ¬ ë§ˆë²• ì£¼ë¬¸ì„œ
 				if (!(l1iteminstance1.getItem().getMaterial() == 9 || l1iteminstance1.getItem().getMaterial() == 18)) {
 					if (enchant_level == 8) {
 						int rnd = _random.nextInt(100);
@@ -348,16 +348,16 @@ public class EnchantArmor extends Enchant {
 							SuccessEnchant(pc, l1iteminstance1, 1);
 						else
 							pc.sendPackets(new S_ServerMessage(1310));
-						// ÀÎÃ¦Æ®: °­·ÄÇÏ°Ô ºû³µÁö¸¸ ¾Æ¹« ÀÏµµ ¾ø¾ú½À´Ï´Ù.
+						// ì¸ì±ˆíŠ¸: ê°•ë ¬í•˜ê²Œ ë¹›ë‚¬ì§€ë§Œ ì•„ë¬´ ì¼ë„ ì—†ì—ˆìŠµë‹ˆë‹¤.
 						pc.getInventory().removeItem(useItem, 1);
 					} else {
-						pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "ÀÎÃ¦Æ® +8 ¹æ¾î±¸¸¸ »ç¿ë °¡´É"));
-						pc.sendPackets(new S_SystemMessage("ÀÎÃ¦Æ® +8 ¹æ¾î±¸¸¸ »ç¿ë °¡´É"));
-						// ÀÎÃ¦Æ® +8 ¹æ¾î±¸¸¸ »ç¿ë °¡´É
+						pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "ì¸ì±ˆíŠ¸ +8 ë°©ì–´êµ¬ë§Œ ì‚¬ìš© ê°€ëŠ¥"));
+						pc.sendPackets(new S_SystemMessage("ì¸ì±ˆíŠ¸ +8 ë°©ì–´êµ¬ë§Œ ì‚¬ìš© ê°€ëŠ¥"));
+						// ì¸ì±ˆíŠ¸ +8 ë°©ì–´êµ¬ë§Œ ì‚¬ìš© ê°€ëŠ¥
 					}
 				} else {
 					pc.sendPackets(new S_ServerMessage(1294));
-					// ÀÎÃ¦Æ®: ÇØ´ç °­È­ ÁÖ¹®¼­ »ç¿ë ºÒ°¡
+					// ì¸ì±ˆíŠ¸: í•´ë‹¹ ê°•í™” ì£¼ë¬¸ì„œ ì‚¬ìš© ë¶ˆê°€
 				}
 			} else if (enchant_level < safe_enchant) {
 				pc.getInventory().removeItem(useItem, 1);
@@ -371,7 +371,7 @@ public class EnchantArmor extends Enchant {
 					SuccessEnchant(pc, l1iteminstance1, +1);
 				} else {
 					FailureEnchant(pc, l1iteminstance1);
-					pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+					pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 				}
 			} else if (itemId == 5000500) {
 				pc.getInventory().removeItem(useItem, 1);
@@ -382,73 +382,73 @@ public class EnchantArmor extends Enchant {
 					SuccessEnchant(pc, l1iteminstance1, +1);
 				} else {
 					FailureEnchant(pc, l1iteminstance1);
-					pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+					pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 				}
-			} else if (itemId == 5370632) {// ·é º¸È£
+			} else if (itemId == 5370632) {// ë£¬ ë³´í˜¸
 				pc.getInventory().removeItem(useItem, 1);
 				int rnd18 = _random.nextInt(100) + 1;
 				if (l1iteminstance1.getEnchantLevel() == 0) {
 					if (rnd18 <= Config.EnchantChanceRun0) {
 						SuccessEnchant(pc, l1iteminstance1, +1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					}
 				} else if (l1iteminstance1.getEnchantLevel() == 1) {
 					if (rnd18 <= Config.EnchantChanceRun1) {
 						SuccessEnchant(pc, l1iteminstance1, +1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					}
 				} else if (l1iteminstance1.getEnchantLevel() == 2) {
 					if (rnd18 <= Config.EnchantChanceRun2) {
 						SuccessEnchant(pc, l1iteminstance1, +1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					}
 				} else if (l1iteminstance1.getEnchantLevel() == 3) {
 					if (rnd18 <= Config.EnchantChanceRun3) {
 						SuccessEnchant(pc, l1iteminstance1, +1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					}
 				} else if (l1iteminstance1.getEnchantLevel() == 4) {
 					if (rnd18 <= Config.EnchantChanceRun4) {
 						SuccessEnchant(pc, l1iteminstance1, +1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					}
 				} else if (l1iteminstance1.getEnchantLevel() == 5) {
 					if (rnd18 <= Config.EnchantChanceRun5) {
 						SuccessEnchant(pc, l1iteminstance1, +1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					}
 				} else if (l1iteminstance1.getEnchantLevel() == 6) {
 					if (rnd18 <= Config.EnchantChanceRun6) {
 						SuccessEnchant(pc, l1iteminstance1, +1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					}
 				} else if (l1iteminstance1.getEnchantLevel() == 7) {
 					if (rnd18 <= Config.EnchantChanceRun7) {
 						SuccessEnchant(pc, l1iteminstance1, +1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					}
 				} else if (l1iteminstance1.getEnchantLevel() == 8) {
 					if (rnd18 <= Config.EnchantChanceRun8) {
 						SuccessEnchant(pc, l1iteminstance1, +1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					}
 				} else if (l1iteminstance1.getEnchantLevel() == 9) {
 					if (rnd18 <= Config.EnchantChanceRun9) {
 						SuccessEnchant(pc, l1iteminstance1, +1);
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					}
 				}
-			} else if (itemId == 5370634) {// Ãàº¹¹ŞÀº ·é º¸È£
+			} else if (itemId == 5370634) {// ì¶•ë³µë°›ì€ ë£¬ ë³´í˜¸
 				pc.getInventory().removeItem(useItem, 1);
 				int rnd18 = _random.nextInt(100) + 1;
 				int acceChance18 = Config.BlassEnchantChanceRun;// AccessoryEnchantInformationTable.getInstance().getChance(armorId,enchant_level);
@@ -456,7 +456,7 @@ public class EnchantArmor extends Enchant {
 				if (safe_enchant == 0 && rnd18 <= acceChance18) {
 					SuccessEnchant(pc, l1iteminstance1, +1);
 				} else {
-					pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+					pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 				}
 			} else if (itemId == 5000501) {
 				pc.getInventory().removeItem(useItem, 1);
@@ -467,15 +467,15 @@ public class EnchantArmor extends Enchant {
 					SuccessEnchant(pc, l1iteminstance1, +1);
 				} else {
 					FailureEnchant(pc, l1iteminstance1);
-					pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+					pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 				}
 
-			} else if (itemId == L1ItemId.ORIM_ACCESSORY_ENCHANT_SCROLL || itemId == L1ItemId.ORIM_ACCESSORY_ENCHANT_SCROLL_B) { // ¿À¸²ÀÇ½Å±¸°­È­ÁÖ¹®¼­
+			} else if (itemId == L1ItemId.ORIM_ACCESSORY_ENCHANT_SCROLL || itemId == L1ItemId.ORIM_ACCESSORY_ENCHANT_SCROLL_B) { // ì˜¤ë¦¼ì˜ì‹ êµ¬ê°•í™”ì£¼ë¬¸ì„œ
 				int rnd = _random.nextInt(1000000) + 1;
 
 				if (Config.ORIM_ACCESS_ENCHANT_SCROLL_USE_LEVEL != 0) {
 					if (enchant_level < Config.ORIM_ACCESS_ENCHANT_SCROLL_USE_LEVEL) {
-						pc.sendPackets(new S_SystemMessage("´õ ÀÌ»ó °­È­¸¦ ÁøÇàÇÒ ¼ö ¾ø½À´Ï´Ù. [»ç¿ë°¡´ÉÀÎÃ¦ : +" + Config.ORIM_ACCESS_ENCHANT_SCROLL_USE_LEVEL + "ÀÌÇÏ]"));
+						pc.sendPackets(new S_SystemMessage("ë” ì´ìƒ ê°•í™”ë¥¼ ì§„í–‰í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. [ì‚¬ìš©ê°€ëŠ¥ì¸ì±ˆ : +" + Config.ORIM_ACCESS_ENCHANT_SCROLL_USE_LEVEL + "ì´í•˜]"));
 						return;
 					}
 				}
@@ -485,8 +485,8 @@ public class EnchantArmor extends Enchant {
 
 				if (pc.isGm()) {
 					DecimalFormat format = new DecimalFormat(".##");
-					pc.sendPackets(new S_SystemMessage("\\fTÀÎÃ¦Æ® - ·¹º§: " + enchant_level + " / ¼º°øÈ®·ü: "
-							+ format.format(master_enchant_scroll_chance / 10000) + " >= ·£´ı: " + format.format(rnd / 10000)));
+					pc.sendPackets(new S_SystemMessage("\\fTì¸ì±ˆíŠ¸ - ë ˆë²¨: " + enchant_level + " / ì„±ê³µí™•ë¥ : "
+							+ format.format(master_enchant_scroll_chance / 10000) + " >= ëœë¤: " + format.format(rnd / 10000)));
 				}
 
 				pc.getInventory().removeItem(useItem, 1);
@@ -510,30 +510,30 @@ public class EnchantArmor extends Enchant {
 				int rnd = _random.nextInt(100) + 1;
 				int enchant_chance_armor = 0;
 				int enchant_level_tmp;
-				if (safe_enchant == 0) { // »À, ºê¶ôÅ©¹Ì½º¸±¿ë º¸Á¤
+				if (safe_enchant == 0) { // ë¼ˆ, ë¸Œë½í¬ë¯¸ìŠ¤ë¦´ìš© ë³´ì •
 					enchant_level_tmp = 2;
 				} else {
 					enchant_level_tmp = 1;
 				}
 				if (armortype >= 8 && armortype <= 12) {
 					if (enchant_level >= 0 && enchant_level < 1) {
-						enchant_chance_armor = Config.¾Ç¼¼ÀÎÃ¾1;
+						enchant_chance_armor = Config.ì•…ì„¸ì¸ì²¸1;
 					} else if (enchant_level >= 1 && enchant_level < 2) {
-						enchant_chance_armor = Config.¾Ç¼¼ÀÎÃ¾2;
+						enchant_chance_armor = Config.ì•…ì„¸ì¸ì²¸2;
 					} else if (enchant_level >= 2 && enchant_level < 3) {
-						enchant_chance_armor = Config.¾Ç¼¼ÀÎÃ¾3;
+						enchant_chance_armor = Config.ì•…ì„¸ì¸ì²¸3;
 					} else if (enchant_level >= 3 && enchant_level < 4) {
-						enchant_chance_armor = Config.¾Ç¼¼ÀÎÃ¾4;
+						enchant_chance_armor = Config.ì•…ì„¸ì¸ì²¸4;
 					} else if (enchant_level >= 4 && enchant_level < 5) {
-						enchant_chance_armor = Config.¾Ç¼¼ÀÎÃ¾5;
+						enchant_chance_armor = Config.ì•…ì„¸ì¸ì²¸5;
 					} else if (enchant_level >= 5 && enchant_level < 6) {
-						enchant_chance_armor = Config.¾Ç¼¼ÀÎÃ¾6;
+						enchant_chance_armor = Config.ì•…ì„¸ì¸ì²¸6;
 					} else if (enchant_level >= 6 && enchant_level < 7) {
-						enchant_chance_armor = Config.¾Ç¼¼ÀÎÃ¾7;
+						enchant_chance_armor = Config.ì•…ì„¸ì¸ì²¸7;
 					} else if (enchant_level >= 7 && enchant_level < 8) {
-						enchant_chance_armor = Config.¾Ç¼¼ÀÎÃ¾8;
+						enchant_chance_armor = Config.ì•…ì„¸ì¸ì²¸8;
 					} else if (enchant_level >= 8) {
-						enchant_chance_armor = Config.¾Ç¼¼ÀÎÃ¾9;
+						enchant_chance_armor = Config.ì•…ì„¸ì¸ì²¸9;
 					}
 				} else {
 					int chance = 0;
@@ -542,66 +542,66 @@ public class EnchantArmor extends Enchant {
 						enchant_chance_armor = chance;
 					} else {
 						if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 4 && enchant_level < 5) {
-							enchant_chance_armor = Config.¹æ¾î±¸4;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬4;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 5 && enchant_level < 6) {
-							enchant_chance_armor = Config.¹æ¾î±¸5;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬5;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 6 && enchant_level < 7) {
-							enchant_chance_armor = Config.¹æ¾î±¸6;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬6;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 7 && enchant_level < 8) {
-							enchant_chance_armor = Config.¹æ¾î±¸7;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬7;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 8 && enchant_level < 9) {
-							enchant_chance_armor = Config.¹æ¾î±¸8;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬8;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 9 && enchant_level <= 10) {
-							enchant_chance_armor = Config.¹æ¾î±¸9;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬9;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 10 && enchant_level <= 11) {
-							enchant_chance_armor = Config.¹æ¾î±¸10;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬10;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 11 && enchant_level <= 12) {
-							enchant_chance_armor = Config.¹æ¾î±¸11;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬11;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 12 && enchant_level <= 13) {
-							enchant_chance_armor = Config.¹æ¾î±¸12;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬12;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 13 && enchant_level <= 14) {
-							enchant_chance_armor = Config.¹æ¾î±¸13;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬13;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 4 && enchant_level >= 14 && enchant_level <= 15) {
-							enchant_chance_armor = Config.¹æ¾î±¸14;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬14;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 6 && enchant_level >= 6 && enchant_level < 7) {
-							enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü»ç0;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „ì‚¬0;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 6 && enchant_level >= 7 && enchant_level < 8) {
-							enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü»ç1;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „ì‚¬1;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 6 && enchant_level >= 8 && enchant_level < 9) {
-							enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü»ç2;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „ì‚¬2;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 6 && enchant_level >= 9 && enchant_level < 10) {
-							enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü»ç3;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „ì‚¬3;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 6 && enchant_level >= 10 && enchant_level < 11) {
-							enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü»ç4;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „ì‚¬4;
 						} else if (l1iteminstance1.getItem().get_safeenchant() == 6 && enchant_level >= 11 && enchant_level < 12) {
-							enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü»ç5;
+							enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „ì‚¬5;
 						} else {
 							if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 0 && enchant_level < 1) {
-								enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü0;
+								enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „0;
 								// System.out.println("00");
 							} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 1 && enchant_level < 2) {
-								enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü1;
+								enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „1;
 								// System.out.println("11");
 							} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 2 && enchant_level < 3) {
-								enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü2;
+								enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „2;
 								// System.out.println("22");
 							} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 3 && enchant_level < 4) {
-								enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü3;
+								enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „3;
 								// System.out.println("33");
 							} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 4 && enchant_level < 5) {
-								enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü4;
+								enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „4;
 								// System.out.println("44");
 							} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 5 && enchant_level < 6) {
-								enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü5;
+								enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „5;
 								// System.out.println("55");
 							} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 6 && enchant_level < 7) {
-								enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü6;
+								enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „6;
 								// System.out.println("66");
 							} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 7 && enchant_level < 8) {
-								enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü7;
+								enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „7;
 								// System.out.println("77");
 							} else if (l1iteminstance1.getItem().get_safeenchant() == 0 && enchant_level >= 8 && enchant_level < 9) {
-								enchant_chance_armor = Config.¹æ¾î±¸¾ÈÀü8;
+								enchant_chance_armor = Config.ë°©ì–´êµ¬ì•ˆì „8;
 								// System.out.println("88");
 							} else {
 								enchant_chance_armor = 90 / ((enchant_level - safe_enchant + 1) * 2) / (enchant_level / 7 != 0 ? 1 * 2 : 1)
@@ -611,12 +611,12 @@ public class EnchantArmor extends Enchant {
 					}
 				}
 				if (pc.isGm()) {
-					pc.sendPackets(new S_SystemMessage("\\fY¼º°øÈ®·ü: [ " + enchant_chance_armor + " ]"));
-					pc.sendPackets(new S_SystemMessage("\\fYÂù½º: [ " + rnd + " ]"));
+					pc.sendPackets(new S_SystemMessage("\\fYì„±ê³µí™•ë¥ : [ " + enchant_chance_armor + " ]"));
+					pc.sendPackets(new S_SystemMessage("\\fYì°¬ìŠ¤: [ " + rnd + " ]"));
 					if (enchant_chance_armor < rnd) {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:½ÇÆĞ"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì‹¤íŒ¨"));
 					} else {
-						pc.sendPackets(new S_SystemMessage("\\fXÀÎÃ¾:¼º°ø"));
+						pc.sendPackets(new S_SystemMessage("\\fXì¸ì²¸:ì„±ê³µ"));
 					}
 				}
 
@@ -631,7 +631,7 @@ public class EnchantArmor extends Enchant {
 						pm = "+";
 					}
 					msg = (new StringBuilder()).append(pm + enchant_level).append(" ").append(item_name_id).toString();
-					// \f1%0ÀÌ%2°ú °­·ÄÇÏ°Ô%1 ºû³µ½À´Ï´Ù¸¸, ´ÙÇàÈ÷ ¹«»çÇÏ°Ô »ì¾Ò½À´Ï´Ù.
+					// \f1%0ì´%2ê³¼ ê°•ë ¬í•˜ê²Œ%1 ë¹›ë‚¬ìŠµë‹ˆë‹¤ë§Œ, ë‹¤í–‰íˆ ë¬´ì‚¬í•˜ê²Œ ì‚´ì•˜ìŠµë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(160, msg, "$252", "$248"));
 				} else {
 					if (itemId == L1ItemId.ORIM_ACCESSORY_ENCHANT_SCROLL) {
@@ -683,7 +683,7 @@ public class EnchantArmor extends Enchant {
 						pc.sendPackets(new S_ServerMessage(4056, msg));
 						return;
 					}
-					// ½º³ÀÆÛ º¸È£ ÁÖ¹®¼­
+					// ìŠ¤ëƒ…í¼ ë³´í˜¸ ì£¼ë¬¸ì„œ
 					else if (itemId == 5000551) {
 						String item_name_id = l1iteminstance1.getName();
 						String pm = "";

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -35,7 +35,7 @@ public class L1BoardAdena {
 	
 	private String _name;
 	/**
-	 * 0-ÆÇ¸ÅÁß, 1-°Å·¡Áß, 2-ÆÇ¸Å¿Ï·á
+	 * 0-íŒë§¤ì¤‘, 1-ê±°ë˜ì¤‘, 2-íŒë§¤ì™„ë£Œ
 	 */
 	public String getName() {
 		return _name;

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -48,7 +48,7 @@ public class Armor extends L1ItemInstance{
 		if(cha instanceof L1PcInstance){
 			L1PcInstance pc = (L1PcInstance)cha;
 			L1ItemInstance useItem = pc.getInventory().getItem(this.getId());
-		if (useItem.getItem().getType2() == 2) { // Á¾º°£º¹æ¾î¿ë ±â±¸
+		if (useItem.getItem().getType2() == 2) { // ì¢…ë³„ï¼šë°©ì–´ìš© ê¸°êµ¬
 			if (pc.isCrown() && useItem.getItem().isUseRoyal()
 					|| pc.isKnight() && useItem.getItem().isUseKnight() 
 					|| pc.isElf() && useItem.getItem().isUseElf() 
@@ -58,21 +58,21 @@ public class Armor extends L1ItemInstance{
 				int min = ((L1Armor) useItem.getItem()).getMinLevel();
 				int max = ((L1Armor) useItem.getItem()).getMaxLevel();
 				if (min != 0 && min > pc.getLevel()) {
-					// ÀÌ ¾ÆÀÌÅÛÀº%0·¹º§ ÀÌ»óÀÌ µÇÁö ¾ÊÀ¸¸é »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+					// ì´ ì•„ì´í…œì€%0ë ˆë²¨ ì´ìƒì´ ë˜ì§€ ì•Šìœ¼ë©´ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(318, String.valueOf(min)));
 				} else if (max != 0 && max < pc.getLevel()) {
-					// ÀÌ ¾ÆÀÌÅÛÀº%d·¹º§ ÀÌÇÏ¸¸ »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
-					// S_ServerMessage¿¡¼­´Â ÀÎ¼ö°¡ Ç¥½ÃµÇÁö ¾Ê´Â´Ù
+					// ì´ ì•„ì´í…œì€%dë ˆë²¨ ì´í•˜ë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
+					// S_ServerMessageì—ì„œëŠ” ì¸ìˆ˜ê°€ í‘œì‹œë˜ì§€ ì•ŠëŠ”ë‹¤
 					if (max < 50) { 
 						pc.sendPackets(new S_PacketBox(S_PacketBox.MSG_LEVEL_OVER, max));
 					} else {
-						pc.sendPackets(new S_SystemMessage("ÀÌ ¾ÆÀÌÅÛÀº" + max + "·¹º§ ÀÌÇÏ¸¸ »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù. "));
+						pc.sendPackets(new S_SystemMessage("ì´ ì•„ì´í…œì€" + max + "ë ˆë²¨ ì´í•˜ë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. "));
 					}
 				} else {
 					UseArmor(pc, useItem);
 				}
 			} else {
-				// \f1´ç½ÅÀÇ Å¬·¡½º¿¡¼­´Â ÀÌ ¾ÆÀÌÅÛÀº »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+				// \f1ë‹¹ì‹ ì˜ í´ë˜ìŠ¤ì—ì„œëŠ” ì´ ì•„ì´í…œì€ ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				pc.sendPackets(new S_ServerMessage(264));
 			}
 		}
@@ -82,58 +82,58 @@ public class Armor extends L1ItemInstance{
 	private void UseArmor(L1PcInstance activeChar, L1ItemInstance armor) {
 		int type = armor.getItem().getType();		
 		L1PcInventory pcInventory = activeChar.getInventory();
-		boolean equipeSpace; // Àåºñ ÇÏ´Â °³¼Ò°¡ ºñ¾î ÀÖÀ»±î
-		if (type == 9) { // ¸µÀÇ °æ¿ì
+		boolean equipeSpace; // ì¥ë¹„ í•˜ëŠ” ê°œì†Œê°€ ë¹„ì–´ ìˆì„ê¹Œ
+		if (type == 9) { // ë§ì˜ ê²½ìš°
 			equipeSpace = pcInventory.getTypeEquipped(2, 9) <= 1;
 		} else {
 			equipeSpace = pcInventory.getTypeEquipped(2, type) <= 0;
 		}
 
-		if (equipeSpace && !armor.isEquipped()) { // »ç¿ëÇÑ ¹æ¾î¿ë ±â±¸¸¦ Àåºñ ÇÏ°í ÀÖÁö ¾Ê¾Æ, ±× Àåºñ °³¼Ò°¡ ºñ¾î ÀÖ´Â °æ¿ì(ÀåÂøÀ» ½ÃµµÇÑ´Ù)
+		if (equipeSpace && !armor.isEquipped()) { // ì‚¬ìš©í•œ ë°©ì–´ìš© ê¸°êµ¬ë¥¼ ì¥ë¹„ í•˜ê³  ìˆì§€ ì•Šì•„, ê·¸ ì¥ë¹„ ê°œì†Œê°€ ë¹„ì–´ ìˆëŠ” ê²½ìš°(ì¥ì°©ì„ ì‹œë„í•œë‹¤)
 			int polyid = activeChar.getGfxId().getTempCharGfx();
 
-			if (!L1PolyMorph.isEquipableArmor(polyid, type)) { // ±× º¯½Å¿¡¼­´Â Àåºñ ºÒ°¡
+			if (!L1PolyMorph.isEquipableArmor(polyid, type)) { // ê·¸ ë³€ì‹ ì—ì„œëŠ” ì¥ë¹„ ë¶ˆê°€
 				return;
 			}
 			if (type == 7 && pcInventory.getTypeEquipped(2, 13) >= 1
 					|| type == 13 && pcInventory.getTypeEquipped(2, 7) >= 1){
-				activeChar.sendPackets(new S_ServerMessage(124)); // \f1 ¹ú½á ¹«¾ùÀÎ°¡¸¦ Àåºñ ÇÏ°í ÀÖ½À´Ï´Ù.
+				activeChar.sendPackets(new S_ServerMessage(124)); // \f1 ë²Œì¨ ë¬´ì—‡ì¸ê°€ë¥¼ ì¥ë¹„ í•˜ê³  ìˆìŠµë‹ˆë‹¤.
 				return;
 			}
 
-			if (type == 7 && activeChar.getWeapon() != null) { // ½¯µå(shield)ÀÇ °æ¿ì, ¹«±â¸¦ Àåºñ ÇÏ°í ÀÖÀ¸¸é(ÀÚ) ¾ç¼Õ ¹«±â Ã¼Å©
-				if (activeChar.getWeapon().getItem().isTwohandedWeapon() && armor.getItem().getUseType() != 13) { // ¾ç¼Õ ¹«±â					
-					activeChar.sendPackets(new S_ServerMessage(129)); // \f1¾ç¼ÕÀÇ ¹«±â¸¦ ¹«ÀåÇÑ Ã¤·Î ½¯µå(shield)¸¦ Âø¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+			if (type == 7 && activeChar.getWeapon() != null) { // ì‰´ë“œ(shield)ì˜ ê²½ìš°, ë¬´ê¸°ë¥¼ ì¥ë¹„ í•˜ê³  ìˆìœ¼ë©´(ì) ì–‘ì† ë¬´ê¸° ì²´í¬
+				if (activeChar.getWeapon().getItem().isTwohandedWeapon() && armor.getItem().getUseType() != 13) { // ì–‘ì† ë¬´ê¸°					
+					activeChar.sendPackets(new S_ServerMessage(129)); // \f1ì–‘ì†ì˜ ë¬´ê¸°ë¥¼ ë¬´ì¥í•œ ì±„ë¡œ ì‰´ë“œ(shield)ë¥¼ ì°©ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 					return;				
 				}
 			}
-			/*if (type == 3 && pcInventory.getTypeEquipped(2, 4) >= 1) { // ¼ÅÃ÷ÀÇ °æ¿ì, ¸ÁÅä¸¦ ÀÔÁö ¾ÊÀº°¡ È®ÀÎ
-				activeChar.sendPackets(new S_ServerMessage(126, "$224", "$225")); // \f1%1»ó¿¡%0¸¦ ÀÔÀ» ¼ö ¾ø½À´Ï´Ù.
+			/*if (type == 3 && pcInventory.getTypeEquipped(2, 4) >= 1) { // ì…”ì¸ ì˜ ê²½ìš°, ë§í† ë¥¼ ì…ì§€ ì•Šì€ê°€ í™•ì¸
+				activeChar.sendPackets(new S_ServerMessage(126, "$224", "$225")); // \f1%1ìƒì—%0ë¥¼ ì…ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				return;
-			} else if ((type == 3) && pcInventory.getTypeEquipped(2, 2) >= 1) { // ¼ÅÃ÷ÀÇ °æ¿ì, ¸ŞÀÏÀ» ÀÔÁö ¾ÊÀº°¡ È®ÀÎ
-				activeChar.sendPackets(new S_ServerMessage(126, "$224", "$226")); // \f1%1»ó¿¡%0¸¦ ÀÔÀ» ¼ö ¾ø½À´Ï´Ù.
+			} else if ((type == 3) && pcInventory.getTypeEquipped(2, 2) >= 1) { // ì…”ì¸ ì˜ ê²½ìš°, ë©”ì¼ì„ ì…ì§€ ì•Šì€ê°€ í™•ì¸
+				activeChar.sendPackets(new S_ServerMessage(126, "$224", "$226")); // \f1%1ìƒì—%0ë¥¼ ì…ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				return;
-			} else if ((type == 2) && pcInventory.getTypeEquipped(2, 4) >= 1) { // ¸ŞÀÏÀÇ °æ¿ì, ¸ÁÅä¸¦ ÀÔÁö ¾ÊÀº°¡ È®ÀÎ
-				activeChar.sendPackets(new S_ServerMessage(126, "$226", "$225")); // \f1%1»ó¿¡%0¸¦ ÀÔÀ» ¼ö ¾ø½À´Ï´Ù.
+			} else if ((type == 2) && pcInventory.getTypeEquipped(2, 4) >= 1) { // ë©”ì¼ì˜ ê²½ìš°, ë§í† ë¥¼ ì…ì§€ ì•Šì€ê°€ í™•ì¸
+				activeChar.sendPackets(new S_ServerMessage(126, "$226", "$225")); // \f1%1ìƒì—%0ë¥¼ ì…ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				return;
-			}*/// ¹æ¾î±¸ Âø¿ë ¼ø¼­
+			}*/// ë°©ì–´êµ¬ ì°©ìš© ìˆœì„œ
 
-			activeChar.cancelAbsoluteBarrier(); // ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+			activeChar.cancelAbsoluteBarrier(); // ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 
 			pcInventory.setEquipped(armor, true);
-		} else if (armor.isEquipped()) { // »ç¿ëÇÑ ¹æ¾î¿ë ±â±¸¸¦ Àåºñ ÇÏ°í ÀÖ¾úÀ» °æ¿ì(Å»ÂøÀ» ½ÃµµÇÑ´Ù)
-		/*	if (armor.getItem().getBless() == 2) { // ÀúÁÖÇØÁö°í ÀÖ¾úÀ» °æ¿ì
-				activeChar.sendPackets(new S_ServerMessage(150)); // \f1 ¶¿ ¼ö°¡ ¾ø½À´Ï´Ù. ÀúÁÖ¸¦ °ÉÄ¥ ¼ö ÀÖ°í ÀÖ´Â °Í °°½À´Ï´Ù.
+		} else if (armor.isEquipped()) { // ì‚¬ìš©í•œ ë°©ì–´ìš© ê¸°êµ¬ë¥¼ ì¥ë¹„ í•˜ê³  ìˆì—ˆì„ ê²½ìš°(íƒˆì°©ì„ ì‹œë„í•œë‹¤)
+		/*	if (armor.getItem().getBless() == 2) { // ì €ì£¼í•´ì§€ê³  ìˆì—ˆì„ ê²½ìš°
+				activeChar.sendPackets(new S_ServerMessage(150)); // \f1 ë—„ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤. ì €ì£¼ë¥¼ ê±¸ì¹  ìˆ˜ ìˆê³  ìˆëŠ” ê²ƒ ê°™ìŠµë‹ˆë‹¤.
 				return;
 			}
-			if (type == 3 && pcInventory.getTypeEquipped(2, 2) >= 1) { // ¼ÅÃ÷ÀÇ °æ¿ì, ¸ŞÀÏÀ» ÀÔÁö ¾ÊÀº°¡ È®ÀÎ
-				activeChar.sendPackets(new S_ServerMessage(127)); // \f1±×°ÍÀº ¹şÀ» ¼ö°¡ ¾ø½À´Ï´Ù.
+			if (type == 3 && pcInventory.getTypeEquipped(2, 2) >= 1) { // ì…”ì¸ ì˜ ê²½ìš°, ë©”ì¼ì„ ì…ì§€ ì•Šì€ê°€ í™•ì¸
+				activeChar.sendPackets(new S_ServerMessage(127)); // \f1ê·¸ê²ƒì€ ë²—ì„ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 				return;
 			} else if ((type == 2 || type == 3)
-					&& pcInventory.getTypeEquipped(2, 4) >= 1) { // ¼ÅÃ÷¿Í ¸ŞÀÏÀÇ °æ¿ì, ¸ÁÅä¸¦ ÀÔÁö ¾ÊÀº°¡ È®ÀÎ
-				activeChar.sendPackets(new S_ServerMessage(127)); // \f1±×°ÍÀº ¹şÀ» ¼ö°¡ ¾ø½À´Ï´Ù.
+					&& pcInventory.getTypeEquipped(2, 4) >= 1) { // ì…”ì¸ ì™€ ë©”ì¼ì˜ ê²½ìš°, ë§í† ë¥¼ ì…ì§€ ì•Šì€ê°€ í™•ì¸
+				activeChar.sendPackets(new S_ServerMessage(127)); // \f1ê·¸ê²ƒì€ ë²—ì„ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 				return;
-			}*/ // ¹æ¾î±¸ Âø¿ë ¼ø¼­
+			}*/ // ë°©ì–´êµ¬ ì°©ìš© ìˆœì„œ
 			if (type == 7) {
 				if (activeChar.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.SOLID_CARRIAGE)) {
 					activeChar.getSkillEffectTimerSet().removeSkillEffect(L1SkillId.SOLID_CARRIAGE);
@@ -141,14 +141,14 @@ public class Armor extends L1ItemInstance{
 			}
 			pcInventory.setEquipped(armor, false);
 		} else {
-			activeChar.sendPackets(new S_ServerMessage(124)); // \f1 ¹ú½á ¹«¾ùÀÎ°¡¸¦ Àåºñ ÇÏ°í ÀÖ½À´Ï´Ù.
+			activeChar.sendPackets(new S_ServerMessage(124)); // \f1 ë²Œì¨ ë¬´ì—‡ì¸ê°€ë¥¼ ì¥ë¹„ í•˜ê³  ìˆìŠµë‹ˆë‹¤.
 		}
 		activeChar.setCurrentHp(activeChar.getCurrentHp());
 		activeChar.setCurrentMp(activeChar.getCurrentMp());
 		activeChar.sendPackets(new S_OwnCharAttrDef(activeChar));
 		activeChar.sendPackets(new S_OwnCharStatus(activeChar));
 		activeChar.sendPackets(new S_SPMR(activeChar));
-		L1ItemDelay.onItemUse(activeChar, armor); // ¾ÆÀÌÅÛ Áö¿¬ °³½Ã
+		L1ItemDelay.onItemUse(activeChar, armor); // ì•„ì´í…œ ì§€ì—° ê°œì‹œ
 	}
 }
 

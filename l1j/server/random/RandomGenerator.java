@@ -1,4 +1,4 @@
-package l1j.server.random;
+﻿package l1j.server.random;
 
 public abstract interface RandomGenerator {
 	public abstract int nextInt();

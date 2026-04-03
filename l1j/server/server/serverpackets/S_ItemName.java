@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -29,14 +29,14 @@ public class S_ItemName extends ServerBasePacket {
 	private static final String S_ITEM_NAME = "[S] S_ItemName";
 
 	/**
-	 * ¾ÆÀÌÅÛÀÇ ÀÌ¸§À» º¯°æÇÑ´Ù. Àåºñ³ª °­È­ »óÅÂ°¡ ¹Ù²î¾úÀ» ¶§¿¡ º¸³½´Ù.
+	 * ì•„ì´í…œì˜ ì´ë¦„ì„ ë³€ê²½í•œë‹¤. ì¥ë¹„ë‚˜ ê°•í™” ìƒíƒœê°€ ë°”ë€Œì—ˆì„ ë•Œì— ë³´ë‚¸ë‹¤.
 	 */
 	public S_ItemName(L1ItemInstance item) {
 		if (item == null) {
 			return;
 		}
-		// jump¸¦ º¸´Â ÇÑ, ÀÌ Opcode´Â ¾ÆÀÌÅÛ¸íÀ» °»½Å½ÃÅ°´Â ¸ñÀûÀÎ ¸¸Å­ »ç¿ëµÇ´Â ¸ğ¾ç(Àåºñ ÈÄ³ª OE ÈÄ Àü¿ë? )
-		// ÈÄ¿¡ ¹«¾ùÀÎ°¡ µ¥ÀÌÅÍ¸¦ °è¼ÓÇØ º¸³»µµ ¸ğµÎ ¹«½ÃµÇ¾î ¹ö¸°´Ù
+		// jumpë¥¼ ë³´ëŠ” í•œ, ì´ OpcodeëŠ” ì•„ì´í…œëª…ì„ ê°±ì‹ ì‹œí‚¤ëŠ” ëª©ì ì¸ ë§Œí¼ ì‚¬ìš©ë˜ëŠ” ëª¨ì–‘(ì¥ë¹„ í›„ë‚˜ OE í›„ ì „ìš©? )
+		// í›„ì— ë¬´ì—‡ì¸ê°€ ë°ì´í„°ë¥¼ ê³„ì†í•´ ë³´ë‚´ë„ ëª¨ë‘ ë¬´ì‹œë˜ì–´ ë²„ë¦°ë‹¤
 		writeC(Opcodes.S_OPCODE_ITEMNAME);
 		writeD(item.getId());
 		writeS(item.getViewName());

@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -66,21 +66,21 @@ private static Logger _log = Logger.getLogger(CraftListTable.class.getName());
 					
 					CraftMeterialTemp metertemp = new CraftMeterialTemp();
 					for(String tarr : temparr) {
-						if(tarr.startsWith("ÀÌ¸§:")) { //ÀÌ¸§Àº Á¦¿ÜÇÑ´Ù.
+						if(tarr.startsWith("ì´ë¦„:")) { //ì´ë¦„ì€ ì œì™¸í•œë‹¤.
 							continue;
 						}
 						
-						if(tarr.startsWith("¾ÆÀÌÅÛ¹øÈ£")) {
-							String textTemp = tarr.replace("¾ÆÀÌÅÛ¹øÈ£:", "");
+						if(tarr.startsWith("ì•„ì´í…œë²ˆí˜¸")) {
+							String textTemp = tarr.replace("ì•„ì´í…œë²ˆí˜¸:", "");
 							metertemp.itemid = Integer.parseInt(textTemp);
-						}else if(tarr.startsWith("¼ö·®")) {
-							String textTemp = tarr.replace("¼ö·®:", "");
+						}else if(tarr.startsWith("ìˆ˜ëŸ‰")) {
+							String textTemp = tarr.replace("ìˆ˜ëŸ‰:", "");
 							metertemp.count = Integer.parseInt(textTemp);
-						}else if(tarr.startsWith("ÀÎÃ¦Æ®")) {
-							String textTemp = tarr.replace("ÀÎÃ¦Æ®:", "");
+						}else if(tarr.startsWith("ì¸ì±ˆíŠ¸")) {
+							String textTemp = tarr.replace("ì¸ì±ˆíŠ¸:", "");
 							metertemp.enchant = Integer.parseInt(textTemp);
-						}else if(tarr.startsWith("Ãàº¹")) {
-							String textTemp = tarr.replace("Ãàº¹:", "");
+						}else if(tarr.startsWith("ì¶•ë³µ")) {
+							String textTemp = tarr.replace("ì¶•ë³µ:", "");
 							metertemp.bless = Integer.parseInt(textTemp);
 						}
 						
@@ -109,10 +109,10 @@ private static Logger _log = Logger.getLogger(CraftListTable.class.getName());
 //					System.out.println("temp.create_chance: " + temp.create_chance);
 //					
 //					for(CraftMeterialTemp mtemp : temp._MeterialList) {
-//						System.out.println("Àç·á¹øÈ£: " + mtemp.itemid);
-//						System.out.println("Àç·á¼ö·®: " + mtemp.count);
-//						System.out.println("Àç·áÀÎÃ¦: " + mtemp.enchant);
-//						System.out.println("Àç·áÃàº¹: " + mtemp.bless);
+//						System.out.println("ì¬ë£Œë²ˆí˜¸: " + mtemp.itemid);
+//						System.out.println("ì¬ë£Œìˆ˜ëŸ‰: " + mtemp.count);
+//						System.out.println("ì¬ë£Œì¸ì±ˆ: " + mtemp.enchant);
+//						System.out.println("ì¬ë£Œì¶•ë³µ: " + mtemp.bless);
 //					}
 //				}
 //			}
@@ -146,7 +146,7 @@ private static Logger _log = Logger.getLogger(CraftListTable.class.getName());
 	}
 	
 	/*
-	 * Á¦ÀÛÁ¤º¸
+	 * ì œì‘ì •ë³´
 	 */
 	public class CraftTemp{
 		public int order_id;
@@ -161,7 +161,7 @@ private static Logger _log = Logger.getLogger(CraftListTable.class.getName());
 	}
 	
 	/*
-	 * Àç·áÁ¤º¸
+	 * ì¬ë£Œì •ë³´
 	 */
 	public class CraftMeterialTemp{
 		public int itemid;

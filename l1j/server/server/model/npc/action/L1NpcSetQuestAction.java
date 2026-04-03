@@ -1,4 +1,4 @@
-package l1j.server.server.model.npc.action;
+﻿package l1j.server.server.model.npc.action;
 
 import org.w3c.dom.Element;
 

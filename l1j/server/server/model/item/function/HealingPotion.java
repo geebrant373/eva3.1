@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -55,25 +55,25 @@ public class HealingPotion extends L1ItemInstance{
 			int delay_id = 0;
 			delay_id = ((L1EtcItem) useItem.getItem()).get_delayid();
 			
-			if (delay_id != 0) { // Áö¿¬ ¼³Á¤ ÀÖ¾î
+			if (delay_id != 0) { // ì§€ì—° ì„¤ì • ìˆì–´
 				if (pc.hasItemDelay(delay_id) == true) {
 					return;
 				}
 			}
 			switch(itemId){
-			case 40010: //»¡
-			case 40019://ÁÖ
+			case 40010: //ë¹¨
+			case 40019://ì£¼
 			case 40029://?
-				UseHeallingPotion(pc, Config.»¡°»ÀÌÈ¸º¹·®, 189);
+				UseHeallingPotion(pc, Config.ë¹¨ê°±ì´íšŒë³µëŸ‰, 189);
 				break;
-			case 40011: //³ó»¡
-			case 40020: //³óÁÖ
-				UseHeallingPotion(pc, Config.ÁÖÈ«ÀÌÈ¸º¹·®, 194);
+			case 40011: //ë†ë¹¨
+			case 40020: //ë†ì£¼
+				UseHeallingPotion(pc, Config.ì£¼í™ì´íšŒë³µëŸ‰, 194);
 				break;
-			case 40012://¸»
+			case 40012://ë§
 			case 40021:
 			case 435000:
-				UseHeallingPotion(pc, Config.¸¼°»ÀÌÈ¸º¹·®, 197);
+				UseHeallingPotion(pc, Config.ë§‘ê°±ì´íšŒë³µëŸ‰, 197);
 				break;
 			case 40022:
 			case 41141:
@@ -152,22 +152,22 @@ public class HealingPotion extends L1ItemInstance{
 				pc.setAutoPotion(false);
 				pc.setHealItemNum(0);
 				pc.setHealVal(0);
-				pc.sendPackets(new S_SystemMessage("¼öµ¿ ¹°¾à »ç¿ëÀ¸·Î ÀÎÇØ ÀÚµ¿¹°¾àÀ» Á¾·áÇÕ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ìˆ˜ë™ ë¬¼ì•½ ì‚¬ìš©ìœ¼ë¡œ ì¸í•´ ìë™ë¬¼ì•½ì„ ì¢…ë£Œí•©ë‹ˆë‹¤."));
 			}
 			pc.getInventory().removeItem(useItem, 1);
-			L1ItemDelay.onItemUse(pc, useItem); // ¾ÆÀÌÅÛ Áö¿¬ °³½Ã
+			L1ItemDelay.onItemUse(pc, useItem); // ì•„ì´í…œ ì§€ì—° ê°œì‹œ
 		}
 	}
 	
 	public static void UseHeallingPotion(L1PcInstance pc, int healHp, int gfxid) {
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(71) == true) { // µğÄÉÀÌÆ÷¼Ç »óÅÂ
-			pc.sendPackets(new S_ServerMessage(698)); // ¸¶·Â¿¡ ÀÇÇØ ¾Æ¹«°Íµµ ¸¶½Ç ¼ö°¡ ¾ø½À´Ï´Ù.
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(71) == true) { // ë””ì¼€ì´í¬ì…˜ ìƒíƒœ
+			pc.sendPackets(new S_ServerMessage(698)); // ë§ˆë ¥ì— ì˜í•´ ì•„ë¬´ê²ƒë„ ë§ˆì‹¤ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 		pc.cancelAbsoluteBarrier();
 		pc.sendPackets(new S_SkillSound(pc.getId(), gfxid));
 		Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), gfxid));
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(POLLUTE_WATER)) { // Æ÷¸£Æ®¿öÅ¸ÁßÀº È¸º¹·®1/2¹è
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(POLLUTE_WATER)) { // í¬ë¥´íŠ¸ì›Œíƒ€ì¤‘ì€ íšŒë³µëŸ‰1/2ë°°
 			healHp /= 2;
 		}
 		pc.setCurrentHp(pc.getCurrentHp() + healHp);

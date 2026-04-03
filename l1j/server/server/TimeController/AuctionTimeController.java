@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -52,7 +52,7 @@ public class AuctionTimeController extends Thread {
 	}
 
 	public void run() {
-		System.out.println(AuctionTimeController.class.getName()  + " ½ÃÀÛ");
+		System.out.println(AuctionTimeController.class.getName()  + " ì‹œì‘");
 		try {
 			while (true) {
 				checkAuctionDeadline();
@@ -84,15 +84,15 @@ public class AuctionTimeController extends Thread {
 		String bidder = board.getBidder();
 		int bidderId = board.getBidderId();
 
-		if (oldOwnerId != 0 && bidderId != 0) { // ÀÌÀüÀÇ ¼ÒÀ¯ÀÚ ÀÖ¾î¡¤³«ÂûÀÚ ÀÖ¾î
+		if (oldOwnerId != 0 && bidderId != 0) { // ì´ì „ì˜ ì†Œìœ ì ìˆì–´Â·ë‚™ì°°ì ìˆì–´
 			L1PcInstance oldOwnerPc = (L1PcInstance) L1World.getInstance().findObject(oldOwnerId);
 			int payPrice = (int) (price * 0.9);
-			if (oldOwnerPc != null) { // ÀÌÀüÀÇ ¼ÒÀ¯ÀÚ°¡ ¿Â¶óÀÎÁß
+			if (oldOwnerPc != null) { // ì´ì „ì˜ ì†Œìœ ìê°€ ì˜¨ë¼ì¸ì¤‘
 				oldOwnerPc.getInventory().storeItem(L1ItemId.ADENA, payPrice);
-				// ´ç½ÅÀÌ ¼ÒÀ¯ÇÏ°í ÀÖ´ø ÁıÀÌ ÃÖÁ¾ °¡°İ%1¾Æµ¥³ª·Î ³«ÂûµÇ¾ú½À´Ï´Ù.%n
-				// ¼ö¼ö·á10%%¸¦ Á¦¿ÜÇÑ ³ª¸ÓÁöÀÇ ±İ¾×%0¾Æµ¥³ª¸¦ µå¸³´Ï´Ù.%n °¨»çÇÕ´Ï´Ù.%n%n
+				// ë‹¹ì‹ ì´ ì†Œìœ í•˜ê³  ìˆë˜ ì§‘ì´ ìµœì¢… ê°€ê²©%1ì•„ë°ë‚˜ë¡œ ë‚™ì°°ë˜ì—ˆìŠµë‹ˆë‹¤.%n
+				// ìˆ˜ìˆ˜ë£Œ10%%ë¥¼ ì œì™¸í•œ ë‚˜ë¨¸ì§€ì˜ ê¸ˆì•¡%0ì•„ë°ë‚˜ë¥¼ ë“œë¦½ë‹ˆë‹¤.%n ê°ì‚¬í•©ë‹ˆë‹¤.%n%n
 				oldOwnerPc.sendPackets(new S_ServerMessage(527, String.valueOf(payPrice)));
-			} else { // ÀÌÀüÀÇ ¼ÒÀ¯ÀÚ°¡ ¿ÀÇÁ ¶óÀÎÁß
+			} else { // ì´ì „ì˜ ì†Œìœ ìê°€ ì˜¤í”„ ë¼ì¸ì¤‘
 				L1ItemInstance item = ItemTable.getInstance().createItem(L1ItemId.ADENA);
 				item.setCount(payPrice);
 				try {
@@ -104,33 +104,33 @@ public class AuctionTimeController extends Thread {
 			}
 
 			L1PcInstance bidderPc = (L1PcInstance) L1World.getInstance().findObject(bidderId);
-			if (bidderPc != null) { // ³«ÂûÀÚ°¡ ¿Â¶óÀÎÁß
-				// ÃàÇÏÇÕ´Ï´Ù.%n´ç½ÅÀÌ Âü°¡µÈ °æ¸Å´Â ÃÖÁ¾ °¡°İ%0¾Æµ¥³ªÀÇ °¡°İÀ¸·Î ³«ÂûµÇ¾ú½À´Ï´Ù.%n
-				// ¸ğ¾çÀÌ ±¸ÀÔÇÏ½Å ÁıÀº °ğ¹Ù·Î ÀÌ¿ëÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.%n °¨»çÇÕ´Ï´Ù.%n%n
+			if (bidderPc != null) { // ë‚™ì°°ìê°€ ì˜¨ë¼ì¸ì¤‘
+				// ì¶•í•˜í•©ë‹ˆë‹¤.%në‹¹ì‹ ì´ ì°¸ê°€ëœ ê²½ë§¤ëŠ” ìµœì¢… ê°€ê²©%0ì•„ë°ë‚˜ì˜ ê°€ê²©ìœ¼ë¡œ ë‚™ì°°ë˜ì—ˆìŠµë‹ˆë‹¤.%n
+				// ëª¨ì–‘ì´ êµ¬ì…í•˜ì‹  ì§‘ì€ ê³§ë°”ë¡œ ì´ìš©í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.%n ê°ì‚¬í•©ë‹ˆë‹¤.%n%n
 				bidderPc.sendPackets(new S_ServerMessage(524, String.valueOf(price), bidder));
 			}
 			deleteHouseInfo(houseId);
 			setHouseInfo(houseId, bidderId);
 			deleteNote(houseId);
-		} else if (oldOwnerId == 0 && bidderId != 0) { // ÀÌÀüÀÇ ¼ÒÀ¯ÀÚ ¾øÀ½¡¤³«ÂûÀÚ ÀÖ¾î
+		} else if (oldOwnerId == 0 && bidderId != 0) { // ì´ì „ì˜ ì†Œìœ ì ì—†ìŒÂ·ë‚™ì°°ì ìˆì–´
 			L1PcInstance bidderPc = (L1PcInstance) L1World.getInstance().findObject(bidderId);
-			if (bidderPc != null) { // ³«ÂûÀÚ°¡ ¿Â¶óÀÎÁß
-				// ÃàÇÏÇÕ´Ï´Ù.%n´ç½ÅÀÌ Âü°¡µÈ °æ¸Å´Â ÃÖÁ¾ °¡°İ%0¾Æµ¥³ªÀÇ °¡°İÀ¸·Î ³«ÂûµÇ¾ú½À´Ï´Ù.%n
-				// ¸ğ¾çÀÌ ±¸ÀÔÇÏ½Å ÁıÀº °ğ¹Ù·Î ÀÌ¿ëÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.%n °¨»çÇÕ´Ï´Ù.%n%n
+			if (bidderPc != null) { // ë‚™ì°°ìê°€ ì˜¨ë¼ì¸ì¤‘
+				// ì¶•í•˜í•©ë‹ˆë‹¤.%në‹¹ì‹ ì´ ì°¸ê°€ëœ ê²½ë§¤ëŠ” ìµœì¢… ê°€ê²©%0ì•„ë°ë‚˜ì˜ ê°€ê²©ìœ¼ë¡œ ë‚™ì°°ë˜ì—ˆìŠµë‹ˆë‹¤.%n
+				// ëª¨ì–‘ì´ êµ¬ì…í•˜ì‹  ì§‘ì€ ê³§ë°”ë¡œ ì´ìš©í•˜ì‹¤ ìˆ˜ ìˆìŠµë‹ˆë‹¤.%n ê°ì‚¬í•©ë‹ˆë‹¤.%n%n
 				bidderPc.sendPackets(new S_ServerMessage(524, String.valueOf(price), bidder));
 			}
 			setHouseInfo(houseId, bidderId);
 			deleteNote(houseId);
-		} else if (oldOwnerId != 0 && bidderId == 0) { // ÀÌÀüÀÇ ¼ÒÀ¯ÀÚ ÀÖ¾î¡¤³«ÂûÀÚ ¾øÀ½
+		} else if (oldOwnerId != 0 && bidderId == 0) { // ì´ì „ì˜ ì†Œìœ ì ìˆì–´Â·ë‚™ì°°ì ì—†ìŒ
 			L1PcInstance oldOwnerPc = (L1PcInstance) L1World.getInstance().findObject(oldOwnerId);
-			if (oldOwnerPc != null) { // ÀÌÀüÀÇ ¼ÒÀ¯ÀÚ°¡ ¿Â¶óÀÎÁß
-				// ´ç½ÅÀÌ ½ÅÃ» ÇÏ½Å °æ¸Å´Â, °æ¸Å ±â°£³»¿¡ Á¦½ÃÇÑ ±İ¾× ÀÌ»ó¿¡¼­ÀÇ ÁöºÒÀ» Ç¥¸íÇÏ´Â °ÍÀÌ ³ªÅ¸³ªÁö ¾Ê¾Ò±â (À§ÇØ)¶§¹®¿¡, °á±¹ »èÁ¦µÇ¾ú½À´Ï´Ù.%n
-				// µû¶ó¼­, ¼ÒÀ¯±ÇÀÌ ´ç½Å¿¡°Ô µÇµ¹·ÁÁø °ÍÀ» ¾Ë·Á µå¸®°Ú½À´Ï´Ù.%n °¨»çÇÕ´Ï´Ù.%n%n
+			if (oldOwnerPc != null) { // ì´ì „ì˜ ì†Œìœ ìê°€ ì˜¨ë¼ì¸ì¤‘
+				// ë‹¹ì‹ ì´ ì‹ ì²­ í•˜ì‹  ê²½ë§¤ëŠ”, ê²½ë§¤ ê¸°ê°„ë‚´ì— ì œì‹œí•œ ê¸ˆì•¡ ì´ìƒì—ì„œì˜ ì§€ë¶ˆì„ í‘œëª…í•˜ëŠ” ê²ƒì´ ë‚˜íƒ€ë‚˜ì§€ ì•Šì•˜ê¸° (ìœ„í•´)ë•Œë¬¸ì—, ê²°êµ­ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤.%n
+				// ë”°ë¼ì„œ, ì†Œìœ ê¶Œì´ ë‹¹ì‹ ì—ê²Œ ë˜ëŒë ¤ì§„ ê²ƒì„ ì•Œë ¤ ë“œë¦¬ê² ìŠµë‹ˆë‹¤.%n ê°ì‚¬í•©ë‹ˆë‹¤.%n%n
 				oldOwnerPc.sendPackets(new S_ServerMessage(528));
 			}
 			deleteNote(houseId);
-		} else if (oldOwnerId == 0 && bidderId == 0) { // ÀÌÀüÀÇ ¼ÒÀ¯ÀÚ ¾øÀ½¡¤³«ÂûÀÚ ¾øÀ½
-			// ¸¶°¨À» 5ÀÏ ÈÄ·Î ¼³Á¤ÇØ ÀçÂ÷ °æ¸Å¿¡ ºÙÀÎ´Ù
+		} else if (oldOwnerId == 0 && bidderId == 0) { // ì´ì „ì˜ ì†Œìœ ì ì—†ìŒÂ·ë‚™ì°°ì ì—†ìŒ
+			// ë§ˆê°ì„ 5ì¼ í›„ë¡œ ì„¤ì •í•´ ì¬ì°¨ ê²½ë§¤ì— ë¶™ì¸ë‹¤
 			Calendar cal = getRealTime();
 			cal.add(Calendar.DATE, 5); 
 			cal.set(Calendar.MINUTE, 0); 
@@ -142,7 +142,7 @@ public class AuctionTimeController extends Thread {
 	}
 
 	/**
-	 * ÀÌÀüÀÇ ¼ÒÀ¯ÀÚÀÇ ¾ÆÁöÆ®¸¦ Áö¿î´Ù
+	 * ì´ì „ì˜ ì†Œìœ ìì˜ ì•„ì§€íŠ¸ë¥¼ ì§€ìš´ë‹¤
 	 * 
 	 * @param houseId
 	 * 
@@ -158,7 +158,7 @@ public class AuctionTimeController extends Thread {
 	}
 
 	/**
-	 * ³«ÂûÀÚÀÇ ¾ÆÁöÆ®¸¦ ¼³Á¤ÇÑ´Ù
+	 * ë‚™ì°°ìì˜ ì•„ì§€íŠ¸ë¥¼ ì„¤ì •í•œë‹¤
 	 * 
 	 * @param houseId
 	 *            bidderId
@@ -176,24 +176,24 @@ public class AuctionTimeController extends Thread {
 	}
 
 	/**
-	 * ¾ÆÁöÆ®ÀÇ °æ¸Å »óÅÂ¸¦ OFF·Î ¼³Á¤ÇØ, °æ¸Å °Ô½ÃÆÇÀ¸·ÎºÎÅÍ Áö¿î´Ù
+	 * ì•„ì§€íŠ¸ì˜ ê²½ë§¤ ìƒíƒœë¥¼ OFFë¡œ ì„¤ì •í•´, ê²½ë§¤ ê²Œì‹œíŒìœ¼ë¡œë¶€í„° ì§€ìš´ë‹¤
 	 * 
 	 * @param houseId
 	 * 
 	 * @return
 	 */
 	private void deleteNote(int houseId) {
-		// ¾ÆÁöÆ®ÀÇ °æ¸Å »óÅÂ¸¦ OFF·Î ¼³Á¤ÇÑ´Ù
+		// ì•„ì§€íŠ¸ì˜ ê²½ë§¤ ìƒíƒœë¥¼ OFFë¡œ ì„¤ì •í•œë‹¤
 		L1House house = HouseTable.getInstance().getHouseTable(houseId);
 		house.setOnSale(false);
 		Calendar cal = getRealTime();
 		cal.add(Calendar.DATE, Config.HOUSE_TAX_INTERVAL);
-		cal.set(Calendar.MINUTE, 0); // ºĞ , ÃÊ´Â Àß¶ó¼­ ¹ö¸²
+		cal.set(Calendar.MINUTE, 0); // ë¶„ , ì´ˆëŠ” ì˜ë¼ì„œ ë²„ë¦¼
 		cal.set(Calendar.SECOND, 0);
 		house.setTaxDeadline(cal);
 		HouseTable.getInstance().updateHouse(house);
 
-		// °æ¸Å °Ô½ÃÆÇÀ¸·ÎºÎÅÍ Áö¿î´Ù
+		// ê²½ë§¤ ê²Œì‹œíŒìœ¼ë¡œë¶€í„° ì§€ìš´ë‹¤
 		AuctionBoardTable boardTable = new AuctionBoardTable();
 		boardTable.deleteAuctionBoard(houseId);
 	}

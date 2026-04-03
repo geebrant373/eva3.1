@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -39,11 +39,11 @@ public class LiveTimeController extends Thread {
 	}
 
 	public void run() {
-		System.out.println(LiveTimeController.class.getName() + " ½ÃÀÛ");
+		System.out.println(LiveTimeController.class.getName() + " ì‹œìž‘");
 		try {
 			while (true) {
-				Thread.sleep(1000); // 1ÃÊ
-				Live();// 1ÃÊ¸¶´Ù ½ÇÇà
+				Thread.sleep(1000); // 1ì´ˆ
+				Live();// 1ì´ˆë§ˆë‹¤ ì‹¤í–‰
 			}
 		} catch (Exception e1) {
 		}

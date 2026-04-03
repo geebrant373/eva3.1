@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -48,14 +48,14 @@ public class SpecialMapTable {
 			rs = pstm.executeQuery();
 			while(rs.next()) {
 				L1SpecialMap SM = new L1SpecialMap();
-				int mapId = rs.getInt("¸Ê¹øÈ£");
-				SM.setName(rs.getString("¸ÊÀÌ¸§"));
+				int mapId = rs.getInt("ë§µë²ˆí˜¸");
+				SM.setName(rs.getString("ë§µì´ë¦„"));
 				
-				double dmgRate = rs.getInt("Ãß°¡µ¥¹ÌÁö¹èÀ²") * 0.01;
+				double dmgRate = rs.getInt("ì¶”ê°€ë°ë¯¸ì§€ë°°ìœ¨") * 0.01;
 				
 				SM.setDmgRate(dmgRate);
-				SM.setDmgReduction(rs.getInt("µ¥¹ÌÁö¸®´ö¼Ç"));
-				SM.setMdmgReduction(rs.getInt("¸¶¹ıµ¥¹ÌÁö°¨¼Ò"));
+				SM.setDmgReduction(rs.getInt("ë°ë¯¸ì§€ë¦¬ë•ì…˜"));
+				SM.setMdmgReduction(rs.getInt("ë§ˆë²•ë°ë¯¸ì§€ê°ì†Œ"));
 				_list.put(mapId, SM);
 			}
 			

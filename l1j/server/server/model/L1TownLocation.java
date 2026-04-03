@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -209,103 +209,103 @@ public class L1TownLocation {
 			loc[1] = GETBACK_LOC_GLUDIO[rnd].getY();
 			loc[2] = GETBACK_MAP_GLUDIO;}
 			break;
-		case TOWNID_ORCISH_FOREST:{ // ø¿≈©∏∂¿ª
+		case TOWNID_ORCISH_FOREST:{ // Ïò§ÌÅ¨ÎßàÏùÑ
 			int rnd = random.nextInt(GETBACK_LOC_ORCISH_FOREST.length);
 			loc[0] = GETBACK_LOC_ORCISH_FOREST[rnd].getX();
 			loc[1] = GETBACK_LOC_ORCISH_FOREST[rnd].getY();
 			loc[2] = GETBACK_MAP_ORCISH_FOREST;}
 			break;
-		case TOWNID_WINDAWOOD:{ // ¿©¥ŸøÏµÂ
+		case TOWNID_WINDAWOOD:{ // ÏúàÎã§Ïö∞Îìú
 			int rnd = random.nextInt(GETBACK_LOC_WINDAWOOD.length);
 			loc[0] = GETBACK_LOC_WINDAWOOD[rnd].getX();
 			loc[1] = GETBACK_LOC_WINDAWOOD[rnd].getY();
 			loc[2] = GETBACK_MAP_WINDAWOOD;}
 			break;
-		case TOWNID_GIRAN:{ // ±‚∂ı
+		case TOWNID_GIRAN:{ // Í∏∞ÎûÄ
 			int rnd = random.nextInt(GETBACK_LOC_GIRAN.length);
 			loc[0] = GETBACK_LOC_GIRAN[rnd].getX();
 			loc[1] = GETBACK_LOC_GIRAN[rnd].getY();
 			loc[2] = GETBACK_MAP_GIRAN;}
 			break;
-		case TOWNID_HEINE:{ // «œ¿Ã≥◊
+		case TOWNID_HEINE:{ // ÌïòÏù¥ÎÑ§
 			int rnd = random.nextInt(GETBACK_LOC_HEINE.length);
 			loc[0] = GETBACK_LOC_HEINE[rnd].getX();
 			loc[1] = GETBACK_LOC_HEINE[rnd].getY();
 			loc[2] = GETBACK_MAP_HEINE;}
 			break;
-		case TOWNID_WERLDAN:{ // ¿£¥¯
+		case TOWNID_WERLDAN:{ // Ïõ∞Îçò
 			int rnd = random.nextInt(GETBACK_LOC_WERLDAN.length);
 			loc[0] = GETBACK_LOC_WERLDAN[rnd].getX();
 			loc[1] = GETBACK_LOC_WERLDAN[rnd].getY();
 			loc[2] = GETBACK_MAP_WERLDAN;}
 			break;
-		case TOWNID_OREN:{ // ø¿∑ª
+		case TOWNID_OREN:{ // Ïò§Î†å
 			int rnd = random.nextInt(GETBACK_LOC_OREN.length);
 			loc[0] = GETBACK_LOC_OREN[rnd].getX();
 			loc[1] = GETBACK_LOC_OREN[rnd].getY();
 			loc[2] = GETBACK_MAP_OREN;}
 			break;
-		case TOWNID_ELVEN_FOREST:{ // ø‰¡§Ω£
+		case TOWNID_ELVEN_FOREST:{ // ÏöîÏ†ïÏà≤
 			int rnd = random.nextInt(GETBACK_LOC_ELVEN_FOREST.length);
 			loc[0] = GETBACK_LOC_ELVEN_FOREST[rnd].getX();
 			loc[1] = GETBACK_LOC_ELVEN_FOREST[rnd].getY();
 			loc[2] = GETBACK_MAP_ELVEN_FOREST;}
 			break;
-		case TOWNID_ADEN:{ // æ∆µß
+		case TOWNID_ADEN:{ // ÏïÑÎç¥
 			int rnd = random.nextInt(GETBACK_LOC_ADEN.length);
 			loc[0] = GETBACK_LOC_ADEN[rnd].getX();
 			loc[1] = GETBACK_LOC_ADEN[rnd].getY();
 			loc[2] = GETBACK_MAP_ADEN;}
 			break;
-		case TOWNID_SILENT_CAVERN:{ // ¿∫±‚ªÁ
+		case TOWNID_SILENT_CAVERN:{ // ÏùÄÍ∏∞ÏÇ¨
 			int rnd = random.nextInt(GETBACK_LOC_SILENT_CAVERN.length);
 			loc[0] = GETBACK_LOC_SILENT_CAVERN[rnd].getX();
 			loc[1] = GETBACK_LOC_SILENT_CAVERN[rnd].getY();
 			loc[2] = GETBACK_MAP_SILENT_CAVERN;}
 			break;
-		case TOWNID_OUM_DUNGEON:{ // ø¿øÚ¥¯¿¸
+		case TOWNID_OUM_DUNGEON:{ // Ïò§ÏõÄÎçòÏ†Ñ
 			int rnd = random.nextInt(GETBACK_LOC_OUM_DUNGEON.length);
 			loc[0] = GETBACK_LOC_OUM_DUNGEON[rnd].getX();
 			loc[1] = GETBACK_LOC_OUM_DUNGEON[rnd].getY();
 			loc[2] = GETBACK_MAP_OUM_DUNGEON;}
 			break;
-		case TOWNID_RESISTANCE:{ // ∏Ù∂Û
+		case TOWNID_RESISTANCE:{ // Î™∞Îùº
 			int rnd = random.nextInt(GETBACK_LOC_RESISTANCE.length);
 			loc[0] = GETBACK_LOC_RESISTANCE[rnd].getX();
 			loc[1] = GETBACK_LOC_RESISTANCE[rnd].getY();
 			loc[2] = GETBACK_MAP_RESISTANCE;}
 			break;
-		case TOWNID_PIRATE_ISLAND:{ // ∏Ù∂Û
+		case TOWNID_PIRATE_ISLAND:{ // Î™∞Îùº
 			int rnd = random.nextInt(GETBACK_LOC_PIRATE_ISLAND.length);
 			loc[0] = GETBACK_LOC_PIRATE_ISLAND[rnd].getX();
 			loc[1] = GETBACK_LOC_PIRATE_ISLAND[rnd].getY();
 			loc[2] = GETBACK_MAP_PIRATE_ISLAND;}
 			break;
-		case TOWNID_RECLUSE_VILLAGE:{ // ∏Ù∂Û
+		case TOWNID_RECLUSE_VILLAGE:{ // Î™∞Îùº
 			int rnd = random.nextInt(GETBACK_LOC_RECLUSE_VILLAGE.length);
 			loc[0] = GETBACK_LOC_RECLUSE_VILLAGE[rnd].getX();
 			loc[1] = GETBACK_LOC_RECLUSE_VILLAGE[rnd].getY();
 			loc[2] = GETBACK_MAP_RECLUSE_VILLAGE;}
 			break;
-		case TOWNID_SILVERIA_VILLAGE:{ // Ω«∫£∏Ææ∆
+		case TOWNID_SILVERIA_VILLAGE:{ // Ïã§Î≤†Î¶¨ÏïÑ
 			int rnd = random.nextInt(GETBACK_LOC_SILVERIA_VILLAGE.length);
 			loc[0] = GETBACK_LOC_SILVERIA_VILLAGE[rnd].getX();
 			loc[1] = GETBACK_LOC_SILVERIA_VILLAGE[rnd].getY();
 			loc[2] = GETBACK_MAP_SILVERIA_VILLAGE;}
 			break;
-		case TOWNID_BEHIMOS_VILLAGE:{ // Ω«∫£∏Ææ∆
+		case TOWNID_BEHIMOS_VILLAGE:{ // Ïã§Î≤†Î¶¨ÏïÑ
 			int rnd = random.nextInt(GETBACK_LOC_BEHIMOS_VILLAGE.length);
 			loc[0] = GETBACK_LOC_BEHIMOS_VILLAGE[rnd].getX();
 			loc[1] = GETBACK_LOC_BEHIMOS_VILLAGE[rnd].getY();
 			loc[2] = GETBACK_MAP_BEHIMOS_VILLAGE;}
 			break;
-		case TOWNID_FEATHER_VILLAGE:{ // ºˆªÛ«—∏∂¿ª
+		case TOWNID_FEATHER_VILLAGE:{ // ÏàòÏÉÅÌïúÎßàÏùÑ
 			int rnd = random.nextInt(GETBACK_LOC_FEATHER_VILLAGE.length);
 			loc[0] = GETBACK_LOC_FEATHER_VILLAGE[rnd].getX();
 			loc[1] = GETBACK_LOC_FEATHER_VILLAGE[rnd].getY();
 			loc[2] = GETBACK_MAP_FEATHER_VILLAGE;}
 			break;
-		default:{ // ¿∫±‚ªÁ
+		default:{ // ÏùÄÍ∏∞ÏÇ¨
 			int rnd = random.nextInt(GETBACK_LOC_SILVER_KNIGHT_TOWN.length);
 			loc[0] = GETBACK_LOC_SILVER_KNIGHT_TOWN[rnd].getX();
 			loc[1] = GETBACK_LOC_SILVER_KNIGHT_TOWN[rnd].getY();
@@ -416,7 +416,7 @@ public class L1TownLocation {
 		case 70045: // 
 		case 70044: // 
 		case 70664: // 
-		case 4200002:	// ø°πŸ √ﬂ∞°π∞«∞ªÛ¡°
+		case 4200002:	// ÏóêÎ∞î Ï∂îÍ∞ÄÎ¨ºÌíàÏÉÅÏ†ê
 			town_id = TOWNID_WERLDAN;
 			break;
 

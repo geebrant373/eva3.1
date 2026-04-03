@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -64,13 +64,13 @@ public class C_BoardWrite extends ClientBasePacket {
 					if (checkdragonkey(pc)) {
 						L1ItemInstance dragonkey = pc.getInventory().findItemId(L1ItemId.DRAGON_KEY);
 						BoardTable.getInstance().writeDragonKey(pc, dragonkey, date, board.getNpcId());
-						pc.sendPackets(new S_ServerMessage(1567));// µî·ÏµÇ¾ú´Ù
+						pc.sendPackets(new S_ServerMessage(1567));// ë“±ë¡ë˜ì—ˆë‹¤
 					} else {
 						return;
 					}
 				} else {
 					switch (board.getNpcId()) {
-					case 80006: // GM ¼­¹öÁ¤º¸°Ô½ÃÆÇ board_posts_notice
+					case 80006: // GM ì„œë²„ì •ë³´ê²Œì‹œíŒ board_posts_notice
 					case 81126:
 					case 81127:
 					case 900001609:
@@ -82,7 +82,7 @@ public class C_BoardWrite extends ClientBasePacket {
 					case 900009647:
 					case 900009648:
 						if (pc.getAccessLevel() != Config.GMCODE) {
-							pc.sendPackets(new S_SystemMessage("¿î¿µÀÚ Àü¿ë °Ô½ÃÆÇ ÀÔ´Ï´Ù."));
+							pc.sendPackets(new S_SystemMessage("ìš´ì˜ì ì „ìš© ê²Œì‹œíŒ ì…ë‹ˆë‹¤."));
 							return;
 						}
 						break;
@@ -96,15 +96,15 @@ public class C_BoardWrite extends ClientBasePacket {
 					} else if (board.getNpcId() == 900009643) {
 						L1BoardPost.createGM3(pc.getName(), title, content);
 					} else if (board.getNpcId() == 900009644) {
-						L1BoardPost.createGM»ç³ÉÅÍÁ¤º¸(pc.getName(), title, content);
+						L1BoardPost.createGMì‚¬ëƒ¥í„°ì •ë³´(pc.getName(), title, content);
 					} else if (board.getNpcId() == 900009645) {
-						L1BoardPost.createGMº¸½ºÁ¤º¸(pc.getName(), title, content);
+						L1BoardPost.createGMë³´ìŠ¤ì •ë³´(pc.getName(), title, content);
 					} else if (board.getNpcId() == 900009646) {
-						L1BoardPost.createGM¹«±âÁ¤º¸(pc.getName(), title, content);
+						L1BoardPost.createGMë¬´ê¸°ì •ë³´(pc.getName(), title, content);
 					} else if (board.getNpcId() == 900009647) {
-						L1BoardPost.createGM¹æ¾î±¸Á¤º¸(pc.getName(), title, content);
+						L1BoardPost.createGMë°©ì–´êµ¬ì •ë³´(pc.getName(), title, content);
 					} else if (board.getNpcId() == 900009648) {
-						L1BoardPost.createGMÀÎÃ¾À²Á¤º¸(pc.getName(), title, content);
+						L1BoardPost.createGMì¸ì²¸ìœ¨ì •ë³´(pc.getName(), title, content);
 					} else {
 						pc.getInventory().consumeItem(L1ItemId.ADENA, 300);
 						L1BoardPost.create(pc.getName(), title, content);
@@ -142,7 +142,7 @@ public class C_BoardWrite extends ClientBasePacket {
 	}
 
 	/**
-	 * µå·¡°ïÅ°¸¦ µî·ÏÇÒ Á¶°ÇÀ» ÆÇ´ÜÇÑ´Ù.
+	 * ë“œë˜ê³¤í‚¤ë¥¼ ë“±ë¡í•  ì¡°ê±´ì„ íŒë‹¨í•œë‹¤.
 	 * 
 	 * @param pc
 	 * @return
@@ -150,13 +150,13 @@ public class C_BoardWrite extends ClientBasePacket {
 	private boolean checkdragonkey(L1PcInstance pc) {
 		if (pc.getInventory().checkItem(L1ItemId.DRAGON_KEY)) {
 			if (BoardTable.getInstance().checkExistName(pc.getName(), 4212014)) {
-				pc.sendPackets(new S_ServerMessage(1568));// ÀÌ¹Ì µî·ÏµÇ¾î ÀÖ¾î
+				pc.sendPackets(new S_ServerMessage(1568));// ì´ë¯¸ ë“±ë¡ë˜ì–´ ìˆì–´
 				return false;
 			} else {
 				return true;
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(1566));// µå·¡°ï Å° ÀÖ¾î¾ß ÇØ
+			pc.sendPackets(new S_ServerMessage(1566));// ë“œë˜ê³¤ í‚¤ ìˆì–´ì•¼ í•´
 			return false;
 		}
 	}

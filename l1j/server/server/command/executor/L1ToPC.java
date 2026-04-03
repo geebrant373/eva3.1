@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -46,10 +46,10 @@ public class L1ToPC implements L1CommandExecutor {
 						. getMapId(), 5, false);
 			} else {
 				pc.sendPackets(new S_SystemMessage((new StringBuilder())
-						. append(arg). append(" : ÇØ´ç Ä³¸¯ÅÍ´Â ¾ø½À´Ï´Ù. "). toString()));
+						. append(arg). append(" : í•´ë‹¹ ìºë¦­í„°ëŠ” ì—†ìŠµë‹ˆë‹¤. "). toString()));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [Ä³¸¯ÅÍ¸í]À¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [ìºë¦­í„°ëª…]ìœ¼ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

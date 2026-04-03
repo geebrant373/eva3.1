@@ -1,4 +1,4 @@
-package l1j.server.server.monitor;
+﻿package l1j.server.server.monitor;
 
 public class LoggerInstance extends FileLogger implements Runnable {
 	private static LoggerInstance _instance = null;

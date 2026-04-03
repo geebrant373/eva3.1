@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -31,24 +31,24 @@ public class S_WarTime extends ServerBasePacket {
 	public S_WarTime(int time) {
 
 		writeC(Opcodes.S_OPCODE_WARTIME);
-		writeH(6); // ¸®½ºÆ®ÀÇ ¼ö(6ÀÌ»óÀº ¹«È¿)
-		writeS(Config.TIME_ZONE); // ½Ã°£ÀÇ µÚ() Áß¿¡ Ç¥½ÃµÇ´Â Ä³¸¯ÅÍ ¶óÀÎ
-		writeH(1);// ¼ø¹ø
+		writeH(6); // ë¦¬ìŠ¤íŠ¸ì˜ ìˆ˜(6ì´ìƒì€ ë¬´íš¨)
+		writeS(Config.TIME_ZONE); // ì‹œê°„ì˜ ë’¤() ì¤‘ì— í‘œì‹œë˜ëŠ” ìºë¦­í„° ë¼ì¸
+		writeH(1);// ìˆœë²ˆ
 		writeC(136);
 		writeH(time);// 6:00
-		writeH(2);//¼ø¹ø
+		writeH(2);//ìˆœë²ˆ
 		writeC(178);
 		writeH(time);// 6:30
-		writeH(3);//¼ø¹ø
+		writeH(3);//ìˆœë²ˆ
 		writeC(220);
 		writeH(time);// 7:00
-		writeH(4);//¼ø¹ø
+		writeH(4);//ìˆœë²ˆ
 		writeC(218);
 		writeH(time+1);// 10:00
-		writeH(5);//¼ø¹ø
+		writeH(5);//ìˆœë²ˆ
 		writeC(4);
 		writeH(time+2);// 10:30
-		writeH(6);//¼ø¹ø
+		writeH(6);//ìˆœë²ˆ
 		writeC(46);// 11:00
 		writeD(time+2);
 		writeC(0);

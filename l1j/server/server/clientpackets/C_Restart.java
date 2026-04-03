@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -49,7 +49,7 @@ public class C_Restart extends ClientBasePacket {
 
 		if (client.getActiveChar() != null) {
 			L1PcInstance pc = client.getActiveChar();
-			LiveTimeController.getInstance().removeMember(pc); // »ıÁ¸ÀÇ¿ÜÄ§ ¸®½ºÆ® »èÁ¦
+			LiveTimeController.getInstance().removeMember(pc); // ìƒì¡´ì˜ì™¸ì¹¨ ë¦¬ìŠ¤íŠ¸ ì‚­ì œ
 			FishingTimeController.getInstance().removeMember(pc);
 			FishingTimeController.getInstance().endFishing(pc);
 			if (!pc.isAdenaTrade()) {
@@ -84,7 +84,7 @@ public class C_Restart extends ClientBasePacket {
 		} else {
 			_log.fine("Disconnect Request from Account : " + client.getAccountName());
 		}
-	}// »óÁ¡¸®½º µ­µÎ¹è¹ö±×¼öÁ¤À§Ä¡0326
+	}// ìƒì ë¦¬ìŠ¤ ë…ë‘ë°°ë²„ê·¸ìˆ˜ì •ìœ„ì¹˜0326
 	  private void CancelAdenaSell(L1PcInstance pc, int id) {
 			// TODO Auto-generated method stub
 			String SellerName = null;
@@ -110,30 +110,30 @@ public class C_Restart extends ClientBasePacket {
 					coment  = rs.getString("coment");
 					adena = rs.getInt("adena");
 				}
-				if (title.equalsIgnoreCase("°Å·¡Áß")) {
+				if (title.equalsIgnoreCase("ê±°ë˜ì¤‘")) {
 					L1PcInstance target = L1World.getInstance().getPlayer(BidderName);
 					if (target != null) {
-						target.sendPackets(new S_Message_YN(622, "»ó´ë¹æÀÌ ÆÇ¸Å Ãë¼Ò¸¦ ¿øÇÕ´Ï´Ù µ¿ÀÇ ÇÏ½Ã°Ú½À´Ï±î?"));
+						target.sendPackets(new S_Message_YN(622, "ìƒëŒ€ë°©ì´ íŒë§¤ ì·¨ì†Œë¥¼ ì›í•©ë‹ˆë‹¤ ë™ì˜ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"));
 						target.setAttrMsgType(1);
-						pc.sendPackets(new S_SystemMessage("ÆÇ¸Å Ãë¼Ò: »ó´ë¹æÀÇ µ¿ÀÇ¸¦ ¾ò°í ÀÖ½À´Ï´Ù. "));
+						pc.sendPackets(new S_SystemMessage("íŒë§¤ ì·¨ì†Œ: ìƒëŒ€ë°©ì˜ ë™ì˜ë¥¼ ì–»ê³  ìˆìŠµë‹ˆë‹¤. "));
 					} else {
-						pc.sendPackets(new S_SystemMessage("ÆÇ¸Å Ãë¼Ò: ±¸¸ÅÀÚ°¡ Á¢¼ÓÁßÀÌÁö ¾Ê½À´Ï´Ù. "));
+						pc.sendPackets(new S_SystemMessage("íŒë§¤ ì·¨ì†Œ: êµ¬ë§¤ìê°€ ì ‘ì†ì¤‘ì´ì§€ ì•ŠìŠµë‹ˆë‹¤. "));
 					}
 					return;
 				}
 				BoardTable.getInstance().deleteAdena(pc.getAdenaSellCount());
 				pc.getInventory().storeItem(40308, adena);
-				pc.sendPackets(new S_SystemMessage("ÆÇ¸Å Ãë¼Ò: µî·ÏÇÏ½Å ¹°Ç°ÀÌ Ãë¼Ò µÇ¾ú½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("íŒë§¤ ì·¨ì†Œ: ë“±ë¡í•˜ì‹  ë¬¼í’ˆì´ ì·¨ì†Œ ë˜ì—ˆìŠµë‹ˆë‹¤."));
 				pc.setAdenaSellCount(0);
 				pstm2 = con.prepareStatement("UPDATE board_adena SET bidder=?, title=?, step=? WHERE id=?");
 				pstm2.setString(1, BidderName);
-				pstm2.setString(2, "ÆÇ¸ÅÃë¼Ò");
+				pstm2.setString(2, "íŒë§¤ì·¨ì†Œ");
 				pstm2.setInt(3, 3);
 				pstm2.setInt(4, id);
 				pstm2.executeUpdate();
 				pstm2.close();
 			} catch (SQLException e) {
-				pc.sendPackets(new S_SystemMessage(".±¸¸Å½ÅÃ» [°Ô½Ã¹° ¹øÈ£] °Ô½Ã¹° ¹øÈ£°¡ 0001ÀÌ¸é 1¸¸ ÀÔ·Â."));
+				pc.sendPackets(new S_SystemMessage(".êµ¬ë§¤ì‹ ì²­ [ê²Œì‹œë¬¼ ë²ˆí˜¸] ê²Œì‹œë¬¼ ë²ˆí˜¸ê°€ 0001ì´ë©´ 1ë§Œ ì…ë ¥."));
 			} finally {
 				SQLUtil.close(rs);
 				SQLUtil.close(pstm1);

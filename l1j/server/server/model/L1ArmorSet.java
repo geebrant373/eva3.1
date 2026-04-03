@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+﻿package l1j.server.server.model;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;

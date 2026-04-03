@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -24,7 +24,7 @@ public class L1SkillId {
 	/*
 	 * Regular Magic Lv1-10
 	 */
-	// 1´Ü°è ÀÏ¹İ¸¶¹ı
+	// 1ë‹¨ê³„ ì¼ë°˜ë§ˆë²•
 	public static final int HEAL = 1; // E: LESSER_HEAL
 	public static final int LIGHT = 2;
 	public static final int SHIELD = 3;
@@ -34,7 +34,7 @@ public class L1SkillId {
 	public static final int WIND_CUTTER = 7; // E: WIND_SHURIKEN
 	public static final int HOLY_WEAPON = 8;
 
-	// 2´Ü°è ÀÏ¹İ¸¶¹ı
+	// 2ë‹¨ê³„ ì¼ë°˜ë§ˆë²•
 	public static final int CURE_POISON = 9;
 	public static final int CHILL_TOUCH = 10;
 	public static final int CURSE_POISON = 11;
@@ -44,7 +44,7 @@ public class L1SkillId {
 	public static final int FIRE_ARROW = 15;
 	public static final int STALAC = 16;
 
-	// 3´Ü°è ÀÏ¹İ¸¶¹ı
+	// 3ë‹¨ê³„ ì¼ë°˜ë§ˆë²•
 	public static final int LIGHTNING = 17;
 	public static final int TURN_UNDEAD = 18;
 	public static final int EXTRA_HEAL = 19; // E: HEAL
@@ -53,7 +53,7 @@ public class L1SkillId {
 	public static final int FROZEN_CLOUD = 22;
 	public static final int WEAK_ELEMENTAL = 23; // E: REVEAL_WEAKNESS
 
-	// 4´Ü°è ÀÏ¹İ¸¶¹ı 	// none = 24
+	// 4ë‹¨ê³„ ì¼ë°˜ë§ˆë²• 	// none = 24
 	public static final int FIREBALL = 25;
 	public static final int PHYSICAL_ENCHANT_DEX = 26; // E: ENCHANT_DEXTERITY
 	public static final int WEAPON_BREAK = 27;
@@ -63,7 +63,7 @@ public class L1SkillId {
 	public static final int COUNTER_MAGIC = 31;
 	public static final int MEDITATION = 32;
 
-	// 5´Ü°è ÀÏ¹İ¸¶¹ı
+	// 5ë‹¨ê³„ ì¼ë°˜ë§ˆë²•
 	public static final int CURSE_PARALYZE = 10033;
 	public static final int EMPIER = 33;
 	public static final int CALL_LIGHTNING = 34;
@@ -74,7 +74,7 @@ public class L1SkillId {
 	public static final int MANA_DRAIN = 39;
 	public static final int DARKNESS = 40;
 
-	// 6´Ü°è ÀÏ¹İ¸¶¹ı
+	// 6ë‹¨ê³„ ì¼ë°˜ë§ˆë²•
 	public static final int CREATE_ZOMBIE = 41;
 	public static final int PHYSICAL_ENCHANT_STR = 42; // E: ENCHANT_MIGHTY
 	public static final int HASTE = 43;
@@ -84,7 +84,7 @@ public class L1SkillId {
 	public static final int WEAKNESS = 47;
 	public static final int BLESS_WEAPON = 48;
 
-	// 7´Ü°è ÀÏ¹İ¸¶¹ı
+	// 7ë‹¨ê³„ ì¼ë°˜ë§ˆë²•
 	public static final int HEAL_ALL = 49; // E: HEAL_PLEDGE
 	public static final int ICE_LANCE = 50;
 	public static final int SUMMON_MONSTER = 51;
@@ -94,7 +94,7 @@ public class L1SkillId {
 	public static final int BERSERKERS = 55;
 	public static final int DISEASE = 56;
 
-	// 8´Ü°è ÀÏ¹İ¸¶¹ı
+	// 8ë‹¨ê³„ ì¼ë°˜ë§ˆë²•
 	public static final int FULL_HEAL = 57;
 	public static final int FIRE_WALL = 58;
 	public static final int BLIZZARD = 59;
@@ -104,7 +104,7 @@ public class L1SkillId {
 	public static final int LIFE_STREAM = 63;
 	public static final int SILENCE = 64;
 
-	// 9´Ü°è ÀÏ¹İ¸¶¹ı
+	// 9ë‹¨ê³„ ì¼ë°˜ë§ˆë²•
 	public static final int LIGHTNING_STORM = 65;
 	public static final int FOG_OF_SLEEPING = 66;
 	public static final int SHAPE_CHANGE = 67; // E: POLYMORPH
@@ -114,7 +114,7 @@ public class L1SkillId {
 	public static final int DECAY_POTION = 71;
 	public static final int COUNTER_DETECTION = 72;
 
-	// 10´Ü°è ÀÏ¹İ¸¶¹ı
+	// 10ë‹¨ê³„ ì¼ë°˜ë§ˆë²•
 	public static final int CREATE_MAGICAL_WEAPON = 73;
 	public static final int METEOR_STRIKE = 74;
 	public static final int GREATER_RESURRECTION = 75;
@@ -153,7 +153,7 @@ public class L1SkillId {
 	public static final int DRESS_MIGHTY = 109;
 	public static final int DRESS_DEXTERITY = 110;
 	public static final int DRESS_EVASION = 111;
-	//public static final int ARMOR_BRAKE = 112;//220112 ¼öÁ¤
+	//public static final int ARMOR_BRAKE = 112;//220112 ìˆ˜ì •
 	// none = 112
 	/*
 	 * Royal Magic
@@ -253,17 +253,17 @@ public class L1SkillId {
 	public static final int FEATHER_BUFF_C = 1028;
 	public static final int FEATHER_BUFF_D = 1029;
 	public static final int  SELL_ADENA = 12000;
-	public static final int ÀÚµ¿»ç³É = 151544;
+	public static final int ìë™ì‚¬ëƒ¥ = 151544;
 	
-	public static final int BUFF_CRAY = 1026; // Å©·¹ÀÌ¹öÇÁ
-	public static final int BUFF_SAMUEL = 1027; // ÀúÁÖ¹ŞÀº ¹«³à »ç¹«¿¤ ¹öÇÁ
-	public static final int STATUS_DRAGONMAAN_EARTH = 7671; // Áö·æÀÇ ¸¶¾È
-	public static final int STATUS_DRAGONMAAN_WATER = 7672; // ¼ö·æÀÇ ¸¶¾È
-	public static final int STATUS_DRAGONMAAN_FIRE = 7673; // È­·æÀÇ ¸¶¾È
-	public static final int STATUS_DRAGONMAAN_WIND = 7674; // Ç³·æÀÇ ¸¶¾È
-	public static final int STATUS_DRAGONMAAN_BIRTH = 7675; // Åº»ıÀÇ ¸¶¾È
-	public static final int STATUS_DRAGONMAAN_SHAPE = 7676; // Çü»óÀÇ ¸¶¾È
-	public static final int STATUS_DRAGONMAAN_LIFE = 7677; // »ı¸íÀÇ ¸¶¾È
+	public static final int BUFF_CRAY = 1026; // í¬ë ˆì´ë²„í”„
+	public static final int BUFF_SAMUEL = 1027; // ì €ì£¼ë°›ì€ ë¬´ë…€ ì‚¬ë¬´ì—˜ ë²„í”„
+	public static final int STATUS_DRAGONMAAN_EARTH = 7671; // ì§€ë£¡ì˜ ë§ˆì•ˆ
+	public static final int STATUS_DRAGONMAAN_WATER = 7672; // ìˆ˜ë£¡ì˜ ë§ˆì•ˆ
+	public static final int STATUS_DRAGONMAAN_FIRE = 7673; // í™”ë£¡ì˜ ë§ˆì•ˆ
+	public static final int STATUS_DRAGONMAAN_WIND = 7674; // í’ë£¡ì˜ ë§ˆì•ˆ
+	public static final int STATUS_DRAGONMAAN_BIRTH = 7675; // íƒ„ìƒì˜ ë§ˆì•ˆ
+	public static final int STATUS_DRAGONMAAN_SHAPE = 7676; // í˜•ìƒì˜ ë§ˆì•ˆ
+	public static final int STATUS_DRAGONMAAN_LIFE = 7677; // ìƒëª…ì˜ ë§ˆì•ˆ
 	
 //	public static final int STATUS_END = 1023;
 	public static final int GMSTATUS_BEGIN = 2000;
@@ -274,7 +274,7 @@ public class L1SkillId {
 	public static final int COOKING_NOW = 2999;
 	public static final int COOKING_BEGIN = 3000;
 
-	/** 1Â÷¿ä¸® È¿°ú (³ë¸Ö) */
+	/** 1ì°¨ìš”ë¦¬ íš¨ê³¼ (ë…¸ë©€) */
 	public static final int COOKING_1_0_N = 3000;
 	public static final int COOKING_1_1_N = 3001;
 	public static final int COOKING_1_2_N = 3002;
@@ -284,7 +284,7 @@ public class L1SkillId {
 	public static final int COOKING_1_6_N = 3006;
 	public static final int COOKING_1_7_N = 3007;
 
-	/** 2Â÷¿ä¸® È¿°ú (³ë¸Ö) */
+	/** 2ì°¨ìš”ë¦¬ íš¨ê³¼ (ë…¸ë©€) */
 	public static final int COOKING_1_8_N = 3008;
 	public static final int COOKING_1_9_N = 3009;
 	public static final int COOKING_1_10_N = 3010;
@@ -294,7 +294,7 @@ public class L1SkillId {
 	public static final int COOKING_1_14_N = 3014;
 	public static final int COOKING_1_15_N = 3015;
 
-	/** 3Â÷¿ä¸® È¿°ú (³ë¸Ö) */
+	/** 3ì°¨ìš”ë¦¬ íš¨ê³¼ (ë…¸ë©€) */
 	public static final int COOKING_1_16_N = 3016;
 	public static final int COOKING_1_17_N = 3017;
 	public static final int COOKING_1_18_N = 3018;
@@ -304,7 +304,7 @@ public class L1SkillId {
 	public static final int COOKING_1_22_N = 3022;
 	public static final int COOKING_1_23_N = 3023;
 
-	/** 1Â÷¿ä¸® È¿°ú (È¯»ó) */
+	/** 1ì°¨ìš”ë¦¬ íš¨ê³¼ (í™˜ìƒ) */
 	public static final int COOKING_1_0_S = 3050;
 	public static final int COOKING_1_1_S = 3051;
 	public static final int COOKING_1_2_S = 3052;
@@ -314,7 +314,7 @@ public class L1SkillId {
 	public static final int COOKING_1_6_S = 3056;
 	public static final int COOKING_1_7_S = 3057;
 
-	/** 2Â÷¿ä¸® È¿°ú (È¯»ó) */
+	/** 2ì°¨ìš”ë¦¬ íš¨ê³¼ (í™˜ìƒ) */
 	public static final int COOKING_1_8_S = 3058;
 	public static final int COOKING_1_9_S = 3059;
 	public static final int COOKING_1_10_S = 3060;
@@ -324,7 +324,7 @@ public class L1SkillId {
 	public static final int COOKING_1_14_S = 3064;
 	public static final int COOKING_1_15_S = 3065;
 
-	/** 3Â÷¿ä¸® È¿°ú (È¯»ó) */
+	/** 3ì°¨ìš”ë¦¬ íš¨ê³¼ (í™˜ìƒ) */
 	public static final int COOKING_1_16_S = 3066;
 	public static final int COOKING_1_17_S = 3067;
 	public static final int COOKING_1_18_S = 3068;
@@ -364,22 +364,22 @@ public class L1SkillId {
 
 	public static final int STATUS_BLUE_POTION3 = 22004;
 
-	public static final int MOB_SLOW_18 = 30000;			//½½·Î¿ì 18¹ø¸ğ¼Ç
-	public static final int MOB_SLOW_1 = 30001;				//½½·Î¿ì 1¹ø¸ğ¼Ç
-	public static final int MOB_CURSEPARALYZ_19 = 30002;	//Ä¿½º 19¹ø¸ğ¼Ç
-	public static final int MOB_COCA = 30003;				//ÄÚÄ«Æ®¸®½º ¾ó¸®±â°ø°İ
-	public static final int MOB_BASILL = 30004;				//¹Ù½Ç¸®½ºÅ© ¾ó¸®±â¿¡º¼
-	public static final int MOB_RANGESTUN_19 = 30005;		//¹üÀ§½ºÅÏ 19¹ø¸ğ¼Ç
-	public static final int MOB_RANGESTUN_18 = 30006;		//¹üÀ§½ºÅÏ 18¹ø¸ğ¼Ç
-	public static final int MOB_CURSEPARALYZ_18 = 30007;	//Ä¿½º 18¹ø¸ğ¼Ç
-	public static final int MOB_DISEASE_30 = 30008;			//µğÁöÁî 30¹ø¸ğ¼Ç
-	public static final int MOB_WEAKNESS_1 = 30009;			//À§Å©´Ï½º 1¹ø¸ğ¼Ç
-	public static final int MOB_DISEASE_1 = 30079;			//µğÁöÁî 1¹ø¸ğ¼Ç
-	public static final int MOB_SHOCKSTUN_30 = 30081;		//¼îÅ©½ºÅÏ 30¹ø¸ğ¼Ç
-	public static final int MOB_WINDSHACKLE_1 = 30084;		//À©µå¼ÎÅ¬ 1¹ø¸ğ¼Ç
+	public static final int MOB_SLOW_18 = 30000;			//ìŠ¬ë¡œìš° 18ë²ˆëª¨ì…˜
+	public static final int MOB_SLOW_1 = 30001;				//ìŠ¬ë¡œìš° 1ë²ˆëª¨ì…˜
+	public static final int MOB_CURSEPARALYZ_19 = 30002;	//ì»¤ìŠ¤ 19ë²ˆëª¨ì…˜
+	public static final int MOB_COCA = 30003;				//ì½”ì¹´íŠ¸ë¦¬ìŠ¤ ì–¼ë¦¬ê¸°ê³µê²©
+	public static final int MOB_BASILL = 30004;				//ë°”ì‹¤ë¦¬ìŠ¤í¬ ì–¼ë¦¬ê¸°ì—ë³¼
+	public static final int MOB_RANGESTUN_19 = 30005;		//ë²”ìœ„ìŠ¤í„´ 19ë²ˆëª¨ì…˜
+	public static final int MOB_RANGESTUN_18 = 30006;		//ë²”ìœ„ìŠ¤í„´ 18ë²ˆëª¨ì…˜
+	public static final int MOB_CURSEPARALYZ_18 = 30007;	//ì»¤ìŠ¤ 18ë²ˆëª¨ì…˜
+	public static final int MOB_DISEASE_30 = 30008;			//ë””ì§€ì¦ˆ 30ë²ˆëª¨ì…˜
+	public static final int MOB_WEAKNESS_1 = 30009;			//ìœ„í¬ë‹ˆìŠ¤ 1ë²ˆëª¨ì…˜
+	public static final int MOB_DISEASE_1 = 30079;			//ë””ì§€ì¦ˆ 1ë²ˆëª¨ì…˜
+	public static final int MOB_SHOCKSTUN_30 = 30081;		//ì‡¼í¬ìŠ¤í„´ 30ë²ˆëª¨ì…˜
+	public static final int MOB_WINDSHACKLE_1 = 30084;		//ìœˆë“œì…°í´ 1ë²ˆëª¨ì…˜
 
 
-	//²À ¸®½ºÈÄ ÀúÀå µÇ¾î¾ß ÇÒ ¹öÇÁ icon[19] = 11; // ¾ÆÀÌÅÛÀ¸·Î »ç¿ëÇØ¾ß ÇÏ´Â ¹öÇÁµé ¿¹) ÅäÆÄÁî
+	//ê¼­ ë¦¬ìŠ¤í›„ ì €ì¥ ë˜ì–´ì•¼ í•  ë²„í”„ icon[19] = 11; // ì•„ì´í…œìœ¼ë¡œ ì‚¬ìš©í•´ì•¼ í•˜ëŠ” ë²„í”„ë“¤ ì˜ˆ) í† íŒŒì¦ˆ
 	
 	public static final int STR_STATUS_EFFECT_BM_CHINA_ITEM1 = 7101; // TOPAZ 5231
 	public static final int STR_STATUS_EFFECT_BM_CHINA_ITEM2 = 7102; // EMERALD 4768
@@ -397,35 +397,35 @@ public class L1SkillId {
 //	public static final int STR_STATUS_EFFECT_BM_JAPAN_ITEM10 = 7254; // 
 //	public static final int STR_STATUS_EFFECT_BM_JAPAN_ITEM11 = 7255; // 
 //	public static final int STR_STATUS_EFFECT_BM_JAPAN_ITEM12 = 7256; // 
-// 13 14 Áßº¹ºÒ°¡ BM_JAPAN_ITEM µé°úµµ Áßº¹ ¾ÈµÊ °í·Î »ç¿ë ºÒ°¡´É
+// 13 14 ì¤‘ë³µë¶ˆê°€ BM_JAPAN_ITEM ë“¤ê³¼ë„ ì¤‘ë³µ ì•ˆë¨ ê³ ë¡œ ì‚¬ìš© ë¶ˆê°€ëŠ¥
 //	public static final int STR_STATUS_EFFECT_BM_JAPAN_ITEM13 = 7478; // 
 //	public static final int STR_STATUS_EFFECT_BM_JAPAN_ITEM14 = 7479; // 
-//	public static final int STR_STATUS_EFFECT_BM_CHINA_POTION2 = 7544; // ¾ÈÅ¸·é 5441
-//	public static final int STR_STATUS_EFFECT_BM_CHINA_POTION3 = 7545; // ¹ß¶ó·é 5443
-//	public static final int STR_STATUS_EFFECT_BM_CHINA_POTION4 = 7546; // ¸°µå·é 5445
-//	public static final int STR_STATUS_EFFECT_BM_CHINA_POTION5 = 7547; // ÆÄÇª·é 5447
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF1 = 8939; //RANK ¡Ú 7093
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF2 = 8940; //RANK ¡Ú¡Ú 7094
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF3 = 8941; // RANK ¡Ú¡Ú¡Ú 7095
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF4 = 8942; // RANK ¡Ú¡Ú¡Ú¡Ú 7096
+//	public static final int STR_STATUS_EFFECT_BM_CHINA_POTION2 = 7544; // ì•ˆíƒ€ë£¬ 5441
+//	public static final int STR_STATUS_EFFECT_BM_CHINA_POTION3 = 7545; // ë°œë¼ë£¬ 5443
+//	public static final int STR_STATUS_EFFECT_BM_CHINA_POTION4 = 7546; // ë¦°ë“œë£¬ 5445
+//	public static final int STR_STATUS_EFFECT_BM_CHINA_POTION5 = 7547; // íŒŒí‘¸ë£¬ 5447
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF1 = 8939; //RANK â˜… 7093
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF2 = 8940; //RANK â˜…â˜… 7094
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF3 = 8941; // RANK â˜…â˜…â˜… 7095
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF4 = 8942; // RANK â˜…â˜…â˜…â˜… 7096
 	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF5 = 8943; // VIP 5646
-	// ´ë¹ÌÁö °¨¼Ò 3 ÄÜ 1  hp 50
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF6 = 8944; // ¾ÈÅ¸·é 5441
-	// ÃßÅ¸ 3 Èû 1  hp 50
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF7 = 8945; // ¹ß¶ó·é 5443
-	// È°ÃßÅ¸3 µ¦1 hp 30 mp 20
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF8 = 8946; // ¸°µå·é 5445
-	// sp1 ÀÎÆ®1 hp20 mp30
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF9 = 8947; // ÆÄÇª·é 5447
-	// PVP ´ë¹ÌÁö ¸®´ö¼Ç 2 HP 30 Ac -1 
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF10 = 8948; // °íÁ¤ ¹öÇÁ 8170
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF11 = 8949; // Æ÷ÀÌÁğ on
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF12 = 8950; // Æ÷ÀÌÁğ off
+	// ëŒ€ë¯¸ì§€ ê°ì†Œ 3 ì½˜ 1  hp 50
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF6 = 8944; // ì•ˆíƒ€ë£¬ 5441
+	// ì¶”íƒ€ 3 í˜ 1  hp 50
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF7 = 8945; // ë°œë¼ë£¬ 5443
+	// í™œì¶”íƒ€3 ë±1 hp 30 mp 20
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF8 = 8946; // ë¦°ë“œë£¬ 5445
+	// sp1 ì¸íŠ¸1 hp20 mp30
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF9 = 8947; // íŒŒí‘¸ë£¬ 5447
+	// PVP ëŒ€ë¯¸ì§€ ë¦¬ë•ì…˜ 2 HP 30 Ac -1 
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF10 = 8948; // ê³ ì • ë²„í”„ 8170
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF11 = 8949; // í¬ì´ì¦Œ on
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF12 = 8950; // í¬ì´ì¦Œ off
 	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF13 = 8951; //DRAGON RUNE OFF
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF14 = 8952; //Å¬·£¹öÇÁ
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF15 = 8953; //Å¬·£¹öÇÁ Á¾·á
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF16 = 8954; //ÄŞº¸ 
-	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF17 = 8955; //½¦µµ¿ì ÆØ
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF14 = 8952; //í´ëœë²„í”„
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF15 = 8953; //í´ëœë²„í”„ ì¢…ë£Œ
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF16 = 8954; //ì½¤ë³´ 
+	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF17 = 8955; //ì‰ë„ìš° íŒ½
 	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF18 = 8956;
 	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF19 = 8957;
 	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF20 = 7000;
@@ -442,50 +442,50 @@ public class L1SkillId {
 	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF31 = 8972;
 	public static final int STR_STATUS_EFFECT_TAIWAN_STONE_BUFF32 = 8973;
 
-	public static final int ANTA_MAAN = 7671; // Áö·æÀÇ ¸¶¾È
-	public static final int FAFU_MAAN = 7672; // ¼ö·æÀÇ ¸¶¾È
-	public static final int VALA_MAAN = 7673; // È­·æÀÇ ¸¶¾È
-	public static final int LIND_MAAN = 7674; // Ç³·æÀÇ ¸¶¾È
-	public static final int BIRTH_MAAN = 7675; // Åº»ıÀÇ ¸¶¾È
-	public static final int SHAPE_MAAN = 7676; // Çü»óÀÇ ¸¶¾È
-	public static final int LIFE_MAAN = 7677; // »ı¸íÀÇ ¸¶¾È
+	public static final int ANTA_MAAN = 7671; // ì§€ë£¡ì˜ ë§ˆì•ˆ
+	public static final int FAFU_MAAN = 7672; // ìˆ˜ë£¡ì˜ ë§ˆì•ˆ
+	public static final int VALA_MAAN = 7673; // í™”ë£¡ì˜ ë§ˆì•ˆ
+	public static final int LIND_MAAN = 7674; // í’ë£¡ì˜ ë§ˆì•ˆ
+	public static final int BIRTH_MAAN = 7675; // íƒ„ìƒì˜ ë§ˆì•ˆ
+	public static final int SHAPE_MAAN = 7676; // í˜•ìƒì˜ ë§ˆì•ˆ
+	public static final int LIFE_MAAN = 7677; // ìƒëª…ì˜ ë§ˆì•ˆ
 
 	public static final int AdenRateByDoll = 7680;
-	public static final int ÀÚµ¿»ç³É½Ã°£ = 15234;
-	public static final int ¿À¸¸Áö¹è1Ãş¹öÇÁ = 17671;
-	public static final int ¿À¸¸Áö¹è2Ãş¹öÇÁ = 17672;
-	public static final int ¿À¸¸Áö¹è3Ãş¹öÇÁ = 17673;
-	public static final int ¿À¸¸Áö¹è4Ãş¹öÇÁ = 17674;
-	public static final int ¿À¸¸Áö¹è5Ãş¹öÇÁ = 17675;
-	public static final int ¿À¸¸Áö¹è6Ãş¹öÇÁ = 17676;
-	public static final int ¿À¸¸Áö¹è7Ãş¹öÇÁ = 17677;
-	public static final int ¿À¸¸Áö¹è8Ãş¹öÇÁ = 17678;
-	public static final int ¿À¸¸Áö¹è9Ãş¹öÇÁ = 17679;
-	public static final int ¿À¸¸Áö¹èÁ¤»óÃş¹öÇÁ = 17680;
+	public static final int ìë™ì‚¬ëƒ¥ì‹œê°„ = 15234;
+	public static final int ì˜¤ë§Œì§€ë°°1ì¸µë²„í”„ = 17671;
+	public static final int ì˜¤ë§Œì§€ë°°2ì¸µë²„í”„ = 17672;
+	public static final int ì˜¤ë§Œì§€ë°°3ì¸µë²„í”„ = 17673;
+	public static final int ì˜¤ë§Œì§€ë°°4ì¸µë²„í”„ = 17674;
+	public static final int ì˜¤ë§Œì§€ë°°5ì¸µë²„í”„ = 17675;
+	public static final int ì˜¤ë§Œì§€ë°°6ì¸µë²„í”„ = 17676;
+	public static final int ì˜¤ë§Œì§€ë°°7ì¸µë²„í”„ = 17677;
+	public static final int ì˜¤ë§Œì§€ë°°8ì¸µë²„í”„ = 17678;
+	public static final int ì˜¤ë§Œì§€ë°°9ì¸µë²„í”„ = 17679;
+	public static final int ì˜¤ë§Œì§€ë°°ì •ìƒì¸µë²„í”„ = 17680;
 	
-	public static final int Áö¹èÀÌ¹İ¹öÇÁ = 17780;
+	public static final int ì§€ë°°ì´ë°˜ë²„í”„ = 17780;
 	
 	public static final int BUYER_COOLTIME = 1033;
 	//8600 ~ 8700 
 	public static final int EMPTY22 = 7301; // 
 	public static final int EXP_BOOSTER_30  = 7289; // EXP 3069 30%
 	public static final int STR_STATUS_EFFECT_GOD_MAJO_POTION_SPELL = 7321; // 
-	public static final int STR_STATUS_EFFECT_JBM_EXP_BOOSTER = 7495; // exp Á¾·á 6768
+	public static final int STR_STATUS_EFFECT_JBM_EXP_BOOSTER = 7495; // exp ì¢…ë£Œ 6768
 	public static final int STR_STATUS_EFFECT_BM_CHINA_POTION1 = 7543; 
-	public static final int STR_STATUS_EFFECT_GOD_MAJO_POTION_SPELL1 = 7683; // 2400<--ÇØ¿Ü
+	public static final int STR_STATUS_EFFECT_GOD_MAJO_POTION_SPELL1 = 7683; // 2400<--í•´ì™¸
 	
-	public static final int STATUS_MENT = 7626; // Ãß°¡ ¸àÆ®¸í·É¾î
+	public static final int STATUS_MENT = 7626; // ì¶”ê°€ ë©˜íŠ¸ëª…ë ¹ì–´
 
-	public static final int STATUS_EXP_UP_II =7289; // ±â¿øÀÇ ÀÏºÎ II
+	public static final int STATUS_EXP_UP_II =7289; // ê¸°ì›ì˜ ì¼ë¶€ II
 	
-	public static final int STATUS_DRAGONPERL = 999; // µå·¡°ïÁøÁÖ
-    public static final int WEAPON_KURTS = 8001;//Ä¿°Ë
+	public static final int STATUS_DRAGONPERL = 999; // ë“œë˜ê³¤ì§„ì£¼
+    public static final int WEAPON_KURTS = 8001;//ì»¤ê²€
     public static final int RANKING_BUFF_1 = 80000;
 	public static final int RANKING_BUFF_2 = 80001;
 	public static final int RANKING_BUFF_3 = 80002;
 	public static final int RANKING_BUFF_4 = 80003;
 	public static final int SEAL_BUFF = 80014;
 	public static final int rank_1_10_int = 3535;
-	public static final int ¸°µå°¡È£µô·¹ÀÌ = 8178;
+	public static final int ë¦°ë“œê°€í˜¸ë”œë ˆì´ = 8178;
 	public static final int DRAGONRAID_BUFF = 55005;
 }

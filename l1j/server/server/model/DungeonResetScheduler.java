@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -23,7 +23,7 @@ public class DungeonResetScheduler {
             try {
                 resetDungeon();
             } finally {
-                scheduleNext(); // ´ÙÀ½ È¸Â÷ ¿¹¾à
+                scheduleNext(); // ë‹¤ìŒ íšŒì°¨ ì˜ˆì•½
             }
         }, delay, TimeUnit.MILLISECONDS);
     }
@@ -44,6 +44,6 @@ public class DungeonResetScheduler {
 
     private static void resetDungeon() {
         DungeonQuitController.getInstance().isgameStart = true;
-        System.out.println("¸ğµç ´øÀü½Ã°£ ÃÊ±âÈ­ ¿Ï·á");
+        System.out.println("ëª¨ë“  ë˜ì „ì‹œê°„ ì´ˆê¸°í™” ì™„ë£Œ");
     }
 }

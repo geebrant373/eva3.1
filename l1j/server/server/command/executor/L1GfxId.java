@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -85,7 +85,7 @@ public class L1GfxId implements L1CommandExecutor {
 				}
 			}
 		} catch (Exception exception) {
-			pc.sendPackets(new S_SystemMessage(cmdName+ " [id] [ÃâÇö½ÃÅ°´Â ¼ö]·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(cmdName+ " [id] [ì¶œí˜„ì‹œí‚¤ëŠ” ìˆ˜]ë¡œ ìž…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

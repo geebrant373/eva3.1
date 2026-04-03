@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -41,12 +41,12 @@ public class L1Cooking {
 
 	public static void useCookingItem(L1PcInstance pc, L1ItemInstance item) {
 		int itemId = item.getItem().getItemId();
-//		if (itemId == 41284 //¹ö¼¸ ½ºÇÁ
-//				|| itemId == 49056 //Å©·¦»ì ½ºÇÁ 
-//				|| itemId == 49064 //È¯»óÀÇ Å©·¦»ì ½ºÇÁ 
-//				|| itemId == 41292 // È¯»óÀÇ ¹ö¼¸½ºÇÁ
-//			    || itemId == L1ItemId.COOKFOOD_BASILIST_EGG_SOUP //¹Ù½Ç¸®½ºÅ© ¾Ë ½ºÇÁ
-//			    || itemId == L1ItemId.SCOOKFOOD_BASILIST_EGG_SOUP) { //È¯»óÀÇ ¹Ù½Ç¸®½ºÅ© ¾Ë ½ºÇÁ
+//		if (itemId == 41284 //ë²„ì„¯ ìŠ¤í”„
+//				|| itemId == 49056 //í¬ëž©ì‚´ ìŠ¤í”„ 
+//				|| itemId == 49064 //í™˜ìƒì˜ í¬ëž©ì‚´ ìŠ¤í”„ 
+//				|| itemId == 41292 // í™˜ìƒì˜ ë²„ì„¯ìŠ¤í”„
+//			    || itemId == L1ItemId.COOKFOOD_BASILIST_EGG_SOUP //ë°”ì‹¤ë¦¬ìŠ¤í¬ ì•Œ ìŠ¤í”„
+//			    || itemId == L1ItemId.SCOOKFOOD_BASILIST_EGG_SOUP) { //í™˜ìƒì˜ ë°”ì‹¤ë¦¬ìŠ¤í¬ ì•Œ ìŠ¤í”„
 //			if (pc.get_food() != 225) { // 100%
 //				pc.sendPackets(new S_ServerMessage(74, item.getNumberedName(1)));
 //				return;
@@ -54,30 +54,30 @@ public class L1Cooking {
 //			pc.set_food(180);
 //		}
 
-		if (itemId >= 41277 && itemId <= 41283 // 1Â÷ ¿ä¸®
-				|| itemId >= 49049 && itemId <= 49056// 2Â÷ ¿ä¸®
-				|| itemId >= L1ItemId.NORMAL_COOKFOOD_3RD_START && itemId <= L1ItemId.COOKFOOD_DEEP_SEA_FISH_STEW//3Â÷ ¿ä¸®
-				|| itemId >= 41285 && itemId <= 41291// 1Â÷ È¯»óÀÇ ¿ä¸®
-				|| itemId >= 49057 && itemId <= 49064// 2Â÷ È¯»óÀÇ ¿ä¸®
-				|| itemId >= L1ItemId.SPECIAL_COOKFOOD_3RD_START && itemId <= L1ItemId.SCOOKFOOD_DEEP_SEA_FISH_STEW) {// 3Â÷ È¯»óÀÇ ¿ä¸®
+		if (itemId >= 41277 && itemId <= 41283 // 1ì°¨ ìš”ë¦¬
+				|| itemId >= 49049 && itemId <= 49056// 2ì°¨ ìš”ë¦¬
+				|| itemId >= L1ItemId.NORMAL_COOKFOOD_3RD_START && itemId <= L1ItemId.COOKFOOD_DEEP_SEA_FISH_STEW//3ì°¨ ìš”ë¦¬
+				|| itemId >= 41285 && itemId <= 41291// 1ì°¨ í™˜ìƒì˜ ìš”ë¦¬
+				|| itemId >= 49057 && itemId <= 49064// 2ì°¨ í™˜ìƒì˜ ìš”ë¦¬
+				|| itemId >= L1ItemId.SPECIAL_COOKFOOD_3RD_START && itemId <= L1ItemId.SCOOKFOOD_DEEP_SEA_FISH_STEW) {// 3ì°¨ í™˜ìƒì˜ ìš”ë¦¬
 			int cookingId = pc.getCookingId();
 			if (cookingId != 0) {
 				pc.getSkillEffectTimerSet().removeSkillEffect(cookingId);
 			}
 		}
 
-		if (itemId == 41284 //¹ö¼¸ ½ºÇÁ 
-				|| itemId == 49056//Å©·¦»ì ½ºÇÁ 
-				|| itemId == 49064//È¯»óÀÇ Å©·¦»ì ½ºÇÁ 
-				|| itemId == 41292//È¯»óÀÇ ¹ö¼¸ ½ºÇÁ
-				|| itemId == L1ItemId.COOKFOOD_BASILIST_EGG_SOUP //¹Ù½Ç¸®½ºÅ© ¾Ë ½ºÇÁ
-			    || itemId == L1ItemId.SCOOKFOOD_BASILIST_EGG_SOUP) {//È¯»óÀÇ ¹Ù½Ç¸®½ºÅ© ¾Ë ½ºÇÁ
+		if (itemId == 41284 //ë²„ì„¯ ìŠ¤í”„ 
+				|| itemId == 49056//í¬ëž©ì‚´ ìŠ¤í”„ 
+				|| itemId == 49064//í™˜ìƒì˜ í¬ëž©ì‚´ ìŠ¤í”„ 
+				|| itemId == 41292//í™˜ìƒì˜ ë²„ì„¯ ìŠ¤í”„
+				|| itemId == L1ItemId.COOKFOOD_BASILIST_EGG_SOUP //ë°”ì‹¤ë¦¬ìŠ¤í¬ ì•Œ ìŠ¤í”„
+			    || itemId == L1ItemId.SCOOKFOOD_BASILIST_EGG_SOUP) {//í™˜ìƒì˜ ë°”ì‹¤ë¦¬ìŠ¤í¬ ì•Œ ìŠ¤í”„
 			int dessertId = pc.getDessertId();
 			if (dessertId != 0) {
 				pc.getSkillEffectTimerSet().removeSkillEffect(dessertId);
 			}
 		}
-/**1Â÷ ¿ä¸® È¿°ú */
+/**1ì°¨ ìš”ë¦¬ íš¨ê³¼ */
 		int cookingId;
 		int time = 900;
 		switch(itemId){
@@ -302,7 +302,7 @@ public class L1Cooking {
 		pc.sendPackets(new S_ServerMessage(76, item.getNumberedName(1)));
 		pc.getInventory().removeItem(item , 1);
 	}
-	/**1Â÷¿ä¸® È¿°ú */
+	/**1ì°¨ìš”ë¦¬ íš¨ê³¼ */
 	public static void eatCooking(L1PcInstance pc, int cookingId, int time) {
 		int cookingType = 0;
 		
@@ -352,7 +352,7 @@ public class L1Cooking {
 		case COOKING_1_7_S:
 			cookingType = 7;
 			break;
-			/**1Â÷¿ä¸® È¿°ú³¡ */
+			/**1ì°¨ìš”ë¦¬ íš¨ê³¼ë */
 		case COOKING_1_8_N:
 		case COOKING_1_8_S:
 			cookingType = 16;
@@ -402,7 +402,7 @@ public class L1Cooking {
 		case COOKING_1_15_S:
 			cookingType = 23;
 			break;
-			/**2Â÷¿ä¸® È¿°ú³¡ */
+			/**2ì°¨ìš”ë¦¬ íš¨ê³¼ë */
 		case COOKING_1_16_N:
 		case COOKING_1_16_S:
 			cookingType = 45; 

@@ -1,4 +1,4 @@
-package l1j.server.server.command.executor;
+ï»¿package l1j.server.server.command.executor;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;
@@ -52,11 +52,11 @@ public class L1NpcDown2 implements L1CommandExecutor {
 			ids = null;
 
 			int spawnCount = SpawnTable.getInstance().spawnMonsters(mapId);
-			pc.sendPackets(new S_SystemMessage(MapsTable.getInstance().locationname(mapId)+" / "+ mapId+"¹ø ¸Ê"  + " : »èÁ¦: " + removeCount	+ " / ¹èÄ¡: " + spawnCount));
+			pc.sendPackets(new S_SystemMessage(MapsTable.getInstance().locationname(mapId)+" / "+ mapId+"ë²ˆ ë§µ"  + " : ì‚­ì œ: " + removeCount	+ " / ë°°ì¹˜: " + spawnCount));
 		
 		} catch (Exception e) {
 		
-			pc.sendPackets(new S_SystemMessage("."+cmdName+" <¸Ê ¹øÈ£> "));
+			pc.sendPackets(new S_SystemMessage("."+cmdName+" <ë§µ ë²ˆí˜¸> "));
 		}
 	}
 }

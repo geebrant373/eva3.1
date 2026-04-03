@@ -1,4 +1,4 @@
-package server.threads.manager;
+ï»¿package server.threads.manager;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,7 +15,7 @@ public class GCThread extends Thread{
 	}	
 	
 	public void run(){
-		System.out.println(GCThread.class.getName()  + " ½ÃÀÛ");
+		System.out.println(GCThread.class.getName()  + " ì‹œìž‘");
 		while(true){
 			try {
 					System.gc();

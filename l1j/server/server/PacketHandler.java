@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -219,7 +219,7 @@ public class PacketHandler {
 		int i = abyte0[0] & 0xff;
 		
 		//System.out.println("opcodes : " + i);
-		//System.out.println(DataToPacket(abyte0, abyte0.length)); // »ç¿ë Ã³¸®
+		//System.out.println(DataToPacket(abyte0, abyte0.length)); // ì‚¬ìš© ì²˜ë¦¬
 		switch (i) {
 		case C_OPCODE_EXCLUDE:
 			new C_Exclude(abyte0, _client);
@@ -236,7 +236,7 @@ public class PacketHandler {
 		case C_OPCODE_BOARDDELETE:
 			new C_BoardDelete(abyte0, _client);
 			break;
-		case C_OPCODE_CASH_SHOP: //ºÎ°¡¾ÆÀÌÅÛ Ã¢°í
+		case C_OPCODE_CASH_SHOP: //ë¶€ê°€ì•„ì´í…œ ì°½ê³ 
 			 new C_InventoryWarehouse(abyte0, _client);
 			break;
 		case C_OPCODE_PLEDGE:
@@ -257,7 +257,7 @@ public class PacketHandler {
 		case C_OPCODE_TRADEADDCANCEL:
 			new C_TradeCancel(abyte0, _client);
 			break;
-// ÁÖ¼® ¹ºÁö ¸ğ¸§			
+// ì£¼ì„ ë­”ì§€ ëª¨ë¦„			
 //		case C_OPCODE_WARTIMELIST:
 //			new C_WarTimeList(abyte0, _client);
 //			break;
@@ -352,9 +352,9 @@ public class PacketHandler {
 		case C_OPCODE_ARROWATTACK:
 			new C_Attack(abyte0, _client);
 			break;
-		// Ä³¸¯ÅÍÀÇ ¼îÆ® ÄÆÀÌ³ª ¸ñ·Ï »óÅÂ°¡ ÇÃ·¹ÀÌÁß¿¡ º¯µ¿ÇßÀ» °æ¿ì¿¡
-		// ¼îÆ® ÄÆÀÌ³ª ¸ñ·Ï »óÅÂ¸¦ ºÎ°¡ÇØ Å¬¶óÀÌ¾ğÆ®·ÎºÎÅÍ ¼Û½ÅµÇ¾î ¿Â´Ù
-		// º¸³»Á® ¿À´Â Å¸ÀÌ¹ÖÀº Å¬¶óÀÌ¾ğÆ® Á¾·á½Ã
+		// ìºë¦­í„°ì˜ ì‡¼íŠ¸ ì»·ì´ë‚˜ ëª©ë¡ ìƒíƒœê°€ í”Œë ˆì´ì¤‘ì— ë³€ë™í–ˆì„ ê²½ìš°ì—
+		// ì‡¼íŠ¸ ì»·ì´ë‚˜ ëª©ë¡ ìƒíƒœë¥¼ ë¶€ê°€í•´ í´ë¼ì´ì–¸íŠ¸ë¡œë¶€í„° ì†¡ì‹ ë˜ì–´ ì˜¨ë‹¤
+		// ë³´ë‚´ì ¸ ì˜¤ëŠ” íƒ€ì´ë°ì€ í´ë¼ì´ì–¸íŠ¸ ì¢…ë£Œì‹œ
 		case C_OPCODE_QUITGAME:
 			break;
 		case C_OPCODE_BANCLAN:
@@ -492,7 +492,7 @@ public class PacketHandler {
 			break;
 		case C_OPCODE_WAREHOUSEPASSWORD:
 			new C_WarehousePassword(abyte0, _client);
-			break; // Ã¢°í ºñ¹ø
+			break; // ì°½ê³  ë¹„ë²ˆ
 //		case C_OPCODE_HORUN:
 //			new C_Horun(abyte0, _client);
 //			break;
@@ -528,18 +528,18 @@ public class PacketHandler {
 //			break;
 		default:
 			// String s = Integer.toHexString(abyte0[0] & 0xff);
-			// _log.warning("¿ëµµ ºÒ¸í ÀÛµ¿ÄÚµå:µ¥ÀÌÅÍ ³»¿ë");
-			// _log.warning((new StringBuilder()).append("ÀÛµ¿ÄÚµå(16Áø¼ö) :
+			// _log.warning("ìš©ë„ ë¶ˆëª… ì‘ë™ì½”ë“œ:ë°ì´í„° ë‚´ìš©");
+			// _log.warning((new StringBuilder()).append("ì‘ë™ì½”ë“œ(16ì§„ìˆ˜) :
 			// ").append(s).toString());
-			// System.out.println((new StringBuilder()).append("ÀÛµ¿ÄÚµå(10Áø¼ö) :
+			// System.out.println((new StringBuilder()).append("ì‘ë™ì½”ë“œ(10ì§„ìˆ˜) :
 			// ").append(i).toString());
-			// _client.sendPacket(new S_SystemMessage("ÀÛµ¿ÄÚµå(10Áø¼ö) : "+i));
-			// _log.warning((new StringBuilder()).append("ÀÛµ¿ÄÚµå(10Áø¼ö) :
+			// _client.sendPacket(new S_SystemMessage("ì‘ë™ì½”ë“œ(10ì§„ìˆ˜) : "+i));
+			// _log.warning((new StringBuilder()).append("ì‘ë™ì½”ë“œ(10ì§„ìˆ˜) :
 			// ").append(i).toString());
 			// _log.warning(new ByteArrayUtil(abyte0).dumpToString());
 			break;
 		}
-		// _log.warning((new StringBuilder()).append("ÀÛµ¿ÄÚµå").append(i).toString());
+		// _log.warning((new StringBuilder()).append("ì‘ë™ì½”ë“œ").append(i).toString());
 		
 	}
 

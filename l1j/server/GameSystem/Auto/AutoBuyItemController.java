@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Auto;
+ï»¿package l1j.server.GameSystem.Auto;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -43,25 +43,25 @@ public class AutoBuyItemController implements Runnable {
 		cbuyaItemsMapi.put(40319, 300);
 		cbuyaItemsMapi.put(40321, 100);
 		cbuyaItemsMapi.put(40318, 100);
-		cbuyaItemsMapi.put(40068, 20);//¿¤ºì ¿ÍÆÛ
-		cbuyaItemsMapi.put(40079, 50);//±ÍÈ¯ ÁÖ¹®¼­
-		cbuyaItemsMapi.put(40124, 50);//Ç÷¸Í ±ÍÈ¯ ÁÖ¹®¼­
-		cbuyaItemsMapi.put(40317, 20);//¼ıµ¹
+		cbuyaItemsMapi.put(40068, 20);//ì—˜ë¸ ì™€í¼
+		cbuyaItemsMapi.put(40079, 50);//ê·€í™˜ ì£¼ë¬¸ì„œ
+		cbuyaItemsMapi.put(40124, 50);//í˜ˆë§¹ ê·€í™˜ ì£¼ë¬¸ì„œ
+		cbuyaItemsMapi.put(40317, 20);//ìˆ«ëŒ
 	}
 	private static final Map<String, Integer> caitemsMapi = new HashMap<>();
 	static {
-		caitemsMapi.put("½Å¼Ó °­·Â Ã¼·Â È¸º¹Á¦", 40024);
-		caitemsMapi.put("°­È­ ¼ÓµµÇâ»ó ¹°¾à", 40018);
-		caitemsMapi.put("¼ø°£ÀÌµ¿ ÁÖ¹®¼­", 40100);
-		caitemsMapi.put("º¯½Å ÁÖ¹®¼­", 40088);
-		caitemsMapi.put("°áÁ¤Ã¼", 41246);
-		caitemsMapi.put("Á¤·É¿Á", 40319);
-		caitemsMapi.put("Èæ¿ä¼®", 40321);
-		caitemsMapi.put("¸¶·ÂÀÇ µ¹", 40318);
-		caitemsMapi.put("¿¤ºì ¿ÍÆÛ", 40068);
-		caitemsMapi.put("±ÍÈ¯ ÁÖ¹®¼­", 40079);
-		caitemsMapi.put("Ç÷¸Í ±ÍÈ¯ ÁÖ¹®¼­", 40124);
-		caitemsMapi.put("¼ıµ¹", 40317);
+		caitemsMapi.put("ì‹ ì† ê°•ë ¥ ì²´ë ¥ íšŒë³µì œ", 40024);
+		caitemsMapi.put("ê°•í™” ì†ë„í–¥ìƒ ë¬¼ì•½", 40018);
+		caitemsMapi.put("ìˆœê°„ì´ë™ ì£¼ë¬¸ì„œ", 40100);
+		caitemsMapi.put("ë³€ì‹  ì£¼ë¬¸ì„œ", 40088);
+		caitemsMapi.put("ê²°ì •ì²´", 41246);
+		caitemsMapi.put("ì •ë ¹ì˜¥", 40319);
+		caitemsMapi.put("í‘ìš”ì„", 40321);
+		caitemsMapi.put("ë§ˆë ¥ì˜ ëŒ", 40318);
+		caitemsMapi.put("ì—˜ë¸ ì™€í¼", 40068);
+		caitemsMapi.put("ê·€í™˜ ì£¼ë¬¸ì„œ", 40079);
+		caitemsMapi.put("í˜ˆë§¹ ê·€í™˜ ì£¼ë¬¸ì„œ", 40124);
+		caitemsMapi.put("ìˆ«ëŒ", 40317);
 	}
 	public void run() {
 		try {
@@ -98,11 +98,11 @@ public class AutoBuyItemController implements Runnable {
 	}
 
 	private void doAutoBuyAction(L1PcInstance pc) {
-		ArrayList<Integer> _±¸ÀÔ¸®½ºÆ® = pc.get_ÀÚµ¿±¸ÀÔ¸®½ºÆ®();
-		if (!pc.is_ÀÚµ¿±¸ÀÔ»ç¿ë()) {
+		ArrayList<Integer> _êµ¬ì…ë¦¬ìŠ¤íŠ¸ = pc.get_ìë™êµ¬ì…ë¦¬ìŠ¤íŠ¸();
+		if (!pc.is_ìë™êµ¬ì…ì‚¬ìš©()) {
 			return;
 		}
-		if ((_±¸ÀÔ¸®½ºÆ® == null) || (_±¸ÀÔ¸®½ºÆ®.isEmpty())) {
+		if ((_êµ¬ì…ë¦¬ìŠ¤íŠ¸ == null) || (_êµ¬ì…ë¦¬ìŠ¤íŠ¸.isEmpty())) {
 			return;
 		}
 		if (pc.getAutoHuntStatus()) {
@@ -123,10 +123,10 @@ public class AutoBuyItemController implements Runnable {
 
 	private boolean buy_items(L1PcInstance pc, Map<Integer, Integer> cbuyaItemsMapi) {
 		L1ShopItem shopItem;
-		L1Shop shop = ShopTable.getInstance().get(70030); // ÀÚµ¿±¸ÀÔÇÏ´Â ¾ÆÀÌÅÛÀÇ °¡°İÀ» °¡Á®¿Â´Ù.
+		L1Shop shop = ShopTable.getInstance().get(70030); // ìë™êµ¬ì…í•˜ëŠ” ì•„ì´í…œì˜ ê°€ê²©ì„ ê°€ì ¸ì˜¨ë‹¤.
 		List<Integer> autoBuyItem = new ArrayList<>();
 		List<String> autoBuyItemName = new ArrayList<>();
-		ArrayList<Integer> _±¸ÀÔ¸®½ºÆ® = pc.get_ÀÚµ¿±¸ÀÔ¸®½ºÆ®();
+		ArrayList<Integer> _êµ¬ì…ë¦¬ìŠ¤íŠ¸ = pc.get_ìë™êµ¬ì…ë¦¬ìŠ¤íŠ¸();
 		ArrayList<SimplePurchasingItemFormat> purcasing_formats = new ArrayList<SimplePurchasingItemFormat>();
 		NumberFormat nf = NumberFormat.getInstance();
 		L1PcInventory inv = pc.getInventory();
@@ -134,8 +134,8 @@ public class AutoBuyItemController implements Runnable {
 
 		int totalPrice = 0;
 
-		for (int i = 0; i < _±¸ÀÔ¸®½ºÆ®.size(); i++) {
-		    int itemId = _±¸ÀÔ¸®½ºÆ®.get(i);
+		for (int i = 0; i < _êµ¬ì…ë¦¬ìŠ¤íŠ¸.size(); i++) {
+		    int itemId = _êµ¬ì…ë¦¬ìŠ¤íŠ¸.get(i);
 		    if (pc.getInventory().checkItem(itemId)) {
 		        continue;
 		    }
@@ -163,21 +163,21 @@ public class AutoBuyItemController implements Runnable {
 					inv.storeItem(f.itemId, f.needCount);
 				}
 			} else {
-				pc.sendPackets(new S_SystemMessage("¾Æµ¥³ª " + totalPrice + "°¡ ºÎÁ·ÇÏ¿© ÀÚµ¿±¸ÀÔÀÌ Áß´ÜµË´Ï´Ù."));
-				pc.set_ÀÚµ¿±¸ÀÔ»ç¿ë(false);
+				pc.sendPackets(new S_SystemMessage("ì•„ë°ë‚˜ " + totalPrice + "ê°€ ë¶€ì¡±í•˜ì—¬ ìë™êµ¬ì…ì´ ì¤‘ë‹¨ë©ë‹ˆë‹¤."));
+				pc.set_ìë™êµ¬ì…ì‚¬ìš©(false);
 				return false;
 			}
 		}
-		// ÀÚµ¿±¸ÀÔÇÑ ¾ÆÀÌÅÛ ¸®½ºÆ®
+		// ìë™êµ¬ì…í•œ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸
 		if (!autoBuyItem.isEmpty()) {
 			ArrayList<String> result = new ArrayList<String>();
-			result.add("ÀÚµ¿±¸ÀÔÇÑ ¾ÆÀÌÅÛ ¸®½ºÆ®");
+			result.add("ìë™êµ¬ì…í•œ ì•„ì´í…œ ë¦¬ìŠ¤íŠ¸");
 			for (int itemid : autoBuyItem) {
 				result.add(searchItemName(itemid));
 			}
 			String formattedPrice = nf.format(totalPrice);
-			result.add("¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ¤Ñ");
-			result.add("ÃÑ " + formattedPrice + " ¾Æµ¥³ª");
+			result.add("ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡ã…¡");
+			result.add("ì´ " + formattedPrice + " ì•„ë°ë‚˜");
 			pc.sendPackets(new S_NPCTalkReturn(pc.getId(), "autoBuyItemList",
 					(String[]) result.toArray(new String[autoBuyItemName.size()])));
 		}
@@ -188,7 +188,7 @@ public class AutoBuyItemController implements Runnable {
 		if (cbuyaItemsMapi.containsKey(itemid)) {
 			return cbuyaItemsMapi.get(itemid);
 		} else {
-			System.out.println("ÇØ´ç ¾ÆÀÌÅÛÀº ¸®½ºÆ®¿¡ ¾ø½À´Ï´Ù.");
+			System.out.println("í•´ë‹¹ ì•„ì´í…œì€ ë¦¬ìŠ¤íŠ¸ì— ì—†ìŠµë‹ˆë‹¤.");
 			return -1;
 		}
 	}
@@ -199,6 +199,6 @@ public class AutoBuyItemController implements Runnable {
 				return entry.getKey();
 			}
 		}
-		return "¾ÆÀÌµğ¿¡ ÇØ´çÇÏ´Â ¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.";
+		return "ì•„ì´ë””ì— í•´ë‹¹í•˜ëŠ” ì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.";
 	}
 }

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -112,7 +112,7 @@ public class ModelSpawnTable {
 		default: break;
 		}
 		int floor = pc.getMapId() - 100;
-		String note = "¿À¸¸("+floor+"Ãþ) È¶ºÒ";
+		String note = "ì˜¤ë§Œ("+floor+"ì¸µ) íšƒë¶ˆ";
 		
 		try {
 

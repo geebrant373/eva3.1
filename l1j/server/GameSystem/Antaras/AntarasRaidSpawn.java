@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Antaras;
+﻿package l1j.server.GameSystem.Antaras;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +20,7 @@ public class CharacterSlotItemTable {
 		return _instance;
 	}
 
-	public void selectCharSlot(L1PcInstance pc, int slotNum) { // ·Î±×ÀÎ½Ã ºÒ·¯¿À´Â°Í
+	public void selectCharSlot(L1PcInstance pc, int slotNum) { // ë¡œê·¸ì¸ì‹œ ë¶ˆëŸ¬ì˜¤ëŠ”ê²ƒ
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;

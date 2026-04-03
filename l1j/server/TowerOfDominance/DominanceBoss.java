@@ -1,4 +1,4 @@
-package l1j.server.TowerOfDominance;
+ï»¿package l1j.server.TowerOfDominance;
 
 import java.util.Random;
 
@@ -144,7 +144,7 @@ public class DominanceBoss {
 		String now_y = SystemUtil.getYoil(System.currentTimeMillis());
 		boolean isYoil = false;
 		for (String y : yoil) {
-			if (y.equalsIgnoreCase("ÀüÃ¼") || y.equalsIgnoreCase(now_y))
+			if (y.equalsIgnoreCase("ì „ì²´") || y.equalsIgnoreCase(now_y))
 				isYoil = true;
 		}
 		if (isYoil == false)
@@ -169,7 +169,7 @@ public class DominanceBoss {
 
 		for (int i = 0; i < _bosstime.length; i++) {
 			int[] t = _bosstime[i];
-			int[] real_t = real_time[i];//³Î
+			int[] real_t = real_time[i];//ë„
 
 			rnd_min = rnd_time_minute == 0 ? 0 : _random.nextInt(rnd_time_minute);
 

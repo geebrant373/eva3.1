@@ -1,4 +1,4 @@
-package l1j.server.server.utils;
+﻿package l1j.server.server.utils;
 
 public class ArrayUtil {
 	public static int indexOf(int[] array, int value) {

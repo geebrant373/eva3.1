@@ -1,4 +1,4 @@
-package l1j.server.server.clientpackets;
+ï»¿package l1j.server.server.clientpackets;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -54,7 +54,7 @@ public class P_connect extends ClientBasePacket {
 					}
 				}
 			}
-			/**º¸³»ÀÚ*/
+			/**ë³´ë‚´ì*/
 			client.sendPacket2(new P_Itemlist(sitemlist));
 		}
 		

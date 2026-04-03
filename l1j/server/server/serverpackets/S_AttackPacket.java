@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,7 +42,7 @@ public class S_AttackPacket extends ServerBasePacket {
 		int alttype = (_random.nextInt(6));
 		writeC(Opcodes.S_OPCODE_ATTACKPACKET);
 		if (pc.getGfxId().getTempCharGfx() == 14491 || pc.getGfxId().getTempCharGfx() == 19500) {
-			if (pc.getCurrentWeapon() == 50) { // ¾ç°Ë
+			if (pc.getCurrentWeapon() == 50) { // ì–‘ê²€
 				switch (alttype) {
 				case 0: // alt attack
 					type = 32;
@@ -54,7 +54,7 @@ public class S_AttackPacket extends ServerBasePacket {
 					type = 51;
 					break;
 				}
-			} else if (pc.getCurrentWeapon() == 46) { // ´Ü°Ë
+			} else if (pc.getCurrentWeapon() == 46) { // ë‹¨ê²€
 				switch (alttype) {
 				case 0: // alt attack
 					type = 33;
@@ -66,7 +66,7 @@ public class S_AttackPacket extends ServerBasePacket {
 					type = 47;
 					break;
 				}
-			} else if (pc.getCurrentWeapon() == 4) { // ÇÑ¼Õ°Ë
+			} else if (pc.getCurrentWeapon() == 4) { // í•œì†ê²€
 				switch (alttype) {
 				case 0: // alt attack
 					type = 34;
@@ -78,7 +78,7 @@ public class S_AttackPacket extends ServerBasePacket {
 					type = 5;
 					break;
 				}
-			} else if (pc.getCurrentWeapon() == 24) { // Ã¢
+			} else if (pc.getCurrentWeapon() == 24) { // ì°½
 				switch (alttype) {
 				case 0: // alt attack
 					type = 35;
@@ -87,7 +87,7 @@ public class S_AttackPacket extends ServerBasePacket {
 					type = 25;
 					break;
 				}
-			} else if (pc.getCurrentWeapon() == 11) { // µµ³¢
+			} else if (pc.getCurrentWeapon() == 11) { // ë„ë¼
 				switch (alttype) {
 				case 0: // alt attack
 					type = 36;
@@ -96,7 +96,7 @@ public class S_AttackPacket extends ServerBasePacket {
 					type = 12;
 					break;
 				}
-			} else if (pc.getCurrentWeapon() == 54 || pc.getCurrentWeapon() == 58) { // ÀÌµµ·ù Å©·Î¿ì
+			} else if (pc.getCurrentWeapon() == 54 || pc.getCurrentWeapon() == 58) { // ì´ë„ë¥˜ í¬ë¡œìš°
 				switch (alttype) {
 				case 0: // alt attack
 				case 1:
@@ -107,7 +107,7 @@ public class S_AttackPacket extends ServerBasePacket {
 					type = 55;
 					break;
 				}
-			} else if (pc.getCurrentWeapon() == 40) { // ÁöÆÎÀÌ
+			} else if (pc.getCurrentWeapon() == 40) { // ì§€íŒ¡ì´
 				switch (alttype) {
 				case 0: // alt attack
 					type = 38;
@@ -165,7 +165,7 @@ public class S_AttackPacket extends ServerBasePacket {
 		writeC(pc.getMoveState().getHeading());
 		writeH(0x0000); // target x
 		writeH(0x0000); // target y
-		writeC(attacktype); // 0:none 2:Å©·Î¿ì 4:ÀÌµµ·ù 0x08:CounterMirror
+		writeC(attacktype); // 0:none 2:í¬ë¡œìš° 4:ì´ë„ë¥˜ 0x08:CounterMirror
 	}
 
 	@Override

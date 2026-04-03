@@ -1,4 +1,4 @@
-package server.threads.pc;
+ï»¿package server.threads.pc;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,7 +30,7 @@ public class AutoSaveThread extends Thread{
 
 	
 	public void run(){
-		System.out.println(AutoSaveThread.class.getName()  + " ½ÃÀÛ");
+		System.out.println(AutoSaveThread.class.getName()  + " ì‹œì‘");
 		while(true){
 			try {
 				for(L1PcInstance pc : L1World.getInstance().getAllPlayers()){
@@ -38,13 +38,13 @@ public class AutoSaveThread extends Thread{
 						continue;
 					}
 					else{
-						// Ä³¸¯ÅÍ Á¤º¸
+						// ìºë¦­í„° ì •ë³´
 						if (_saveCharTime * 1000 < System.currentTimeMillis() - pc.getlastSavedTime()) {
 							pc.save();
 							pc.setlastSavedTime(System.currentTimeMillis());
 						}
 
-						// ¼ÒÁö ¾ÆÀÌÅÛ Á¤º¸
+						// ì†Œì§€ ì•„ì´í…œ ì •ë³´
 						if (_saveInvenTime * 1000 < System.currentTimeMillis() - pc.getlastSavedTime_inventory()) {
 							pc.saveInventory();
 							pc.setlastSavedTime_inventory(System.currentTimeMillis());

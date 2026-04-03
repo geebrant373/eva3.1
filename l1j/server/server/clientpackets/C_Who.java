@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -61,7 +61,7 @@ public class C_Who extends ClientBasePacket {
 			S_WhoCharinfo mannequininfo = new S_WhoCharinfo(s, 0);
 			pc.sendPackets(mannequininfo);
 		} else {
-			int AddUser = (int)(L1World.getInstance().getAllPlayersToArray().length * Config.¿Œø¯πË¿≤);
+			int AddUser = (int)(L1World.getInstance().getAllPlayersToArray().length * Config.Ïù∏ÏõêÎ∞∞Ïú®);
 			//int ShopUser = AutoShopManager.getInstance().getShopPlayerCount();
 			int CalcUser = L1UserCalc.getClacUser();
 			AddUser += CalcUser + mannequins.size();

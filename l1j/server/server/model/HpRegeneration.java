@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -99,14 +99,14 @@ public class HpRegeneration extends TimerTask {
 
 		int maxBonus = 1;
 
-		// CON º¸³Ê½º
+		// CON ë³´ë„ˆìŠ¤
 		if (11 < _pc.getLevel() && 14 <= _pc.getAbility().getTotalCon()) {
 			maxBonus = _pc.getAbility().getTotalCon() - 12;
 			if (25 < _pc.getAbility().getTotalCon()) {
 				maxBonus = 14;
 			}
 		}
-		// º£ÀÌ½º CON º¸³Ê½º
+		// ë² ì´ìŠ¤ CON ë³´ë„ˆìŠ¤
 		int basebonus = CalcStat.calcBaseHpr(_pc.getType(), _pc.getAbility().getBaseCon());
 		
 		int equipHpr = _pc.getInventory().hpRegenPerTick();
@@ -129,16 +129,16 @@ public class HpRegeneration extends TimerTask {
 		boolean inLifeStream = false;
 		if (isPlayerInLifeStream(_pc)) {
 			inLifeStream = true;
-			// °í´ëÀÇ °ø°£, ¸¶Á·ÀÇ ½ÅÀü¿¡¼­´Â HPR+3Àº ¾ø¾îÁ®?
+			// ê³ ëŒ€ì˜ ê³µê°„, ë§ˆì¡±ì˜ ì‹ ì „ì—ì„œëŠ” HPR+3ì€ ì—†ì–´ì ¸?
 			bonus += 3;
 		}
 
-		// °øº¹°ú Áß·®ÀÇ Ã¼Å©
+		// ê³µë³µê³¼ ì¤‘ëŸ‰ì˜ ì²´í¬
 		if (_pc.get_food() < 24 || isOverWeight(_pc)
 				|| _pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.BERSERKERS)) {
 			bonus = 0;
 			basebonus = 0;
-			// Àåºñ¿¡ ÀÇÇÑ HPR Áõ°¡´Â ¸¸º¹µµ, Áß·®¿¡ ÀÇÇØ ¾ø¾îÁöÁö¸¸, °¨¼ÒÀÎ °æ¿ì´Â ¸¸º¹µµ, Áß·®¿¡ °ü°è¾øÀÌ È¿°ú°¡ ³²´Â´Ù
+			// ìž¥ë¹„ì— ì˜í•œ HPR ì¦ê°€ëŠ” ë§Œë³µë„, ì¤‘ëŸ‰ì— ì˜í•´ ì—†ì–´ì§€ì§€ë§Œ, ê°ì†Œì¸ ê²½ìš°ëŠ” ë§Œë³µë„, ì¤‘ëŸ‰ì— ê´€ê³„ì—†ì´ íš¨ê³¼ê°€ ë‚¨ëŠ”ë‹¤
 			if (equipHpr > 0) {
 				equipHpr = 0;
 			}
@@ -148,39 +148,39 @@ public class HpRegeneration extends TimerTask {
 		newHp += bonus + equipHpr + basebonus;
 
 		if (newHp < 1) {
-			newHp = 1; // HPR °¨¼Ò Àåºñ¿¡ ÀÇÇØ »ç¸ÁÀº ÇÏÁö ¾Ê´Â´Ù
+			newHp = 1; // HPR ê°ì†Œ ìž¥ë¹„ì— ì˜í•´ ì‚¬ë§ì€ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		}
-		// ¼öÁß¿¡¼­ÀÇ °¨¼Ò Ã³¸®
-		// ¶óÀÌÇÁ ½Ã³Á¹°·Î °¨¼Ò¸¦ ¾ø¾Ù ¼ö ÀÖÀ»±î ºÒ¸í
+		// ìˆ˜ì¤‘ì—ì„œì˜ ê°ì†Œ ì²˜ë¦¬
+		// ë¼ì´í”„ ì‹œëƒ‡ë¬¼ë¡œ ê°ì†Œë¥¼ ì—†ì•¨ ìˆ˜ ìžˆì„ê¹Œ ë¶ˆëª…
 		if (isUnderwater(_pc)) {
 			newHp -= 20;
 			if (newHp < 1) {
 				if (_pc.isGm()) {
 					newHp = 1;
 				} else {
-					_pc.death(null); // HP°¡ 0ÀÌ µÇ¾úÀ» °æ¿ì´Â »ç¸ÁÇÑ´Ù.
+					_pc.death(null); // HPê°€ 0ì´ ë˜ì—ˆì„ ê²½ìš°ëŠ” ì‚¬ë§í•œë‹¤.
 				}
 			}
 		}
-		// Lv50 Äù½ºÆ®ÀÇ °í´ëÀÇ °ø°£ 1 F2F¿¡¼­ÀÇ °¨¼Ò Ã³¸®
+		// Lv50 í€˜ìŠ¤íŠ¸ì˜ ê³ ëŒ€ì˜ ê³µê°„ 1 F2Fì—ì„œì˜ ê°ì†Œ ì²˜ë¦¬
 		if (isLv50Quest(_pc) && !inLifeStream) {
 			newHp -= 10;
 			if (newHp < 1) {
 				if (_pc.isGm()) {
 					newHp = 1;
 				} else {
-					_pc.death(null); // HP°¡ 0ÀÌ µÇ¾úÀ» °æ¿ì´Â »ç¸ÁÇÑ´Ù.
+					_pc.death(null); // HPê°€ 0ì´ ë˜ì—ˆì„ ê²½ìš°ëŠ” ì‚¬ë§í•œë‹¤.
 				}
 			}
 		}
-		// ¸¶Á·ÀÇ ½ÅÀü¿¡¼­ÀÇ °¨¼Ò Ã³¸®
+		// ë§ˆì¡±ì˜ ì‹ ì „ì—ì„œì˜ ê°ì†Œ ì²˜ë¦¬
 		if (_pc.getMapId() == 410 && !inLifeStream) {
 			newHp -= 10;
 			if (newHp < 1) {
 				if (_pc.isGm()) {
 					newHp = 1;
 				} else {
-					_pc.death(null); // HP°¡ 0ÀÌ µÇ¾úÀ» °æ¿ì´Â »ç¸ÁÇÑ´Ù.
+					_pc.death(null); // HPê°€ 0ì´ ë˜ì—ˆì„ ê²½ìš°ëŠ” ì‚¬ë§í•œë‹¤.
 				}
 			}
 		}
@@ -191,7 +191,7 @@ public class HpRegeneration extends TimerTask {
 	}
 
 	private boolean isUnderwater(L1PcInstance pc) {
-		// ¿öÅÍ ºÎÃ÷ Àåºñ½ÃÀÎ°¡, ¿¡¹ÙÀÇ Ãàº¹ »óÅÂÀÌ¸é, ¼öÁßÀº ¾Æ´Ï¸é °£ÁÖÇÑ´Ù.
+		// ì›Œí„° ë¶€ì¸  ìž¥ë¹„ì‹œì¸ê°€, ì—ë°”ì˜ ì¶•ë³µ ìƒíƒœì´ë©´, ìˆ˜ì¤‘ì€ ì•„ë‹ˆë©´ ê°„ì£¼í•œë‹¤.
 		if (pc.getInventory().checkEquipped(20207)) {
 			return false;
 		}
@@ -208,8 +208,8 @@ public class HpRegeneration extends TimerTask {
 	}
 
 	private boolean isOverWeight(L1PcInstance pc) {
-		// ¿¡Å°Á¶Æ½Å©¹ÙÀÌÅ¸¶óÀÌÁî »óÅÂ, ¾Æµð¼î³ª¸£ÆÄÀÌ¾Æ »óÅÂÀÎ°¡
-		// °ñµç À® Àåºñ½ÃÀÌ¸é, Áß·® ¿À¹öÀÌÁö ¾ÊÀ¸¸é °£ÁÖÇÑ´Ù.
+		// ì—í‚¤ì¡°í‹±í¬ë°”ì´íƒ€ë¼ì´ì¦ˆ ìƒíƒœ, ì•„ë””ì‡¼ë‚˜ë¥´íŒŒì´ì•„ ìƒíƒœì¸ê°€
+		// ê³¨ë“  ìœ™ ìž¥ë¹„ì‹œì´ë©´, ì¤‘ëŸ‰ ì˜¤ë²„ì´ì§€ ì•Šìœ¼ë©´ ê°„ì£¼í•œë‹¤.
 		if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.EXOTIC_VITALIZE)
 				|| pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ADDITIONAL_FIRE)) {
 			return false;
@@ -230,11 +230,11 @@ public class HpRegeneration extends TimerTask {
 	}
 
 	/**
-	 * ÁöÁ¤ÇÑ PC°¡ ¶óÀÌÇÁ ½Ã³Á¹°ÀÇ ¹üÀ§³»¿¡ ÀÖ´ÂÁö Ã¼Å©ÇÑ´Ù
+	 * ì§€ì •í•œ PCê°€ ë¼ì´í”„ ì‹œëƒ‡ë¬¼ì˜ ë²”ìœ„ë‚´ì— ìžˆëŠ”ì§€ ì²´í¬í•œë‹¤
 	 * 
 	 * @param pc
 	 *            PC
-	 * @return true PC°¡ ¶óÀÌÇÁ ½Ã³Á¹°ÀÇ ¹üÀ§³»¿¡ ÀÖ´Â °æ¿ì
+	 * @return true PCê°€ ë¼ì´í”„ ì‹œëƒ‡ë¬¼ì˜ ë²”ìœ„ë‚´ì— ìžˆëŠ” ê²½ìš°
 	 */
 	private static boolean isPlayerInLifeStream(L1PcInstance pc) {
 		L1EffectInstance effect = null;

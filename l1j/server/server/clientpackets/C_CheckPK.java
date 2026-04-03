@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -34,7 +34,7 @@ public class C_CheckPK extends ClientBasePacket {
 		super(abyte0);
 
 		L1PcInstance player = clientthread.getActiveChar();
-		 // ÇöÀçÀÇ PKÈ¸¼ö´Â%0ÀÔ´Ï´Ù.
+		 // í˜„ì¬ì˜ PKíšŒìˆ˜ëŠ”%0ì…ë‹ˆë‹¤.
 		player.sendPackets(new S_ServerMessage(562, String.valueOf(player.get_PKcount())));
 	}
 

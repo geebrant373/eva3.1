@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -72,13 +72,13 @@ public class S_Board_AdenaTraid extends ServerBasePacket {
 					}
 					db[count][1] = rs.getString(3);
 					if (rs.getInt(12) == 0) {
-						db[count][2] = "[ÆÇ¸ÅÁß]"  +  rs.getString(11);
+						db[count][2] = "[íŒë§¤ì¤‘]"  +  rs.getString(11);
 					} else if (rs.getString(10) != null && rs.getInt(12) == 1) {
-						db[count][2] = "[±¸¸ÅÁß]"  +  rs.getString(11);
+						db[count][2] = "[êµ¬ë§¤ì¤‘]"  +  rs.getString(11);
 					} else if (rs.getInt(12) == 2) {
-						db[count][2] = "[ÆÇ¸Å¿Ï·á]"  +  rs.getString(11);
+						db[count][2] = "[íŒë§¤ì™„ë£Œ]"  +  rs.getString(11);
 					} else {
-						db[count][2] = "[ÆÇ¸ÅÃë¼Ò]"  +  rs.getString(11);
+						db[count][2] = "[íŒë§¤ì·¨ì†Œ]"  +  rs.getString(11);
 					} 
 					count++;
 				}

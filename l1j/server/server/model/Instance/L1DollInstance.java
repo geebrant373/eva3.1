@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -61,24 +61,24 @@ public class L1DollInstance extends L1NpcInstance {
 	public static final int DOLLTYPE_COCATRIS = 8;
 	public static final int DOLLTYPE_DRAGON_M = 9;
 	public static final int DOLLTYPE_DRAGON_W = 10;
-	public static final int DOLLTYPE_¾óÀ½¿©¿Õ = 11;
-	public static final int DOLLTYPE_Å¸¶ô = 12;
-	public static final int DOLLTYPE_µ¥¸ó = 13;
-	public static final int DOLLTYPE_»çÀÌÅ¬·Ó½º = 14;
-	public static final int DOLLTYPE_½Ã¾î = 15;
-	public static final int DOLLTYPE_³ªÀÌÆ®¹ßµå = 16;
-	public static final int DOLLTYPE_¸®Ä¡ = 17;
-	public static final int DOLLTYPE_µ¥½º³ªÀÌÆ® = 19; // Çã¼ö¾Æºñ
-	public static final int DOLLTYPE_¹Ù¶õÄ« = 20;
-	public static final int DOLLTYPE_¾ÈÅ¸¶ó½º = 21;
-	public static final int DOLLTYPE_ÆÄÇª¸®¿Â = 22;
-	public static final int DOLLTYPE_¸°µåºñ¿À¸£ = 23;
-	public static final int DOLLTYPE_¹ß¶óÄ«½º = 24;
-	public static final int DOLLTYPE_½ºÆÄÅäÀÌ = 25;
+	public static final int DOLLTYPE_ì–¼ìŒì—¬ì™• = 11;
+	public static final int DOLLTYPE_íƒ€ë½ = 12;
+	public static final int DOLLTYPE_ë°ëª¬ = 13;
+	public static final int DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤ = 14;
+	public static final int DOLLTYPE_ì‹œì–´ = 15;
+	public static final int DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ = 16;
+	public static final int DOLLTYPE_ë¦¬ì¹˜ = 17;
+	public static final int DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸ = 19; // í—ˆìˆ˜ì•„ë¹„
+	public static final int DOLLTYPE_ë°”ë€ì¹´ = 20;
+	public static final int DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤ = 21;
+	public static final int DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨ = 22;
+	public static final int DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´ = 23;
+	public static final int DOLLTYPE_ë°œë¼ì¹´ìŠ¤ = 24;
+	public static final int DOLLTYPE_ìŠ¤íŒŒí† ì´ = 25;
 	public static final int DOLLTYPE_road = 26;
-	public static final int DOLLTYPE_Çã¼ö¾Æºñ = 27;
-	public static final int DOLLTYPE_¿¡Æ¼ = 28;
-	public static final int DOLLTYPE_¶ó¹Ì¾Æ = 29;
+	public static final int DOLLTYPE_í—ˆìˆ˜ì•„ë¹„ = 27;
+	public static final int DOLLTYPE_ì—í‹° = 28;
+	public static final int DOLLTYPE_ë¼ë¯¸ì•„ = 29;
 	// public static final int DOLL_TIME = 1800000;
 
 	private static Random _random = new Random();
@@ -87,9 +87,9 @@ public class L1DollInstance extends L1NpcInstance {
 	private int _dollBless;
 	private ScheduledFuture<?> _future = null;
 
-	private static int Buff[] = { 26, 42, 43, 79 }; // µ¦½º, Èû, ÇìÀÌ, ¾îº¥
+	private static int Buff[] = { 26, 42, 43, 79 }; // ë±ìŠ¤, í˜, í—¤ì´, ì–´ë²¤
 
-	// Å¸°ÙÀÌ ¾ø´Â °æ¿ìÀÇ Ã³¸®
+	// íƒ€ê²Ÿì´ ì—†ëŠ” ê²½ìš°ì˜ ì²˜ë¦¬
 	@Override
 	public boolean noTarget() {
 		if (_master.isDead()) {
@@ -114,11 +114,11 @@ public class L1DollInstance extends L1NpcInstance {
 		return false;
 	}
 
-	// ½Ã°£ °èÃø¿ë
+	// ì‹œê°„ ê³„ì¸¡ìš©
 	class DollTimer implements Runnable {
 		@Override
 		public void run() {
-			if (_destroyed) { // ÀÌ¹Ì ÆÄ±âµÇ¾î ÀÖÁö ¾ÊÀº°¡ Ã¼Å©
+			if (_destroyed) { // ì´ë¯¸ íŒŒê¸°ë˜ì–´ ìˆì§€ ì•Šì€ê°€ ì²´í¬
 				return;
 			}
 			deleteDoll();
@@ -128,33 +128,33 @@ public class L1DollInstance extends L1NpcInstance {
 	class HelpTimer implements Runnable {
 		@Override
 		public void run() {
-			if (_destroyed) { // ÀÌ¹Ì ÆÄ±âµÇ¾î ÀÖÁö ¾ÊÀº°¡ Ã¼Å©
+			if (_destroyed) { // ì´ë¯¸ íŒŒê¸°ë˜ì–´ ìˆì§€ ì•Šì€ê°€ ì²´í¬
 				return;
 			}
 			getHelperAction();
 		}
 	}
 
-	public double getAddExpByDoll() { // ÀÎÇü °æÇèÄ¡Ãß°¡
+	public double getAddExpByDoll() { // ì¸í˜• ê²½í—˜ì¹˜ì¶”ê°€
 		double addexp = 1;
 
-		if (getDollType() == DOLLTYPE_µ¥½º³ªÀÌÆ®) {
-			addexp = Config.µ¥½º³ªÀÌÆ®°æÇèÄ¡; // 10%
-		} else if (getDollType() == DOLLTYPE_Å¸¶ô || getDollType() == DOLLTYPE_µ¥¸ó || getDollType() == DOLLTYPE_¹Ù¶õÄ«
-				|| getDollType() == DOLLTYPE_¾óÀ½¿©¿Õ) {
-			addexp = 1.25; // 2¹è
-		} else if (getDollType() == DOLLTYPE_¾ÈÅ¸¶ó½º || getDollType() == DOLLTYPE_¹ß¶óÄ«½º || getDollType() == DOLLTYPE_¸°µåºñ¿À¸£
-				|| getDollType() == DOLLTYPE_ÆÄÇª¸®¿Â) {
-			addexp = 2.52; // 2¹è
+		if (getDollType() == DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸) {
+			addexp = Config.ë°ìŠ¤ë‚˜ì´íŠ¸ê²½í—˜ì¹˜; // 10%
+		} else if (getDollType() == DOLLTYPE_íƒ€ë½ || getDollType() == DOLLTYPE_ë°ëª¬ || getDollType() == DOLLTYPE_ë°”ë€ì¹´
+				|| getDollType() == DOLLTYPE_ì–¼ìŒì—¬ì™•) {
+			addexp = 1.25; // 2ë°°
+		} else if (getDollType() == DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤ || getDollType() == DOLLTYPE_ë°œë¼ì¹´ìŠ¤ || getDollType() == DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´
+				|| getDollType() == DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨) {
+			addexp = 2.52; // 2ë°°
 		} else if (getDollType() == DOLLTYPE_SUCCUBUS) {
-			addexp = 1.05; // 2¹è
-		} else if (getDollType() == DOLLTYPE_road || getDollType() == DOLLTYPE_½ºÆÄÅäÀÌ) {
-			addexp = 1.1; // 2¹è
+			addexp = 1.05; // 2ë°°
+		} else if (getDollType() == DOLLTYPE_road || getDollType() == DOLLTYPE_ìŠ¤íŒŒí† ì´) {
+			addexp = 1.1; // 2ë°°
 		} else if (getDollType() == DOLLTYPE_COCATRIS || getDollType() == DOLLTYPE_ELDER) {
-			addexp = 1.15; // 2¹è
-		} else if (getDollType() == DOLLTYPE_»çÀÌÅ¬·Ó½º || getDollType() == DOLLTYPE_½Ã¾î || getDollType() == DOLLTYPE_³ªÀÌÆ®¹ßµå
-				|| getDollType() == DOLLTYPE_¸®Ä¡) {
-			addexp = 1.2; // 2¹è
+			addexp = 1.15; // 2ë°°
+		} else if (getDollType() == DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤ || getDollType() == DOLLTYPE_ì‹œì–´ || getDollType() == DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ
+				|| getDollType() == DOLLTYPE_ë¦¬ì¹˜) {
+			addexp = 1.2; // 2ë°°
 		}
 		return addexp;
 	}
@@ -216,66 +216,66 @@ public class L1DollInstance extends L1NpcInstance {
 		case DOLLTYPE_BUGBEAR:
 			master.addHitup(1);
 			master.addBowHitup(1);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: ¸íÁß+1"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: ëª…ì¤‘+1"));
 			break;
 
 		case DOLLTYPE_WAREWOLF:
 			master.addMaxHp(20);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: HP+20"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: HP+20"));
 			break;
 
-		case DOLLTYPE_Çã¼ö¾Æºñ:
+		case DOLLTYPE_í—ˆìˆ˜ì•„ë¹„:
 			master.addMaxMp(10);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: MP+10"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: MP+10"));
 			break;
 
 		case DOLLTYPE_STONEGOLEM:
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: ¸®´ö¼Ç+1"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: ë¦¬ë•ì…˜+1"));
 			break;
 
 		case DOLLTYPE_CRUSTACEA:
 			master.addBowDmgup(1);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: ¿ø°Å¸®´ë¹ÌÁö+1"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: ì›ê±°ë¦¬ëŒ€ë¯¸ì§€+1"));
 			break;
 
 		case DOLLTYPE_SEADANCER:
 			master.getAbility().addSp(1);
 			master.sendPackets(new S_SPMR(master));
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: SP+1"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: SP+1"));
 			break;
 
-		case DOLLTYPE_¿¡Æ¼:
+		case DOLLTYPE_ì—í‹°:
 			master.getAC().addAc(-2);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: AC-2"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: AC-2"));
 			break;
 
-		case DOLLTYPE_¶ó¹Ì¾Æ:
+		case DOLLTYPE_ë¼ë¯¸ì•„:
 			master.addDmgup(1);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: ±Ù°Å¸®´ë¹ÌÁö+1"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: ê·¼ê±°ë¦¬ëŒ€ë¯¸ì§€+1"));
 			break;
 
-		case DOLLTYPE_»çÀÌÅ¬·Ó½º:
+		case DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤:
 			master.getAC().addAc(-1);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: AC-1,°æÇèÄ¡ º¸³Ê½º+20%,¸®´ö¼Ç+3,¿¥ÇÇÈ¸º¹+20,¸¶¹ı ¹ßµ¿:½ã¹ö½ºÆ®"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: AC-1,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+20%,ë¦¬ë•ì…˜+3,ì— í”¼íšŒë³µ+20,ë§ˆë²• ë°œë™:ì¬ë²„ìŠ¤íŠ¸"));
 			break;
 
-		case DOLLTYPE_½Ã¾î:
+		case DOLLTYPE_ì‹œì–´:
 			master.getAC().addAc(-1);
 			master.addDmgup(3);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: AC-1,°æÇèÄ¡ º¸³Ê½º+20%,¿ø°Å¸®´ë¹ÌÁö+3,¿¥ÇÇÈ¸º¹+20,¸¶¹ı ¹ßµ¿:½ã¹ö½ºÆ®"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: AC-1,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+20%,ì›ê±°ë¦¬ëŒ€ë¯¸ì§€+3,ì— í”¼íšŒë³µ+20,ë§ˆë²• ë°œë™:ì¬ë²„ìŠ¤íŠ¸"));
 			break;
 
-		case DOLLTYPE_³ªÀÌÆ®¹ßµå:
+		case DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ:
 			master.getAC().addAc(-1);
 			master.addBowDmgup(3);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: AC-1,°æÇèÄ¡ º¸³Ê½º+20%,±Ù°Å¸®´ë¹ÌÁö+3,¿¥ÇÇÈ¸º¹+20,¸¶¹ı ¹ßµ¿:½ã¹ö½ºÆ®"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: AC-1,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+20%,ê·¼ê±°ë¦¬ëŒ€ë¯¸ì§€+3,ì— í”¼íšŒë³µ+20,ë§ˆë²• ë°œë™:ì¬ë²„ìŠ¤íŠ¸"));
 			break;
 
-		case DOLLTYPE_¸®Ä¡:
+		case DOLLTYPE_ë¦¬ì¹˜:
 			master.getAC().addAc(-1);
 			master.getAbility().addSp(3);
 			master.sendPackets(new S_SPMR(master));
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: AC-1,°æÇèÄ¡ º¸³Ê½º+20%,SP+3,¿¥ÇÇÈ¸º¹+20,¸¶¹ı ¹ßµ¿:½ã¹ö½ºÆ®"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: AC-1,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+20%,SP+3,ì— í”¼íšŒë³µ+20,ë§ˆë²• ë°œë™:ì¬ë²„ìŠ¤íŠ¸"));
 			break;
 
 		case DOLLTYPE_SUCCUBUS:
@@ -283,78 +283,78 @@ public class L1DollInstance extends L1NpcInstance {
 			master.addBowDmgupByDoll(1);
 			master.getAbility().addSp(1);
 			master.sendPackets(new S_SPMR(master));
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: ±Ù°Å¸®ÃßÅ¸+1,¿ø°Å¸®ÃßÅ¸+1,SP+1,¿¥ÇÇÈ¸º¹+5,°æÇèÄ¡ º¸³Ê½º+5%"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: ê·¼ê±°ë¦¬ì¶”íƒ€+1,ì›ê±°ë¦¬ì¶”íƒ€+1,SP+1,ì— í”¼íšŒë³µ+5,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+5%"));
 			break;
 
 		case DOLLTYPE_COCATRIS:
 			master.addBowDmgupByDoll(1);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: ¿ø°Å¸®ÃßÅ¸+1,¿¥ÇÇÈ¸º¹+15,°æÇèÄ¡ º¸³Ê½º+15%"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: ì›ê±°ë¦¬ì¶”íƒ€+1,ì— í”¼íšŒë³µ+15,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+15%"));
 			break;
 
-		case DOLLTYPE_½ºÆÄÅäÀÌ:
+		case DOLLTYPE_ìŠ¤íŒŒí† ì´:
 			master.addDmgup(1);
 			master.addBowDmgup(1);
 			master.getAbility().addSp(1);
 			master.sendPackets(new S_SPMR(master));
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: ±Ù°Å¸®´ë¹ÌÁö+1,¿ø°Å¸®´ë¹ÌÁö+1,SP+1,¿¥ÇÇÈ¸º¹+15,°æÇèÄ¡ º¸³Ê½º+10%"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: ê·¼ê±°ë¦¬ëŒ€ë¯¸ì§€+1,ì›ê±°ë¦¬ëŒ€ë¯¸ì§€+1,SP+1,ì— í”¼íšŒë³µ+15,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+10%"));
 			break;
 
 		case DOLLTYPE_ELDER:
 			master.getAbility().addSp(1);
 			master.sendPackets(new S_SPMR(_master));
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: SP+1,¿¥ÇÇÈ¸º¹+20,°æÇèÄ¡ º¸³Ê½º+15%"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: SP+1,ì— í”¼íšŒë³µ+20,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+15%"));
 			break;
 
 		case DOLLTYPE_DRAGON_M:
 		case DOLLTYPE_DRAGON_W:
 			_master.addMpr(15);
-			_master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: ½ºÅÏ³»¼º+12,Á¤·ÉÀûÁß+10 "));
+			_master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: ìŠ¤í„´ë‚´ì„±+12,ì •ë ¹ì ì¤‘+10 "));
 			break;
 
 		case DOLLTYPE_road:
 			master.getAC().addAc(-1);
 			master.addBowDmgup(2);
 			master.addDamageReductionByArmor(2);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú:AC-1,¸®´ö¼Ç+2,¿ø°Å¸® ´ë¹ÌÁö+2,¿¥ÇÇÈ¸º¹+20,°æÇèÄ¡ º¸³Ê½º+20%,¸¶¹ı ¹ßµ¿:½ã¹ö½ºÆ®"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼:AC-1,ë¦¬ë•ì…˜+2,ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€+2,ì— í”¼íšŒë³µ+20,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+20%,ë§ˆë²• ë°œë™:ì¬ë²„ìŠ¤íŠ¸"));
 			break;
 
-		case DOLLTYPE_µ¥¸ó:
+		case DOLLTYPE_ë°ëª¬:
 			master.getAC().addAc(-2);
 			master.getResistance().addStun(10);
 			master.addHitup_skill(5);
 			master.addMaxHp(200);
 			master.sendPackets(
-					new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: AC-2,¿¥ÇÇÈ¸º¹+20,°æÇèÄ¡ º¸³Ê½º+30%,HP+200,½ºÅÏÀûÁß+5,½ºÅÏ³»¼º+10,¸¶¹ı ¹ßµ¿:ÇïÆÄÀÌ¾î"));
+					new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: AC-2,ì— í”¼íšŒë³µ+20,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+30%,HP+200,ìŠ¤í„´ì ì¤‘+5,ìŠ¤í„´ë‚´ì„±+10,ë§ˆë²• ë°œë™:í—¬íŒŒì´ì–´"));
 			break;
 
-		case DOLLTYPE_µ¥½º³ªÀÌÆ®:
+		case DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸:
 			master.getAC().addAc(-2);
 			master.addDamageReductionByArmor(5);
 			master.sendPackets(new S_SPMR(master));
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: AC-2,¿¥ÇÇÈ¸º¹+20,°æÇèÄ¡ º¸³Ê½º+30%,¸®´ö¼Ç+5,¾Æµ¥³ª µÎ¹è ½Àµæ,¸¶¹ı ¹ßµ¿:ÇïÆÄÀÌ¾î"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: AC-2,ì— í”¼íšŒë³µ+20,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+30%,ë¦¬ë•ì…˜+5,ì•„ë°ë‚˜ ë‘ë°° ìŠµë“,ë§ˆë²• ë°œë™:í—¬íŒŒì´ì–´"));
 			master.getSkillEffectTimerSet().setSkillEffect(L1SkillId.AdenRateByDoll, 1000*60*60*24*2);
 			break;
 
-		case DOLLTYPE_¾óÀ½¿©¿Õ:
+		case DOLLTYPE_ì–¼ìŒì—¬ì™•:
 			master.getAC().addAc(-2);
 			master.addBowDmgup(5);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú: AC-2,¿¥ÇÇÈ¸º¹+20,°æÇèÄ¡ º¸³Ê½º+30%,¿ø°Å¸®´ë¹ÌÁö+5,¸¶¹ı ¹ßµ¿:ÇïÆÄÀÌ¾î"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼: AC-2,ì— í”¼íšŒë³µ+20,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+30%,ì›ê±°ë¦¬ëŒ€ë¯¸ì§€+5,ë§ˆë²• ë°œë™:í—¬íŒŒì´ì–´"));
 			break;
 
-		case DOLLTYPE_Å¸¶ô:
+		case DOLLTYPE_íƒ€ë½:
 			master.getAC().addAc(-2);
 			master.getAbility().addSp(5);
 			master.sendPackets(new S_SPMR(master));
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú:AC-2,¿¥ÇÇÈ¸º¹+20,°æÇèÄ¡ º¸³Ê½º+30%,SP+5,¸¶¹ı ¹ßµ¿:ÇïÆÄÀÌ¾î"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼:AC-2,ì— í”¼íšŒë³µ+20,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+30%,SP+5,ë§ˆë²• ë°œë™:í—¬íŒŒì´ì–´"));
 			break;
 
-		case DOLLTYPE_¹Ù¶õÄ«:
+		case DOLLTYPE_ë°”ë€ì¹´:
 			master.getAC().addAc(-2);
 			master.addDmgup(5);
-			master.sendPackets(new S_SystemMessage("¸¶¹ıÀÎÇü È¿°ú:AC-2,¿¥ÇÇÈ¸º¹+20,°æÇèÄ¡ º¸³Ê½º+30%,±Ù°Å¸®´ë¹ÌÁö+5%,¸¶¹ı ¹ßµ¿:ÇïÆÄÀÌ¾î"));
+			master.sendPackets(new S_SystemMessage("ë§ˆë²•ì¸í˜• íš¨ê³¼:AC-2,ì— í”¼íšŒë³µ+20,ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+30%,ê·¼ê±°ë¦¬ëŒ€ë¯¸ì§€+5%,ë§ˆë²• ë°œë™:í—¬íŒŒì´ì–´"));
 			break;
 
-		case DOLLTYPE_¾ÈÅ¸¶ó½º:
+		case DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤:
 			master.getAC().addAc(-3);
 			master.addDamageReductionByArmor(8);// 6
 			master.addHitup_skill(15);// 3
@@ -363,10 +363,10 @@ public class L1DollInstance extends L1NpcInstance {
 			master.addPVPDamageReduction(10);// 2
 			master.sendPackets(new S_SPMR(master));
 			master.sendPackets(new S_SystemMessage(
-					"¸¶¹ıÀÎÇü È¿°ú:¿ÀÅä·çÆÃ,AC-3,´ë¹ÌÁö ¸®´ö¼Ç+8,±â¼ú ÀûÁß+15,½ºÅÏ ³»¼º+15,PvP´ë¹ÌÁö+6,PvP´ë¹ÌÁö °¨¼Ò+10,MPÀı´ëÈ¸º¹+40(15ÃÊ),°æÇèÄ¡ º¸³Ê½º+40%,ÀÌÆåÆ®:¹ÌÆ¼¾î ½ºÆ®¶óÀÌÅ©"));
+					"ë§ˆë²•ì¸í˜• íš¨ê³¼:ì˜¤í† ë£¨íŒ…,AC-3,ëŒ€ë¯¸ì§€ ë¦¬ë•ì…˜+8,ê¸°ìˆ  ì ì¤‘+15,ìŠ¤í„´ ë‚´ì„±+15,PvPëŒ€ë¯¸ì§€+6,PvPëŒ€ë¯¸ì§€ ê°ì†Œ+10,MPì ˆëŒ€íšŒë³µ+40(15ì´ˆ),ê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+40%,ì´í™íŠ¸:ë¯¸í‹°ì–´ ìŠ¤íŠ¸ë¼ì´í¬"));
 			break;
 
-		case DOLLTYPE_ÆÄÇª¸®¿Â:
+		case DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨:
 			master.getAC().addAc(-3);
 			master.addHitup_magic(8);
 			master.getAbility().addSp(15);// 4
@@ -376,10 +376,10 @@ public class L1DollInstance extends L1NpcInstance {
 			master.addPVPDamageReduction(2);
 			master.sendPackets(new S_SPMR(_master));
 			master.sendPackets(new S_SystemMessage(
-					"¸¶¹ıÀÎÇü È¿°ú:¿ÀÅä·çÆÃ,AC-3,¸¶¹ı ÀûÁß+8,SP+15,±â¼ú ÀûÁß+15,½ºÅÏ ³»¼º+15,PvP´ë¹ÌÁö+4,PvP´ë¹ÌÁö °¨¼Ò+2,MPÀı´ë È¸º¹+40(15ÃÊ),°æÇèÄ¡º¸³Ê½º+40%,ÀÌÆåÆ®:¹ÌÆ¼¾î ½ºÆ®¶óÀÌÅ©"));
+					"ë§ˆë²•ì¸í˜• íš¨ê³¼:ì˜¤í† ë£¨íŒ…,AC-3,ë§ˆë²• ì ì¤‘+8,SP+15,ê¸°ìˆ  ì ì¤‘+15,ìŠ¤í„´ ë‚´ì„±+15,PvPëŒ€ë¯¸ì§€+4,PvPëŒ€ë¯¸ì§€ ê°ì†Œ+2,MPì ˆëŒ€ íšŒë³µ+40(15ì´ˆ),ê²½í—˜ì¹˜ë³´ë„ˆìŠ¤+40%,ì´í™íŠ¸:ë¯¸í‹°ì–´ ìŠ¤íŠ¸ë¼ì´í¬"));
 			break;
 
-		case DOLLTYPE_¸°µåºñ¿À¸£:
+		case DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´:
 			master.getAC().addAc(-3);
 			master.addBowDmgupByDoll(14);// 3
 			master.addBowHitup(8);
@@ -391,10 +391,10 @@ public class L1DollInstance extends L1NpcInstance {
 			master.addPVPDamageReduction(2);
 			master.sendPackets(new S_SPMR(master));
 			master.sendPackets(new S_SystemMessage(
-					"¸¶¹ıÀÎÇü È¿°ú:¿ÀÅä·çÆÃ,AC-3,¿ø°Å¸® ´ë¹ÌÁö+14,¿ø°Å¸® ¸íÁß+8,±â¼ú ÀûÁß+15,Á¤·É ÀûÁß+15,½ºÅÏ ³»¼º+15,Á¤·É ³»¼º+15,PvP´ë¹ÌÁö+4,PvP´ë¹ÌÁö °¨¼Ò+2,MPÀı´ëÈ¸º¹+40(15ÃÊ),°æÇèÄ¡º¸³Ê½º+40%,ÀÌÆåÆ®:¹ÌÆ¼¾î ½ºÆ®¶óÀÌÅ©"));
+					"ë§ˆë²•ì¸í˜• íš¨ê³¼:ì˜¤í† ë£¨íŒ…,AC-3,ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€+14,ì›ê±°ë¦¬ ëª…ì¤‘+8,ê¸°ìˆ  ì ì¤‘+15,ì •ë ¹ ì ì¤‘+15,ìŠ¤í„´ ë‚´ì„±+15,ì •ë ¹ ë‚´ì„±+15,PvPëŒ€ë¯¸ì§€+4,PvPëŒ€ë¯¸ì§€ ê°ì†Œ+2,MPì ˆëŒ€íšŒë³µ+40(15ì´ˆ),ê²½í—˜ì¹˜ë³´ë„ˆìŠ¤+40%,ì´í™íŠ¸:ë¯¸í‹°ì–´ ìŠ¤íŠ¸ë¼ì´í¬"));
 			break;
 
-		case DOLLTYPE_¹ß¶óÄ«½º:
+		case DOLLTYPE_ë°œë¼ì¹´ìŠ¤:
 			master.getAC().addAc(-3);
 			master.addDmgup(6);
 			master.addHitup(8);
@@ -406,42 +406,42 @@ public class L1DollInstance extends L1NpcInstance {
 			master.addPVPDamageReduction(2);
 			master.sendPackets(new S_SPMR(master));
 			master.sendPackets(new S_SystemMessage(
-					"¸¶¹ıÀÎÇü È¿°ú:¿ÀÅä·çÆÃ,AC-3,±Ù°Å¸® ´ë¹ÌÁö+6,±Ù°Å¸® ¸íÁß+8,±â¼ú ÀûÁß+15,Á¤·É ÀûÁß+15,½ºÅÏ ³»¼º+15,Á¤·É ³»¼º+15,PvP´ë¹ÌÁö+4,PvP´ë¹ÌÁö °¨¼Ò+2,MPÀı´ëÈ¸º¹+40(15ÃÊ),°æÇèÄ¡º¸³Ê½º+40%,ÀÌÆåÆ®:¹ÌÆ¼¾î ½ºÆ®¶óÀÌÅ©"));
+					"ë§ˆë²•ì¸í˜• íš¨ê³¼:ì˜¤í† ë£¨íŒ…,AC-3,ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€+6,ê·¼ê±°ë¦¬ ëª…ì¤‘+8,ê¸°ìˆ  ì ì¤‘+15,ì •ë ¹ ì ì¤‘+15,ìŠ¤í„´ ë‚´ì„±+15,ì •ë ¹ ë‚´ì„±+15,PvPëŒ€ë¯¸ì§€+4,PvPëŒ€ë¯¸ì§€ ê°ì†Œ+2,MPì ˆëŒ€íšŒë³µ+40(15ì´ˆ),ê²½í—˜ì¹˜ë³´ë„ˆìŠ¤+40%,ì´í™íŠ¸:ë¯¸í‹°ì–´ ìŠ¤íŠ¸ë¼ì´í¬"));
 			break;
 		}
 		if (item.getBless() == 0) {
 			switch(type) {
-			//HP100, PVP´ë¹ÌÁö+3, PVP´ë¹ÌÁö°¨¼Ò+2
-			case DOLLTYPE_³ªÀÌÆ®¹ßµå: 
-			case DOLLTYPE_¸®Ä¡:
+			//HP100, PVPëŒ€ë¯¸ì§€+3, PVPëŒ€ë¯¸ì§€ê°ì†Œ+2
+			case DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ: 
+			case DOLLTYPE_ë¦¬ì¹˜:
 			case DOLLTYPE_road:
-			case DOLLTYPE_»çÀÌÅ¬·Ó½º:
-			case DOLLTYPE_½Ã¾î:
+			case DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤:
+			case DOLLTYPE_ì‹œì–´:
 				master.addMaxHp(100);
 				master.addPVPDamage(3);
 				master.addPVPDamageReduction(2);
-				master.sendPackets(new S_SystemMessage("Ãàº¹ÀÎÇüÈ¿°ú : HP100, PVP´ë¹ÌÁö+3, PVP´ë¹ÌÁö°¨¼Ò+2"));
+				master.sendPackets(new S_SystemMessage("ì¶•ë³µì¸í˜•íš¨ê³¼ : HP100, PVPëŒ€ë¯¸ì§€+3, PVPëŒ€ë¯¸ì§€ê°ì†Œ+2"));
 				break;
-			//HP250, PVP´ë¹ÌÁö+6, PVP´ë¹ÌÁö°¨¼Ò+4
-			case DOLLTYPE_µ¥¸ó: 
-			case DOLLTYPE_µ¥½º³ªÀÌÆ®:
-			case DOLLTYPE_¹Ù¶õÄ«:
-			case DOLLTYPE_¾óÀ½¿©¿Õ:
-			case DOLLTYPE_Å¸¶ô:
+			//HP250, PVPëŒ€ë¯¸ì§€+6, PVPëŒ€ë¯¸ì§€ê°ì†Œ+4
+			case DOLLTYPE_ë°ëª¬: 
+			case DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸:
+			case DOLLTYPE_ë°”ë€ì¹´:
+			case DOLLTYPE_ì–¼ìŒì—¬ì™•:
+			case DOLLTYPE_íƒ€ë½:
 				master.addMaxHp(250);
 				master.addPVPDamage(6);
 				master.addPVPDamageReduction(4);
-				master.sendPackets(new S_SystemMessage("Ãàº¹ÀÎÇüÈ¿°ú : HP250, PVP´ë¹ÌÁö+6, PVP´ë¹ÌÁö°¨¼Ò+4"));
+				master.sendPackets(new S_SystemMessage("ì¶•ë³µì¸í˜•íš¨ê³¼ : HP250, PVPëŒ€ë¯¸ì§€+6, PVPëŒ€ë¯¸ì§€ê°ì†Œ+4"));
 				break;
-				//HP350, PVP´ë¹ÌÁö+8,PVP´ë¹ÌÁö°¨¼­+6
-			case DOLLTYPE_¾ÈÅ¸¶ó½º:
-			case DOLLTYPE_ÆÄÇª¸®¿Â:
-			case DOLLTYPE_¸°µåºñ¿À¸£:
-			case DOLLTYPE_¹ß¶óÄ«½º:
+				//HP350, PVPëŒ€ë¯¸ì§€+8,PVPëŒ€ë¯¸ì§€ê°ì„œ+6
+			case DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤:
+			case DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨:
+			case DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´:
+			case DOLLTYPE_ë°œë¼ì¹´ìŠ¤:
 				master.addMaxHp(350);
 				master.addPVPDamage(8);
 				master.addPVPDamageReduction(6);
-				master.sendPackets(new S_SystemMessage("Ãàº¹ÀÎÇüÈ¿°ú : HP350, PVP´ë¹ÌÁö+8,PVP´ë¹ÌÁö°¨¼­+6"));
+				master.sendPackets(new S_SystemMessage("ì¶•ë³µì¸í˜•íš¨ê³¼ : HP350, PVPëŒ€ë¯¸ì§€+8,PVPëŒ€ë¯¸ì§€ê°ì„œ+6"));
 				break;
 			}
 		}
@@ -469,7 +469,7 @@ public class L1DollInstance extends L1NpcInstance {
 			_master.addMaxHp(-20);
 			break;
 
-		case DOLLTYPE_Çã¼ö¾Æºñ:
+		case DOLLTYPE_í—ˆìˆ˜ì•„ë¹„:
 			_master.addMaxMp(-10);
 			break;
 
@@ -482,29 +482,29 @@ public class L1DollInstance extends L1NpcInstance {
 			_master.sendPackets(new S_SPMR(_master));
 			break;
 
-		case DOLLTYPE_¿¡Æ¼:
+		case DOLLTYPE_ì—í‹°:
 			_master.getAC().addAc(2);
 			break;
 
-		case DOLLTYPE_¶ó¹Ì¾Æ:
+		case DOLLTYPE_ë¼ë¯¸ì•„:
 			_master.addDmgup(1);
 			break;
 
-		case DOLLTYPE_»çÀÌÅ¬·Ó½º:
+		case DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤:
 			_master.getAC().addAc(1);
 			break;
 
-		case DOLLTYPE_½Ã¾î:
+		case DOLLTYPE_ì‹œì–´:
 			_master.getAC().addAc(1);
 			_master.addDmgup(-3);
 			break;
 
-		case DOLLTYPE_³ªÀÌÆ®¹ßµå:
+		case DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ:
 			_master.getAC().addAc(1);
 			_master.addBowDmgup(-3);
 			break;
 
-		case DOLLTYPE_¸®Ä¡:
+		case DOLLTYPE_ë¦¬ì¹˜:
 			_master.getAC().addAc(1);
 			_master.getAbility().addSp(-3);
 			_master.sendPackets(new S_SPMR(_master));
@@ -521,7 +521,7 @@ public class L1DollInstance extends L1NpcInstance {
 			_master.addBowDmgupByDoll(-1);
 			break;
 
-		case DOLLTYPE_½ºÆÄÅäÀÌ:
+		case DOLLTYPE_ìŠ¤íŒŒí† ì´:
 			_master.addDmgup(-1);
 			_master.addBowDmgup(-1);
 			_master.getAbility().addSp(-1);
@@ -539,37 +539,37 @@ public class L1DollInstance extends L1NpcInstance {
 			_master.addDamageReductionByArmor(-2);
 			break;
 
-		case DOLLTYPE_µ¥¸ó:
+		case DOLLTYPE_ë°ëª¬:
 			_master.getAC().addAc(2);
 			_master.getResistance().addStun(-10);
 			_master.addHitup_skill(-5);
 			_master.addMaxHp(-200);
 			break;
 
-		case DOLLTYPE_µ¥½º³ªÀÌÆ®:
+		case DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸:
 			_master.getAC().addAc(2);
 			_master.sendPackets(new S_SPMR(_master));
 			_master.addDamageReductionByArmor(-5);
 			_master.getSkillEffectTimerSet().removeSkillEffect(L1SkillId.AdenRateByDoll);
 			break;
 
-		case DOLLTYPE_¾óÀ½¿©¿Õ:
+		case DOLLTYPE_ì–¼ìŒì—¬ì™•:
 			_master.getAC().addAc(2);
 			_master.addBowDmgup(-5);
 			break;
 
-		case DOLLTYPE_Å¸¶ô:
+		case DOLLTYPE_íƒ€ë½:
 			_master.getAC().addAc(2);
 			_master.getAbility().addSp(-5);
 			_master.sendPackets(new S_SPMR(_master));
 			break;
 
-		case DOLLTYPE_¹Ù¶õÄ«:
+		case DOLLTYPE_ë°”ë€ì¹´:
 			_master.getAC().addAc(2);
 			_master.addDmgup(-5);
 			break;
 
-		case DOLLTYPE_¾ÈÅ¸¶ó½º:
+		case DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤:
 			_master.getAC().addAc(3);
 			_master.addDamageReductionByArmor(-8);
 			_master.addHitup_skill(-15);
@@ -579,7 +579,7 @@ public class L1DollInstance extends L1NpcInstance {
 			_master.sendPackets(new S_SPMR(_master));
 			break;
 
-		case DOLLTYPE_ÆÄÇª¸®¿Â:
+		case DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨:
 			_master.getAC().addAc(3);
 			_master.addHitup_magic(-8);
 			_master.getAbility().addSp(-15);
@@ -590,7 +590,7 @@ public class L1DollInstance extends L1NpcInstance {
 			_master.sendPackets(new S_SPMR(_master));
 			break;
 
-		case DOLLTYPE_¸°µåºñ¿À¸£:
+		case DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´:
 			_master.getAC().addAc(3);
 			_master.addBowDmgupByDoll(-14);
 			_master.addBowHitup(-8);
@@ -603,7 +603,7 @@ public class L1DollInstance extends L1NpcInstance {
 			_master.sendPackets(new S_SPMR(_master));
 			break;
 
-		case DOLLTYPE_¹ß¶óÄ«½º:
+		case DOLLTYPE_ë°œë¼ì¹´ìŠ¤:
 			_master.getAC().addAc(3);
 			_master.addDmgup(-6);
 			_master.addHitup(-8);
@@ -619,31 +619,31 @@ public class L1DollInstance extends L1NpcInstance {
 
 		if (item.getBless() == 0) {
 			switch(type) {
-			//HP100, PVP´ë¹ÌÁö+3, PVP´ë¹ÌÁö°¨¼Ò+2
-			case DOLLTYPE_³ªÀÌÆ®¹ßµå: 
-			case DOLLTYPE_¸®Ä¡:
+			//HP100, PVPëŒ€ë¯¸ì§€+3, PVPëŒ€ë¯¸ì§€ê°ì†Œ+2
+			case DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ: 
+			case DOLLTYPE_ë¦¬ì¹˜:
 			case DOLLTYPE_road:
-			case DOLLTYPE_»çÀÌÅ¬·Ó½º:
-			case DOLLTYPE_½Ã¾î:
+			case DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤:
+			case DOLLTYPE_ì‹œì–´:
 				_master.addMaxHp(-100);
 				_master.addPVPDamage(-3);
 				_master.addPVPDamageReduction(-2);
 				break;
-			//HP250, PVP´ë¹ÌÁö+6, PVP´ë¹ÌÁö°¨¼Ò+4
-			case DOLLTYPE_µ¥¸ó: 
-			case DOLLTYPE_µ¥½º³ªÀÌÆ®:
-			case DOLLTYPE_¹Ù¶õÄ«:
-			case DOLLTYPE_¾óÀ½¿©¿Õ:
-			case DOLLTYPE_Å¸¶ô:
+			//HP250, PVPëŒ€ë¯¸ì§€+6, PVPëŒ€ë¯¸ì§€ê°ì†Œ+4
+			case DOLLTYPE_ë°ëª¬: 
+			case DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸:
+			case DOLLTYPE_ë°”ë€ì¹´:
+			case DOLLTYPE_ì–¼ìŒì—¬ì™•:
+			case DOLLTYPE_íƒ€ë½:
 				_master.addMaxHp(-250);
 				_master.addPVPDamage(-6);
 				_master.addPVPDamageReduction(-4);
 				break;
-				//HP350, PVP´ë¹ÌÁö+8,PVP´ë¹ÌÁö°¨¼­+6
-			case DOLLTYPE_¾ÈÅ¸¶ó½º:
-			case DOLLTYPE_ÆÄÇª¸®¿Â:
-			case DOLLTYPE_¸°µåºñ¿À¸£:
-			case DOLLTYPE_¹ß¶óÄ«½º:
+				//HP350, PVPëŒ€ë¯¸ì§€+8,PVPëŒ€ë¯¸ì§€ê°ì„œ+6
+			case DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤:
+			case DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨:
+			case DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´:
+			case DOLLTYPE_ë°œë¼ì¹´ìŠ¤:
 				_master.addMaxHp(-350);
 				_master.addPVPDamage(-8);
 				_master.addPVPDamageReduction(-6);
@@ -667,7 +667,7 @@ public class L1DollInstance extends L1NpcInstance {
 	@Override
 	public void onItemUse() {
 		if (!isActived()) {
-			// 100%ÀÇ È®·ü·Î ÇìÀÌ ÆÄ¾÷ ÀÏºÎ »ç¿ë
+			// 100%ì˜ í™•ë¥ ë¡œ í—¤ì´ íŒŒì—… ì¼ë¶€ ì‚¬ìš©
 			useItem(USEITEM_HASTE, 100);
 		}
 	}
@@ -743,23 +743,23 @@ public class L1DollInstance extends L1NpcInstance {
 		boolean isMpRegeneration = false;
 		int type = getDollType();
 		switch (type) {
-		case DOLLTYPE_µ¥½º³ªÀÌÆ®:
-		case DOLLTYPE_µ¥¸ó:
-		case DOLLTYPE_¾óÀ½¿©¿Õ:
-		case DOLLTYPE_Å¸¶ô:
-		case DOLLTYPE_¹Ù¶õÄ«:
-		case DOLLTYPE_¾ÈÅ¸¶ó½º:
-		case DOLLTYPE_ÆÄÇª¸®¿Â:
-		case DOLLTYPE_¸°µåºñ¿À¸£:
-		case DOLLTYPE_¹ß¶óÄ«½º:
+		case DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸:
+		case DOLLTYPE_ë°ëª¬:
+		case DOLLTYPE_ì–¼ìŒì—¬ì™•:
+		case DOLLTYPE_íƒ€ë½:
+		case DOLLTYPE_ë°”ë€ì¹´:
+		case DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤:
+		case DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨:
+		case DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´:
+		case DOLLTYPE_ë°œë¼ì¹´ìŠ¤:
 		case DOLLTYPE_SUCCUBUS:
 		case DOLLTYPE_COCATRIS:
-		case DOLLTYPE_½ºÆÄÅäÀÌ:
+		case DOLLTYPE_ìŠ¤íŒŒí† ì´:
 		case DOLLTYPE_ELDER:
-		case DOLLTYPE_»çÀÌÅ¬·Ó½º:
-		case DOLLTYPE_½Ã¾î:
-		case DOLLTYPE_³ªÀÌÆ®¹ßµå:
-		case DOLLTYPE_¸®Ä¡:
+		case DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤:
+		case DOLLTYPE_ì‹œì–´:
+		case DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ:
+		case DOLLTYPE_ë¦¬ì¹˜:
 		case DOLLTYPE_road:
 			isMpRegeneration = true;
 			break;
@@ -770,7 +770,7 @@ public class L1DollInstance extends L1NpcInstance {
 	public int isdropadd() {
 		int isdropadd = 1;
 		int type = getDollType();
-		if (type == DOLLTYPE_COCATRIS || type == DOLLTYPE_½ºÆÄÅäÀÌ || type == DOLLTYPE_ELDER) {
+		if (type == DOLLTYPE_COCATRIS || type == DOLLTYPE_ìŠ¤íŒŒí† ì´ || type == DOLLTYPE_ELDER) {
 			isdropadd = 2;
 		}
 		return isdropadd;
@@ -806,26 +806,26 @@ public class L1DollInstance extends L1NpcInstance {
 			regenMp = 5;
 			break;
 		case DOLLTYPE_COCATRIS:
-		case DOLLTYPE_½ºÆÄÅäÀÌ:
+		case DOLLTYPE_ìŠ¤íŒŒí† ì´:
 			regenMp = 15;
 			break;
-		case DOLLTYPE_µ¥½º³ªÀÌÆ®:
-		case DOLLTYPE_Å¸¶ô:
-		case DOLLTYPE_¹Ù¶õÄ«:
-		case DOLLTYPE_µ¥¸ó:
-		case DOLLTYPE_¾óÀ½¿©¿Õ:
+		case DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸:
+		case DOLLTYPE_íƒ€ë½:
+		case DOLLTYPE_ë°”ë€ì¹´:
+		case DOLLTYPE_ë°ëª¬:
+		case DOLLTYPE_ì–¼ìŒì—¬ì™•:
 		case DOLLTYPE_ELDER:
-		case DOLLTYPE_»çÀÌÅ¬·Ó½º:
-		case DOLLTYPE_½Ã¾î:
-		case DOLLTYPE_³ªÀÌÆ®¹ßµå:
-		case DOLLTYPE_¸®Ä¡:
+		case DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤:
+		case DOLLTYPE_ì‹œì–´:
+		case DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ:
+		case DOLLTYPE_ë¦¬ì¹˜:
 		case DOLLTYPE_road:
 			regenMp = 20;
 			break;
-		case DOLLTYPE_¾ÈÅ¸¶ó½º:
-		case DOLLTYPE_ÆÄÇª¸®¿Â:
-		case DOLLTYPE_¸°µåºñ¿À¸£:
-		case DOLLTYPE_¹ß¶óÄ«½º:
+		case DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤:
+		case DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨:
+		case DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´:
+		case DOLLTYPE_ë°œë¼ì¹´ìŠ¤:
 			regenMp = 40;
 			break;
 		}
@@ -852,44 +852,44 @@ public class L1DollInstance extends L1NpcInstance {
 		int type = getDollType();
 		int effect = 0;
 		switch (type) {
-		case DOLLTYPE_»çÀÌÅ¬·Ó½º:
+		case DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤:
 		case DOLLTYPE_road:
-		case DOLLTYPE_³ªÀÌÆ®¹ßµå:
-		case DOLLTYPE_¸®Ä¡:
-		case DOLLTYPE_½Ã¾î:
-			effect = 1811; // ½ã¹ö½ºÆ®
+		case DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ:
+		case DOLLTYPE_ë¦¬ì¹˜:
+		case DOLLTYPE_ì‹œì–´:
+			effect = 1811; // ì¬ë²„ìŠ¤íŠ¸
 			break;
-		case DOLLTYPE_µ¥¸ó:
-		case DOLLTYPE_µ¥½º³ªÀÌÆ®:
-		case DOLLTYPE_¾óÀ½¿©¿Õ:
-		case DOLLTYPE_Å¸¶ô:
-		case DOLLTYPE_¹Ù¶õÄ«:
-		case DOLLTYPE_¾ÈÅ¸¶ó½º:
-		case DOLLTYPE_ÆÄÇª¸®¿Â:
-		case DOLLTYPE_¸°µåºñ¿À¸£:
-		case DOLLTYPE_¹ß¶óÄ«½º:
-			effect = 7300; // ÇïÆÄÀÌ¾î
+		case DOLLTYPE_ë°ëª¬:
+		case DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸:
+		case DOLLTYPE_ì–¼ìŒì—¬ì™•:
+		case DOLLTYPE_íƒ€ë½:
+		case DOLLTYPE_ë°”ë€ì¹´:
+		case DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤:
+		case DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨:
+		case DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´:
+		case DOLLTYPE_ë°œë¼ì¹´ìŠ¤:
+			effect = 7300; // í—¬íŒŒì´ì–´
 			break;
 		default:
 			break;
 		}
-		if (type == DOLLTYPE_¾ÈÅ¸¶ó½º || type == DOLLTYPE_ÆÄÇª¸®¿Â || type == DOLLTYPE_¸°µåºñ¿À¸£ || type == DOLLTYPE_¹ß¶óÄ«½º) {
+		if (type == DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤ || type == DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨ || type == DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´ || type == DOLLTYPE_ë°œë¼ì¹´ìŠ¤) {
 			int chance = _random.nextInt(10000) + 1;
 			L1Skills skill = SkillsTable.getInstance().getTemplate(L1SkillId.METEOR_STRIKE);
 			int effectId = skill.getCastGfx();
-			if (chance <= Config.µ¥½º³ªÀÌÆ®¸ŞÅ×¿À) {
+			if (chance <= Config.ë°ìŠ¤ë‚˜ì´íŠ¸ë©”í…Œì˜¤) {
 				L1Object target = L1World.getInstance().findObject(cha.getId());
 				if (pc.getCurrentWeapon() == 20) {
 					if (cha instanceof L1PcInstance) {
-						dmg = Config.¿ø°Å¸®pc¸ŞÅ×¿À´ë¹ÌÁö;
+						dmg = Config.ì›ê±°ë¦¬pcë©”í…Œì˜¤ëŒ€ë¯¸ì§€;
 					} else if (cha instanceof L1MonsterInstance) {
-						dmg = Config.¿ø°Å¸®npc¸ŞÅ×¿À´ë¹ÌÁö;
+						dmg = Config.ì›ê±°ë¦¬npcë©”í…Œì˜¤ëŒ€ë¯¸ì§€;
 					}
 				} else {
 					if (cha instanceof L1PcInstance) {
-						dmg = Config.±Ù°Å¸®pc¸ŞÅ×¿À´ë¹ÌÁö;
+						dmg = Config.ê·¼ê±°ë¦¬pcë©”í…Œì˜¤ëŒ€ë¯¸ì§€;
 					} else if (cha instanceof L1MonsterInstance) {
-						dmg = Config.±Ù°Å¸®npc¸ŞÅ×¿À´ë¹ÌÁö;
+						dmg = Config.ê·¼ê±°ë¦¬npcë©”í…Œì˜¤ëŒ€ë¯¸ì§€;
 					}
 				}
 				if (target != null) {
@@ -906,14 +906,14 @@ public class L1DollInstance extends L1NpcInstance {
 					}
 				}
 			}
-		} else if (type == DOLLTYPE_µ¥¸ó || type == DOLLTYPE_µ¥½º³ªÀÌÆ® || type == DOLLTYPE_¾óÀ½¿©¿Õ || type == DOLLTYPE_Å¸¶ô
-				|| type == DOLLTYPE_¹Ù¶õÄ«) {
+		} else if (type == DOLLTYPE_ë°ëª¬ || type == DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸ || type == DOLLTYPE_ì–¼ìŒì—¬ì™• || type == DOLLTYPE_íƒ€ë½
+				|| type == DOLLTYPE_ë°”ë€ì¹´) {
 			int chance = _random.nextInt(10000) + 1;
-			if (chance <= Config.µ¥½º³ªÀÌÆ®ÇïÆÄÀÌ¾î) {
+			if (chance <= Config.ë°ìŠ¤ë‚˜ì´íŠ¸í—¬íŒŒì´ì–´) {
 				if (pc.getCurrentWeapon() == 20) {
-					dmg = Config.¿ø°Å¸®ÇïÆÄÀÌ¾î´ë¹ÌÁö;
+					dmg = Config.ì›ê±°ë¦¬í—¬íŒŒì´ì–´ëŒ€ë¯¸ì§€;
 				} else {
-					dmg = Config.±Ù°Å¸®ÇïÆÄÀÌ¾î´ë¹ÌÁö;
+					dmg = Config.ê·¼ê±°ë¦¬í—¬íŒŒì´ì–´ëŒ€ë¯¸ì§€;
 				}
 				if (pc.isDollEffect()) {
 					S_UseAttackSkill packet = new S_UseAttackSkill(this, cha.getId(), effect, cha.getX(), cha.getY(),
@@ -922,14 +922,14 @@ public class L1DollInstance extends L1NpcInstance {
 					Broadcaster.broadcastPacket(pc, packet);
 				}
 			}
-		} else if (type == DOLLTYPE_»çÀÌÅ¬·Ó½º || type == DOLLTYPE_road || type == DOLLTYPE_³ªÀÌÆ®¹ßµå || type == DOLLTYPE_¸®Ä¡
-				|| type == DOLLTYPE_½Ã¾î) {
+		} else if (type == DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤ || type == DOLLTYPE_road || type == DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ || type == DOLLTYPE_ë¦¬ì¹˜
+				|| type == DOLLTYPE_ì‹œì–´) {
 			int chance = _random.nextInt(10000) + 1;
-			if (chance <= Config.µ¥½º³ªÀÌÆ®¼±¹ö½ºÆ®) {
+			if (chance <= Config.ë°ìŠ¤ë‚˜ì´íŠ¸ì„ ë²„ìŠ¤íŠ¸) {
 				if (pc.getCurrentWeapon() == 20) {
-					dmg = Config.¿ø°Å¸®¼±¹ö½ºÆ®´ë¹ÌÁö;
+					dmg = Config.ì›ê±°ë¦¬ì„ ë²„ìŠ¤íŠ¸ëŒ€ë¯¸ì§€;
 				} else {
-					dmg = Config.±Ù°Å¸®¼±¹ö½ºÆ®´ë¹ÌÁö;
+					dmg = Config.ê·¼ê±°ë¦¬ì„ ë²„ìŠ¤íŠ¸ëŒ€ë¯¸ì§€;
 				}
 				if (pc.isDollEffect()) {
 					S_UseAttackSkill packet = new S_UseAttackSkill(this, cha.getId(), effect, cha.getX(), cha.getY(),

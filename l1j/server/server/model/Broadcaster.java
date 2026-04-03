@@ -1,14 +1,14 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.serverpackets.ServerBasePacket;
 
 public class Broadcaster {
 	/**
-	 * Ä³¸¯ÅÍÀÇ °¡½Ã ¹üÀ§¿¡ ÀÖ´Â ÇÃ·¹ÀÌ¾î¿¡, ÆĞÅ¶À» ¼Û½ÅÇÑ´Ù.
+	 * ìºë¦­í„°ì˜ ê°€ì‹œ ë²”ìœ„ì— ìˆëŠ” í”Œë ˆì´ì–´ì—, íŒ¨í‚·ì„ ì†¡ì‹ í•œë‹¤.
 	 * 
 	 * @param packet
-	 *            ¼Û½ÅÇÏ´Â ÆĞÅ¶À» ³ªÅ¸³»´Â ServerBasePacket ¿ÀºêÁ§Æ®.
+	 *            ì†¡ì‹ í•˜ëŠ” íŒ¨í‚·ì„ ë‚˜íƒ€ë‚´ëŠ” ServerBasePacket ì˜¤ë¸Œì íŠ¸.
 	 */
 	public static void broadcastPacket(L1Character cha, ServerBasePacket packet) {
 		for (L1PcInstance pc : L1World.getInstance().getVisiblePlayer(cha)) {
@@ -17,10 +17,10 @@ public class Broadcaster {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ °¡½Ã ¹üÀ§¿¡ ÀÖ´Â ÇÃ·¹ÀÌ¾î¿¡, ÆĞÅ¶À» ¼Û½ÅÇÑ´Ù.  ´Ù¸¸ Å¸°ÙÀÇ È­¸é³»¿¡´Â ¼Û½ÅÇÏÁö ¾Ê´Â´Ù.
+	 * ìºë¦­í„°ì˜ ê°€ì‹œ ë²”ìœ„ì— ìˆëŠ” í”Œë ˆì´ì–´ì—, íŒ¨í‚·ì„ ì†¡ì‹ í•œë‹¤.  ë‹¤ë§Œ íƒ€ê²Ÿì˜ í™”ë©´ë‚´ì—ëŠ” ì†¡ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤.
 	 * 
 	 * @param packet
-	 *            ¼Û½ÅÇÏ´Â ÆĞÅ¶À» ³ªÅ¸³»´Â ServerBasePacket ¿ÀºêÁ§Æ®.
+	 *            ì†¡ì‹ í•˜ëŠ” íŒ¨í‚·ì„ ë‚˜íƒ€ë‚´ëŠ” ServerBasePacket ì˜¤ë¸Œì íŠ¸.
 	 */
 	public static void broadcastPacketExceptTargetSight(L1Character cha, ServerBasePacket packet, L1Character target) {
 		for (L1PcInstance pc : L1World.getInstance().getVisiblePlayerExceptTargetSight(cha, target)) {
@@ -45,10 +45,10 @@ public class Broadcaster {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ 50 ¸Å½º ÀÌ³»¿¡ ÀÖ´Â ÇÃ·¹ÀÌ¾î¿¡, ÆĞÅ¶À» ¼Û½ÅÇÑ´Ù.
+	 * ìºë¦­í„°ì˜ 50 ë§¤ìŠ¤ ì´ë‚´ì— ìˆëŠ” í”Œë ˆì´ì–´ì—, íŒ¨í‚·ì„ ì†¡ì‹ í•œë‹¤.
 	 * 
 	 * @param packet
-	 *            ¼Û½ÅÇÏ´Â ÆĞÅ¶À» ³ªÅ¸³»´Â ServerBasePacket ¿ÀºêÁ§Æ®.
+	 *            ì†¡ì‹ í•˜ëŠ” íŒ¨í‚·ì„ ë‚˜íƒ€ë‚´ëŠ” ServerBasePacket ì˜¤ë¸Œì íŠ¸.
 	 */
 	public static void wideBroadcastPacket(L1Character cha, ServerBasePacket packet) {
 		for (L1PcInstance pc : L1World.getInstance().getVisiblePlayer(cha,	50)) {

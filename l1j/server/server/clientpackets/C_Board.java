@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -44,7 +44,7 @@ public class C_Board extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 		L1Object obj = L1World.getInstance().findObject(objectId);
 		if (!isBoardInstance(obj)) {
-			return; // ºÎÁ¤ Å¬¶óÀÌ¾ğÆ®°¡ ¾Æ´Ï¸é ÀÖÀ» ¼ö  ¾ø°ÚÁö¸¸¡¤¡¤¡¤
+			return; // ë¶€ì • í´ë¼ì´ì–¸íŠ¸ê°€ ì•„ë‹ˆë©´ ìˆì„ ìˆ˜  ì—†ê² ì§€ë§ŒÂ·Â·Â·
 		}
 		if (obj instanceof L1BoardInstance) {
 			L1BoardInstance boardadena = (L1BoardInstance) obj;

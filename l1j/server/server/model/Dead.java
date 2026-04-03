@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import l1j.server.GameSystem.CrockSystem;
 import l1j.server.server.model.Instance.L1DoorInstance;
@@ -26,17 +26,17 @@ public class Dead implements Runnable {
 	}
 	public void doSomething() {
 
-		if(mob.getNpcTemplate().get_npcId() == 400016 || mob.getNpcTemplate().get_npcId() == 400017//Å×º£
-				|| mob.getNpcTemplate().get_npcId() == 4036016 || mob.getNpcTemplate().get_npcId() == 4036017){// Æ¼Ä®
+		if(mob.getNpcTemplate().get_npcId() == 400016 || mob.getNpcTemplate().get_npcId() == 400017//í…Œë² 
+				|| mob.getNpcTemplate().get_npcId() == 4036016 || mob.getNpcTemplate().get_npcId() == 4036017){// í‹°ì¹¼
 			int dieCount = CrockSystem.getInstance().dieCount();
 			if (!CrockSystem.getInstance().isBossTime())
 				return;
 			switch(dieCount){
-			// 2¸íÀÇ º¸½ºÁß ÇÑ¸íµµ Á×ÀÌÁö ¾Ê¾ÒÀ»¶§ µÑÁß ÇÏ³ª¸¦ Á×¿´´Ù¸é +1
+			// 2ëª…ì˜ ë³´ìŠ¤ì¤‘ í•œëª…ë„ ì£½ì´ì§€ ì•Šì•˜ì„ë•Œ ë‘˜ì¤‘ í•˜ë‚˜ë¥¼ ì£½ì˜€ë‹¤ë©´ +1
 			case 0:
 				CrockSystem.getInstance().dieCount(1);
 				break;
-				// 2¸íÀÇ º¸½ºÁß ÀÌ¹Ì ÇÑ¸íÀÌ Á×¿´°í. ÀÌÁ¦ ¶ÇÇÑ¸íÀÌ Á×À¸´Ï 2
+				// 2ëª…ì˜ ë³´ìŠ¤ì¤‘ ì´ë¯¸ í•œëª…ì´ ì£½ì˜€ê³ . ì´ì œ ë˜í•œëª…ì´ ì£½ìœ¼ë‹ˆ 2
 			case 1:
 				CrockSystem.getInstance().dieCount(2);
 				break;

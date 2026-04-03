@@ -1,4 +1,4 @@
-package l1j.server.AutoPotionSystem;
+ï»¿package l1j.server.AutoPotionSystem;
 
 import static l1j.server.server.model.skill.L1SkillId.ABSOLUTE_BARRIER;
 import static l1j.server.server.model.skill.L1SkillId.DECAY_POTION;
@@ -87,7 +87,7 @@ public class AutoPotionUse {
 		return true;
 	}
 	
-	private void cancelAbsoluteBarrier(L1PcInstance pc) { // ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+	private void cancelAbsoluteBarrier(L1PcInstance pc) { // ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 		if (pc.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER)) {
 			pc.getSkillEffectTimerSet().killSkillEffectTimer(ABSOLUTE_BARRIER);
 		}

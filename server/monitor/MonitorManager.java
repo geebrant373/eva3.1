@@ -1,6 +1,6 @@
-package server.monitor;
+ï»¿package server.monitor;
 
-// TODO ¾ÕÀ¸·Î Àå·¡°¡ ÃË¸ÁµÊ
+// TODO ì•ìœ¼ë¡œ ì¥ë˜ê°€ ì´‰ë§ë¨
 public class MonitorManager {
 	private MessageMonitor msgMonitor; 
 	

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -52,14 +52,14 @@ public class ShopTable {
 		return _instance;
 	}
 
-	public static void reload() { // ¼¥¸®½ºÆ® ¼·µû¾øÀÌ Àû¿ëÇÏ±â -¾Ç´ö´Ô¼Ò½º
+	public static void reload() { // ìƒµë¦¬ìŠ¤íŠ¸ ì„­ë”°ì—†ì´ ì ìš©í•˜ê¸° -ì•…ë•ë‹˜ì†ŒìŠ¤
 		ShopTable oldInstance = _instance;
 		_instance = new ShopTable();
 		oldInstance._allShops.clear();
 		PerformanceTimer timer = new PerformanceTimer();
 		System.out.print("reloading " + _log.getName().substring(_log.getName().lastIndexOf(".") + 1) + "...");
 		System.out.println("OK! " + timer.elapsedTimeMillis() + "ms");
-	}// Ãß°¡
+	}// ì¶”ê°€
 	
 	private ShopTable() {
 		loadShops();
@@ -97,8 +97,8 @@ public class ShopTable {
 			int sellingPrice = rs.getInt("selling_price");
 			int purchasingPrice = rs.getInt("purchasing_price");
 			int packCount = rs.getInt("pack_count");
-			int enchant = rs.getInt("enchant");/////È«¾î
-		    int bless = rs.getInt("bless");/////È«¾î
+			int enchant = rs.getInt("enchant");/////í™ì–´
+		    int bless = rs.getInt("bless");/////í™ì–´
 			packCount = packCount == 0 ? 1 : packCount;
 			if (0 <= sellingPrice) {
 				item = new L1ShopItem(itemId, sellingPrice, packCount,enchant,bless);
@@ -137,12 +137,12 @@ public class ShopTable {
 	public L1Shop get(int npcId) {
 		return _allShops.get(npcId);
 	}
-	/*¹ö°æ °ü·Ã*/
+	/*ë²„ê²½ ê´€ë ¨*/
 	public void addShop(int npcId, L1Shop shop){		
 		_allShops.put(npcId, shop);
 	}
 
-	/*¹ö°æ °ü·Ã*/
+	/*ë²„ê²½ ê´€ë ¨*/
 	public void delShop(int npcId) {
 	_allShops.remove(npcId);	
 	}

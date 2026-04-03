@@ -1,4 +1,4 @@
-package l1j.server.GameSystem;
+ï»¿package l1j.server.GameSystem;
 
 import java.util.Calendar;
 
@@ -38,13 +38,13 @@ public class NoticeSystem implements TimeListener{
 				switch (_type) {
 				case 1:
 					L1World.getInstance().set_worldChatElabled(false);
-					L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("¾È³çÇÏ¼¼¿ä. ¸®´ÏÁöÀÔ´Ï´Ù."));
+					L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ì•ˆë…•í•˜ì„¸ìš”. ë¦¬ë‹ˆì§€ì…ë‹ˆë‹¤."));
 					Thread.sleep(1000);
-					L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("Àá½ÃÈÄ "+_msg+"ÀÇ Äİ·Ô¼¼¿ò¿¡¼­"));
+					L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ì ì‹œí›„ "+_msg+"ì˜ ì½œë¡¯ì„¸ì›€ì—ì„œ"));
 					Thread.sleep(1000);
-					L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("¹«ÇÑ´ëÀüÀÌ ÁøÇàµÇ¿À´Ï ¸¹Àº Âü¿© ¹Ù¶ø´Ï´Ù."));
+					L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ë¬´í•œëŒ€ì „ì´ ì§„í–‰ë˜ì˜¤ë‹ˆ ë§ì€ ì°¸ì—¬ ë°”ëë‹ˆë‹¤."));
 					Thread.sleep(1000);
-					L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("°¨»çÇÕ´Ï´Ù."));
+					L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ê°ì‚¬í•©ë‹ˆë‹¤."));
 					Thread.sleep(1000);
 					L1World.getInstance().set_worldChatElabled(true);
 					break;
@@ -77,7 +77,7 @@ public class NoticeSystem implements TimeListener{
 		String MSG = null;
 
 		switch (hour) {
-		case 0: MSG = "¸»ÇÏ´Â ¼¶, $2931, $1242"; break;	
+		case 0: MSG = "ë§í•˜ëŠ” ì„¬, $2931, $1242"; break;	
 		case 2:
 		case 8:
 		case 14:
@@ -88,15 +88,15 @@ public class NoticeSystem implements TimeListener{
 		case 12:
 		case 15:
 		case 18:
-		case 21: MSG = "¸»ÇÏ´Â ¼¶, $2931"; break;	
+		case 21: MSG = "ë§í•˜ëŠ” ì„¬, $2931"; break;	
 		case 1:
 		case 4:
 		case 7:
 		case 10:
 		case 13:
 		case 16:
-		case 19: MSG = "Àº±â»ç, ±Û·çµò"; break;
-		case 22: MSG = "Àº±â»ç, ±Û·çµò, $1242"; break;
+		case 19: MSG = "ì€ê¸°ì‚¬, ê¸€ë£¨ë”˜"; break;
+		case 22: MSG = "ì€ê¸°ì‚¬, ê¸€ë£¨ë”˜, $1242"; break;
 		default : return;
 		}
 		NoticeTimer nt = new NoticeTimer(ubMsg, MSG);

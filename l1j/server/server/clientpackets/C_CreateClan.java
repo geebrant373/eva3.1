@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -41,37 +41,37 @@ public class C_CreateClan extends ClientBasePacket {
 		numOfNameBytes = s.getBytes("EUC-KR").length;
 		
 		L1PcInstance l1pcinstance = clientthread.getActiveChar();
-		if (l1pcinstance.isCrown()) { // ÇÁ¸°½º ¶Ç´Â ÇÁ¸°¼¼½º
+		if (l1pcinstance.isCrown()) { // í”„ë¦°ìŠ¤ ë˜ëŠ” í”„ë¦°ì„¸ìŠ¤
 			if (l1pcinstance.getClanid() == 0) {				
 				if (!l1pcinstance.getInventory().checkItem(L1ItemId.ADENA, 30000)) {
-					l1pcinstance.sendPackets(new S_ServerMessage(337, "$4")); // \f1%0ÀÌ ºÎÁ·ÇÕ´Ï´Ù.
+					l1pcinstance.sendPackets(new S_ServerMessage(337, "$4")); // \f1%0ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.
 					return;
 				}
 				for (int i = 0;i<s.length();i++) {  
-					if (s.charAt(i) == ' ' || s.charAt(i) == '¤Ô'){
-						l1pcinstance.sendPackets(new S_ServerMessage(53)); // ÀÌ¸§ÀÌ Àß¸øµÇ¾ú½À´Ï´Ù. ´Ù¸¥ ÀÌ¸§À» ÀÔ·ÂÇÏ½Ê½Ã¿À.
+					if (s.charAt(i) == ' ' || s.charAt(i) == 'ã…¤'){
+						l1pcinstance.sendPackets(new S_ServerMessage(53)); // ì´ë¦„ì´ ì˜ëª»ë˜ì—ˆìŠµë‹ˆë‹¤. ë‹¤ë¥¸ ì´ë¦„ì„ ì…ë ¥í•˜ì‹­ì‹œì˜¤.
 						return; 
 					}
 				}
 				if (8 < (numOfNameBytes - s.length()) || 16 < numOfNameBytes) {
-					l1pcinstance.sendPackets(new S_ServerMessage(98)); // \f1Ç÷¸ÍÀÌ¸§ÀÌ ³Ê¹« ±é´Ï´Ù.
+					l1pcinstance.sendPackets(new S_ServerMessage(98)); // \f1í˜ˆë§¹ì´ë¦„ì´ ë„ˆë¬´ ê¹ë‹ˆë‹¤.
 				}
-				for (L1Clan clan : L1World.getInstance().getAllClans()) { // \f1 °°Àº ÀÌ¸§ÀÇ Ç÷¸ÍÀÌ Á¸ÀçÇÕ´Ï´Ù.
+				for (L1Clan clan : L1World.getInstance().getAllClans()) { // \f1 ê°™ì€ ì´ë¦„ì˜ í˜ˆë§¹ì´ ì¡´ì¬í•©ë‹ˆë‹¤.
 					if (clan.getClanName().toLowerCase().equals(s.toLowerCase())) {
-						l1pcinstance.sendPackets(new S_ServerMessage(99)); // \f1 °°Àº ÀÌ¸§ÀÇ Ç÷¸ÍÀÌ Á¸ÀçÇÕ´Ï´Ù.
+						l1pcinstance.sendPackets(new S_ServerMessage(99)); // \f1 ê°™ì€ ì´ë¦„ì˜ í˜ˆë§¹ì´ ì¡´ì¬í•©ë‹ˆë‹¤.
 						return;
 					}
 				}
-				L1Clan clan = ClanTable.getInstance().createClan(l1pcinstance, s); // Å©¶õ Ã¢¼³
+				L1Clan clan = ClanTable.getInstance().createClan(l1pcinstance, s); // í¬ë€ ì°½ì„¤
 				l1pcinstance.getInventory().consumeItem(L1ItemId.ADENA, 30000);
 				if (clan != null) {
-					l1pcinstance.sendPackets(new S_ServerMessage(84, s)); // \f1%0 Ç÷¸ÍÀÌ Ã¢¼³µÇ¾ú½À´Ï´Ù.
+					l1pcinstance.sendPackets(new S_ServerMessage(84, s)); // \f1%0 í˜ˆë§¹ì´ ì°½ì„¤ë˜ì—ˆìŠµë‹ˆë‹¤.
 				}
 			} else {
-				l1pcinstance.sendPackets(new S_ServerMessage(86)); // \f1 ¹ú½á Ç÷¸ÍÀÌ °á¼ºµÇ°í ÀÖÀ¸¹Ç·Î ÀÛ¼ºÇÒ ¼ö ¾ø½À´Ï´Ù.
+				l1pcinstance.sendPackets(new S_ServerMessage(86)); // \f1 ë²Œì¨ í˜ˆë§¹ì´ ê²°ì„±ë˜ê³  ìˆìœ¼ë¯€ë¡œ ì‘ì„±í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			}
 		} else {
-			l1pcinstance.sendPackets(new S_ServerMessage(85)); // \f1ÇÁ¸°½º¿Í ÇÁ¸°¼¼½º¸¸ÀÌ Ç÷¸ÍÀ» Ã¢¼³ÇÒ ¼ö ÀÖ½À´Ï´Ù.
+			l1pcinstance.sendPackets(new S_ServerMessage(85)); // \f1í”„ë¦°ìŠ¤ì™€ í”„ë¦°ì„¸ìŠ¤ë§Œì´ í˜ˆë§¹ì„ ì°½ì„¤í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 		}
 	}
 

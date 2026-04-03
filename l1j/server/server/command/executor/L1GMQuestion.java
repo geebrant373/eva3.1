@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -37,13 +37,13 @@ public class L1GMQuestion implements L1CommandExecutor {
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		try{
 			if(L1Question.mainstart){
-				pc.sendPackets(new S_SystemMessage("ÇöÀç ¼³¹®Á¶»ç°¡ ÁøÇàÁßÀÔ´Ï´Ù."));
-				pc.sendPackets(new S_SystemMessage("ÁøÇàÁßÀÎ ¼³¹® ³»¿ë : " + L1Question.maintext));
+				pc.sendPackets(new S_SystemMessage("í˜„ì¬ ì„¤ë¬¸ì¡°ì‚¬ê°€ ì§„í–‰ì¤‘ì…ë‹ˆë‹¤."));
+				pc.sendPackets(new S_SystemMessage("ì§„í–‰ì¤‘ì¸ ì„¤ë¬¸ ë‚´ìš© : " + L1Question.maintext));
 				return;
 			}
 			L1Question.getInstance(arg);
 		}catch(Exception e){
-			pc.sendPackets(new S_SystemMessage(".¼³¹® [¼³¹®³»¿ë] À» ÀÔ·Â ÇØÁÖ¼¼¿ä"));
+			pc.sendPackets(new S_SystemMessage(".ì„¤ë¬¸ [ì„¤ë¬¸ë‚´ìš©] ì„ ì…ë ¥ í•´ì£¼ì„¸ìš”"));
 		}
 	}
 }

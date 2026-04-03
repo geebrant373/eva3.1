@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -40,7 +40,7 @@ public class S_ChangeShape extends ServerBasePacket {
 		writeC(Opcodes.S_OPCODE_POLY);
 		writeD(objId);
 		writeH(polyId);
-		// ø÷ 29¿Œ∞° ∫“∏Ì
+		// Ïôú 29Ïù∏Í∞Ä Î∂àÎ™Ö
 		writeC(weaponTakeoff ? 0 : 29);
 		//writeC(0xff);
 		//writeC(0xff);

@@ -1,4 +1,4 @@
-package l1j.server.MJ3SEx;
+ï»¿package l1j.server.MJ3SEx;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -28,7 +28,7 @@ public class MJNpcSpeedData {
 		MJNpcSpeedData data = m_npc_speed_data.get(npc.getNpcId());
 		if(data == null)
 			return;
-		/**ÀÓ½ÃÁÖ¼®
+		/**ì„ì‹œì£¼ì„
 		npc.setMoveSpeed(data.get_speed());
 		npc.setBraveSpeed(data.get_brave());
 		*/

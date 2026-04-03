@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Auto;
+ï»¿package l1j.server.GameSystem.Auto;
 
 import static l1j.server.server.model.skill.L1SkillId.CURSE_PARALYZE;
 import static l1j.server.server.model.skill.L1SkillId.CURSE_PARALYZE2;
@@ -73,10 +73,10 @@ public class AutoBuffController implements Runnable {
 	}
 
 	private void doAutoBuffAction(L1PcInstance pc) {
-		if (!pc.is_ÀÚµ¿¹öÇÁ»ç¿ë()) {
+		if (!pc.is_ìë™ë²„í”„ì‚¬ìš©()) {
 			return;
 		}
-		if (!pc.is_ÀÚµ¿¹öÇÁ¼¼ÀÌÇÁÆ¼Á¸»ç¿ë()) {
+		if (!pc.is_ìë™ë²„í”„ì„¸ì´í”„í‹°ì¡´ì‚¬ìš©()) {
 			return;
 		}
 
@@ -89,7 +89,7 @@ public class AutoBuffController implements Runnable {
 		if (pc.isPrivateShop() || pc.isAutoClanjoin()) {
 			return;
 		}
-		if (pc.isPinkName() && !pc.is_ÀÚµ¿¹öÇÁÀüÅõ½Ã»ç¿ë()) {
+		if (pc.isPinkName() && !pc.is_ìë™ë²„í”„ì „íˆ¬ì‹œì‚¬ìš©()) {
 			return;
 		}
 
@@ -116,18 +116,18 @@ public class AutoBuffController implements Runnable {
 			return;
 		}
 
-		ArrayList<Integer> _¹öÇÁ¸®½ºÆ® = new ArrayList<Integer>();
+		ArrayList<Integer> _ë²„í”„ë¦¬ìŠ¤íŠ¸ = new ArrayList<Integer>();
 
-		_¹öÇÁ¸®½ºÆ® = pc.get_ÀÚµ¿¹öÇÁ¸®½ºÆ®();
-		if (_¹öÇÁ¸®½ºÆ® == null || _¹öÇÁ¸®½ºÆ®.isEmpty()) {
+		_ë²„í”„ë¦¬ìŠ¤íŠ¸ = pc.get_ìë™ë²„í”„ë¦¬ìŠ¤íŠ¸();
+		if (_ë²„í”„ë¦¬ìŠ¤íŠ¸ == null || _ë²„í”„ë¦¬ìŠ¤íŠ¸.isEmpty()) {
 			return;
 		}
-		for (int skillId : _¹öÇÁ¸®½ºÆ®) {
+		for (int skillId : _ë²„í”„ë¦¬ìŠ¤íŠ¸) {
 			if (!SkillsTable.getInstance().spellCheck(pc.getId(), skillId)) {
 				continue;
 			}
 
-			if (pc.getType() == 0) { //±ºÁÖ				
+			if (pc.getType() == 0) { //êµ°ì£¼				
 				switch(skillId) {		
 				case L1SkillId.LIGHT: 		
 				case L1SkillId.SHIELD: 		
@@ -203,7 +203,7 @@ public class AutoBuffController implements Runnable {
 					}
 					break;	
 				}		
-			} else if (pc.getType() == 1) {	//±â»ç	
+			} else if (pc.getType() == 1) {	//ê¸°ì‚¬	
 				switch(skillId) {		
 				case L1SkillId.LIGHT: 		
 				case L1SkillId.SHIELD: 		
@@ -216,7 +216,7 @@ public class AutoBuffController implements Runnable {
 					if (pc.isSkillDelay()) {
 						continue;
 					}
-					if (skillId == L1SkillId.COUNTER_BARRIER) {// ´í½Ìºí·¹ÀÌÁî °ËÂø¿ë Ã¼
+					if (skillId == L1SkillId.COUNTER_BARRIER) {// ëŒ„ì‹±ë¸”ë ˆì´ì¦ˆ ê²€ì°©ìš© ì²´
 						L1ItemInstance weapon = pc.getWeapon();
 						if (weapon == null) {
 							continue;
@@ -285,7 +285,7 @@ public class AutoBuffController implements Runnable {
 					}	
 					break;	
 				}		
-			} else if (pc.getType() == 2) {	//¿äÁ¤		
+			} else if (pc.getType() == 2) {	//ìš”ì •		
 				switch(skillId) {
 				case L1SkillId.LIGHT:
 				case L1SkillId.SHIELD:
@@ -326,7 +326,7 @@ public class AutoBuffController implements Runnable {
 					if (pc.isSkillDelay()) {
 						continue;
 					}
-					//System.out.println("½ºÅ³ = " + skillId);
+					//System.out.println("ìŠ¤í‚¬ = " + skillId);
 					
 					if (skillId == L1SkillId.HOLY_WEAPON) {
 						if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ENCHANT_WEAPON)
@@ -388,7 +388,7 @@ public class AutoBuffController implements Runnable {
 					}
 					break;	
 				}		
-			} else if (pc.getType() == 3) {	// ¸¶¹ı»ç		
+			} else if (pc.getType() == 3) {	// ë§ˆë²•ì‚¬		
 				switch(skillId) {		
 				case L1SkillId.LIGHT: 		
 				case L1SkillId.SHIELD: 		
@@ -464,7 +464,7 @@ public class AutoBuffController implements Runnable {
 					}
 					break;	
 				}		
-			} else if (pc.getType() == 4) {	 //´ÙÅ©¿¤ÇÁ		
+			} else if (pc.getType() == 4) {	 //ë‹¤í¬ì—˜í”„		
 				switch(skillId) {		
 				case L1SkillId.LIGHT: 		
 				case L1SkillId.SHIELD: 		

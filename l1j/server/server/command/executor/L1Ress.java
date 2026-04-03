@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -46,14 +46,14 @@ public class L1Ress implements L1CommandExecutor {
 			Broadcaster.broadcastPacket(pc, new S_SkillSound(objid, 759));
 			for (L1PcInstance tg : L1World.getInstance(). getVisiblePlayer(pc)) {
 				if (tg.getCurrentHp() == 0 && tg.isDead()) {
-//					tg.sendPackets(new S_SystemMessage("GMÀÌ ºÎÈ°À» ÇØÁÖ¾ú½À´Ï´Ù. "));
+//					tg.sendPackets(new S_SystemMessage("GMì´ ë¶€í™œì„ í•´ì£¼ì—ˆìŠµë‹ˆë‹¤. "));
 					Broadcaster.broadcastPacket(tg, new S_SkillSound(tg.getId(), 3944));
 					tg.sendPackets(new S_SkillSound(tg.getId(), 3944));
-					// Ãàº¹µÈ ºÎÈ° ½ºÅ©·Ñ°ú °°Àº È¿°ú
+					// ì¶•ë³µëœ ë¶€í™œ ìŠ¤í¬ë¡¤ê³¼ ê°™ì€ íš¨ê³¼
 					tg.setTempID(objid);
-					tg.sendPackets(new S_Message_YN(322, "")); // ¶Ç ºÎÈ°ÇÏ°í ½Í½À´Ï±î? (Y/N)
+					tg.sendPackets(new S_Message_YN(322, "")); // ë˜ ë¶€í™œí•˜ê³  ì‹¶ìŠµë‹ˆê¹Œ? (Y/N)
 				} else {
-//					tg.sendPackets(new S_SystemMessage("GMÀÌ HP,MP¸¦ È¸º¹ÇØÁÖ¾ú½À´Ï´Ù."));
+//					tg.sendPackets(new S_SystemMessage("GMì´ HP,MPë¥¼ íšŒë³µí•´ì£¼ì—ˆìŠµë‹ˆë‹¤."));
 					Broadcaster.broadcastPacket(tg, new S_SkillSound(tg.getId(), 832));
 					tg.sendPackets(new S_SkillSound(tg.getId(), 832));
 					tg.setCurrentHp(tg.getMaxHp());
@@ -61,7 +61,7 @@ public class L1Ress implements L1CommandExecutor {
 				}
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " Ä¿¸àµå ¿¡·¯"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " ì»¤ë©˜ë“œ ì—ëŸ¬"));
 		}
 	}
 }

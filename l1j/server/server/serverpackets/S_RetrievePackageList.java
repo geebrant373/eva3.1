@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -39,7 +39,7 @@ public class S_RetrievePackageList extends ServerBasePacket {
 				writeC(Opcodes.S_OPCODE_SHOWRETRIEVELIST);
 				writeD(objid);
 				writeH(size);
-				writeC(9); // 6 : ¹«¹İÀÀ 7 : ÆÃ 8 : ¿äÁ¤Ã¢°í ¸Ã±â±â 9: ¿äÁ¤Ã£±â 15:ÆĞÅ°Áö»óÁ¡
+				writeC(9); // 6 : ë¬´ë°˜ì‘ 7 : íŒ… 8 : ìš”ì •ì°½ê³  ë§¡ê¸°ê¸° 9: ìš”ì •ì°¾ê¸° 15:íŒ¨í‚¤ì§€ìƒì 
 				for (Object itemObject : w.getItems()) {
 					L1ItemInstance item = (L1ItemInstance) itemObject;
 					writeD(item.getId());
@@ -51,10 +51,10 @@ public class S_RetrievePackageList extends ServerBasePacket {
 					writeS(item.getViewName());
 				}
 			}else {
-				pc.sendPackets(new S_ServerMessage(1625)); // Ã¢°í¿¡ ¸Ã°ÜÁø ¹°°ÇÀÌ ¾ø½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(1625)); // ì°½ê³ ì— ë§¡ê²¨ì§„ ë¬¼ê±´ì´ ì—†ìŠµë‹ˆë‹¤.
 			}
 		} else {
-			pc.sendPackets(new S_ServerMessage(263)); // \f1ÇÑ»ç¶÷ÀÇ Ä³¸¯ÅÍ°¡ °¡Áö°í °ÉÀ» ¼ö ÀÖ´Â ¾ÆÀÌÅÛÀº ÃÖ´ë 180°³±îÁöÀÔ´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(263)); // \f1í•œì‚¬ëŒì˜ ìºë¦­í„°ê°€ ê°€ì§€ê³  ê±¸ì„ ìˆ˜ ìˆëŠ” ì•„ì´í…œì€ ìµœëŒ€ 180ê°œê¹Œì§€ì…ë‹ˆë‹¤.
 		}
 	}
 

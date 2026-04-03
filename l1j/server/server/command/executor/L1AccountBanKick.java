@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,15 +42,15 @@ public class L1AccountBanKick implements L1CommandExecutor {
 			L1PcInstance target = L1World.getInstance(). getPlayer(arg);
 
 			if (target != null) {
-				// ¾îÄ«¿îÆ®¸¦ BAN ÇÑ´Ù
+				// ì–´ì¹´ìš´íŠ¸ë¥¼ BAN í•œë‹¤
 				Account.ban(target.getAccountName());
-				pc.sendPackets(new S_SystemMessage(target.getName() + " ¸¦ °èÁ¤¾Ğ·ù ÇÏ¿´½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage(target.getName() + " ë¥¼ ê³„ì •ì••ë¥˜ í•˜ì˜€ìŠµë‹ˆë‹¤."));
 				target.sendPackets(new S_Disconnect());
 			} else {
-				pc.sendPackets(new S_SystemMessage("±×·¯ÇÑ ÀÌ¸§ÀÇ Ä³¸¯ÅÍ´Â ¿ùµå³»¿¡´Â Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù. "));
+				pc.sendPackets(new S_SystemMessage("ê·¸ëŸ¬í•œ ì´ë¦„ì˜ ìºë¦­í„°ëŠ” ì›”ë“œë‚´ì—ëŠ” ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤. "));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [Ä³¸¯ÅÍ¸í] À¸·Î ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [ìºë¦­í„°ëª…] ìœ¼ë¡œ ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

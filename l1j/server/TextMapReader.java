@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -35,31 +35,31 @@ import l1j.server.server.model.map.L1Map;
 import l1j.server.server.model.map.L1V1Map;
 
 /**
- * ÅØ½ºÆ® ¸Ê(maps/\d*.txt)À» ÀĞ¾îµéÀÎ´Ù.
+ * í…ìŠ¤íŠ¸ ë§µ(maps/\d*.txt)ì„ ì½ì–´ë“¤ì¸ë‹¤.
  */
 public class TextMapReader extends MapReader {
 
-	/** ¸Ş¼¼Áö ·Î±×¿ë. */
+	/** ë©”ì„¸ì§€ ë¡œê·¸ìš©. */
 	private static Logger _log = Logger.getLogger(TextMapReader.class.getName());
-	/** ¸Ê È¦´õ. */
+	/** ë§µ í™€ë”. */
 	private static final String MAP_DIR = "./maps/"; 
-	/** MAP_INFO¿ë ¸Ê ¹øÈ£ À§Ä¡. */
+	/** MAP_INFOìš© ë§µ ë²ˆí˜¸ ìœ„ì¹˜. */
 	public static final int MAPINFO_MAP_NO = 0;
-	/** MAP_INFO¿ë °³½Ã XÁÂÇ¥ÀÇ À§Ä¡. */
+	/** MAP_INFOìš© ê°œì‹œ Xì¢Œí‘œì˜ ìœ„ì¹˜. */
 	public static final int MAPINFO_START_X = 1;
-	/** MAP_INFO¿ë ÃÖÁ¾ XÁÂÇ¥ÀÇ À§Ä¡. */
+	/** MAP_INFOìš© ìµœì¢… Xì¢Œí‘œì˜ ìœ„ì¹˜. */
 	public static final int MAPINFO_END_X = 2;
-	/** MAP_INFO¿ë °³½Ã YÁÂÇ¥ÀÇ À§Ä¡. */
+	/** MAP_INFOìš© ê°œì‹œ Yì¢Œí‘œì˜ ìœ„ì¹˜. */
 	public static final int MAPINFO_START_Y = 3;
-	/** MAP_INFO¿ë °³½Ã YÁÂÇ¥ÀÇ À§Ä¡. */
+	/** MAP_INFOìš© ê°œì‹œ Yì¢Œí‘œì˜ ìœ„ì¹˜. */
 	public static final int MAPINFO_END_Y = 4;
 
 	/**
-	 * ÁöÁ¤ÀÇ ¸Ê ¹øÈ£ÀÇ ÅØ½ºÆ® ¸ÊÀ» ÀĞ¾îµéÀÎ´Ù.
+	 * ì§€ì •ì˜ ë§µ ë²ˆí˜¸ì˜ í…ìŠ¤íŠ¸ ë§µì„ ì½ì–´ë“¤ì¸ë‹¤.
 	 *
-	 * @param mapId ¸Ê ¹øÈ£
-	 * @param xSize XÁÂÇ¥ÀÇ »çÀÌÁî
-	 * @param ySize YÁÂÇ¥ÀÇ »çÀÌÁî
+	 * @param mapId ë§µ ë²ˆí˜¸
+	 * @param xSize Xì¢Œí‘œì˜ ì‚¬ì´ì¦ˆ
+	 * @param ySize Yì¢Œí‘œì˜ ì‚¬ì´ì¦ˆ
 	 * @return byte[][]
 	 * @throws IOException
 	 */
@@ -75,7 +75,7 @@ public class TextMapReader extends MapReader {
 		StringTokenizer tok = null;
 		while ((line = in.readLine()) != null) {
 			if (line.trim().length() == 0 || line.startsWith("#")) {
-				continue; // ºóÁÙ, ÄÚ¸àÆ®´Â ½ºÅµ
+				continue; // ë¹ˆì¤„, ì½”ë©˜íŠ¸ëŠ” ìŠ¤í‚µ
 			}
 
 			x = 0;
@@ -93,9 +93,9 @@ public class TextMapReader extends MapReader {
 	}
 
 	/**
-	 * ÁöÁ¤ÀÇ ¸Ê ¹øÈ£ÀÇ ÅØ½ºÆ® ¸ÊÀ» ÀĞÀ½
+	 * ì§€ì •ì˜ ë§µ ë²ˆí˜¸ì˜ í…ìŠ¤íŠ¸ ë§µì„ ì½ìŒ
 	 *
-	 * @param id ¸Ê ¹øÈ£
+	 * @param id ë§µ ë²ˆí˜¸
 	 * @return L1Map
 	 * @throws IOException
 	 */
@@ -129,7 +129,7 @@ public class TextMapReader extends MapReader {
 	}
 
 	/**
-	 * ¸ğµç ÅØ½ºÆ® ¸ÊÀ» ÀĞÀ½
+	 * ëª¨ë“  í…ìŠ¤íŠ¸ ë§µì„ ì½ìŒ
 	 *
 	 * @return Map
 	 * @throws IOException
@@ -169,8 +169,8 @@ public class TextMapReader extends MapReader {
 	}
 
 	/**
-	 * mapInfo£º¸Ê No, ¸Ê »çÀÌÁî¸¦ º¸°ü À¯ÁöÇÏ°í ÀÖ´Ù.
-	 * 1 ·¹ÄÚµå°¡{mapNo, StartX, EndX, StartY, EndY}·Î ±¸¼ºµÇ¾î ÀÖ´Ù.
+	 * mapInfoï¼šë§µ No, ë§µ ì‚¬ì´ì¦ˆë¥¼ ë³´ê´€ ìœ ì§€í•˜ê³  ìˆë‹¤.
+	 * 1 ë ˆì½”ë“œê°€{mapNo, StartX, EndX, StartY, EndY}ë¡œ êµ¬ì„±ë˜ì–´ ìˆë‹¤.
 	 */
 
 /** by feel. **/

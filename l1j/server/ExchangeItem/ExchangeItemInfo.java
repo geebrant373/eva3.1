@@ -1,4 +1,4 @@
-package l1j.server.ExchangeItem;
+﻿package l1j.server.ExchangeItem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -30,7 +30,7 @@ public class S_CurseBlind extends ServerBasePacket {
 	private byte[] _byte = null;
 
 	public S_CurseBlind(int type) {
-		// type 0:OFF 1:ÀÚ½Å ÀÌ¿Ü ¾Èº¸ÀÌ´Â 2:ÁÖÀ§ÀÇ Ä³¸¯ÅÍ°¡ º¸ÀÎ´Ù
+		// type 0:OFF 1:ìì‹  ì´ì™¸ ì•ˆë³´ì´ëŠ” 2:ì£¼ìœ„ì˜ ìºë¦­í„°ê°€ ë³´ì¸ë‹¤
 		buildPacket(type);
 	}
 

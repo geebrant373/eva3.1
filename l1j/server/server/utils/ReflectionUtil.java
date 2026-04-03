@@ -1,4 +1,4 @@
-package l1j.server.server.utils;
+﻿package l1j.server.server.utils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

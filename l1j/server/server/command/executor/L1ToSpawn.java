@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -63,13 +63,13 @@ public class L1ToSpawn implements L1CommandExecutor {
 			}
 			if (spawn != null) {
 				L1Teleport.teleport(pc, spawn.getLocX(), spawn.getLocY(), spawn.getMapId(), 5, false);
-				pc.sendPackets(new S_SystemMessage("spawnid(" + id + ")ÀÇ ¿ø·¡·Î ³³´Ï´Ù"));
+				pc.sendPackets(new S_SystemMessage("spawnid(" + id + ")ì˜ ì›ë˜ë¡œ ë‚©ë‹ˆë‹¤"));
 			} else {
-				pc.sendPackets(new S_SystemMessage("spawnid(" + id + ")(Àº)´Â ¹ß°ßµÇÁö ¾Ê½À´Ï´Ù"));
+				pc.sendPackets(new S_SystemMessage("spawnid(" + id + ")(ì€)ëŠ” ë°œê²¬ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤"));
 			}
 			_spawnId.put(pc.getId(), id);
 		} catch (Exception exception) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [½ºÆù¾ÆÀÌµğ] [+,-]"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [ìŠ¤í°ì•„ì´ë””] [+,-]"));
 		}
 	}
 }

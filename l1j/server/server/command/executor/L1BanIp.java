@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,10 +42,10 @@ public class L1BanIp implements L1CommandExecutor {
 		try {			
 
 			StringTokenizer stringtokenizer = new StringTokenizer(arg);
-			// IP¸¦ ÁöÁ¤
+			// IPë¥¼ ì§€ì •
 			String s1 = stringtokenizer.nextToken();
 
-			// add/del¸¦ ÁöÁ¤(ÇÏÁö ¾Ê¾Æµµ OK)
+			// add/delë¥¼ ì§€ì •(í•˜ì§€ ì•Šì•„ë„ OK)
 			String s2 = null;
 			try {
 				s2 = stringtokenizer.nextToken();
@@ -58,38 +58,38 @@ public class L1BanIp implements L1CommandExecutor {
 			for (L1PcInstance tg : L1World.getInstance(). getAllPlayers()) {
 				if (s1.equals(tg.getNetConnection(). getIp())) {
 					String msg = new StringBuilder(). append("IP:"). append(s1)
-							. append(" ·Î Á¢¼ÓÁßÀÇ ÇÃ·¹ÀÌ¾î:"). append(tg.getName())
+							. append(" ë¡œ ì ‘ì†ì¤‘ì˜ í”Œë ˆì´ì–´:"). append(tg.getName())
 							. toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				}
 			}
 
 			if ("add". equals(s2) && ! isBanned) {
-				iptable.banIp(s1); // BAN ¸®½ºÆ®¿¡ IP¸¦ ´õÇÑ´Ù
+				iptable.banIp(s1); // BAN ë¦¬ìŠ¤íŠ¸ì— IPë¥¼ ë”í•œë‹¤
 				String msg = new StringBuilder(). append("IP:"). append(s1)
-						. append(" ¸¦ BAN IP¿¡ µî·ÏÇß½À´Ï´Ù. "). toString();
+						. append(" ë¥¼ BAN IPì— ë“±ë¡í–ˆìŠµë‹ˆë‹¤. "). toString();
 				pc.sendPackets(new S_SystemMessage(msg));
 			} else if ("del". equals(s2) && isBanned) {
-				if (iptable.liftBanIp(s1)) { // BAN ¸®½ºÆ®·ÎºÎÅÍ IP¸¦ »èÁ¦ÇÑ´Ù
+				if (iptable.liftBanIp(s1)) { // BAN ë¦¬ìŠ¤íŠ¸ë¡œë¶€í„° IPë¥¼ ì‚­ì œí•œë‹¤
 					String msg = new StringBuilder(). append("IP:"). append(s1)
-							. append(" ¸¦ BAN IP·ÎºÎÅÍ »èÁ¦Çß½À´Ï´Ù. "). toString();
+							. append(" ë¥¼ BAN IPë¡œë¶€í„° ì‚­ì œí–ˆìŠµë‹ˆë‹¤. "). toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				}
 			} else {
-				// BANÀÇ È®ÀÎ
+				// BANì˜ í™•ì¸
 				if (isBanned) {
 					String msg = new StringBuilder(). append("IP:"). append(s1)
-							. append(" ´Â BAN IP¿¡ µî·ÏµÇ¾î ÀÖ½À´Ï´Ù. "). toString();
+							. append(" ëŠ” BAN IPì— ë“±ë¡ë˜ì–´ ìˆìŠµë‹ˆë‹¤. "). toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				} else {
 					String msg = new StringBuilder(). append("IP:"). append(s1)
-							. append(" ´Â BAN IP¿¡ µî·ÏµÇ¾î ÀÖÁö ¾Ê½À´Ï´Ù. "). toString();
+							. append(" ëŠ” BAN IPì— ë“±ë¡ë˜ì–´ ìˆì§€ ì•ŠìŠµë‹ˆë‹¤. "). toString();
 					pc.sendPackets(new S_SystemMessage(msg));
 				}
 			}
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(cmdName
-					+ " IP [ add | del ]¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+					+ " IP [ add | del ]ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
  * Foundation; either version 2, or (at your option) any later version.
@@ -31,7 +31,7 @@ public class S_InvList extends ServerBasePacket {
 	private static final String S_INV_LIST = "[S] S_InvList";
 
 	/**
-	 * ¸ñ·Ï¿¡ ¾ÆÀÌÅÛÀ» º¹¼ö°³ Á¤¸®ÇØ Ãß°¡ÇÑ´Ù.
+	 * ëª©ë¡ì— ì•„ì´í…œì„ ë³µìˆ˜ê°œ ì •ë¦¬í•´ ì¶”ê°€í•œë‹¤.
 	 */
 	public S_InvList(L1PcInstance pc) {
 		List<L1ItemInstance> items = pc.getInventory().getItems();
@@ -60,7 +60,7 @@ public class S_InvList extends ServerBasePacket {
 //				System.out.println("dd");
 //			}
 			if (!item.isIdentified()) {
-				// ¹Ì°¨Á¤ÀÇ °æ¿ì ½ºÅ×ÀÌÅÍ½º¸¦ º¸³¾ ÇÊ¿ä´Â ¾ø´Ù
+				// ë¯¸ê°ì •ì˜ ê²½ìš° ìŠ¤í…Œì´í„°ìŠ¤ë¥¼ ë³´ë‚¼ í•„ìš”ëŠ” ì—†ë‹¤
 				writeC(0);
 			} else {
 				status = item.getStatusBytes();

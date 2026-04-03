@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ public class ReviveItemTable {
 
 	private static ReviveItemTable _instance;
 
-	private HashMap<Integer, L1ReviveItem> _reviveItems = new HashMap<Integer, L1ReviveItem>(); // itemId,·Î½ºÆ®ÅÛ.
+	private HashMap<Integer, L1ReviveItem> _reviveItems = new HashMap<Integer, L1ReviveItem>(); // itemId,ë¡œìŠ¤íŠ¸í…œ.
 
 	public static ReviveItemTable getInstance() {
 		if (_instance == null) {

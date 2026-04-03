@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -49,7 +49,7 @@ public class L1DeleteGroundItem implements L1CommandExecutor {
 		for (L1Object l1object : L1World.getInstance().getObject()) {
 			if(l1object instanceof L1ItemInstance){
 				litem = (L1ItemInstance)l1object;
-				if (litem.getX() == 0 && litem.getY() == 0) { // Áö¸é»óÀÇ ¾ÆÀÌÅÛÀº ¾Æ´Ï°í, ´©±º°¡ÀÇ ¼ÒÀ¯¹°
+				if (litem.getX() == 0 && litem.getY() == 0) { // ì§€ë©´ìƒì˜ ì•„ì´í…œì€ ì•„ë‹ˆê³ , ëˆ„êµ°ê°€ì˜ ì†Œìœ ë¬¼
 					continue;
 				}
 
@@ -61,17 +61,17 @@ public class L1DeleteGroundItem implements L1CommandExecutor {
 									litem.getY(),
 									litem.getMapId());
 					int itemId = litem.getItem(). getItemId();
-					if (itemId == 40314 || itemId == 40316) { // ÆêÀÇ ¾Æ¹Â·¿Æ®
+					if (itemId == 40314 || itemId == 40316) { // íŽ«ì˜ ì•„ë®¤ë ›íŠ¸
 						PetTable.getInstance().deletePet(litem.getId());
-					} else if (itemId >= 49016 && itemId <= 49025) { // ÆíÁöÁö
+					} else if (itemId >= 49016 && itemId <= 49025) { // íŽ¸ì§€ì§€
 						lettertable = new LetterTable();
 						lettertable.deleteLetter(litem.getId());
-					} else if (itemId >= 41383 && itemId <= 41400) { // °¡±¸
-						//ÀÌ°Ç À§¿¡¼­ ÀÎ½ºÅÏ½º¿¡¼­ ¿¹¿Ü¿¡¼­ °É·ÁÁö´Âµ¥ ¹Ø¿¡°Å ¾ÈÅ»°Å°°¾Æ¼­ ÁÖ¼®
+					} else if (itemId >= 41383 && itemId <= 41400) { // ê°€êµ¬
+						//ì´ê±´ ìœ„ì—ì„œ ì¸ìŠ¤í„´ìŠ¤ì—ì„œ ì˜ˆì™¸ì—ì„œ ê±¸ë ¤ì§€ëŠ”ë° ë°‘ì—ê±° ì•ˆíƒˆê±°ê°™ì•„ì„œ ì£¼ì„
 						/*if (l1object instanceof L1FurnitureInstance) {
 							furniture = (L1FurnitureInstance) l1object;
 							if (furniture.getItemObjId() == l1iteminstance
-									.getId()) { // ÀÌ¹Ì ²¨³»°í ÀÖ´Â °¡±¸
+									.getId()) { // ì´ë¯¸ êº¼ë‚´ê³  ìžˆëŠ” ê°€êµ¬
 								FurnitureSpawnTable.getInstance()
 										.deleteFurniture(furniture);
 							}
@@ -84,6 +84,6 @@ public class L1DeleteGroundItem implements L1CommandExecutor {
 			}
 			
 		}
-		L1World.getInstance().broadcastServerMessage("¿ùµå ¸Ê»óÀÇ ¾ÆÀÌÅÛÀÌ GM¿¡ ÀÇÇØ »èÁ¦µÇ¾ú½À´Ï´Ù. ");
+		L1World.getInstance().broadcastServerMessage("ì›”ë“œ ë§µìƒì˜ ì•„ì´í…œì´ GMì— ì˜í•´ ì‚­ì œë˜ì—ˆìŠµë‹ˆë‹¤. ");
 	}
 }

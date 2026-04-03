@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.biscuitGame;
+ï»¿package l1j.server.GameSystem.biscuitGame;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,7 +45,7 @@ public class BiscuitBuffTimeController implements Runnable {
 				radeExciting(); // 
 				shopReload();
 			} catch (Exception e) {
-				_log.log(Level.SEVERE, "BuffTimeController¿¡¼­ ¿¡·¯¹ß»ı", e);
+				_log.log(Level.SEVERE, "BuffTimeControllerì—ì„œ ì—ëŸ¬ë°œìƒ", e);
 			} finally {
 				try {
 					Thread.sleep(60000);
@@ -56,7 +56,7 @@ public class BiscuitBuffTimeController implements Runnable {
 		}
 	}
 
-	private void shopReload() { //1½Ã°£´ÜÀ§°»½Å
+	private void shopReload() { //1ì‹œê°„ë‹¨ìœ„ê°±ì‹ 
 		try {
 			if(nowtime == 100 || nowtime == 200	|| nowtime == 300 || nowtime == 400 
 					|| nowtime == 500 || nowtime == 600 || nowtime == 700|| nowtime == 800
@@ -68,25 +68,25 @@ public class BiscuitBuffTimeController implements Runnable {
 			    if (power) {
 			    	ShopNpcTable.reloding();
 			    	for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
-						//pc.sendPackets(new S_SystemMessage("¸ŞÆ¼½º ½ÃÀå»óÁ¡ Ç°¸ñÀÌ °»½Å µÇ¾ú½À´Ï´Ù.1½Ã°£ ´ÜÀ§ ÀÚµ¿°»½Å"));//³ì»öÀ¸·Î ¸àÆ®Á»¿ä
-						//L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("½ÃÀåÀÌ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.1½Ã°£ ´ÜÀ§ ÃÊ±âÈ­"));
+						//pc.sendPackets(new S_SystemMessage("ë©”í‹°ìŠ¤ ì‹œì¥ìƒì  í’ˆëª©ì´ ê°±ì‹  ë˜ì—ˆìŠµë‹ˆë‹¤.1ì‹œê°„ ë‹¨ìœ„ ìë™ê°±ì‹ "));//ë…¹ìƒ‰ìœ¼ë¡œ ë©˜íŠ¸ì¢€ìš”
+						//L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ì‹œì¥ì´ ì´ˆê¸°í™” ë˜ì—ˆìŠµë‹ˆë‹¤.1ì‹œê°„ ë‹¨ìœ„ ì´ˆê¸°í™”"));
 			    	}
 			    }
 			}
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, "BuffTimeController_shopReload() ¿¡¼­ ¿¡·¯¹ß»ı", e);
+			_log.log(Level.SEVERE, "BuffTimeController_shopReload() ì—ì„œ ì—ëŸ¬ë°œìƒ", e);
 		}
 		
 	}
 
 	private void radeExciting() {
 		try {
-			if(nowtime == 900){//9½Ã¸é ¼öÄ¡°¡¸Ö°¡¿ä¾ÆÇÏ  Çö½Ç¿¡¼­ 1ÃÊ°¡ ¸®´ÏÁö¿¡¼±59ÃÊ
+			if(nowtime == 900){//9ì‹œë©´ ìˆ˜ì¹˜ê°€ë©€ê°€ìš”ì•„í•˜  í˜„ì‹¤ì—ì„œ 1ì´ˆê°€ ë¦¬ë‹ˆì§€ì—ì„ 59ì´ˆ
 				
 				for (L1PcInstance pc : L1World.getInstance().getAllPlayers()) {
-					pc.setGdungeonTime(7200000);//2½Ã°£
-					pc.sendPackets(new S_SystemMessage("±â°¨½Ã°£ÀÌ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.¸ÅÀÏ¿ÀÀü9½Ã ÃÊ±âÈ­"));//³ì»öÀ¸·Î ¸àÆ®Á»¿ä
-					//L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("±â¶õ´øÀü ½Ã°£ÀÌ ÃÊ±âÈ­ µÇ¾ú½À´Ï´Ù.¸ÅÀÏ¿ÀÀü9½Ã ÃÊ±âÈ­"));			
+					pc.setGdungeonTime(7200000);//2ì‹œê°„
+					pc.sendPackets(new S_SystemMessage("ê¸°ê°ì‹œê°„ì´ ì´ˆê¸°í™” ë˜ì—ˆìŠµë‹ˆë‹¤.ë§¤ì¼ì˜¤ì „9ì‹œ ì´ˆê¸°í™”"));//ë…¹ìƒ‰ìœ¼ë¡œ ë©˜íŠ¸ì¢€ìš”
+					//L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ê¸°ë€ë˜ì „ ì‹œê°„ì´ ì´ˆê¸°í™” ë˜ì—ˆìŠµë‹ˆë‹¤.ë§¤ì¼ì˜¤ì „9ì‹œ ì´ˆê¸°í™”"));			
 				}
 			
 				Connection con = null;
@@ -96,7 +96,7 @@ public class BiscuitBuffTimeController implements Runnable {
 					pstm = con.prepareStatement("UPDATE characters SET GdungeonTime = 7200000");
 					pstm.execute();
 				} catch (SQLException e) {
-					System.out.println("¾÷µ¥ÀÌÆ®¿¡ ½ÇÆĞÇß´Ù!!");
+					System.out.println("ì—…ë°ì´íŠ¸ì— ì‹¤íŒ¨í–ˆë‹¤!!");
 				} finally {
 					SQLUtil.close(pstm);
 					SQLUtil.close(con);
@@ -104,7 +104,7 @@ public class BiscuitBuffTimeController implements Runnable {
 				
 			}
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, "BuffTimeController_radeExciting() ¿¡¼­ ¿¡·¯¹ß»ı", e);
+			_log.log(Level.SEVERE, "BuffTimeController_radeExciting() ì—ì„œ ì—ëŸ¬ë°œìƒ", e);
 		}
 	}
 

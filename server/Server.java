@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -65,7 +65,7 @@ import server.netty.ProtocolHandler;
 public class Server {
 	private volatile static Server uniqueInstance;
 	//private static Logger _log = Logger.getLogger(Server.class.getName());
-	private static final String LOG_PROP = "./config/log.properties";//·Î±× ¼³Á¤ ÆÄÀÏ
+	private static final String LOG_PROP = "./config/log.properties";//ë¡œê·¸ ì„¤ì • íŒŒì¼
 	
 	//private MonitorManager monitorServer;
 
@@ -116,25 +116,25 @@ public class Server {
 		try {
 			//loginServer.initialize();
 			String pla = "";
-			// TCP/IP ¼­¹ö Å¬·¹½º È°¼ºÈ­
+			// TCP/IP ì„œë²„ í´ë ˆìŠ¤ í™œì„±í™”
 			LoginController.getInstance().setMaxAllowedOnlinePlayers(Config.MAX_ONLINE_USERS);
 			sb = new ServerBootstrap(new NioServerSocketChannelFactory(Executors.newCachedThreadPool(), Executors.newCachedThreadPool()));
 			cf = new CodecFactory(new ProtocolHandler());
 			sb.setPipelineFactory(cf);
 
-			// ¼­¹ö ¼º´ÉÀ» ³ôÀÌ±âÀ§ÇØ Å¬¶ó°¡ Á¢¼ÓÀ» ²÷´õ¶óµµ ¼¼¼ÇÀ» À¯ÁöÇÏ´Â ¾Ë°í¸®ÁòÀÓ..ÇÊ¿ä¾øÀ¸¹Ç·Î false
+			// ì„œë²„ ì„±ëŠ¥ì„ ë†’ì´ê¸°ìœ„í•´ í´ë¼ê°€ ì ‘ì†ì„ ëŠë”ë¼ë„ ì„¸ì…˜ì„ ìœ ì§€í•˜ëŠ” ì•Œê³ ë¦¬ì¦˜ì„..í•„ìš”ì—†ìœ¼ë¯€ë¡œ false
 			sb.setOption("child.keepAlive", false);
-			// Naggle ºñÈ°¼º.
+			// Naggle ë¹„í™œì„±.
 			sb.setOption("child.tcpNoDelay", true);
-			// ¹ŞÀ» ÆĞÅ¶ÀÇ ÃÖ´ë¾ç.
+			// ë°›ì„ íŒ¨í‚·ì˜ ìµœëŒ€ì–‘.
 			sb.setOption("child.receiveBufferSize", 2048);
 			sb.setOption("connectTimeoutMillis", 300);
-			// ¼­¹ö È°¼ºÈ­.
+			// ì„œë²„ í™œì„±í™”.
 			channel = sb.bind(new InetSocketAddress(Config.GAME_SERVER_PORT));
 			pla = "Netty";
-			System.out.println("ÇÃ·§Æû : " + pla + "  ¼­¹öÆ÷Æ® " + Config.GAME_SERVER_PORT + "¹øÀ¸·Î ¼­¹ö °¡µ¿ÀÌ ¿Ï·á µÇ¾ú½À´Ï´Ù.");
+			System.out.println("í”Œë«í¼ : " + pla + "  ì„œë²„í¬íŠ¸ " + Config.GAME_SERVER_PORT + "ë²ˆìœ¼ë¡œ ì„œë²„ ê°€ë™ì´ ì™„ë£Œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
 		} catch(Exception e) { /*e.printStackTrace();*/ };
-		// FIXME StrackTraceÇÏ¸é error  
+		// FIXME StrackTraceí•˜ë©´ error  
 	}
 
 	public void shutdown() {
@@ -163,13 +163,13 @@ public class Server {
 		}
 	}
 	
-	private void initDBFactory() {// L1DatabaseFactory ÃÊ±â¼³Á¤
+	private void initDBFactory() {// L1DatabaseFactory ì´ˆê¸°ì„¤ì •
 		L1DatabaseFactory.setDatabaseSettings(Config.DB_DRIVER, Config.DB_URL,
 				                              Config.DB_LOGIN, Config.DB_PASSWORD);
 		try {
 			L1DatabaseFactory.getInstance();
 		} catch(Exception e) { /*e.printStackTrace();*/ };
-		// FIXME StrackTraceÇÏ¸é error 
+		// FIXME StrackTraceí•˜ë©´ error 
 	}
 	
 	private void startGameServer() {
@@ -178,7 +178,7 @@ public class Server {
 			StartTime = Calendar.getInstance();
 			StartTime.setTimeInMillis(System.currentTimeMillis());
 		} catch(Exception e) { /*e.printStackTrace();*/ };
-		// FIXME StrackTraceÇÏ¸é error  
+		// FIXME StrackTraceí•˜ë©´ error  
 	}
 	/*
 	private void startTelnetServer() {

@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+﻿package l1j.server.server.serverpackets;
 
 import java.io.IOException;
 import java.util.Collection;

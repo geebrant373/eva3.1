@@ -1,8 +1,8 @@
-/*
+ï»¿/*
  * 2008. 8. 7 by psjump
- * - ¼­¹ö ±¸µ¿Áß ¹ß»ıÇÏ´Â ´Ù¾çÇÑ ¿¡·¯µéÀ» ¹®ÀÚ·Î Á¤¸®ÇÏ¿© ÀÌ°÷¿¡ ÀúÀåÇÑ´Ù.
- * - 1ºĞ¸¶´Ù ÀúÀåµÈ Á¤º¸¸¦ ÆÄÀÏ¿¡ ¾´´Ù.
- *  : ÀÌ¹Ì ÆÄÀÏÀÌ Á¸ÀçÇÒ°æ¿ì ÆÄÀÏ³¡ ºÎºĞ¿¡ ÀÌ¾î¾´´Ù.
+ * - ì„œë²„ êµ¬ë™ì¤‘ ë°œìƒí•˜ëŠ” ë‹¤ì–‘í•œ ì—ëŸ¬ë“¤ì„ ë¬¸ìë¡œ ì •ë¦¬í•˜ì—¬ ì´ê³³ì— ì €ì¥í•œë‹¤.
+ * - 1ë¶„ë§ˆë‹¤ ì €ì¥ëœ ì •ë³´ë¥¼ íŒŒì¼ì— ì“´ë‹¤.
+ *  : ì´ë¯¸ íŒŒì¼ì´ ì¡´ì¬í• ê²½ìš° íŒŒì¼ë ë¶€ë¶„ì— ì´ì–´ì“´ë‹¤.
  */
 package server;
 
@@ -145,7 +145,7 @@ public class Logger extends TimerTask {
 	
 	public void info(String text, Config.LOG log){
 		StringBuffer sb = new StringBuffer();
-		sb.append("Á¤º¸: ");
+		sb.append("ì •ë³´: ");
 		sb.append(text);
 		sb.append("\r\n");
 		log(sb.toString(), log);
@@ -153,7 +153,7 @@ public class Logger extends TimerTask {
 	
 	public void error(String text, Config.LOG log){
 		StringBuffer sb = new StringBuffer();
-		sb.append("½É°¢: ");
+		sb.append("ì‹¬ê°: ");
 		sb.append(text);
 		sb.append("\r\n");
 		log(sb.toString(), log);
@@ -162,7 +162,7 @@ public class Logger extends TimerTask {
 	
 	public void warn(String text, Config.LOG log){
 		StringBuffer sb = new StringBuffer();
-		sb.append("°æ°í: ");
+		sb.append("ê²½ê³ : ");
 		sb.append(text);
 		sb.append("\r\n");
 		log(sb.toString(), log);

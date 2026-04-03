@@ -1,4 +1,4 @@
-package server.netty;
+ï»¿package server.netty;
 
 
 import java.util.TimerTask;
@@ -153,7 +153,7 @@ public final class ProtocolHandler extends SimpleChannelUpstreamHandler {
 		LineageClient client = null;
 		try {
 			
-			// µ¿±âÈ­ ÇØ¾ßÇÔ
+			// ë™ê¸°í™” í•´ì•¼í•¨
 			client = (LineageClient)e.getChannel().getAttachment();
 			ChannelBuffer buffer = (ChannelBuffer)e.getMessage();
 			if(client!=null){
@@ -174,7 +174,7 @@ public final class ProtocolHandler extends SimpleChannelUpstreamHandler {
 						new P_connect(data,client);
 						return;
 					}				
-					//System.out.println("½ÃÀÛ111");
+					//System.out.println("ì‹œìž‘111");
 					client.getCircleArray().insert(data,size);
 					if(client.getCircleArray().isPacketPull() > 0){
 						DecoderManager.getInstance().putClient(client);

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -45,10 +45,10 @@ public class C_WarTimeList extends ClientBasePacket {
 		
 		if (clan != null) {
 			int castle_id = clan.getCastleId();
-			if (castle_id != 0) { // ¼ºÁÖ Å¬·£ ¾ÆÀÌµğ
+			if (castle_id != 0) { // ì„±ì£¼ í´ëœ ì•„ì´ë””
 				L1Castle l1castle = CastleTable.getInstance().getCastleTable(castle_id);
 				if (l1castle.getWarBaseTime() == 0) {
-					pc.sendPackets(new S_ServerMessage(305));// \f1Áö±İÀº ÀüÀï ½Ã°£À» º¯°æÇÒ ¼ö ¾ø½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(305));// \f1ì§€ê¸ˆì€ ì „ìŸ ì‹œê°„ì„ ë³€ê²½í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 					return;
 				}
 
@@ -61,17 +61,17 @@ public class C_WarTimeList extends ClientBasePacket {
 				warBase.set(year, month, day, 12, 00);// 4 23
 
 				Calendar base_cal = Calendar.getInstance();
-				base_cal.set(1997, 0, 1, 17, 0);// 1997/01/01 17:00(À»)¸¦ ±âÁ¡À¸·Î ÇÏ°í ÀÖ´Ù
+				base_cal.set(1997, 0, 1, 17, 0);// 1997/01/01 17:00(ì„)ë¥¼ ê¸°ì ìœ¼ë¡œ í•˜ê³  ìˆë‹¤
 				long base_millis = base_cal.getTimeInMillis();
 				long millis = warBase.getTimeInMillis();
 				long diff = millis - base_millis;
-				diff -= 1200 * 60 * 1000; // ¿ÀÂ÷¼öÁ¤
-				diff = diff / 60000; // ºĞ ÀÌÇÏ Àß¶ó¹ö¸²
-				// time´Â 1À» ´õÇÏ¸é 3:02(182ºĞ ) ÁøÇàµÈ´Ù
+				diff -= 1200 * 60 * 1000; // ì˜¤ì°¨ìˆ˜ì •
+				diff = diff / 60000; // ë¶„ ì´í•˜ ì˜ë¼ë²„ë¦¼
+				// timeëŠ” 1ì„ ë”í•˜ë©´ 3:02(182ë¶„ ) ì§„í–‰ëœë‹¤
 				int time = (int) (diff / 182);
 
 				pc.sendPackets(new S_WarTime(time));
-				pc.sendPackets(new S_ServerMessage(300));// ´ÙÀ½ °ø¼ºÀüÀ» À§ÇÑ ½Ã°£À» ÁöÁ¤ÇØ ÁÖ½Ê½Ã¿À.
+				pc.sendPackets(new S_ServerMessage(300));// ë‹¤ìŒ ê³µì„±ì „ì„ ìœ„í•œ ì‹œê°„ì„ ì§€ì •í•´ ì£¼ì‹­ì‹œì˜¤.
 			}
 		}
 	}

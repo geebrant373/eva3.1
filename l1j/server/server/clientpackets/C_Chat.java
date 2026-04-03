@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -41,25 +41,25 @@ import l1j.server.server.serverpackets.S_PacketBox;
 import l1j.server.server.serverpackets.S_ServerMessage;
 import l1j.server.server.serverpackets.S_SystemMessage;
 import manager.LinAllManager;
-//ºñ½ºÅ¶ Ãß°¡, ºñ½ºÅ¶ ¼öÁ¤ ÁÖ»çÀ§ ÁÖ»çÀ§ ÁÖ»çÀ§
+//ë¹„ìŠ¤í‚· ì¶”ê°€, ë¹„ìŠ¤í‚· ìˆ˜ì • ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„
 import l1j.server.GameSystem.biscuitGame.Akduk1GameSystem;
 import l1j.server.GameSystem.biscuitGame.Akduk2GameSystem;
 import l1j.server.GameSystem.biscuitGame.Akduk3GameSystem;
 import l1j.server.GameSystem.biscuitGame.Akduk4GameSystem;
-//ºñ½ºÅ¶ Ãß°¡, ºñ½ºÅ¶ ¼öÁ¤ ÁÖ»çÀ§ ÁÖ»çÀ§ ÁÖ»çÀ§
+//ë¹„ìŠ¤í‚· ì¶”ê°€, ë¹„ìŠ¤í‚· ìˆ˜ì • ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„
 
 //Referenced classes of package l1j.server.server.clientpackets:
 //ClientBasePacket
 
 //chat opecode type
-//Åë»ó 0x44 0x00
-//Àý±Ô(! ) 0x44 0x00
-//¼Ó»èÀÓ(") 0x56 charname
-//ÀüÃ¼(&) 0x72 0x03
-//Æ®·¹ÀÌµå($) 0x44 0x00
+//í†µìƒ 0x44 0x00
+//ì ˆê·œ(! ) 0x44 0x00
+//ì†ì‚­ìž„(") 0x56 charname
+//ì „ì²´(&) 0x72 0x03
+//íŠ¸ë ˆì´ë“œ($) 0x44 0x00
 //PT(#) 0x44 0x0b
-//Ç÷¸Í(@) 0x44 0x04
-//¿¬ÇÕ(%) 0x44 0x0d
+//í˜ˆë§¹(@) 0x44 0x04
+//ì—°í•©(%) 0x44 0x0d
 //CPT(*) 0x44 0x0e
 
 public class C_Chat extends ClientBasePacket {
@@ -75,7 +75,7 @@ public class C_Chat extends ClientBasePacket {
 		if (pc.waitAutoAuth()) {
 			if (chatText.equals(pc.getAutoAuthCode())) {
 				pc.resetAutoInfo();
-				pc.sendPackets(new S_SystemMessage("¿ÀÅä ¹æÁö ÄÚµå°¡ ÀÎÁõµÇ¾ú½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì˜¤í†  ë°©ì§€ ì½”ë“œê°€ ì¸ì¦ë˜ì—ˆìŠµë‹ˆë‹¤."));
 				return;
 			}
 		}
@@ -85,13 +85,13 @@ public class C_Chat extends ClientBasePacket {
 				|| pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_POISON_SILENCE)) {
 			return;
 		}
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_CHAT_PROHIBITED)) { // Ã¤ÆÃ ±ÝÁöÁß
-			pc.sendPackets(new S_ServerMessage(242)); // ÇöÀç Ã¤ÆÃ ±ÝÁöÁßÀÔ´Ï´Ù.
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_CHAT_PROHIBITED)) { // ì±„íŒ… ê¸ˆì§€ì¤‘
+			pc.sendPackets(new S_ServerMessage(242)); // í˜„ìž¬ ì±„íŒ… ê¸ˆì§€ì¤‘ìž…ë‹ˆë‹¤.
 			return;
 		}
 
 		if (pc.isDeathMatch() && !pc.isGhost()) {
-			pc.sendPackets(new S_ServerMessage(912)); // Ã¤ÆÃÀ» ÇÒ ¼ö ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(912)); // ì±„íŒ…ì„ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 		
@@ -101,7 +101,7 @@ public class C_Chat extends ClientBasePacket {
 			if (pc.isGhost() && !(pc.isGm() || pc.isMonitor())) {
 				return;
 			}
-			// GMÄ¿¸àµå
+			// GMì»¤ë©˜ë“œ
 			if (chatText.startsWith(".")) {
 				if (pc.getAccessLevel() == Config.GMCODE || pc.getAccessLevel() == 1) {
 					String cmd = chatText.substring(1);
@@ -123,14 +123,14 @@ public class C_Chat extends ClientBasePacket {
 				return;
 			}
 
-			// ºñ½ºÅ¶ Ãß°¡, ºñ½ºÅ¶ ¼öÁ¤ ÁÖ»çÀ§ ÁÖ»çÀ§ ÁÖ»çÀ§
-			/** ÁÖ»çÀ§ */
-			Akduk2GameSystem gam = new Akduk2GameSystem(); // ÁÖ»çÀ§
+			// ë¹„ìŠ¤í‚· ì¶”ê°€, ë¹„ìŠ¤í‚· ìˆ˜ì • ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„
+			/** ì£¼ì‚¬ìœ„ */
+			Akduk2GameSystem gam = new Akduk2GameSystem(); // ì£¼ì‚¬ìœ„
 			if (pc.isGambling()) {
-				if (chatText.startsWith("È¦")) {
+				if (chatText.startsWith("í™€")) {
 					gam.Gambling2(pc, chatText, 1);
 					return;
-				} else if (chatText.startsWith("Â¦")) {
+				} else if (chatText.startsWith("ì§")) {
 					gam.Gambling2(pc, chatText, 2);
 					return;
 				} else if (chatText.startsWith("1")) {
@@ -153,114 +153,114 @@ public class C_Chat extends ClientBasePacket {
 					return;
 				}
 			}
-			/** ¹¬ Âî ºü */
+			/** ë¬µ ì°Œ ë¹  */
 
 			if (pc.isGambling4()) {
 				Akduk4GameSystem gam2 = new Akduk4GameSystem();
-				if (chatText.startsWith("¹¬")) {
+				if (chatText.startsWith("ë¬µ")) {
 					gam2.Gambling4(pc, chatText, 1);
 					return;
-				} else if (chatText.startsWith("Âî")) {
+				} else if (chatText.startsWith("ì°Œ")) {
 					gam2.Gambling4(pc, chatText, 2);
 					return;
-				} else if (chatText.startsWith("ºü")) {
+				} else if (chatText.startsWith("ë¹ ")) {
 					gam2.Gambling4(pc, chatText, 3);
 					return;
 
 				}
 			}
 
-			if (pc.isGambling1()) { // ¼Ò¸· Å«¹öÀü
+			if (pc.isGambling1()) { // ì†Œë§‰ í°ë²„ì „
 				Akduk3GameSystem gam1 = new Akduk3GameSystem();
-				if (chatText.startsWith("¿ÀÅ©Àü»ç")) {
+				if (chatText.startsWith("ì˜¤í¬ì „ì‚¬")) {
 					gam1.Gambling1(pc, chatText, 1);
 					return;
-				} else if (chatText.startsWith("½ºÆÄÅäÀÌ")) {
+				} else if (chatText.startsWith("ìŠ¤íŒŒí† ì´")) {
 					gam1.Gambling1(pc, chatText, 2);
 					return;
-				} else if (chatText.startsWith("¸äµÅÁö")) {
+				} else if (chatText.startsWith("ë©§ë¼ì§€")) {
 					gam1.Gambling1(pc, chatText, 3);
 					return;
-				} else if (chatText.startsWith("½½¶óÀÓ")) {
+				} else if (chatText.startsWith("ìŠ¬ë¼ìž„")) {
 					gam1.Gambling1(pc, chatText, 4);
 					return;
-				} else if (chatText.startsWith("ÇØ°ñ")) {
+				} else if (chatText.startsWith("í•´ê³¨")) {
 					gam1.Gambling1(pc, chatText, 5);
 					return;
-				} else if (chatText.startsWith("´Á´ëÀÎ°£")) {
+				} else if (chatText.startsWith("ëŠ‘ëŒ€ì¸ê°„")) {
 					gam1.Gambling1(pc, chatText, 6);
 					return;
-				} else if (chatText.startsWith("¹ö±×º£¾î")) {
+				} else if (chatText.startsWith("ë²„ê·¸ë² ì–´")) {
 					gam1.Gambling1(pc, chatText, 7);
 					return;
-				} else if (chatText.startsWith("Àå·Î")) {
+				} else if (chatText.startsWith("ìž¥ë¡œ")) {
 					gam1.Gambling1(pc, chatText, 8);
 					return;
-				} else if (chatText.startsWith("±«¹°´«")) {
+				} else if (chatText.startsWith("ê´´ë¬¼ëˆˆ")) {
 					gam1.Gambling1(pc, chatText, 9);
 					return;
-				} else if (chatText.startsWith("³­ÀïÀÌ")) { // ³­ÀïÀÌ
+				} else if (chatText.startsWith("ë‚œìŸì´")) { // ë‚œìŸì´
 					gam1.Gambling1(pc, chatText, 10);
 					return;
-				} else if (chatText.startsWith("¿ÀÅ©")) {
+				} else if (chatText.startsWith("ì˜¤í¬")) {
 					gam1.Gambling1(pc, chatText, 11);
 					return;
-				} else if (chatText.startsWith("¶óÀÌÄ­")) {
+				} else if (chatText.startsWith("ë¼ì´ì¹¸")) {
 					gam1.Gambling1(pc, chatText, 12);
 					return;
-				} else if (chatText.startsWith("°³±¸¸®")) {
+				} else if (chatText.startsWith("ê°œêµ¬ë¦¬")) {
 					gam1.Gambling1(pc, chatText, 13);
 					return;
-				} else if (chatText.startsWith("´Á´ë")) {
+				} else if (chatText.startsWith("ëŠ‘ëŒ€")) {
 					gam1.Gambling1(pc, chatText, 14);
 					return;
-				} else if (chatText.startsWith("°¡½ºÆ®")) {
+				} else if (chatText.startsWith("ê°€ìŠ¤íŠ¸")) {
 					gam1.Gambling1(pc, chatText, 15);
 					return;
-				} else if (chatText.startsWith("Á»ºñ")) {
+				} else if (chatText.startsWith("ì¢€ë¹„")) {
 					gam1.Gambling1(pc, chatText, 16);
 					return;
-				} else if (chatText.startsWith("¸®ÀÚµå¸Ç")) {
+				} else if (chatText.startsWith("ë¦¬ìžë“œë§¨")) {
 					gam1.Gambling1(pc, chatText, 17);
 					return;
-				} else if (chatText.startsWith("µµº£¸£¸¸")) {
+				} else if (chatText.startsWith("ë„ë² ë¥´ë§Œ")) {
 					gam1.Gambling1(pc, chatText, 18);
 					return;
 				}
 			}
 
-			if (pc.isGambling3()) { // ¼Ò¸·
+			if (pc.isGambling3()) { // ì†Œë§‰
 				Akduk1GameSystem gam1 = new Akduk1GameSystem();
-				if (chatText.startsWith("¿ÀÅ©Àü»ç")) {
+				if (chatText.startsWith("ì˜¤í¬ì „ì‚¬")) {
 					gam1.Gambling3(pc, chatText, 1);
 					return;
-				} else if (chatText.startsWith("½ºÆÄÅäÀÌ")) {
+				} else if (chatText.startsWith("ìŠ¤íŒŒí† ì´")) {
 					gam1.Gambling3(pc, chatText, 2);
 					return;
-				} else if (chatText.startsWith("¸äµÅÁö")) {
+				} else if (chatText.startsWith("ë©§ë¼ì§€")) {
 					gam1.Gambling3(pc, chatText, 3);
 					return;
-				} else if (chatText.startsWith("½½¶óÀÓ")) {
+				} else if (chatText.startsWith("ìŠ¬ë¼ìž„")) {
 					gam1.Gambling3(pc, chatText, 4);
 					return;
-				} else if (chatText.startsWith("ÇØ°ñ")) {
+				} else if (chatText.startsWith("í•´ê³¨")) {
 					gam1.Gambling3(pc, chatText, 5);
 					return;
-				} else if (chatText.startsWith("´Á´ëÀÎ°£")) {
+				} else if (chatText.startsWith("ëŠ‘ëŒ€ì¸ê°„")) {
 					gam1.Gambling3(pc, chatText, 6);
 					return;
-				} else if (chatText.startsWith("¹ö±×º£¾î")) {
+				} else if (chatText.startsWith("ë²„ê·¸ë² ì–´")) {
 					gam1.Gambling3(pc, chatText, 7);
 					return;
-				} else if (chatText.startsWith("Àå·Î")) {
+				} else if (chatText.startsWith("ìž¥ë¡œ")) {
 					gam1.Gambling3(pc, chatText, 8);
 					return;
-				} else if (chatText.startsWith("±«¹°´«")) {
+				} else if (chatText.startsWith("ê´´ë¬¼ëˆˆ")) {
 					gam1.Gambling3(pc, chatText, 9);
 					return;
 				}
 			}
-			// /////Ãß»çÀ§ Ãß°¡, ÁÖ»çÀ§ ¼öÁ¤ ÁÖ»çÀ§ ÁÖ»çÀ§ ÁÖ»çÀ§
+			// /////ì¶”ì‚¬ìœ„ ì¶”ê°€, ì£¼ì‚¬ìœ„ ìˆ˜ì • ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„
 
 			S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_NORMALCHAT, 0);
 			if (!pc.getExcludingList().contains(pc.getName())) {
@@ -271,7 +271,7 @@ public class C_Chat extends ClientBasePacket {
 					listner.sendPackets(s_chatpacket);
 				}
 			}
-			// µ½Æç Ã³¸®
+			// ë•íŽ  ì²˜ë¦¬
 			L1MonsterInstance mob = null;
 			for (L1Object obj : pc.getNearObjects().getKnownObjects()) {
 				if (obj instanceof L1MonsterInstance) {
@@ -299,7 +299,7 @@ public class C_Chat extends ClientBasePacket {
 					listner.sendPackets(s_chatpacket);
 				}
 			}
-			// µ½Æç Ã³¸®
+			// ë•íŽ  ì²˜ë¦¬
 			L1MonsterInstance mob = null;
 			for (L1Object obj : pc.getNearObjects().getKnownObjects()) {
 				if (obj instanceof L1MonsterInstance) {
@@ -319,7 +319,7 @@ public class C_Chat extends ClientBasePacket {
 		}
 			break;
 		case 4: {
-			if (pc.getClanid() != 0) { // Å©¶õ ¼Ò¼ÓÁß
+			if (pc.getClanid() != 0) { // í¬ëž€ ì†Œì†ì¤‘
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 				int rank = pc.getClanRank();
 				if (clan != null && (rank == L1Clan.CLAN_RANK_PUBLIC || rank == L1Clan.CLAN_RANK_GUARDIAN
@@ -338,7 +338,7 @@ public class C_Chat extends ClientBasePacket {
 		}
 			break;
 		case 11: {
-			if (pc.isInParty()) { // ÆÄÆ¼Áß
+			if (pc.isInParty()) { // íŒŒí‹°ì¤‘
 				// ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
 				S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_MSG, 11);
 				for (L1PcInstance listner : pc.getParty().getMembers()) {
@@ -348,7 +348,7 @@ public class C_Chat extends ClientBasePacket {
 				}
 				LoggerInstance.getInstance().addChat(Logger.ChatType.Party, pc, chatText);
 				LinAllManager.getInstance().PartyChatAppend(pc.getName(), chatText);
-				/** ÆÄÀÏ·Î±×ÀúÀå **/
+				/** íŒŒì¼ë¡œê·¸ì €ìž¥ **/
 				ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
 			}
 		}
@@ -357,8 +357,8 @@ public class C_Chat extends ClientBasePacket {
 			chatWorld(pc, chatText, chatType);
 		}
 			break;
-		case 13: { // ¿¬ÇÕ Ã¤ÆÃ
-			if (pc.getClanid() != 0) { // Ç÷¸Í ¼Ò¼ÓÁß
+		case 13: { // ì—°í•© ì±„íŒ…
+			if (pc.getClanid() != 0) { // í˜ˆë§¹ ì†Œì†ì¤‘
 				L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 				int rank = pc.getClanRank();
 				if (clan != null && (rank == L1Clan.CLAN_RANK_GUARDIAN || rank == L1Clan.CLAN_RANK_PRINCE)) {
@@ -379,8 +379,8 @@ public class C_Chat extends ClientBasePacket {
 			}
 		}
 			break;
-		case 14: { // Ã¤ÆÃ ÆÄÆ¼
-			if (pc.isInChatParty()) { // Ã¤ÆÃ ÆÄÆ¼Áß
+		case 14: { // ì±„íŒ… íŒŒí‹°
+			if (pc.isInChatParty()) { // ì±„íŒ… íŒŒí‹°ì¤‘
 				// ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
 				S_ChatPacket s_chatpacket = new S_ChatPacket(pc, chatText, Opcodes.S_OPCODE_NORMALCHAT, 14);
 				for (L1PcInstance listner : pc.getChatParty().getMembers()) {
@@ -414,7 +414,7 @@ public class C_Chat extends ClientBasePacket {
 			LinAllManager.getInstance().AllChatAppend(pc.getName(), chatText);
 		} else if (pc.getLevel() >= Config.GLOBAL_CHAT_LEVEL) {
 			if (L1World.getInstance().isWorldChatElabled()) {
-				if (pc.get_food() >= 12) { // 5%°ÙÁö?
+				if (pc.get_food() >= 12) { // 5%ê²Ÿì§€?
 					// ChatLogTable.getInstance().storeChat(pc, null, chatText, chatType);
 					pc.sendPackets(new S_PacketBox(S_PacketBox.FOOD, pc.get_food()));
 					for (L1PcInstance listner : L1World.getInstance().getAllPlayers()) {

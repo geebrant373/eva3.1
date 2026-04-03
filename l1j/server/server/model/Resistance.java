@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import l1j.server.server.model.skill.L1SkillId;
 import l1j.server.server.utils.IntRange;
@@ -9,20 +9,20 @@ public class Resistance {
 	private static final int LIMIT_MIN_MR = -250;
 	private static final int LIMIT_MAX_MR = 250;
 
-	private int baseMr 	= 0; // ±âº» ¸¶¹ı ¹æ¾î
-	private int addedMr = 0; // ¾ÆÀÌÅÛÀÌ³ª ¸¶¹ı¿¡ ÀÇÇØ Ãß°¡µÈ ¸¶¹ı ¹æ¾î¸¦ Æ÷ÇÔÇÑ ¸¶¹ı ¹æ¾î
+	private int baseMr 	= 0; // ê¸°ë³¸ ë§ˆë²• ë°©ì–´
+	private int addedMr = 0; // ì•„ì´í…œì´ë‚˜ ë§ˆë²•ì— ì˜í•´ ì¶”ê°€ëœ ë§ˆë²• ë°©ì–´ë¥¼ í¬í•¨í•œ ë§ˆë²• ë°©ì–´
 	
-	private int fire  = 0; // ºÒ ÀúÇ×
-	private int water = 0; // ¹° ÀúÇ×
-	private int wind  = 0; // ¹Ù¶÷ ÀúÇ× 
-	private int earth = 0; // ¶¥ ÀúÇ×
+	private int fire  = 0; // ë¶ˆ ì €í•­
+	private int water = 0; // ë¬¼ ì €í•­
+	private int wind  = 0; // ë°”ëŒ ì €í•­ 
+	private int earth = 0; // ë•… ì €í•­
 	
-	private int stun = 0;			// ½ºÅÏ ³»¼º	
-	private int petrifaction = 0;	// ¼®È­ ³»¼º
-	private int sleep = 0; 			// ½½¸³ ³»¼º
-	private int freeze = 0; 		// µ¿ºù ³»¼º
-	private int hold = 0;			// È¦µå ³»¼º
-	private int blind = 0;			// ¾îµÒ ³»¼º
+	private int stun = 0;			// ìŠ¤í„´ ë‚´ì„±	
+	private int petrifaction = 0;	// ì„í™” ë‚´ì„±
+	private int sleep = 0; 			// ìŠ¬ë¦½ ë‚´ì„±
+	private int freeze = 0; 		// ë™ë¹™ ë‚´ì„±
+	private int hold = 0;			// í™€ë“œ ë‚´ì„±
+	private int blind = 0;			// ì–´ë‘  ë‚´ì„±
 	
 	private L1Character character = null;
 
@@ -85,7 +85,7 @@ public class Resistance {
 	public void addSleep(int i) 		{ sleep 		= checkRange(sleep + i); 		}
 	public void addHold(int i) 			{ hold	 		= checkRange(hold + i); 		}
 	public void addBlind(int i) 		{ blind	 		= checkRange(blind + i); 		}
-	private int spirit = 0; // Á¤·É ³»¼º
+	private int spirit = 0; // ì •ë ¹ ë‚´ì„±
 		public int getSpirit() {
 			return spirit;
 		}

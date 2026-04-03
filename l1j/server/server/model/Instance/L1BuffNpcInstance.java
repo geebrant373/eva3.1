@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -39,24 +39,24 @@ public class L1BuffNpcInstance extends L1NpcInstance {
 			treadtimer.begin();
 		}
 		
-		// /////Ãß»çÀ§ Ãß°¡, ÁÖ»çÀ§ ¼öÁ¤ ÁÖ»çÀ§ ÁÖ»çÀ§ ÁÖ»çÀ§
-		if (this.getNpcId() == 41922) { // ÁÖ»çÀ§ µô·¯
+		// /////ì¶”ì‚¬ìœ„ ì¶”ê°€, ì£¼ì‚¬ìœ„ ìˆ˜ì • ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„
+		if (this.getNpcId() == 41922) { // ì£¼ì‚¬ìœ„ ë”œëŸ¬
 			TradeTimer treadtimer = new TradeTimer(this);
 			treadtimer.begin();
 		}
-		if (this.getNpcId() == 41923) { // ¹¬ Âî ºü
+		if (this.getNpcId() == 41923) { // ë¬µ ì°Œ ë¹ 
 			TradeTimer treadtimer = new TradeTimer(this);
 			treadtimer.begin();
 		}
-		if (this.getNpcId() == 41918) { // ¼Ò¸·1
+		if (this.getNpcId() == 41918) { // ì†Œë§‰1
 			TradeTimer treadtimer = new TradeTimer(this);
 			treadtimer.begin();
 		}
-		if (this.getNpcId() == 41919) { // ¼Ò¸·2
+		if (this.getNpcId() == 41919) { // ì†Œë§‰2
 			TradeTimer treadtimer = new TradeTimer(this);
 			treadtimer.begin();
 		}
-		// /////Ãß»çÀ§ Ãß°¡, ÁÖ»çÀ§ ¼öÁ¤ ÁÖ»çÀ§ ÁÖ»çÀ§ ÁÖ»çÀ§
+		// /////ì¶”ì‚¬ìœ„ ì¶”ê°€, ì£¼ì‚¬ìœ„ ìˆ˜ì • ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„ ì£¼ì‚¬ìœ„
 		
 	}
 	
@@ -82,7 +82,7 @@ public class L1BuffNpcInstance extends L1NpcInstance {
 				if (target != null) {
 					if (!target.isParalyzed()) {
 						target.setTradeID(_npc.getId());
-						target.sendPackets(new S_Message_YN(252, _npc.getName())); // %0%s°¡ ´ç½Å°ú ¾ÆÀÌÅÛÀÇ °Å·¡¸¦ ¹Ù¶ó°í ÀÖ½À´Ï´Ù. °Å·¡ÇÕ´Ï±î? (Y/N)c
+						target.sendPackets(new S_Message_YN(252, _npc.getName())); // %0%sê°€ ë‹¹ì‹ ê³¼ ì•„ì´í…œì˜ ê±°ë˜ë¥¼ ë°”ë¼ê³  ìˆìŠµë‹ˆë‹¤. ê±°ë˜í•©ë‹ˆê¹Œ? (Y/N)c
 						Thread.sleep(5000L);
 					}
 				}

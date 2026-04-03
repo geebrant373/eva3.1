@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -35,16 +35,16 @@ public class SkillsChanceTable {
       rs = pstm.executeQuery();
       while (rs.next()) {
         SkillsChanceTemp temp = new SkillsChanceTemp();
-        temp.skillid = rs.getInt("½ºÅ³¹øÈ£");
-        temp.name = rs.getString("½ºÅ³¸í");
-        temp.chance = rs.getInt("±âº»È®·ü");
-        temp.Int_stan = rs.getInt("±âÁØÀÎÆ®");
-        temp.Int_chance = rs.getInt("ÀÎÆ®È®·ü");
-        temp.Mr_stan = rs.getInt("±âÁØ¸¶¹æ");
-        temp.Mr_chance = rs.getInt("¸¶¹æÈ®·ü");
-        temp.level_chance = rs.getInt("·¹º§È®·ü");
-        temp.regi_name = rs.getString("³»¼ºÁ¾·ù");
-        temp.regi_chance = rs.getInt("³»¼ºÈ®·ü");
+        temp.skillid = rs.getInt("ìŠ¤í‚¬ë²ˆí˜¸");
+        temp.name = rs.getString("ìŠ¤í‚¬ëª…");
+        temp.chance = rs.getInt("ê¸°ë³¸í™•ë¥ ");
+        temp.Int_stan = rs.getInt("ê¸°ì¤€ì¸íŠ¸");
+        temp.Int_chance = rs.getInt("ì¸íŠ¸í™•ë¥ ");
+        temp.Mr_stan = rs.getInt("ê¸°ì¤€ë§ˆë°©");
+        temp.Mr_chance = rs.getInt("ë§ˆë°©í™•ë¥ ");
+        temp.level_chance = rs.getInt("ë ˆë²¨í™•ë¥ ");
+        temp.regi_name = rs.getString("ë‚´ì„±ì¢…ë¥˜");
+        temp.regi_chance = rs.getInt("ë‚´ì„±í™•ë¥ ");
         this._skillchancelist.put(Integer.valueOf(temp.skillid), temp);
       } 
     } catch (SQLException e) {

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -86,8 +86,8 @@ public class L1Inventory extends L1Object {
 		}
 
 		if (getSize() > Config.MAX_NPC_ITEM || (getSize() == Config.MAX_NPC_ITEM && (!item.isStackable() || !checkItem(item.getItem().getItemId())))
-				|| (getSize() == Config.MAX_NPC_ITEM && item.getItem().getItemId() == 40309)) { // ¿ë·®
-																								// È®ÀÎ
+				|| (getSize() == Config.MAX_NPC_ITEM && item.getItem().getItemId() == 40309)) { // ìš©ëŸ‰
+																								// í™•ì¸
 			return SIZE_OVER;
 		}
 		if (getSize() > Config.MAX_NPC_ITEM
@@ -173,7 +173,7 @@ public class L1Inventory extends L1Object {
 		}
 		if (id == 40308) {
 			if (count > 5000000) {
-				System.out.println("[22222] 1Ãµ¸¸ ÀÌ»ó ¾Æµ¥³ª°¡ °©ÀÚ±â »ı¼ºµÊ");
+				System.out.println("[22222] 1ì²œë§Œ ì´ìƒ ì•„ë°ë‚˜ê°€ ê°‘ìê¸° ìƒì„±ë¨");
 			}
 		}
 		L1Item temp = ItemTable.getInstance().getTemplate(id);
@@ -268,7 +268,7 @@ public class L1Inventory extends L1Object {
 	public synchronized L1ItemInstance storeItem(int id, int count) {
 		if (id == 40308) {
 			if (count > 5000000) {
-				System.out.println("1Ãµ¸¸ ÀÌ»ó ¾Æµ¥³ª°¡ °©ÀÚ±â »ı¼ºµÊ");
+				System.out.println("1ì²œë§Œ ì´ìƒ ì•„ë°ë‚˜ê°€ ê°‘ìê¸° ìƒì„±ë¨");
 			}
 		}
 
@@ -391,9 +391,9 @@ public class L1Inventory extends L1Object {
 				item.setBless(item.getItem().getBless());
 			}
 		}
-		if (itemId == L1ItemId.DRAGON_KEY) {// µå·¡°ï Å°
+		if (itemId == L1ItemId.DRAGON_KEY) {// ë“œë˜ê³¤ í‚¤
 			Timestamp deleteTime = null;
-			deleteTime = new Timestamp(System.currentTimeMillis() + 259200000);// 3ÀÏ
+			deleteTime = new Timestamp(System.currentTimeMillis() + 259200000);// 3ì¼
 			item.setEndTime(deleteTime);
 		}
 		if (item.isIdentified() != true) {
@@ -508,7 +508,7 @@ public class L1Inventory extends L1Object {
 	
 	public int countItems(int id, int enchant) {
 		if (ItemTable.getInstance().getTemplate(id).isStackable()) {
-			// ½ºÅÃÇü ¾ÆÀÌÅÛÀº ÀÎÃ¾Æ® °³³äÀÌ ¾øÀ¸´Ï±î ±âÁ¸ countItems ·Î Ã³¸®
+			// ìŠ¤íƒí˜• ì•„ì´í…œì€ ì¸ì²¸íŠ¸ ê°œë…ì´ ì—†ìœ¼ë‹ˆê¹Œ ê¸°ì¡´ countItems ë¡œ ì²˜ë¦¬
 			L1ItemInstance item = findItemId(id);
 			if (item != null) {
 				return item.getCount();
@@ -671,7 +671,7 @@ public class L1Inventory extends L1Object {
 			return null;
 		}
 		L1ItemInstance carryItem;
-		// ¿£Áø°ü·Ã ¹ö±× ¹æÁö Ãß°¡
+		// ì—”ì§„ê´€ë ¨ ë²„ê·¸ ë°©ì§€ ì¶”ê°€
 		if (item.getCount() <= count || count < 0) {
 			deleteItem(item);
 			carryItem = item;
@@ -713,7 +713,7 @@ public class L1Inventory extends L1Object {
 			BoardTable.getInstance().delDayExpire(item.getId());
 
 		L1ItemInstance carryItem;
-		// ¿£Áø°ü·Ã ¹ö±× ¹æÁö Ãß°¡
+		// ì—”ì§„ê´€ë ¨ ë²„ê·¸ ë°©ì§€ ì¶”ê°€
 		if (item.getCount() <= count || count < 0) {
 			deleteItem(item);
 			carryItem = item;
@@ -731,7 +731,7 @@ public class L1Inventory extends L1Object {
 			carryItem.setBless(item.getItem().getBless());
 			carryItem.setAttrEnchantLevel(item.getAttrEnchantLevel());
 			carryItem.setLimitTime(item.getLimitTime());
-			carryItem.setTradeCha(item.getTradeCha()); // Ä³¸¯±³È¯ÅÛ
+			carryItem.setTradeCha(item.getTradeCha()); // ìºë¦­êµí™˜í…œ
 		}
 		return inventory.storeTradeItem(carryItem);
 	}
@@ -994,11 +994,11 @@ public class L1Inventory extends L1Object {
 	public void updateItem(L1ItemInstance item, int colmn) {
 	}
 
-	// »õ·Î¿î ¾ÆÀÌÅÛÀÇ °İ³³ : ÂÉ²¿ ÀçÄÚµù
+	// ìƒˆë¡œìš´ ì•„ì´í…œì˜ ê²©ë‚© : ìª¼ê¼¬ ì¬ì½”ë”©
 	public L1ItemInstance storeItem(int id, int count, String name) {
 
 		L1Item sTemp = ItemTable.getInstance().getTemplate(id);
-		String sname = "Å×º£ ¿À½Ã¸®½º Á¦´Ü ¿­¼è [" + CrockSystem.getInstance().OpenTime() + "]";
+		String sname = "í…Œë²  ì˜¤ì‹œë¦¬ìŠ¤ ì œë‹¨ ì—´ì‡  [" + CrockSystem.getInstance().OpenTime() + "]";
 		L1Item temp = ItemTable.getInstance().clone(sTemp, sname);
 		if (temp == null)
 			return null;
@@ -1008,17 +1008,17 @@ public class L1Inventory extends L1Object {
 			item.setCount(count);
 			item.setBless(temp.getBless());
 			item.setAttrEnchantLevel(0);
-			if (!temp.isStackable() || findItemId(id) == null) {// »õ·Ó°Ô »ı¼ºÇÒ ÇÊ¿ä°¡
-																// ÀÖ´Â °æ¿ì¸¸ IDÀÇ
-																// ¹ßÇà°ú L1World¿¡ÀÇ
-																// µî·ÏÀ» ½Ç½ÃÇÑ´Ù
+			if (!temp.isStackable() || findItemId(id) == null) {// ìƒˆë¡­ê²Œ ìƒì„±í•  í•„ìš”ê°€
+																// ìˆëŠ” ê²½ìš°ë§Œ IDì˜
+																// ë°œí–‰ê³¼ L1Worldì—ì˜
+																// ë“±ë¡ì„ ì‹¤ì‹œí•œë‹¤
 				item.setId(ObjectIdFactory.getInstance().nextId());
 				L1World.getInstance().storeObject(item);
 			}
 			return storeItem(item);
 		}
 
-		// ½ºÅÃ ÇÒ ¼ö ¾ø´Â ¾ÆÀÌÅÛÀÇ °æ¿ì
+		// ìŠ¤íƒ í•  ìˆ˜ ì—†ëŠ” ì•„ì´í…œì˜ ê²½ìš°
 		L1ItemInstance result = null;
 		L1ItemInstance item = null;
 		for (int i = 0; i < count; i++) {
@@ -1030,11 +1030,11 @@ public class L1Inventory extends L1Object {
 			storeItem(item);
 			result = item;
 		}
-		// ¸¶Áö¸·¿¡ ¸¸µç ¾ÆÀÌÅÛÀ» µ¹·ÁÁØ´Ù. ¹è¿­À» µÇµ¹¸®µµ·Ï(µíÀÌ) ¸Ş¼Òµå Á¤ÀÇ¸¦ º¯°æÇÏ´Â ÆíÀÌ ÁÁÀ»Áöµµ ¸ğ¸¥´Ù.
+		// ë§ˆì§€ë§‰ì— ë§Œë“  ì•„ì´í…œì„ ëŒë ¤ì¤€ë‹¤. ë°°ì—´ì„ ë˜ëŒë¦¬ë„ë¡(ë“¯ì´) ë©”ì†Œë“œ ì •ì˜ë¥¼ ë³€ê²½í•˜ëŠ” í¸ì´ ì¢‹ì„ì§€ë„ ëª¨ë¥¸ë‹¤.
 		return result;
 	}
 
-	// ¾ÆÀÌÅÛ ID, second_id, ticketId·ÎºÎÅÍ °Ë»ö
+	// ì•„ì´í…œ ID, second_id, ticketIdë¡œë¶€í„° ê²€ìƒ‰
 	public L1ItemInstance findItemTicketId(int id, int secid, int ticketid) {
 		for (L1ItemInstance item : _items) {
 			if (item.getItem().getItemId() == id && item.getSecondId() == secid && item.getTicketId() == ticketid) {
@@ -1098,12 +1098,12 @@ public class L1Inventory extends L1Object {
 		
 		L1ItemInstance carryItem;
 		
-		/*³×Áê 20¾ï
+		/*ë„¤ì¥¬ 20ì–µ
 		if(count >= 2000000000){
 			count = 2000000000;
 		}
 		*/
-		// ¿£Áø°ü·Ã ¹ö±× ¹æÁö Ãß°¡
+		// ì—”ì§„ê´€ë ¨ ë²„ê·¸ ë°©ì§€ ì¶”ê°€
 		if (item.getCount() <= count || count < 0) {
 			deleteItem(item);
 			carryItem = item;

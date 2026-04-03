@@ -1,4 +1,4 @@
-package l1j.server.server.model.world;
+﻿package l1j.server.server.model.world;
 
 import java.util.ArrayList;
 import java.util.Collection;

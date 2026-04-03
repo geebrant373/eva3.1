@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -121,9 +121,9 @@ public class CharSoldierTable {
 	}
 	
 	/**
-	 * Ä³¸¯ÅÍ°¡ °¡Áö°í ÀÖ´Â ¿ëº´ °¹¼ö¸¦ °¡Á®¿Â´Ù.
-	 * @param id ´Â char_id
-	 * @return Cscount Ä³¸¯ÅÍ°¡ °¡Áö°í ÀÖ´Â ¿ëº´ °¹¼ö
+	 * ìºë¦­í„°ê°€ ê°€ì§€ê³  ìˆëŠ” ìš©ë³‘ ê°¯ìˆ˜ë¥¼ ê°€ì ¸ì˜¨ë‹¤.
+	 * @param id ëŠ” char_id
+	 * @return Cscount ìºë¦­í„°ê°€ ê°€ì§€ê³  ìˆëŠ” ìš©ë³‘ ê°¯ìˆ˜
 	 */
 
 	 public int SoldierCalculate(int id) {
@@ -150,7 +150,7 @@ public class CharSoldierTable {
 	 }
 
 	/**
-	 * ÀüÀïÈÄ ÇØ´ç¼ºÀÇ ¿ëº´À» ¸ğµÎ Å¬¸®¾î ÇÑ´Ù.
+	 * ì „ìŸí›„ í•´ë‹¹ì„±ì˜ ìš©ë³‘ì„ ëª¨ë‘ í´ë¦¬ì–´ í•œë‹¤.
 	 * @param castleid
 	 */
 	 public void delCastleSoldier(int castleid) {

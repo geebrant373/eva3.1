@@ -1,4 +1,4 @@
-package l1j.server.server.templates;
+﻿package l1j.server.server.templates;
 
 public class L1SpecialMap{
 	private String _Name;

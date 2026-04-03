@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -45,9 +45,9 @@ public class C_ChatWhisper extends ClientBasePacket {
 		String targetName = readS();
 		String text = readS();
 		L1PcInstance whisperFrom = client.getActiveChar();
-		// Ã¤ÆÃ ±İÁöÁßÀÇ °æ¿ì
+		// ì±„íŒ… ê¸ˆì§€ì¤‘ì˜ ê²½ìš°
 		if (whisperFrom.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_CHAT_PROHIBITED)) {
-			whisperFrom.sendPackets(new S_ServerMessage(242)); // ÇöÀç Ã¤ÆÃ ±İÁöÁßÀÔ´Ï´Ù.
+			whisperFrom.sendPackets(new S_ServerMessage(242)); // í˜„ì¬ ì±„íŒ… ê¸ˆì§€ì¤‘ì…ë‹ˆë‹¤.
 			return;
 		}
 		if (whisperFrom.getLevel() < Config.WHISPER_CHAT_LEVEL) {
@@ -69,19 +69,19 @@ public class C_ChatWhisper extends ClientBasePacket {
 		whisperFrom.sendPackets(new S_SystemMessage("-> ("+targetName+") " + text));
 		return;
 	
-		// ¿ùµå¿¡ ¾ø´Â °æ¿ì
+		// ì›”ë“œì— ì—†ëŠ” ê²½ìš°
 		} else if (whisperTo == null) {
-			whisperFrom.sendPackets(new S_ServerMessage(73, targetName)); // \f1%0Àº °ÔÀÓÀ» ÇÏ°í ÀÖÁö ¾Ê½À´Ï´Ù.
+			whisperFrom.sendPackets(new S_ServerMessage(73, targetName)); // \f1%0ì€ ê²Œì„ì„ í•˜ê³  ìˆì§€ ì•ŠìŠµë‹ˆë‹¤.
 			return;
 		}
-		// ÀÚ±â ÀÚ½Å¿¡ ´ëÇÑ wisÀÇ °æ¿ì
+		// ìê¸° ìì‹ ì— ëŒ€í•œ wisì˜ ê²½ìš°
 		if (whisperTo.equals(whisperFrom)) {
 			return;
 		}
 		
-		// Â÷´ÜµÇ°í ÀÖ´Â °æ¿ì
+		// ì°¨ë‹¨ë˜ê³  ìˆëŠ” ê²½ìš°
 		if (whisperTo.getExcludingList().contains(whisperFrom.getName())) {
-			whisperFrom.sendPackets(new S_ServerMessage(117, whisperTo.getName())); // %0°¡ ´ç½ÅÀ» Â÷´ÜÇß½À´Ï´Ù.
+			whisperFrom.sendPackets(new S_ServerMessage(117, whisperTo.getName())); // %0ê°€ ë‹¹ì‹ ì„ ì°¨ë‹¨í–ˆìŠµë‹ˆë‹¤.
 			return;
 		}
 

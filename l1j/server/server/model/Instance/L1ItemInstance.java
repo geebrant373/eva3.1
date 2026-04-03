@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -71,7 +71,7 @@ public class L1ItemInstance extends L1Object {
 	private int _chargeCount;
 	private int _remainingTime;
 	private Timestamp _lastUsed = null;
-	private int bless = 1; // ±âº»»óÅÂ ÀÏ¹İÀ¸·Î Á¤ÀÇ
+	private int bless = 1; // ê¸°ë³¸ìƒíƒœ ì¼ë°˜ìœ¼ë¡œ ì •ì˜
 	private int _tradeCha;
 	private int pvpDmg;
 	private int _lastWeight;
@@ -142,7 +142,7 @@ public class L1ItemInstance extends L1Object {
 		_itemId = item.getItemId();
 	}
 
-	// ¾ÆÀÌÅÛÀ» ºĞ´çÃ¼Å©ÇØ¼­ »èÁ¦ÇÏ±â À§ÇØ¼­ Ãß°¡!!
+	// ì•„ì´í…œì„ ë¶„ë‹¹ì²´í¬í•´ì„œ ì‚­ì œí•˜ê¸° ìœ„í•´ì„œ ì¶”ê°€!!
 	private long _itemdelay3;
 
 	public long getItemdelay3() {
@@ -293,7 +293,7 @@ public class L1ItemInstance extends L1Object {
 		if (itemid == 20056 || itemid == 120056 || itemid == 220056 || itemid == 20049 || itemid == 20050 || itemid == 222324 || itemid == 2020056 || itemid == 2222324) {
 			mr += getEnchantLevel() * 2;
 		}
-		if (itemid == 20078 || itemid == 20079 || itemid == 20402 || itemid == 222325 || itemid == 2222325) {// Áø¸í¸ÁÅä ÀÎÃ¦*3mr»ó½Â 0221
+		if (itemid == 20078 || itemid == 20079 || itemid == 20402 || itemid == 222325 || itemid == 2222325) {// ì§„ëª…ë§í†  ì¸ì±ˆ*3mrìƒìŠ¹ 0221
 			mr += getEnchantLevel() * 3;
 		}
 		return mr;
@@ -488,7 +488,7 @@ public class L1ItemInstance extends L1Object {
 			name.append(" [" + CrockSystem.getInstance().OpenTime() + "]");
 		}
 
-		if (getItem().getItemId() == L1ItemId.DRAGON_KEY) {// µå·¡°ï Å°
+		if (getItem().getItemId() == L1ItemId.DRAGON_KEY) {// ë“œë˜ê³¤ í‚¤
 			name.append(" [" + sdf.format(getEndTime().getTime()) + "]");
 		}
 
@@ -520,7 +520,7 @@ public class L1ItemInstance extends L1Object {
 		if (isIdentified()) {
 			if (getItem().getType2() == 1 || getItem().getType2() == 2) {
 				switch (getAttrEnchantLevel()) {
-				// È­·É 1~5
+				// í™”ë ¹ 1~5
 				case 1:
 					name.append("$6115");
 					break;
@@ -536,7 +536,7 @@ public class L1ItemInstance extends L1Object {
 				case 5:
 					name.append("$14365 ");
 					break;
-				// ¼ö·É 1~5
+				// ìˆ˜ë ¹ 1~5
 				case 6:
 					name.append("$6118");
 					break;
@@ -552,7 +552,7 @@ public class L1ItemInstance extends L1Object {
 				case 10:
 					name.append("$14366 ");
 					break;
-				// Ç³·É 1~5
+				// í’ë ¹ 1~5
 				case 11:
 					name.append("$6121");
 					break;
@@ -568,7 +568,7 @@ public class L1ItemInstance extends L1Object {
 				case 15:
 					name.append("$14367 ");
 					break;
-				// Áö·É 1~5
+				// ì§€ë ¹ 1~5
 				case 16:
 					name.append("$6124");
 					break;
@@ -595,7 +595,7 @@ public class L1ItemInstance extends L1Object {
 			}
 		}
 		if (getTradeCha() != 0) {
-			name.append("Ä³¸¯ÅÍ ÀÎÇü[" + getTradeCha() + "]");
+			name.append("ìºë¦­í„° ì¸í˜•[" + getTradeCha() + "]");
 		} else {
 			name.append(_item.getNameId());
 		}
@@ -660,7 +660,7 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(39);
 						os.writeS("Exp : " + info[1] + "%");
 						os.writeC(39);
-						os.writeS("Å¬·¡½º : " + info[2]);
+						os.writeS("í´ë˜ìŠ¤ : " + info[2]);
 					}
 				}
 
@@ -668,24 +668,24 @@ public class L1ItemInstance extends L1Object {
 				e.printStackTrace();
 			}
 
-			if (itemId == 5370600) { // µ¥¸ó
+			if (itemId == 5370600) { // ë°ëª¬
 				os.writeC(39);
 				os.writeS(" \\fRAC-2");
 				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹+20");
+				os.writeS("\\fRì— í”¼íšŒë³µ+20");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡ º¸³Ê½º+30%");
+				os.writeS("\\fRê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+30%");
 				os.writeC(39);
 				os.writeS("\\fRHP+200");
 				os.writeC(39);
-				os.writeS("\\fR½ºÅÏÀûÁß+5");
+				os.writeS("\\fRìŠ¤í„´ì ì¤‘+5");
 				os.writeC(39);
-				os.writeS("\\fR½ºÅÏ³»¼º+10");
+				os.writeS("\\fRìŠ¤í„´ë‚´ì„±+10");
 				os.writeC(39);
-				os.writeS("\\fR¸¶¹ı ¹ßµ¿:ÇïÆÄÀÌ¾î");
+				os.writeS("\\fRë§ˆë²• ë°œë™:í—¬íŒŒì´ì–´");
 			} else if (itemId == 41248) {
 				os.writeC(39);
-				os.writeS(" \\fR¸íÁß+1");
+				os.writeS(" \\fRëª…ì¤‘+1");
 			} else if (itemId == 41250) {
 				os.writeC(39);
 				os.writeS(" \\fRHP+20");
@@ -694,10 +694,10 @@ public class L1ItemInstance extends L1Object {
 				os.writeS(" \\fRMP+10");
 			} else if (itemId == 430000) {
 				os.writeC(39);
-				os.writeS(" \\fR¸®´ö¼Ç+1");
+				os.writeS(" \\fRë¦¬ë•ì…˜+1");
 			} else if (itemId == 430002) {
 				os.writeC(39);
-				os.writeS(" \\fR¿ø°Å¸® ´ë¹ÌÁö+1");
+				os.writeS(" \\fRì›ê±°ë¦¬ ëŒ€ë¯¸ì§€+1");
 			} else if (itemId == 430003) {
 				os.writeC(39);
 				os.writeS(" \\fRSP+1");
@@ -706,236 +706,236 @@ public class L1ItemInstance extends L1Object {
 				os.writeS(" \\fRAC-2");
 			} else if (itemId == 430505) {
 				os.writeC(39);
-				os.writeS(" \\fR±Ù°Å¸® ´ë¹ÌÁö+1");
+				os.writeS(" \\fRê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€+1");
 			} else if (itemId == 4370599) {
 				os.writeC(39);
 				os.writeS(" \\fRAC:-1");
 				os.writeC(39);
-				os.writeS("\\fRMPÈ¸º¹:+20");
+				os.writeS("\\fRMPíšŒë³µ:+20");
 				os.writeC(39);
-				os.writeS("\\fR¸®´ö¼Ç:+3");
+				os.writeS("\\fRë¦¬ë•ì…˜:+3");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:20%");
+				os.writeS("\\fRê²½í—˜ì¹˜:20%");
 				os.writeC(39);
-				os.writeS("\\fR¸¶¹ı ¹ßµ¿:½ã¹ö½ºÆ®");
+				os.writeS("\\fRë§ˆë²• ë°œë™:ì¬ë²„ìŠ¤íŠ¸");
 			} else if (itemId == 4370600) {
 				os.writeC(39);
 				os.writeS(" \\fRAC:-1");
 				os.writeC(39);
-				os.writeS("\\fRMPÈ¸º¹:+20");
+				os.writeS("\\fRMPíšŒë³µ:+20");
 				os.writeC(39);
-				os.writeS("\\fR¸®´ö¼Ç:+2");
+				os.writeS("\\fRë¦¬ë•ì…˜:+2");
 				os.writeC(39);
-				os.writeS("\\fR¿ø°Å¸® ´ë¹ÌÁö:+2");
+				os.writeS("\\fRì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+2");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:20%");
+				os.writeS("\\fRê²½í—˜ì¹˜:20%");
 				os.writeC(39);
-				os.writeS("\\fR¸¶¹ı ¹ßµ¿:½ã¹ö½ºÆ®");
+				os.writeS("\\fRë§ˆë²• ë°œë™:ì¬ë²„ìŠ¤íŠ¸");
 			} else if (itemId == 744) {
 				os.writeC(39);
 				os.writeS(" \\fRAC:-1");
 				os.writeC(39);
-				os.writeS("\\fRMPÈ¸º¹:+20");
+				os.writeS("\\fRMPíšŒë³µ:+20");
 				os.writeC(39);
-				os.writeS("\\fR¿ø°Å¸® ´ë¹ÌÁö:+3");
+				os.writeS("\\fRì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+3");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:20%");
+				os.writeS("\\fRê²½í—˜ì¹˜:20%");
 				os.writeC(39);
-				os.writeS("\\fR¸¶¹ı ¹ßµ¿:½ã¹ö½ºÆ®");
+				os.writeS("\\fRë§ˆë²• ë°œë™:ì¬ë²„ìŠ¤íŠ¸");
 			} else if (itemId == 743) {
 				os.writeC(39);
 				os.writeS(" \\fRAC:-1");
 				os.writeC(39);
-				os.writeS("\\fRMPÈ¸º¹:+20");
+				os.writeS("\\fRMPíšŒë³µ:+20");
 				os.writeC(39);
-				os.writeS("\\fR±Ù°Å¸® ´ë¹ÌÁö:+3");
+				os.writeS("\\fRê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+3");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:20%");
+				os.writeS("\\fRê²½í—˜ì¹˜:20%");
 				os.writeC(39);
-				os.writeS("\\fR¸¶¹ı ¹ßµ¿:½ã¹ö½ºÆ®");
+				os.writeS("\\fRë§ˆë²• ë°œë™:ì¬ë²„ìŠ¤íŠ¸");
 			} else if (itemId == 447016) {
 				os.writeC(39);
 				os.writeS(" \\fRAC:-1");
 				os.writeC(39);
-				os.writeS("\\fRMPÈ¸º¹:+20");
+				os.writeS("\\fRMPíšŒë³µ:+20");
 				os.writeC(39);
 				os.writeS("\\fRSP:+3");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:20%");
+				os.writeS("\\fRê²½í—˜ì¹˜:20%");
 				os.writeC(39);
-				os.writeS("\\fR¸¶¹ı ¹ßµ¿:½ã¹ö½ºÆ®");
-			} else if (itemId == 5370601) { // ¸¶¹ıÀÎÇü ¿É¼Ç µ¥½º³ªÀÌÆ®
-				os.writeC(39);
-				os.writeS(" \\fRAC-2");
-				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹+20");
-				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡ º¸³Ê½º+30%");
-				os.writeC(39);
-				os.writeS("\\fR¸®´ö¼Ç+5");
-				os.writeC(39);
-				os.writeS("\\fR¾Æµ¥³ª µÎ¹è ½Àµæ");
-				os.writeC(39);
-				os.writeS("\\fR¸¶¹ı ¹ßµ¿:ÇïÆÄÀÌ¾î");
-			} else if (itemId == 5370602) { // ¾óÀ½¿©¿Õ
+				os.writeS("\\fRë§ˆë²• ë°œë™:ì¬ë²„ìŠ¤íŠ¸");
+			} else if (itemId == 5370601) { // ë§ˆë²•ì¸í˜• ì˜µì…˜ ë°ìŠ¤ë‚˜ì´íŠ¸
 				os.writeC(39);
 				os.writeS(" \\fRAC-2");
 				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹+20");
+				os.writeS("\\fRì— í”¼íšŒë³µ+20");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡ º¸³Ê½º+30%");
+				os.writeS("\\fRê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+30%");
 				os.writeC(39);
-				os.writeS("\\fR¿ø°Å¸® ´ë¹ÌÁö+5");
+				os.writeS("\\fRë¦¬ë•ì…˜+5");
 				os.writeC(39);
-				os.writeS("\\fR¸¶¹ı ¹ßµ¿:ÇïÆÄÀÌ¾î");
-			} else if (itemId == 5370603) { // Å¸¶ô
+				os.writeS("\\fRì•„ë°ë‚˜ ë‘ë°° ìŠµë“");
+				os.writeC(39);
+				os.writeS("\\fRë§ˆë²• ë°œë™:í—¬íŒŒì´ì–´");
+			} else if (itemId == 5370602) { // ì–¼ìŒì—¬ì™•
 				os.writeC(39);
 				os.writeS(" \\fRAC-2");
 				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹+20");
+				os.writeS("\\fRì— í”¼íšŒë³µ+20");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡ º¸³Ê½º+30%");
+				os.writeS("\\fRê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+30%");
+				os.writeC(39);
+				os.writeS("\\fRì›ê±°ë¦¬ ëŒ€ë¯¸ì§€+5");
+				os.writeC(39);
+				os.writeS("\\fRë§ˆë²• ë°œë™:í—¬íŒŒì´ì–´");
+			} else if (itemId == 5370603) { // íƒ€ë½
+				os.writeC(39);
+				os.writeS(" \\fRAC-2");
+				os.writeC(39);
+				os.writeS("\\fRì— í”¼íšŒë³µ+20");
+				os.writeC(39);
+				os.writeS("\\fRê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+30%");
 				os.writeC(39);
 				os.writeS("\\fRSP+5");
 				os.writeC(39);
-				os.writeS("\\fR¸¶¹ı ¹ßµ¿:ÇïÆÄÀÌ¾î");
-			} else if (itemId == 5370604) { // ¹Ù¶õÄ«
+				os.writeS("\\fRë§ˆë²• ë°œë™:í—¬íŒŒì´ì–´");
+			} else if (itemId == 5370604) { // ë°”ë€ì¹´
 				os.writeC(39);
 				os.writeS(" \\fRAC-2");
 				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹+20");
+				os.writeS("\\fRì— í”¼íšŒë³µ+20");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡ º¸³Ê½º+30%");
+				os.writeS("\\fRê²½í—˜ì¹˜ ë³´ë„ˆìŠ¤+30%");
 				os.writeC(39);
-				os.writeS("\\fR±Ù°Å¸® ´ë¹ÌÁö+5%");
+				os.writeS("\\fRê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€+5%");
 				os.writeC(39);
-				os.writeS("\\fR¸¶¹ı ¹ßµ¿:ÇïÆÄÀÌ¾î");
-			} else if (itemId == 5370605) { // ¾ÈÅ¸¶ó½º
-				os.writeC(39);
-				os.writeS(" \\fRAC:-3");
-				os.writeC(39);
-				os.writeS("\\fR´ë¹ÌÁö¸®´ö¼Ç:+8");
-				os.writeC(39);
-				os.writeS("\\fR±â¼úÀûÁß:+15");
-				os.writeC(39);
-				os.writeS("\\fR½ºÅÏ³»¼º:+15");
-				os.writeC(39);
-				os.writeS("\\fRPVP´ë¹ÌÁö:+6");
-				os.writeC(39);
-				os.writeS("\\fRPVP´ë¹ÌÁö°¨¼Ò:+10");
-				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹:+40");
-				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:+40%");
-				os.writeC(39);
-				os.writeS("\\fRÀÌÆåÆ®:¹ÌÆ¼¾î");
-			} else if (itemId == 5370606) { // ¹ß¶óÄ«½º
+				os.writeS("\\fRë§ˆë²• ë°œë™:í—¬íŒŒì´ì–´");
+			} else if (itemId == 5370605) { // ì•ˆíƒ€ë¼ìŠ¤
 				os.writeC(39);
 				os.writeS(" \\fRAC:-3");
 				os.writeC(39);
-				os.writeS("\\fR±Ù°Å¸® ´ë¹ÌÁö:+6");
+				os.writeS("\\fRëŒ€ë¯¸ì§€ë¦¬ë•ì…˜:+8");
 				os.writeC(39);
-				os.writeS("\\fR±Ù°Å¸® ¸íÁß:+8");
+				os.writeS("\\fRê¸°ìˆ ì ì¤‘:+15");
 				os.writeC(39);
-				os.writeS("\\fR±â¼ú ÀûÁß:+15");
+				os.writeS("\\fRìŠ¤í„´ë‚´ì„±:+15");
 				os.writeC(39);
-				os.writeS("\\fRÁ¤·É ÀûÁß:+15");
+				os.writeS("\\fRPVPëŒ€ë¯¸ì§€:+6");
 				os.writeC(39);
-				os.writeS("\\fR½ºÅÏ ³»¼º:+15");
+				os.writeS("\\fRPVPëŒ€ë¯¸ì§€ê°ì†Œ:+10");
 				os.writeC(39);
-				os.writeS("\\fRÁ¤·É ³»¼º:+15");
+				os.writeS("\\fRì— í”¼íšŒë³µ:+40");
 				os.writeC(39);
-				os.writeS("\\fRPVP´ë¹ÌÁö:+4");
+				os.writeS("\\fRê²½í—˜ì¹˜:+40%");
 				os.writeC(39);
-				os.writeS("\\fRPVP´ë¹ÌÁö°¨¼Ò:+2");
-				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹:+40");
-				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:+40%");
-				os.writeC(39);
-				os.writeS("\\fRÀÌÆåÆ®:¹ÌÆ¼¾î");
-			} else if (itemId == 5370607) { // ¸°µåºñ¿À¸£
+				os.writeS("\\fRì´í™íŠ¸:ë¯¸í‹°ì–´");
+			} else if (itemId == 5370606) { // ë°œë¼ì¹´ìŠ¤
 				os.writeC(39);
 				os.writeS(" \\fRAC:-3");
 				os.writeC(39);
-				os.writeS("\\fR¿ø°Å¸® ´ë¹ÌÁö:+14");
+				os.writeS("\\fRê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+6");
 				os.writeC(39);
-				os.writeS("\\fR¿ø°Å¸® ¸íÁß:+8");
+				os.writeS("\\fRê·¼ê±°ë¦¬ ëª…ì¤‘:+8");
 				os.writeC(39);
-				os.writeS("\\fR±â¼ú ÀûÁß:+15");
+				os.writeS("\\fRê¸°ìˆ  ì ì¤‘:+15");
 				os.writeC(39);
-				os.writeS("\\fRÁ¤·É ÀûÁß:+15");
+				os.writeS("\\fRì •ë ¹ ì ì¤‘:+15");
 				os.writeC(39);
-				os.writeS("\\fR½ºÅÏ ³»¼º:+15");
+				os.writeS("\\fRìŠ¤í„´ ë‚´ì„±:+15");
 				os.writeC(39);
-				os.writeS("\\fRÁ¤·É ³»¼º:+15");
+				os.writeS("\\fRì •ë ¹ ë‚´ì„±:+15");
 				os.writeC(39);
-				os.writeS("\\fRPVP´ë¹ÌÁö:+4");
+				os.writeS("\\fRPVPëŒ€ë¯¸ì§€:+4");
 				os.writeC(39);
-				os.writeS("\\fRPVP´ë¹ÌÁö°¨¼Ò:+2");
+				os.writeS("\\fRPVPëŒ€ë¯¸ì§€ê°ì†Œ:+2");
 				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹:+40");
+				os.writeS("\\fRì— í”¼íšŒë³µ:+40");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:+40%");
+				os.writeS("\\fRê²½í—˜ì¹˜:+40%");
 				os.writeC(39);
-				os.writeS("\\fRÀÌÆåÆ®:¹ÌÆ¼¾î");
-			} else if (itemId == 5370608) { // ÆÄÇª¸®¿Â
+				os.writeS("\\fRì´í™íŠ¸:ë¯¸í‹°ì–´");
+			} else if (itemId == 5370607) { // ë¦°ë“œë¹„ì˜¤ë¥´
 				os.writeC(39);
 				os.writeS(" \\fRAC:-3");
 				os.writeC(39);
-				os.writeS("\\fR¸¶¹ıÀûÁß:+8");
+				os.writeS("\\fRì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+14");
+				os.writeC(39);
+				os.writeS("\\fRì›ê±°ë¦¬ ëª…ì¤‘:+8");
+				os.writeC(39);
+				os.writeS("\\fRê¸°ìˆ  ì ì¤‘:+15");
+				os.writeC(39);
+				os.writeS("\\fRì •ë ¹ ì ì¤‘:+15");
+				os.writeC(39);
+				os.writeS("\\fRìŠ¤í„´ ë‚´ì„±:+15");
+				os.writeC(39);
+				os.writeS("\\fRì •ë ¹ ë‚´ì„±:+15");
+				os.writeC(39);
+				os.writeS("\\fRPVPëŒ€ë¯¸ì§€:+4");
+				os.writeC(39);
+				os.writeS("\\fRPVPëŒ€ë¯¸ì§€ê°ì†Œ:+2");
+				os.writeC(39);
+				os.writeS("\\fRì— í”¼íšŒë³µ:+40");
+				os.writeC(39);
+				os.writeS("\\fRê²½í—˜ì¹˜:+40%");
+				os.writeC(39);
+				os.writeS("\\fRì´í™íŠ¸:ë¯¸í‹°ì–´");
+			} else if (itemId == 5370608) { // íŒŒí‘¸ë¦¬ì˜¨
+				os.writeC(39);
+				os.writeS(" \\fRAC:-3");
+				os.writeC(39);
+				os.writeS("\\fRë§ˆë²•ì ì¤‘:+8");
 				os.writeC(39);
 				os.writeS("\\fRSP:+15");
 				os.writeC(39);
-				os.writeS("\\fR±â¼úÀûÁß:+15");
+				os.writeS("\\fRê¸°ìˆ ì ì¤‘:+15");
 				os.writeC(39);
-				os.writeS("\\fR½ºÅÏ³»¼º:+15");
+				os.writeS("\\fRìŠ¤í„´ë‚´ì„±:+15");
 				os.writeC(39);
-				os.writeS("\\fRPVP´ë¹ÌÁö:+4");
+				os.writeS("\\fRPVPëŒ€ë¯¸ì§€:+4");
 				os.writeC(39);
-				os.writeS("\\fRPVP´ë¹ÌÁö°¨¼Ò:+2");
+				os.writeS("\\fRPVPëŒ€ë¯¸ì§€ê°ì†Œ:+2");
 				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹:+40");
+				os.writeS("\\fRì— í”¼íšŒë³µ:+40");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:+40%");
+				os.writeS("\\fRê²½í—˜ì¹˜:+40%");
 				os.writeC(39);
-				os.writeS("\\fRÀÌÆåÆ®:¹ÌÆ¼¾î");
+				os.writeS("\\fRì´í™íŠ¸:ë¯¸í‹°ì–´");
 			} else if (itemId == 41249) {
 				os.writeC(39);
-				os.writeS("\\fR±Ù°Å¸® ´ë¹ÌÁö:+1");
+				os.writeS("\\fRê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 				os.writeC(39);
-				os.writeS("\\fR¿ø°Å¸® ´ë¹ÌÁö:+1");
+				os.writeS("\\fRì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 				os.writeC(39);
 				os.writeS("\\fRSP:+1");
 				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹:+5");
+				os.writeS("\\fRì— í”¼íšŒë³µ:+5");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:+5%");
+				os.writeS("\\fRê²½í—˜ì¹˜:+5%");
 			} else if (itemId == 430506) {
 				os.writeC(39);
-				os.writeS("\\fR ±Ù°Å¸® ´ë¹ÌÁö:+1");
+				os.writeS("\\fR ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 				os.writeC(39);
-				os.writeS("\\fR¿ø°Å¸® ´ë¹ÌÁö:+1");
+				os.writeS("\\fRì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 				os.writeC(39);
 				os.writeS("\\fRSP:+1");
 				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹:+15");
+				os.writeS("\\fRì— í”¼íšŒë³µ:+15");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:+10%");
+				os.writeS("\\fRê²½í—˜ì¹˜:+10%");
 			} else if (itemId == 430500) {
 				os.writeC(39);
-				os.writeS("\\fR¿ø°Å¸® ´ë¹ÌÁö:+1");
+				os.writeS("\\fRì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹:+15");
+				os.writeS("\\fRì— í”¼íšŒë³µ:+15");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:+15%");
+				os.writeS("\\fRê²½í—˜ì¹˜:+15%");
 			} else if (itemId == 430001) {
 				os.writeC(39);
 				os.writeS("\\fRSP:+1");
 				os.writeC(39);
-				os.writeS("\\fR¿¥ÇÇÈ¸º¹:+20");
+				os.writeS("\\fRì— í”¼íšŒë³µ:+20");
 				os.writeC(39);
-				os.writeS("\\fR°æÇèÄ¡:+15%");
+				os.writeS("\\fRê²½í—˜ì¹˜:+15%");
 			} else if (itemId == 46172) {
 				os.writeC(39);
 				os.writeS(" AC-3");
@@ -948,72 +948,72 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(39);
 				os.writeS("MR+10");
 				os.writeC(39);
-				os.writeS("Ãß°¡ µ¥¹ÌÁö +5");
-			} else if (itemId == 88888897) { // ÅëÇÕ ºÒ ½ºÅ³ºÏ(¿äÁ¤)
+				os.writeS("ì¶”ê°€ ë°ë¯¸ì§€ +5");
+			} else if (itemId == 88888897) { // í†µí•© ë¶ˆ ìŠ¤í‚¬ë¶(ìš”ì •)
 				os.writeC(39);
-				os.writeS(" ½Àµæ Á¦¿Ü ½ºÅ³");
+				os.writeS(" ìŠµë“ ì œì™¸ ìŠ¤í‚¬");
 				os.writeC(39);
-				os.writeS("- ¼Ò¿ï ¿Àºê ÇÁ·¹ÀÓ");
-			} else if (itemId == 88888898) { // ÅëÇÕ ¹Ù¶÷ ½ºÅ³ºÏ(¿äÁ¤)
+				os.writeS("- ì†Œìš¸ ì˜¤ë¸Œ í”„ë ˆì„");
+			} else if (itemId == 88888898) { // í†µí•© ë°”ëŒ ìŠ¤í‚¬ë¶(ìš”ì •)
 				os.writeC(39);
-				os.writeS(" ½Àµæ Á¦¿Ü ½ºÅ³");
+				os.writeS(" ìŠµë“ ì œì™¸ ìŠ¤í‚¬");
 				os.writeC(39);
-				os.writeS("- ½ºÆ®¶óÀÌÄ¿ °ÔÀÏ");
-			} else if (itemId == 88888899) { // ÅëÇÕ ¹° ½ºÅ³ºÏ(¿äÁ¤)
+				os.writeS("- ìŠ¤íŠ¸ë¼ì´ì»¤ ê²Œì¼");
+			} else if (itemId == 88888899) { // í†µí•© ë¬¼ ìŠ¤í‚¬ë¶(ìš”ì •)
 				os.writeC(39);
-				os.writeS(" ½Àµæ Á¦¿Ü ½ºÅ³");
+				os.writeS(" ìŠµë“ ì œì™¸ ìŠ¤í‚¬");
 				os.writeC(39);
-				os.writeS("- ³×ÀÌÃÄ½º ºí·¹½Ì");
-			} else if (itemId == 88888900) { // ÅëÇÕ ¶¥ ½ºÅ³ºÏ(¿äÁ¤)
+				os.writeS("- ë„¤ì´ì³ìŠ¤ ë¸”ë ˆì‹±");
+			} else if (itemId == 88888900) { // í†µí•© ë•… ìŠ¤í‚¬ë¶(ìš”ì •)
 				os.writeC(39);
-				os.writeS(" ½Àµæ Á¦¿Ü ½ºÅ³");
+				os.writeS(" ìŠµë“ ì œì™¸ ìŠ¤í‚¬");
 				os.writeC(39);
-				os.writeS("- ¾î½º ¹ÙÀÎµå");
-			} else if (itemId == 88888889) { // ÅëÇÕ ½ºÅ³ºÏ(±â»ç)
+				os.writeS("- ì–´ìŠ¤ ë°”ì¸ë“œ");
+			} else if (itemId == 88888889) { // í†µí•© ìŠ¤í‚¬ë¶(ê¸°ì‚¬)
 				os.writeC(39);
-				os.writeS(" ½Àµæ Á¦¿Ü ½ºÅ³");
+				os.writeS(" ìŠµë“ ì œì™¸ ìŠ¤í‚¬");
 				os.writeC(39);
-				os.writeS("- Ä«¿îÅÍ ¹è¸®¾î");
-			} else if (itemId == 88888891) { // ÅëÇÕ ½ºÅ³ºÏ(´ÙÅ©¿¤ÇÁ)
+				os.writeS("- ì¹´ìš´í„° ë°°ë¦¬ì–´");
+			} else if (itemId == 88888891) { // í†µí•© ìŠ¤í‚¬ë¶(ë‹¤í¬ì—˜í”„)
 				os.writeC(39);
-				os.writeS(" ½Àµæ Á¦¿Ü ½ºÅ³");
+				os.writeS(" ìŠµë“ ì œì™¸ ìŠ¤í‚¬");
 				os.writeC(39);
-				os.writeS("- ¾Æ¸Ó ºê·¹ÀÌÅ©");
-			} else if (itemId == 88888889) { // ÅëÇÕ ½ºÅ³ºÏ(±â»ç)
+				os.writeS("- ì•„ë¨¸ ë¸Œë ˆì´í¬");
+			} else if (itemId == 88888889) { // í†µí•© ìŠ¤í‚¬ë¶(ê¸°ì‚¬)
 				os.writeC(39);
-				os.writeS(" ½Àµæ Á¦¿Ü ½ºÅ³");
+				os.writeS(" ìŠµë“ ì œì™¸ ìŠ¤í‚¬");
 				os.writeC(39);
-				os.writeS("- Ä«¿îÅÍ ¹è¸®¾î");
-			} else if (itemId == 88888893) { // ÅëÇÕ ½ºÅ³ºÏ(¸¶¹ı»ç)
+				os.writeS("- ì¹´ìš´í„° ë°°ë¦¬ì–´");
+			} else if (itemId == 88888893) { // í†µí•© ìŠ¤í‚¬ë¶(ë§ˆë²•ì‚¬)
 				os.writeC(39);
-				os.writeS(" ½Àµæ Á¦¿Ü ½ºÅ³");
+				os.writeS(" ìŠµë“ ì œì™¸ ìŠ¤í‚¬");
 				os.writeC(39);
-				os.writeS("- ÀÎºñÁöºí¸®Æ¼");
+				os.writeS("- ì¸ë¹„ì§€ë¸”ë¦¬í‹°");
 				os.writeC(39);
-				os.writeS("- ¼ÎÀÌÇÁ Ã¼ÀÎÁö");
+				os.writeS("- ì…°ì´í”„ ì²´ì¸ì§€");
 				os.writeC(39);
-				os.writeS("- ÀÌ¹Ã Åõ ÇÔ");
+				os.writeS("- ì´ë®¨ íˆ¬ í•¨");
 				os.writeC(39);
-				os.writeS("- ¹ÌÆ¼¾î ½ºÆ®¶óÀÌÅ©");
+				os.writeS("- ë¯¸í‹°ì–´ ìŠ¤íŠ¸ë¼ì´í¬");
 				os.writeC(39);
-				os.writeS("- µğ½ºÀÎÆ¼±×·¹ÀÌÆ®");
+				os.writeS("- ë””ìŠ¤ì¸í‹°ê·¸ë ˆì´íŠ¸");
 				os.writeC(39);
-				os.writeS("- ¾Û¼Ö·çÆ® ¹è¸®¾î");
+				os.writeS("- ì•±ì†”ë£¨íŠ¸ ë°°ë¦¬ì–´");
 			} else if (itemId == 430633) {
 				os.writeC(39);
-				os.writeS("\\fT+9 ¹«±â¿¡¸¸ ÀÎÃ¾ °¡´É");
+				os.writeS("\\fT+9 ë¬´ê¸°ì—ë§Œ ì¸ì²¸ ê°€ëŠ¥");
 			} else if (itemId == 1430633) {
 				os.writeC(39);
-				os.writeS("\\fT+8 ¹æ¾î±¸¿¡¸¸ ÀÎÃ¾ °¡´É");
+				os.writeS("\\fT+8 ë°©ì–´êµ¬ì—ë§Œ ì¸ì²¸ ê°€ëŠ¥");
 			}
 		} else if (itemType2 == 1 || itemType2 == 2) { // weapon | armor
-			/** ¾ÆÀÌÅÛ ¾ÈÀüÀÎÃ¦ Ç¥½Ã Ãß°¡ **/
+			/** ì•„ì´í…œ ì•ˆì „ì¸ì±ˆ í‘œì‹œ ì¶”ê°€ **/
 			int SafeEnchant = getItem().get_safeenchant();
 			os.writeC(39);
 			if (SafeEnchant < 0) {
 				SafeEnchant = 0;
 			}
-			  os.writeS("\\fT[¾ÈÀüÀÎÃ¦:+" + SafeEnchant + "]");
+			  os.writeS("\\fT[ì•ˆì „ì¸ì±ˆ:+" + SafeEnchant + "]");
 			if (itemType2 == 1) { // weapon
 				os.writeC(1);
 				os.writeC(getItem().getDmgSmall());
@@ -1069,7 +1069,7 @@ public class L1ItemInstance extends L1Object {
 					break;
 				}
 			}
-			if (getItem().getItemId() == 427110 || getItem().getItemId() == 427111) { /// °Ë±Í Ãà°Ë±Í ¾ÆÀÌÅÛ ¹øÈ£ ³Ö¾îÁÖ½Ã¸éµË´Ï´Ù
+			if (getItem().getItemId() == 427110 || getItem().getItemId() == 427111) { /// ê²€ê·€ ì¶•ê²€ê·€ ì•„ì´í…œ ë²ˆí˜¸ ë„£ì–´ì£¼ì‹œë©´ë©ë‹ˆë‹¤
 				switch (getEnchantLevel()) {
 				case 1:
 				case 2:
@@ -1444,7 +1444,7 @@ public class L1ItemInstance extends L1Object {
 			if (getItem().isTwohandedWeapon()) {
 				os.writeC(4);
 			}
-			// °ø°İ ¼º°ø
+			// ê³µê²© ì„±ê³µ
 			if (getItem().getHitModifier() != 0) {
 				if (itemType1 == 20 || itemType1 == 66) {
 					os.writeC(24);
@@ -1454,7 +1454,7 @@ public class L1ItemInstance extends L1Object {
 					os.writeC(getItem().getHitModifier());
 				}
 			}
-			// Ãß°¡ Å¸°İ
+			// ì¶”ê°€ íƒ€ê²©
 			if (getItem().getDmgModifier() != 0) {
 				os.writeC(6);
 				os.writeC(getItem().getDmgModifier());
@@ -1468,42 +1468,42 @@ public class L1ItemInstance extends L1Object {
 			if (itemId == 900023) {
 				if (getEnchantLevel() >= 0 && getEnchantLevel() <= 4) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + getItem().getDmgup());
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + getItem().getDmgup());
 				} else if (getEnchantLevel() == 5) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (1 + getItem().getDmgup()));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (1 + getItem().getDmgup()));
 				} else if (getEnchantLevel() == 6) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (2 + getItem().getDmgup()));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (2 + getItem().getDmgup()));
 				} else if (getEnchantLevel() == 7) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (3 + getItem().getDmgup()));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (3 + getItem().getDmgup()));
 				} else if (getEnchantLevel() == 8) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (4 + getItem().getDmgup()));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (4 + getItem().getDmgup()));
 				} else if (getEnchantLevel() >= 9) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (5 + getItem().getDmgup()));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (5 + getItem().getDmgup()));
 				}
 			} else if (itemId >= 420112 && itemId <= 420113 && getEnchantLevel() >= 7) {
 				os.writeC(39);
 				switch(getEnchantLevel()) {
 				case 7:
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (getItem().getDmgup() + 2));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getDmgup() + 2));
 					break;
 				case 8:
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (getItem().getDmgup() + 5));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getDmgup() + 5));
 					break;
 				case 9:
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (getItem().getDmgup() + 8));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getDmgup() + 8));
 					break;
 				case 10:
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (getItem().getDmgup() + 11));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getDmgup() + 11));
 					break;
 				}
 			} else if (getItem().getDmgup() != 0 && itemId != 420003) {
 				os.writeC(39);
-				os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + getItem().getDmgup());
+				os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + getItem().getDmgup());
 			}
 			if (itemId == 9114 || itemId == 91140) {
 				if (getEnchantLevel() == 5) {
@@ -1519,19 +1519,19 @@ public class L1ItemInstance extends L1Object {
 					os.writeC(15);
 					os.writeH(8);
 					os.writeC(39);
-					os.writeS("¸®´ö¼Ç´ë¹ÌÁö:+1");
+					os.writeS("ë¦¬ë•ì…˜ëŒ€ë¯¸ì§€:+1");
 				} else if (getEnchantLevel() == 9) {
 					os.writeC(15);
 					os.writeH(11);
 					os.writeC(39);
-					os.writeS("¸®´ö¼Ç´ë¹ÌÁö:+2");
+					os.writeS("ë¦¬ë•ì…˜ëŒ€ë¯¸ì§€:+2");
 				} else if (getEnchantLevel() >= 10) {
 					os.writeC(15);
 					os.writeH(14);
 					os.writeC(39);
-					os.writeS("PVP¸®´ö¼Ç:+1");
+					os.writeS("PVPë¦¬ë•ì…˜:+1");
 					os.writeC(39);
-					os.writeS("¸®´ö¼Ç´ë¹ÌÁö:+2");
+					os.writeS("ë¦¬ë•ì…˜ëŒ€ë¯¸ì§€:+2");
 					os.writeC(39);
 					os.writeS(" HP:+100");
 				}
@@ -1539,26 +1539,26 @@ public class L1ItemInstance extends L1Object {
 			if (itemId == 9115) {
 				if (getEnchantLevel() == 7) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö:+1");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 				} else if (getEnchantLevel() == 8) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö:+1");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß:+2");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘:+2");
 				} else if (getEnchantLevel() == 9) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö:+2");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+2");
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß:+4");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘:+4");
 				} else if (getEnchantLevel() >= 10) {
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö:+1");
+					os.writeS("PVPëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö¸®´ö¼Ç:+1");
+					os.writeS("PVPëŒ€ë¯¸ì§€ë¦¬ë•ì…˜:+1");
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö:+2");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+2");
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß:+6");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘:+6");
 					os.writeC(39);
 					os.writeS(" HP:+100");
 				}
@@ -1566,28 +1566,28 @@ public class L1ItemInstance extends L1Object {
 			if (itemId == 91150) {
 				if (getEnchantLevel() == 7) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö:+1");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß:+1");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘:+1");
 				} else if (getEnchantLevel() == 8) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö:+1");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß:+3");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘:+3");
 				} else if (getEnchantLevel() == 9) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö:+2");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+2");
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß:+5");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘:+5");
 				} else if (getEnchantLevel() >= 10) {
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö:+1");
+					os.writeS("PVPëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö¸®´ö¼Ç:+1");
+					os.writeS("PVPëŒ€ë¯¸ì§€ë¦¬ë•ì…˜:+1");
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö:+2");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€:+2");
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß:+7");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘:+7");
 					os.writeC(39);
 					os.writeS(" HP:+100");
 				}
@@ -1596,26 +1596,26 @@ public class L1ItemInstance extends L1Object {
 			if (itemId == 9116) {
 				if (getEnchantLevel() == 7) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö:+1");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 				} else if (getEnchantLevel() == 8) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö:+1");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß:+2");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘:+2");
 				} else if (getEnchantLevel() == 9) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö:+2");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+2");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß:+4");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘:+4");
 				} else if (getEnchantLevel() >= 10) {
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö:+1");
+					os.writeS("PVPëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö¸®´ö¼Ç:+1");
+					os.writeS("PVPëŒ€ë¯¸ì§€ë¦¬ë•ì…˜:+1");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö:+2");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+2");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß:+6");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘:+6");
 					os.writeC(39);
 					os.writeS(" HP:+100");
 				}
@@ -1623,28 +1623,28 @@ public class L1ItemInstance extends L1Object {
 			if (itemId == 91160) {
 				if (getEnchantLevel() == 7) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö:+1");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß:+1");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘:+1");
 				} else if (getEnchantLevel() == 8) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö:+1");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß:+3");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘:+3");
 				} else if (getEnchantLevel() == 9) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö:+2");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+2");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß:+5");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘:+5");
 				} else if (getEnchantLevel() >= 10) {
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö:+1");
+					os.writeS("PVPëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö¸®´ö¼Ç:+1");
+					os.writeS("PVPëŒ€ë¯¸ì§€ë¦¬ë•ì…˜:+1");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö:+2");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€:+2");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß:+7");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘:+7");
 					os.writeC(39);
 					os.writeS(" HP:+100");
 				}
@@ -1655,21 +1655,21 @@ public class L1ItemInstance extends L1Object {
 					os.writeC(39);
 					os.writeS("SP:+2");
 					os.writeC(39);
-					os.writeS("¸¶¹ıÀûÁß:+1");
+					os.writeS("ë§ˆë²•ì ì¤‘:+1");
 				} else if (getEnchantLevel() == 9) {
 					os.writeC(39);
 					os.writeS("SP:+2");
 					os.writeC(39);
-					os.writeS("¸¶¹ıÀûÁß:+3");
+					os.writeS("ë§ˆë²•ì ì¤‘:+3");
 				} else if (getEnchantLevel() >= 10) {
 					os.writeC(39);
 					os.writeS("SP:+3");
 					os.writeC(39);
-					os.writeS("¸¶¹ıÀûÁß:+4");
+					os.writeS("ë§ˆë²•ì ì¤‘:+4");
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö:+1");
+					os.writeS("PVPëŒ€ë¯¸ì§€:+1");
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö¸®´ö¼Ç:+1");
+					os.writeS("PVPëŒ€ë¯¸ì§€ë¦¬ë•ì…˜:+1");
 					os.writeC(39);
 					os.writeS(" HP:+100");
 				}
@@ -1682,21 +1682,21 @@ public class L1ItemInstance extends L1Object {
 					os.writeC(39);
 					os.writeS("SP:+2");
 					os.writeC(39);
-					os.writeS("¸¶¹ıÀûÁß:+3");
+					os.writeS("ë§ˆë²•ì ì¤‘:+3");
 				} else if (getEnchantLevel() == 9) {
 					os.writeC(39);
 					os.writeS("SP:+3");
 					os.writeC(39);
-					os.writeS("¸¶¹ıÀûÁß:+4");
+					os.writeS("ë§ˆë²•ì ì¤‘:+4");
 				} else if (getEnchantLevel() >= 10) {
 					os.writeC(39);
 					os.writeS("SP:+4");
 					os.writeC(39);
-					os.writeS("¸¶¹ıÀûÁß:+5");
+					os.writeS("ë§ˆë²•ì ì¤‘:+5");
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö:3");
+					os.writeS("PVPëŒ€ë¯¸ì§€:3");
 					os.writeC(39);
-					os.writeS("PVP´ë¹ÌÁö¸®´ö¼Ç:+3");
+					os.writeS("PVPëŒ€ë¯¸ì§€ë¦¬ë•ì…˜:+3");
 					os.writeC(39);
 					os.writeS(" HP:+100");
 				}
@@ -1705,22 +1705,22 @@ public class L1ItemInstance extends L1Object {
 			if (itemId == 420003) {
 				if (getEnchantLevel() < 5) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + getItem().getDmgup());
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + getItem().getDmgup());
 				} else if (getEnchantLevel() == 5) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (getItem().getDmgup() + 1));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getDmgup() + 1));
 				} else if (getEnchantLevel() == 6) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (getItem().getDmgup() + 2));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getDmgup() + 2));
 				} else if (getEnchantLevel() == 7) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (getItem().getDmgup() + 3));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getDmgup() + 3));
 				} else if (getEnchantLevel() == 8) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (getItem().getDmgup() + 4));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getDmgup() + 4));
 				} else if (getEnchantLevel() == 9) {
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (getItem().getDmgup() + 5));
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getDmgup() + 5));
 				}
 			}
 
@@ -1732,46 +1732,46 @@ public class L1ItemInstance extends L1Object {
 			if (itemId == 900022) {
 				if (getEnchantLevel() >= 0 && getEnchantLevel() <= 4) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + getItem().getBowDmgup());
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + getItem().getBowDmgup());
 				} else if (getEnchantLevel() == 5) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + (1 + getItem().getBowDmgup()));
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (1 + getItem().getBowDmgup()));
 				} else if (getEnchantLevel() == 6) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + (2 + getItem().getBowDmgup()));
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (2 + getItem().getBowDmgup()));
 				} else if (getEnchantLevel() == 7) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + (3 + getItem().getBowDmgup()));
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (3 + getItem().getBowDmgup()));
 				} else if (getEnchantLevel() == 8) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + (4 + getItem().getBowDmgup()));
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (4 + getItem().getBowDmgup()));
 				} else if (getEnchantLevel() >= 9) {
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + (5 + getItem().getBowDmgup()));
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (5 + getItem().getBowDmgup()));
 				}
 			} else if (itemId == 420114 && getEnchantLevel() >= 7) {
 				os.writeC(39);
 				switch(getEnchantLevel()) {
 				case 7:
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + (getItem().getBowDmgup() + 2));
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getBowDmgup() + 2));
 					break;
 				case 8:
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + (getItem().getBowDmgup() + 5));
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getBowDmgup() + 5));
 					break;
 				case 9:
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + (getItem().getBowDmgup() + 8));
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getBowDmgup() + 8));
 					break;
 				case 10:
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + (getItem().getBowDmgup() + 11));
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getBowDmgup() + 11));
 					break;
 				}
 			} else if (itemId == 20017 && getEnchantLevel() >= 8) {
 				int s = getEnchantLevel() - 7;
 				os.writeC(39);
-				os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + (getItem().getBowDmgup() + s));
+				os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getItem().getBowDmgup() + s));
 			} else if (getItem().getBowDmgup() != 0) {
 				os.writeC(39);
-				os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + getItem().getBowDmgup());
+				os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + getItem().getBowDmgup());
 			}
 			if (itemId == 126 || itemId == 127 || itemId == 200126 || itemId == 200127) {
 				os.writeC(16);
@@ -1780,112 +1780,112 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(34);
 			}
 
-			if (getItem().getItemId() == 427110 || getItem().getItemId() == 427111) { /// °Ë±Í Ãà°Ë±Í ¾ÆÀÌÅÛ ¹øÈ£ ³Ö¾îÁÖ½Ã¸éµË´Ï´Ù
+			if (getItem().getItemId() == 427110 || getItem().getItemId() == 427111) { /// ê²€ê·€ ì¶•ê²€ê·€ ì•„ì´í…œ ë²ˆí˜¸ ë„£ì–´ì£¼ì‹œë©´ë©ë‹ˆë‹¤
 				switch (getEnchantLevel()) {
 				case 3:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +1");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +1");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +1");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +1");
 					break;
 				case 4:
 					if (getItem().getBless() != 0) {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +1");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +1");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +1");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +1");
 					} else {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +2");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +2");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +2");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +2");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +20(2%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +20(2%)");
 					}
 					break;
 				case 5:
 					if (getItem().getBless() != 0) {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +2");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +2");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +2");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +2");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +20(2%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +20(2%)");
 					} else {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +3");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +3");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +20(3%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +20(3%)");
 					}
 					break;
 				case 6:
 					if (getItem().getBless() != 0) {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +3");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +3");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +20(3%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +20(3%)");
 					} else {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +4");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +4");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +4");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +4");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +20(4%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +20(4%)");
 					}
 					break;
 				case 7:
 					if (getItem().getBless() != 0) {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +4");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +4");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +4");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +4");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +20(4%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +20(4%)");
 					} else {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +5");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +5");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +5");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +5");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +20(5%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +20(5%)");
 					}
 					break;
 				case 8:
 					if (getItem().getBless() != 0) {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +7");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +7");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +7");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +7");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +25(5%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +25(5%)");
 					} else {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +9");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +9");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +9");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +9");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +30(6%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +30(6%)");
 					}
 					break;
 				case 9:
 					if (getItem().getBless() != 0) {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +9");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +9");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +9");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +9");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +25(7%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +25(7%)");
 					} else {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +12");
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +12");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ´ë¹ÌÁö +12");
+						os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +12");
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® Ãß°¡ ´ë¹ÌÁö È®·ü +30(8%)");
+						os.writeS("ê·¼ê±°ë¦¬ ì¶”ê°€ ëŒ€ë¯¸ì§€ í™•ë¥  +30(8%)");
 					}
 					break;
 				}
@@ -1900,42 +1900,42 @@ public class L1ItemInstance extends L1Object {
 					case 4:
 						if (getItem().getDamageReduction() != 0) {
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction()));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction()));
 						}
 						break;
 					case 5:
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 1));
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 1));
 						break;
 					case 6:
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 2));
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 2));
 						os.writeC(39);
-						os.writeS("PVP´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 1));
+						os.writeS("PVPëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 1));
 						break;
 					case 7:
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 3));
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 3));
 						os.writeC(39);
-						os.writeS("PVP´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 3));
+						os.writeS("PVPëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 3));
 						break;
 					case 8:
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 4));
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 4));
 						os.writeC(39);
-						os.writeS("PVP´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 5));
+						os.writeS("PVPëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 5));
 						break;
 					case 9:
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 5));
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 5));
 						os.writeC(39);
-						os.writeS("PVP´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 7));
+						os.writeS("PVPëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 7));
 						break;
 					case 10:
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 6));
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 6));
 						os.writeC(39);
-						os.writeS("PVP´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 9));
+						os.writeS("PVPëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 9));
 						break;
 					}
 				}
@@ -1943,16 +1943,16 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(39);
 				switch (getEnchantLevel()) {
 				case 7:
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 2));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 2));
 					break;
 				case 8:
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 5));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 5));
 					break;
 				case 9:
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 8));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 8));
 					break;
 				case 10:
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 11));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 11));
 					break;
 				}
 			} else if (getItem().getItemId() == 900020) {
@@ -1963,73 +1963,73 @@ public class L1ItemInstance extends L1Object {
 				case 3:
 				case 4:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + getItem().getDamageReduction());
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + getItem().getDamageReduction());
 					break;
 				case 5:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (1 + getItem().getDamageReduction()));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (1 + getItem().getDamageReduction()));
 					break;
 				case 6:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (2 + getItem().getDamageReduction()));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (2 + getItem().getDamageReduction()));
 					break;
 				case 7:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (3 + getItem().getDamageReduction()));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (3 + getItem().getDamageReduction()));
 					break;
 				case 8:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (4 + getItem().getDamageReduction()));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (4 + getItem().getDamageReduction()));
 					break;
 				case 9:
 				case 10:
 				case 11:
 				case 12:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (5 + getItem().getDamageReduction()));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (5 + getItem().getDamageReduction()));
 					break;
 				}
 			} else if (itemId == 20107) {
 				switch(getEnchantLevel()) {
 				case 7:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 2));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 2));
 					break;
 				case 8:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 3));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 3));
 					break;
 				case 9:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 4));
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 4));
 					break;
 				default:
 					if (getItem().getDamageReduction() != 0) {
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +" + getItem().getDamageReduction());
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + getItem().getDamageReduction());
 					}
 				}
 			} else if (itemId >= 23100 && itemId <= 23103 || itemId >= 2023100 && itemId <= 2023102) {
 				switch (getEnchantLevel()) {
 				case 1:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö°¨¼Ò +" + (getItem().getDamageReduction() + 1));
+					os.writeS("ëŒ€ë¯¸ì§€ê°ì†Œ +" + (getItem().getDamageReduction() + 1));
 					break;
 				case 2:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö°¨¼Ò +" + (getItem().getDamageReduction() + 2));
+					os.writeS("ëŒ€ë¯¸ì§€ê°ì†Œ +" + (getItem().getDamageReduction() + 2));
 					break;
 				case 3:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö°¨¼Ò +" + (getItem().getDamageReduction() + 4));
+					os.writeS("ëŒ€ë¯¸ì§€ê°ì†Œ +" + (getItem().getDamageReduction() + 4));
 					break;
 				case 4:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö°¨¼Ò +" + (getItem().getDamageReduction() + 6));
+					os.writeS("ëŒ€ë¯¸ì§€ê°ì†Œ +" + (getItem().getDamageReduction() + 6));
 					break;
 				case 5:
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö°¨¼Ò +" + (getItem().getDamageReduction() + 8));
+					os.writeS("ëŒ€ë¯¸ì§€ê°ì†Œ +" + (getItem().getDamageReduction() + 8));
 					break;
 				}
 			} else if (getItem().getType2() == 2 && (amortype == 1 || amortype == 3 || amortype == 4 || amortype == 5 || amortype == 6 || amortype == 7 || amortype == 18)) {
@@ -2039,40 +2039,40 @@ public class L1ItemInstance extends L1Object {
 						switch(getEnchantLevel()) {
 						case 7:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 2));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 2));
 							break;
 						case 8:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 3));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 3));
 							break;
 						case 9:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 4));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 4));
 							break;
 						default:
 							if (getItem().getDamageReduction() != 0) {
 								os.writeC(39);
-								os.writeS("´ë¹ÌÁö °¨¼Ò +" + getItem().getDamageReduction());
+								os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + getItem().getDamageReduction());
 							}
 						}
 					} else {
 						switch(getEnchantLevel()) {
 						case 7:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 1));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 1));
 							break;
 						case 8:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 2));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 2));
 							break;
 						case 9:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 3));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 3));
 							break;
 						default:
 							if (getItem().getDamageReduction() != 0) {
 								os.writeC(39);
-								os.writeS("´ë¹ÌÁö °¨¼Ò +" + getItem().getDamageReduction());
+								os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + getItem().getDamageReduction());
 							}
 						}
 					}
@@ -2081,40 +2081,40 @@ public class L1ItemInstance extends L1Object {
 						switch(getEnchantLevel()) {
 						case 8:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 2));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 2));
 							break;
 						case 9:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 3));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 3));
 							break;
 						case 10:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 4));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 4));
 							break;
 						default:
 							if (getItem().getDamageReduction() != 0) {
 								os.writeC(39);
-								os.writeS("´ë¹ÌÁö °¨¼Ò +" + getItem().getDamageReduction());
+								os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + getItem().getDamageReduction());
 							}
 						}
 					} else {
 						switch(getEnchantLevel()) {
 						case 8:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 1));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 1));
 							break;
 						case 9:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 2));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 2));
 							break;
 						case 10:
 							os.writeC(39);
-							os.writeS("´ë¹ÌÁö °¨¼Ò +" + (getItem().getDamageReduction() + 3));
+							os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + (getItem().getDamageReduction() + 3));
 							break;
 						default:
 							if (getItem().getDamageReduction() != 0) {
 								os.writeC(39);
-								os.writeS("´ë¹ÌÁö °¨¼Ò +" + getItem().getDamageReduction());
+								os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + getItem().getDamageReduction());
 							}
 						}
 					}
@@ -2122,7 +2122,7 @@ public class L1ItemInstance extends L1Object {
 			} else {
 				if (getItem().getDamageReduction() != 0) {
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +" + getItem().getDamageReduction());
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + getItem().getDamageReduction());
 				}
 			}
 			
@@ -2340,7 +2340,7 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(38);
 				os.writeC(getItem().get_addmpr());
 				os.writeC(39);
-				os.writeS("½ºÅÏ³»¼º " + getItem().get_regist_stun());
+				os.writeS("ìŠ¤í„´ë‚´ì„± " + getItem().get_regist_stun());
 			}
 			if (getItem().getType() == 10) {
 				if (getItem().getType2() == 2) {
@@ -2423,7 +2423,7 @@ public class L1ItemInstance extends L1Object {
 				}
 			}
 			if (getItem().get_addmpr() != 0) {
-				if (itemId == 329) { // ¸íÁöÃ³¸®
+				if (itemId == 329) { // ëª…ì§€ì²˜ë¦¬
 					os.writeC(38);
 					os.writeC(getItem().get_addmpr() + getEnchantLevel() * 1);
 				} else {
@@ -2595,7 +2595,7 @@ public class L1ItemInstance extends L1Object {
 				os.writeH(getMr());
 			}
 			// SP
-			if (itemId == 20107) { // ¸®Ä¡·Îºê
+			if (itemId == 20107) { // ë¦¬ì¹˜ë¡œë¸Œ
 				if (getEnchantLevel() > 3) {
 					os.writeC(17);
 					os.writeC(getEnchantLevel() - 3);
@@ -2681,29 +2681,29 @@ public class L1ItemInstance extends L1Object {
 					}
 				}
 			}
-			/** °İºĞÀÇ Àå°© **/
+			/** ê²©ë¶„ì˜ ì¥ê°‘ **/
 			if (itemId == 222317) {
 				switch (getEnchantLevel()) {
 				case 7:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +4");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +4");
 					break;
 				case 8:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +5");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +5");
 					break;
 				case 9:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +6");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +6");
 					break;
 				case 10:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +7");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +7");
 					break;
 				default:
 					if (getEnchantLevel() > 10) {
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + (getEnchantLevel() - 3));
+						os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + (getEnchantLevel() - 3));
 					}
 					break;
 				}
@@ -2714,333 +2714,333 @@ public class L1ItemInstance extends L1Object {
 				case 1:
 
 					os.writeC(39);
-					os.writeS("Ãß°¡ °æÇèÄ¡:1%");
+					os.writeS("ì¶”ê°€ ê²½í—˜ì¹˜:1%");
 					break;
 				case 2:
 					os.writeC(39);
-					os.writeS("PVP ´ë¹ÌÁö +1");
+					os.writeS("PVP ëŒ€ë¯¸ì§€ +1");
 					os.writeC(39);
-					os.writeS("Ãß°¡ °æÇèÄ¡:2%");
+					os.writeS("ì¶”ê°€ ê²½í—˜ì¹˜:2%");
 					break;
 				case 3:
 					os.writeC(39);
-					os.writeS("PVP ´ë¹ÌÁö +2");
+					os.writeS("PVP ëŒ€ë¯¸ì§€ +2");
 					os.writeC(39);
-					os.writeS("Ãß°¡ °æÇèÄ¡:3%");
+					os.writeS("ì¶”ê°€ ê²½í—˜ì¹˜:3%");
 					break;
 				case 4:
 					os.writeC(39);
-					os.writeS("PVP ´ë¹ÌÁö +3");
+					os.writeS("PVP ëŒ€ë¯¸ì§€ +3");
 					os.writeC(39);
-					os.writeS("Ãß°¡ °æÇèÄ¡:4%");
+					os.writeS("ì¶”ê°€ ê²½í—˜ì¹˜:4%");
 					break;
 				case 5:
 					os.writeC(39);
-					os.writeS("PVP ´ë¹ÌÁö +4");
+					os.writeS("PVP ëŒ€ë¯¸ì§€ +4");
 					os.writeC(39);
-					os.writeS("Ãß°¡ °æÇèÄ¡:5%");
+					os.writeS("ì¶”ê°€ ê²½í—˜ì¹˜:5%");
 					break;
 				case 6:
 					os.writeC(39);
-					os.writeS("PVP ´ë¹ÌÁö +5");
+					os.writeS("PVP ëŒ€ë¯¸ì§€ +5");
 					os.writeC(39);
-					os.writeS("Ãß°¡ °æÇèÄ¡:6%");
+					os.writeS("ì¶”ê°€ ê²½í—˜ì¹˜:6%");
 					break;
 				case 7:
 					os.writeC(39);
-					os.writeS("PVP ´ë¹ÌÁö +6");
+					os.writeS("PVP ëŒ€ë¯¸ì§€ +6");
 					os.writeC(39);
-					os.writeS("Ãß°¡ °æÇèÄ¡:7%");
+					os.writeS("ì¶”ê°€ ê²½í—˜ì¹˜:7%");
 					break;
 				case 8:
 					os.writeC(39);
-					os.writeS("PVP ´ë¹ÌÁö +7");
+					os.writeS("PVP ëŒ€ë¯¸ì§€ +7");
 					os.writeC(39);
-					os.writeS("Ãß°¡ °æÇèÄ¡:8%");
+					os.writeS("ì¶”ê°€ ê²½í—˜ì¹˜:8%");
 					break;
 
 				}
 			}
 
-			// Áø¸í°©¿Ê 0306
+			// ì§„ëª…ê°‘ì˜· 0306
 			if (getItem().getItemId() == 20395) {
 				switch (getEnchantLevel()) {
 				case 0:
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+5");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+5");
 					break;
 				case 1:
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+10");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+10");
 					break;
 				case 2:
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+20");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+20");
 					break;
 				case 3:
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+30");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+30");
 					break;
 				case 4:
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+40");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+40");
 					break;
 				case 5:
 					os.writeC(39);
-					os.writeS("¸®´ö¼Ç+1");
+					os.writeS("ë¦¬ë•ì…˜+1");
 					os.writeC(39);
-					os.writeS("pvpµ¥¹ÌÁö+1");
+					os.writeS("pvpë°ë¯¸ì§€+1");
 					os.writeC(39);
-					os.writeS("pvp¸®´ö¼Ç+1");
+					os.writeS("pvpë¦¬ë•ì…˜+1");
 					os.writeC(39);
-					os.writeS("pvp¸¶¹ı¸®´ö¼Ç+1");
+					os.writeS("pvpë§ˆë²•ë¦¬ë•ì…˜+1");
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+50");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+50");
 					break;
 				case 6:
 					os.writeC(39);
-					os.writeS("¸®´ö¼Ç+2");
+					os.writeS("ë¦¬ë•ì…˜+2");
 					os.writeC(39);
-					os.writeS("pvpµ¥¹ÌÁö+2");
+					os.writeS("pvpë°ë¯¸ì§€+2");
 					os.writeC(39);
-					os.writeS("pvp¸®´ö¼Ç+2");
+					os.writeS("pvpë¦¬ë•ì…˜+2");
 					os.writeC(39);
-					os.writeS("pvp¸¶¹ı¸®´ö¼Ç+2");
+					os.writeS("pvpë§ˆë²•ë¦¬ë•ì…˜+2");
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+60");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+60");
 					break;
 				case 7:
 					os.writeC(39);
-					os.writeS("¸®´ö¼Ç+3");
+					os.writeS("ë¦¬ë•ì…˜+3");
 					os.writeC(39);
-					os.writeS("pvpµ¥¹ÌÁö+3");
+					os.writeS("pvpë°ë¯¸ì§€+3");
 					os.writeC(39);
-					os.writeS("pvp¸®´ö¼Ç+3");
+					os.writeS("pvpë¦¬ë•ì…˜+3");
 					os.writeC(39);
-					os.writeS("pvp¸¶¹ı¸®´ö¼Ç+3");
+					os.writeS("pvpë§ˆë²•ë¦¬ë•ì…˜+3");
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+70");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+70");
 					break;
 				case 8:
 					os.writeC(39);
-					os.writeS("¸®´ö¼Ç+4");
+					os.writeS("ë¦¬ë•ì…˜+4");
 					os.writeC(39);
-					os.writeS("pvpµ¥¹ÌÁö+4");
+					os.writeS("pvpë°ë¯¸ì§€+4");
 					os.writeC(39);
-					os.writeS("pvp¸®´ö¼Ç+4");
+					os.writeS("pvpë¦¬ë•ì…˜+4");
 					os.writeC(39);
-					os.writeS("pvp¸¶¹ı¸®´ö¼Ç+4");
+					os.writeS("pvpë§ˆë²•ë¦¬ë•ì…˜+4");
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+80");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+80");
 					break;
 				case 9:
 					os.writeC(39);
-					os.writeS("¸®´ö¼Ç+5");
+					os.writeS("ë¦¬ë•ì…˜+5");
 					os.writeC(39);
-					os.writeS("pvpµ¥¹ÌÁö+5");
+					os.writeS("pvpë°ë¯¸ì§€+5");
 					os.writeC(39);
-					os.writeS("pvp¸®´ö¼Ç+5");
+					os.writeS("pvpë¦¬ë•ì…˜+5");
 					os.writeC(39);
-					os.writeS("pvp¸¶¹ı¸®´ö¼Ç+5");
+					os.writeS("pvpë§ˆë²•ë¦¬ë•ì…˜+5");
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+100");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+100");
 					break;
 				case 10:
 					os.writeC(39);
-					os.writeS("¸®´ö¼Ç+7");
+					os.writeS("ë¦¬ë•ì…˜+7");
 					os.writeC(39);
-					os.writeS("pvpµ¥¹ÌÁö+7");
+					os.writeS("pvpë°ë¯¸ì§€+7");
 					os.writeC(39);
-					os.writeS("pvp¸®´ö¼Ç+7");
+					os.writeS("pvpë¦¬ë•ì…˜+7");
 					os.writeC(39);
-					os.writeS("pvp¸¶¹ı¸®´ö¼Ç+7");
+					os.writeS("pvpë§ˆë²•ë¦¬ë•ì…˜+7");
 					os.writeC(39);
-					os.writeS("Áø¸íÈ²ÀÇ °¡È£+150");
+					os.writeS("ì§„ëª…í™©ì˜ ê°€í˜¸+150");
 					break;
 
 				}
 			}
 
-			// Áø¸íºÎÃ÷ 0306
+			// ì§„ëª…ë¶€ì¸  0306
 			if (getItem().getItemId() == 20408) {
 				switch (getEnchantLevel()) {
 
 				case 5:
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß+1");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘+1");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö+1");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€+1");
 					break;
 				case 6:
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß+2");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘+2");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö+2");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€+2");
 					break;
 				case 7:
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß+3");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘+3");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö+3");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€+3");
 					break;
 				case 8:
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß+4");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘+4");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö+4");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€+4");
 					break;
 				case 9:
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß+5");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘+5");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö+5");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€+5");
 					break;
 				case 10:
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ¸íÁß+7");
+					os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘+7");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö+7");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€+7");
 					break;
 
 				}
 			}
-			// Áø¸íÀå°© 0306
+			// ì§„ëª…ì¥ê°‘ 0306
 			if (getItem().getItemId() == 20410) {
 				switch (getEnchantLevel()) {
 
 				case 5:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß+1");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘+1");
 					os.writeC(39);
-					os.writeS("Ãß°¡ ´ë¹ÌÁö+1");
+					os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€+1");
 					break;
 				case 6:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß+2");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘+2");
 					os.writeC(39);
-					os.writeS("Ãß°¡ ´ë¹ÌÁö+2");
+					os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€+2");
 					break;
 				case 7:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß+3");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘+3");
 					os.writeC(39);
-					os.writeS("Ãß°¡ ´ë¹ÌÁö+3");
+					os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€+3");
 					break;
 				case 8:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß+4");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘+4");
 					os.writeC(39);
-					os.writeS("Ãß°¡ ´ë¹ÌÁö+4");
+					os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€+4");
 					break;
 				case 9:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß+5");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘+5");
 					os.writeC(39);
-					os.writeS("Ãß°¡ ´ë¹ÌÁö+5");
+					os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€+5");
 					break;
 				case 10:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ¸íÁß+7");
+					os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘+7");
 					os.writeC(39);
-					os.writeS("Ãß°¡ ´ë¹ÌÁö+7");
+					os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€+7");
 					break;
 
 				}
 			}
-			// Áø¸íÅõ±¸ 0306
+			// ì§„ëª…íˆ¬êµ¬ 0306
 			if (getItem().getItemId() == 20390) {
 				switch (getEnchantLevel()) {
 
 				case 5:
 					os.writeC(39);
-					os.writeS("¸¶¹ı ¸íÁß+1");
+					os.writeS("ë§ˆë²• ëª…ì¤‘+1");
 					os.writeC(39);
-					os.writeS("¸¶¹ı Ä¡¸íÅ¸+1");
+					os.writeS("ë§ˆë²• ì¹˜ëª…íƒ€+1");
 					break;
 				case 6:
 					os.writeC(39);
-					os.writeS("¸¶¹ı ¸íÁß+2");
+					os.writeS("ë§ˆë²• ëª…ì¤‘+2");
 					os.writeC(39);
-					os.writeS("¸¶¹ı Ä¡¸íÅ¸+2");
+					os.writeS("ë§ˆë²• ì¹˜ëª…íƒ€+2");
 					break;
 				case 7:
 					os.writeC(39);
-					os.writeS("¸¶¹ı ¸íÁß+3");
+					os.writeS("ë§ˆë²• ëª…ì¤‘+3");
 					os.writeC(39);
-					os.writeS("¸¶¹ı Ä¡¸íÅ¸+3");
+					os.writeS("ë§ˆë²• ì¹˜ëª…íƒ€+3");
 					break;
 				case 8:
 					os.writeC(39);
-					os.writeS("¸¶¹ı ¸íÁß+4");
+					os.writeS("ë§ˆë²• ëª…ì¤‘+4");
 					os.writeC(39);
-					os.writeS("¸¶¹ı Ä¡¸íÅ¸+4");
+					os.writeS("ë§ˆë²• ì¹˜ëª…íƒ€+4");
 					break;
 				case 9:
 					os.writeC(39);
-					os.writeS("¸¶¹ı ¸íÁß+5");
+					os.writeS("ë§ˆë²• ëª…ì¤‘+5");
 					os.writeC(39);
-					os.writeS("¸¶¹ı Ä¡¸íÅ¸+5");
+					os.writeS("ë§ˆë²• ì¹˜ëª…íƒ€+5");
 					break;
 				case 10:
 					os.writeC(39);
-					os.writeS("¸¶¹ı ¸íÁß+7");
+					os.writeS("ë§ˆë²• ëª…ì¤‘+7");
 					os.writeC(39);
-					os.writeS("¸¶¹ı Ä¡¸íÅ¸+7");
+					os.writeS("ë§ˆë²• ì¹˜ëª…íƒ€+7");
 					break;
 
 				}
 			}
-			// Áø¸í¸ÁÅä 0306
+			// ì§„ëª…ë§í†  0306
 			if (getItem().getItemId() == 20402) {
 				switch (getEnchantLevel()) {
 
 				case 5:
 					os.writeC(39);
-					os.writeS("½ºÅ³ÀûÁß+1");
+					os.writeS("ìŠ¤í‚¬ì ì¤‘+1");
 					os.writeC(39);
-					os.writeS("Á¤·ÉÀûÁß+1");
+					os.writeS("ì •ë ¹ì ì¤‘+1");
 					os.writeC(39);
-					os.writeS("½ºÅÏ¹æ¾î+1");
+					os.writeS("ìŠ¤í„´ë°©ì–´+1");
 					break;
 				case 6:
 					os.writeC(39);
-					os.writeS("½ºÅ³ÀûÁß+2");
+					os.writeS("ìŠ¤í‚¬ì ì¤‘+2");
 					os.writeC(39);
-					os.writeS("Á¤·ÉÀûÁß+2");
+					os.writeS("ì •ë ¹ì ì¤‘+2");
 					os.writeC(39);
-					os.writeS("½ºÅÏ¹æ¾î+2");
+					os.writeS("ìŠ¤í„´ë°©ì–´+2");
 					break;
 				case 7:
 					os.writeC(39);
-					os.writeS("½ºÅ³ÀûÁß+3");
+					os.writeS("ìŠ¤í‚¬ì ì¤‘+3");
 					os.writeC(39);
-					os.writeS("Á¤·ÉÀûÁß+3");
+					os.writeS("ì •ë ¹ì ì¤‘+3");
 					os.writeC(39);
-					os.writeS("½ºÅÏ¹æ¾î+3");
+					os.writeS("ìŠ¤í„´ë°©ì–´+3");
 					break;
 				case 8:
 					os.writeC(39);
-					os.writeS("½ºÅ³ÀûÁß+4");
+					os.writeS("ìŠ¤í‚¬ì ì¤‘+4");
 					os.writeC(39);
-					os.writeS("Á¤·ÉÀûÁß+4");
+					os.writeS("ì •ë ¹ì ì¤‘+4");
 					os.writeC(39);
-					os.writeS("½ºÅÏ¹æ¾î+4");
+					os.writeS("ìŠ¤í„´ë°©ì–´+4");
 					break;
 				case 9:
 					os.writeC(39);
-					os.writeS("½ºÅ³ÀûÁß+5");
+					os.writeS("ìŠ¤í‚¬ì ì¤‘+5");
 					os.writeC(39);
-					os.writeS("Á¤·ÉÀûÁß+5");
+					os.writeS("ì •ë ¹ì ì¤‘+5");
 					os.writeC(39);
-					os.writeS("½ºÅÏ¹æ¾î+5");
+					os.writeS("ìŠ¤í„´ë°©ì–´+5");
 					break;
 				case 10:
 					os.writeC(39);
-					os.writeS("½ºÅ³ÀûÁß+7");
+					os.writeS("ìŠ¤í‚¬ì ì¤‘+7");
 					os.writeC(39);
-					os.writeS("Á¤·ÉÀûÁß+7");
+					os.writeS("ì •ë ¹ì ì¤‘+7");
 					os.writeC(39);
-					os.writeS("½ºÅÏ¹æ¾î+7");
+					os.writeS("ìŠ¤í„´ë°©ì–´+7");
 					break;
 
 				}
@@ -3051,39 +3051,39 @@ public class L1ItemInstance extends L1Object {
 					os.writeC(14);
 					os.writeH(getItem().get_addhp());
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +1");
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +1");
 					break;
 				case 1:
 					os.writeC(14);
 					os.writeH(getItem().get_addhp() + 20);
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +1");
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +1");
 					break;
 				case 2:
 					os.writeC(14);
 					os.writeH(getItem().get_addhp() + 30);
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +1");
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +1");
 					break;
 				case 3:
 					os.writeC(14);
 					os.writeH(getItem().get_addhp() + (getItem().getBless() == 0 ? 50 : 40));
 					os.writeC(39);
-					os.writeS("´ë¹ÌÁö °¨¼Ò +1");
+					os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +1");
 					break;
 				case 4:
 					if (getItem().getBless() != 0) {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 50);
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +1");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +1");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 60);
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +2");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +2");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +20(2%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +20(2%)");
 					}
 					break;
 				case 5:
@@ -3091,17 +3091,17 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 60);
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +2");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +2");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +20(2%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +20(2%)");
 					} else {
 
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 70);
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +3");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +3");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +20(3%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +20(3%)");
 					}
 					break;
 				case 6:
@@ -3109,20 +3109,20 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 70);
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +3");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +3");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +20(3%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +20(3%)");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 80);
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ¸íÁß +1");
+						os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘ +1");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ¸íÁß +1");
+						os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘ +1");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +4");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +4");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +20(4%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +20(4%)");
 					}
 					break;
 				case 7:
@@ -3130,24 +3130,24 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 80);
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ¸íÁß +1");
+						os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘ +1");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ¸íÁß +1");
+						os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘ +1");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +4");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +4");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +20(4%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +20(4%)");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 90);
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ¸íÁß +3");
+						os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘ +3");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ¸íÁß +3");
+						os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘ +3");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +5");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +5");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +20(5%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +20(5%)");
 					}
 					break;
 				case 8:
@@ -3155,24 +3155,24 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 90);
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ¸íÁß +3");
+						os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘ +3");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ¸íÁß +3");
+						os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘ +3");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +7");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +7");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +25(5%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +25(5%)");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 140);
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ¸íÁß +5");
+						os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘ +5");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ¸íÁß +5");
+						os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘ +5");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +7");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +7");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +30(6%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +30(6%)");
 					}
 					break;
 				case 9:
@@ -3180,24 +3180,24 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 100);
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ¸íÁß +5");
+						os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘ +5");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ¸íÁß +5");
+						os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘ +5");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +7");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +7");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +25(7%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +25(7%)");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 150);
 						os.writeC(39);
-						os.writeS("±Ù°Å¸® ¸íÁß +7");
+						os.writeS("ê·¼ê±°ë¦¬ ëª…ì¤‘ +7");
 						os.writeC(39);
-						os.writeS("¿ø°Å¸® ¸íÁß +7");
+						os.writeS("ì›ê±°ë¦¬ ëª…ì¤‘ +7");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +9");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +9");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò È®·ü +30(8%)");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ í™•ë¥  +30(8%)");
 					}
 					break;
 				}
@@ -3381,9 +3381,9 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 15);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +1");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +1");
+						os.writeS("ê³µê²© ì„±ê³µ +1");
 					}
 					break;
 				case 5:
@@ -3391,16 +3391,16 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 15);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +1");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +1");
+						os.writeS("ê³µê²© ì„±ê³µ +1");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 20);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +2");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +2");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +2");
+						os.writeS("ê³µê²© ì„±ê³µ +2");
 					}
 					break;
 				case 6:
@@ -3408,20 +3408,20 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 20);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +2");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +2");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +2");
+						os.writeS("ê³µê²© ì„±ê³µ +2");
 						os.writeC(39);
-						os.writeS("½ºÅÏ ³»¼º +5");
+						os.writeS("ìŠ¤í„´ ë‚´ì„± +5");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 25);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +3");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +3");
+						os.writeS("ê³µê²© ì„±ê³µ +3");
 						os.writeC(39);
-						os.writeS("½ºÅÏ ³»¼º +5");
+						os.writeS("ìŠ¤í„´ ë‚´ì„± +5");
 					}
 					break;
 				case 7:
@@ -3429,24 +3429,24 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 25);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +3");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +3");
+						os.writeS("ê³µê²© ì„±ê³µ +3");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +1");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 						os.writeC(39);
-						os.writeS("½ºÅÏ ³»¼º +7");
+						os.writeS("ìŠ¤í„´ ë‚´ì„± +7");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 30);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +5");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +5");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +5");
+						os.writeS("ê³µê²© ì„±ê³µ +5");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +1");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 						os.writeC(39);
-						os.writeS("½ºÅÏ ³»¼º +7");
+						os.writeS("ìŠ¤í„´ ë‚´ì„± +7");
 					}
 					break;
 				case 8:
@@ -3454,24 +3454,24 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 30);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +5");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +5");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +5");
+						os.writeS("ê³µê²© ì„±ê³µ +5");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +3");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("½ºÅÏ ³»¼º +9");
+						os.writeS("ìŠ¤í„´ ë‚´ì„± +9");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 30);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +7");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +7");
+						os.writeS("ê³µê²© ì„±ê³µ +7");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +5");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +5");
 						os.writeC(39);
-						os.writeS("½ºÅÏ ³»¼º +9");
+						os.writeS("ìŠ¤í„´ ë‚´ì„± +9");
 					}
 					break;
 				case 9:
@@ -3479,24 +3479,24 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 40);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +7");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +7");
+						os.writeS("ê³µê²© ì„±ê³µ +7");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +7");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 						os.writeC(39);
-						os.writeS("½ºÅÏ ³»¼º +9");
+						os.writeS("ìŠ¤í„´ ë‚´ì„± +9");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 40);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +9");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +9");
 						os.writeC(39);
-						os.writeS("°ø°İ ¼º°ø +9");
+						os.writeS("ê³µê²© ì„±ê³µ +9");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +9");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +9");
 						os.writeC(39);
-						os.writeS("½ºÅÏ ³»¼º +9");
+						os.writeS("ìŠ¤í„´ ë‚´ì„± +9");
 					}
 					break;
 				}
@@ -3529,7 +3529,7 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 35);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +1");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 					}
 					break;
 				case 5:
@@ -3537,12 +3537,12 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 35);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +1");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 40);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +2");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +2");
 					}
 					break;
 				case 6:
@@ -3550,100 +3550,100 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 40);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +2");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +2");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 45);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +3");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +1");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +1");
 						os.writeC(39);
-						os.writeS("È®·ü ´ë¹ÌÁö °¨¼Ò +20(1%)");
+						os.writeS("í™•ë¥  ëŒ€ë¯¸ì§€ ê°ì†Œ +20(1%)");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +5");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +5");
 					break;
 				case 7:
 					if (getItem().getBless() != 0) {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 45);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +3");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +1");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +1");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +1");
 						os.writeC(39);
-						os.writeS("È®·ü ´ë¹ÌÁö °¨¼Ò +20(1%)");
+						os.writeS("í™•ë¥  ëŒ€ë¯¸ì§€ ê°ì†Œ +20(1%)");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 55);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +5");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +5");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +1");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +2");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +2");
 						os.writeC(39);
-						os.writeS("È®·ü ´ë¹ÌÁö °¨¼Ò +20(2%)");
+						os.writeS("í™•ë¥  ëŒ€ë¯¸ì§€ ê°ì†Œ +20(2%)");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +7");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +7");
 					break;
 				case 8:
 					if (getItem().getBless() != 0) {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 50);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +5");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +5");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +3");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +3");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +3");
 						os.writeC(39);
-						os.writeS("È®·ü ´ë¹ÌÁö °¨¼Ò +20(2%)");
+						os.writeS("í™•ë¥  ëŒ€ë¯¸ì§€ ê°ì†Œ +20(2%)");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 65);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +7");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +5");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +5");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +5");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +5");
 						os.writeC(39);
-						os.writeS("È®·ü ´ë¹ÌÁö °¨¼Ò +20(3%)");
+						os.writeS("í™•ë¥  ëŒ€ë¯¸ì§€ ê°ì†Œ +20(3%)");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +9");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +9");
 					break;
 				case 9:
 					if (getItem().getBless() != 0) {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 55);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +7");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +7");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +5");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +5");
 						os.writeC(39);
-						os.writeS("È®·ü ´ë¹ÌÁö °¨¼Ò +20(4%)");
+						os.writeS("í™•ë¥  ëŒ€ë¯¸ì§€ ê°ì†Œ +20(4%)");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 75);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +9");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +9");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +9");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +9");
 						os.writeC(39);
-						os.writeS("´ë¹ÌÁö °¨¼Ò +7");
+						os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +7");
 						os.writeC(39);
-						os.writeS("È®·ü ´ë¹ÌÁö °¨¼Ò +20(5%)");
+						os.writeS("í™•ë¥  ëŒ€ë¯¸ì§€ ê°ì†Œ +20(5%)");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +9");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +9");
 					break;
 				}
 			}
@@ -3704,7 +3704,7 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(getItem().get_addsp() + 3);
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +5");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +5");
 					break;
 				case 7:
 					if (getItem().getBless() != 0) {
@@ -3713,7 +3713,7 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(17);
 						os.writeC(getItem().get_addsp() + 3);
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +1");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 40);
@@ -3722,10 +3722,10 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(32);
 						os.writeC(getItem().get_addmp() + 15);
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +1");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +7");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +7");
 					break;
 				case 8:
 					if (getItem().getBless() != 0) {
@@ -3736,7 +3736,7 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(32);
 						os.writeC(getItem().get_addmp() + 15);
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +3");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 50);
@@ -3745,10 +3745,10 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(32);
 						os.writeC(getItem().get_addmp() + 20);
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +5");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +5");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +9");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +9");
 					break;
 				case 9:
 					if (getItem().getBless() != 0) {
@@ -3759,7 +3759,7 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(32);
 						os.writeC(getItem().get_addmp() + 55);
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +7");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 60);
@@ -3768,15 +3768,15 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(32);
 						os.writeC(getItem().get_addmp() + 65);
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +9");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +9");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +9");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +9");
 					break;
 				}
 			}
 
-			// Ãàº¹ ¼öÄ¡
+			// ì¶•ë³µ ìˆ˜ì¹˜
 			if (get_bless_level() != 0) {
 				if (getItem().getItemId() == 9 || getItem().getItemId() == 190 || getItem().getItemId() == 317 || getItem().getItemId() == 127 ||
 					getItem().getItemId() == 54 || getItem().getItemId() == 164 || getItem().getItemId() == 205 || getItem().getItemId() == 124 || 
@@ -3784,18 +3784,18 @@ public class L1ItemInstance extends L1Object {
 					 || getItem().getItemId() == 200126 || getItem().getItemId() == 200127 || getItem().getItemId() == 200124) {
 					if (getItem().getType2() == 1) {
 						os.writeC(39);
-						os.writeS("PVEÃß°¡ ´ë¹ÌÁö +" + get_bless_level());
+						os.writeS("PVEì¶”ê°€ ëŒ€ë¯¸ì§€ +" + get_bless_level());
 					} else if (getItem().getType2() == 2) {
 						os.writeC(39);
-						os.writeS("PVE´ë¹ÌÁö °¨¼Ò +" + get_bless_level());
+						os.writeS("PVEëŒ€ë¯¸ì§€ ê°ì†Œ +" + get_bless_level());
 					}
 				} else {
 					if (getItem().getType2() == 1) {
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +" + get_bless_level());
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +" + get_bless_level());
 					} else if (getItem().getType2() == 2) {
 						os.writeC(39);
-						os.writeS("PVP´ë¹ÌÁö °¨¼Ò +" + get_bless_level());
+						os.writeS("PVPëŒ€ë¯¸ì§€ ê°ì†Œ +" + get_bless_level());
 					}
 				}
 			}
@@ -3827,7 +3827,7 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 35);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +1");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 					}
 					break;
 				case 5:
@@ -3835,12 +3835,12 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 35);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +1");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 40);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +2");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +2");
 					}
 					break;
 				case 6:
@@ -3848,81 +3848,81 @@ public class L1ItemInstance extends L1Object {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 40);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +2");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +2");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 45);
 						os.writeC(15);
 						os.writeH(getMr() + 1);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +3");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +5");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +5");
 					break;
 				case 7:
 					if (getItem().getBless() != 0) {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 45);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +3");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +1");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 55);
 						os.writeC(15);
 						os.writeH(getMr() + 2);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +5");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +5");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +1");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +7");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +7");
 					break;
 				case 8:
 					if (getItem().getBless() != 0) {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 50);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +5");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +5");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +3");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 65);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +7");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +5");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +5");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +9");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +9");
 					break;
 				case 9:
 					if (getItem().getBless() != 0) {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 55);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +7");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +7");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 					} else {
 						os.writeC(14);
 						os.writeH(getItem().get_addhp() + 75);
 						os.writeC(39);
-						os.writeS("Ãß°¡ ´ë¹ÌÁö +9");
+						os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +9");
 						os.writeC(39);
-						os.writeS("PVPÃß°¡ ´ë¹ÌÁö +9");
+						os.writeS("PVPì¶”ê°€ ëŒ€ë¯¸ì§€ +9");
 					}
 					os.writeC(39);
-					os.writeS("½ºÅÏ ³»¼º +9");
+					os.writeS("ìŠ¤í„´ ë‚´ì„± +9");
 					break;
 				}
 			}
 
-			if (itemType2 == 2 && (amortype == 9 || amortype == 11) && getItem().getGrade() != 3) {// ¾Ç¼¼°ü·Ã
+			if (itemType2 == 2 && (amortype == 9 || amortype == 11) && getItem().getGrade() != 3) {// ì•…ì„¸ê´€ë ¨
 				switch (enchantlevel) {
 				case 1:
 				case 2:
@@ -3930,76 +3930,76 @@ public class L1ItemInstance extends L1Object {
 				case 4:
 				case 5:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +1");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +1");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +1");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +1");
 					break;
 				case 6:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +2");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +2");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +2");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +2");
 					os.writeC(39);
-					os.writeS("PvP Ãß°¡ ´ë¹ÌÁö +1");
+					os.writeS("PvP ì¶”ê°€ ëŒ€ë¯¸ì§€ +1");
 					break;
 				case 7:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +3");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +3");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +3");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +3");
 					os.writeC(39);
-					os.writeS("PvP Ãß°¡ ´ë¹ÌÁö +2");
+					os.writeS("PvP ì¶”ê°€ ëŒ€ë¯¸ì§€ +2");
 					break;
 				case 8:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +4");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +4");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +4");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +4");
 					os.writeC(39);
-					os.writeS("PvP Ãß°¡ ´ë¹ÌÁö +3");
+					os.writeS("PvP ì¶”ê°€ ëŒ€ë¯¸ì§€ +3");
 					break;
 				case 9:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +5");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +5");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +5");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +5");
 					os.writeC(39);
-					os.writeS("PvP Ãß°¡ ´ë¹ÌÁö +4");
+					os.writeS("PvP ì¶”ê°€ ëŒ€ë¯¸ì§€ +4");
 					break;
 				case 10:
 					os.writeC(39);
-					os.writeS("±Ù°Å¸® ´ë¹ÌÁö +6");
+					os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +6");
 					os.writeC(39);
-					os.writeS("¿ø°Å¸® ´ë¹ÌÁö +6");
+					os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +6");
 					os.writeC(39);
-					os.writeS("PvP Ãß°¡ ´ë¹ÌÁö +7");
+					os.writeS("PvP ì¶”ê°€ ëŒ€ë¯¸ì§€ +7");
 					break;
 				}
 			}
 			if (getTechniqueHit() != 0) {
 				os.writeC(39);
-				os.writeS("\\fY½ºÅÏ ÀûÁß+" + getTechniqueHit());
+				os.writeS("\\fYìŠ¤í„´ ì ì¤‘+" + getTechniqueHit());
 			}
 			if (getSpiritHit() != 0) {
 				os.writeC(39);
-				os.writeS("\\fYÁ¤·É ÀûÁß+" + getSpiritHit());
+				os.writeS("\\fYì •ë ¹ ì ì¤‘+" + getSpiritHit());
 			}
 			if (getHitup_magic() != 0) {
 				os.writeC(39);
-				os.writeS("\\fY¸¶¹ı ÀûÁß+" + getHitup_magic());
+				os.writeS("\\fYë§ˆë²• ì ì¤‘+" + getHitup_magic());
 			}
 			if (getItem().isHasteItem()) {
 				os.writeC(18);
 			}
-			/** ±³È¯ »èÁ¦ Ç¥±â **/
-			if (getItem().isTradable()) {// ±³È¯
+			/** êµí™˜ ì‚­ì œ í‘œê¸° **/
+			if (getItem().isTradable()) {// êµí™˜
 				os.writeC(39);
-				os.writeS("\\fS±³È¯ °¡´É");
+				os.writeS("\\fSêµí™˜ ê°€ëŠ¥");
 			} else {
 				os.writeC(39);
-				os.writeS("\\fY±³È¯ ºÒ°¡");
+				os.writeS("\\fYêµí™˜ ë¶ˆê°€");
 			}
-			/** ±³È¯ »èÁ¦ Ç¥±â **/
+			/** êµí™˜ ì‚­ì œ í‘œê¸° **/
 
 			int bit = 0;
 			bit |= getItem().isUseRoyal() ? 1 : 0;
@@ -4029,10 +4029,10 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(30);
 				os.writeC(getItem().get_defense_earth());
 			}
-			// //writeS½ºÆ®¸µÀ¸·Î º¯°æÇÒ°Í
+			// //writeSìŠ¤íŠ¸ë§ìœ¼ë¡œ ë³€ê²½í• ê²ƒ
 			if (getItem().get_regist_freeze() != 0) {
 				os.writeC(39);
-				os.writeS("µ¿ºù³»¼º " + getItem().get_regist_freeze());
+				os.writeS("ë™ë¹™ë‚´ì„± " + getItem().get_regist_freeze());
 				// os.writeC(15);
 				// os.writeH(getItem().get_regist_freeze());
 				// os.writeC(33);
@@ -4040,7 +4040,7 @@ public class L1ItemInstance extends L1Object {
 			}
 			if (getItem().get_regist_stone() != 0) {
 				os.writeC(39);
-				os.writeS("¼®È­³»¼º " + getItem().get_regist_stone());
+				os.writeS("ì„í™”ë‚´ì„± " + getItem().get_regist_stone());
 				// os.writeC(15);
 				// os.writeH(getItem().get_regist_stone());
 				// os.writeC(33);
@@ -4048,7 +4048,7 @@ public class L1ItemInstance extends L1Object {
 			}
 			if (getItem().get_regist_sleep() != 0) {
 				os.writeC(39);
-				os.writeS("¼ö¸é³»¼º " + getItem().get_regist_sleep());
+				os.writeS("ìˆ˜ë©´ë‚´ì„± " + getItem().get_regist_sleep());
 				// os.writeC(15);
 				// os.writeH(getItem().get_regist_sleep());
 				// os.writeC(33);
@@ -4056,7 +4056,7 @@ public class L1ItemInstance extends L1Object {
 			}
 			if (getItem().get_regist_blind() != 0) {
 				os.writeC(39);
-				os.writeS("¾ÏÈæ³»¼º " + getItem().get_regist_blind());
+				os.writeS("ì•”í‘ë‚´ì„± " + getItem().get_regist_blind());
 			}
 			// os.writeC(15);
 			// os.writeH(getItem().get_regist_blind());
@@ -4065,7 +4065,7 @@ public class L1ItemInstance extends L1Object {
 			// }
 			if (getItem().get_regist_stun() != 0) {
 				os.writeC(39);
-				os.writeS("½ºÅÏ³»¼º " + getItem().get_regist_stun());
+				os.writeS("ìŠ¤í„´ë‚´ì„± " + getItem().get_regist_stun());
 
 			}
 			// os.writeC(15);
@@ -4075,13 +4075,13 @@ public class L1ItemInstance extends L1Object {
 			// }
 			if (getItem().get_regist_sustain() != 0) {
 				os.writeC(39);
-				os.writeS("È¦µå³»¼º " + getItem().get_regist_sustain());
+				os.writeS("í™€ë“œë‚´ì„± " + getItem().get_regist_sustain());
 				// os.writeC(15);
 				// os.writeH(getItem().get_regist_sustain());
 				// os.writeC(33);
 				// os.writeC(6);
 			}
-			// writeS½ºÆ®¸µÀ¸·Î º¯°æÇÒ°Í
+			// writeSìŠ¤íŠ¸ë§ìœ¼ë¡œ ë³€ê²½í• ê²ƒ
 			// if (getItem.getLuck() != 0) {
 			// os.writeC(20);
 			// os.writeC(val);
@@ -4097,15 +4097,15 @@ public class L1ItemInstance extends L1Object {
 		}
 		if (itemId == 1136) {
 			os.writeC(39);
-			os.writeS("¹ßµ¿:¾Ç¸ù");
+			os.writeS("ë°œë™:ì•…ëª½");
 		}
 		if (getLimitTime() != null) {
 			if (getLimitTime() != null) {
-				SimpleDateFormat formatter = new SimpleDateFormat("MM¿ùddÀÏHH½ÃmmºĞ");
+				SimpleDateFormat formatter = new SimpleDateFormat("MMì›”ddì¼HHì‹œmmë¶„");
 				os.writeC(39);
 				os.writeS(formatter.format(getLimitTime()));
 				os.writeC(39);
-				os.writeS("ÀÌÈÄ ÀÚµ¿ »èÁ¦");
+				os.writeS("ì´í›„ ìë™ ì‚­ì œ");
 			}
 		}
 		return os.getBytes();
@@ -4134,7 +4134,7 @@ public class L1ItemInstance extends L1Object {
 				setHitByMagic(0);
 				if (_pc._isShowFang == true) {
 					_pc._isShowFang = false;
-					_pc.sendPackets(new S_SkillSound(_pc.getId(), 8956)); // Á¾·á
+					_pc.sendPackets(new S_SkillSound(_pc.getId(), 8956)); // ì¢…ë£Œ
 				} else {
 					_pc.sendPackets(new S_ServerMessage(308, getLogName()));
 				}
@@ -4317,7 +4317,7 @@ public class L1ItemInstance extends L1Object {
 		_roundId = i;
 	}
 
-	private int _ticketId = -1; // Æ¼°Ù ¹øÈ£
+	private int _ticketId = -1; // í‹°ê²Ÿ ë²ˆí˜¸
 
 	public int getTicketId() {
 		return _ticketId;
@@ -4347,7 +4347,7 @@ public class L1ItemInstance extends L1Object {
 		_isWorking = flag;
 	}
 
-	// ¾ÆÀÌÅÛÀ» ºĞ´çÃ¼Å©ÇØ¼­ »èÁ¦ÇÏ±â À§ÇØ¼­ Ãß°¡!!
+	// ì•„ì´í…œì„ ë¶„ë‹¹ì²´í¬í•´ì„œ ì‚­ì œí•˜ê¸° ìœ„í•´ì„œ ì¶”ê°€!!
 	private int _deleteItemTime = 0;
 
 	public int get_DeleteItemTime() {
@@ -4421,7 +4421,7 @@ public class L1ItemInstance extends L1Object {
 			if (getItem().isTwohandedWeapon()) {
 				os.writeC(4);
 			}
-			// °ø°İ ¼º°ø
+			// ê³µê²© ì„±ê³µ
 			if (getItem().getHitModifier() != 0) {
 				if (itemType1 == 20 || itemType1 == 66) {
 					os.writeC(24);
@@ -4431,10 +4431,10 @@ public class L1ItemInstance extends L1Object {
 					os.writeC(getItem().getHitModifier());
 				}
 			}
-			// Ãß°¡ Å¸°İ
+			// ì¶”ê°€ íƒ€ê²©
 			if (getItem().getDmgModifier() != 0) {
 				os.writeC(39);
-				os.writeS("Ãß°¡ ´ë¹ÌÁö +" + getItem().getDmgup());
+				os.writeS("ì¶”ê°€ ëŒ€ë¯¸ì§€ +" + getItem().getDmgup());
 			}
 			if (getItem().getHitup() != 0) {
 				os.writeC(5);
@@ -4442,7 +4442,7 @@ public class L1ItemInstance extends L1Object {
 			}
 			if (getItem().getDmgup() != 0) {
 				os.writeC(39);
-				os.writeS("±Ù°Å¸® ´ë¹ÌÁö +" + getItem().getDmgup());
+				os.writeS("ê·¼ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + getItem().getDmgup());
 			}
 			if (getItem().getBowHitup() != 0) {
 				os.writeC(24);
@@ -4451,7 +4451,7 @@ public class L1ItemInstance extends L1Object {
 
 			if (getItem().getBowDmgup() != 0) {
 				os.writeC(39);
-				os.writeS("¿ø°Å¸® ´ë¹ÌÁö +" + getItem().getBowDmgup());
+				os.writeS("ì›ê±°ë¦¬ ëŒ€ë¯¸ì§€ +" + getItem().getBowDmgup());
 			}
 			if (itemId == 126 || itemId == 127 || itemId == 200126 || itemId == 200127) {
 				os.writeC(16);
@@ -4462,7 +4462,7 @@ public class L1ItemInstance extends L1Object {
 
 			if (getItem().getDamageReduction() != 0) {
 				os.writeC(39);
-				os.writeS("´ë¹ÌÁö °¨¼Ò +" + getItem().getDamageReduction());
+				os.writeS("ëŒ€ë¯¸ì§€ ê°ì†Œ +" + getItem().getDamageReduction());
 			}
 
 			// STR~CHA
@@ -4500,7 +4500,7 @@ public class L1ItemInstance extends L1Object {
 				os.writeC(getItem().get_addmp());
 			}
 			if (getItem().get_addmpr() != 0) {
-				if (itemId == 329) { // ¸íÁöÃ³¸®
+				if (itemId == 329) { // ëª…ì§€ì²˜ë¦¬
 					os.writeC(38);
 					os.writeC(getItem().get_addmpr() + getEnchantLevel() * 1);
 				} else {
@@ -4646,7 +4646,7 @@ public class L1ItemInstance extends L1Object {
 			result += enchantLevel > 0 ? enchantLevel - 1 : 0;
 		}
 
-		if (getItemId() == 292) { // Áø³ë Á¤·ÉÀûÁß
+		if (getItemId() == 292) { // ì§„ë…¸ ì •ë ¹ì ì¤‘
 			result += enchantLevel > 7 ? enchantLevel - 7 : 0;
 			if (result > 3) {
 				result = 3;
@@ -4700,15 +4700,15 @@ public class L1ItemInstance extends L1Object {
 	private String getClassType(int i) {
 		switch (i) {
 		case 0:
-			return "±ºÁÖ";
+			return "êµ°ì£¼";
 		case 1:
-			return "±â»ç";
+			return "ê¸°ì‚¬";
 		case 2:
-			return "¿äÁ¤";
+			return "ìš”ì •";
 		case 3:
-			return "¸¶¹ı»ç";
+			return "ë§ˆë²•ì‚¬";
 		case 4:
-			return "´ÙÅ©¿¤ÇÁ";
+			return "ë‹¤í¬ì—˜í”„";
 		}
 
 		return "";

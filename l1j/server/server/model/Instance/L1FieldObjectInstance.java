@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -55,12 +55,12 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 	public void onTalkAction(L1PcInstance pc) {
 		int npcid = getNpcTemplate().get_npcId();
 		switch(npcid){
-		case 4212015: { // µå·¡°ï Æ÷Å»
+		case 4212015: { // ë“œë˜ê³¤ í¬íƒˆ
 			// pc.system=1;
 			pc.dragonmapid = (short) moveMapId;
 			// pc.sendPackets(new S_Message_YN(622,
-			// "¾ÈÅ¸¶ó½º µå·¡°ï Æ÷Å»¿¡ ÁøÀÔ ÇÏ½Ã°Ú½À´Ï±î?(Y/N)"), true);
-			pc.system = -1;// ÃÊ±âÈ­
+			// "ì•ˆíƒ€ë¼ìŠ¤ ë“œë˜ê³¤ í¬íƒˆì— ì§„ì… í•˜ì‹œê² ìŠµë‹ˆê¹Œ?(Y/N)"), true);
+			pc.system = -1;// ì´ˆê¸°í™”
 			int count = 0;
 			int trcount = 0;
 			AntarasRaid ar = AntarasRaidSystem.getInstance().getAR(
@@ -68,17 +68,17 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 			int count1 = ar.countLairUser();
 			if (pc.getLevel() <= 55) {
 				pc.sendPackets(new S_SystemMessage(
-						"µå·¡°ï ·¹ÀÌµå ·¹º§ Á¦ÇÑÀ¸·ÎÀÎÇØ µå·¡°ï Æ÷Å»¿¡ ÀÔÀå ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+						"ë“œë˜ê³¤ ë ˆì´ë“œ ë ˆë²¨ ì œí•œìœ¼ë¡œì¸í•´ ë“œë˜ê³¤ í¬íƒˆì— ì…ì¥ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}
 			if (pc.getSkillEffectTimerSet().hasSkillEffect(
 					L1SkillId.DRAGONRAID_BUFF)) {
 				pc.sendPackets(new S_SystemMessage(
-						"µå·¡°ï ·¹ÀÌµå ¸¶¹ıÀ¸·Î ÀÎÇØ µå·¡°ï Æ÷Å»¿¡ ÀÔÀå ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+						"ë“œë˜ê³¤ ë ˆì´ë“œ ë§ˆë²•ìœ¼ë¡œ ì¸í•´ ë“œë˜ê³¤ í¬íƒˆì— ì…ì¥ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				pc.sendPackets(
 						new S_SystemMessage(ss.format(pc.getNetConnection()
 								.getAccount().getDragonRaid())
-								+ " ÀÌÈÄ¿¡ ÀÔÀå °¡´ÉÇÕ´Ï´Ù."));
+								+ " ì´í›„ì— ì…ì¥ ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 				return;
 			}
 			if (count1 > 0) {
@@ -107,7 +107,7 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 					count += 1;
 					if (count > 31) {
 						pc.sendPackets(new S_SystemMessage(
-								"ÀÔÀå °¡´É ÀÎ¿ø¼ö¸¦ ÃÊ°ú ÇÏ¿´½À´Ï´Ù."));
+								"ì…ì¥ ê°€ëŠ¥ ì¸ì›ìˆ˜ë¥¼ ì´ˆê³¼ í•˜ì˜€ìŠµë‹ˆë‹¤."));
 						return;
 					}
 				}
@@ -119,18 +119,18 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 		}
 			break;
 		case 4500102:
-			¾ÈÅ¸·¹ÀÌµå½ÃÀÛ(pc, pc.dragonmapid);
+			ì•ˆíƒ€ë ˆì´ë“œì‹œì‘(pc, pc.dragonmapid);
 			break;
 			default: break;
 		}
 	}
 	
-	private synchronized void ¾ÈÅ¸·¹ÀÌµå½ÃÀÛ(L1PcInstance pc, int mapid) {
+	private synchronized void ì•ˆíƒ€ë ˆì´ë“œì‹œì‘(L1PcInstance pc, int mapid) {
 		int count = 0;
 		AntarasRaid ar = AntarasRaidSystem.getInstance().getAR(mapid);
 		count = ar.countLairUser();
 		if (ar.isAntaras()) {
-			pc.sendPackets(new S_ServerMessage(1537));// µå·¡°ïÀÌ ±ú¼­ ÁøÀÔ ¸øÇÑ´Ù
+			pc.sendPackets(new S_ServerMessage(1537));// ë“œë˜ê³¤ì´ ê¹¨ì„œ ì§„ì… ëª»í•œë‹¤
 			return;
 		} else if (count == 0) {
 			for (L1Object npc : L1World.getInstance().getObject()) {
@@ -150,14 +150,14 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 				ar.art = null;
 			}
 			AntarasRaidTimer antastart = new AntarasRaidTimer(null, ar, 5,
-					10 * 1000);// 2ºĞ Ã¼Å©
+					10 * 1000);// 2ë¶„ ì²´í¬
 			antastart.begin();
-			// ¸÷¼ÒÈ¯ ¾ÈÅ¸ ±ú¾î³ª¼­ Á¢±Ù±İÁö.
+			// ëª¹ì†Œí™˜ ì•ˆíƒ€ ê¹¨ì–´ë‚˜ì„œ ì ‘ê·¼ê¸ˆì§€.
 			AntarasRaidTimer antaendtime = new AntarasRaidTimer(null, ar, 6,
-					1000 * 60 * 120);// 22ºĞ Ã¼Å©
+					1000 * 60 * 120);// 22ë¶„ ì²´í¬
 			ar.art = antaendtime;
 			antaendtime.begin();
-			// ¾ÈÅ¸ Àâ±â ½ÇÆĞ ¸ğµÎ ÅÚ.
+			// ì•ˆíƒ€ ì¡ê¸° ì‹¤íŒ¨ ëª¨ë‘ í…”.
 		}
 		ar.addLairUser(pc);
 		L1Teleport.teleport(pc, 32796, 32664, (short) mapid, 5,true);
@@ -179,7 +179,7 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 	}
 
 	/**
-	 * ÁöÁ¤µÈ ¸ÊÀÇ 32¸íÀÌ ³Ñ´ÂÁö Ã¼Å©ÇØ¼­ ÅÚ½ÃÅ²´Ù
+	 * ì§€ì •ëœ ë§µì˜ 32ëª…ì´ ë„˜ëŠ”ì§€ ì²´í¬í•´ì„œ í…”ì‹œí‚¨ë‹¤
 	 * @param pc
 	 * @param mapid
 	 */
@@ -196,7 +196,7 @@ public class L1FieldObjectInstance extends L1NpcInstance {
 	}
 
 	/**
-	 * ÀÌµ¿ÇÒ ¸ÊÀ» ¼³Á¤ÇÑ´Ù.
+	 * ì´ë™í•  ë§µì„ ì„¤ì •í•œë‹¤.
 	 * @param id
 	 */
 	public void setMoveMapId(int id){

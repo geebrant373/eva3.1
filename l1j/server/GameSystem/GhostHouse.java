@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,8 +47,8 @@ public class GhostHouse implements Runnable {
 	enum Status { ENTER, READY, PLAY, END, REST };
 
 	private static final int GHOSTHOUSE_MAPID = 5140;	
-	private static final int LIMIT_MIN_PLAYER_COUNT = 2;	// °ÔÀÓ ½ÃÀÛ¿¡ ÇÊ¿äÇÑ ÀÎ¿ø (º»¼· : 2¸í)
-	private static final int LIMIT_MIN_ENTER_PLAYER_COUNT = 5;	// °ÔÀÓ ÀÔÀå¿¡ ÇÊ¿äÇÑ ÀÎ¿ø (º»¼· : 5¸í)	
+	private static final int LIMIT_MIN_PLAYER_COUNT = 2;	// ê²Œì„ ì‹œì‘ì— í•„ìš”í•œ ì¸ì› (ë³¸ì„­ : 2ëª…)
+	private static final int LIMIT_MIN_ENTER_PLAYER_COUNT = 5;	// ê²Œì„ ì…ì¥ì— í•„ìš”í•œ ì¸ì› (ë³¸ì„­ : 5ëª…)	
 
 	private L1PcInstance[] rankList;
 	private L1PcInstance[] finishMember;
@@ -85,7 +85,7 @@ public class GhostHouse implements Runnable {
 					setStatus(Status.READY);
 					break;
 				case READY:					
-					Thread.sleep(30000L); // ÀÔÀåÇÑ ÈÄ À¯Àú ´ë±â ½Ã°£
+					Thread.sleep(30000L); // ì…ì¥í•œ í›„ ìœ ì € ëŒ€ê¸° ì‹œê°„
 					finalPlayMemberCheck();					
 					if(isGotEnoughStartMembers()){						
 						sendMessage(Message.WAIT_START);
@@ -99,15 +99,15 @@ public class GhostHouse implements Runnable {
 				case PLAY:					
 					isTimeOver = false;
 					Thread.sleep(3000L);
-					clearEnterMember();	// ÀÔÀå´ë±â »èÁ¦
-					doPolyPlayGameMember();	// °ÔÀÓÀÎ¿ø º¯½Å
+					clearEnterMember();	// ì…ì¥ëŒ€ê¸° ì‚­ì œ
+					doPolyPlayGameMember();	// ê²Œì„ì¸ì› ë³€ì‹ 
 					Thread.sleep(5000L);
-					countDownStartGame();	// 5,4,3,2,1  Ä«¿îÆ® ´Ù¿î
+					countDownStartGame();	// 5,4,3,2,1  ì¹´ìš´íŠ¸ ë‹¤ìš´
 					Thread.sleep(5000L);					
-					checkWinnerCount();	// ½ÂÀÚ Ã¼Å©
-					startPlayGameMemberGameTime();	// °ÔÀÓ Âü°¡ÀÚµé 00:00 ½Ã°£ ½ÃÀÛ
+					checkWinnerCount();	// ìŠ¹ì ì²´í¬
+					startPlayGameMemberGameTime();	// ê²Œì„ ì°¸ê°€ìë“¤ 00:00 ì‹œê°„ ì‹œì‘
 					GhostHouseStartDoorOpen();
-					// 5ºĞ Ã¼Å© ½ÃÀÛ
+					// 5ë¶„ ì²´í¬ ì‹œì‘
 					int j = 0;
 					while (j <= 300){
 						if(getStatus() == Status.END){ break; }
@@ -116,7 +116,7 @@ public class GhostHouse implements Runnable {
 						refreshRankList();
 						++j;
 					}
-					// 5ºĞ Ã¼Å© Á¾·á
+					// 5ë¶„ ì²´í¬ ì¢…ë£Œ
 					if (notWinnerGame()) isTimeOver = true;
 					setStatus(Status.END);
 					break;
@@ -322,7 +322,7 @@ public class GhostHouse implements Runnable {
 		for(L1PcInstance pc : getPlayMemberArray()){
 			if (pc != null){
 				if (getStatus() == Status.READY){
-					pc.getInventory().storeItem(40308, 1000); // 1000 ¾Æµ¥³ª Áö±Ş
+					pc.getInventory().storeItem(40308, 1000); // 1000 ì•„ë°ë‚˜ ì§€ê¸‰
 				}
 				l1skilluse = new L1SkillUse();
 				l1skilluse.handleCommands(pc,L1SkillId.CANCELLATION, pc.getId(), pc.getX(),

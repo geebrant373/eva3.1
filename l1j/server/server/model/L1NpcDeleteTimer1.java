@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -38,7 +38,7 @@ public class L1NpcDeleteTimer1 extends TimerTask {
 	@Override
 	public void run() {
 		_npc.deleteMe();
-		_npc.·ÎÅ×_½ÃÀÛ1=false;
+		_npc.ë¡œí…Œ_ì‹œìž‘1=false;
 		this.cancel();
 		
 	}

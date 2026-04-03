@@ -1,24 +1,24 @@
-package l1j.server.GameSystem.Astar;
+ï»¿package l1j.server.GameSystem.Astar;
 
 //******************************************************************************
 // File Name	: Node.java
-// Description	: ³ëµå Å¬·¡½º
+// Description	: ë…¸ë“œ í´ë˜ìŠ¤
 // Create		: 2003/04/01 JongHa Woo
 // Update		:
 //******************************************************************************
 
 public class Node {
 	public int f; // f = g+h
-	public int h; // ÈŞ¸®½ºÆ½ °ª
-	public int g; // ÇöÀç±îÁöÀÇ °Å¸®
-	public int x, y; // ³ëµåÀÇ À§Ä¡
-	public Node prev; // ÀÌÀü ³ëµå
-	public Node direct[]; // ÀÎÁ¢ÇÑ ³ëµå
-	public Node next; // ´ÙÀ½ ³ëµå
+	public int h; // íœ´ë¦¬ìŠ¤í‹± ê°’
+	public int g; // í˜„ì¬ê¹Œì§€ì˜ ê±°ë¦¬
+	public int x, y; // ë…¸ë“œì˜ ìœ„ì¹˜
+	public Node prev; // ì´ì „ ë…¸ë“œ
+	public Node direct[]; // ì¸ì ‘í•œ ë…¸ë“œ
+	public Node next; // ë‹¤ìŒ ë…¸ë“œ
 
 	// *************************************************************************
 	// Name : Node()
-	// Desc : »ı¼ºÀÚ
+	// Desc : ìƒì„±ì
 	// *************************************************************************
 	Node() {
 		direct = new Node[8];

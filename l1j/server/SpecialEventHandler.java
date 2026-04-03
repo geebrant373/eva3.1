@@ -1,4 +1,4 @@
-package l1j.server;
+ï»¿package l1j.server;
 
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
@@ -15,7 +15,7 @@ import static l1j.server.server.model.skill.L1SkillId.*;
 
 enum SpecialEvent { BugRace, AllBuf, InfinityFight, DoNotChatEveryone, DoChatEveryone};
 
-//°ÔÀÓ ³», ÀüÃ¼ ÀÌº¥Æ®¿¡ ´ëÇÑ Ã³¸®¸¦ ´ã´ç
+//ê²Œì„ ë‚´, ì „ì²´ ì´ë²¤íŠ¸ì— ëŒ€í•œ ì²˜ë¦¬ë¥¼ ë‹´ë‹¹
 public class SpecialEventHandler {
 
 	private static volatile SpecialEventHandler uniqueInstance = null;
@@ -55,7 +55,7 @@ public class SpecialEventHandler {
 			for (int i = 0; i < allBuffSkill.length ; i++) {
 				l1skilluse.handleCommands(pc, allBuffSkill[i], pc.getId(), pc.getX(), pc.getY(), null, 0, L1SkillUse.TYPE_GMBUFF);
 			}
-			pc.sendPackets(new S_SystemMessage("¿î¿µÀÚ¿¡°Ô ¹öÇÁ¸¦ ¹Ş¾Ò½À´Ï´Ù. "));
+			pc.sendPackets(new S_SystemMessage("ìš´ì˜ìì—ê²Œ ë²„í”„ë¥¼ ë°›ì•˜ìŠµë‹ˆë‹¤. "));
 		}
 	}
 	public void doAllCOMA() {
@@ -69,17 +69,17 @@ public class SpecialEventHandler {
 			for (int i = 0; i < allBuffSkill.length ; i++) {
 				l1skilluse.handleCommands(pc, allBuffSkill[i], pc.getId(), pc.getX(), pc.getY(), null, 0, L1SkillUse.TYPE_GMBUFF);
 			}
-			pc.sendPackets(new S_SystemMessage("¿î¿µÀÚ¿¡°Ô ÄÚ¸¶ ¹öÇÁ¸¦ ¹Ş¾Ò½À´Ï´Ù. "));
+			pc.sendPackets(new S_SystemMessage("ìš´ì˜ìì—ê²Œ ì½”ë§ˆ ë²„í”„ë¥¼ ë°›ì•˜ìŠµë‹ˆë‹¤. "));
 		}
 	}
 	public void doNotChatEveryone() {
 		L1World.getInstance().set_worldChatElabled(false);
-		L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("¿î¿µÀÚ¿¡ ÀÇÇØ ¿ùµåÃ¤ÆÃÀÌ ±İÁöµÇ¾ú½À´Ï´Ù."));
+		L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ìš´ì˜ìì— ì˜í•´ ì›”ë“œì±„íŒ…ì´ ê¸ˆì§€ë˜ì—ˆìŠµë‹ˆë‹¤."));
 	}
 
 	public void doChatEveryone() {
 		L1World.getInstance().set_worldChatElabled(true);
-		L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("¿î¿µÀÚ¿¡ ÀÇÇØ ¿ùµåÃ¤ÆÃÀÌ ½ÇÇàµÇ¾ú½À´Ï´Ù."));
+		L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ìš´ì˜ìì— ì˜í•´ ì›”ë“œì±„íŒ…ì´ ì‹¤í–‰ë˜ì—ˆìŠµë‹ˆë‹¤."));
 	}
 
 	public void ReturnStats(L1PcInstance pc) {

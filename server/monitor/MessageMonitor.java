@@ -1,4 +1,4 @@
-package server.monitor;
+﻿package server.monitor;
 
 public class MessageMonitor implements Monitor {
 	@Override

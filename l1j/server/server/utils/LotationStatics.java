@@ -1,4 +1,4 @@
-package l1j.server.server.utils;
+ï»¿package l1j.server.server.utils;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -51,7 +51,7 @@ public class LotationStatics {
 		String res = "";
 		LotationStatics datas = LotationStatics.getInstance();
 		switch (command) {
-		case "¸ÊÀÌº¥":
+		case "ë§µì´ë²¤":
 			res += "\\f1[MapEventList] Count:" + datas.MapEventList.size() + "\n";
 			for (int i = 0; i < datas.MapEventList.size(); i++) {
 				res += "[" + datas.MapEventList.get(i).Id + ":";
@@ -78,11 +78,11 @@ public class LotationStatics {
 	}
 
 	// -------------------------------------------------------------------------------------------------------
-	// ·ÎÅ×ÀÌ¼Ç ½Ã½ºÅÛ Ãß°¡
+	// ë¡œí…Œì´ì…˜ ì‹œìŠ¤í…œ ì¶”ê°€
 	// -------------------------------------------------------------------------------------------------------
 	public static class MapEventInfo {
 		public String Id;
-		public String Type; // ¸Ê¿ÀÇÂ Å¸ÀÔ
+		public String Type; // ë§µì˜¤í”ˆ íƒ€ì…
 		public int[] Maps;
 
 		public int[] Day;
@@ -124,14 +124,14 @@ public class LotationStatics {
 				int line = 0;
 				while (s.hasMoreElements()) {
 					String temp2 = "";
-					StringTokenizer values = new StringTokenizer(s.nextToken(), "À§Å©: Å¸ÀÓÀ¯Áö¸ÊNPCÁÂÇ¥");
+					StringTokenizer values = new StringTokenizer(s.nextToken(), "ìœ„í¬: íƒ€ì„ìœ ì§€ë§µNPCì¢Œí‘œ");
 					StringTokenizer mdata;
 					while (values.hasMoreElements())
 						temp2 += values.nextToken();
 
-					// LINE ´ÜÀ§·Î ÀĞÀ½
+					// LINE ë‹¨ìœ„ë¡œ ì½ìŒ
 					switch (line) {
-					case 0: // ¸Ê¸®½ºÆ®
+					case 0: // ë§µë¦¬ìŠ¤íŠ¸
 						StringTokenizer Maps = new StringTokenizer(temp2, ",");
 						ArrayList<String> StrList = new ArrayList<String>();
 						while (Maps.hasMoreElements()) {
@@ -142,7 +142,7 @@ public class LotationStatics {
 						for (int i = 0; i < StrList.size(); i++)
 							temp.Maps[i] = Integer.parseInt(StrList.get(i));
 						break;
-					case 1: // ¿äÀÏ
+					case 1: // ìš”ì¼
 						StringTokenizer Day = new StringTokenizer(temp2, ",");
 						ArrayList<Integer> list = new ArrayList<Integer>();
 						while (Day.hasMoreElements()) {
@@ -153,15 +153,15 @@ public class LotationStatics {
 						for (int i = 0; i < list.size(); i++)
 							temp.Day[i] = list.get(i);
 						break;
-					case 2: // ½Ã°£
+					case 2: // ì‹œê°„
 						mdata = new StringTokenizer(temp2, ",");
 						ArrayList<Integer> Hourlist = new ArrayList<Integer>();
 						ArrayList<Integer> Minutelist = new ArrayList<Integer>();
 						while (mdata.hasMoreElements()) {
 							String Times = mdata.nextToken();
-							StringTokenizer Hours = new StringTokenizer(Times, "½Ã");
+							StringTokenizer Hours = new StringTokenizer(Times, "ì‹œ");
 							String Hour = Hours.nextToken();
-							StringTokenizer Minutes = new StringTokenizer(Hours.nextToken(), "ºĞ");
+							StringTokenizer Minutes = new StringTokenizer(Hours.nextToken(), "ë¶„");
 							String Minute = Minutes.nextToken();
 							Hourlist.add(Integer.parseInt(Hour.trim()));
 							Minutelist.add(Integer.parseInt(Minute.trim()));
@@ -175,11 +175,11 @@ public class LotationStatics {
 							temp.SpawnMinute[i] = Minute;
 						}
 						break;
-					case 3: // À¯ÁöÅ¸ÀÓ
-						mdata = new StringTokenizer(temp2, "ÃÊ");
+					case 3: // ìœ ì§€íƒ€ì„
+						mdata = new StringTokenizer(temp2, "ì´ˆ");
 						temp.DuringTime = Integer.parseInt(mdata.nextToken().trim());
 						break;
-					case 4: // ÁÂÇ¥
+					case 4: // ì¢Œí‘œ
 						mdata = new StringTokenizer(temp2, ",");
 						temp.EntryNpcLoc = new int[3];
 						temp.EntryNpcLoc[0] = Integer.parseInt(mdata.nextToken().trim());
@@ -203,19 +203,19 @@ public class LotationStatics {
 	}
 
 	private int GetWeekToInt(String day) {
-		if (day.equalsIgnoreCase("ÀÏ")) {
+		if (day.equalsIgnoreCase("ì¼")) {
 			return 0;
-		} else if (day.equalsIgnoreCase("¿ù")) {
+		} else if (day.equalsIgnoreCase("ì›”")) {
 			return 1;
-		} else if (day.equalsIgnoreCase("È­")) {
+		} else if (day.equalsIgnoreCase("í™”")) {
 			return 2;
-		} else if (day.equalsIgnoreCase("¼ö")) {
+		} else if (day.equalsIgnoreCase("ìˆ˜")) {
 			return 3;
-		} else if (day.equalsIgnoreCase("¸ñ")) {
+		} else if (day.equalsIgnoreCase("ëª©")) {
 			return 4;
-		} else if (day.equalsIgnoreCase("±İ")) {
+		} else if (day.equalsIgnoreCase("ê¸ˆ")) {
 			return 5;
-		} else if (day.equalsIgnoreCase("Åä")) {
+		} else if (day.equalsIgnoreCase("í† ")) {
 			return 6;
 		}
 		return 0;

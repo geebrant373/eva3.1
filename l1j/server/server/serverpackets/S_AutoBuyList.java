@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -34,27 +34,27 @@ import l1j.server.server.model.Instance.L1PcInstance;
 
 public class S_AutoBuyList extends ServerBasePacket {
 	public S_AutoBuyList(L1PcInstance pc) {
-		pc._ÀÚµ¿±¸ÀÔÃÊÀÌ½º¸®½ºÆ® = new ArrayList<L1ItemInstance>();
+		pc._ìë™êµ¬ì…ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸ = new ArrayList<L1ItemInstance>();
 		for (L1ItemInstance item : pc.getInventory().getItems()) {
-			if (item.getItemId() == 40024 // °í´ëÀÇ °­·Â Ã¼·Â È¸º¹Á¦
-					|| item.getItemId() == 40018 // °­È­ ¼ÓµµÇâ»ó ¹°¾à
-					|| item.getItemId() == 40068 // ¿¤ºì ¿ÍÆÛ
-					|| item.getItemId() == 41415 // °­È­ ¿ë±âÀÇ ¹°¾à
-					|| item.getItemId() == 40031 // ¾Ç¸¶ÀÇ ÇÇ
-					|| item.getItemId() == 40015 // ¸¶·Â È¸º¹ ¹°¾à
-					|| item.getItemId() == 40016 // ÁöÇıÀÇ ¹°¾à
-					|| item.getItemId() == 40017 // ÇØµ¶Á¦
+			if (item.getItemId() == 40024 // ê³ ëŒ€ì˜ ê°•ë ¥ ì²´ë ¥ íšŒë³µì œ
+					|| item.getItemId() == 40018 // ê°•í™” ì†ë„í–¥ìƒ ë¬¼ì•½
+					|| item.getItemId() == 40068 // ì—˜ë¸ ì™€í¼
+					|| item.getItemId() == 41415 // ê°•í™” ìš©ê¸°ì˜ ë¬¼ì•½
+					|| item.getItemId() == 40031 // ì•…ë§ˆì˜ í”¼
+					|| item.getItemId() == 40015 // ë§ˆë ¥ íšŒë³µ ë¬¼ì•½
+					|| item.getItemId() == 40016 // ì§€í˜œì˜ ë¬¼ì•½
+					|| item.getItemId() == 40017 // í•´ë…ì œ
 					) {
-				pc._ÀÚµ¿±¸ÀÔÃÊÀÌ½º¸®½ºÆ®.add(item);
+				pc._ìë™êµ¬ì…ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.add(item);
 			}
 	}
-		int size = pc._ÀÚµ¿±¸ÀÔÃÊÀÌ½º¸®½ºÆ®.size();
+		int size = pc._ìë™êµ¬ì…ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.size();
 		if (size > 0) {
 			writeC(Opcodes.S_OPCODE_SHOWRETRIEVELIST);
 			writeD(-1);
 			writeH(size);
-			writeC(3); // °³ÀÎ Ã¢°í
-			for (L1ItemInstance item : pc._ÀÚµ¿±¸ÀÔÃÊÀÌ½º¸®½ºÆ®) {
+			writeC(3); // ê°œì¸ ì°½ê³ 
+			for (L1ItemInstance item : pc._ìë™êµ¬ì…ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸) {
 				writeD(item.getId());
 				writeC(0);
 				writeH(item.get_gfxid());
@@ -68,7 +68,7 @@ public class S_AutoBuyList extends ServerBasePacket {
 	}
 
 	public Set<Integer> getItemsForNPC(int npcId) {
-        Set<Integer> itemIds = new HashSet<>(); // Áßº¹µÈ ¾ÆÀÌÅÛÀ» ÀúÀåÇÏ±â À§ÇØ HashSetÀ¸·Î º¯°æ
+        Set<Integer> itemIds = new HashSet<>(); // ì¤‘ë³µëœ ì•„ì´í…œì„ ì €ì¥í•˜ê¸° ìœ„í•´ HashSetìœ¼ë¡œ ë³€ê²½
         try {
             Connection con = L1DatabaseFactory.getInstance().getConnection();
             Statement statement = con.createStatement();

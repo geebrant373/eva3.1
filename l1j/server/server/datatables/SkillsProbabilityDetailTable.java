@@ -1,4 +1,4 @@
-package l1j.server.server.datatables;
+ï»¿package l1j.server.server.datatables;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -320,16 +320,16 @@ public class SkillsProbabilityDetailTable {
 			if (attacker instanceof L1PcInstance) {
 				L1PcInstance gm = (L1PcInstance) attacker;
 				if (gm.isGm()) {
-					gm.sendPackets(String.format("%s [%s -> %s] ¼º°øÈ®·ü %d < °è»êµÈÈ®·ü %d (°á°ú:%s)", this.skill_name, attacker.getName(), target.getName(), chance,
-							customProb, (result ? "¼º°ø" : "½ÇÆÐ")));
+					gm.sendPackets(String.format("%s [%s -> %s] ì„±ê³µí™•ë¥  %d < ê³„ì‚°ëœí™•ë¥  %d (ê²°ê³¼:%s)", this.skill_name, attacker.getName(), target.getName(), chance,
+							customProb, (result ? "ì„±ê³µ" : "ì‹¤íŒ¨")));
 				}
 			}
 			
 			if (target instanceof L1PcInstance) {
 				L1PcInstance gm = (L1PcInstance) target;
 				if (gm.isGm()) {
-					gm.sendPackets(String.format("%s [%s -> %s] ¼º°øÈ®·ü %d < °è»êµÈÈ®·ü %d (°á°ú:%s)", this.skill_name, attacker.getName(), target.getName(), chance,
-							customProb, (result ? "¼º°ø" : "½ÇÆÐ")));
+					gm.sendPackets(String.format("%s [%s -> %s] ì„±ê³µí™•ë¥  %d < ê³„ì‚°ëœí™•ë¥  %d (ê²°ê³¼:%s)", this.skill_name, attacker.getName(), target.getName(), chance,
+							customProb, (result ? "ì„±ê³µ" : "ì‹¤íŒ¨")));
 				}
 			}
 

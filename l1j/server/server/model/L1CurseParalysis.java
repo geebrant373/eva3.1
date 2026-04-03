@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -54,7 +54,7 @@ public class L1CurseParalysis extends L1Paralysis {
 			_target.setParalyzed(true);
 			_timer = new ParalysisTimer();
 			if (!_target.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.FOG_OF_SLEEPING)) {
-				((L1PcInstance) _target).sendPackets(new S_SkillIconAura(227, 8)); //Ãß°¡ Ä¿½º ÆĞ·²¶óÀÌÁî ¾ÆÀÌÄÜ By.BENTLEY
+				((L1PcInstance) _target).sendPackets(new S_SkillIconAura(227, 8)); //ì¶”ê°€ ì»¤ìŠ¤ íŒ¨ëŸ´ë¼ì´ì¦ˆ ì•„ì´ì½˜ By.BENTLEY
 			}
 			GeneralThreadPool.getInstance().execute(_timer);
 			if (isInterrupted()) {
@@ -152,6 +152,6 @@ public class L1CurseParalysis extends L1Paralysis {
 
 		_target.setPoisonEffect(0);
 		_target.setParalaysis(null);
-		((L1PcInstance) _target).sendPackets(new S_SkillIconAura(227, 0.1)); //Ãß°¡ Ä¿½º ÆĞ·²¶óÀÌÁî ¾ÆÀÌÄÜ By.BENTLEY
+		((L1PcInstance) _target).sendPackets(new S_SkillIconAura(227, 0.1)); //ì¶”ê°€ ì»¤ìŠ¤ íŒ¨ëŸ´ë¼ì´ì¦ˆ ì•„ì´ì½˜ By.BENTLEY
 	}
 }

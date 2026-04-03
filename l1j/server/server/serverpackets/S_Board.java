@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -55,15 +55,15 @@ public class S_Board extends ServerBasePacket {
 		} else if (board.getNpcId()==900009643) {
 			buildPacket7(board, 0);
 		} else if (board.getNpcId()==900009644) {
-			buildPacket»ç³ÉÅÍÁ¤º¸(board, 0);
+			buildPacketì‚¬ëƒ¥í„°ì •ë³´(board, 0);
 		} else if (board.getNpcId()==900009645) {
-			buildPacketº¸½ºÁ¤º¸(board, 0);
+			buildPacketë³´ìŠ¤ì •ë³´(board, 0);
 		} else if (board.getNpcId()==900009646) {
-			buildPacket¹«±âÁ¤º¸(board, 0);
+			buildPacketë¬´ê¸°ì •ë³´(board, 0);
 		} else if (board.getNpcId()==900009647) {
-			buildPacket¹æ¾î±¸Á¤º¸(board, 0);
+			buildPacketë°©ì–´êµ¬ì •ë³´(board, 0);
 		} else if (board.getNpcId()==900009648) {
-			buildPacketÀÎÃ¾À²Á¤º¸(board, 0);
+			buildPacketì¸ì²¸ìœ¨ì •ë³´(board, 0);
 		} else
 			buildPacket(board, 0);
 	}
@@ -82,15 +82,15 @@ public class S_Board extends ServerBasePacket {
 		} else if (board.getNpcId()==900009643) {
 			buildPacket7(board, number);
 		} else if (board.getNpcId()==900009644) {
-			buildPacket»ç³ÉÅÍÁ¤º¸(board, number);
+			buildPacketì‚¬ëƒ¥í„°ì •ë³´(board, number);
 		} else if (board.getNpcId()==900009645) {
-			buildPacketº¸½ºÁ¤º¸(board, number);
+			buildPacketë³´ìŠ¤ì •ë³´(board, number);
 		} else if (board.getNpcId()==900009646) {
-			buildPacket¹«±âÁ¤º¸(board, number);
+			buildPacketë¬´ê¸°ì •ë³´(board, number);
 		} else if (board.getNpcId()==900009647) {
-			buildPacket¹æ¾î±¸Á¤º¸(board, number);
+			buildPacketë°©ì–´êµ¬ì •ë³´(board, number);
 		} else if (board.getNpcId()==900009648) {
-			buildPacketÀÎÃ¾À²Á¤º¸(board, number);
+			buildPacketì¸ì²¸ìœ¨ì •ë³´(board, number);
 		} else
 			buildPacket(board, number);
 	}
@@ -118,7 +118,7 @@ public class S_Board extends ServerBasePacket {
 		}
 	}
 
-	private void buildPacket2(L1NpcInstance board, int number) {// µå·¡°ïÅ° ¾Ë¸² °Ô½ÃÆÇ
+	private void buildPacket2(L1NpcInstance board, int number) {// ë“œë˜ê³¤í‚¤ ì•Œë¦¼ ê²Œì‹œíŒ
 		int count = 0;
 		long a = 0;
 		String[][] db = null;
@@ -145,8 +145,8 @@ public class S_Board extends ServerBasePacket {
 				}
 				if (rs.getInt("id") <= number || number == 0) {
 					id[count] = rs.getInt(1);
-					db[count][0] = rs.getString(2);// ÀÌ¸§
-					db[count][1] = rs.getString(3);// ³¯Â¥
+					db[count][0] = rs.getString(2);// ì´ë¦„
+					db[count][1] = rs.getString(3);// ë‚ ì§œ
 					time[count] = (int) a/60000*60;
 					count++;
 				}
@@ -169,8 +169,8 @@ public class S_Board extends ServerBasePacket {
 		writeC(count);
 		for (int i = 0; i < count; ++i) {
 			writeD(id[i]);
-			writeS(db[i][0]);// ÀÌ¸§
-			writeS(db[i][1]);// ³¯Â¥
+			writeS(db[i][0]);// ì´ë¦„
+			writeS(db[i][1]);// ë‚ ì§œ
 			writeD(time[i]);
 		}
 	}
@@ -187,12 +187,12 @@ public class S_Board extends ServerBasePacket {
 			db[count][1] = "";
 			count++;
 		}
-		db[0][2] = "--------- Àü     Ã¼";
-		db[1][2] = "--------- ±º     ÁÖ";
-		db[2][2] = "--------- ±â     »ç";
-		db[3][2] = "--------- ¿ä     Á¤";
-		db[4][2] = "--------- ¹ı     »ç";
-		db[5][2] = "--------- ´Ù     ¿¤";
+		db[0][2] = "--------- ì „     ì²´";
+		db[1][2] = "--------- êµ°     ì£¼";
+		db[2][2] = "--------- ê¸°     ì‚¬";
+		db[3][2] = "--------- ìš”     ì •";
+		db[4][2] = "--------- ë²•     ì‚¬";
+		db[5][2] = "--------- ë‹¤     ì—˜";
 		writeC(Opcodes.S_OPCODE_BOARD);
 		writeC(0);
 		writeD(board.getId());
@@ -302,8 +302,8 @@ public class S_Board extends ServerBasePacket {
 		}
 	}
 	
-	private void buildPacket»ç³ÉÅÍÁ¤º¸(L1NpcInstance board, int number) {
-		List<L1BoardPost> topics = L1BoardPost.indexGM»ç³ÉÅÍÁ¤º¸(number, TOPIC_LIMIT);
+	private void buildPacketì‚¬ëƒ¥í„°ì •ë³´(L1NpcInstance board, int number) {
+		List<L1BoardPost> topics = L1BoardPost.indexGMì‚¬ëƒ¥í„°ì •ë³´(number, TOPIC_LIMIT);
 		writeC(Opcodes.S_OPCODE_BOARD);
 		writeC(0);
 		writeD(board.getId());
@@ -325,8 +325,8 @@ public class S_Board extends ServerBasePacket {
 		}
 	}
 	
-	private void buildPacketº¸½ºÁ¤º¸(L1NpcInstance board, int number) {
-		List<L1BoardPost> topics = L1BoardPost.indexGMº¸½ºÁ¤º¸(number, TOPIC_LIMIT);
+	private void buildPacketë³´ìŠ¤ì •ë³´(L1NpcInstance board, int number) {
+		List<L1BoardPost> topics = L1BoardPost.indexGMë³´ìŠ¤ì •ë³´(number, TOPIC_LIMIT);
 		writeC(Opcodes.S_OPCODE_BOARD);
 		writeC(0);
 		writeD(board.getId());
@@ -348,8 +348,8 @@ public class S_Board extends ServerBasePacket {
 		}
 	}
 	
-	private void buildPacket¹«±âÁ¤º¸(L1NpcInstance board, int number) {
-		List<L1BoardPost> topics = L1BoardPost.indexGM¹«±âÁ¤º¸(number, TOPIC_LIMIT);
+	private void buildPacketë¬´ê¸°ì •ë³´(L1NpcInstance board, int number) {
+		List<L1BoardPost> topics = L1BoardPost.indexGMë¬´ê¸°ì •ë³´(number, TOPIC_LIMIT);
 		writeC(Opcodes.S_OPCODE_BOARD);
 		writeC(0);
 		writeD(board.getId());
@@ -371,8 +371,8 @@ public class S_Board extends ServerBasePacket {
 		}
 	}
 	
-	private void buildPacket¹æ¾î±¸Á¤º¸(L1NpcInstance board, int number) {
-		List<L1BoardPost> topics = L1BoardPost.indexGM¹æ¾î±¸Á¤º¸(number, TOPIC_LIMIT);
+	private void buildPacketë°©ì–´êµ¬ì •ë³´(L1NpcInstance board, int number) {
+		List<L1BoardPost> topics = L1BoardPost.indexGMë°©ì–´êµ¬ì •ë³´(number, TOPIC_LIMIT);
 		writeC(Opcodes.S_OPCODE_BOARD);
 		writeC(0);
 		writeD(board.getId());
@@ -394,8 +394,8 @@ public class S_Board extends ServerBasePacket {
 		}
 	}
 	
-	private void buildPacketÀÎÃ¾À²Á¤º¸(L1NpcInstance board, int number) {
-		List<L1BoardPost> topics = L1BoardPost.indexGMÀÎÃ¾À²Á¤º¸(number, TOPIC_LIMIT);
+	private void buildPacketì¸ì²¸ìœ¨ì •ë³´(L1NpcInstance board, int number) {
+		List<L1BoardPost> topics = L1BoardPost.indexGMì¸ì²¸ìœ¨ì •ë³´(number, TOPIC_LIMIT);
 		writeC(Opcodes.S_OPCODE_BOARD);
 		writeC(0);
 		writeD(board.getId());

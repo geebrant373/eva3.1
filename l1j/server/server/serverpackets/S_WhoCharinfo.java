@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -40,10 +40,10 @@ public class S_WhoCharinfo extends ServerBasePacket {
 		float lose = 0;
 		float total = 0;
 		
-		win = pc.getKills(); // ½Â·ü ³Ö±âÀ§ÇÑ º¯¼ö
+		win = pc.getKills(); // ìŠ¹ë¥  ë„£ê¸°ìœ„í•œ ë³€ìˆ˜
 		lose = pc.getDeaths();
 		total = win + lose;
-		winner = ((win * 100) / (total)); // ½Â·ü °è»êÇÑ º¯¼ö
+		winner = ((win * 100) / (total)); // ìŠ¹ë¥  ê³„ì‚°í•œ ë³€ìˆ˜
 		
 		if (lawful < 0) {
 			lawfulness = "(Chaotic)";
@@ -69,7 +69,7 @@ public class S_WhoCharinfo extends ServerBasePacket {
 
 		writeS(title + pc.getName() + " " + lawfulness + " " + clan + "\n\r"
 				+ "\\fV KILL:" + pc.getKills() + "\\fY DEATH:" + pc.getDeaths()
-				+ "\\fR ½Â·ü:" + winner + "%");
+				+ "\\fR ìŠ¹ë¥ :" + winner + "%");
 		// writeD(0x80157FE4);
 		writeD(0);
 	}
@@ -77,11 +77,11 @@ public class S_WhoCharinfo extends ServerBasePacket {
 		writeC(Opcodes.S_OPCODE_MSG);
 		writeC(0x08);
 		if (i == 0) {
-			writeS("" /*fox½Å±Ô*/+ s + " (Neutral)"); 
-			//¸¶³×Å· , NPC»óÁ¡
+			writeS("" /*foxì‹ ê·œ*/+ s + " (Neutral)"); 
+			//ë§ˆë„¤í‚¹ , NPCìƒì 
 		} else {
 			writeS(" "+s + " (Lawful)"); 
-			// ¿î¿µÀÚ ¹ÌÁ¢¼Ó»óÅÂ ÀÏ¶§
+			// ìš´ì˜ìž ë¯¸ì ‘ì†ìƒíƒœ ì¼ë•Œ
 		}
 		writeD(0);
 	}

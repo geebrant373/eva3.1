@@ -1,4 +1,4 @@
-package l1j.server.server.command.executor;
+﻿package l1j.server.server.command.executor;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;

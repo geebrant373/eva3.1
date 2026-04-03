@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -55,12 +55,12 @@ public class GreenPotion extends L1ItemInstance{
 	}
 	
 	public static void useGreenPotion(L1PcInstance pc, int itemId) {
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(71) == true) { // µğÄÉÀÌÆ÷¼Ç »óÅÂ
-			pc.sendPackets(new S_ServerMessage(698)); // \f1¸¶·Â¿¡ ÀÇÇØ ¾Æ¹«°Íµµ ¸¶½Ç ¼ö°¡ ¾ø½À´Ï´Ù.
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(71) == true) { // ë””ì¼€ì´í¬ì…˜ ìƒíƒœ
+			pc.sendPackets(new S_ServerMessage(698)); // \f1ë§ˆë ¥ì— ì˜í•´ ì•„ë¬´ê²ƒë„ ë§ˆì‹¤ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 
-		// ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+		// ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 		pc.cancelAbsoluteBarrier();
 
 		int time = 0;
@@ -100,14 +100,14 @@ public class GreenPotion extends L1ItemInstance{
 
 		pc.sendPackets(new S_SkillSound(pc.getId(), 191));
 		Broadcaster.broadcastPacket(pc, new S_SkillSound(pc.getId(), 191));
-		// XXX:ÇìÀÌ½ºÆ®¾ÆÀÌÅÛ Àåºñ½Ã, ÃëÇÑ »óÅÂ°¡ ÇØÁ¦µÇ´ÂÁö ºÒ¸í
+		// XXX:í—¤ì´ìŠ¤íŠ¸ì•„ì´í…œ ì¥ë¹„ì‹œ, ì·¨í•œ ìƒíƒœê°€ í•´ì œë˜ëŠ”ì§€ ë¶ˆëª…
 		if (pc.getHasteItemEquipped() > 0) {
 			return;
 		}
-		// ÃëÇÑ »óÅÂ¸¦ ÇØÁ¦
+		// ì·¨í•œ ìƒíƒœë¥¼ í•´ì œ
 		pc.setDrink(false);
 
-		// ÇìÀÌ ÆÄ¾÷, ±×·¹ÀÌÅÍ ÇìÀÌ ÆÄ¾÷°ú´Â Áßº¹ ÇÏÁö ¾Ê´Â´Ù
+		// í—¤ì´ íŒŒì—…, ê·¸ë ˆì´í„° í—¤ì´ íŒŒì—…ê³¼ëŠ” ì¤‘ë³µ í•˜ì§€ ì•ŠëŠ”ë‹¤
 		if (pc.getSkillEffectTimerSet().hasSkillEffect(HASTE)) {
 			pc.getSkillEffectTimerSet().killSkillEffectTimer(HASTE);
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
@@ -125,16 +125,16 @@ public class GreenPotion extends L1ItemInstance{
 			pc.getMoveState().setMoveSpeed(0);
 		}
 
-		// ½½·Î¿ì, ¸Å½º ½½·Î¿ì, ¿£ÅÁ¸£ÁßÀº ½½·Î¿ì »óÅÂ¸¦ ÇØÁ¦ÇÒ »Ó
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(SLOW)) { // ½½·Î¿ì
+		// ìŠ¬ë¡œìš°, ë§¤ìŠ¤ ìŠ¬ë¡œìš°, ì—”íƒ•ë¥´ì¤‘ì€ ìŠ¬ë¡œìš° ìƒíƒœë¥¼ í•´ì œí•  ë¿
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(SLOW)) { // ìŠ¬ë¡œìš°
 			pc.getSkillEffectTimerSet().killSkillEffectTimer(SLOW);
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 			Broadcaster.broadcastPacket(pc, new S_SkillHaste(pc.getId(), 0, 0));
-		} else if (pc.getSkillEffectTimerSet().hasSkillEffect(MASS_SLOW)) { // ¸Å½º ½½·Î¿ì
+		} else if (pc.getSkillEffectTimerSet().hasSkillEffect(MASS_SLOW)) { // ë§¤ìŠ¤ ìŠ¬ë¡œìš°
 			pc.getSkillEffectTimerSet().killSkillEffectTimer(MASS_SLOW);
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 			Broadcaster.broadcastPacket(pc, new S_SkillHaste(pc.getId(), 0, 0));
-		} else if (pc.getSkillEffectTimerSet().hasSkillEffect(ENTANGLE)) { // ¿£ÅÁ¸£
+		} else if (pc.getSkillEffectTimerSet().hasSkillEffect(ENTANGLE)) { // ì—”íƒ•ë¥´
 			pc.getSkillEffectTimerSet().killSkillEffectTimer(ENTANGLE);
 			pc.sendPackets(new S_SkillHaste(pc.getId(), 0, 0));
 			Broadcaster.broadcastPacket(pc, new S_SkillHaste(pc.getId(), 0, 0));

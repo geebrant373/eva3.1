@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -120,10 +120,10 @@ public class L1MerchantInstance extends L1NpcInstance {
 		}
 		switch (npcid) {
 		case 7000096:
-			if (player.getLevel() >= Config.¹èÆ²Á¸ÀÔÀå·¹º§) {
+			if (player.getLevel() >= Config.ë°°í‹€ì¡´ì…ì¥ë ˆë²¨) {
 				DuelZone(player);
 			} else {
-				player.sendPackets(new S_SystemMessage("\\aG[!] : ·¹º§ " + Config.¹èÆ²Á¸ÀÔÀå·¹º§ + " ÀÌ»ó¸¸ ÀÔÀåÇÒ¼ö ÀÖ½À´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\aG[!] : ë ˆë²¨ " + Config.ë°°í‹€ì¡´ì…ì¥ë ˆë²¨ + " ì´ìƒë§Œ ì…ì¥í• ìˆ˜ ìˆìŠµë‹ˆë‹¤."));
 			}
 			break;
 		case 45000:
@@ -132,15 +132,15 @@ public class L1MerchantInstance extends L1NpcInstance {
 				int k19 = 32833;
 				if (player.getClanid() > 0) {
 					L1Teleport.teleport(player, i13, k19, (short) 72, player.getMoveState().getHeading(), true);
-					player.sendPackets(new S_SystemMessage("\\fY¾óÀ½ ¼öÁ¤ µ¿±¼Àº ¿­¸°½Ã°¢À¸·ÎºÎÅÍ 1½Ã°£µ¿¾È ÀÔÀå°¡´ÉÇÕ´Ï´Ù."));
+					player.sendPackets(new S_SystemMessage("\\fYì–¼ìŒ ìˆ˜ì • ë™êµ´ì€ ì—´ë¦°ì‹œê°ìœ¼ë¡œë¶€í„° 1ì‹œê°„ë™ì•ˆ ì…ì¥ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 				} else {
-					player.sendPackets(new S_SystemMessage("\\fYÇ÷¸Í¿¡ °¡ÀÔÇÏÁö ¾Ê¾Ò½À´Ï´Ù."));
+					player.sendPackets(new S_SystemMessage("\\fYí˜ˆë§¹ì— ê°€ì…í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 				}
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fY¾óÀ½ ¼öÁ¤ µ¿±¼ÀÌ ¾ÆÁ÷ ¿­¸®Áö ¾Ê¾Ò½À´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYì–¼ìŒ ìˆ˜ì • ë™êµ´ì´ ì•„ì§ ì—´ë¦¬ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 			}
 			break;
-		case 4510008: // ÃÊº¸ÀÚ »ç³ÉÅÍ
+		case 4510008: // ì´ˆë³´ì ì‚¬ëƒ¥í„°
 			int x1 = Config.Newhunter[0];
 			int y1 = Config.Newhunter[1];
 
@@ -148,101 +148,101 @@ public class L1MerchantInstance extends L1NpcInstance {
 
 				L1Teleport.teleport(player, x1, y1, (short) Config.Newhunter[2], player.getMoveState().getHeading(),
 						true);
-				player.sendPackets(new S_SystemMessage("\\fYÀÔÀå: ·¹º§ " + Config.Newhunter[3] + " ÀÌÇÏ ±îÁö ÀÔÀåÀÌ °¡´ÉÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYì…ì¥: ë ˆë²¨ " + Config.Newhunter[3] + " ì´í•˜ ê¹Œì§€ ì…ì¥ì´ ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fYÀÔÀå ºÒ°¡: ·¹º§ Á¦ÇÑ : " + Config.Newhunter[3] + " Lv ÀÌÇÏ"));
+				player.sendPackets(new S_SystemMessage("\\fYì…ì¥ ë¶ˆê°€: ë ˆë²¨ ì œí•œ : " + Config.Newhunter[3] + " Lv ì´í•˜"));
 			}
 
 			break;
 
-		case 450007: // °ø°£ÀÌµ¿»ç
+		case 450007: // ê³µê°„ì´ë™ì‚¬
 			if (GomuSystem1.getInstance().getDevilStart1() == true) {
 				if (player.getClanid() > 0) {
 					L1Teleport.teleport(player, 32875, 33114, (short) 508, player.getMoveState().getHeading(), true);
-					player.sendPackets(new S_SystemMessage("\\fY¿ëÀÇ½°ÅÍ´Â ¿­¸°½Ã°¢À¸·ÎºÎÅÍ 1½Ã°£µ¿¾È ÀÔÀå°¡´ÉÇÕ´Ï´Ù."));
+					player.sendPackets(new S_SystemMessage("\\fYìš©ì˜ì‰¼í„°ëŠ” ì—´ë¦°ì‹œê°ìœ¼ë¡œë¶€í„° 1ì‹œê°„ë™ì•ˆ ì…ì¥ê°€ëŠ¥í•©ë‹ˆë‹¤."));
 				} else {
-					player.sendPackets(new S_SystemMessage("\\fYÇ÷¸Í¿¡ °¡ÀÔÇÏÁö ¾Ê¾Ò½À´Ï´Ù."));
+					player.sendPackets(new S_SystemMessage("\\fYí˜ˆë§¹ì— ê°€ì…í•˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 				}
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fY¿ëÀÇ½°ÅÍ ¾ÆÁ÷ ¿­¸®Áö ¾Ê¾Ò½À´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYìš©ì˜ì‰¼í„° ì•„ì§ ì—´ë¦¬ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 			}
 			break;
 		}
-		// ¹®Áö±â1~8¹ø 220109 Ãß°¡
+		// ë¬¸ì§€ê¸°1~8ë²ˆ 220109 ì¶”ê°€
 		if (npcid == 900001601) {
 			if (BiscuitLastabardController.getInstance().isDoor5300()) {
 				L1Teleport.teleport(player, 32732, 32742, (short) 531, player.getMoveState().getHeading(), true);
-				player.sendPackets(new S_SystemMessage("\\fYºñ¾ÆÅ¸½º¹æÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë¹„ì•„íƒ€ìŠ¤ë°©ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤."));
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fY¹®ÀÌ ¿­¸®Áö ¾Ê¾Æ ÀÌµ¿ÀÌ ºÒ°¡ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë¬¸ì´ ì—´ë¦¬ì§€ ì•Šì•„ ì´ë™ì´ ë¶ˆê°€í•©ë‹ˆë‹¤."));
 			}
 		}
 
 		if (npcid == 900001602) {
 			if (BiscuitLastabardController.getInstance().isDoor5311()) {
 				L1Teleport.teleport(player, 32795, 32738, (short) 531, player.getMoveState().getHeading(), true);
-				player.sendPackets(new S_SystemMessage("\\fY¹Ù·Î¸Ş½º¹æÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë°”ë¡œë©”ìŠ¤ë°©ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤."));
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fY¹®ÀÌ ¿­¸®Áö ¾Ê¾Æ ÀÌµ¿ÀÌ ºÒ°¡ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë¬¸ì´ ì—´ë¦¬ì§€ ì•Šì•„ ì´ë™ì´ ë¶ˆê°€í•©ë‹ˆë‹¤."));
 			}
 		}
 
 		if (npcid == 900001603) {
 			if (BiscuitLastabardController.getInstance().isDoor5312()) {
 				L1Teleport.teleport(player, 32772, 32821, (short) 531, player.getMoveState().getHeading(), true);
-				player.sendPackets(new S_SystemMessage("\\fY¿£µğ¾Æ½º¹æÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYì—”ë””ì•„ìŠ¤ë°©ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤."));
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fY¹®ÀÌ ¿­¸®Áö ¾Ê¾Æ ÀÌµ¿ÀÌ ºÒ°¡ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë¬¸ì´ ì—´ë¦¬ì§€ ì•Šì•„ ì´ë™ì´ ë¶ˆê°€í•©ë‹ˆë‹¤."));
 			}
 		}
 
 		if (npcid == 900001604) {
 			if (BiscuitLastabardController.getInstance().isDoor5313()) {
 				L1Teleport.teleport(player, 32848, 32793, (short) 532, player.getMoveState().getHeading(), true);
-				player.sendPackets(new S_SystemMessage("\\fYÀÌµ¥¾Æ¹æÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYì´ë°ì•„ë°©ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤."));
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fY¹®ÀÌ ¿­¸®Áö ¾Ê¾Æ ÀÌµ¿ÀÌ ºÒ°¡ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë¬¸ì´ ì—´ë¦¬ì§€ ì•Šì•„ ì´ë™ì´ ë¶ˆê°€í•©ë‹ˆë‹¤."));
 			}
 		}
 		if (npcid == 900001605) {
 			if (BiscuitLastabardController.getInstance().isDoor5320()) {
 				L1Teleport.teleport(player, 32869, 32938, (short) 533, player.getMoveState().getHeading(), true);
-				player.sendPackets(new S_SystemMessage("\\fYÆ¼¾Æ¸Ş½º¹æÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYí‹°ì•„ë©”ìŠ¤ë°©ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤."));
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fY¹®ÀÌ ¿­¸®Áö ¾Ê¾Æ ÀÌµ¿ÀÌ ºÒ°¡ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë¬¸ì´ ì—´ë¦¬ì§€ ì•Šì•„ ì´ë™ì´ ë¶ˆê°€í•©ë‹ˆë‹¤."));
 			}
 		}
 
 		if (npcid == 900001606) {
 			if (BiscuitLastabardController.getInstance().isDoor5331()) {
 				L1Teleport.teleport(player, 32822, 32880, (short) 533, player.getMoveState().getHeading(), true);
-				player.sendPackets(new S_SystemMessage("\\fY¶ó¹Ì¾Æ½º¹æÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë¼ë¯¸ì•„ìŠ¤ë°©ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤."));
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fY¹®ÀÌ ¿­¸®Áö ¾Ê¾Æ ÀÌµ¿ÀÌ ºÒ°¡ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë¬¸ì´ ì—´ë¦¬ì§€ ì•Šì•„ ì´ë™ì´ ë¶ˆê°€í•©ë‹ˆë‹¤."));
 			}
 		}
 
 		if (npcid == 900001607) {
 			if (BiscuitLastabardController.getInstance().isDoor5332()) {
 				L1Teleport.teleport(player, 32763, 32851, (short) 533, player.getMoveState().getHeading(), true);
-				player.sendPackets(new S_SystemMessage("\\fY¹Ù·Îµå¹æÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë°”ë¡œë“œë°©ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤."));
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fY¹®ÀÌ ¿­¸®Áö ¾Ê¾Æ ÀÌµ¿ÀÌ ºÒ°¡ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë¬¸ì´ ì—´ë¦¬ì§€ ì•Šì•„ ì´ë™ì´ ë¶ˆê°€í•©ë‹ˆë‹¤."));
 			}
 		}
 
 		if (npcid == 900001608) {
 			if (BiscuitLastabardController.getInstance().isDoor5333()) {
 				L1Teleport.teleport(player, 32732, 32873, (short) 534, player.getMoveState().getHeading(), true);
-				player.sendPackets(new S_SystemMessage("\\fYÀå·ÎÈ¸ÀÇÀåÀ¸·Î ÀÌµ¿ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYì¥ë¡œíšŒì˜ì¥ìœ¼ë¡œ ì´ë™í•©ë‹ˆë‹¤."));
 			} else {
-				player.sendPackets(new S_SystemMessage("\\fY¹®ÀÌ ¿­¸®Áö ¾Ê¾Æ ÀÌµ¿ÀÌ ºÒ°¡ÇÕ´Ï´Ù."));
+				player.sendPackets(new S_SystemMessage("\\fYë¬¸ì´ ì—´ë¦¬ì§€ ì•Šì•„ ì´ë™ì´ ë¶ˆê°€í•©ë‹ˆë‹¤."));
 			}
 		}
 		if (talking != null) {
 			switch (npcid) {
 
-			case 50112: // ¼¼¸®¾È
+			case 50112: // ì„¸ë¦¬ì•ˆ
 				if (player.isCrown() || player.isWizard()) {
 					int talk_step = quest.get_step(L1Quest.QUEST_FIRSTQUEST);
 					if (talk_step == 1) {
@@ -258,7 +258,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "orenb12";
 				}
 				break;
-			case 50113: // ·¹Å©¸¸
+			case 50113: // ë ˆí¬ë§Œ
 				if (player.isKnight() || player.isElf() || player.isDarkelf()) {
 					int talk_step = quest.get_step(L1Quest.QUEST_FIRSTQUEST);
 					if (talk_step == 1) {
@@ -274,7 +274,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "orena12";
 				}
 				break;
-			case 70005:// ÆÄ°í
+			case 70005:// íŒŒê³ 
 				htmlid = "pago";
 				break;
 			case 70009:
@@ -318,7 +318,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 
 			case 70041:
 			case 70042:
-			case 70035:// ¹ö°æ »óÀÎ
+			case 70035:// ë²„ê²½ ìƒì¸
 				L1BugBearRace bugrace = L1BugBearRace.getInstance();
 				if (bugrace.getBugRaceStatus() == L1BugBearRace.STATUS_NONE) {
 					htmlid = "maeno5";
@@ -884,7 +884,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 			case 70830:
 				htmlid = talkToTownadviser(player, L1TownLocation.TOWNID_ORCISH_FOREST);
 				break;
-			case 70838: // ³×·çÆÄ
+			case 70838: // ë„¤ë£¨íŒŒ
 				if (player.isCrown() || player.isKnight() || player.isWizard()) {
 					htmlid = "nerupam1";
 				} else if (player.isDarkelf() && (player.getLawful() <= -1)) {
@@ -904,7 +904,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "luudiel1";
 				}
 				break;
-			case 70842: // ¸¶¸£¹Ù
+			case 70842: // ë§ˆë¥´ë°”
 				if (player.getLawful() <= -501) {
 					htmlid = "marba1";
 				} else if (!player.isElf()) {
@@ -944,7 +944,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					}
 				}
 				break;
-			case 70845: // ¾Æ¶ó½º
+			case 70845: // ì•„ë¼ìŠ¤
 				if (player.getLawful() <= -501) {
 					htmlid = "aras12";
 				} else if (!player.isElf()) {
@@ -1064,7 +1064,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					}
 				}
 				break;
-			case 70906: // Å°¸¶
+			case 70906: // í‚¤ë§ˆ
 				if (player.getLevel() < 50)
 					htmlid = "kima1";
 				break;
@@ -1394,14 +1394,14 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "frim1";
 				}
 				break;
-			case 71168: // Áø¸íÈ² ´ÜÅ×½º
+			case 71168: // ì§„ëª…í™© ë‹¨í…ŒìŠ¤
 				if (player.getInventory().checkItem(41028)) {
 					htmlid = "dantes1";
 				}
 				break;
-			case 71180: // Á¦ÀÌÇÁ
+			case 71180: // ì œì´í”„
 				if (player.get_sex() == 0)
-					htmlid = "jp1";// ³²ÀÚ
+					htmlid = "jp1";// ë‚¨ì
 				else
 					htmlid = "jp3";
 			case 71198:
@@ -1800,25 +1800,25 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "betray02";
 				}
 				break;
-			case 80067: // Ã¸º¸¿ø(¿å¸ÁÀÇ µ¿±¼)
+			case 80067: // ì²©ë³´ì›(ìš•ë§ì˜ ë™êµ´)
 				if (player.getQuest().get_step(L1Quest.QUEST_DESIRE) == L1Quest.QUEST_END) {
 					htmlid = "minicod10";
 				} else if (player.getKarmaLevel() >= 1) {
 					htmlid = "minicod07";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_DESIRE) == 1
-						&& player.getGfxId().getTempCharGfx() == 6034) { // ÄÚ¶óÇÁÇÁ¸®½ºÆ® º¯½Å
+						&& player.getGfxId().getTempCharGfx() == 6034) { // ì½”ë¼í”„í”„ë¦¬ìŠ¤íŠ¸ ë³€ì‹ 
 					htmlid = "minicod03";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_DESIRE) == 1
 						&& player.getGfxId().getTempCharGfx() != 6034) {
 					htmlid = "minicod05";
-				} else if (player.getQuest().get_step(L1Quest.QUEST_SHADOWS) == L1Quest.QUEST_END // ±×¸²ÀÚÀÇ ½ÅÀüÃø Äù½ºÆ® Á¾·á
-						|| player.getInventory().checkItem(41121) // Ä«ÇïÀÇ Áö·É¼­
-						|| player.getInventory().checkItem(41122)) { // Ä«ÇïÀÇ ¸í·É¼­
+				} else if (player.getQuest().get_step(L1Quest.QUEST_SHADOWS) == L1Quest.QUEST_END // ê·¸ë¦¼ìì˜ ì‹ ì „ì¸¡ í€˜ìŠ¤íŠ¸ ì¢…ë£Œ
+						|| player.getInventory().checkItem(41121) // ì¹´í—¬ì˜ ì§€ë ¹ì„œ
+						|| player.getInventory().checkItem(41122)) { // ì¹´í—¬ì˜ ëª…ë ¹ì„œ
 					htmlid = "minicod01";
-				} else if (player.getInventory().checkItem(41130) // ÇÍÀÚ±¹ÀÇ Áö·É¼­
-						&& player.getInventory().checkItem(41131)) { // ÇÍÀÚ±¹ÀÇ ¸í·É¼­
+				} else if (player.getInventory().checkItem(41130) // í•ìêµ­ì˜ ì§€ë ¹ì„œ
+						&& player.getInventory().checkItem(41131)) { // í•ìêµ­ì˜ ëª…ë ¹ì„œ
 					htmlid = "minicod06";
-				} else if (player.getInventory().checkItem(41130)) { // ÇÍÀÚ±¹ÀÇ ¸í·É¼­
+				} else if (player.getInventory().checkItem(41130)) { // í•ìêµ­ì˜ ëª…ë ¹ì„œ
 					htmlid = "minicod02";
 				}
 				break;
@@ -1932,33 +1932,33 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "infamous02";
 				}
 				break;
-			case 80076: // ³Ñ¾îÁø Ç×ÇØ»ç
-				if (player.getInventory().checkItem(41058)) { // ¿Ï¼ºÇÑ Ç×ÇØ ÀÏÁö
+			case 80076: // ë„˜ì–´ì§„ í•­í•´ì‚¬
+				if (player.getInventory().checkItem(41058)) { // ì™„ì„±í•œ í•­í•´ ì¼ì§€
 					htmlid = "voyager8";
-				} else if (player.getInventory().checkItem(49082) // ¹Ì¿Ï¼ºÀÇ Ç×ÇØ ÀÏÁö
+				} else if (player.getInventory().checkItem(49082) // ë¯¸ì™„ì„±ì˜ í•­í•´ ì¼ì§€
 						|| player.getInventory().checkItem(49083)) {
-					// ÆäÀÌÁö¸¦ Ãß°¡ÇÏ°í ÀÖÁö ¾Ê´Â »óÅÂ
-					if (player.getInventory().checkItem(41038) // Ç×ÇØ ÀÏÁö 1 ÆäÀÌÁö
-							|| player.getInventory().checkItem(41039) // Ç×ÇØ ÀÏÁö 2 ÆäÀÌÁö
-							|| player.getInventory().checkItem(41039) // Ç×ÇØ ÀÏÁö 3 ÆäÀÌÁö
-							|| player.getInventory().checkItem(41039) // Ç×ÇØ ÀÏÁö 4 ÆäÀÌÁö
-							|| player.getInventory().checkItem(41039) // Ç×ÇØ ÀÏÁö 5 ÆäÀÌÁö
-							|| player.getInventory().checkItem(41039) // Ç×ÇØ ÀÏÁö 6 ÆäÀÌÁö
-							|| player.getInventory().checkItem(41039) // Ç×ÇØ ÀÏÁö 7 ÆäÀÌÁö
-							|| player.getInventory().checkItem(41039) // Ç×ÇØ ÀÏÁö 8 ÆäÀÌÁö
-							|| player.getInventory().checkItem(41039) // Ç×ÇØ ÀÏÁö 9 ÆäÀÌÁö
-							|| player.getInventory().checkItem(41039)) { // Ç×ÇØ ÀÏÁö 10 ÆäÀÌÁö
+					// í˜ì´ì§€ë¥¼ ì¶”ê°€í•˜ê³  ìˆì§€ ì•ŠëŠ” ìƒíƒœ
+					if (player.getInventory().checkItem(41038) // í•­í•´ ì¼ì§€ 1 í˜ì´ì§€
+							|| player.getInventory().checkItem(41039) // í•­í•´ ì¼ì§€ 2 í˜ì´ì§€
+							|| player.getInventory().checkItem(41039) // í•­í•´ ì¼ì§€ 3 í˜ì´ì§€
+							|| player.getInventory().checkItem(41039) // í•­í•´ ì¼ì§€ 4 í˜ì´ì§€
+							|| player.getInventory().checkItem(41039) // í•­í•´ ì¼ì§€ 5 í˜ì´ì§€
+							|| player.getInventory().checkItem(41039) // í•­í•´ ì¼ì§€ 6 í˜ì´ì§€
+							|| player.getInventory().checkItem(41039) // í•­í•´ ì¼ì§€ 7 í˜ì´ì§€
+							|| player.getInventory().checkItem(41039) // í•­í•´ ì¼ì§€ 8 í˜ì´ì§€
+							|| player.getInventory().checkItem(41039) // í•­í•´ ì¼ì§€ 9 í˜ì´ì§€
+							|| player.getInventory().checkItem(41039)) { // í•­í•´ ì¼ì§€ 10 í˜ì´ì§€
 						htmlid = "voyager9";
 					} else {
 						htmlid = "voyager7";
 					}
-				} else if (player.getInventory().checkItem(49082) // ¹Ì¿Ï¼ºÀÇ Ç×ÇØ ÀÏÁö
+				} else if (player.getInventory().checkItem(49082) // ë¯¸ì™„ì„±ì˜ í•­í•´ ì¼ì§€
 						|| player.getInventory().checkItem(49083) || player.getInventory().checkItem(49084)
 						|| player.getInventory().checkItem(49085) || player.getInventory().checkItem(49086)
 						|| player.getInventory().checkItem(49087) || player.getInventory().checkItem(49088)
 						|| player.getInventory().checkItem(49089) || player.getInventory().checkItem(49090)
 						|| player.getInventory().checkItem(49091)) {
-					// ÆäÀÌÁö¸¦ Ãß°¡ÇÑ »óÅÂ
+					// í˜ì´ì§€ë¥¼ ì¶”ê°€í•œ ìƒíƒœ
 					htmlid = "voyager7";
 				}
 				break;
@@ -2011,50 +2011,50 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "c_belt";
 				}
 				break;
-			case 81202: // Ã¸º¸¿ø(±×¸²ÀÚÀÇ ½ÅÀü)
+			case 81202: // ì²©ë³´ì›(ê·¸ë¦¼ìì˜ ì‹ ì „)
 				if (player.getQuest().get_step(L1Quest.QUEST_SHADOWS) == L1Quest.QUEST_END) {
 					htmlid = "minitos10";
 				} else if (player.getKarmaLevel() <= -1) {
 					htmlid = "minitos07";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_SHADOWS) == 1
-						&& player.getGfxId().getTempCharGfx() == 6035) { // ·¿¼­µ¥ÀÌ¸ó º¯½Å
+						&& player.getGfxId().getTempCharGfx() == 6035) { // ë ›ì„œë°ì´ëª¬ ë³€ì‹ 
 					htmlid = "minitos03";
 				} else if (player.getQuest().get_step(L1Quest.QUEST_SHADOWS) == 1
 						&& player.getGfxId().getTempCharGfx() != 6035) {
 					htmlid = "minitos05";
-				} else if (player.getQuest().get_step(L1Quest.QUEST_DESIRE) == L1Quest.QUEST_END // ¿å¸ÁÀÇ µ¿±¼Ãø Äù½ºÆ® Á¾·á
-						|| player.getInventory().checkItem(41130) // ÇÍÀÚ±¹ÀÇ Áö·É¼­
-						|| player.getInventory().checkItem(41131)) { // ÇÍÀÚ±¹ÀÇ ¸í·É¼­
+				} else if (player.getQuest().get_step(L1Quest.QUEST_DESIRE) == L1Quest.QUEST_END // ìš•ë§ì˜ ë™êµ´ì¸¡ í€˜ìŠ¤íŠ¸ ì¢…ë£Œ
+						|| player.getInventory().checkItem(41130) // í•ìêµ­ì˜ ì§€ë ¹ì„œ
+						|| player.getInventory().checkItem(41131)) { // í•ìêµ­ì˜ ëª…ë ¹ì„œ
 					htmlid = "minitos01";
-				} else if (player.getInventory().checkItem(41121) // Ä«ÇïÀÇ Áö·É¼­
-						&& player.getInventory().checkItem(41122)) { // Ä«ÇïÀÇ ¸í·É¼­
+				} else if (player.getInventory().checkItem(41121) // ì¹´í—¬ì˜ ì§€ë ¹ì„œ
+						&& player.getInventory().checkItem(41122)) { // ì¹´í—¬ì˜ ëª…ë ¹ì„œ
 					htmlid = "minitos06";
-				} else if (player.getInventory().checkItem(41121)) { // Ä«ÇïÀÇ ¸í·É¼­
+				} else if (player.getInventory().checkItem(41121)) { // ì¹´í—¬ì˜ ëª…ë ¹ì„œ
 					htmlid = "minitos02";
 				}
 				break;
-			case 81208: // ´õ·¯¿öÁø ºê·Óºê
-				if (player.getInventory().checkItem(41129) // ÇÍÀÚ±¹ÀÇ Á¤¼ö
-						|| player.getInventory().checkItem(41138)) { // Ä«ÇïÀÇ Á¤¼ö
+			case 81208: // ë”ëŸ¬ì›Œì§„ ë¸Œë¡­ë¸Œ
+				if (player.getInventory().checkItem(41129) // í•ìêµ­ì˜ ì •ìˆ˜
+						|| player.getInventory().checkItem(41138)) { // ì¹´í—¬ì˜ ì •ìˆ˜
 					htmlid = "minibrob04";
-				} else if (player.getInventory().checkItem(41126) // ÇÍÀÚ±¹ÀÇ Å¸¶ô ÇÑ Á¤¼ö
-						&& player.getInventory().checkItem(41127) // ÇÍÀÚ±¹ÀÇ ¹«·ÂÇÑ Á¤¼ö
-						&& player.getInventory().checkItem(41128) // ÇÍÀÚ±¹ÀÇ ¾ÆÁıÀÎ Á¤¼ö
-						|| player.getInventory().checkItem(41135) // Ä«ÇïÀÇ Å¸¶ô ÇÑ Á¤¼ö
-								&& player.getInventory().checkItem(41136) // Ä«ÇïÀÇ ¾ÆÁıÀÎ Á¤¼ö
-								&& player.getInventory().checkItem(41137)) { // Ä«ÇïÀÇ ¾ÆÁıÀÎ Á¤¼ö
+				} else if (player.getInventory().checkItem(41126) // í•ìêµ­ì˜ íƒ€ë½ í•œ ì •ìˆ˜
+						&& player.getInventory().checkItem(41127) // í•ìêµ­ì˜ ë¬´ë ¥í•œ ì •ìˆ˜
+						&& player.getInventory().checkItem(41128) // í•ìêµ­ì˜ ì•„ì§‘ì¸ ì •ìˆ˜
+						|| player.getInventory().checkItem(41135) // ì¹´í—¬ì˜ íƒ€ë½ í•œ ì •ìˆ˜
+								&& player.getInventory().checkItem(41136) // ì¹´í—¬ì˜ ì•„ì§‘ì¸ ì •ìˆ˜
+								&& player.getInventory().checkItem(41137)) { // ì¹´í—¬ì˜ ì•„ì§‘ì¸ ì •ìˆ˜
 					htmlid = "minibrob02";
 				}
 				break;
-			// °æÇèÄ¡ Áö±Ş´Ü
+			// ê²½í—˜ì¹˜ ì§€ê¸‰ë‹¨
 			case 4200008:
 				if (player.getLevel() >= 70) {
 					htmlid = "expgive3";
 				}
 				break;
-			case 4200009: // º¸¼®¼¼°ø»ç µ¥ÀÌºø(¾ó³à±Í°ÉÀÌ)
+			case 4200009: // ë³´ì„ì„¸ê³µì‚¬ ë°ì´ë¹—(ì–¼ë…€ê·€ê±¸ì´)
 				if (checkItem(player, 49031)) {
-					if (checkItem(player, 21081)) { // ¾ó³à±Í°ÉÀÌ 1
+					if (checkItem(player, 21081)) { // ì–¼ë…€ê·€ê±¸ì´ 1
 						htmlid = "gemout1";
 					} else if (player.getQuest().get_step(L1Quest.QUEST_ICEQUEENRING) == 1) {
 						htmlid = "gemout2";
@@ -2070,12 +2070,12 @@ public class L1MerchantInstance extends L1NpcInstance {
 						htmlid = "gemout7";
 					} else if (player.getQuest().get_step(L1Quest.QUEST_ICEQUEENRING) == 7) {
 						htmlid = "gemout8";
-					} else { // º¸¼®¸¸ °¡Áö°íÀÖ´Ù.
+					} else { // ë³´ì„ë§Œ ê°€ì§€ê³ ìˆë‹¤.
 						htmlid = "gemout17";
 					}
 				}
 				break;
-			case 4204000: // ¿äÁ¤ ´ŞÀåÄù½ºÆ® ·ÎºóÈÄµå
+			case 4204000: // ìš”ì • ë‹¬ì¥í€˜ìŠ¤íŠ¸ ë¡œë¹ˆí›„ë“œ
 				if (!player.isElf()) {
 					// int MOONBOW_step = quest.get_step(L1Quest.QUEST_MOONBOW);
 				} else if (player.getQuest().get_step(L1Quest.QUEST_MOONBOW) == 0) {
@@ -2092,7 +2092,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "robinhood3";
 				}
 				break;
-			case 4205000: // ±â»ç30Äù ´øÀü ÀÔÀå ¹®Áö±â
+			case 4205000: // ê¸°ì‚¬30í€˜ ë˜ì „ ì…ì¥ ë¬¸ì§€ê¸°
 				if (player.isKnight()) {
 					if (player.getLevel() >= 30) {
 						int q30step = quest.get_step(L1Quest.QUEST_LEVEL30);
@@ -2124,20 +2124,20 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "zybril16";
 				}
 				break;
-			/******************************* Ãß°¡ *******************************/
-			/******************************* ½ÃÁğ3 ÀÌÈÄ Ãß°¡ *******************************/
-			// º£È÷¸ğ½º ¿¤¶ó½º
+			/******************************* ì¶”ê°€ *******************************/
+			/******************************* ì‹œì¦Œ3 ì´í›„ ì¶”ê°€ *******************************/
+			// ë² íˆëª¨ìŠ¤ ì—˜ë¼ìŠ¤
 			case 4218002:
 				htmlid = "elas3";
 				break;
-			// º£È÷¸ğ½º Å»¸®¿Â
+			// ë² íˆëª¨ìŠ¤ íƒˆë¦¬ì˜¨
 			case 4218004:
 				htmlid = "talrion4";
 				break;
-			/***************************** ¿¡ÇÇ¼Òµå 2 New System *****************************/
-			// ¼û°ÜÁø ¿ëµéÀÇ ¶¥ ÀÔ±¸(³ë¶ûÆ÷Å»)
+			/***************************** ì—í”¼ì†Œë“œ 2 New System *****************************/
+			// ìˆ¨ê²¨ì§„ ìš©ë“¤ì˜ ë•… ì…êµ¬(ë…¸ë‘í¬íƒˆ)
 			case 4212013:
-				// if (¾ÈÅ¸·¹ÀÌµå ¼º°øÈÄ ¿ÀÇÂ»óÅÂÃ¼Å©){
+				// if (ì•ˆíƒ€ë ˆì´ë“œ ì„±ê³µí›„ ì˜¤í”ˆìƒíƒœì²´í¬){
 				if (player.getLevel() >= 30 && player.getLevel() <= 51) {
 					htmlid = "dsecret2";
 				} else if (player.getLevel() > 51) {
@@ -2149,7 +2149,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 				// htmlid = "dsecret3";
 				// }
 				break;
-			// ¸¶¾ßÀÇ ±×¸²ÀÚ
+			// ë§ˆì•¼ì˜ ê·¸ë¦¼ì
 			case 6000015:
 				if (player.getInventory().checkItem(41158)) {
 					htmlid = "adenshadow1";
@@ -2157,7 +2157,7 @@ public class L1MerchantInstance extends L1NpcInstance {
 					htmlid = "adenshadow2";
 				}
 				break;
-			// ¼ö»óÇÑ ¿ä¸®»ç
+			// ìˆ˜ìƒí•œ ìš”ë¦¬ì‚¬
 			case 4220012:
 				if (player.getInventory().checkItem(437027, 1) || player.getInventory().checkItem(437028, 1)
 						|| player.getInventory().checkItem(437029, 1) || player.getInventory().checkItem(437030, 1)) {
@@ -2170,15 +2170,15 @@ public class L1MerchantInstance extends L1NpcInstance {
 				break;
 			}
 
-			// html Ç¥½Ã ÆĞÅ¶ ¼Û½Å
-			if (htmlid != null) { // htmlid°¡ ÁöÁ¤µÇ°í ÀÖ´Â °æ¿ì
-				if (htmldata != null) { // html ÁöÁ¤ÀÌ ÀÖ´Â °æ¿ì´Â Ç¥½Ã
+			// html í‘œì‹œ íŒ¨í‚· ì†¡ì‹ 
+			if (htmlid != null) { // htmlidê°€ ì§€ì •ë˜ê³  ìˆëŠ” ê²½ìš°
+				if (htmldata != null) { // html ì§€ì •ì´ ìˆëŠ” ê²½ìš°ëŠ” í‘œì‹œ
 					player.sendPackets(new S_NPCTalkReturn(objid, htmlid, htmldata));
 				} else {
 					player.sendPackets(new S_NPCTalkReturn(objid, htmlid));
 				}
 			} else {
-				if (player.getLawful() < -1000) { // ÇÃ·¹ÀÌ¾î°¡ Ä«¿ÀÆ½
+				if (player.getLawful() < -1000) { // í”Œë ˆì´ì–´ê°€ ì¹´ì˜¤í‹±
 					player.sendPackets(new S_NPCTalkReturn(talking, objid, 2));
 				} else {
 					player.sendPackets(new S_NPCTalkReturn(talking, objid, 1));
@@ -2331,22 +2331,22 @@ public class L1MerchantInstance extends L1NpcInstance {
 	    BattleZone bz = BattleZone.getInstance();
 
 	    if (!bz.getDuelOpen()) {
-	        pc.sendPackets(new S_SystemMessage("ÇöÀç ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ÀÌ ¿­¸®Áö ¾Ê¾Ò½À´Ï´Ù."));
+	        pc.sendPackets(new S_SystemMessage("í˜„ì¬ í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ì´ ì—´ë¦¬ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤."));
 	        return;
 	    }
 
-	    if (pc.get_DuelLine() != 0 || bz.is¹èÆ²Á¸À¯Àú(pc)) {
-	        pc.sendPackets(new S_SystemMessage("¹èÆ²Á¸¿¡¼­ ³ª¿Ô´Ù°¡ ´Ù½Ã µé¾î°¥ ¼ö ¾ø½À´Ï´Ù."));
+	    if (pc.get_DuelLine() != 0 || bz.isë°°í‹€ì¡´ìœ ì €(pc)) {
+	        pc.sendPackets(new S_SystemMessage("ë°°í‹€ì¡´ì—ì„œ ë‚˜ì™”ë‹¤ê°€ ë‹¤ì‹œ ë“¤ì–´ê°ˆ ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 	        return;
 	    }
 
-	    if (bz.get¹èÆ²Á¸À¯ÀúCount() > 50) {
-	        pc.sendPackets(new S_SystemMessage("ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ÀÇ ÀÎ¿øÀÌ ¸ğµÎ Ã¡½À´Ï´Ù."));
+	    if (bz.getë°°í‹€ì¡´ìœ ì €Count() > 50) {
+	        pc.sendPackets(new S_SystemMessage("í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ì˜ ì¸ì›ì´ ëª¨ë‘ ì°¼ìŠµë‹ˆë‹¤."));
 	        return;
 	    }
 
 	    if (pc.isInParty()) {
-	        pc.sendPackets(new S_SystemMessage("ÆÄÆ¼Áß¿¡´Â ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ ÀÔÀåÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù."));
+	        pc.sendPackets(new S_SystemMessage("íŒŒí‹°ì¤‘ì—ëŠ” í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ ì…ì¥ì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤."));
 	        return;
 	    }
 
@@ -2361,9 +2361,9 @@ public class L1MerchantInstance extends L1NpcInstance {
 	        bz.addLine2(pc);
 	    }
 
-	    bz.add¹èÆ²Á¸À¯Àú(pc);
+	    bz.addë°°í‹€ì¡´ìœ ì €(pc);
 
-	    pc.sendPackets(new S_SystemMessage("ÇÁ¸®¹Ì¾ö ¹èÆ²Á¸ ´ë±â½Ç·Î ÀÔÀåÇÏ¼Ì½À´Ï´Ù."));
+	    pc.sendPackets(new S_SystemMessage("í”„ë¦¬ë¯¸ì—„ ë°°í‹€ì¡´ ëŒ€ê¸°ì‹¤ë¡œ ì…ì¥í•˜ì…¨ìŠµë‹ˆë‹¤."));
 	    L1Teleport.teleport(pc, 32780, 32780, (short) 5001, 0, true);
 	}
 

@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -10,11 +10,11 @@ public class NearObjects {
 	public List<L1PcInstance> knownPlayer = new CopyOnWriteArrayList<L1PcInstance>();
 
 	/**
-	 * ÁöÁ¤µÈ ¿ÀºêÁ§Æ®¸¦, Ä³¸¯ÅÍ°¡ ÀÎ½ÄÇÏ°í ÀÖÀ»±î¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì˜¤ë¸Œì íŠ¸ë¥¼, ìºë¦­í„°ê°€ ì¸ì‹í•˜ê³  ìˆì„ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param obj
-	 *            Á¶»çÇÏ´Â ¿ÀºêÁ§Æ®.
-	 * @return ¿ÀºêÁ§Æ®¸¦ Ä³¸¯ÅÍ°¡ ÀÎ½ÄÇÏ°í ÀÖÀ¸¸é true, ÇÏ°í ÀÖÁö ¾ÊÀ¸¸é false.  ÀÚ±â ÀÚ½Å¿¡ ´ëÇØ¼­´Â false¸¦ µ¹·ÁÁØ´Ù.
+	 *            ì¡°ì‚¬í•˜ëŠ” ì˜¤ë¸Œì íŠ¸.
+	 * @return ì˜¤ë¸Œì íŠ¸ë¥¼ ìºë¦­í„°ê°€ ì¸ì‹í•˜ê³  ìˆìœ¼ë©´ true, í•˜ê³  ìˆì§€ ì•Šìœ¼ë©´ false.  ìê¸° ìì‹ ì— ëŒ€í•´ì„œëŠ” falseë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public boolean knownsObject(L1Object obj) {
 		return knownObjects.contains(obj);
@@ -22,28 +22,28 @@ public class NearObjects {
 
 
 	/**
-	 * Ä³¸¯ÅÍ°¡ ÀÎ½ÄÇÏ°í ÀÖ´Â ¸ğµç ¿ÀºêÁ§Æ®¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ê°€ ì¸ì‹í•˜ê³  ìˆëŠ” ëª¨ë“  ì˜¤ë¸Œì íŠ¸ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return Ä³¸¯ÅÍ°¡ ÀÎ½ÄÇÏ°í ÀÖ´Â ¿ÀºêÁ§Æ®¸¦ ³ªÅ¸³»´Â List<L1Object>.
+	 * @return ìºë¦­í„°ê°€ ì¸ì‹í•˜ê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ë‚˜íƒ€ë‚´ëŠ” List<L1Object>.
 	 */
 	public List<L1Object> getKnownObjects() {
 		return knownObjects;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ°¡ ÀÎ½ÄÇÏ°í ÀÖ´Â ¸ğµç ÇÃ·¹ÀÌ¾î¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ê°€ ì¸ì‹í•˜ê³  ìˆëŠ” ëª¨ë“  í”Œë ˆì´ì–´ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return Ä³¸¯ÅÍ°¡ ÀÎ½ÄÇÏ°í ÀÖ´Â ¿ÀºêÁ§Æ®¸¦ ³ªÅ¸³»´Â List<L1PcInstance>
+	 * @return ìºë¦­í„°ê°€ ì¸ì‹í•˜ê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ë‚˜íƒ€ë‚´ëŠ” List<L1PcInstance>
 	 */
 	public List<L1PcInstance> getKnownPlayers() {
 		return knownPlayer;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ¿¡, »õ·Ó°Ô ÀÎ½ÄÇÏ´Â ¿ÀºêÁ§Æ®¸¦ Ãß°¡ÇÑ´Ù.
+	 * ìºë¦­í„°ì—, ìƒˆë¡­ê²Œ ì¸ì‹í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ì¶”ê°€í•œë‹¤.
 	 * 
 	 * @param obj
-	 *            »õ·Ó°Ô ÀÎ½ÄÇÏ´Â ¿ÀºêÁ§Æ®.
+	 *            ìƒˆë¡­ê²Œ ì¸ì‹í•˜ëŠ” ì˜¤ë¸Œì íŠ¸.
 	 */
 	public void addKnownObject(L1Object obj) {
 		if (!knownObjects.contains(obj)) {
@@ -55,10 +55,10 @@ public class NearObjects {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ·ÎºÎÅÍ, ÀÎ½ÄÇÏ°í ÀÖ´Â ¿ÀºêÁ§Æ®¸¦ »èÁ¦ÇÑ´Ù.
+	 * ìºë¦­í„°ë¡œë¶€í„°, ì¸ì‹í•˜ê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ì‚­ì œí•œë‹¤.
 	 * 
 	 * @param obj
-	 *            »èÁ¦ÇÏ´Â ¿ÀºêÁ§Æ®.
+	 *            ì‚­ì œí•˜ëŠ” ì˜¤ë¸Œì íŠ¸.
 	 */
 	public void removeKnownObject(L1Object obj) {
 		knownObjects.remove(obj);
@@ -68,7 +68,7 @@ public class NearObjects {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ·ÎºÎÅÍ, ¸ğµç ÀÎ½ÄÇÏ°í ÀÖ´Â ¿ÀºêÁ§Æ®¸¦ »èÁ¦ÇÑ´Ù.
+	 * ìºë¦­í„°ë¡œë¶€í„°, ëª¨ë“  ì¸ì‹í•˜ê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ì‚­ì œí•œë‹¤.
 	 */
 	public void removeAllKnownObjects() {
 		knownObjects.clear();

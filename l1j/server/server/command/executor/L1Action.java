@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -42,7 +42,7 @@ public class L1Action implements L1CommandExecutor {
 			int actId = Integer.parseInt(st.nextToken(), 10);
 			pc.sendPackets(new S_DoActionGFX(pc.getId(), actId));
 		} catch (Exception exception) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [actid] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [actid] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

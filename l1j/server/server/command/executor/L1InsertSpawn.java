@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -51,24 +51,24 @@ public class L1InsertSpawn implements L1CommandExecutor {
 			L1Npc template = NpcTable.getInstance().getTemplate(npcId);
 
 			if (template == null) {
-				msg = "ÇØ´ç NPC°¡ ¹ß°ßµÇÁö ¾Ê½À´Ï´Ù. ";
+				msg = "í•´ë‹¹ NPCê°€ ë°œê²¬ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤. ";
 				return;
 			}
-			if (type.equals("¸÷")) {
+			if (type.equals("ëª¹")) {
 				if (!template.getImpl().equals("L1Monster")) {
-					msg = "ÁöÁ¤ÇÑ NPC´Â L1Monster°¡ ¾Æ´Õ´Ï´Ù. ";
+					msg = "ì§€ì •í•œ NPCëŠ” L1Monsterê°€ ì•„ë‹™ë‹ˆë‹¤. ";
 					return;
 				}
 				SpawnTable.storeSpawn(pc, template);
-			} else if (type.equals("¿£")) {
+			} else if (type.equals("ì—”")) {
 				NpcSpawnTable.getInstance().storeSpawn(pc, template);
 			}
 			
 			L1SpawnUtil.Gmspawn(npcId, pc.getX(), pc.getY(), pc.getMapId(), pc.getMoveState().getHeading(), 0);
-			msg = new StringBuilder().append(template.get_name()).append(" (" + npcId + ") ").append("¸¦ Ãß°¡Çß½À´Ï´Ù. ").toString();
+			msg = new StringBuilder().append(template.get_name()).append(" (" + npcId + ") ").append("ë¥¼ ì¶”ê°€í–ˆìŠµë‹ˆë‹¤. ").toString();
 		} catch (Exception e) {
 			// _log.log(Level.SEVERE, "", e);
-			msg = cmdName + " [¸÷,¿£] [NPCID] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. ";
+			msg = cmdName + " [ëª¹,ì—”] [NPCID] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. ";
 		} finally {
 			if (msg != null) {
 				pc.sendPackets(new S_SystemMessage(msg));

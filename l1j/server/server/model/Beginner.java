@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -72,7 +72,7 @@ public class Beginner {
 				p1.execute();
 			}
 		}catch (Exception e) {
-			_log.log(Level.SEVERE, "ºÏ¸¶Å©ÀÇ Ãß°¡·Î ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù.", e);
+			_log.log(Level.SEVERE, "ë¶ë§ˆí¬ì˜ ì¶”ê°€ë¡œ ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.", e);
 		}finally{
 			SQLUtil.close(r);
 			SQLUtil.close(p1);

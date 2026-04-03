@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -63,7 +63,7 @@ public class C_SecurityStatus extends ClientBasePacket {
 		if (castle.getCastleSecurity() == 0) status = "$1118";
 		else status = "$1117";
 
-//		System.out.println("µ¿ÀÛ: " +npcName);
+//		System.out.println("ë™ì‘: " +npcName);
 		String[] htmldata = new String[]{ npcName, status};
 
 		pc.sendPackets(new S_NPCTalkReturn(objid, "CastleS", htmldata));

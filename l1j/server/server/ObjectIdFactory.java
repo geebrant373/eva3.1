@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -62,7 +62,7 @@ public class ObjectIdFactory {
 	}
 
 	private void loadState() {
-		// DB·ÎºÎÅÍ MAXID¸¦ ¿ä±¸ÇÑ´Ù
+		// DBë¡œë¶€í„° MAXIDë¥¼ ìš”êµ¬í•œë‹¤
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
@@ -80,7 +80,7 @@ public class ObjectIdFactory {
 				id = FIRST_ID;
 			}
 			_curId = id;
-			_log.info("ÇöÀçÀÇ ¿ÀºêÁ§Æ® ID: " + _curId);
+			_log.info("í˜„ì¬ì˜ ì˜¤ë¸Œì íŠ¸ ID: " + _curId);
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {

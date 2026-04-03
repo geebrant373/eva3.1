@@ -1,4 +1,4 @@
-
+ï»¿
 package l1j.server.server.serverpackets;
 
 import java.util.logging.Level;
@@ -52,12 +52,12 @@ public class S_Serchdrop extends ServerBasePacket {
 			}		
 
 			writeC(Opcodes.S_OPCODE_BOARDREAD);
-			writeD(0);//³Ñ¹ö
-			writeS("¿î¿µÀÚ #5");//±Û¾´ÀÌ?
-			writeS("µå¶ø¸®½ºÆ®");
+			writeD(0);//ë„˜ë²„
+			writeS("ìš´ì˜ì #5");//ê¸€ì“´ì´?
+			writeS("ë“œëë¦¬ìŠ¤íŠ¸");
 			writeS("");
-			writeS("\r°Ë»öÇÒ ¾ÆÀÌÅÛ : " + ItemTable.getInstance().getTemplate(itemid).getName() + 
-				   "\n\n\r******  µå¶øÇÏ´Â ¸÷  ******" +
+			writeS("\rê²€ìƒ‰í•  ì•„ì´í…œ : " + ItemTable.getInstance().getTemplate(itemid).getName() + 
+				   "\n\n\r******  ë“œëí•˜ëŠ” ëª¹  ******" +
 				   "\n\n\r" + mobname[0] + " | " + mobname[1] + " | " + mobname[2] + " | " + mobname[3] + " | " + mobname[4] + " | " + mobname[5] + 
 				   " | " + mobname[6] + " | " + mobname[7] + " | " + mobname[8] + " | " + mobname[9] + " | " + mobname[10] + " | " + mobname[11] + 
 				   " | " + mobname[12] + " | " + mobname[13] + " | " + mobname[14] + " | " + mobname[15] + " | " + mobname[16] + " | " + mobname[17] +

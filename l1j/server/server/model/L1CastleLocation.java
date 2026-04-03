@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -51,8 +51,8 @@ public class L1CastleLocation {
 
 	public static final int DIAD_CASTLE_ID = 8;
 
-	// ¡æ¡èÇÏÁö¸¸ XÃà,¡æ¡éÀÌ YÃà
-	// ÄËÆ®¼º
+	// â†’â†‘í•˜ì§€ë§Œ Xì¶•,â†’â†“ì´ Yì¶•
+	// ì¼„íŠ¸ì„±
 	private static final int KENT_TOWER_X = 33170;
 
 	private static final int KENT_TOWER_Y = 32774;
@@ -71,7 +71,7 @@ public class L1CastleLocation {
 
 	private static final short KENT_INNER_CASTLE_MAP = 15;
 
-	// ¿ÀÅ©¼º
+	// ì˜¤í¬ì„±
 	private static final int OT_TOWER_X = 32800;
 
 	private static final int OT_TOWER_Y = 32290;
@@ -88,7 +88,7 @@ public class L1CastleLocation {
 
 	private static final short OT_MAP = 4;
 
-	// À©´Ù¿ìµå
+	// ìœˆë‹¤ìš°ë“œ
 	private static final int WW_TOWER_X = 32675;
 
 	private static final int WW_TOWER_Y = 33408;
@@ -107,7 +107,7 @@ public class L1CastleLocation {
 
 	private static final short WW_INNER_CASTLE_MAP = 29;
 
-	// ±â¶õ
+	// ê¸°ë€
 	private static final int GIRAN_TOWER_X = 33631;
 
 	private static final int GIRAN_TOWER_Y = 32678;
@@ -126,7 +126,7 @@ public class L1CastleLocation {
 
 	private static final short GIRAN_INNER_CASTLE_MAP = 52;
 
-	// ÇÏÀÌ³×
+	// í•˜ì´ë„¤
 	private static final int HEINE_TOWER_X = 33524;
 
 	private static final int HEINE_TOWER_Y = 33396;
@@ -145,7 +145,7 @@ public class L1CastleLocation {
 
 	private static final short HEINE_INNER_CASTLE_MAP = 64;
 
-	// µå¿öÇÁ
+	// ë“œì›Œí”„
 	private static final int DOWA_TOWER_X = 32828;
 
 	private static final int DOWA_TOWER_Y = 32818;
@@ -162,7 +162,7 @@ public class L1CastleLocation {
 
 	private static final short DOWA_MAP = 66;
 
-	// ¾Æµ§
+	// ì•„ë´
 	private static final int ADEN_TOWER_X = 34090;
 
 	private static final int ADEN_TOWER_Y = 33260;
@@ -197,7 +197,7 @@ public class L1CastleLocation {
 
 	private static final int ADEN_SUB_TOWER4_Y = 33230;
 
-	// µğ¾Æµå ¿ä»õ
+	// ë””ì•„ë“œ ìš”ìƒˆ
 	private static final int DIAD_TOWER_X = 33033;
 
 	private static final int DIAD_TOWER_Y = 32895;
@@ -275,7 +275,7 @@ public class L1CastleLocation {
 	}
 
 	/**
-	 * °¡µğ¾È Å¸¿ö, Å©¶ó¿îÀÇ ÁÂÇ¥·ÎºÎÅÍ castle_id¸¦ µ¹·ÁÁØ´Ù
+	 * ê°€ë””ì•ˆ íƒ€ì›Œ, í¬ë¼ìš´ì˜ ì¢Œí‘œë¡œë¶€í„° castle_idë¥¼ ëŒë ¤ì¤€ë‹¤
 	 */
 	public static int getCastleId(int locx, int locy, short mapid) {
 		return getCastleId(new L1Location(locx, locy, mapid));
@@ -296,7 +296,7 @@ public class L1CastleLocation {
 	}
 
 	/**
-	 * ÁöÁ¤ÇÑ ¼ºÀÇ ÀüÀï ¿¡¸®¾î(±â³»)¿¡ ÀÖÀ»±î µ¹·ÁÁØ´Ù
+	 * ì§€ì •í•œ ì„±ì˜ ì „ìŸ ì—ë¦¬ì–´(ê¸°ë‚´)ì— ìˆì„ê¹Œ ëŒë ¤ì¤€ë‹¤
 	 */
 	public static int getCastleIdByArea(L1Character cha) {
 		return getCastleIdByArea(cha.getLocation());
@@ -307,7 +307,7 @@ public class L1CastleLocation {
 	}
 
 	/**
-	 * ¸î°³ÀÇ ÀüÀï ¿¡¸®¾î(±â³») È­µµ³ª Ã¼Å©
+	 * ëª‡ê°œì˜ ì „ìŸ ì—ë¦¬ì–´(ê¸°ë‚´) í™”ë„ë‚˜ ì²´í¬
 	 */
 	public static boolean checkInWarArea(int castleId, L1Character cha) {
 		return checkInWarArea(castleId, cha.getLocation());
@@ -318,14 +318,14 @@ public class L1CastleLocation {
 	}
 
 	/**
-	 * ¸î°³ÀÇ ÀüÀï ¿¡¸®¾î(±â³») È­µµ³ª Ã¼Å©
+	 * ëª‡ê°œì˜ ì „ìŸ ì—ë¦¬ì–´(ê¸°ë‚´) í™”ë„ë‚˜ ì²´í¬
 	 */
 	public static boolean checkInAllWarArea(int locx, int locy, short mapid) {
 		return checkInAllWarArea(new L1Location(locx, locy, mapid));
 	}
 
 	/**
-	 * castleId·ÎºÎÅÍ °¡µğ¾È Å¸¿öÀÇ ÁÂÇ¥¸¦ µ¹·ÁÁØ´Ù
+	 * castleIdë¡œë¶€í„° ê°€ë””ì•ˆ íƒ€ì›Œì˜ ì¢Œí‘œë¥¼ ëŒë ¤ì¤€ë‹¤
 	 */
 	public static int[] getTowerLoc(int castleId) {
 		int[] result = new int[3];
@@ -339,7 +339,7 @@ public class L1CastleLocation {
 	}
 
 	/**
-	 * castleId·ÎºÎÅÍ ÀüÀï ¿¡¸®¾î(±â³»)ÀÇ ÁÂÇ¥¸¦ µ¹·ÁÁØ´Ù
+	 * castleIdë¡œë¶€í„° ì „ìŸ ì—ë¦¬ì–´(ê¸°ë‚´)ì˜ ì¢Œí‘œë¥¼ ëŒë ¤ì¤€ë‹¤
 	 */
 	public static int[] getWarArea(int castleId) {
 		int[] loc = new int[5];
@@ -406,7 +406,7 @@ public class L1CastleLocation {
 		return loc;
 	}
 
-	public static int[] getCastleLoc(int castle_id) { /// castle_id·ÎºÎÅÍ Å°¿ìÄ¡ÀÇ ÁÂÇ¥¸¦ µ¹·ÁÁØ´Ù
+	public static int[] getCastleLoc(int castle_id) { /// castle_idë¡œë¶€í„° í‚¤ìš°ì¹˜ì˜ ì¢Œí‘œë¥¼ ëŒë ¤ì¤€ë‹¤
 		int[] loc = new int[3];
 		switch(castle_id){
 		case KENT_CASTLE_ID:
@@ -456,7 +456,7 @@ public class L1CastleLocation {
 	}
 
 	/*
-	 * castle_id·ÎºÎÅÍ ±ÍÈ¯Ã³ÀÇ ÁÂÇ¥¸¦ ·£´ı¿¡ µ¹·ÁÁØ´Ù
+	 * castle_idë¡œë¶€í„° ê·€í™˜ì²˜ì˜ ì¢Œí‘œë¥¼ ëœë¤ì— ëŒë ¤ì¤€ë‹¤
 	 */
 	public static int[] getGetBackLoc(int castle_id) {
 		int[] loc;
@@ -469,7 +469,7 @@ public class L1CastleLocation {
 		case DOWA_CASTLE_ID: loc = L1TownLocation.getGetBackLoc(L1TownLocation.TOWNID_WERLDAN); break;
 		case ADEN_CASTLE_ID: loc = L1TownLocation.getGetBackLoc(L1TownLocation.TOWNID_ADEN); break;
 		case DIAD_CASTLE_ID:
-			// µğ¾Æµå ¿ä»õÀÇ ±ÍÈ¯Ã³´Â ¹ÌÁ¶»ç
+			// ë””ì•„ë“œ ìš”ìƒˆì˜ ê·€í™˜ì²˜ëŠ” ë¯¸ì¡°ì‚¬
 			Random random = new Random();
 			int rnd = random.nextInt(3);
 			loc = new int[3];
@@ -496,20 +496,20 @@ public class L1CastleLocation {
 	}
 
 	/**
-	 * npcid·ÎºÎÅÍ castle_id¸¦ µ¹·ÁÁØ´Ù
+	 * npcidë¡œë¶€í„° castle_idë¥¼ ëŒë ¤ì¤€ë‹¤
 	 * 
 	 * @param npcid
 	 * @return
 	 */
 	public static int getCastleIdByNpcid(int npcid) {
-		// ¿¡µ§¼º£º¿¡µ§ ¿Õ±¹ Àü¿ª
-		// ÄËÆ®¼º£ºÄËÆ®, ±×¸£µò
-		// À©´Ù¿ôµå¼º£º¿ìµå º£Å©, ¿À¾Æ½Ã½º, ½Ç¹ö ³ªÀÌÆ® Å¸¿î
-		// ±â¶õ¼º£º±â¶õ, ÀÌ¾ß±âÇÒ ¼ö ÀÖ´Â ¼¶
-		// Heine¼º£ºHeine
-		// µå¿öÈÄ¼º£º¿Ï¼÷, »ó¾ÆÀÇ Å¾, »ó¾ÆÀÇ Å¾ÀÇ ¸¶À»
-		// ¿ÀÅ©»çÀÌ£ºÈ­Àü¸¶À»
-		// µğ¾Æµå ¿ä»õ£ºÀüÀï¼¼ÀÇ ÀÏºÎ
+		// ì—ë´ì„±ï¼šì—ë´ ì™•êµ­ ì „ì—­
+		// ì¼„íŠ¸ì„±ï¼šì¼„íŠ¸, ê·¸ë¥´ë”˜
+		// ìœˆë‹¤ì›ƒë“œì„±ï¼šìš°ë“œ ë² í¬, ì˜¤ì•„ì‹œìŠ¤, ì‹¤ë²„ ë‚˜ì´íŠ¸ íƒ€ìš´
+		// ê¸°ë€ì„±ï¼šê¸°ë€, ì´ì•¼ê¸°í•  ìˆ˜ ìˆëŠ” ì„¬
+		// Heineì„±ï¼šHeine
+		// ë“œì›Œí›„ì„±ï¼šì™„ìˆ™, ìƒì•„ì˜ íƒ‘, ìƒì•„ì˜ íƒ‘ì˜ ë§ˆì„
+		// ì˜¤í¬ì‚¬ì´ï¼ší™”ì „ë§ˆì„
+		// ë””ì•„ë“œ ìš”ìƒˆï¼šì „ìŸì„¸ì˜ ì¼ë¶€
 
 		int castle_id = 0;
 
@@ -518,38 +518,38 @@ public class L1CastleLocation {
 		switch (town_id) {
 		case L1TownLocation.TOWNID_KENT:
 		case L1TownLocation.TOWNID_GLUDIO:
-			castle_id = KENT_CASTLE_ID; // ÄËÆ®¼º
+			castle_id = KENT_CASTLE_ID; // ì¼„íŠ¸ì„±
 			break;
 
 		case L1TownLocation.TOWNID_ORCISH_FOREST:
-			castle_id = OT_CASTLE_ID; // ¿ÀÅ©ÀÇ ½£
+			castle_id = OT_CASTLE_ID; // ì˜¤í¬ì˜ ìˆ²
 			break;
 
 		case L1TownLocation.TOWNID_SILVER_KNIGHT_TOWN:
 		case L1TownLocation.TOWNID_WINDAWOOD:
-			castle_id = WW_CASTLE_ID; // À©´Ù¿ôµå¼º
+			castle_id = WW_CASTLE_ID; // ìœˆë‹¤ì›ƒë“œì„±
 			break;
 
 		case L1TownLocation.TOWNID_TALKING_ISLAND:
 		case L1TownLocation.TOWNID_GIRAN:
-			castle_id = GIRAN_CASTLE_ID; // ±â¶õ¼º
+			castle_id = GIRAN_CASTLE_ID; // ê¸°ë€ì„±
 			break;
 
 		case L1TownLocation.TOWNID_HEINE:
-			castle_id = HEINE_CASTLE_ID; // Heine¼º
+			castle_id = HEINE_CASTLE_ID; // Heineì„±
 			break;
 
 		case L1TownLocation.TOWNID_WERLDAN:
 		case L1TownLocation.TOWNID_OREN:
-			castle_id = DOWA_CASTLE_ID; // µå¿öÈÄ¼º
+			castle_id = DOWA_CASTLE_ID; // ë“œì›Œí›„ì„±
 			break;
 
 		case L1TownLocation.TOWNID_ADEN:
-			castle_id = ADEN_CASTLE_ID; // ¿¡µ§¼º
+			castle_id = ADEN_CASTLE_ID; // ì—ë´ì„±
 			break;
 
 		case L1TownLocation.TOWNID_OUM_DUNGEON:
-			castle_id = DIAD_CASTLE_ID; // µğ¾Æµå ¿ä»õ
+			castle_id = DIAD_CASTLE_ID; // ë””ì•„ë“œ ìš”ìƒˆ
 			break;
 
 		default:
@@ -558,7 +558,7 @@ public class L1CastleLocation {
 		return castle_id;
 	}
 
-	// ÀÌ ¸Ş¼Òµå´Â ¿¡µ§ ½Ã°£¿¡ 1ÀÏ¸¶´Ù °»½ÅµÇ´Â ¼¼À²À» ¹İÈ¯ÇÑ´Ù. (¸®¾ó Å¸ÀÓÀÇ ¼¼À²Àº ¾Æ´Ï´Ù)
+	// ì´ ë©”ì†Œë“œëŠ” ì—ë´ ì‹œê°„ì— 1ì¼ë§ˆë‹¤ ê°±ì‹ ë˜ëŠ” ì„¸ìœ¨ì„ ë°˜í™˜í•œë‹¤. (ë¦¬ì–¼ íƒ€ì„ì˜ ì„¸ìœ¨ì€ ì•„ë‹ˆë‹¤)
 	public static int getCastleTaxRateByNpcId(int npcId) {
 		int castleId = getCastleIdByNpcid(npcId);
 		if (castleId != 0) {
@@ -567,12 +567,12 @@ public class L1CastleLocation {
 		return 0;
 	}
 
-	// °¢ ¼ºÀÇ ¼¼À²À» º¸°üÇØ µÎ´Â HashMap(¼ó¿ë)
+	// ê° ì„±ì˜ ì„¸ìœ¨ì„ ë³´ê´€í•´ ë‘ëŠ” HashMap(ìˆìš©)
 	private static HashMap<Integer, Integer> _castleTaxRate = new HashMap<Integer, Integer>();
 
 	private static L1CastleTaxRateListener _listener;
 
-	// GameServer#initialize, L1CastleTaxRateListener#onDayChangedÀÎ ¸¸Å­ ºÒ·Á °¥ ¿¹Á¤.
+	// GameServer#initialize, L1CastleTaxRateListener#onDayChangedì¸ ë§Œí¼ ë¶ˆë ¤ ê°ˆ ì˜ˆì •.
 	public static void setCastleTaxRate() {
 		for (L1Castle castle : CastleTable.getInstance().getCastleTableList()) {
 			_castleTaxRate.put(castle.getId(), castle.getTaxRate());

@@ -1,4 +1,4 @@
-package manager.dialog;
+ï»¿package manager.dialog;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -59,8 +59,8 @@ public class PlayerLevel extends Dialog {
 
 		shell = new Shell(getParent(), getStyle());
 		shell.setSize(251, 70);
-		shell.setText("ÇÃ·¹ÀÌ¾î ·¹º§º¯°æ");
-		// È­¸éÁß¾ÓÀ¸·Î
+		shell.setText("í”Œë ˆì´ì–´ ë ˆë²¨ë³€ê²½");
+		// í™”ë©´ì¤‘ì•™ìœ¼ë¡œ
 		display = Display.getDefault();
 		shell.setBounds((display.getBounds().width / 2) - (shell.getBounds().width / 2), (display.getBounds().height / 2)
 				- (shell.getBounds().height / 2), shell.getBounds().width, shell.getBounds().height);
@@ -71,7 +71,7 @@ public class PlayerLevel extends Dialog {
 		shell.setLayout(gl_shell);
 
 		Label lblNewLabel_2 = new Label(shell, SWT.NONE);
-		lblNewLabel_2.setText("º¯°æÇÒ ·¹º§");
+		lblNewLabel_2.setText("ë³€ê²½í•  ë ˆë²¨");
 
 		text_1 = new Text(shell, SWT.BORDER);
 		text_1.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
@@ -81,12 +81,12 @@ public class PlayerLevel extends Dialog {
 		GridData gd_lblNewButton = new GridData(SWT.LEFT, SWT.CENTER, false, false, 1, 1);
 		gd_lblNewButton.widthHint = 65;
 		lblNewButton.setLayoutData(gd_lblNewButton);
-		lblNewButton.setText("½Ç Çà");
+		lblNewButton.setText("ì‹¤ í–‰");
 		lblNewButton.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				pc.setExp(ExpTable.getExpByLevel(Integer.valueOf(text_1.getText())));
-				pc.sendPackets(new S_SystemMessage("¿î¿µÀÚ´ÔÀÌ ´ç½ÅÀÇ ·¹º§À» " + Integer.valueOf(text_1.getText()) + " À¸·Î º¯°æÇÏ¿´½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ìš´ì˜ìë‹˜ì´ ë‹¹ì‹ ì˜ ë ˆë²¨ì„ " + Integer.valueOf(text_1.getText()) + " ìœ¼ë¡œ ë³€ê²½í•˜ì˜€ìŠµë‹ˆë‹¤."));
 				close();
 			}
 		});

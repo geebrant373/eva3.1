@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -36,9 +36,9 @@ public class L1HateList {
 
 	public L1HateList() {
 		/*
-		 * ConcurrentHashMap¸¦ ÀÌ¿ëÇÏ´Â °Íº¸´Ù, ¸ğµç ¸Ş¼Òµå¸¦ µ¿±â ÇÏ´Â (ºĞ)ÆíÀÌ ¸Ş¸ğ¸® »ç¿ë·®, ¼Óµµ ¸ğµÎ ¿ì¼öÇß´Ù.
-		 * ´Ü, ÇâÈÄ ÀÌ Å¬·¡½ºÀÇ ÀÌ¿ë ¹æ¹ıÀÌ ¹Ù²î¾úÀ» °æ¿ì, ¿¹¸¦ µé¸é ¸¹Àº thread·ÎºÎÅÍ µ¿½Ã¿¡ ÀĞ±â°¡ °É¸®°Ô µÇ¾úÀ» °æ¿ì´Â,
-		 * ConcurrentHashMap¸¦ ÀÌ¿ëÇÏ´Â °ÍÀÌ ÁÁÀ»Áöµµ ¸ğ¸¥´Ù.
+		 * ConcurrentHashMapë¥¼ ì´ìš©í•˜ëŠ” ê²ƒë³´ë‹¤, ëª¨ë“  ë©”ì†Œë“œë¥¼ ë™ê¸° í•˜ëŠ” (ë¶„)í¸ì´ ë©”ëª¨ë¦¬ ì‚¬ìš©ëŸ‰, ì†ë„ ëª¨ë‘ ìš°ìˆ˜í–ˆë‹¤.
+		 * ë‹¨, í–¥í›„ ì´ í´ë˜ìŠ¤ì˜ ì´ìš© ë°©ë²•ì´ ë°”ë€Œì—ˆì„ ê²½ìš°, ì˜ˆë¥¼ ë“¤ë©´ ë§ì€ threadë¡œë¶€í„° ë™ì‹œì— ì½ê¸°ê°€ ê±¸ë¦¬ê²Œ ë˜ì—ˆì„ ê²½ìš°ëŠ”,
+		 * ConcurrentHashMapë¥¼ ì´ìš©í•˜ëŠ” ê²ƒì´ ì¢‹ì„ì§€ë„ ëª¨ë¥¸ë‹¤.
 		 */
 		_hateMap = new HashMap<L1Character, Integer>();
 	}

@@ -1,4 +1,4 @@
-package l1j.server.server.monitor;
+ï»¿package l1j.server.server.monitor;
 
 import java.io.IOException;
 
@@ -8,14 +8,14 @@ import l1j.server.server.model.Instance.L1PcInstance;
 public interface Logger {
 	public enum ChatType {
 		Normal, Global, Clan, Alliance, Guardian, Party, Group, Shouting
-		/** Trade Àå»çÃ¤ÆÃ ·Î±× ±â·Ï ³²±âÁö ¾Ê°Ô º¯°æ */
+		/** Trade ì¥ì‚¬ì±„íŒ… ë¡œê·¸ ê¸°ë¡ ë‚¨ê¸°ì§€ ì•Šê²Œ ë³€ê²½ */
 	}
 
 	;
 
 	public enum ItemActionType {
 		Pickup, Drop, Delete ,del
-		/** AutoLoot ¿ÀÅä·çÆÃ ·Î±× ±â·Ï ³²±âÁö ¾Ê°Ô º¯°æ */
+		/** AutoLoot ì˜¤í† ë£¨íŒ… ë¡œê·¸ ê¸°ë¡ ë‚¨ê¸°ì§€ ì•Šê²Œ ë³€ê²½ */
 	}
 
 	;
@@ -38,14 +38,14 @@ public interface Logger {
 
 	public void addTrade(boolean success, L1PcInstance pcfrom, L1PcInstance pcto, L1ItemInstance item, int count);
 
-	/** °Å·¡ ¼º°ø½Ã ·Î±× ±â·Ï ³²±â±â */
+	/** ê±°ë˜ ì„±ê³µì‹œ ë¡œê·¸ ê¸°ë¡ ë‚¨ê¸°ê¸° */
 	public void addEnchant(L1PcInstance pc, L1ItemInstance item, boolean success);
 
 	public void addAll(String msg);
 
 	public void addItemAction(ItemActionType type, L1PcInstance pc, L1ItemInstance item, int count);
 
-	/** 78·¹º§ ºÎÅÍ ·¹º§¾÷ÇÒ °æ¿ì levellog ±â·Ï */
+	/** 78ë ˆë²¨ ë¶€í„° ë ˆë²¨ì—…í•  ê²½ìš° levellog ê¸°ë¡ */
 	public void addLevel(L1PcInstance pc, int level);
 
 	public void flush() throws IOException;

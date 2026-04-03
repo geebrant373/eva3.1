@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -68,16 +68,16 @@ public class MagicDoll extends L1ItemInstance {
 
 	    int usedId = pc.getusedDollId();
 	    if (usedId == 0) {
-	        return; // ÀÌÀü¿¡ »ç¿ëÇÑ ÀÎÇüÀÌ ¾øÀ½
+	        return; // ì´ì „ì— ì‚¬ìš©í•œ ì¸í˜•ì´ ì—†ìŒ
 	    }
 
 	    L1ItemInstance item = pc.getInventory().getItem(usedId);
 	    if (item == null) {
-	        return; // ÀÎÇüÀÌ ÀÎº¥¿¡¼­ »ç¶óÁü
+	        return; // ì¸í˜•ì´ ì¸ë²¤ì—ì„œ ì‚¬ë¼ì§
 	    }
 
 	    if (!isAutoDollItem(item.getItemId())) {
-	        return; // ÀÚµ¿¼ÒÈ¯ ´ë»ó ¾Æ´Ô
+	        return; // ìë™ì†Œí™˜ ëŒ€ìƒ ì•„ë‹˜
 	    }
 
 	    MagicDoll dollItem = new MagicDoll(item.getItem());
@@ -85,35 +85,35 @@ public class MagicDoll extends L1ItemInstance {
 	}
 
 	private static boolean isAutoDollItem(int itemId) {
-	    // ÀÚµ¿ ¼ÒÈ¯ Àû¿ëÇÒ ¸ğµç ÀÎÇü ¾ÆÀÌÅÛ (Á¤»ó itemId ±âÁØ)
+	    // ìë™ ì†Œí™˜ ì ìš©í•  ëª¨ë“  ì¸í˜• ì•„ì´í…œ (ì •ìƒ itemId ê¸°ì¤€)
 	    switch (itemId) {
-	        case 743:      // ¸¶¹ıÀÎÇü : ³ªÀÌÆ®¹ßµå
-	        case 744:      // ¸¶¹ıÀÎÇü : ½Ã¾î
-	        case 41248:    // ¸¶¹ıÀÎÇü : ¹ö±×º£¾î
-	        case 41249:    // ¸¶¹ıÀÎÇü : ¼­Å¥¹ö½º
-	        case 41250:    // ¸¶¹ıÀÎÇü : ´Á´ëÀÎ°£
-	        case 41916:    // ¸¶¹ıÀÎÇü : Çã¼ö¾Æºñ
-	        case 430000:   // ¸¶¹ıÀÎÇü : µ¹°ñ·½
-	        case 430001:   // ¸¶¹ıÀÎÇü : Àå·Î
-	        case 430002:   // ¸¶¹ıÀÎÇü : Å©·¯½ºÆ®½Ã¾È
-	        case 430003:   // ¸¶¹ıÀÎÇü : ½Ã´í¼­
-	        case 430004:   // ¸¶¹ıÀÎÇü : ¿¡Æ¼
-	        case 430500:   // ¸¶¹ıÀÎÇü : ÄÚÄ«Æ®¸®½º
-	        case 430505:   // ¸¶¹ıÀÎÇü : ¶ó¹Ì¾Æ
-	        case 430506:   // ¸¶¹ıÀÎÇü : ½ºÆÄÅäÀÌ
-	        case 447016:   // ¸¶¹ıÀÎÇü : ¸®Ä¡
-	        case 4370598:  // ¸¶¹ıÀÎÇü : ÀÚÀÌ¾ğÆ®
-	        case 4370599:  // ¸¶¹ıÀÎÇü : »çÀÌÅ¬·Ó½º
-	        case 4370600:  // ¸¶¹ıÀÎÇü : ¸Ó¹Ì·Îµå
-	        case 5370600:  // ¸¶¹ıÀÎÇü : µ¥¸ó
-	        case 5370601:  // ¸¶¹ıÀÎÇü : µ¥½º³ªÀÌÆ®
-	        case 5370602:  // ¸¶¹ıÀÎÇü : ¾óÀ½¿©¿Õ
-	        case 5370603:  // ¸¶¹ıÀÎÇü : Å¸¶ô
-	        case 5370604:  // ¸¶¹ıÀÎÇü : ¹Ù¶õÄ«
-	        case 5370605:  // ¸¶¹ıÀÎÇü : ¾ÈÅ¸¶ó½º
-	        case 5370606:  // ¸¶¹ıÀÎÇü : ¹ß¶óÄ«½º
-	        case 5370607:  // ¸¶¹ıÀÎÇü : ¸°µåºñ¿À¸£
-	        case 5370608:  // ¸¶¹ıÀÎÇü : ÆÄÇª¸®¿Â
+	        case 743:      // ë§ˆë²•ì¸í˜• : ë‚˜ì´íŠ¸ë°œë“œ
+	        case 744:      // ë§ˆë²•ì¸í˜• : ì‹œì–´
+	        case 41248:    // ë§ˆë²•ì¸í˜• : ë²„ê·¸ë² ì–´
+	        case 41249:    // ë§ˆë²•ì¸í˜• : ì„œíë²„ìŠ¤
+	        case 41250:    // ë§ˆë²•ì¸í˜• : ëŠ‘ëŒ€ì¸ê°„
+	        case 41916:    // ë§ˆë²•ì¸í˜• : í—ˆìˆ˜ì•„ë¹„
+	        case 430000:   // ë§ˆë²•ì¸í˜• : ëŒê³¨ë ˜
+	        case 430001:   // ë§ˆë²•ì¸í˜• : ì¥ë¡œ
+	        case 430002:   // ë§ˆë²•ì¸í˜• : í¬ëŸ¬ìŠ¤íŠ¸ì‹œì•ˆ
+	        case 430003:   // ë§ˆë²•ì¸í˜• : ì‹œëŒ„ì„œ
+	        case 430004:   // ë§ˆë²•ì¸í˜• : ì—í‹°
+	        case 430500:   // ë§ˆë²•ì¸í˜• : ì½”ì¹´íŠ¸ë¦¬ìŠ¤
+	        case 430505:   // ë§ˆë²•ì¸í˜• : ë¼ë¯¸ì•„
+	        case 430506:   // ë§ˆë²•ì¸í˜• : ìŠ¤íŒŒí† ì´
+	        case 447016:   // ë§ˆë²•ì¸í˜• : ë¦¬ì¹˜
+	        case 4370598:  // ë§ˆë²•ì¸í˜• : ìì´ì–¸íŠ¸
+	        case 4370599:  // ë§ˆë²•ì¸í˜• : ì‚¬ì´í´ë¡­ìŠ¤
+	        case 4370600:  // ë§ˆë²•ì¸í˜• : ë¨¸ë¯¸ë¡œë“œ
+	        case 5370600:  // ë§ˆë²•ì¸í˜• : ë°ëª¬
+	        case 5370601:  // ë§ˆë²•ì¸í˜• : ë°ìŠ¤ë‚˜ì´íŠ¸
+	        case 5370602:  // ë§ˆë²•ì¸í˜• : ì–¼ìŒì—¬ì™•
+	        case 5370603:  // ë§ˆë²•ì¸í˜• : íƒ€ë½
+	        case 5370604:  // ë§ˆë²•ì¸í˜• : ë°”ë€ì¹´
+	        case 5370605:  // ë§ˆë²•ì¸í˜• : ì•ˆíƒ€ë¼ìŠ¤
+	        case 5370606:  // ë§ˆë²•ì¸í˜• : ë°œë¼ì¹´ìŠ¤
+	        case 5370607:  // ë§ˆë²•ì¸í˜• : ë¦°ë“œë¹„ì˜¤ë¥´
+	        case 5370608:  // ë§ˆë²•ì¸í˜• : íŒŒí‘¸ë¦¬ì˜¨
 	            return true;
 	        default:
 	            return false;
@@ -132,7 +132,7 @@ public class MagicDoll extends L1ItemInstance {
 		Object[] dollList = pc.getDollList().values().toArray();
 		for (Object dollObject : dollList) {
 			doll = (L1DollInstance) dollObject;
-			if (doll.getItemObjId() == itemObjectId) { // ÀÌ¹Ì ²¨³»°í ÀÖ´Â ¸ÅÁ÷ ½Ç¾÷ ¼ö´ç
+			if (doll.getItemObjId() == itemObjectId) { // ì´ë¯¸ êº¼ë‚´ê³  ìˆëŠ” ë§¤ì§ ì‹¤ì—… ìˆ˜ë‹¹
 				isAppear = false;
 				break;
 			}
@@ -146,9 +146,9 @@ public class MagicDoll extends L1ItemInstance {
 			int dollTime = 0;
 
 			switch (itemId) {
-			case L1ItemId.DOLL_Çã¼ö¾Æºñ:
+			case L1ItemId.DOLL_í—ˆìˆ˜ì•„ë¹„:
 				npcId = 46214;
-				dollType = L1DollInstance.DOLLTYPE_Çã¼ö¾Æºñ;
+				dollType = L1DollInstance.DOLLTYPE_í—ˆìˆ˜ì•„ë¹„;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
@@ -194,9 +194,9 @@ public class MagicDoll extends L1ItemInstance {
 				consumecount = 50;
 				dollTime = 1800;
 				break;
-			case L1ItemId.DOLL_¿¡Æ¼:
+			case L1ItemId.DOLL_ì—í‹°:
 				npcId = 4500154;
-				dollType = L1DollInstance.DOLLTYPE_¿¡Æ¼;
+				dollType = L1DollInstance.DOLLTYPE_ì—í‹°;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
@@ -218,46 +218,46 @@ public class MagicDoll extends L1ItemInstance {
 				consumecount = 50;
 				dollTime = 1800;
 				break;
-			// 3´Ü°è
-			case L1ItemId.DOLLTYPE_»çÀÌÅ¬·Ó½º:
+			// 3ë‹¨ê³„
+			case L1ItemId.DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤:
 				npcId = 47002;
-				dollType = L1DollInstance.DOLLTYPE_»çÀÌÅ¬·Ó½º;
+				dollType = L1DollInstance.DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
-			case L1ItemId.DOLLTYPE_½Ã¾î:
+			case L1ItemId.DOLLTYPE_ì‹œì–´:
 				npcId = 511;
-				dollType = L1DollInstance.DOLLTYPE_½Ã¾î;
+				dollType = L1DollInstance.DOLLTYPE_ì‹œì–´;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
-			case L1ItemId.DOLLTYPE_³ªÀÌÆ®¹ßµå:
+			case L1ItemId.DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ:
 				npcId = 510;
-				dollType = L1DollInstance.DOLLTYPE_³ªÀÌÆ®¹ßµå;
+				dollType = L1DollInstance.DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
-			case L1ItemId.DOLLTYPE_¸®Ä¡:
+			case L1ItemId.DOLLTYPE_ë¦¬ì¹˜:
 				npcId = 900224;
-				dollType = L1DollInstance.DOLLTYPE_¸®Ä¡;
+				dollType = L1DollInstance.DOLLTYPE_ë¦¬ì¹˜;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
-			case L1ItemId.DOLLTYPE_µ¥½º³ªÀÌÆ®:
+			case L1ItemId.DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸:
 				npcId = 1600247;
-				dollType = L1DollInstance.DOLLTYPE_µ¥½º³ªÀÌÆ®;
+				dollType = L1DollInstance.DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
-			case L1ItemId.DOLLTYPE_µ¥¸ó:
+			case L1ItemId.DOLLTYPE_ë°ëª¬:
 				npcId = 1600246;
-				dollType = L1DollInstance.DOLLTYPE_µ¥¸ó;
+				dollType = L1DollInstance.DOLLTYPE_ë°ëª¬;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
 			case L1ItemId.DOLL_SPATOI:
 				npcId = 4500161;
-				dollType = L1DollInstance.DOLLTYPE_½ºÆÄÅäÀÌ;
+				dollType = L1DollInstance.DOLLTYPE_ìŠ¤íŒŒí† ì´;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
@@ -267,45 +267,45 @@ public class MagicDoll extends L1ItemInstance {
 				consumecount = 50;
 				dollTime = 1800;
 				break;
-			case L1ItemId.DOLLTYPE_Å¸¶ô:
+			case L1ItemId.DOLLTYPE_íƒ€ë½:
 				npcId = 410115;
-				dollType = L1DollInstance.DOLLTYPE_Å¸¶ô;
+				dollType = L1DollInstance.DOLLTYPE_íƒ€ë½;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
-			case L1ItemId.DOLLTYPE_¾óÀ½¿©¿Õ:
+			case L1ItemId.DOLLTYPE_ì–¼ìŒì—¬ì™•:
 				npcId = 410118;
-				dollType = L1DollInstance.DOLLTYPE_¾óÀ½¿©¿Õ;
+				dollType = L1DollInstance.DOLLTYPE_ì–¼ìŒì—¬ì™•;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
-			case L1ItemId.DOLLTYPE_¹Ù¶õÄ«:
+			case L1ItemId.DOLLTYPE_ë°”ë€ì¹´:
 				npcId = 4000113;
-				dollType = L1DollInstance.DOLLTYPE_¹Ù¶õÄ«; 
+				dollType = L1DollInstance.DOLLTYPE_ë°”ë€ì¹´; 
 				consumecount = 50; 
 				dollTime = 1800;
 				break;
-			case L1ItemId.DOLLTYPE_¾ÈÅ¸¶ó½º:
+			case L1ItemId.DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤:
 				npcId = 410156;
-				dollType = L1DollInstance.DOLLTYPE_¾ÈÅ¸¶ó½º; 
+				dollType = L1DollInstance.DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤; 
 				consumecount = 50; 
 				dollTime = 1800;
 				break;
 			case 5370606:
 				npcId = 410159;
-				dollType = L1DollInstance.DOLLTYPE_¹ß¶óÄ«½º;
+				dollType = L1DollInstance.DOLLTYPE_ë°œë¼ì¹´ìŠ¤;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
 			case 5370607:
 				npcId = 410158;
-				dollType = L1DollInstance.DOLLTYPE_¸°µåºñ¿À¸£;
+				dollType = L1DollInstance.DOLLTYPE_ë¦°ë“œë¹„ì˜¤ë¥´;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
 			case 5370608:
 				npcId = 410157;
-				dollType = L1DollInstance.DOLLTYPE_ÆÄÇª¸®¿Â;
+				dollType = L1DollInstance.DOLLTYPE_íŒŒí‘¸ë¦¬ì˜¨;
 				consumecount = 50;
 				dollTime = 1800;
 				break;
@@ -317,12 +317,12 @@ public class MagicDoll extends L1ItemInstance {
 				return;
 			}
 			if (dollList.length >= Config.MAX_DOLL_COUNT) {
-				// \f1 ´õ ÀÌ»óÀÇ monster¸¦ Á¶Á¾ÇÒ ¼ö ¾ø½À´Ï´Ù.
+				// \f1 ë” ì´ìƒì˜ monsterë¥¼ ì¡°ì¢…í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				pc.sendPackets(new S_ServerMessage(319));
 				return;
 			}
 			if (itemId == 437018 && pc.getLevel() > 60) {
-				pc.sendPackets(new S_SystemMessage("ÂÌ¹ı»ç ÀÎÇüÀº 60±îÁö »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì«„ë²•ì‚¬ ì¸í˜•ì€ 60ê¹Œì§€ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤."));
 				return;
 			}
 			L1Npc template = NpcTable.getInstance().getTemplate(npcId);

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -38,8 +38,8 @@ public abstract class L1Poison {
 		}
 
 		L1PcInstance player = (L1PcInstance) cha;
-		if (player.getInventory().checkEquipped(20298) // Á¦´Ï½ºÀÇ¹İÁö
-				|| player.getInventory().checkEquipped(20117) // ¹ÙÆ÷¸ŞÆ®ÀÇ °©¿Ê
+		if (player.getInventory().checkEquipped(20298) // ì œë‹ˆìŠ¤ì˜ë°˜ì§€
+				|| player.getInventory().checkEquipped(20117) // ë°”í¬ë©”íŠ¸ì˜ ê°‘ì˜·
 				|| player.getInventory().checkEquipped(420100)
 				|| player.getInventory().checkEquipped(420101)
 				|| player.getInventory().checkEquipped(420102)

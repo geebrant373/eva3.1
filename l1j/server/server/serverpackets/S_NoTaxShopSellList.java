@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -38,7 +38,7 @@ public class S_NoTaxShopSellList extends ServerBasePacket {
 
 
 	/**
-	 * °¡°ÔÀÇ ¹°°Ç ¸®½ºÆ®¸¦ Ç¥½ÃÇÑ´Ù. Ä³¸¯ÅÍ°¡ BUY ¹öÆ°À» ´­·¶À» ¶§¿¡ º¸³½´Ù.
+	 * ê°€ê²Œì˜ ë¬¼ê±´ ë¦¬ìŠ¤íŠ¸ë¥¼ í‘œì‹œí•œë‹¤. ìºë¦­í„°ê°€ BUY ë²„íŠ¼ì„ ëˆŒë €ì„ ë•Œì— ë³´ë‚¸ë‹¤.
 	 */
 	public S_NoTaxShopSellList(int objId) {
 		writeC(Opcodes.S_OPCODE_SHOWSHOPBUYLIST);
@@ -57,7 +57,7 @@ public class S_NoTaxShopSellList extends ServerBasePacket {
 
 		writeH(shopItems.size());
 		
-		// L1ItemInstanceÀÇ getStatusBytes¸¦ ÀÌ¿ëÇÏ±â À§ÇØ(¶§¹®¿¡)
+		// L1ItemInstanceì˜ getStatusBytesë¥¼ ì´ìš©í•˜ê¸° ìœ„í•´(ë•Œë¬¸ì—)
 		L1ItemInstance dummy = new L1ItemInstance();
 		L1ShopItem shopItem = null;
 		L1Item item = null;

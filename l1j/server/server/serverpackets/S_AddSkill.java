@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -101,7 +101,7 @@ public class S_AddSkill extends ServerBasePacket {
 		writeC(bw1);
 		writeC(bw2);
 		writeC(bw3);
-		//writeD(0); // ½ÅÁ¾Á· ½ºÅ³ ±¸Á¶ º¯°æÀ» À§ÇØ ÁÖ¼®Ã³¸®
+		//writeD(0); // ì‹ ì¢…ì¡± ìŠ¤í‚¬ êµ¬ì¡° ë³€ê²½ì„ ìœ„í•´ ì£¼ì„ì²˜ë¦¬
 		writeD(0);
 	}
 

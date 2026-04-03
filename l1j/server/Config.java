@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -36,36 +36,36 @@ import l1j.server.server.utils.PerformanceTimer;
 public final class Config {
 	private static final Logger _log = Logger.getLogger(Config.class.getName());
 	public static String[] LANGUAGE_CODE_ARRAY = { "UTF8", "EUC-KR", "UTF8", "BIG5", "SJIS", "GBK" };
-	public static int ÀÚµ¿»ç³ÉÃæÀü½Ã°£;
-	public static int ÀÚµ¿»ç³É¹ı»ç°ø°İ½ºÅ³¹ßµ¿È®·ü;
-	public static int ÀÚµ¿»ç³ÉÆ®¸®ÇÃ¹ßµ¿È®·ü;
-	public static boolean ÀÚµ¿»ç³É¾ÆÀÌÅÛÇÈ¾÷;
-	public static int ÀÚµ¿»ç³É¹Ã;
+	public static int ìë™ì‚¬ëƒ¥ì¶©ì „ì‹œê°„;
+	public static int ìë™ì‚¬ëƒ¥ë²•ì‚¬ê³µê²©ìŠ¤í‚¬ë°œë™í™•ë¥ ;
+	public static int ìë™ì‚¬ëƒ¥íŠ¸ë¦¬í”Œë°œë™í™•ë¥ ;
+	public static boolean ìë™ì‚¬ëƒ¥ì•„ì´í…œí”½ì—…;
+	public static int ìë™ì‚¬ëƒ¥ë®¨;
 	/** Debug/release mode */
 	public static final boolean DEBUG = false;
 	public static boolean STANDBY_SERVER = false;
 	public static boolean CHECK_AUTO;
-	public static int ÀÚµ¿ÀÎÁõ½Ã°£;
+	public static int ìë™ì¸ì¦ì‹œê°„;
 	
-	public static Integer[] ¿ë°©ÀÎÃ¦;
-	public static int ¿ë°©;
-	public static int ¹èÆ²Á¸ÀÔÀå·¹º§;
-	public static boolean ¹èÆ²Á¸ÀÛµ¿À¯¹«;
-	public static String ¹èÆ²Á¸¾ÆÀÌÅÛ;
-	public static String ¹èÆ²Á¸¾ÆÀÌÅÛ°¹¼ö;
-	public static String ¹èÆ²Á¸_OPEN_TIME = null;
+	public static Integer[] ìš©ê°‘ì¸ì±ˆ;
+	public static int ìš©ê°‘;
+	public static int ë°°í‹€ì¡´ì…ì¥ë ˆë²¨;
+	public static boolean ë°°í‹€ì¡´ì‘ë™ìœ ë¬´;
+	public static String ë°°í‹€ì¡´ì•„ì´í…œ;
+	public static String ë°°í‹€ì¡´ì•„ì´í…œê°¯ìˆ˜;
+	public static String ë°°í‹€ì¡´_OPEN_TIME = null;
 	
-	public static int ÀÎÇüÇÕ¼ºÈ®·ü1´Ü°è;
-	public static int ÀÎÇüÇÕ¼ºÈ®·ü2´Ü°è;
-	public static int ÀÎÇüÇÕ¼ºÈ®·ü3´Ü°è;
-	public static int ÀÎÇüÇÕ¼ºÈ®·ü4´Ü°è;
-	public static int ÀÎÇüÇÕ¼ºÈ®·ü5´Ü°è;
+	public static int ì¸í˜•í•©ì„±í™•ë¥ 1ë‹¨ê³„;
+	public static int ì¸í˜•í•©ì„±í™•ë¥ 2ë‹¨ê³„;
+	public static int ì¸í˜•í•©ì„±í™•ë¥ 3ë‹¨ê³„;
+	public static int ì¸í˜•í•©ì„±í™•ë¥ 4ë‹¨ê³„;
+	public static int ì¸í˜•í•©ì„±í™•ë¥ 5ë‹¨ê³„;
 	
-	public static int ÀÎÇüÇÕ¼ººñ¿ë1´Ü°è;
-	public static int ÀÎÇüÇÕ¼ººñ¿ë2´Ü°è;
-	public static int ÀÎÇüÇÕ¼ººñ¿ë3´Ü°è;
-	public static int ÀÎÇüÇÕ¼ººñ¿ë4´Ü°è;
-	public static int ÀÎÇüÇÕ¼ººñ¿ë5´Ü°è;
+	public static int ì¸í˜•í•©ì„±ë¹„ìš©1ë‹¨ê³„;
+	public static int ì¸í˜•í•©ì„±ë¹„ìš©2ë‹¨ê³„;
+	public static int ì¸í˜•í•©ì„±ë¹„ìš©3ë‹¨ê³„;
+	public static int ì¸í˜•í•©ì„±ë¹„ìš©4ë‹¨ê³„;
+	public static int ì¸í˜•í•©ì„±ë¹„ìš©5ë‹¨ê³„;
 	
 	public static int systime;
 	public static String sys1;
@@ -91,7 +91,7 @@ public final class Config {
 	public static int AI_MAX_THREAD;
 	public static int THREAD_P_TYPE_GENERAL;
 	public static int THREAD_P_SIZE_GENERAL;
-	public static double WANTED_ADENA_CHARGE; // Çö»ó±İ È¸¼öÀ²
+	public static double WANTED_ADENA_CHARGE; // í˜„ìƒê¸ˆ íšŒìˆ˜ìœ¨
 	public static int WANTED_ADENA_52;
 	public static int WANTED_ADENA_55;
 	public static int WANTED_ADENA_60;
@@ -99,11 +99,11 @@ public final class Config {
 	public static int WANTED_ADENA_70;
 	public static int WANTED_ADENA_75;
 	public static int WANTED_ADENA_80;
-	public static int µ¥½º³ªÀÌÆ®¸ŞÅ×¿À;
-	public static int µ¥½º³ªÀÌÆ®ÇïÆÄÀÌ¾î;
-	public static int µ¥½º³ªÀÌÆ®¼±¹ö½ºÆ®;
-	public static double µ¥½º³ªÀÌÆ®°æÇèÄ¡;
-	public static double ¹«·áÀÎÇü°æÇèÄ¡;
+	public static int ë°ìŠ¤ë‚˜ì´íŠ¸ë©”í…Œì˜¤;
+	public static int ë°ìŠ¤ë‚˜ì´íŠ¸í—¬íŒŒì´ì–´;
+	public static int ë°ìŠ¤ë‚˜ì´íŠ¸ì„ ë²„ìŠ¤íŠ¸;
+	public static double ë°ìŠ¤ë‚˜ì´íŠ¸ê²½í—˜ì¹˜;
+	public static double ë¬´ë£Œì¸í˜•ê²½í—˜ì¹˜;
 	public static double IMMUNE_TO_HARM_PC;
 	public static double IMMUNE_TO_HARM_NPC;
 	public static double IMMUNE_TO_HARM_MAGIC;
@@ -111,11 +111,11 @@ public final class Config {
 	public static int BlassEnchantChanceAccessory;
 	public static int Master_Enchant;
 	public static int Master_ArmorEnchant;
-	public static int ·©Å·µ¿»óxÁÂÇ¥;
-	public static int ·©Å·µ¿»óyÁÂÇ¥;
-	public static String ¾Æµ¥³ª°Ô½ÃÆÇ¸àÆ®;
+	public static int ë­í‚¹ë™ìƒxì¢Œí‘œ;
+	public static int ë­í‚¹ë™ìƒyì¢Œí‘œ;
+	public static String ì•„ë°ë‚˜ê²Œì‹œíŒë©˜íŠ¸;
 	
-	public static int °ÔÀÏÃß°¡´ë¹ÌÁö;
+	public static int ê²Œì¼ì¶”ê°€ëŒ€ë¯¸ì§€;
 	
 	public static int FEATHER_TIME; 
 	public static int useritem;
@@ -123,12 +123,12 @@ public final class Config {
 	public static int USERITEM1_TIME; 
 	public static int useritem1;
 	public static int usercount1;
-	public static boolean ÀüÃ¼¼±¹°ÀÛµ¿À¯¹«;
+	public static boolean ì „ì²´ì„ ë¬¼ì‘ë™ìœ ë¬´;
 	public static int ROBOT_TEL_PERCENT;
 	public static boolean START_AUTO_ROBOT;
-	public static int º¿½ÃÀÛ·¹º§;
-	public static int º¿¹°¾à±âº»È¸º¹·®;
-	public static int º¿¹°¾à·£´ıÈ¸º¹·®;
+	public static int ë´‡ì‹œì‘ë ˆë²¨;
+	public static int ë´‡ë¬¼ì•½ê¸°ë³¸íšŒë³µëŸ‰;
+	public static int ë´‡ë¬¼ì•½ëœë¤íšŒë³µëŸ‰;
 	public static int ROBOT_LEVEL_RANGE;
 	public static boolean ROBOT_DIE_MESSAGE;
 	
@@ -177,65 +177,65 @@ public final class Config {
 	public static int FEATHER_NUM2;
 	public static int FEATHER_NUM3;
 	
-	public static int ÀØ¼¶1º¿Ä«¿îÆ®;
-	public static int ÀØ¼¶2º¿Ä«¿îÆ®;
-	public static int È­µÕº¿Ä«¿îÆ®;
-	public static int ¿ë°èº¿Ä«¿îÆ®;
-	public static int Ç³µÕº¿Ä«¿îÆ®;
-	public static int ¿ë´ø1º¿Ä«¿îÆ®;
-	public static int ¿ë´ø2º¿Ä«¿îÆ®;
-	public static int ¿ë´ø3º¿Ä«¿îÆ®;
-	public static int ¿ë´ø4º¿Ä«¿îÆ®;
-	public static int ¿ë´ø5º¿Ä«¿îÆ®;
-	public static int ¿ë´ø6º¿Ä«¿îÆ®;
-	public static int ¿ë´ø7º¿Ä«¿îÆ®;
-	public static int º»´ø1º¿Ä«¿îÆ®;
-	public static int º»´ø2º¿Ä«¿îÆ®;
-	public static int º»´ø3º¿Ä«¿îÆ®;
-	public static int º»´ø4º¿Ä«¿îÆ®;
-	public static int º»´ø5º¿Ä«¿îÆ®;
-	public static int º»´ø6º¿Ä«¿îÆ®;
-	public static int º»´ø7º¿Ä«¿îÆ®;
-	public static int ±â°¨1º¿Ä«¿îÆ®;
-	public static int ±â°¨2º¿Ä«¿îÆ®;
-	public static int »ó¾ÆÅ¾4º¿Ä«¿îÆ®;
-	public static int »ó¾ÆÅ¾5º¿Ä«¿îÆ®;
-	public static int »ó¾ÆÅ¾6º¿Ä«¿îÆ®;
-	public static int »ó¾ÆÅ¾7º¿Ä«¿îÆ®;
-	public static int ¿À¸¸1º¿Ä«¿îÆ®;
-	public static int ¿À¸¸2º¿Ä«¿îÆ®;
-	public static int ¿À¸¸3º¿Ä«¿îÆ®;
-	public static int ¿À¸¸4º¿Ä«¿îÆ®;
-	public static int ¿À¸¸5º¿Ä«¿îÆ®;
-	public static int ¿À¸¸6º¿Ä«¿îÆ®;
-	public static int ¿À¸¸7º¿Ä«¿îÆ®;
-	public static int ¿À¸¸8º¿Ä«¿îÆ®;
-	public static int ¿À¸¸9º¿Ä«¿îÆ®;
-	public static int ¿À¸¸10º¿Ä«¿îÆ®;
-	public static int ¿À¸¸Á¤»óº¿Ä«¿îÆ®;
-	public static int Áö¹è1º¿Ä«¿îÆ®;
-	public static int Áö¹è2º¿Ä«¿îÆ®;
-	public static int Áö¹è3º¿Ä«¿îÆ®;
-	public static int Áö¹è4º¿Ä«¿îÆ®;
-	public static int Áö¹è5º¿Ä«¿îÆ®;
-	public static int Áö¹è6º¿Ä«¿îÆ®;
-	public static int Áö¹è7º¿Ä«¿îÆ®;
-	public static int Áö¹è8º¿Ä«¿îÆ®;
-	public static int Áö¹è9º¿Ä«¿îÆ®;
-	public static int Áö¹è10º¿Ä«¿îÆ®;
-	public static int Áö¹èÁ¤»óº¿Ä«¿îÆ®;
-	public static int Áö¹è°á°è1º¿Ä«¿îÆ®;
-	public static int Áö¹è°á°è2º¿Ä«¿îÆ®;
-	public static int ¿¤¸ğ¾îº¿Ä«¿îÆ®;
-	public static int º¸½ºº¿Ä«¿îÆ®;
-	public static int ¿À¸¸º¸½ºº¿Ä«¿îÆ®;
-	public static int Áö¹èº¸½ºº¿Ä«¿îÆ®;
+	public static int ìŠì„¬1ë´‡ì¹´ìš´íŠ¸;
+	public static int ìŠì„¬2ë´‡ì¹´ìš´íŠ¸;
+	public static int í™”ë‘¥ë´‡ì¹´ìš´íŠ¸;
+	public static int ìš©ê³„ë´‡ì¹´ìš´íŠ¸;
+	public static int í’ë‘¥ë´‡ì¹´ìš´íŠ¸;
+	public static int ìš©ë˜1ë´‡ì¹´ìš´íŠ¸;
+	public static int ìš©ë˜2ë´‡ì¹´ìš´íŠ¸;
+	public static int ìš©ë˜3ë´‡ì¹´ìš´íŠ¸;
+	public static int ìš©ë˜4ë´‡ì¹´ìš´íŠ¸;
+	public static int ìš©ë˜5ë´‡ì¹´ìš´íŠ¸;
+	public static int ìš©ë˜6ë´‡ì¹´ìš´íŠ¸;
+	public static int ìš©ë˜7ë´‡ì¹´ìš´íŠ¸;
+	public static int ë³¸ë˜1ë´‡ì¹´ìš´íŠ¸;
+	public static int ë³¸ë˜2ë´‡ì¹´ìš´íŠ¸;
+	public static int ë³¸ë˜3ë´‡ì¹´ìš´íŠ¸;
+	public static int ë³¸ë˜4ë´‡ì¹´ìš´íŠ¸;
+	public static int ë³¸ë˜5ë´‡ì¹´ìš´íŠ¸;
+	public static int ë³¸ë˜6ë´‡ì¹´ìš´íŠ¸;
+	public static int ë³¸ë˜7ë´‡ì¹´ìš´íŠ¸;
+	public static int ê¸°ê°1ë´‡ì¹´ìš´íŠ¸;
+	public static int ê¸°ê°2ë´‡ì¹´ìš´íŠ¸;
+	public static int ìƒì•„íƒ‘4ë´‡ì¹´ìš´íŠ¸;
+	public static int ìƒì•„íƒ‘5ë´‡ì¹´ìš´íŠ¸;
+	public static int ìƒì•„íƒ‘6ë´‡ì¹´ìš´íŠ¸;
+	public static int ìƒì•„íƒ‘7ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œ1ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œ2ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œ3ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œ4ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œ5ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œ6ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œ7ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œ8ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œ9ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œ10ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œì •ìƒë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°1ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°2ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°3ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°4ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°5ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°6ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°7ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°8ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°9ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°10ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°ì •ìƒë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°ê²°ê³„1ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°ê²°ê³„2ë´‡ì¹´ìš´íŠ¸;
+	public static int ì—˜ëª¨ì–´ë´‡ì¹´ìš´íŠ¸;
+	public static int ë³´ìŠ¤ë´‡ì¹´ìš´íŠ¸;
+	public static int ì˜¤ë§Œë³´ìŠ¤ë´‡ì¹´ìš´íŠ¸;
+	public static int ì§€ë°°ë³´ìŠ¤ë´‡ì¹´ìš´íŠ¸;
 	
-	public static int ORIM_ACCESS_ENCHANT_SCROLL_USE_LEVEL; // ¿À¸²ÀÇÀå½Å±¸¸¶¹ıÁÖ¹®¼­ »ç¿ë°¡´ÉÇÒ
-															// ·¹º§
-	public static int ORIM_ACCESS_ENCHANT_SCROLL_CHANCE; // ¿À¸²ÀÇÀå½Å±¸¸¶¹ıÁÖ¹®¼­ ¼º°øÈ®·ü
-	public static int ORIM_ACCESS_ENCHANT_SCROLL_DECREASE_CHANCE; // ¿À¸²ÀÇÀå½Å±¸¸¶¹ıÁÖ¹®¼­
-																	// ÀÎÃ¦´ç °¨¼ÒÈ®·ü
+	public static int ORIM_ACCESS_ENCHANT_SCROLL_USE_LEVEL; // ì˜¤ë¦¼ì˜ì¥ì‹ êµ¬ë§ˆë²•ì£¼ë¬¸ì„œ ì‚¬ìš©ê°€ëŠ¥í• 
+															// ë ˆë²¨
+	public static int ORIM_ACCESS_ENCHANT_SCROLL_CHANCE; // ì˜¤ë¦¼ì˜ì¥ì‹ êµ¬ë§ˆë²•ì£¼ë¬¸ì„œ ì„±ê³µí™•ë¥ 
+	public static int ORIM_ACCESS_ENCHANT_SCROLL_DECREASE_CHANCE; // ì˜¤ë¦¼ì˜ì¥ì‹ êµ¬ë§ˆë²•ì£¼ë¬¸ì„œ
+																	// ì¸ì±ˆë‹¹ ê°ì†Œí™•ë¥ 
 
 	public static double UNCANNY_DODGE_DECREASE_RATE_BY_NPC;
 	public static double UNCANNY_DODGE_DECREASE_RATE_BY_PC;
@@ -255,13 +255,13 @@ public final class Config {
 	public static double MOVE_SPEED_VALUE;
 	public static double ATTACK_SPEED_VALUE;
 	
-	public static double ÆêÃß°¡´ë¹ÌÁö;
-	public static double ¼­¸ÕÃß°¡´ë¹ÌÁö;
-	public static double ÀÚµ¿ÆĞ³ÎÆ¼¹èÀ²;
+	public static double í«ì¶”ê°€ëŒ€ë¯¸ì§€;
+	public static double ì„œë¨¼ì¶”ê°€ëŒ€ë¯¸ì§€;
+	public static double ìë™íŒ¨ë„í‹°ë°°ìœ¨;
 	public static double AC_HIT_PCPC;
 	public static double AC_HIT_NPCPC;
 	public static double MR_MAGIC_DMG;
-	public static double ÀÎ¿ø¹èÀ²;
+	public static double ì¸ì›ë°°ìœ¨;
 	public static int EnchantChanceRun0;
 	public static int EnchantChanceRun1;
 	public static int EnchantChanceRun2;
@@ -273,7 +273,7 @@ public final class Config {
 	public static int EnchantChanceRun8;
 	public static int EnchantChanceRun9;
 	public static int BlassEnchantChanceRun;
-	public static int ·©Ä¿º¯½Å°¡´É¼øÀ§;
+	public static int ë­ì»¤ë³€ì‹ ê°€ëŠ¥ìˆœìœ„;
 	
 	public static double MR_SKILL_REDUC200;
 	public static double MR_SKILL_REDUC190;
@@ -299,44 +299,44 @@ public final class Config {
 	
 	public static int MANAGER_LOG_SAVE_DELAY;
 
-	public static int ¹Ù¿î½º¾îÅÃ¼öÄ¡;
-	public static int ¼Ö¸®µåÄ³¸®Áö¼öÄ¡;
+	public static int ë°”ìš´ìŠ¤ì–´íƒìˆ˜ì¹˜;
+	public static int ì†”ë¦¬ë“œìºë¦¬ì§€ìˆ˜ì¹˜;
 	
-	public static int ¹ß¶ó°¡È£È®·ü;
-	public static int ¸°µå°¡È£È®·ü;
-	public static int ÆÄÇª°¡È£È®·ü;
-	public static double ¹ß¶óÀÌÆåÆ®´ë¹ÌÁö1;
-	public static double ¹ß¶óÀÌÆåÆ®´ë¹ÌÁö2;
-	public static double ¹ß¶óÀÌÆåÆ®´ë¹ÌÁö3;
-	public static double ¹ß¶óÀÌÆåÆ®´ë¹ÌÁö4;
+	public static int ë°œë¼ê°€í˜¸í™•ë¥ ;
+	public static int ë¦°ë“œê°€í˜¸í™•ë¥ ;
+	public static int íŒŒí‘¸ê°€í˜¸í™•ë¥ ;
+	public static double ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€1;
+	public static double ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€2;
+	public static double ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€3;
+	public static double ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€4;
 	
-	public static double ¸°µåÀÌÆåÆ®´ë¹ÌÁö1;
-	public static double ¸°µåÀÌÆåÆ®´ë¹ÌÁö2;
-	public static double ¸°µåÀÌÆåÆ®´ë¹ÌÁö3;
-	public static double ¸°µåÀÌÆåÆ®´ë¹ÌÁö4;
+	public static double ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€1;
+	public static double ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€2;
+	public static double ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€3;
+	public static double ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€4;
 	
-	public static double ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö1;
-	public static double ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö2;
-	public static double ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö3;
-	public static double ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö4;
+	public static double íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€1;
+	public static double íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€2;
+	public static double íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€3;
+	public static double íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€4;
 	
-	public static int ¹«±âµğÁöÁîÈ®·ü1;
-	public static int ¹«±âµğÁöÁîÈ®·ü2;
-	public static int ¹«±âµğÁöÁîÈ®·ü3;
-	public static int ¹«±âµğÁöÁîÈ®·ü4;
-	public static int ¹«±âµğÁöÁîÈ®·ü5;
-	public static int ¹«±âµğÁöÁîÈ®·ü6;
-	public static int ¹«±âµğÁöÁîÁö¼Ó½Ã°£;
-	public static int »¡°»ÀÌÈ¸º¹·®;
-	public static int ÁÖÈ«ÀÌÈ¸º¹·®;
-	public static int ¸¼°»ÀÌÈ¸º¹·®;
-	public static int ³·Àº3·¾Ä³¸¯;
-	public static int ³·Àº2·¾Ä³¸¯;
-	public static int ³·Àº1·¾Ä³¸¯;
-	public static int µ¿·¾Ä³¸¯;
-	public static int ³ôÀº1·¾Ä³¸¯;
-	public static int ³ôÀº2·¾Ä³¸¯;
-	public static int ³ôÀº3·¾Ä³¸¯;
+	public static int ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 1;
+	public static int ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 2;
+	public static int ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 3;
+	public static int ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 4;
+	public static int ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 5;
+	public static int ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 6;
+	public static int ë¬´ê¸°ë””ì§€ì¦ˆì§€ì†ì‹œê°„;
+	public static int ë¹¨ê°±ì´íšŒë³µëŸ‰;
+	public static int ì£¼í™ì´íšŒë³µëŸ‰;
+	public static int ë§‘ê°±ì´íšŒë³µëŸ‰;
+	public static int ë‚®ì€3ë ™ìºë¦­;
+	public static int ë‚®ì€2ë ™ìºë¦­;
+	public static int ë‚®ì€1ë ™ìºë¦­;
+	public static int ë™ë ™ìºë¦­;
+	public static int ë†’ì€1ë ™ìºë¦­;
+	public static int ë†’ì€2ë ™ìºë¦­;
+	public static int ë†’ì€3ë ™ìºë¦­;
 	/** ADD_CPMW_SYSTEM */
 	public static String boardTitleAdena;
 	public static int ADENASHOP_LEVEL;
@@ -349,52 +349,52 @@ public final class Config {
 	public static double ADD_EXP_BY_DOLL_RATE;
 	public static int ADD_EXP_BY_DOLL_ID;
 	public static int MOVE_ADD_INRERVAL;
-	public static int »¡°»ÀÌ;
-	public static int ÁÖÈ«ÀÌ;
-	public static int ¸¼°»ÀÌ;
+	public static int ë¹¨ê°±ì´;
+	public static int ì£¼í™ì´;
+	public static int ë§‘ê°±ì´;
 	public static int ATTACK_ADD_INRERVAL;
-	public static int ¿ë´øº»´ø½Ã°£;
-	public static int ±â°¨½Ã°£;
-	public static int ¸ù¼¶½Ã°£;
-	public static int ¶ó´ø½Ã°£;
-	public static int °³¹Ì´øÀü½Ã°£;
-	public static int ±×¸²ÀÚ½ÅÀü½Ã°£;
-	public static int ±âº»¿¥Èí;
-	public static int ¹ÙÆ÷¿¥Èí;
-	public static int ±â°¨·¾Á¦;
-	public static int Å×º£·¾Á¦;
-	public static int Æ÷±×¸é¿ª¼öÄ¡;
-	public static int µğÁöÁî¸é¿ª¼öÄ¡;
-	public static int Ä¿½º¸é¿ª¼öÄ¡;
-	public static int ¿şÆùºê·¹ÀÌÅ©¸é¿ª¼öÄ¡;
-	public static int Ä¿½ººí¶óÀÎµå¸é¿ª¼öÄ¡;
-	public static int ¾ÆÀÌ½º¸é¿ª¼öÄ¡;
-	public static int ¾Æµ¥³ª½Ã¼¼ºñÀ²;
-	public static int Áß¸³Ç÷¿¥ºí·³;
-	public static int Áß¸³Ç÷¾ÆÀÌµğ;
-	public static int Áß¸³Ç÷·¹º§Á¦ÇÑ;
-	public static int µå½½º¯½Å·©Å·;
-	public static int Áö¹è¼ø¹İÁ¦ÀÛÈ®·ü;
+	public static int ìš©ë˜ë³¸ë˜ì‹œê°„;
+	public static int ê¸°ê°ì‹œê°„;
+	public static int ëª½ì„¬ì‹œê°„;
+	public static int ë¼ë˜ì‹œê°„;
+	public static int ê°œë¯¸ë˜ì „ì‹œê°„;
+	public static int ê·¸ë¦¼ìì‹ ì „ì‹œê°„;
+	public static int ê¸°ë³¸ì— í¡;
+	public static int ë°”í¬ì— í¡;
+	public static int ê¸°ê°ë ™ì œ;
+	public static int í…Œë² ë ™ì œ;
+	public static int í¬ê·¸ë©´ì—­ìˆ˜ì¹˜;
+	public static int ë””ì§€ì¦ˆë©´ì—­ìˆ˜ì¹˜;
+	public static int ì»¤ìŠ¤ë©´ì—­ìˆ˜ì¹˜;
+	public static int ì›¨í°ë¸Œë ˆì´í¬ë©´ì—­ìˆ˜ì¹˜;
+	public static int ì»¤ìŠ¤ë¸”ë¼ì¸ë“œë©´ì—­ìˆ˜ì¹˜;
+	public static int ì•„ì´ìŠ¤ë©´ì—­ìˆ˜ì¹˜;
+	public static int ì•„ë°ë‚˜ì‹œì„¸ë¹„ìœ¨;
+	public static int ì¤‘ë¦½í˜ˆì— ë¸”ëŸ¼;
+	public static int ì¤‘ë¦½í˜ˆì•„ì´ë””;
+	public static int ì¤‘ë¦½í˜ˆë ˆë²¨ì œí•œ;
+	public static int ë“œìŠ¬ë³€ì‹ ë­í‚¹;
+	public static int ì§€ë°°ìˆœë°˜ì œì‘í™•ë¥ ;
 	
-	public static int ¹«±â¾ÈÀü0ÀÏ¶§1¾÷;
-	public static int ¹«±â¾ÈÀü0ÀÏ¶§2¾÷;
-	public static int ¹«±â¾ÈÀü0ÀÏ¶§3¾÷;
-	public static int ¹«±â¾ÈÀü6ÀÏ¶§1¾÷;
-	public static int ¹«±â¾ÈÀü6ÀÏ¶§2¾÷;
-	public static int ¹«±â¾ÈÀü6ÀÏ¶§3¾÷;
+	public static int ë¬´ê¸°ì•ˆì „0ì¼ë•Œ1ì—…;
+	public static int ë¬´ê¸°ì•ˆì „0ì¼ë•Œ2ì—…;
+	public static int ë¬´ê¸°ì•ˆì „0ì¼ë•Œ3ì—…;
+	public static int ë¬´ê¸°ì•ˆì „6ì¼ë•Œ1ì—…;
+	public static int ë¬´ê¸°ì•ˆì „6ì¼ë•Œ2ì—…;
+	public static int ë¬´ê¸°ì•ˆì „6ì¼ë•Œ3ì—…;
 	
-	public static int ¹æ¾î±¸¾ÈÀü0ÀÏ¶§1¾÷;
-	public static int ¹æ¾î±¸¾ÈÀü0ÀÏ¶§2¾÷;
-	public static int ¹æ¾î±¸¾ÈÀü0ÀÏ¶§3¾÷;
-	public static int ¹æ¾î±¸¾ÈÀü4ÀÏ¶§1¾÷;
-	public static int ¹æ¾î±¸¾ÈÀü4ÀÏ¶§2¾÷;
-	public static int ¹æ¾î±¸¾ÈÀü4ÀÏ¶§3¾÷;
-	public static int ¹æ¾î±¸¾ÈÀü6ÀÏ¶§1¾÷;
-	public static int ¹æ¾î±¸¾ÈÀü6ÀÏ¶§2¾÷;
-	public static int ¹æ¾î±¸¾ÈÀü6ÀÏ¶§3¾÷;
+	public static int ë°©ì–´êµ¬ì•ˆì „0ì¼ë•Œ1ì—…;
+	public static int ë°©ì–´êµ¬ì•ˆì „0ì¼ë•Œ2ì—…;
+	public static int ë°©ì–´êµ¬ì•ˆì „0ì¼ë•Œ3ì—…;
+	public static int ë°©ì–´êµ¬ì•ˆì „4ì¼ë•Œ1ì—…;
+	public static int ë°©ì–´êµ¬ì•ˆì „4ì¼ë•Œ2ì—…;
+	public static int ë°©ì–´êµ¬ì•ˆì „4ì¼ë•Œ3ì—…;
+	public static int ë°©ì–´êµ¬ì•ˆì „6ì¼ë•Œ1ì—…;
+	public static int ë°©ì–´êµ¬ì•ˆì „6ì¼ë•Œ2ì—…;
+	public static int ë°©ì–´êµ¬ì•ˆì „6ì¼ë•Œ3ì—…;
 	
 	/** Server control */
-	public static String ¼­¹öÀÌ¸§;
+	public static String ì„œë²„ì´ë¦„;
 	public static int GAME_SERVER_TYPE;
 	public static String GAME_SERVER_HOST_NAME;
 	public static int GAME_SERVER_PORT;
@@ -427,7 +427,7 @@ public final class Config {
 	public static boolean LOGGING_CHAT_COMBINED;
 	public static boolean LOGGING_CHAT_CHAT_PARTY;
 
-	public static boolean ÀÚµ¿»ç³É;
+	public static boolean ìë™ì‚¬ëƒ¥;
 	public static int AUTOSAVE_INTERVAL;
 	public static int AUTOSAVE_INTERVAL_INVENTORY;
 	public static int SKILLTIMER_IMPLTYPE;
@@ -440,38 +440,38 @@ public final class Config {
 	public static int LEVEL_DOWN_RANGE;
 	public static boolean SEND_PACKET_BEFORE_TELEPORT;
 	public static boolean DETECT_DB_RESOURCE_LEAKS;
-	public static int °æÇèÄ¡¹°¾à;
-	public static boolean ³¬½ÃÀå¼Ò;
-	public static boolean ´Ù¿¤»ı¼º;
-	public static boolean ÀÚµ¿¹°¾à;
+	public static int ê²½í—˜ì¹˜ë¬¼ì•½;
+	public static boolean ë‚šì‹œì¥ì†Œ;
+	public static boolean ë‹¤ì—˜ìƒì„±;
+	public static boolean ìë™ë¬¼ì•½;
 	/** Rate control */
-	public static double ·éÂø¿ëÃß°¡°æÇèÄ¡1;
-	public static double ·éÂø¿ëÃß°¡°æÇèÄ¡2;
-	public static double ·éÂø¿ëÃß°¡°æÇèÄ¡3;
-	public static double ·éÂø¿ëÃß°¡°æÇèÄ¡4;
-	public static double ·éÂø¿ëÃß°¡°æÇèÄ¡5;
-	public static double ·éÂø¿ëÃß°¡°æÇèÄ¡6;
-	public static double ·éÂø¿ëÃß°¡°æÇèÄ¡7;
-	public static double ·éÂø¿ëÃß°¡°æÇèÄ¡8;
+	public static double ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜1;
+	public static double ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜2;
+	public static double ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜3;
+	public static double ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜4;
+	public static double ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜5;
+	public static double ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜6;
+	public static double ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜7;
+	public static double ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜8;
 	public static int AinHasad_dell;
-	public static int ½º³ÀÆÛÃÖ´ëÀÎÃ¦;
+	public static int ìŠ¤ëƒ…í¼ìµœëŒ€ì¸ì±ˆ;
 
-	public static int ·ëÆ¼½ºÃÖ´ëÀÎÃ¦;
-	public static int ·éÃÖ´ëÀÎÃ¦;
-	public static int Àå½Å±¸ÃÖ´ëÀÎÃ¦;
+	public static int ë£¸í‹°ìŠ¤ìµœëŒ€ì¸ì±ˆ;
+	public static int ë£¬ìµœëŒ€ì¸ì±ˆ;
+	public static int ì¥ì‹ êµ¬ìµœëŒ€ì¸ì±ˆ;
 	public static int nomal_orim;
 	public static int Bless_orim;
-	public static int ÀÏÃşÁö¹èÈ®·ü;
-	public static int ÀÌÃşÁö¹èÈ®·ü;
-	public static int »ïÃşÁö¹èÈ®·ü;
-	public static int »çÃşÁö¹èÈ®·ü;
-	public static int ¿ÀÃşÁö¹èÈ®·ü;
-	public static int À°ÃşÁö¹èÈ®·ü;
-	public static int Ä¥ÃşÁö¹èÈ®·ü;
-	public static int ÆÈÃşÁö¹èÈ®·ü;
-	public static int ±¸ÃşÁö¹èÈ®·ü;
-	public static int ½ÊÃşÁö¹èÈ®·ü;
-	public static int Ãà¿À¸²Á¦ÀÛÈ®·ü;
+	public static int ì¼ì¸µì§€ë°°í™•ë¥ ;
+	public static int ì´ì¸µì§€ë°°í™•ë¥ ;
+	public static int ì‚¼ì¸µì§€ë°°í™•ë¥ ;
+	public static int ì‚¬ì¸µì§€ë°°í™•ë¥ ;
+	public static int ì˜¤ì¸µì§€ë°°í™•ë¥ ;
+	public static int ìœ¡ì¸µì§€ë°°í™•ë¥ ;
+	public static int ì¹ ì¸µì§€ë°°í™•ë¥ ;
+	public static int íŒ”ì¸µì§€ë°°í™•ë¥ ;
+	public static int êµ¬ì¸µì§€ë°°í™•ë¥ ;
+	public static int ì‹­ì¸µì§€ë°°í™•ë¥ ;
+	public static int ì¶•ì˜¤ë¦¼ì œì‘í™•ë¥ ;
 	public static int MAX_ARMOR;
 	public static int MAX_WEAPON;
 	public static double RATE_XP;
@@ -495,7 +495,7 @@ public final class Config {
 	public static int CREATE_CHANCE_ANCIENT_AMULET;
 	public static int CREATE_CHANCE_HISTORY_BOOK;
 
-	public static double RATE_7_DMG_RATE;// ÀÎÃ¾ÃßÅ¸ ¿ÜºÎÈ­
+	public static double RATE_7_DMG_RATE;// ì¸ì²¸ì¶”íƒ€ ì™¸ë¶€í™”
 	public static int RATE_7_DMG_PER;
 	public static double RATE_8_DMG_RATE;
 	public static int RATE_8_DMG_PER;
@@ -549,7 +549,7 @@ public final class Config {
 	public static double adddmg15to3;
 
 	public static double TRIPLE_DMG;
-	public static int ³¬½Ã¼º°øÈ®·ü;
+	public static int ë‚šì‹œì„±ê³µí™•ë¥ ;
 	
 	/** AltSettings control */
 	public static short GLOBAL_CHAT_LEVEL;
@@ -568,92 +568,92 @@ public final class Config {
 	public static String ALT_ITEM_DELETION_TYPE;
 	public static int ALT_ITEM_DELETION_TIME;
 	public static int ALT_ITEM_DELETION_RANGE;
-	public static int °æÇèÄ¡Áö±Ş´Ü;
-	public static int ¹«±â5;
-	public static int ¹«±â6;
-	public static int ¹«±â7;
-	public static int ¹«±â8;
-	public static int ¹«±â9;
-	public static int ¹«±â10;
-	public static int ¹«±â11;
-	public static int ¹«±â12;
-	public static int ¹«±â13;
-	public static int ¹«±â14;
-	public static int ¹«±â¾ÈÀü0;
-	public static int ¹«±â¾ÈÀü1;
-	public static int ¹«±â¾ÈÀü2;
-	public static int ¹«±â¾ÈÀü3;
-	public static int ¹«±â¾ÈÀü4;
-	public static int ¹«±â¾ÈÀü5;
-	public static int ¹«±â¾ÈÀü6;
-	public static int ¹«±â¾ÈÀü7;
-	public static int ¹«±â¾ÈÀü8;
-	public static int ¹«±â¾ÈÀü9;
-	public static int ¹«±â¾ÈÀü10;
-	public static int ¹«±â¾ÈÀü11;
-	public static int ¹«±â¾ÈÀü12;
-	public static int ¹«±â¾ÈÀü13;
-	public static int ¹«±â¾ÈÀü14;
-	public static int ¹«±â¾ÈÀü15;
+	public static int ê²½í—˜ì¹˜ì§€ê¸‰ë‹¨;
+	public static int ë¬´ê¸°5;
+	public static int ë¬´ê¸°6;
+	public static int ë¬´ê¸°7;
+	public static int ë¬´ê¸°8;
+	public static int ë¬´ê¸°9;
+	public static int ë¬´ê¸°10;
+	public static int ë¬´ê¸°11;
+	public static int ë¬´ê¸°12;
+	public static int ë¬´ê¸°13;
+	public static int ë¬´ê¸°14;
+	public static int ë¬´ê¸°ì•ˆì „0;
+	public static int ë¬´ê¸°ì•ˆì „1;
+	public static int ë¬´ê¸°ì•ˆì „2;
+	public static int ë¬´ê¸°ì•ˆì „3;
+	public static int ë¬´ê¸°ì•ˆì „4;
+	public static int ë¬´ê¸°ì•ˆì „5;
+	public static int ë¬´ê¸°ì•ˆì „6;
+	public static int ë¬´ê¸°ì•ˆì „7;
+	public static int ë¬´ê¸°ì•ˆì „8;
+	public static int ë¬´ê¸°ì•ˆì „9;
+	public static int ë¬´ê¸°ì•ˆì „10;
+	public static int ë¬´ê¸°ì•ˆì „11;
+	public static int ë¬´ê¸°ì•ˆì „12;
+	public static int ë¬´ê¸°ì•ˆì „13;
+	public static int ë¬´ê¸°ì•ˆì „14;
+	public static int ë¬´ê¸°ì•ˆì „15;
 
-	public static int ¹æ¾î±¸4;
-	public static int ¹æ¾î±¸5;
-	public static int ¹æ¾î±¸6;
-	public static int ¹æ¾î±¸7;
-	public static int ¹æ¾î±¸8;
-	public static int ¹æ¾î±¸9;
-	public static int ¹æ¾î±¸10;
-	public static int ¹æ¾î±¸11;
-	public static int ¹æ¾î±¸12;
-	public static int ¹æ¾î±¸13;
-	public static int ¹æ¾î±¸14;
-	public static int ¹æ¾î±¸¾ÈÀü0;
-	public static int ¹æ¾î±¸¾ÈÀü1;
-	public static int ¹æ¾î±¸¾ÈÀü2;
-	public static int ¹æ¾î±¸¾ÈÀü3;
-	public static int ¹æ¾î±¸¾ÈÀü4;
-	public static int ¹æ¾î±¸¾ÈÀü5;
-	public static int ¹æ¾î±¸¾ÈÀü6;
-	public static int ¹æ¾î±¸¾ÈÀü7;
-	public static int ¹æ¾î±¸¾ÈÀü8;
+	public static int ë°©ì–´êµ¬4;
+	public static int ë°©ì–´êµ¬5;
+	public static int ë°©ì–´êµ¬6;
+	public static int ë°©ì–´êµ¬7;
+	public static int ë°©ì–´êµ¬8;
+	public static int ë°©ì–´êµ¬9;
+	public static int ë°©ì–´êµ¬10;
+	public static int ë°©ì–´êµ¬11;
+	public static int ë°©ì–´êµ¬12;
+	public static int ë°©ì–´êµ¬13;
+	public static int ë°©ì–´êµ¬14;
+	public static int ë°©ì–´êµ¬ì•ˆì „0;
+	public static int ë°©ì–´êµ¬ì•ˆì „1;
+	public static int ë°©ì–´êµ¬ì•ˆì „2;
+	public static int ë°©ì–´êµ¬ì•ˆì „3;
+	public static int ë°©ì–´êµ¬ì•ˆì „4;
+	public static int ë°©ì–´êµ¬ì•ˆì „5;
+	public static int ë°©ì–´êµ¬ì•ˆì „6;
+	public static int ë°©ì–´êµ¬ì•ˆì „7;
+	public static int ë°©ì–´êµ¬ì•ˆì „8;
 
-	public static int ¹æ¾î±¸¾ÈÀü»ç0;
-	public static int ¹æ¾î±¸¾ÈÀü»ç1;
-	public static int ¹æ¾î±¸¾ÈÀü»ç2;
-	public static int ¹æ¾î±¸¾ÈÀü»ç3;
-	public static int ¹æ¾î±¸¾ÈÀü»ç4;
-	public static int ¹æ¾î±¸¾ÈÀü»ç5;
-	public static int ¹æ¾î±¸¾ÈÀü»ç6;
-	public static int ¹æ¾î±¸¾ÈÀü»ç7;
-	public static int ¹æ¾î±¸¾ÈÀü»ç8;
-	public static int ¹æ¾î±¸¾ÈÀü»ç9;
-	public static int ¹æ¾î±¸¾ÈÀü»ç10;
-	public static int ¾Ç¼¼ÀÎÃ¾1;
-	public static int ¾Ç¼¼ÀÎÃ¾2;
-	public static int ¾Ç¼¼ÀÎÃ¾3;
-	public static int ¾Ç¼¼ÀÎÃ¾4;
-	public static int ¾Ç¼¼ÀÎÃ¾5;
-	public static int ¾Ç¼¼ÀÎÃ¾6;
-	public static int ¾Ç¼¼ÀÎÃ¾7;
-	public static int ¾Ç¼¼ÀÎÃ¾8;
-	public static int ¾Ç¼¼ÀÎÃ¾9;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬0;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬1;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬2;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬3;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬4;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬5;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬6;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬7;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬8;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬9;
+	public static int ë°©ì–´êµ¬ì•ˆì „ì‚¬10;
+	public static int ì•…ì„¸ì¸ì²¸1;
+	public static int ì•…ì„¸ì¸ì²¸2;
+	public static int ì•…ì„¸ì¸ì²¸3;
+	public static int ì•…ì„¸ì¸ì²¸4;
+	public static int ì•…ì„¸ì¸ì²¸5;
+	public static int ì•…ì„¸ì¸ì²¸6;
+	public static int ì•…ì„¸ì¸ì²¸7;
+	public static int ì•…ì„¸ì¸ì²¸8;
+	public static int ì•…ì„¸ì¸ì²¸9;
 
-	public static boolean ¼ö¹èÀÛµ¿À¯¹«;
+	public static boolean ìˆ˜ë°°ì‘ë™ìœ ë¬´;
 
-	public static int ¼ö¹è1´Ü;
-	public static int ¼ö¹è2´Ü;
-	public static int ¼ö¹è3´Ü;
+	public static int ìˆ˜ë°°1ë‹¨;
+	public static int ìˆ˜ë°°2ë‹¨;
+	public static int ìˆ˜ë°°3ë‹¨;
 	public static int npcdmg;
 	public static int wing;
-	public static double ÀÎÇüÃàº¹;
+	public static double ì¸í˜•ì¶•ë³µ;
 	public static double weaponbless;
-	// -- ¸ó½ºÅÍ ·¹º§º° Â÷µîµ¥¹ÌÁö ¿ÜºÎÈ­
-	public static double MONSTER_DAMAGE_1; // ¸÷·¾ÀÌ 10 ~ 49
-	public static double MONSTER_DAMAGE_2; // ¸÷·¾ÀÌ 50 ~ 69
-	public static double MONSTER_DAMAGE_3; // ¸÷·¾ÀÌ 70 ~ 79
-	public static double MONSTER_DAMAGE_4; // ¸÷·¾ÀÌ 80 ÀÌ»ó
-	public static double MONSTER_DAMAGE_5; // ¸÷·¾ÀÌ 80 ÀÌ»ó
-	public static double MONSTER_DAMAGE_6; // ¸÷·¾ÀÌ 80 ÀÌ»ó
+	// -- ëª¬ìŠ¤í„° ë ˆë²¨ë³„ ì°¨ë“±ë°ë¯¸ì§€ ì™¸ë¶€í™”
+	public static double MONSTER_DAMAGE_1; // ëª¹ë ™ì´ 10 ~ 49
+	public static double MONSTER_DAMAGE_2; // ëª¹ë ™ì´ 50 ~ 69
+	public static double MONSTER_DAMAGE_3; // ëª¹ë ™ì´ 70 ~ 79
+	public static double MONSTER_DAMAGE_4; // ëª¹ë ™ì´ 80 ì´ìƒ
+	public static double MONSTER_DAMAGE_5; // ëª¹ë ™ì´ 80 ì´ìƒ
+	public static double MONSTER_DAMAGE_6; // ëª¹ë ™ì´ 80 ì´ìƒ
 
 	public static boolean PickUpItem;
 	public static String PickUpItem_Id;
@@ -680,34 +680,34 @@ public final class Config {
 	public static int HunterEvent_Doll_14;
 	public static int HunterEvent_Doll_15;
 	
-	public static int ÀüÅõ¸Ş½ÃÁöµô·¹ÀÌ;
+	public static int ì „íˆ¬ë©”ì‹œì§€ë”œë ˆì´;
 	public static int ALLBUFF_POLYID;
 	public static boolean ASBUGCHECK_ALLBUF;
 
-	public static int ±Ù°Å¸®pc¸ŞÅ×¿À´ë¹ÌÁö;
-	public static int ¿ø°Å¸®pc¸ŞÅ×¿À´ë¹ÌÁö;
-	public static int ±Ù°Å¸®npc¸ŞÅ×¿À´ë¹ÌÁö;
-	public static int ¿ø°Å¸®npc¸ŞÅ×¿À´ë¹ÌÁö;
+	public static int ê·¼ê±°ë¦¬pcë©”í…Œì˜¤ëŒ€ë¯¸ì§€;
+	public static int ì›ê±°ë¦¬pcë©”í…Œì˜¤ëŒ€ë¯¸ì§€;
+	public static int ê·¼ê±°ë¦¬npcë©”í…Œì˜¤ëŒ€ë¯¸ì§€;
+	public static int ì›ê±°ë¦¬npcë©”í…Œì˜¤ëŒ€ë¯¸ì§€;
 	
-	public static int ±Ù°Å¸®ÇïÆÄÀÌ¾î´ë¹ÌÁö;
-	public static int ±Ù°Å¸®¼±¹ö½ºÆ®´ë¹ÌÁö;
+	public static int ê·¼ê±°ë¦¬í—¬íŒŒì´ì–´ëŒ€ë¯¸ì§€;
+	public static int ê·¼ê±°ë¦¬ì„ ë²„ìŠ¤íŠ¸ëŒ€ë¯¸ì§€;
 	
-	public static int ¿ø°Å¸®ÇïÆÄÀÌ¾î´ë¹ÌÁö;
-	public static int ¿ø°Å¸®¼±¹ö½ºÆ®´ë¹ÌÁö;
+	public static int ì›ê±°ë¦¬í—¬íŒŒì´ì–´ëŒ€ë¯¸ì§€;
+	public static int ì›ê±°ë¦¬ì„ ë²„ìŠ¤íŠ¸ëŒ€ë¯¸ì§€;
 	
 	
-	/** ¼Ó¼º°­È­ ÁÖ¹®¼­ °ü·Ã **/
+	/** ì†ì„±ê°•í™” ì£¼ë¬¸ì„œ ê´€ë ¨ **/
 	public static int ENCHANT_CHANCE_WATER;
 	public static int ENCHANT_CHANCE_FIRE;
 	public static int ENCHANT_CHANCE_WIND;
 	public static int ENCHANT_CHANCE_EARTH;
 	public static int ATTR_ENCHANT_LEVEL;
 
-	/****** ÀÌº¥Æ® ******/
-	public static boolean ALT_HALLOWEENEVENT; // ÇÒ·ÎÀ©
-	public static boolean ALT_HALLOWEENEVENT2009; // ÇÒ·ÎÀ©(2009³â)
-	public static boolean ALT_FANTASYEVENT; // È¯»ó
-	public static boolean ALT_CHUSEOKEVENT; // Ãß¼®(09.09.24)
+	/****** ì´ë²¤íŠ¸ ******/
+	public static boolean ALT_HALLOWEENEVENT; // í• ë¡œìœˆ
+	public static boolean ALT_HALLOWEENEVENT2009; // í• ë¡œìœˆ(2009ë…„)
+	public static boolean ALT_FANTASYEVENT; // í™˜ìƒ
+	public static boolean ALT_CHUSEOKEVENT; // ì¶”ì„(09.09.24)
 	public static boolean ALT_FEATURE;
 
 	public static boolean ALT_WHO_COMMAND;
@@ -809,21 +809,21 @@ public final class Config {
 	public static int LV98_EXP;
 	public static int LV99_EXP;
 	
-	public static String ±â°¨_OPEN_TIME = null;
-	public static String º»´ø_OPEN_TIME = null;
-	public static String ¿ë´ø_OPEN_TIME = null;
-	public static String ÀØÇôÁø¼¶_OPEN_TIME = null;
-	public static String ¿À¸¸ÀÇÅ¾Á¤»ó_OPEN_TIME = null;
-	public static String Å×º£¶ó½º_OPEN_TIME = null;
-	public static String »ó¾ÆÅ¾8Ãş_OPEN_TIME = null;
-	public static String ½Ã°£Á¦¼±¹° = null;
+	public static String ê¸°ê°_OPEN_TIME = null;
+	public static String ë³¸ë˜_OPEN_TIME = null;
+	public static String ìš©ë˜_OPEN_TIME = null;
+	public static String ìŠí˜€ì§„ì„¬_OPEN_TIME = null;
+	public static String ì˜¤ë§Œì˜íƒ‘ì •ìƒ_OPEN_TIME = null;
+	public static String í…Œë² ë¼ìŠ¤_OPEN_TIME = null;
+	public static String ìƒì•„íƒ‘8ì¸µ_OPEN_TIME = null;
+	public static String ì‹œê°„ì œì„ ë¬¼ = null;
 	
 	// skillpro.start
 	public static double TURN_UNDEAD;
 	public static int SHOCK_STUN;
-	public static int ½ºÅÏ·¾Â÷;
-	public static int ¾Æ¸Óºê·¹ÀÌÅ©;
-	public static int Ä«¿îÅÍ¹è¸®¾î;
+	public static int ìŠ¤í„´ë ™ì°¨;
+	public static int ì•„ë¨¸ë¸Œë ˆì´í¬;
+	public static int ì¹´ìš´í„°ë°°ë¦¬ì–´;
 
 	// skillpro.end
 
@@ -848,7 +848,7 @@ public final class Config {
 	@Annotations.Configure(file = "./config/Neoserver.xml", key = "scarecrow")
 	public static int scarecrow = 10;
 
-	/** µ¥ÀÌÅÍº£ÀÌ½º Ç® °ü·Ã */
+	/** ë°ì´í„°ë² ì´ìŠ¤ í’€ ê´€ë ¨ */
 	public static int min;
 	public static int max;
 	public static boolean run;
@@ -866,17 +866,17 @@ public final class Config {
 	public static final String SKILLPRO = "./config/skillpro.properties";
 	public static final String AUTOHUNT_SETTINGS_CONFIG_FILE = "./config/Autohuntsettings.properties";
 	public static boolean shutdown = false;
-	// ·Î±× Ç¥ÇöÇÒ°ÍÀÎÁö
+	// ë¡œê·¸ í‘œí˜„í• ê²ƒì¸ì§€
 	public static boolean LOGGER = true;
-	// ÆĞÅ¶ Ç¥Çö ÇÒ°ÍÀÎÁö
+	// íŒ¨í‚· í‘œí˜„ í• ê²ƒì¸ì§€
 	public static boolean PACKET = false;
 
-	/** ±× ¿ÜÀÇ ¼³Á¤ */
+	/** ê·¸ ì™¸ì˜ ì„¤ì • */
 
-	// NPC·ÎºÎÅÍ µéÀÌ¸¶½Ç ¼ö ÀÖ´Â MPÇÑ°è
+	// NPCë¡œë¶€í„° ë“¤ì´ë§ˆì‹¤ ìˆ˜ ìˆëŠ” MPí•œê³„
 	public static final int MANA_DRAIN_LIMIT_PER_NPC = 40;
 
-	// 1È¸ÀÇ °ø°İÀ¸·Î µéÀÌ¸¶½Ç ¼ö ÀÖ´Â MPÇÑ°è(SOM, °­Ã¶ SOM)
+	// 1íšŒì˜ ê³µê²©ìœ¼ë¡œ ë“¤ì´ë§ˆì‹¤ ìˆ˜ ìˆëŠ” MPí•œê³„(SOM, ê°•ì²  SOM)
 	public static final int MANA_DRAIN_LIMIT_PER_SOM_ATTACK = 9;
 
 	public static void load() {
@@ -891,12 +891,12 @@ public final class Config {
 			new ConfigLoader().load(Config.class);
 			is.close();
 
-			/** µ¥ÀÌÅÍ º£ÀÌ½º Ç® */
+			/** ë°ì´í„° ë² ì´ìŠ¤ í’€ */
 			min = Integer.parseInt(serverSettings.getProperty("min"));
 			max = Integer.parseInt(serverSettings.getProperty("max"));
 			run = Boolean.parseBoolean(serverSettings.getProperty("run"));
 			RANKTIME = Integer.parseInt(serverSettings.getProperty("ranktime", "7200"));
-			¼­¹öÀÌ¸§ = serverSettings.getProperty("ServerName", "¼­¹ö");
+			ì„œë²„ì´ë¦„ = serverSettings.getProperty("ServerName", "ì„œë²„");
 			GAME_SERVER_TYPE = Integer.parseInt(serverSettings.getProperty("ServerType", "0"));
 
 			GAME_SERVER_HOST_NAME = serverSettings.getProperty("GameserverHostname", "*");
@@ -1005,10 +1005,10 @@ public final class Config {
 
 			KEYWORD_USE = Boolean.parseBoolean(serverSettings.getProperty("KeyWordUse", "true"));
 			
-			·©Å·µ¿»óxÁÂÇ¥ = Integer.parseInt(serverSettings.getProperty("Rankingx", "3"));
-			·©Å·µ¿»óyÁÂÇ¥ = Integer.parseInt(serverSettings.getProperty("Rankingy", "3"));
-			´Ù¿¤»ı¼º = Boolean.parseBoolean(serverSettings.getProperty("CreateDarkElf", "false"));
-			ÀÚµ¿¹°¾à = Boolean.parseBoolean(serverSettings.getProperty("isAutoPotion", "false"));
+			ë­í‚¹ë™ìƒxì¢Œí‘œ = Integer.parseInt(serverSettings.getProperty("Rankingx", "3"));
+			ë­í‚¹ë™ìƒyì¢Œí‘œ = Integer.parseInt(serverSettings.getProperty("Rankingy", "3"));
+			ë‹¤ì—˜ìƒì„± = Boolean.parseBoolean(serverSettings.getProperty("CreateDarkElf", "false"));
+			ìë™ë¬¼ì•½ = Boolean.parseBoolean(serverSettings.getProperty("isAutoPotion", "false"));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + SERVER_CONFIG_FILE + " File.");
@@ -1038,14 +1038,14 @@ public final class Config {
 			InputStream is = new FileInputStream(new File(AUTOHUNT_SETTINGS_CONFIG_FILE));
 			AutohuntSettings.load(is);
 			is.close();
-			ÀÚµ¿»ç³ÉÃæÀü½Ã°£ = Integer.parseInt(AutohuntSettings.getProperty("autoHuntChargeTime", "60000"));
-			ÀÚµ¿»ç³É¹ı»ç°ø°İ½ºÅ³¹ßµ¿È®·ü = Integer.parseInt(AutohuntSettings.getProperty("AttackSkillRate", "20"));
-			ÀÚµ¿»ç³ÉÆ®¸®ÇÃ¹ßµ¿È®·ü = Integer.parseInt(AutohuntSettings.getProperty("TrippleRate", "20"));
-			ÀÚµ¿»ç³É¾ÆÀÌÅÛÇÈ¾÷ = Boolean.parseBoolean(AutohuntSettings.getProperty("IsPickupItem", "true"));
-			ÀÚµ¿»ç³É¹Ã = Integer.parseInt(AutohuntSettings.getProperty("ImmuneHPpercentage", "80"));
-			ÀÚµ¿ÆĞ³ÎÆ¼¹èÀ² = Double.parseDouble(AutohuntSettings.getProperty("AutoPenalyRate", "1.0"));
+			ìë™ì‚¬ëƒ¥ì¶©ì „ì‹œê°„ = Integer.parseInt(AutohuntSettings.getProperty("autoHuntChargeTime", "60000"));
+			ìë™ì‚¬ëƒ¥ë²•ì‚¬ê³µê²©ìŠ¤í‚¬ë°œë™í™•ë¥  = Integer.parseInt(AutohuntSettings.getProperty("AttackSkillRate", "20"));
+			ìë™ì‚¬ëƒ¥íŠ¸ë¦¬í”Œë°œë™í™•ë¥  = Integer.parseInt(AutohuntSettings.getProperty("TrippleRate", "20"));
+			ìë™ì‚¬ëƒ¥ì•„ì´í…œí”½ì—… = Boolean.parseBoolean(AutohuntSettings.getProperty("IsPickupItem", "true"));
+			ìë™ì‚¬ëƒ¥ë®¨ = Integer.parseInt(AutohuntSettings.getProperty("ImmuneHPpercentage", "80"));
+			ìë™íŒ¨ë„í‹°ë°°ìœ¨ = Double.parseDouble(AutohuntSettings.getProperty("AutoPenalyRate", "1.0"));
 		} catch (Exception e) {
-			_log.log(Level.SEVERE, "Config.¿¡¼­ ¿¡·¯°¡ ¹ß»ıÇß½À´Ï´Ù.", e);
+			_log.log(Level.SEVERE, "Config.ì—ì„œ ì—ëŸ¬ê°€ ë°œìƒí–ˆìŠµë‹ˆë‹¤.", e);
 			throw new Error("Failed to Load " + AUTOHUNT_SETTINGS_CONFIG_FILE + " File.");
 		}
 		// rates.properties
@@ -1118,11 +1118,11 @@ public final class Config {
 			ENCHANT_CHANCE_WIND = Integer.parseInt(rateSettings.getProperty("WindEnchant", "5"));
 			ENCHANT_CHANCE_FIRE = Integer.parseInt(rateSettings.getProperty("FireEnchant", "5"));
 			ATTR_ENCHANT_LEVEL = Integer.parseInt(rateSettings.getProperty("AttrEnchantLevel", "5"));
-			¼ö¹èÀÛµ¿À¯¹« = Boolean.parseBoolean(rateSettings.getProperty("Wantedrat", "false"));
-			¼ö¹è1´Ü = Integer.parseInt(rateSettings.getProperty("WantedONE", "20000000"));
-			¼ö¹è2´Ü = Integer.parseInt(rateSettings.getProperty("WantedToo", "40000000"));
-			¼ö¹è3´Ü = Integer.parseInt(rateSettings.getProperty("WantedThree", "60000000"));
-			wing = Integer.parseInt(rateSettings.getProperty("wing", "100"));//0220¼öÁ¤
+			ìˆ˜ë°°ì‘ë™ìœ ë¬´ = Boolean.parseBoolean(rateSettings.getProperty("Wantedrat", "false"));
+			ìˆ˜ë°°1ë‹¨ = Integer.parseInt(rateSettings.getProperty("WantedONE", "20000000"));
+			ìˆ˜ë°°2ë‹¨ = Integer.parseInt(rateSettings.getProperty("WantedToo", "40000000"));
+			ìˆ˜ë°°3ë‹¨ = Integer.parseInt(rateSettings.getProperty("WantedThree", "60000000"));
+			wing = Integer.parseInt(rateSettings.getProperty("wing", "100"));//0220ìˆ˜ì •
 			npcdmg = Integer.parseInt(rateSettings.getProperty("npcdmg", "14"));
 			MONSTER_DAMAGE_1 = Double.parseDouble(rateSettings.getProperty("MonsterDamage1", "1.2"));
 			MONSTER_DAMAGE_2 = Double.parseDouble(rateSettings.getProperty("MonsterDamage2", "1.4"));
@@ -1146,7 +1146,7 @@ public final class Config {
 			BlassEnchantChanceRun = Integer.parseInt(rateSettings.getProperty("BlassEnchantChanceRun", "20"));
 
 			weaponbless = Double.parseDouble(rateSettings.getProperty("weaponbless", "14.0"));
-			ÀÎÇüÃàº¹ = Double.parseDouble(rateSettings.getProperty("dollbless", "14.0"));
+			ì¸í˜•ì¶•ë³µ = Double.parseDouble(rateSettings.getProperty("dollbless", "14.0"));
 			RATE_7_DMG_RATE = Double.parseDouble(rateSettings.getProperty("Rate_7_Dmg_Rate", "1.5"));
 			RATE_8_DMG_RATE = Double.parseDouble(rateSettings.getProperty("Rate_8_Dmg_Rate", "1.5"));
 			RATE_9_DMG_RATE = Double.parseDouble(rateSettings.getProperty("Rate_9_Dmg_Rate", "2.0"));
@@ -1200,104 +1200,104 @@ public final class Config {
 			adddmg15to1 = Double.parseDouble(rateSettings.getProperty("adddmg15to1", "2.5"));
 			adddmg15to2 = Double.parseDouble(rateSettings.getProperty("adddmg15to2", "2.5"));
 			adddmg15to3 = Double.parseDouble(rateSettings.getProperty("adddmg15to3", "2.5"));
-			·éÂø¿ëÃß°¡°æÇèÄ¡1 = Double.parseDouble(rateSettings.getProperty("RuneAddExp1", "2.5"));
-			·éÂø¿ëÃß°¡°æÇèÄ¡2 = Double.parseDouble(rateSettings.getProperty("RuneAddExp2", "2.5"));
-			·éÂø¿ëÃß°¡°æÇèÄ¡3 = Double.parseDouble(rateSettings.getProperty("RuneAddExp3", "2.5"));
-			·éÂø¿ëÃß°¡°æÇèÄ¡4 = Double.parseDouble(rateSettings.getProperty("RuneAddExp4", "2.5"));
-			·éÂø¿ëÃß°¡°æÇèÄ¡5 = Double.parseDouble(rateSettings.getProperty("RuneAddExp5", "2.5"));
-			·éÂø¿ëÃß°¡°æÇèÄ¡6 = Double.parseDouble(rateSettings.getProperty("RuneAddExp6", "2.5"));
-			·éÂø¿ëÃß°¡°æÇèÄ¡7 = Double.parseDouble(rateSettings.getProperty("RuneAddExp7", "2.5"));
-			·éÂø¿ëÃß°¡°æÇèÄ¡8 = Double.parseDouble(rateSettings.getProperty("RuneAddExp8", "2.5"));
+			ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜1 = Double.parseDouble(rateSettings.getProperty("RuneAddExp1", "2.5"));
+			ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜2 = Double.parseDouble(rateSettings.getProperty("RuneAddExp2", "2.5"));
+			ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜3 = Double.parseDouble(rateSettings.getProperty("RuneAddExp3", "2.5"));
+			ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜4 = Double.parseDouble(rateSettings.getProperty("RuneAddExp4", "2.5"));
+			ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜5 = Double.parseDouble(rateSettings.getProperty("RuneAddExp5", "2.5"));
+			ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜6 = Double.parseDouble(rateSettings.getProperty("RuneAddExp6", "2.5"));
+			ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜7 = Double.parseDouble(rateSettings.getProperty("RuneAddExp7", "2.5"));
+			ë£¬ì°©ìš©ì¶”ê°€ê²½í—˜ì¹˜8 = Double.parseDouble(rateSettings.getProperty("RuneAddExp8", "2.5"));
 
 			AinHasad_dell = Integer.parseInt(rateSettings.getProperty("ainHasad_dell", "2"));
-			½º³ÀÆÛÃÖ´ëÀÎÃ¦ = Integer.parseInt(rateSettings.getProperty("SnapperMaxEnchant", "5"));
-			·ëÆ¼½ºÃÖ´ëÀÎÃ¦ = Integer.parseInt(rateSettings.getProperty("RoomteeceMaxEnchant", "5"));
-			·éÃÖ´ëÀÎÃ¦ = Integer.parseInt(rateSettings.getProperty("runeMaxEnchant", "5"));
-			Àå½Å±¸ÃÖ´ëÀÎÃ¦ = Integer.parseInt(rateSettings.getProperty("acaccessoryMaxEnchant", "5"));
+			ìŠ¤ëƒ…í¼ìµœëŒ€ì¸ì±ˆ = Integer.parseInt(rateSettings.getProperty("SnapperMaxEnchant", "5"));
+			ë£¸í‹°ìŠ¤ìµœëŒ€ì¸ì±ˆ = Integer.parseInt(rateSettings.getProperty("RoomteeceMaxEnchant", "5"));
+			ë£¬ìµœëŒ€ì¸ì±ˆ = Integer.parseInt(rateSettings.getProperty("runeMaxEnchant", "5"));
+			ì¥ì‹ êµ¬ìµœëŒ€ì¸ì±ˆ = Integer.parseInt(rateSettings.getProperty("acaccessoryMaxEnchant", "5"));
 			nomal_orim = Integer.parseInt(rateSettings.getProperty("nomal_orim", "5"));
 			Bless_orim = Integer.parseInt(rateSettings.getProperty("Bless_orim", "5"));
-			ÀÏÃşÁö¹èÈ®·ü = Integer.parseInt(rateSettings.getProperty("jibae_1", "10"));
-			ÀÌÃşÁö¹èÈ®·ü = Integer.parseInt(rateSettings.getProperty("jibae_2", "10"));
-			»ïÃşÁö¹èÈ®·ü = Integer.parseInt(rateSettings.getProperty("jibae_3", "10"));
-			»çÃşÁö¹èÈ®·ü = Integer.parseInt(rateSettings.getProperty("jibae_4", "10"));
-			¿ÀÃşÁö¹èÈ®·ü = Integer.parseInt(rateSettings.getProperty("jibae_5", "10"));
-			À°ÃşÁö¹èÈ®·ü = Integer.parseInt(rateSettings.getProperty("jibae_6", "10"));
-			Ä¥ÃşÁö¹èÈ®·ü = Integer.parseInt(rateSettings.getProperty("jibae_7", "10"));
-			ÆÈÃşÁö¹èÈ®·ü = Integer.parseInt(rateSettings.getProperty("jibae_8", "10"));
-			±¸ÃşÁö¹èÈ®·ü = Integer.parseInt(rateSettings.getProperty("jibae_9", "10"));
-			½ÊÃşÁö¹èÈ®·ü = Integer.parseInt(rateSettings.getProperty("jibae_10", "10"));
-			Ãà¿À¸²Á¦ÀÛÈ®·ü = Integer.parseInt(rateSettings.getProperty("bless_orim_craft", "10"));
-			µ¥½º³ªÀÌÆ®¸ŞÅ×¿À = Integer.parseInt(rateSettings.getProperty("DollMeteo", "10"));
-			µ¥½º³ªÀÌÆ®ÇïÆÄÀÌ¾î = Integer.parseInt(rateSettings.getProperty("DollHellfire", "10"));
-			µ¥½º³ªÀÌÆ®¼±¹ö½ºÆ® = Integer.parseInt(rateSettings.getProperty("DollSunburst", "10"));
-			±Ù°Å¸®pc¸ŞÅ×¿À´ë¹ÌÁö = Integer.parseInt(rateSettings.getProperty("ShortPcMeteodmg", "2"));
-			¿ø°Å¸®pc¸ŞÅ×¿À´ë¹ÌÁö = Integer.parseInt(rateSettings.getProperty("LongPcMeteodmg", "2"));
-			±Ù°Å¸®npc¸ŞÅ×¿À´ë¹ÌÁö = Integer.parseInt(rateSettings.getProperty("ShortNpcMeteodmg", "2"));
-			¿ø°Å¸®npc¸ŞÅ×¿À´ë¹ÌÁö = Integer.parseInt(rateSettings.getProperty("LongNpcMeteodmg", "2"));
-			±Ù°Å¸®ÇïÆÄÀÌ¾î´ë¹ÌÁö = Integer.parseInt(rateSettings.getProperty("ShortHellfiredmg", "2"));
-			±Ù°Å¸®¼±¹ö½ºÆ®´ë¹ÌÁö = Integer.parseInt(rateSettings.getProperty("Shortsunburstdmg", "2"));
-			¿ø°Å¸®ÇïÆÄÀÌ¾î´ë¹ÌÁö = Integer.parseInt(rateSettings.getProperty("LongHellfiredmg", "2"));
-			¿ø°Å¸®¼±¹ö½ºÆ®´ë¹ÌÁö = Integer.parseInt(rateSettings.getProperty("Longsunburstdmg", "2"));
-			µ¥½º³ªÀÌÆ®°æÇèÄ¡ = Double.parseDouble(rateSettings.getProperty("DeathknightAddExp", "10"));
-			¹«·áÀÎÇü°æÇèÄ¡ = Double.parseDouble(rateSettings.getProperty("FreeDollAddExp", "10"));
+			ì¼ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(rateSettings.getProperty("jibae_1", "10"));
+			ì´ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(rateSettings.getProperty("jibae_2", "10"));
+			ì‚¼ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(rateSettings.getProperty("jibae_3", "10"));
+			ì‚¬ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(rateSettings.getProperty("jibae_4", "10"));
+			ì˜¤ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(rateSettings.getProperty("jibae_5", "10"));
+			ìœ¡ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(rateSettings.getProperty("jibae_6", "10"));
+			ì¹ ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(rateSettings.getProperty("jibae_7", "10"));
+			íŒ”ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(rateSettings.getProperty("jibae_8", "10"));
+			êµ¬ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(rateSettings.getProperty("jibae_9", "10"));
+			ì‹­ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(rateSettings.getProperty("jibae_10", "10"));
+			ì¶•ì˜¤ë¦¼ì œì‘í™•ë¥  = Integer.parseInt(rateSettings.getProperty("bless_orim_craft", "10"));
+			ë°ìŠ¤ë‚˜ì´íŠ¸ë©”í…Œì˜¤ = Integer.parseInt(rateSettings.getProperty("DollMeteo", "10"));
+			ë°ìŠ¤ë‚˜ì´íŠ¸í—¬íŒŒì´ì–´ = Integer.parseInt(rateSettings.getProperty("DollHellfire", "10"));
+			ë°ìŠ¤ë‚˜ì´íŠ¸ì„ ë²„ìŠ¤íŠ¸ = Integer.parseInt(rateSettings.getProperty("DollSunburst", "10"));
+			ê·¼ê±°ë¦¬pcë©”í…Œì˜¤ëŒ€ë¯¸ì§€ = Integer.parseInt(rateSettings.getProperty("ShortPcMeteodmg", "2"));
+			ì›ê±°ë¦¬pcë©”í…Œì˜¤ëŒ€ë¯¸ì§€ = Integer.parseInt(rateSettings.getProperty("LongPcMeteodmg", "2"));
+			ê·¼ê±°ë¦¬npcë©”í…Œì˜¤ëŒ€ë¯¸ì§€ = Integer.parseInt(rateSettings.getProperty("ShortNpcMeteodmg", "2"));
+			ì›ê±°ë¦¬npcë©”í…Œì˜¤ëŒ€ë¯¸ì§€ = Integer.parseInt(rateSettings.getProperty("LongNpcMeteodmg", "2"));
+			ê·¼ê±°ë¦¬í—¬íŒŒì´ì–´ëŒ€ë¯¸ì§€ = Integer.parseInt(rateSettings.getProperty("ShortHellfiredmg", "2"));
+			ê·¼ê±°ë¦¬ì„ ë²„ìŠ¤íŠ¸ëŒ€ë¯¸ì§€ = Integer.parseInt(rateSettings.getProperty("Shortsunburstdmg", "2"));
+			ì›ê±°ë¦¬í—¬íŒŒì´ì–´ëŒ€ë¯¸ì§€ = Integer.parseInt(rateSettings.getProperty("LongHellfiredmg", "2"));
+			ì›ê±°ë¦¬ì„ ë²„ìŠ¤íŠ¸ëŒ€ë¯¸ì§€ = Integer.parseInt(rateSettings.getProperty("Longsunburstdmg", "2"));
+			ë°ìŠ¤ë‚˜ì´íŠ¸ê²½í—˜ì¹˜ = Double.parseDouble(rateSettings.getProperty("DeathknightAddExp", "10"));
+			ë¬´ë£Œì¸í˜•ê²½í—˜ì¹˜ = Double.parseDouble(rateSettings.getProperty("FreeDollAddExp", "10"));
 			MAX_ARMOR = Integer.parseInt(rateSettings.getProperty("MaxArmor", "10"));
 			MAX_WEAPON = Integer.parseInt(rateSettings.getProperty("MaxWeapon", "12"));
 			
-			ÀØ¼¶1º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("olvidado1", "9"));
-			ÀØ¼¶2º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("olvidado2", "9"));
-			È­µÕº¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("firenest", "9"));
-		    ¿ë°èº¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("dragon", "9"));
-			Ç³µÕº¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("windnest", "9"));
-			¿ë´ø1º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("dragondun1", "9"));
-			¿ë´ø2º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("dragondun2", "9"));
-			¿ë´ø3º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("dragondun3", "9"));
-			¿ë´ø4º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("dragondun4", "9"));
-			¿ë´ø5º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("dragondun5", "9"));
-			¿ë´ø6º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("dragondun6", "9"));
-			¿ë´ø7º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("dragondun7", "9"));
-			º»´ø1º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("masterdun1", "9"));
-			º»´ø2º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("masterdun2", "9"));
-			º»´ø3º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("masterdun3", "9"));
-			º»´ø4º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("masterdun4", "9"));
-			º»´ø5º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("masterdun5", "9"));
-			º»´ø6º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("masterdun6", "9"));
-			º»´ø7º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("masterdun7", "9"));
-			±â°¨1º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("gprison1", "9"));
-			±â°¨2º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("gprison2", "9"));
-			»ó¾ÆÅ¾4º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("sangatop4", "9"));
-			»ó¾ÆÅ¾5º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("sangatop5", "9"));
-			»ó¾ÆÅ¾6º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("sangatop6", "9"));
-			»ó¾ÆÅ¾7º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("sangatop7", "9"));
-			¿À¸¸1º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop1", "9"));
-			¿À¸¸2º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop2", "9"));
-			¿À¸¸3º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop3", "9"));
-			¿À¸¸4º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop4", "9"));
-			¿À¸¸5º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop5", "9"));
-			¿À¸¸6º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop6", "9"));
-			¿À¸¸7º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop7", "9"));
-			¿À¸¸8º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop8", "9"));
-			¿À¸¸9º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop9", "9"));
-			¿À¸¸10º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop10", "9"));
-			¿À¸¸Á¤»óº¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("omantop1", "9"));
-			Áö¹è1º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetop1", "9"));
-			Áö¹è2º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetop2", "9"));
-			Áö¹è3º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetop3", "9"));
-			Áö¹è4º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetop4", "9"));
-			Áö¹è5º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetop5", "9"));
-			Áö¹è6º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetop6", "9"));
-			Áö¹è7º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetop7", "9"));
-			Áö¹è8º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetop8", "9"));
-			Áö¹è9º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetop9", "9"));
-			Áö¹è10º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetop10", "9"));
-			Áö¹èÁ¤»óº¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibetopV", "9"));
-			Áö¹è°á°è1º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibeline1", "9"));
-			Áö¹è°á°è2º¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("jibeline2", "9"));
-			¿¤¸ğ¾îº¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("elmofight", "9"));
-			º¸½ºº¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("bossfight", "9"));
-			¿À¸¸º¸½ºº¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("Obossfight", "9"));
-			Áö¹èº¸½ºº¿Ä«¿îÆ® = Integer.parseInt(rateSettings.getProperty("Jbossfight", "9"));
-			ÀÎ¿ø¹èÀ² = Double.parseDouble(rateSettings.getProperty("whoRate", "1"));
-			//»ç³ÉÅÍº° º¿ ¿ÜºÎÈ­
+			ìŠì„¬1ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("olvidado1", "9"));
+			ìŠì„¬2ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("olvidado2", "9"));
+			í™”ë‘¥ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("firenest", "9"));
+		    ìš©ê³„ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("dragon", "9"));
+			í’ë‘¥ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("windnest", "9"));
+			ìš©ë˜1ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("dragondun1", "9"));
+			ìš©ë˜2ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("dragondun2", "9"));
+			ìš©ë˜3ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("dragondun3", "9"));
+			ìš©ë˜4ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("dragondun4", "9"));
+			ìš©ë˜5ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("dragondun5", "9"));
+			ìš©ë˜6ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("dragondun6", "9"));
+			ìš©ë˜7ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("dragondun7", "9"));
+			ë³¸ë˜1ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("masterdun1", "9"));
+			ë³¸ë˜2ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("masterdun2", "9"));
+			ë³¸ë˜3ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("masterdun3", "9"));
+			ë³¸ë˜4ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("masterdun4", "9"));
+			ë³¸ë˜5ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("masterdun5", "9"));
+			ë³¸ë˜6ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("masterdun6", "9"));
+			ë³¸ë˜7ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("masterdun7", "9"));
+			ê¸°ê°1ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("gprison1", "9"));
+			ê¸°ê°2ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("gprison2", "9"));
+			ìƒì•„íƒ‘4ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("sangatop4", "9"));
+			ìƒì•„íƒ‘5ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("sangatop5", "9"));
+			ìƒì•„íƒ‘6ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("sangatop6", "9"));
+			ìƒì•„íƒ‘7ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("sangatop7", "9"));
+			ì˜¤ë§Œ1ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop1", "9"));
+			ì˜¤ë§Œ2ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop2", "9"));
+			ì˜¤ë§Œ3ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop3", "9"));
+			ì˜¤ë§Œ4ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop4", "9"));
+			ì˜¤ë§Œ5ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop5", "9"));
+			ì˜¤ë§Œ6ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop6", "9"));
+			ì˜¤ë§Œ7ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop7", "9"));
+			ì˜¤ë§Œ8ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop8", "9"));
+			ì˜¤ë§Œ9ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop9", "9"));
+			ì˜¤ë§Œ10ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop10", "9"));
+			ì˜¤ë§Œì •ìƒë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("omantop1", "9"));
+			ì§€ë°°1ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetop1", "9"));
+			ì§€ë°°2ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetop2", "9"));
+			ì§€ë°°3ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetop3", "9"));
+			ì§€ë°°4ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetop4", "9"));
+			ì§€ë°°5ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetop5", "9"));
+			ì§€ë°°6ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetop6", "9"));
+			ì§€ë°°7ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetop7", "9"));
+			ì§€ë°°8ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetop8", "9"));
+			ì§€ë°°9ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetop9", "9"));
+			ì§€ë°°10ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetop10", "9"));
+			ì§€ë°°ì •ìƒë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibetopV", "9"));
+			ì§€ë°°ê²°ê³„1ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibeline1", "9"));
+			ì§€ë°°ê²°ê³„2ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("jibeline2", "9"));
+			ì—˜ëª¨ì–´ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("elmofight", "9"));
+			ë³´ìŠ¤ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("bossfight", "9"));
+			ì˜¤ë§Œë³´ìŠ¤ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("Obossfight", "9"));
+			ì§€ë°°ë³´ìŠ¤ë´‡ì¹´ìš´íŠ¸ = Integer.parseInt(rateSettings.getProperty("Jbossfight", "9"));
+			ì¸ì›ë°°ìœ¨ = Double.parseDouble(rateSettings.getProperty("whoRate", "1"));
+			//ì‚¬ëƒ¥í„°ë³„ ë´‡ ì™¸ë¶€í™”
 			SANGATOP_45_RANGE = Integer.parseInt(rateSettings.getProperty("sangatop45range", "0"));
 			SANGATOP_45_ADD_HIT = Integer.parseInt(rateSettings.getProperty("sangatop45addHit", "0"));
 			SANGATOP_45_ADD_DMG = Integer.parseInt(rateSettings.getProperty("sangatop45addDmg", "0"));
@@ -1342,81 +1342,81 @@ public final class Config {
 			usercount = Integer.parseInt(rateSettings.getProperty("usercount", "1"));
 			useritem1 = Integer.parseInt(rateSettings.getProperty("useritem1", "1"));
 			usercount1 = Integer.parseInt(rateSettings.getProperty("usercount1", "1"));
-			ÀüÃ¼¼±¹°ÀÛµ¿À¯¹« = Boolean.parseBoolean(rateSettings.getProperty("GiftItem", "true"));
+			ì „ì²´ì„ ë¬¼ì‘ë™ìœ ë¬´ = Boolean.parseBoolean(rateSettings.getProperty("GiftItem", "true"));
 			FEATHER_TIME = Integer.parseInt(rateSettings.getProperty("FeatherTime", "15"));
 			USERITEM1_TIME = Integer.parseInt(rateSettings.getProperty("UseritemTime", "15"));
 			ETC_RANGE = Integer.parseInt(rateSettings.getProperty("etcrange", "0"));
 			ETC_ADD_HIT = Integer.parseInt(rateSettings.getProperty("etcaddHit", "0"));
 			ETC_ADD_DMG = Integer.parseInt(rateSettings.getProperty("etcaddDmg", "0"));
-			°æÇèÄ¡¹°¾à = Integer.parseInt(rateSettings.getProperty("exppotion", "0"));
-			³¬½Ã¼º°øÈ®·ü = Integer.parseInt(rateSettings.getProperty("fishSuccessRate", "1"));
-			ORIM_ACCESS_ENCHANT_SCROLL_USE_LEVEL = Integer.parseInt(rateSettings.getProperty("ORIM_ACCESS_ENCHANT_SCROLL_USE_LEVEL", "8")); // ¿À¸²ÀÇÀå½Å±¸¸¶¹ıÁÖ¹®¼­ »ç¿ë°¡´ÉÇÒ ·¹º§
-			ORIM_ACCESS_ENCHANT_SCROLL_CHANCE = Integer.parseInt(rateSettings.getProperty("ORIM_ACCESS_ENCHANT_SCROLL_CHANCE", "8")); // ¿À¸²ÀÇÀå½Å±¸¸¶¹ıÁÖ¹®¼­ ¼º°øÈ®·ü
-			ORIM_ACCESS_ENCHANT_SCROLL_DECREASE_CHANCE = Integer.parseInt(rateSettings.getProperty("ORIM_ACCESS_ENCHANT_SCROLL_DECREASE_CHANCE", "8")); // ¿À¸²ÀÇÀå½Å±¸¸¶¹ıÁÖ¹®¼­ ÀÎÃ¦´ç °¨¼ÒÈ®·ü
-			¹«±âµğÁöÁîÈ®·ü1 = Integer.parseInt(rateSettings.getProperty("weaponDisease1", "0"));
-			¹«±âµğÁöÁîÈ®·ü2 = Integer.parseInt(rateSettings.getProperty("weaponDisease2", "0"));
-			¹«±âµğÁöÁîÈ®·ü3 = Integer.parseInt(rateSettings.getProperty("weaponDisease3", "0"));
-			¹«±âµğÁöÁîÈ®·ü4 = Integer.parseInt(rateSettings.getProperty("weaponDisease4", "0"));
-			¹«±âµğÁöÁîÈ®·ü5 = Integer.parseInt(rateSettings.getProperty("weaponDisease5", "0"));
-			¹«±âµğÁöÁîÈ®·ü6 = Integer.parseInt(rateSettings.getProperty("weaponDisease6", "0"));
-			¹«±âµğÁöÁîÁö¼Ó½Ã°£ = Integer.parseInt(rateSettings.getProperty("weaponDiseaseTime", "0"));
-			ÀÎÇüÇÕ¼ºÈ®·ü1´Ü°è = Integer.parseInt(rateSettings.getProperty("dollcraft1", "0"));
-			ÀÎÇüÇÕ¼ºÈ®·ü2´Ü°è = Integer.parseInt(rateSettings.getProperty("dollcraft2", "0"));
-			ÀÎÇüÇÕ¼ºÈ®·ü3´Ü°è = Integer.parseInt(rateSettings.getProperty("dollcraft3", "0"));
-			ÀÎÇüÇÕ¼ºÈ®·ü4´Ü°è = Integer.parseInt(rateSettings.getProperty("dollcraft4", "0"));
-			ÀÎÇüÇÕ¼ºÈ®·ü5´Ü°è = Integer.parseInt(rateSettings.getProperty("dollcraft5", "0"));
+			ê²½í—˜ì¹˜ë¬¼ì•½ = Integer.parseInt(rateSettings.getProperty("exppotion", "0"));
+			ë‚šì‹œì„±ê³µí™•ë¥  = Integer.parseInt(rateSettings.getProperty("fishSuccessRate", "1"));
+			ORIM_ACCESS_ENCHANT_SCROLL_USE_LEVEL = Integer.parseInt(rateSettings.getProperty("ORIM_ACCESS_ENCHANT_SCROLL_USE_LEVEL", "8")); // ì˜¤ë¦¼ì˜ì¥ì‹ êµ¬ë§ˆë²•ì£¼ë¬¸ì„œ ì‚¬ìš©ê°€ëŠ¥í•  ë ˆë²¨
+			ORIM_ACCESS_ENCHANT_SCROLL_CHANCE = Integer.parseInt(rateSettings.getProperty("ORIM_ACCESS_ENCHANT_SCROLL_CHANCE", "8")); // ì˜¤ë¦¼ì˜ì¥ì‹ êµ¬ë§ˆë²•ì£¼ë¬¸ì„œ ì„±ê³µí™•ë¥ 
+			ORIM_ACCESS_ENCHANT_SCROLL_DECREASE_CHANCE = Integer.parseInt(rateSettings.getProperty("ORIM_ACCESS_ENCHANT_SCROLL_DECREASE_CHANCE", "8")); // ì˜¤ë¦¼ì˜ì¥ì‹ êµ¬ë§ˆë²•ì£¼ë¬¸ì„œ ì¸ì±ˆë‹¹ ê°ì†Œí™•ë¥ 
+			ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 1 = Integer.parseInt(rateSettings.getProperty("weaponDisease1", "0"));
+			ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 2 = Integer.parseInt(rateSettings.getProperty("weaponDisease2", "0"));
+			ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 3 = Integer.parseInt(rateSettings.getProperty("weaponDisease3", "0"));
+			ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 4 = Integer.parseInt(rateSettings.getProperty("weaponDisease4", "0"));
+			ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 5 = Integer.parseInt(rateSettings.getProperty("weaponDisease5", "0"));
+			ë¬´ê¸°ë””ì§€ì¦ˆí™•ë¥ 6 = Integer.parseInt(rateSettings.getProperty("weaponDisease6", "0"));
+			ë¬´ê¸°ë””ì§€ì¦ˆì§€ì†ì‹œê°„ = Integer.parseInt(rateSettings.getProperty("weaponDiseaseTime", "0"));
+			ì¸í˜•í•©ì„±í™•ë¥ 1ë‹¨ê³„ = Integer.parseInt(rateSettings.getProperty("dollcraft1", "0"));
+			ì¸í˜•í•©ì„±í™•ë¥ 2ë‹¨ê³„ = Integer.parseInt(rateSettings.getProperty("dollcraft2", "0"));
+			ì¸í˜•í•©ì„±í™•ë¥ 3ë‹¨ê³„ = Integer.parseInt(rateSettings.getProperty("dollcraft3", "0"));
+			ì¸í˜•í•©ì„±í™•ë¥ 4ë‹¨ê³„ = Integer.parseInt(rateSettings.getProperty("dollcraft4", "0"));
+			ì¸í˜•í•©ì„±í™•ë¥ 5ë‹¨ê³„ = Integer.parseInt(rateSettings.getProperty("dollcraft5", "0"));
 			
-			ÀÎÇüÇÕ¼ººñ¿ë1´Ü°è = Integer.parseInt(rateSettings.getProperty("dollcraftAdena1", "0"));
-			ÀÎÇüÇÕ¼ººñ¿ë2´Ü°è = Integer.parseInt(rateSettings.getProperty("dollcraftAdena2", "0"));
-			ÀÎÇüÇÕ¼ººñ¿ë3´Ü°è = Integer.parseInt(rateSettings.getProperty("dollcraftAdena3", "0"));
-			ÀÎÇüÇÕ¼ººñ¿ë4´Ü°è = Integer.parseInt(rateSettings.getProperty("dollcraftAdena4", "0"));
-			ÀÎÇüÇÕ¼ººñ¿ë5´Ü°è = Integer.parseInt(rateSettings.getProperty("dollcraftAdena5", "0"));
+			ì¸í˜•í•©ì„±ë¹„ìš©1ë‹¨ê³„ = Integer.parseInt(rateSettings.getProperty("dollcraftAdena1", "0"));
+			ì¸í˜•í•©ì„±ë¹„ìš©2ë‹¨ê³„ = Integer.parseInt(rateSettings.getProperty("dollcraftAdena2", "0"));
+			ì¸í˜•í•©ì„±ë¹„ìš©3ë‹¨ê³„ = Integer.parseInt(rateSettings.getProperty("dollcraftAdena3", "0"));
+			ì¸í˜•í•©ì„±ë¹„ìš©4ë‹¨ê³„ = Integer.parseInt(rateSettings.getProperty("dollcraftAdena4", "0"));
+			ì¸í˜•í•©ì„±ë¹„ìš©5ë‹¨ê³„ = Integer.parseInt(rateSettings.getProperty("dollcraftAdena5", "0"));
 			
-			µå½½º¯½Å·©Å· = Integer.parseInt(rateSettings.getProperty("dragonslayerpolyRanking", "0"));
-			Áö¹è¼ø¹İÁ¦ÀÛÈ®·ü = Integer.parseInt(rateSettings.getProperty("craftteleportRing", "15"));
-			¿ë°© = Integer.parseInt(rateSettings.getProperty("DragonArmor", "1"));
-			¿ë°©ÀÎÃ¦ = (Integer[]) MJArrangeParser
+			ë“œìŠ¬ë³€ì‹ ë­í‚¹ = Integer.parseInt(rateSettings.getProperty("dragonslayerpolyRanking", "0"));
+			ì§€ë°°ìˆœë°˜ì œì‘í™•ë¥  = Integer.parseInt(rateSettings.getProperty("craftteleportRing", "15"));
+			ìš©ê°‘ = Integer.parseInt(rateSettings.getProperty("DragonArmor", "1"));
+			ìš©ê°‘ì¸ì±ˆ = (Integer[]) MJArrangeParser
 					.parsing(rateSettings.getProperty("DragonArmorRate", "30,20,15,13,10,8,6,4,2,1,1,1,1,1,1"), ",",
 							MJArrangeParseeFactory.createIntArrange())
 					.result();
 			
-			¹ß¶ó°¡È£È®·ü = Integer.parseInt(rateSettings.getProperty("valablessRate", "1"));
-			¸°µå°¡È£È®·ü = Integer.parseInt(rateSettings.getProperty("lindblessRate", "1"));
-			ÆÄÇª°¡È£È®·ü = Integer.parseInt(rateSettings.getProperty("papublessRate", "1"));
-			¹ß¶óÀÌÆåÆ®´ë¹ÌÁö1 = Double.parseDouble(rateSettings.getProperty("valaEffectDamage1", "1.0"));
-			¹ß¶óÀÌÆåÆ®´ë¹ÌÁö2 = Double.parseDouble(rateSettings.getProperty("valaEffectDamage2", "1.0"));
-			¹ß¶óÀÌÆåÆ®´ë¹ÌÁö3 = Double.parseDouble(rateSettings.getProperty("valaEffectDamage3", "1.0"));
-			¹ß¶óÀÌÆåÆ®´ë¹ÌÁö4 = Double.parseDouble(rateSettings.getProperty("valaEffectDamage4", "1.0"));
-			¸°µåÀÌÆåÆ®´ë¹ÌÁö1 = Double.parseDouble(rateSettings.getProperty("lindEffectDamage1", "1.0"));
-			¸°µåÀÌÆåÆ®´ë¹ÌÁö2 = Double.parseDouble(rateSettings.getProperty("lindEffectDamage2", "1.0"));
-			¸°µåÀÌÆåÆ®´ë¹ÌÁö3 = Double.parseDouble(rateSettings.getProperty("lindEffectDamage3", "1.0"));
-			¸°µåÀÌÆåÆ®´ë¹ÌÁö4 = Double.parseDouble(rateSettings.getProperty("lindEffectDamage4", "1.0"));
-			ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö1 = Double.parseDouble(rateSettings.getProperty("papuEffectDamage1", "1.0"));
-			ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö2 = Double.parseDouble(rateSettings.getProperty("papuEffectDamage2", "1.0"));
-			ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö3 = Double.parseDouble(rateSettings.getProperty("papuEffectDamage3", "1.0"));
-			ÆÄÇªÀÌÆåÆ®´ë¹ÌÁö4 = Double.parseDouble(rateSettings.getProperty("papuEffectDamage4", "1.0"));
+			ë°œë¼ê°€í˜¸í™•ë¥  = Integer.parseInt(rateSettings.getProperty("valablessRate", "1"));
+			ë¦°ë“œê°€í˜¸í™•ë¥  = Integer.parseInt(rateSettings.getProperty("lindblessRate", "1"));
+			íŒŒí‘¸ê°€í˜¸í™•ë¥  = Integer.parseInt(rateSettings.getProperty("papublessRate", "1"));
+			ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€1 = Double.parseDouble(rateSettings.getProperty("valaEffectDamage1", "1.0"));
+			ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€2 = Double.parseDouble(rateSettings.getProperty("valaEffectDamage2", "1.0"));
+			ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€3 = Double.parseDouble(rateSettings.getProperty("valaEffectDamage3", "1.0"));
+			ë°œë¼ì´í™íŠ¸ëŒ€ë¯¸ì§€4 = Double.parseDouble(rateSettings.getProperty("valaEffectDamage4", "1.0"));
+			ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€1 = Double.parseDouble(rateSettings.getProperty("lindEffectDamage1", "1.0"));
+			ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€2 = Double.parseDouble(rateSettings.getProperty("lindEffectDamage2", "1.0"));
+			ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€3 = Double.parseDouble(rateSettings.getProperty("lindEffectDamage3", "1.0"));
+			ë¦°ë“œì´í™íŠ¸ëŒ€ë¯¸ì§€4 = Double.parseDouble(rateSettings.getProperty("lindEffectDamage4", "1.0"));
+			íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€1 = Double.parseDouble(rateSettings.getProperty("papuEffectDamage1", "1.0"));
+			íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€2 = Double.parseDouble(rateSettings.getProperty("papuEffectDamage2", "1.0"));
+			íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€3 = Double.parseDouble(rateSettings.getProperty("papuEffectDamage3", "1.0"));
+			íŒŒí‘¸ì´í™íŠ¸ëŒ€ë¯¸ì§€4 = Double.parseDouble(rateSettings.getProperty("papuEffectDamage4", "1.0"));
 			
-			»¡°»ÀÌÈ¸º¹·® = Integer.parseInt(rateSettings.getProperty("RedHpUpRate", "1"));
-			ÁÖÈ«ÀÌÈ¸º¹·® = Integer.parseInt(rateSettings.getProperty("OrangeHpUpRate", "1"));
-			¸¼°»ÀÌÈ¸º¹·® = Integer.parseInt(rateSettings.getProperty("WriteHpUpRate", "1"));
+			ë¹¨ê°±ì´íšŒë³µëŸ‰ = Integer.parseInt(rateSettings.getProperty("RedHpUpRate", "1"));
+			ì£¼í™ì´íšŒë³µëŸ‰ = Integer.parseInt(rateSettings.getProperty("OrangeHpUpRate", "1"));
+			ë§‘ê°±ì´íšŒë³µëŸ‰ = Integer.parseInt(rateSettings.getProperty("WriteHpUpRate", "1"));
 			
-			¹«±â¾ÈÀü0ÀÏ¶§1¾÷ = Integer.parseInt(rateSettings.getProperty("WeaponSafe0up1", "1"));
-			¹«±â¾ÈÀü0ÀÏ¶§2¾÷ = Integer.parseInt(rateSettings.getProperty("WeaponSafe0up2", "1"));
-			¹«±â¾ÈÀü0ÀÏ¶§3¾÷ = Integer.parseInt(rateSettings.getProperty("WeaponSafe0up3", "1"));
-			¹«±â¾ÈÀü6ÀÏ¶§1¾÷ = Integer.parseInt(rateSettings.getProperty("WeaponSafe6up1", "1"));
-			¹«±â¾ÈÀü6ÀÏ¶§2¾÷ = Integer.parseInt(rateSettings.getProperty("WeaponSafe6up2", "1"));
-			¹«±â¾ÈÀü6ÀÏ¶§3¾÷ = Integer.parseInt(rateSettings.getProperty("WeaponSafe6up3", "1"));
+			ë¬´ê¸°ì•ˆì „0ì¼ë•Œ1ì—… = Integer.parseInt(rateSettings.getProperty("WeaponSafe0up1", "1"));
+			ë¬´ê¸°ì•ˆì „0ì¼ë•Œ2ì—… = Integer.parseInt(rateSettings.getProperty("WeaponSafe0up2", "1"));
+			ë¬´ê¸°ì•ˆì „0ì¼ë•Œ3ì—… = Integer.parseInt(rateSettings.getProperty("WeaponSafe0up3", "1"));
+			ë¬´ê¸°ì•ˆì „6ì¼ë•Œ1ì—… = Integer.parseInt(rateSettings.getProperty("WeaponSafe6up1", "1"));
+			ë¬´ê¸°ì•ˆì „6ì¼ë•Œ2ì—… = Integer.parseInt(rateSettings.getProperty("WeaponSafe6up2", "1"));
+			ë¬´ê¸°ì•ˆì „6ì¼ë•Œ3ì—… = Integer.parseInt(rateSettings.getProperty("WeaponSafe6up3", "1"));
 			
-			¹æ¾î±¸¾ÈÀü0ÀÏ¶§1¾÷ = Integer.parseInt(rateSettings.getProperty("ArmorSafe0up1", "1"));
-			¹æ¾î±¸¾ÈÀü0ÀÏ¶§2¾÷ = Integer.parseInt(rateSettings.getProperty("ArmorSafe0up2", "1"));
-			¹æ¾î±¸¾ÈÀü0ÀÏ¶§3¾÷ = Integer.parseInt(rateSettings.getProperty("ArmorSafe0up3", "1"));
-			¹æ¾î±¸¾ÈÀü4ÀÏ¶§1¾÷ = Integer.parseInt(rateSettings.getProperty("ArmorSafe4up1", "1"));
-			¹æ¾î±¸¾ÈÀü4ÀÏ¶§2¾÷ = Integer.parseInt(rateSettings.getProperty("ArmorSafe4up1", "1"));
-			¹æ¾î±¸¾ÈÀü4ÀÏ¶§3¾÷ = Integer.parseInt(rateSettings.getProperty("ArmorSafe4up1", "1"));
-			¹æ¾î±¸¾ÈÀü6ÀÏ¶§1¾÷ = Integer.parseInt(rateSettings.getProperty("ArmorSafe6up1", "1"));
-			¹æ¾î±¸¾ÈÀü6ÀÏ¶§2¾÷ = Integer.parseInt(rateSettings.getProperty("ArmorSafe6up1", "1"));
-			¹æ¾î±¸¾ÈÀü6ÀÏ¶§3¾÷ = Integer.parseInt(rateSettings.getProperty("ArmorSafe6up1", "1"));
-			¾Æµ¥³ª°Ô½ÃÆÇ¸àÆ® = rateSettings.getProperty("adenament", "¾Æµ¥³ª°Ô½ÃÆÇ");
+			ë°©ì–´êµ¬ì•ˆì „0ì¼ë•Œ1ì—… = Integer.parseInt(rateSettings.getProperty("ArmorSafe0up1", "1"));
+			ë°©ì–´êµ¬ì•ˆì „0ì¼ë•Œ2ì—… = Integer.parseInt(rateSettings.getProperty("ArmorSafe0up2", "1"));
+			ë°©ì–´êµ¬ì•ˆì „0ì¼ë•Œ3ì—… = Integer.parseInt(rateSettings.getProperty("ArmorSafe0up3", "1"));
+			ë°©ì–´êµ¬ì•ˆì „4ì¼ë•Œ1ì—… = Integer.parseInt(rateSettings.getProperty("ArmorSafe4up1", "1"));
+			ë°©ì–´êµ¬ì•ˆì „4ì¼ë•Œ2ì—… = Integer.parseInt(rateSettings.getProperty("ArmorSafe4up1", "1"));
+			ë°©ì–´êµ¬ì•ˆì „4ì¼ë•Œ3ì—… = Integer.parseInt(rateSettings.getProperty("ArmorSafe4up1", "1"));
+			ë°©ì–´êµ¬ì•ˆì „6ì¼ë•Œ1ì—… = Integer.parseInt(rateSettings.getProperty("ArmorSafe6up1", "1"));
+			ë°©ì–´êµ¬ì•ˆì „6ì¼ë•Œ2ì—… = Integer.parseInt(rateSettings.getProperty("ArmorSafe6up1", "1"));
+			ë°©ì–´êµ¬ì•ˆì „6ì¼ë•Œ3ì—… = Integer.parseInt(rateSettings.getProperty("ArmorSafe6up1", "1"));
+			ì•„ë°ë‚˜ê²Œì‹œíŒë©˜íŠ¸ = rateSettings.getProperty("adenament", "ì•„ë°ë‚˜ê²Œì‹œíŒ");
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + RATES_CONFIG_FILE + " File.");
@@ -1428,21 +1428,21 @@ public final class Config {
 			FileReader is = new FileReader(new File(HUNT_CONFIG_FILE));
 			huntSettings.load(is);
 			is.close();
-			±â°¨_OPEN_TIME = huntSettings.getProperty("GiranJailOpenTime", "0200#0600#1000#1400#1800#2000");
-			º»´ø_OPEN_TIME = huntSettings.getProperty("GludioDungeonOpenTime", "0200#0600#1000#1400#1800#2000");
-			¿ë´ø_OPEN_TIME = huntSettings.getProperty("DragonDungeonOpenTime", "1100#1700#2200");
-			ÀØÇôÁø¼¶_OPEN_TIME = huntSettings.getProperty("ForgottenIsleOpenTime", "1000#1400");
-			¿À¸¸ÀÇÅ¾Á¤»ó_OPEN_TIME = huntSettings.getProperty("OmanTopFloorOpenTime", "1000#1400");
-			Å×º£¶ó½º_OPEN_TIME = huntSettings.getProperty("TebeOpenTime", "1000#1400");
-			»ó¾ÆÅ¾8Ãş_OPEN_TIME = huntSettings.getProperty("IvoryTowerOpenTime", "1000#1400");
-			½Ã°£Á¦¼±¹° = huntSettings.getProperty("TimePresentTime", "1000");
-			±â°¨·¾Á¦ = Integer.parseInt(huntSettings.getProperty("GiranLevel", "0"));
-			Å×º£·¾Á¦ = Integer.parseInt(huntSettings.getProperty("TebeLevel", "0"));
-			¹èÆ²Á¸ÀÛµ¿À¯¹« = Boolean.parseBoolean(huntSettings.getProperty("BattleZone", "true"));
-			¹èÆ²Á¸¾ÆÀÌÅÛ = huntSettings.getProperty("BattleItem", "");
-			¹èÆ²Á¸¾ÆÀÌÅÛ°¹¼ö = huntSettings.getProperty("BattleCount", "");
-			¹èÆ²Á¸_OPEN_TIME = huntSettings.getProperty("BattleOpenTime", "1100#1700#2200");
-			¹èÆ²Á¸ÀÔÀå·¹º§ = Integer.parseInt(huntSettings.getProperty("BattleLevel", "55"));
+			ê¸°ê°_OPEN_TIME = huntSettings.getProperty("GiranJailOpenTime", "0200#0600#1000#1400#1800#2000");
+			ë³¸ë˜_OPEN_TIME = huntSettings.getProperty("GludioDungeonOpenTime", "0200#0600#1000#1400#1800#2000");
+			ìš©ë˜_OPEN_TIME = huntSettings.getProperty("DragonDungeonOpenTime", "1100#1700#2200");
+			ìŠí˜€ì§„ì„¬_OPEN_TIME = huntSettings.getProperty("ForgottenIsleOpenTime", "1000#1400");
+			ì˜¤ë§Œì˜íƒ‘ì •ìƒ_OPEN_TIME = huntSettings.getProperty("OmanTopFloorOpenTime", "1000#1400");
+			í…Œë² ë¼ìŠ¤_OPEN_TIME = huntSettings.getProperty("TebeOpenTime", "1000#1400");
+			ìƒì•„íƒ‘8ì¸µ_OPEN_TIME = huntSettings.getProperty("IvoryTowerOpenTime", "1000#1400");
+			ì‹œê°„ì œì„ ë¬¼ = huntSettings.getProperty("TimePresentTime", "1000");
+			ê¸°ê°ë ™ì œ = Integer.parseInt(huntSettings.getProperty("GiranLevel", "0"));
+			í…Œë² ë ™ì œ = Integer.parseInt(huntSettings.getProperty("TebeLevel", "0"));
+			ë°°í‹€ì¡´ì‘ë™ìœ ë¬´ = Boolean.parseBoolean(huntSettings.getProperty("BattleZone", "true"));
+			ë°°í‹€ì¡´ì•„ì´í…œ = huntSettings.getProperty("BattleItem", "");
+			ë°°í‹€ì¡´ì•„ì´í…œê°¯ìˆ˜ = huntSettings.getProperty("BattleCount", "");
+			ë°°í‹€ì¡´_OPEN_TIME = huntSettings.getProperty("BattleOpenTime", "1100#1700#2200");
+			ë°°í‹€ì¡´ì…ì¥ë ˆë²¨ = Integer.parseInt(huntSettings.getProperty("BattleLevel", "55"));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + HUNT_CONFIG_FILE + " File.");
@@ -1487,7 +1487,7 @@ public final class Config {
 
 			ALT_ITEM_DELETION_RANGE = Integer.parseInt(altSettings.getProperty("ItemDeletionRange", "5"));
 
-			°æÇèÄ¡Áö±Ş´Ü = Integer.parseInt(altSettings.getProperty("Expreturn", "75"));
+			ê²½í—˜ì¹˜ì§€ê¸‰ë‹¨ = Integer.parseInt(altSettings.getProperty("Expreturn", "75"));
 			ALT_HALLOWEENEVENT = Boolean.parseBoolean(altSettings.getProperty("HalloweenEvent", "true"));
 			TRIPLE_DMG = Double.parseDouble(altSettings.getProperty("tripledmg", "0.8"));
 			ALT_HALLOWEENEVENT2009 = Boolean.parseBoolean(altSettings.getProperty("HalloweenEvent2009", "true"));
@@ -1499,93 +1499,93 @@ public final class Config {
 			ALT_FEATURE = Boolean.parseBoolean(altSettings.getProperty("FeatureEvent", "true"));
 
 			ALT_WHO_COMMAND = Boolean.parseBoolean(altSettings.getProperty("WhoCommand", "false"));
-			¹«±â5 = Integer.parseInt(altSettings.getProperty("LimWeapon5", "30"));
-			¹«±â6 = Integer.parseInt(altSettings.getProperty("LimWeapon6", "1"));
-			¹«±â7 = Integer.parseInt(altSettings.getProperty("LimWeapon7", "1"));
-			¹«±â8 = Integer.parseInt(altSettings.getProperty("LimWeapon8", "7"));
-			¹«±â9 = Integer.parseInt(altSettings.getProperty("LimWeapon9", "7"));
-			¹«±â10 = Integer.parseInt(altSettings.getProperty("LimWeapon10", "7"));
-			¹«±â11 = Integer.parseInt(altSettings.getProperty("LimWeapon11", "7"));
-			¹«±â12 = Integer.parseInt(altSettings.getProperty("LimWeapon12", "7"));
-			¹«±â13 = Integer.parseInt(altSettings.getProperty("LimWeapon13", "7"));
-			¹«±â14 = Integer.parseInt(altSettings.getProperty("LimWeapon14", "7"));
-			¹«±â¾ÈÀü0 = Integer.parseInt(altSettings.getProperty("Lim0Weapon0", "7"));
-			¹«±â¾ÈÀü1 = Integer.parseInt(altSettings.getProperty("Lim1Weapon1", "7"));
-			¹«±â¾ÈÀü2 = Integer.parseInt(altSettings.getProperty("Lim2Weapon2", "7"));
-			¹«±â¾ÈÀü3 = Integer.parseInt(altSettings.getProperty("Lim3Weapon3", "7"));
-			¹«±â¾ÈÀü4 = Integer.parseInt(altSettings.getProperty("Lim4Weapon4", "7"));
-			¹«±â¾ÈÀü5 = Integer.parseInt(altSettings.getProperty("Lim5Weapon5", "7"));
-			¹«±â¾ÈÀü6 = Integer.parseInt(altSettings.getProperty("Lim6Weapon6", "7"));
-			¹«±â¾ÈÀü7 = Integer.parseInt(altSettings.getProperty("Lim7Weapon7", "7"));
-			¹«±â¾ÈÀü8 = Integer.parseInt(altSettings.getProperty("Lim8Weapon8", "7"));
+			ë¬´ê¸°5 = Integer.parseInt(altSettings.getProperty("LimWeapon5", "30"));
+			ë¬´ê¸°6 = Integer.parseInt(altSettings.getProperty("LimWeapon6", "1"));
+			ë¬´ê¸°7 = Integer.parseInt(altSettings.getProperty("LimWeapon7", "1"));
+			ë¬´ê¸°8 = Integer.parseInt(altSettings.getProperty("LimWeapon8", "7"));
+			ë¬´ê¸°9 = Integer.parseInt(altSettings.getProperty("LimWeapon9", "7"));
+			ë¬´ê¸°10 = Integer.parseInt(altSettings.getProperty("LimWeapon10", "7"));
+			ë¬´ê¸°11 = Integer.parseInt(altSettings.getProperty("LimWeapon11", "7"));
+			ë¬´ê¸°12 = Integer.parseInt(altSettings.getProperty("LimWeapon12", "7"));
+			ë¬´ê¸°13 = Integer.parseInt(altSettings.getProperty("LimWeapon13", "7"));
+			ë¬´ê¸°14 = Integer.parseInt(altSettings.getProperty("LimWeapon14", "7"));
+			ë¬´ê¸°ì•ˆì „0 = Integer.parseInt(altSettings.getProperty("Lim0Weapon0", "7"));
+			ë¬´ê¸°ì•ˆì „1 = Integer.parseInt(altSettings.getProperty("Lim1Weapon1", "7"));
+			ë¬´ê¸°ì•ˆì „2 = Integer.parseInt(altSettings.getProperty("Lim2Weapon2", "7"));
+			ë¬´ê¸°ì•ˆì „3 = Integer.parseInt(altSettings.getProperty("Lim3Weapon3", "7"));
+			ë¬´ê¸°ì•ˆì „4 = Integer.parseInt(altSettings.getProperty("Lim4Weapon4", "7"));
+			ë¬´ê¸°ì•ˆì „5 = Integer.parseInt(altSettings.getProperty("Lim5Weapon5", "7"));
+			ë¬´ê¸°ì•ˆì „6 = Integer.parseInt(altSettings.getProperty("Lim6Weapon6", "7"));
+			ë¬´ê¸°ì•ˆì „7 = Integer.parseInt(altSettings.getProperty("Lim7Weapon7", "7"));
+			ë¬´ê¸°ì•ˆì „8 = Integer.parseInt(altSettings.getProperty("Lim8Weapon8", "7"));
 
-			¹«±â¾ÈÀü9 = Integer.parseInt(altSettings.getProperty("Lim9Weapon9", "7"));
-			¹«±â¾ÈÀü10 = Integer.parseInt(altSettings.getProperty("Lim10Weapon10", "7"));
-			¹«±â¾ÈÀü11 = Integer.parseInt(altSettings.getProperty("Lim11Weapon11", "7"));
-			¹«±â¾ÈÀü12 = Integer.parseInt(altSettings.getProperty("Lim12Weapon12", "7"));
-			¹«±â¾ÈÀü13 = Integer.parseInt(altSettings.getProperty("Lim13Weapon13", "7"));
-			¹«±â¾ÈÀü14 = Integer.parseInt(altSettings.getProperty("Lim14Weapon14", "7"));
-			¹«±â¾ÈÀü15 = Integer.parseInt(altSettings.getProperty("Lim15Weapon15", "7"));
+			ë¬´ê¸°ì•ˆì „9 = Integer.parseInt(altSettings.getProperty("Lim9Weapon9", "7"));
+			ë¬´ê¸°ì•ˆì „10 = Integer.parseInt(altSettings.getProperty("Lim10Weapon10", "7"));
+			ë¬´ê¸°ì•ˆì „11 = Integer.parseInt(altSettings.getProperty("Lim11Weapon11", "7"));
+			ë¬´ê¸°ì•ˆì „12 = Integer.parseInt(altSettings.getProperty("Lim12Weapon12", "7"));
+			ë¬´ê¸°ì•ˆì „13 = Integer.parseInt(altSettings.getProperty("Lim13Weapon13", "7"));
+			ë¬´ê¸°ì•ˆì „14 = Integer.parseInt(altSettings.getProperty("Lim14Weapon14", "7"));
+			ë¬´ê¸°ì•ˆì „15 = Integer.parseInt(altSettings.getProperty("Lim15Weapon15", "7"));
 
-			¹æ¾î±¸4 = Integer.parseInt(altSettings.getProperty("LimArmor4", "7"));
-			¹æ¾î±¸5 = Integer.parseInt(altSettings.getProperty("LimArmor5", "7"));
-			¹æ¾î±¸6 = Integer.parseInt(altSettings.getProperty("LimArmor6", "7"));
+			ë°©ì–´êµ¬4 = Integer.parseInt(altSettings.getProperty("LimArmor4", "7"));
+			ë°©ì–´êµ¬5 = Integer.parseInt(altSettings.getProperty("LimArmor5", "7"));
+			ë°©ì–´êµ¬6 = Integer.parseInt(altSettings.getProperty("LimArmor6", "7"));
 
-			¹æ¾î±¸7 = Integer.parseInt(altSettings.getProperty("LimArmor7", "7"));
-			¹æ¾î±¸8 = Integer.parseInt(altSettings.getProperty("LimArmor8", "7"));
-			¹æ¾î±¸9 = Integer.parseInt(altSettings.getProperty("LimArmor9", "7"));
-			¹æ¾î±¸10 = Integer.parseInt(altSettings.getProperty("LimArmor10", "7"));
-			¹æ¾î±¸11 = Integer.parseInt(altSettings.getProperty("LimArmor11", "7"));
-			¹æ¾î±¸12 = Integer.parseInt(altSettings.getProperty("LimArmor12", "7"));
-			¹æ¾î±¸13 = Integer.parseInt(altSettings.getProperty("LimArmor13", "7"));
-			¹æ¾î±¸14 = Integer.parseInt(altSettings.getProperty("LimArmor14", "7"));
+			ë°©ì–´êµ¬7 = Integer.parseInt(altSettings.getProperty("LimArmor7", "7"));
+			ë°©ì–´êµ¬8 = Integer.parseInt(altSettings.getProperty("LimArmor8", "7"));
+			ë°©ì–´êµ¬9 = Integer.parseInt(altSettings.getProperty("LimArmor9", "7"));
+			ë°©ì–´êµ¬10 = Integer.parseInt(altSettings.getProperty("LimArmor10", "7"));
+			ë°©ì–´êµ¬11 = Integer.parseInt(altSettings.getProperty("LimArmor11", "7"));
+			ë°©ì–´êµ¬12 = Integer.parseInt(altSettings.getProperty("LimArmor12", "7"));
+			ë°©ì–´êµ¬13 = Integer.parseInt(altSettings.getProperty("LimArmor13", "7"));
+			ë°©ì–´êµ¬14 = Integer.parseInt(altSettings.getProperty("LimArmor14", "7"));
 
-			¹æ¾î±¸¾ÈÀü0 = Integer.parseInt(altSettings.getProperty("Lim0Armor0", "10"));
-			¹æ¾î±¸¾ÈÀü1 = Integer.parseInt(altSettings.getProperty("Lim1Armor1", "11"));
-			¹æ¾î±¸¾ÈÀü2 = Integer.parseInt(altSettings.getProperty("Lim2Armor2", "12"));
-			¹æ¾î±¸¾ÈÀü3 = Integer.parseInt(altSettings.getProperty("Lim3Armor3", "13"));
-			¹æ¾î±¸¾ÈÀü4 = Integer.parseInt(altSettings.getProperty("Lim4Armor4", "14"));
-			¹æ¾î±¸¾ÈÀü5 = Integer.parseInt(altSettings.getProperty("Lim5Armor5", "15"));
-			¹æ¾î±¸¾ÈÀü6 = Integer.parseInt(altSettings.getProperty("Lim6Armor6", "16"));
-			¹æ¾î±¸¾ÈÀü7 = Integer.parseInt(altSettings.getProperty("Lim7Armor7", "17"));
-			¹æ¾î±¸¾ÈÀü8 = Integer.parseInt(altSettings.getProperty("Lim8Armor8", "18"));
+			ë°©ì–´êµ¬ì•ˆì „0 = Integer.parseInt(altSettings.getProperty("Lim0Armor0", "10"));
+			ë°©ì–´êµ¬ì•ˆì „1 = Integer.parseInt(altSettings.getProperty("Lim1Armor1", "11"));
+			ë°©ì–´êµ¬ì•ˆì „2 = Integer.parseInt(altSettings.getProperty("Lim2Armor2", "12"));
+			ë°©ì–´êµ¬ì•ˆì „3 = Integer.parseInt(altSettings.getProperty("Lim3Armor3", "13"));
+			ë°©ì–´êµ¬ì•ˆì „4 = Integer.parseInt(altSettings.getProperty("Lim4Armor4", "14"));
+			ë°©ì–´êµ¬ì•ˆì „5 = Integer.parseInt(altSettings.getProperty("Lim5Armor5", "15"));
+			ë°©ì–´êµ¬ì•ˆì „6 = Integer.parseInt(altSettings.getProperty("Lim6Armor6", "16"));
+			ë°©ì–´êµ¬ì•ˆì „7 = Integer.parseInt(altSettings.getProperty("Lim7Armor7", "17"));
+			ë°©ì–´êµ¬ì•ˆì „8 = Integer.parseInt(altSettings.getProperty("Lim8Armor8", "18"));
 
-			¹æ¾î±¸¾ÈÀü»ç0 = Integer.parseInt(altSettings.getProperty("Li1Armor", "20"));
-			¹æ¾î±¸¾ÈÀü»ç1 = Integer.parseInt(altSettings.getProperty("Li2Armor", "20"));
-			¹æ¾î±¸¾ÈÀü»ç2 = Integer.parseInt(altSettings.getProperty("Li3Armor", "20"));
-			¹æ¾î±¸¾ÈÀü»ç3 = Integer.parseInt(altSettings.getProperty("Li4Armor", "20"));
-			¹æ¾î±¸¾ÈÀü»ç4 = Integer.parseInt(altSettings.getProperty("Li5Armor", "20"));
-			¹æ¾î±¸¾ÈÀü»ç5 = Integer.parseInt(altSettings.getProperty("Li6Armor", "20"));
-			¹æ¾î±¸¾ÈÀü»ç6 = Integer.parseInt(altSettings.getProperty("Li7Armor", "20"));
-			¹æ¾î±¸¾ÈÀü»ç7 = Integer.parseInt(altSettings.getProperty("Li8Armor", "20"));
-			¹æ¾î±¸¾ÈÀü»ç8 = Integer.parseInt(altSettings.getProperty("Li9Armor", "20"));
-			¹æ¾î±¸¾ÈÀü»ç9 = Integer.parseInt(altSettings.getProperty("Li10Armor", "20"));
-			¹æ¾î±¸¾ÈÀü»ç10 = Integer.parseInt(altSettings.getProperty("Li11Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬0 = Integer.parseInt(altSettings.getProperty("Li1Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬1 = Integer.parseInt(altSettings.getProperty("Li2Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬2 = Integer.parseInt(altSettings.getProperty("Li3Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬3 = Integer.parseInt(altSettings.getProperty("Li4Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬4 = Integer.parseInt(altSettings.getProperty("Li5Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬5 = Integer.parseInt(altSettings.getProperty("Li6Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬6 = Integer.parseInt(altSettings.getProperty("Li7Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬7 = Integer.parseInt(altSettings.getProperty("Li8Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬8 = Integer.parseInt(altSettings.getProperty("Li9Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬9 = Integer.parseInt(altSettings.getProperty("Li10Armor", "20"));
+			ë°©ì–´êµ¬ì•ˆì „ì‚¬10 = Integer.parseInt(altSettings.getProperty("Li11Armor", "20"));
 
-			¾Ç¼¼ÀÎÃ¾1 = Integer.parseInt(altSettings.getProperty("Acc1", "1"));
-			¾Ç¼¼ÀÎÃ¾2 = Integer.parseInt(altSettings.getProperty("Acc2", "2"));
-			¾Ç¼¼ÀÎÃ¾3 = Integer.parseInt(altSettings.getProperty("Acc3", "3"));
-			¾Ç¼¼ÀÎÃ¾4 = Integer.parseInt(altSettings.getProperty("Acc4", "4"));
-			¾Ç¼¼ÀÎÃ¾5 = Integer.parseInt(altSettings.getProperty("Acc5", "5"));
-			¾Ç¼¼ÀÎÃ¾6 = Integer.parseInt(altSettings.getProperty("Acc6", "6"));
-			¾Ç¼¼ÀÎÃ¾7 = Integer.parseInt(altSettings.getProperty("Acc7", "7"));
-			¾Ç¼¼ÀÎÃ¾8 = Integer.parseInt(altSettings.getProperty("Acc8", "8"));
-			¾Ç¼¼ÀÎÃ¾9 = Integer.parseInt(altSettings.getProperty("Acc9", "9"));
-			¿ë´øº»´ø½Ã°£ = Integer.parseInt(altSettings.getProperty("DragonGludioTime", "2"));
-			±â°¨½Ã°£ = Integer.parseInt(altSettings.getProperty("GiranPrisonTime", "2"));
-			¸ù¼¶½Ã°£ = Integer.parseInt(altSettings.getProperty("DreamIslandTime", "2"));
-			¶ó´ø½Ã°£ = Integer.parseInt(altSettings.getProperty("LastabardTime", "2"));
-			°³¹Ì´øÀü½Ã°£ = Integer.parseInt(altSettings.getProperty("AntDundeonTime", "2"));
-			±×¸²ÀÚ½ÅÀü½Ã°£ = Integer.parseInt(altSettings.getProperty("ShadowTempleTime", "2"));
-			±âº»¿¥Èí = Integer.parseInt(altSettings.getProperty("DefaultMpSteal", "9"));
-			¹ÙÆ÷¿¥Èí = Integer.parseInt(altSettings.getProperty("bapoMpSteal", "9"));
+			ì•…ì„¸ì¸ì²¸1 = Integer.parseInt(altSettings.getProperty("Acc1", "1"));
+			ì•…ì„¸ì¸ì²¸2 = Integer.parseInt(altSettings.getProperty("Acc2", "2"));
+			ì•…ì„¸ì¸ì²¸3 = Integer.parseInt(altSettings.getProperty("Acc3", "3"));
+			ì•…ì„¸ì¸ì²¸4 = Integer.parseInt(altSettings.getProperty("Acc4", "4"));
+			ì•…ì„¸ì¸ì²¸5 = Integer.parseInt(altSettings.getProperty("Acc5", "5"));
+			ì•…ì„¸ì¸ì²¸6 = Integer.parseInt(altSettings.getProperty("Acc6", "6"));
+			ì•…ì„¸ì¸ì²¸7 = Integer.parseInt(altSettings.getProperty("Acc7", "7"));
+			ì•…ì„¸ì¸ì²¸8 = Integer.parseInt(altSettings.getProperty("Acc8", "8"));
+			ì•…ì„¸ì¸ì²¸9 = Integer.parseInt(altSettings.getProperty("Acc9", "9"));
+			ìš©ë˜ë³¸ë˜ì‹œê°„ = Integer.parseInt(altSettings.getProperty("DragonGludioTime", "2"));
+			ê¸°ê°ì‹œê°„ = Integer.parseInt(altSettings.getProperty("GiranPrisonTime", "2"));
+			ëª½ì„¬ì‹œê°„ = Integer.parseInt(altSettings.getProperty("DreamIslandTime", "2"));
+			ë¼ë˜ì‹œê°„ = Integer.parseInt(altSettings.getProperty("LastabardTime", "2"));
+			ê°œë¯¸ë˜ì „ì‹œê°„ = Integer.parseInt(altSettings.getProperty("AntDundeonTime", "2"));
+			ê·¸ë¦¼ìì‹ ì „ì‹œê°„ = Integer.parseInt(altSettings.getProperty("ShadowTempleTime", "2"));
+			ê¸°ë³¸ì— í¡ = Integer.parseInt(altSettings.getProperty("DefaultMpSteal", "9"));
+			ë°”í¬ì— í¡ = Integer.parseInt(altSettings.getProperty("bapoMpSteal", "9"));
 			ALT_REVIVAL_POTION = Boolean.parseBoolean(altSettings.getProperty("RevivalPotion", "false"));
 			
 			Master_Enchant = Integer.parseInt(altSettings.getProperty("MasterEnchant", "5"));
 			Master_ArmorEnchant = Integer.parseInt(altSettings.getProperty("MasterArmorEnchant", "5"));
 			
-			·©Ä¿º¯½Å°¡´É¼øÀ§ = Integer.parseInt(altSettings.getProperty("RankerRank", "2"));
-			ÀüÅõ¸Ş½ÃÁöµô·¹ÀÌ = Integer.parseInt(altSettings.getProperty("FightMessageDelay", "10"));
+			ë­ì»¤ë³€ì‹ ê°€ëŠ¥ìˆœìœ„ = Integer.parseInt(altSettings.getProperty("RankerRank", "2"));
+			ì „íˆ¬ë©”ì‹œì§€ë”œë ˆì´ = Integer.parseInt(altSettings.getProperty("FightMessageDelay", "10"));
 			String strWar;
 			strWar = altSettings.getProperty("WarTime", "1h");
 			if (strWar.indexOf("d") >= 0) {
@@ -1613,7 +1613,7 @@ public final class Config {
 			ALT_WAR_INTERVAL = Integer.parseInt(strWar);
 
 			SPAWN_HOME_POINT = Boolean.parseBoolean(altSettings.getProperty("SpawnHomePoint", "true"));
-			ÀÚµ¿»ç³É = Boolean.parseBoolean(altSettings.getProperty("isAutoHunt", "true"));
+			ìë™ì‚¬ëƒ¥ = Boolean.parseBoolean(altSettings.getProperty("isAutoHunt", "true"));
 			SPAWN_HOME_POINT_COUNT = Integer.parseInt(altSettings.getProperty("SpawnHomePointCount", "2"));
 
 			SPAWN_HOME_POINT_DELAY = Integer.parseInt(altSettings.getProperty("SpawnHomePointDelay", "100"));
@@ -1667,21 +1667,21 @@ public final class Config {
 			AC_HIT_NPCPC = Double.parseDouble(altSettings.getProperty("AcHitNPCPC", "1"));
 			MR_MAGIC_DMG = Double.parseDouble(altSettings.getProperty("MrMagicDMG", "1"));
 			
-			ÆêÃß°¡´ë¹ÌÁö = Double.parseDouble(altSettings.getProperty("PetAddedDmg", "1.5"));
-			¼­¸ÕÃß°¡´ë¹ÌÁö = Double.parseDouble(altSettings.getProperty("SummonAddedDmg", "1.5"));
+			í«ì¶”ê°€ëŒ€ë¯¸ì§€ = Double.parseDouble(altSettings.getProperty("PetAddedDmg", "1.5"));
+			ì„œë¨¼ì¶”ê°€ëŒ€ë¯¸ì§€ = Double.parseDouble(altSettings.getProperty("SummonAddedDmg", "1.5"));
 			
 			ALLBUFF_POLYID = Integer.parseInt(altSettings.getProperty("Allbuff_PolyId", "5641"));
 			ASBUGCHECK_ALLBUF = Boolean.parseBoolean(altSettings.getProperty("ASBugCheck_Allbuf", "True"));
-			»¡°»ÀÌ = Integer.parseInt(altSettings.getProperty("RedPotion", "15"));
-			ÁÖÈ«ÀÌ = Integer.parseInt(altSettings.getProperty("OrangePotion", "45"));
-			¸¼°»ÀÌ = Integer.parseInt(altSettings.getProperty("WhitePotion", "75"));
-			¾Æµ¥³ª½Ã¼¼ºñÀ² = Integer.parseInt(altSettings.getProperty("adenaRate", "5"));
-			³¬½ÃÀå¼Ò = Boolean.parseBoolean(altSettings.getProperty("fishInPlace", "True"));
-			Áß¸³Ç÷¿¥ºí·³ = Integer.parseInt(altSettings.getProperty("NatualEmblemId", "5"));
-			Áß¸³Ç÷¾ÆÀÌµğ = Integer.parseInt(altSettings.getProperty("NatualClanId", "5"));
-			Áß¸³Ç÷·¹º§Á¦ÇÑ = Integer.parseInt(altSettings.getProperty("NatualClanLevel", "5"));
+			ë¹¨ê°±ì´ = Integer.parseInt(altSettings.getProperty("RedPotion", "15"));
+			ì£¼í™ì´ = Integer.parseInt(altSettings.getProperty("OrangePotion", "45"));
+			ë§‘ê°±ì´ = Integer.parseInt(altSettings.getProperty("WhitePotion", "75"));
+			ì•„ë°ë‚˜ì‹œì„¸ë¹„ìœ¨ = Integer.parseInt(altSettings.getProperty("adenaRate", "5"));
+			ë‚šì‹œì¥ì†Œ = Boolean.parseBoolean(altSettings.getProperty("fishInPlace", "True"));
+			ì¤‘ë¦½í˜ˆì— ë¸”ëŸ¼ = Integer.parseInt(altSettings.getProperty("NatualEmblemId", "5"));
+			ì¤‘ë¦½í˜ˆì•„ì´ë”” = Integer.parseInt(altSettings.getProperty("NatualClanId", "5"));
+			ì¤‘ë¦½í˜ˆë ˆë²¨ì œí•œ = Integer.parseInt(altSettings.getProperty("NatualClanLevel", "5"));
 			CHECK_AUTO = Boolean.parseBoolean(altSettings.getProperty("checkauto", "true"));
-			ÀÚµ¿ÀÎÁõ½Ã°£ = Integer.parseInt(altSettings.getProperty("AutoCertTime", "5"));
+			ìë™ì¸ì¦ì‹œê°„ = Integer.parseInt(altSettings.getProperty("AutoCertTime", "5"));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + ALT_SETTINGS_FILE + " File.");
@@ -1692,15 +1692,15 @@ public final class Config {
 			InputStream is = new FileInputStream(new File(BOT_SETTINGS_FILE));
 			botSettings.load(is);
 			is.close();
-			º¿½ÃÀÛ·¹º§ = Integer.parseInt(botSettings.getProperty("botstartLev", "56"));
-			if(º¿½ÃÀÛ·¹º§ <= 0){
-				º¿½ÃÀÛ·¹º§ = 1;
+			ë´‡ì‹œì‘ë ˆë²¨ = Integer.parseInt(botSettings.getProperty("botstartLev", "56"));
+			if(ë´‡ì‹œì‘ë ˆë²¨ <= 0){
+				ë´‡ì‹œì‘ë ˆë²¨ = 1;
 			}
-			else if(º¿½ÃÀÛ·¹º§ >= 100){
-				º¿½ÃÀÛ·¹º§ = 99;
+			else if(ë´‡ì‹œì‘ë ˆë²¨ >= 100){
+				ë´‡ì‹œì‘ë ˆë²¨ = 99;
 			}
-			º¿¹°¾à±âº»È¸º¹·® = Integer.parseInt(botSettings.getProperty("botposionbase", "45"));
-			º¿¹°¾à·£´ıÈ¸º¹·® = Integer.parseInt(botSettings.getProperty("botposionrnd", "65"));
+			ë´‡ë¬¼ì•½ê¸°ë³¸íšŒë³µëŸ‰ = Integer.parseInt(botSettings.getProperty("botposionbase", "45"));
+			ë´‡ë¬¼ì•½ëœë¤íšŒë³µëŸ‰ = Integer.parseInt(botSettings.getProperty("botposionrnd", "65"));
 			ROBOT_LEVEL_RANGE = Integer.parseInt(botSettings.getProperty("botLevelRange", "5"));
 			ROBOT_DIE_MESSAGE = Boolean.parseBoolean(botSettings.getProperty("bootDieMessage", "false"));
 			START_AUTO_ROBOT = Boolean.parseBoolean(botSettings.getProperty("startAutoBoot", "false"));
@@ -1832,12 +1832,12 @@ public final class Config {
 			new ConfigLoader().load(Config.class);
 			is.close();
 
-			/** µ¥ÀÌÅÍ º£ÀÌ½º Ç® */
+			/** ë°ì´í„° ë² ì´ìŠ¤ í’€ */
 
 			SHOCK_STUN = Integer.parseInt(skillpro.getProperty("ShockStun", "60"));
-			½ºÅÏ·¾Â÷ = Integer.parseInt(skillpro.getProperty("STUNLEV", "0"));//220125¼öÁ¤
-			¾Æ¸Óºê·¹ÀÌÅ© = Integer.parseInt(skillpro.getProperty("ARMOR_BRAKE", "38"));
-			Ä«¿îÅÍ¹è¸®¾î = Integer.parseInt(skillpro.getProperty("COUNTER_BARRIER", "20"));
+			ìŠ¤í„´ë ™ì°¨ = Integer.parseInt(skillpro.getProperty("STUNLEV", "0"));//220125ìˆ˜ì •
+			ì•„ë¨¸ë¸Œë ˆì´í¬ = Integer.parseInt(skillpro.getProperty("ARMOR_BRAKE", "38"));
+			ì¹´ìš´í„°ë°°ë¦¬ì–´ = Integer.parseInt(skillpro.getProperty("COUNTER_BARRIER", "20"));
 			TURN_UNDEAD = Double.parseDouble(skillpro.getProperty("Turnundead", "1.9"));
 			MR_SKILL_REDUC200 = Double.parseDouble(skillpro.getProperty("MR_SKILL_REDUC200", "0.5"));
 			MR_SKILL_REDUC190 = Double.parseDouble(skillpro.getProperty("MR_SKILL_REDUC190", "0.5"));
@@ -1859,23 +1859,23 @@ public final class Config {
 			MR_SKILL_REDUC30 = Double.parseDouble(skillpro.getProperty("MR_SKILL_REDUC30", "0.5"));
 			MR_SKILL_REDUC20 = Double.parseDouble(skillpro.getProperty("MR_SKILL_REDUC20", "0.5"));
 			MR_SKILL_REDUC10 = Double.parseDouble(skillpro.getProperty("MR_SKILL_REDUC10", "0.5"));
-			¹Ù¿î½º¾îÅÃ¼öÄ¡ = Integer.parseInt(skillpro.getProperty("BounceAttack", "1"));
-			¼Ö¸®µåÄ³¸®Áö¼öÄ¡ = Integer.parseInt(skillpro.getProperty("SolidCarrage", "1"));
+			ë°”ìš´ìŠ¤ì–´íƒìˆ˜ì¹˜ = Integer.parseInt(skillpro.getProperty("BounceAttack", "1"));
+			ì†”ë¦¬ë“œìºë¦¬ì§€ìˆ˜ì¹˜ = Integer.parseInt(skillpro.getProperty("SolidCarrage", "1"));
 			
-			Æ÷±×¸é¿ª¼öÄ¡ = Integer.parseInt(skillpro.getProperty("fog", "20"));
-			µğÁöÁî¸é¿ª¼öÄ¡ = Integer.parseInt(skillpro.getProperty("disease", "20"));
-			Ä¿½º¸é¿ª¼öÄ¡ = Integer.parseInt(skillpro.getProperty("curse", "20"));
-			¿şÆùºê·¹ÀÌÅ©¸é¿ª¼öÄ¡ = Integer.parseInt(skillpro.getProperty("weaponbrake", "20"));
-			Ä¿½ººí¶óÀÎµå¸é¿ª¼öÄ¡ = Integer.parseInt(skillpro.getProperty("curseblind", "20"));
-			¾ÆÀÌ½º¸é¿ª¼öÄ¡ = Integer.parseInt(skillpro.getProperty("icelance", "20"));
-			°ÔÀÏÃß°¡´ë¹ÌÁö = Integer.parseInt(skillpro.getProperty("galeAdddamage", "20"));
-			³·Àº3·¾Ä³¸¯ = Integer.parseInt(skillpro.getProperty("low3lv", "20"));
-			³·Àº2·¾Ä³¸¯ = Integer.parseInt(skillpro.getProperty("low2lv", "20"));
-			³·Àº1·¾Ä³¸¯ = Integer.parseInt(skillpro.getProperty("low1lv", "20"));
-			µ¿·¾Ä³¸¯ = Integer.parseInt(skillpro.getProperty("samelv", "20"));
-			³ôÀº1·¾Ä³¸¯ = Integer.parseInt(skillpro.getProperty("high1lv", "20"));
-			³ôÀº2·¾Ä³¸¯ = Integer.parseInt(skillpro.getProperty("high2lv", "20"));
-			³ôÀº3·¾Ä³¸¯ = Integer.parseInt(skillpro.getProperty("high3lv", "20"));
+			í¬ê·¸ë©´ì—­ìˆ˜ì¹˜ = Integer.parseInt(skillpro.getProperty("fog", "20"));
+			ë””ì§€ì¦ˆë©´ì—­ìˆ˜ì¹˜ = Integer.parseInt(skillpro.getProperty("disease", "20"));
+			ì»¤ìŠ¤ë©´ì—­ìˆ˜ì¹˜ = Integer.parseInt(skillpro.getProperty("curse", "20"));
+			ì›¨í°ë¸Œë ˆì´í¬ë©´ì—­ìˆ˜ì¹˜ = Integer.parseInt(skillpro.getProperty("weaponbrake", "20"));
+			ì»¤ìŠ¤ë¸”ë¼ì¸ë“œë©´ì—­ìˆ˜ì¹˜ = Integer.parseInt(skillpro.getProperty("curseblind", "20"));
+			ì•„ì´ìŠ¤ë©´ì—­ìˆ˜ì¹˜ = Integer.parseInt(skillpro.getProperty("icelance", "20"));
+			ê²Œì¼ì¶”ê°€ëŒ€ë¯¸ì§€ = Integer.parseInt(skillpro.getProperty("galeAdddamage", "20"));
+			ë‚®ì€3ë ™ìºë¦­ = Integer.parseInt(skillpro.getProperty("low3lv", "20"));
+			ë‚®ì€2ë ™ìºë¦­ = Integer.parseInt(skillpro.getProperty("low2lv", "20"));
+			ë‚®ì€1ë ™ìºë¦­ = Integer.parseInt(skillpro.getProperty("low1lv", "20"));
+			ë™ë ™ìºë¦­ = Integer.parseInt(skillpro.getProperty("samelv", "20"));
+			ë†’ì€1ë ™ìºë¦­ = Integer.parseInt(skillpro.getProperty("high1lv", "20"));
+			ë†’ì€2ë ™ìºë¦­ = Integer.parseInt(skillpro.getProperty("high2lv", "20"));
+			ë†’ì€3ë ™ìºë¦­ = Integer.parseInt(skillpro.getProperty("high3lv", "20"));
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 			throw new Error("Failed to Load " + SKILLPRO + " File.");
@@ -1885,11 +1885,11 @@ public final class Config {
 
 	private static void validate() {
 		if (!IntRange.includes(Config.ALT_ITEM_DELETION_RANGE, 0, 5)) {
-			throw new IllegalStateException("ItemDeletionRangeÀÇ °ªÀÌ ¼³Á¤ °¡´É ¹üÀ§¿ÜÀÔ´Ï´Ù. ");
+			throw new IllegalStateException("ItemDeletionRangeì˜ ê°’ì´ ì„¤ì • ê°€ëŠ¥ ë²”ìœ„ì™¸ì…ë‹ˆë‹¤. ");
 		}
 
 		if (!IntRange.includes(Config.ALT_ITEM_DELETION_TIME, 1, 35791)) {
-			throw new IllegalStateException("ItemDeletionTimeÀÇ °ªÀÌ ¼³Á¤ °¡´É ¹üÀ§¿ÜÀÔ´Ï´Ù. ");
+			throw new IllegalStateException("ItemDeletionTimeì˜ ê°’ì´ ì„¤ì • ê°€ëŠ¥ ë²”ìœ„ì™¸ì…ë‹ˆë‹¤. ");
 		}
 	}
 
@@ -1975,35 +1975,35 @@ public final class Config {
 		} else if (pName.equalsIgnoreCase("FireEnchant")) {
 			ENCHANT_CHANCE_FIRE = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("SnapperMaxEnchant")) {
-			½º³ÀÆÛÃÖ´ëÀÎÃ¦ = Integer.parseInt(pValue);
+			ìŠ¤ëƒ…í¼ìµœëŒ€ì¸ì±ˆ = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("RoomteeceMaxEnchant")) {
-			·ëÆ¼½ºÃÖ´ëÀÎÃ¦ = Integer.parseInt(pValue);
+			ë£¸í‹°ìŠ¤ìµœëŒ€ì¸ì±ˆ = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("acaccessoryMaxEnchant")) {
-			Àå½Å±¸ÃÖ´ëÀÎÃ¦ = Integer.parseInt(pValue);
+			ì¥ì‹ êµ¬ìµœëŒ€ì¸ì±ˆ = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("nomal_orim")) {
 			nomal_orim = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("Bless_orim")) {
 			Bless_orim = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("jibae_1")) {
-			ÀÏÃşÁö¹èÈ®·ü = Integer.parseInt(pValue);
+			ì¼ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("jibae_2")) {
-			ÀÌÃşÁö¹èÈ®·ü = Integer.parseInt(pValue);
+			ì´ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("jibae_3")) {
-			»ïÃşÁö¹èÈ®·ü = Integer.parseInt(pValue);
+			ì‚¼ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("jibae_4")) {
-			»çÃşÁö¹èÈ®·ü = Integer.parseInt(pValue);
+			ì‚¬ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("jibae_5")) {
-			¿ÀÃşÁö¹èÈ®·ü = Integer.parseInt(pValue);
+			ì˜¤ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("jibae_6")) {
-			À°ÃşÁö¹èÈ®·ü = Integer.parseInt(pValue);
+			ìœ¡ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("jibae_7")) {
-			Ä¥ÃşÁö¹èÈ®·ü = Integer.parseInt(pValue);
+			ì¹ ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("jibae_8")) {
-			ÆÈÃşÁö¹èÈ®·ü = Integer.parseInt(pValue);
+			íŒ”ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("jibae_9")) {
-			±¸ÃşÁö¹èÈ®·ü = Integer.parseInt(pValue);
+			êµ¬ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(pValue);
 		} else if (pName.equalsIgnoreCase("jibae_10")) {
-			½ÊÃşÁö¹èÈ®·ü = Integer.parseInt(pValue);
+			ì‹­ì¸µì§€ë°°í™•ë¥  = Integer.parseInt(pValue);
 		}
 
 		// altsettings.properties
@@ -2245,28 +2245,28 @@ public final class Config {
 
 	public static synchronized String YearMonthDate2() {
 		try {
-			int ³â = Year();
-			String ³â2;
-			if (³â < 10) {
-				³â2 = "0" + ³â;
+			int ë…„ = Year();
+			String ë…„2;
+			if (ë…„ < 10) {
+				ë…„2 = "0" + ë…„;
 			} else {
-				³â2 = Integer.toString(³â);
+				ë…„2 = Integer.toString(ë…„);
 			}
-			int ¿ù = Month();
-			String ¿ù2 = null;
-			if (¿ù < 10) {
-				¿ù2 = "0" + ¿ù;
+			int ì›” = Month();
+			String ì›”2 = null;
+			if (ì›” < 10) {
+				ì›”2 = "0" + ì›”;
 			} else {
-				¿ù2 = Integer.toString(¿ù);
+				ì›”2 = Integer.toString(ì›”);
 			}
-			int ÀÏ = Date();
-			String ÀÏ2 = null;
-			if (ÀÏ < 10) {
-				ÀÏ2 = "0" + ÀÏ;
+			int ì¼ = Date();
+			String ì¼2 = null;
+			if (ì¼ < 10) {
+				ì¼2 = "0" + ì¼;
 			} else {
-				ÀÏ2 = Integer.toString(ÀÏ);
+				ì¼2 = Integer.toString(ì¼);
 			}
-			return ³â2 + ¿ù2 + ÀÏ2;
+			return ë…„2 + ì›”2 + ì¼2;
 		} catch (Exception e) {
 		}
 

@@ -1,4 +1,4 @@
-package l1j.server.server.model.gametime;
+ï»¿package l1j.server.server.model.gametime;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,7 +43,7 @@ public abstract class BaseTime {
 
 	public boolean isNight() {
 		int hour = _calendar.get(Calendar.HOUR_OF_DAY);
-		return !IntRange.includes(hour, 6, 17); // 6:00-17:59, ³·ÀÌ ¾Æ´Ï¸é true
+		return !IntRange.includes(hour, 6, 17); // 6:00-17:59, ë‚®ì´ ì•„ë‹ˆë©´ true
 	}
 
 	public String toString() {

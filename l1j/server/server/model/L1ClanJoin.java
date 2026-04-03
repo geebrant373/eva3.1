@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -51,36 +51,36 @@ public class L1ClanJoin {
 		L1Clan clan = L1World.getInstance().getClan(clanName);
 		if (clan != null) {
 			int maxMember = 0;
-			///////////Ç÷¸Í¸®´º¾ó//////////////
+			///////////í˜ˆë§¹ë¦¬ë‰´ì–¼//////////////
 			int charisma = 0;
 			if(pc.getId() != clan.getLeaderId())
 				charisma = pc.getAbility().getTotalCha();
 			else
 				charisma = getOfflineClanLeaderCha(clan.getLeaderId());
-			///////////Ç÷¸Í¸®´º¾ó//////////////
+			///////////í˜ˆë§¹ë¦¬ë‰´ì–¼//////////////
 			boolean lv45quest = false;
 			if (pc.getQuest().isEnd(L1Quest.QUEST_LEVEL45)) {
 				lv45quest = true;
 			}
-			if (pc.getLevel() >= 50) { // Lv50 ÀÌ»ó
-				if (lv45quest == true) { // Lv45 Äù½ºÆ® Å¬¸®¾î°¡ ³¡³­ »óÅÂ
+			if (pc.getLevel() >= 50) { // Lv50 ì´ìƒ
+				if (lv45quest == true) { // Lv45 í€˜ìŠ¤íŠ¸ í´ë¦¬ì–´ê°€ ëë‚œ ìƒíƒœ
 					maxMember = charisma * 9;
 				} else {
 					maxMember = charisma * 3;
 				}
-			} else { // Lv50 ¹Ì¸¸
-				if (lv45quest == true) { // Lv45 Äù½ºÆ® Å¬¸®¾î°¡ ³¡³­ »óÅÂ
+			} else { // Lv50 ë¯¸ë§Œ
+				if (lv45quest == true) { // Lv45 í€˜ìŠ¤íŠ¸ í´ë¦¬ì–´ê°€ ëë‚œ ìƒíƒœ
 					maxMember = charisma * 6;
 				} else {
 					maxMember = charisma * 2;
 				}
 			}
-			if (Config.MAX_CLAN_MEMBER > 0) { // Clan ÀÎ¿ø¼öÀÇ »óÇÑÀÇ ¼³Á¤
-				// ÀÖ¾î
+			if (Config.MAX_CLAN_MEMBER > 0) { // Clan ì¸ì›ìˆ˜ì˜ ìƒí•œì˜ ì„¤ì •
+				// ìˆì–´
 				maxMember = Config.MAX_CLAN_MEMBER;
 			}
 
-			if (joinPc.getClanid() == 0) { // Å©¶õ¹Ì°¡ÀÔ
+			if (joinPc.getClanid() == 0) { // í¬ë€ë¯¸ê°€ì…
 				if (maxMember <= clan.getClanMemberList().size()) {
 					joinPc.sendPackets(new S_ServerMessage(188, pc.getName())); 
 					return false;
@@ -96,7 +96,7 @@ public class L1ClanJoin {
 				joinPc.sendPackets(new S_CharTitle(joinPc.getId(), ""));
 				Broadcaster.broadcastPacket(joinPc, new S_CharTitle(joinPc.getId(), ""));
 				try{
-					joinPc.save(); // DB¿¡ Ä³¸¯ÅÍ Á¤º¸¸¦ ±âÀÔÇÑ´Ù
+					joinPc.save(); // DBì— ìºë¦­í„° ì •ë³´ë¥¼ ê¸°ì…í•œë‹¤
 				} catch(Exception e) {}
 				clan.addClanMember(joinPc.getName(), joinPc.getClanRank(), joinPc.getOnlineStatus(), joinPc);
 				pc.sendPackets(new S_PacketBox(pc, S_PacketBox.PLEDGE_REFRESH_PLUS));
@@ -106,13 +106,13 @@ public class L1ClanJoin {
 					player.broadcastPacket(new S_ReturnedStat(player.getId(), joinPc.getClan().getEmblemId()));
 				}
 				L1Teleport.teleport(joinPc, joinPc.getX(), joinPc.getY(), joinPc.getMapId(),joinPc.getHeading(), false);
-				// Ç÷¸Í¿¡ °¡ÀÔÇß½À´Ï´Ù.
-			} else { // Å©¶õ °¡ÀÔÀÌ ³¡³­ »óÅÂ(Å©¶õ ¿¬ÇÕ)
+				// í˜ˆë§¹ì— ê°€ì…í–ˆìŠµë‹ˆë‹¤.
+			} else { // í¬ë€ ê°€ì…ì´ ëë‚œ ìƒíƒœ(í¬ë€ ì—°í•©)
 				if (Config.CLAN_ALLIANCE) {
 					changeClan(pc, joinPc, maxMember);
 				} else {
 					joinPc.sendPackets(new S_ServerMessage(89)); 
-					// \f1´ç½ÅÀº¹ú½áÇ÷¸Í¿¡°¡ÀÔÇÏ°íÀÖ½À´Ï´Ù.
+					// \f1ë‹¹ì‹ ì€ë²Œì¨í˜ˆë§¹ì—ê°€ì…í•˜ê³ ìˆìŠµë‹ˆë‹¤.
 				}
 			}
 		} else {
@@ -133,46 +133,46 @@ public class L1ClanJoin {
 		L1Clan oldClan = L1World.getInstance().getClan(oldClanName);
 		int oldClanNum = oldClan.getClanMemberList().size();
 		if (clan != null && oldClan != null && joinPc.isCrown() && joinPc.getId() == oldClan.getLeaderId()) {
-			if (maxMember < clanNum + oldClanNum) { // ºó °÷ÀÌ ¾ø´Ù
-				joinPc.sendPackets(new S_ServerMessage(188, pc.getName())); // %0´Â
-																			// ´ç½ÅÀ»
-																			// Ç÷¸Í¿øÀ¸·Î¼­
-																			// ¹Ş¾ÆµéÀÏ
-																			// ¼ö°¡
-																			// ¾ø½À´Ï´Ù.
+			if (maxMember < clanNum + oldClanNum) { // ë¹ˆ ê³³ì´ ì—†ë‹¤
+				joinPc.sendPackets(new S_ServerMessage(188, pc.getName())); // %0ëŠ”
+																			// ë‹¹ì‹ ì„
+																			// í˜ˆë§¹ì›ìœ¼ë¡œì„œ
+																			// ë°›ì•„ë“¤ì¼
+																			// ìˆ˜ê°€
+																			// ì—†ìŠµë‹ˆë‹¤.
 				return;
 			}
 			L1PcInstance clanMember[] = clan.getOnlineClanMember();
 			for (int cnt = 0; cnt < clanMember.length; cnt++) {
-				clanMember[cnt].sendPackets(new S_ServerMessage(94, joinPc.getName())); // \f1%0ÀÌ
-																						// Ç÷¸ÍÀÇ
-																						// ÀÏ¿øÀ¸·Î¼­
-																						// ¹Ş¾Æµé¿©Á³½À´Ï´Ù.
+				clanMember[cnt].sendPackets(new S_ServerMessage(94, joinPc.getName())); // \f1%0ì´
+																						// í˜ˆë§¹ì˜
+																						// ì¼ì›ìœ¼ë¡œì„œ
+																						// ë°›ì•„ë“¤ì—¬ì¡ŒìŠµë‹ˆë‹¤.
 			}
 
 			for (int i = 0; i < oldClan.getClanMemberList().size(); i++) {
 				L1PcInstance oldClanMember = L1World.getInstance().getPlayer(oldClan.getClanMemberList().get(i).name);
-				if (oldClanMember != null) { // ¿Â¶óÀÎÁßÀÇ ±¸Å©¶õ ¸â¹ö
+				if (oldClanMember != null) { // ì˜¨ë¼ì¸ì¤‘ì˜ êµ¬í¬ë€ ë©¤ë²„
 					oldClanMember.setClanid(clanId);
 					oldClanMember.setClanname(clanName);
-					// Ç÷¸Í ¿¬ÇÕ¿¡ °¡ÀÔÇÑ ±ºÁÖ´Â °¡µğ¾È
-					// ±ºÁÖ°¡ µ¥·Á ¿Â Ç÷¸Í¿øÀº º»¹Ş¾Æ
+					// í˜ˆë§¹ ì—°í•©ì— ê°€ì…í•œ êµ°ì£¼ëŠ” ê°€ë””ì•ˆ
+					// êµ°ì£¼ê°€ ë°ë ¤ ì˜¨ í˜ˆë§¹ì›ì€ ë³¸ë°›ì•„
 					if (oldClanMember.getId() == joinPc.getId()) {
 						oldClanMember.setClanRank(L1Clan.CLAN_RANK_GUARDIAN);
 					} else {
 						oldClanMember.setClanRank(L1Clan.CLAN_RANK_PROBATION);
 					}
 					try {
-						// DB¿¡ Ä³¸¯ÅÍ Á¤º¸¸¦ ±âÀÔÇÑ´Ù
+						// DBì— ìºë¦­í„° ì •ë³´ë¥¼ ê¸°ì…í•œë‹¤
 						oldClanMember.save();
 					} catch (Exception e) {
 						_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 					}
 					clan.addClanMember(oldClanMember.getName(), oldClanMember.getClanRank(), oldClanMember.getOnlineStatus(), oldClanMember);
 					oldClanMember.sendPackets(new S_ServerMessage(95, clanName)); // \f1%0
-																					// Ç÷¸Í¿¡
-																					// °¡ÀÔÇß½À´Ï´Ù.
-				} else { // ¿ÀÇÁ ¶óÀÎÁßÀÇ ±¸Å©¶õ ¸â¹ö
+																					// í˜ˆë§¹ì—
+																					// ê°€ì…í–ˆìŠµë‹ˆë‹¤.
+				} else { // ì˜¤í”„ ë¼ì¸ì¤‘ì˜ êµ¬í¬ë€ ë©¤ë²„
 					try {
 						L1PcInstance offClanMember = CharacterTable.getInstance().restoreCharacter(oldClan.getClanMemberList().get(i).name);
 						offClanMember.setClanid(clanId);
@@ -185,15 +185,15 @@ public class L1ClanJoin {
 					}
 				}
 			}
-			// ÀÌÀüÇ÷¸Í »èÁ¦
+			// ì´ì „í˜ˆë§¹ ì‚­ì œ
 			String emblem_file = String.valueOf(oldClanId);
 			File file = new File("emblem/" + emblem_file);
 			file.delete();
 			ClanTable.getInstance().deleteClan(oldClanName);
 		}
 	}
-	// ¿ÀÇÁ¶óÀÎÁßÀÇ ±ºÁÖ Ä«¸®½º¸¶
-	///////////Ç÷¸Í¸®´º¾ó//////////////
+	// ì˜¤í”„ë¼ì¸ì¤‘ì˜ êµ°ì£¼ ì¹´ë¦¬ìŠ¤ë§ˆ
+	///////////í˜ˆë§¹ë¦¬ë‰´ì–¼//////////////
 	public int getOfflineClanLeaderCha(int member) {
 		java.sql.Connection con = null;
 		java.sql.PreparedStatement pstm = null;

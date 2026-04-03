@@ -1,4 +1,4 @@
-package l1j.server.MJTemplate.MJArrangeHelper;
+﻿package l1j.server.MJTemplate.MJArrangeHelper;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;

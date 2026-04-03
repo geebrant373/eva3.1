@@ -1,4 +1,4 @@
-package server.threads.world;
+ï»¿package server.threads.world;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -18,12 +18,12 @@ public class LineageDecoderThread implements Runnable{
 			try {
 				for(LineageClient client : _client){
 					if(client!=null){
-						// ¿¬°á ÇØÁ¦µÈ°Å Á¤¸®.
+						// ì—°ê²° í•´ì œëœê±° ì •ë¦¬.
 						if(!client.isConnected()){
 							client.close();
 							removeClient(client);
 						}
-						// µğÄÚ´õ
+						// ë””ì½”ë”
 						int length = PacketSize(client.PacketD);
 						if(length!=0 && length<=client.PacketIdx){
 							byte[] temp = new byte[length];
@@ -44,14 +44,14 @@ public class LineageDecoderThread implements Runnable{
 		}
 	}
 	
-	// ÆĞÅ¶Å©±â °ª ¸®ÅÏ.
+	// íŒ¨í‚·í¬ê¸° ê°’ ë¦¬í„´.
 	private int PacketSize(byte[] data){
 		int length = data[0] &0xff;
 		length |= data[1] << 8 &0xff00;
 		return length;
 	}
 	
-	// Å¬¶ó µî·Ï
+	// í´ë¼ ë“±ë¡
 	public void putClient(LineageClient c){
 		try {
 			if(!_client.contains(c)) {
@@ -62,7 +62,7 @@ public class LineageDecoderThread implements Runnable{
 		}
 	}
 	
-	// Å¬¶ó Ã£±â
+	// í´ë¼ ì°¾ê¸°
 	public LineageClient getClient(String id){
 		if(id!=null){
 			try {
@@ -82,17 +82,17 @@ public class LineageDecoderThread implements Runnable{
 		return null;
 	}
 	
-	// Å¬¶ó »èÁ¦
+	// í´ë¼ ì‚­ì œ
 	public void removeClient(LineageClient c){
 		_client.remove(c);
 	}
 	
-	// Å¬¶ó °¹¼ö
+	// í´ë¼ ê°¯ìˆ˜
 	public int ClientCount(){
 		return _client.size();
 	}
 	
-	// Å¬¶ó µî·ÏµÇ¾î ÀÖ´ÂÁö Ã¼Å©
+	// í´ë¼ ë“±ë¡ë˜ì–´ ìˆëŠ”ì§€ ì²´í¬
 	public boolean ContainsClient(LineageClient c){
 		return _client.contains(c);
 	}

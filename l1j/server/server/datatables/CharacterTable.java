@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -126,12 +126,12 @@ public class CharacterTable {
 			SQLUtil.close(con);
 		}
 	}
-	public static void clear·ÎÅ×ÀÌ¼Ç() {
+	public static void clearë¡œí…Œì´ì…˜() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("UPDATE characters SET ·ÎÅ×ÀÌ¼Ç=0");
+			pstm = con.prepareStatement("UPDATE characters SET ë¡œí…Œì´ì…˜=0");
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -140,12 +140,12 @@ public class CharacterTable {
 			SQLUtil.close(con);
 		}
 	}
-	public static void clear·ÎÅ×ÀÌ¼Ç½ÃÀÛ() {
+	public static void clearë¡œí…Œì´ì…˜ì‹œì‘() {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("UPDATE characters SET ·ÎÅ×ÀÌ¼Ç=1");
+			pstm = con.prepareStatement("UPDATE characters SET ë¡œí…Œì´ì…˜=1");
 			pstm.execute();
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -154,13 +154,13 @@ public class CharacterTable {
 			SQLUtil.close(con);
 		}
 	}
-	public static void update·ÎÅ×ÀÌ¼Ç(L1PcInstance pc) {
+	public static void updateë¡œí…Œì´ì…˜(L1PcInstance pc) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("UPDATE characters SET ·ÎÅ×ÀÌ¼Ç=? WHERE objid=?");
-			pstm.setInt(1, pc.get·ÎÅ×½ÃÀÛ());
+			pstm = con.prepareStatement("UPDATE characters SET ë¡œí…Œì´ì…˜=? WHERE objid=?");
+			pstm.setInt(1, pc.getë¡œí…Œì‹œì‘());
 			pstm.setInt(2, pc.getId());
 			pstm.execute();
 		
@@ -219,7 +219,7 @@ public class CharacterTable {
 		}
 		return result;
 	}
-	//Ä³¸¯»ı¼º½Ã Ã¼Å©
+	//ìºë¦­ìƒì„±ì‹œ ì²´í¬
 		public static boolean isShopNpcName(String name){
 			boolean result = true;
 			Connection con = null;
@@ -241,7 +241,7 @@ public class CharacterTable {
 			return result;
 		}
 		
-		//Ä³¸¯»ı¼º½Ã Ã¼Å©
+		//ìºë¦­ìƒì„±ì‹œ ì²´í¬
 		public static boolean isMannequinName(String name){
 			boolean result = true;
 			Connection con = null;
@@ -288,7 +288,7 @@ public class CharacterTable {
 		}
 	}
 
-	public int PcLevelInDB(int pcid) { // DB¿¡ ÀúÀåµÈ ·¹º§°ªÀ» ºÒ·¯¿Â´Ù. 
+	public int PcLevelInDB(int pcid) { // DBì— ì €ì¥ëœ ë ˆë²¨ê°’ì„ ë¶ˆëŸ¬ì˜¨ë‹¤. 
 		int result = 0;
 		java.sql.Connection con = null;
 		PreparedStatement pstm = null;
@@ -359,7 +359,7 @@ public class CharacterTable {
 		}
 	}
 	/**
-	 * Ä³¸¯µî·Ï½Ã objid·Î Ä³¸¯¸íÀ» °¡Á®¿Â´Ù.
+	 * ìºë¦­ë“±ë¡ì‹œ objidë¡œ ìºë¦­ëª…ì„ ê°€ì ¸ì˜¨ë‹¤.
 	 */
 	public static String getTradeChaName(int objid) {
 		String ChaName = "";
@@ -384,7 +384,7 @@ public class CharacterTable {
 		return ChaName;
 	}
 	/**
-	 * Ä³¸¯µî·Ï½Ã °èÁ¤¸í¸¸ ±³Ã¼ÇÑ´Ù.
+	 * ìºë¦­ë“±ë¡ì‹œ ê³„ì •ëª…ë§Œ êµì²´í•œë‹¤.
 	 */
 	public static void TradeAccUpdate(String AccName, String charName) {
 		Connection con = null;

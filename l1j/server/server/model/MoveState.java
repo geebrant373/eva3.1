@@ -1,9 +1,9 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 public class MoveState {
-	private int _heading; // ¡Ü ¹æÇâ 0. ÁÂ»ó 1. »ó 2. ¿ì»ó 3. ¿À¸¥ÂÊ 4. ¿ìÇÏ 5. ÇÏ 6. ÁÂÇÏ 7. ÁÂ
-	private int _moveSpeed; // ¡Ü ½ºÇÇµå 0. Åë»ó 1. ÇìÀÌ ÆÄ¾÷ 2. ½½·Î¿ì
-	private int _braveSpeed; // ¡Ü Ä¡¿ìÄ§ ÀÌºê »óÅÂ 0. Åë»ó 1. Ä¡¿ìÄ§ ÀÌºê
+	private int _heading; // â— ë°©í–¥ 0. ì¢Œìƒ 1. ìƒ 2. ìš°ìƒ 3. ì˜¤ë¥¸ìª½ 4. ìš°í•˜ 5. í•˜ 6. ì¢Œí•˜ 7. ì¢Œ
+	private int _moveSpeed; // â— ìŠ¤í”¼ë“œ 0. í†µìƒ 1. í—¤ì´ íŒŒì—… 2. ìŠ¬ë¡œìš°
+	private int _braveSpeed; // â— ì¹˜ìš°ì¹¨ ì´ë¸Œ ìƒíƒœ 0. í†µìƒ 1. ì¹˜ìš°ì¹¨ ì´ë¸Œ
 	
 	public int getHeading() 		 { return _heading;		}
 	public void setHeading(int i) 	 { _heading = i;		}

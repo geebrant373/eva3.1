@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -80,13 +80,13 @@ public class L1ShopBuyOrderList {
 		}
 		if (_totalPrice < 0 ) return;
 		
-		if (price >= 10000 && count > 50) { // 43¾ï ¹ö±×¹æÁö
-			pc.sendPackets(new S_SystemMessage("1¸¸¿øÀÌ»óÀÇ ¹°Ç°Àº 50°³ÀÌ»ó ±¸ÀÔÇÒ¼ö¾ø½À´Ï´Ù."));
+		if (price >= 10000 && count > 50) { // 43ì–µ ë²„ê·¸ë°©ì§€
+			pc.sendPackets(new S_SystemMessage("1ë§Œì›ì´ìƒì˜ ë¬¼í’ˆì€ 50ê°œì´ìƒ êµ¬ì…í• ìˆ˜ì—†ìŠµë‹ˆë‹¤."));
 			return;
 		}
 
-		if (price > 10000000 && count > 1) { // ########### »óÁ¡ ¹ö±×¹æÁö Ãß°¡
-			pc.sendPackets(new S_SystemMessage("10000000¿øÀÌ»óÀÇ ¹°Ç°Àº 1°³ÀÌ»ó ±¸ÀÔÇÒ¼ö¾ø½À´Ï´Ù."));
+		if (price > 10000000 && count > 1) { // ########### ìƒì  ë²„ê·¸ë°©ì§€ ì¶”ê°€
+			pc.sendPackets(new S_SystemMessage("10000000ì›ì´ìƒì˜ ë¬¼í’ˆì€ 1ê°œì´ìƒ êµ¬ì…í• ìˆ˜ì—†ìŠµë‹ˆë‹¤."));
 			return;
 		}
 		
@@ -98,15 +98,15 @@ public class L1ShopBuyOrderList {
 			bugok =1;   
 			return;
 		}
-		long totalPrice = _totalPrice; // ** ¿£Áø¹æ¾î Ãß°¡ **
+		long totalPrice = _totalPrice; // ** ì—”ì§„ë°©ì–´ ì¶”ê°€ **
 		if (totalPrice > 100000000 || totalPrice < 0 || price < 0) {
 			pc.sendPackets(new S_Disconnect());
 			bugok = 1;
 			return;
 		}
 		
-		if (totalPrice > 100000000) { // ±¸ÀÔ ±İ¾× ÃÑ±İ¾×Àº 1¾ïÀÌ´Ù!!
-			bugok = 1; // 42¾ï ¹ö±× ¸·¾Æº¸Àå
+		if (totalPrice > 100000000) { // êµ¬ì… ê¸ˆì•¡ ì´ê¸ˆì•¡ì€ 1ì–µì´ë‹¤!!
+			bugok = 1; // 42ì–µ ë²„ê·¸ ë§‰ì•„ë³´ì¥
 			return;
 		}
 		
@@ -116,12 +116,12 @@ public class L1ShopBuyOrderList {
 		}
 		/**
 		if (count > 1000) {
-			pc.sendPackets(new S_SystemMessage("ÇÑ¹ø¿¡ 1000°³ ÀÌ»ó ±¸¸ÅÇÒ ¼ö ¾ø½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("í•œë²ˆì— 1000ê°œ ì´ìƒ êµ¬ë§¤í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 			bugok = 1;
 			return;
 		}
 		*/
-		if (totalPrice > 50000000 && _totalWeight > 19 && count > 500) { // ÀÌ·±°æ¿ì ³ª¿Ã¼ö
+		if (totalPrice > 50000000 && _totalWeight > 19 && count > 500) { // ì´ëŸ°ê²½ìš° ë‚˜ì˜¬ìˆ˜
 			bugok = 1;
 			return;
 		}

@@ -1,4 +1,4 @@
-/*
+﻿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -111,7 +111,7 @@ public class C_DeleteChar extends ClientBasePacket {
 			else if (pc.isDarkelf())		pc.setType(36);
 
 //			deleteTime = new Timestamp(System.currentTimeMillis() + 604800000);
-			deleteTime = new Timestamp(System.currentTimeMillis() + 86400000);// �Ϸ�
+			deleteTime = new Timestamp(System.currentTimeMillis() + 86400000);// 하루
 		} else {
 			if (pc.isCrown()) 				pc.setType(0);
 			else if (pc.isKnight()) 		pc.setType(1);

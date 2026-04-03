@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -64,22 +64,22 @@ public class S_AuctionBoard extends ServerBasePacket {
 			rs = pstm.executeQuery();
 			while (rs.next()) {
 				houseId = rs.getInt(1);
-				if (board.getX() == 33421 && board.getY() == 32823) {  // °æ¸Å °Ô½ÃÆÇ(±â¶õ)
+				if (board.getX() == 33421 && board.getY() == 32823) {  // ê²½ë§¤ ê²Œì‹œíŒ(ê¸°ëž€)
 					if (houseId >= 262145 && houseId <= 262189) {
 						houseList.add(houseId);
 						count++;
 					}
-				} else if (board.getX() == 33585 && board.getY() == 33235) { // °æ¸Å °Ô½ÃÆÇ(Heine)
+				} else if (board.getX() == 33585 && board.getY() == 33235) { // ê²½ë§¤ ê²Œì‹œíŒ(Heine)
 					if (houseId >= 327681 && houseId <= 327691) {
 						houseList.add(houseId);
 						count++;
 					}
-				} else if (board.getX() == 33959 && board.getY() == 33253) { // °æ¸Å °Ô½ÃÆÇ(¿¡µ§)
+				} else if (board.getX() == 33959 && board.getY() == 33253) { // ê²½ë§¤ ê²Œì‹œíŒ(ì—ë´)
 					if (houseId >= 458753 && houseId <= 458819) {
 						houseList.add(houseId);
 						count++;
 					}
-				} else if (board.getX() == 32611 && board.getY() == 32775) { // °æ¸Å °Ô½ÃÆÇ(±Û·çµð¿À)
+				} else if (board.getX() == 32611 && board.getY() == 32775) { // ê²½ë§¤ ê²Œì‹œíŒ(ê¸€ë£¨ë””ì˜¤)
 					if (houseId >= 524289 && houseId <= 524294) {
 						houseList.add(houseId);
 						count++;
@@ -130,14 +130,14 @@ public class S_AuctionBoard extends ServerBasePacket {
 
 		writeC(Opcodes.S_OPCODE_HOUSELIST);
 		writeD(board.getId());
-		writeH(count); // ·¹ÄÚµå¼ö
+		writeH(count); // ë ˆì½”ë“œìˆ˜
 		for (int i = 0; i < count; ++i) {
-			writeD(id[i]); // ¾ÆÁöÆ®ÀÇ ¹øÈ£
-			writeS(name[i]); // ¾ÆÁöÆ®ÀÇ ÀÌ¸§
-			writeH(area[i]); // ¾ÆÁöÆ®ÀÇ ³ÐÀÌ
-			writeC(month[i]); // ¸¶°¨¿ù
-			writeC(day[i]); // ¸¶°¨ÀÏ
-			writeD(price[i]); // ÇöÀçÀÇ ÀÔÂû °¡°Ý
+			writeD(id[i]); // ì•„ì§€íŠ¸ì˜ ë²ˆí˜¸
+			writeS(name[i]); // ì•„ì§€íŠ¸ì˜ ì´ë¦„
+			writeH(area[i]); // ì•„ì§€íŠ¸ì˜ ë„“ì´
+			writeC(month[i]); // ë§ˆê°ì›”
+			writeC(day[i]); // ë§ˆê°ì¼
+			writeD(price[i]); // í˜„ìž¬ì˜ ìž…ì°° ê°€ê²©
 		}
 	}
 

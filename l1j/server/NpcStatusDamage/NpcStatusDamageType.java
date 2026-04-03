@@ -1,4 +1,4 @@
-package l1j.server.NpcStatusDamage;
+﻿package l1j.server.NpcStatusDamage;
 
 public enum NpcStatusDamageType {
 	SHORT_DMG(0, "ShortDmg(Str)"),

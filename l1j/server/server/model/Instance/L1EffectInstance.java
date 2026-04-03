@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -40,8 +40,8 @@ public class L1EffectInstance extends L1NpcInstance {
 	private static final long serialVersionUID = 1L;
 
 	private static final int FW_DAMAGE_INTERVAL = 1000;
-	private int CubeTime; //Å¥ºê½Ã°£
-	private L1PcInstance CubePc; //Å¥ºê»ç¿ëÀÚ
+	private int CubeTime; //íë¸Œì‹œê°„
+	private L1PcInstance CubePc; //íë¸Œì‚¬ìš©ì
 	private int Cube = 20;
 
 	public L1EffectInstance(L1Npc template) {
@@ -52,7 +52,7 @@ public class L1EffectInstance extends L1NpcInstance {
 		}
 	}
 	
-	/** Å¥ºê´Ù */
+	/** íë¸Œë‹¤ */
 	public void setCubeTime(int CubeTime){	this.CubeTime = CubeTime;	}
 	public boolean isCube(){	return CubeTime-- <= 0;	}
 

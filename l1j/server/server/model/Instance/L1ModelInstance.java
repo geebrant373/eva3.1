@@ -1,4 +1,4 @@
-
+﻿
 package l1j.server.server.model.Instance;
 
 import l1j.server.server.templates.L1Npc;

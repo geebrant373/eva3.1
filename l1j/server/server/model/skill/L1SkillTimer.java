@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -79,7 +79,7 @@ public interface L1SkillTimer {
 class L1SkillStop {
 	public static void stopSkill(L1Character cha, int skillId) {
 		switch(skillId){
-		case ÀÚµ¿»ç³É½Ã°£:
+		case ìë™ì‚¬ëƒ¥ì‹œê°„:
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.toCharacterRefresh();
@@ -87,12 +87,12 @@ class L1SkillStop {
 					pc.resetAuto();
 				}
 				pc.EndAutoController();
-				pc.sendPackets(new S_SystemMessage("\\fTÀÚµ¿»ç³É ½Ã°£ÀÌ ¼ÒÁøµÇ¾ú½À´Ï´Ù."),true);
-				pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "\\fTÀÚµ¿»ç³É ½Ã°£ÀÌ ¼ÒÁøµÇ¾ú½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("\\fTìë™ì‚¬ëƒ¥ ì‹œê°„ì´ ì†Œì§„ë˜ì—ˆìŠµë‹ˆë‹¤."),true);
+				pc.sendPackets(new S_PacketBox(S_PacketBox.GREEN_MESSAGE, "\\fTìë™ì‚¬ëƒ¥ ì‹œê°„ì´ ì†Œì§„ë˜ì—ˆìŠµë‹ˆë‹¤."));
 				L1Teleport.teleport(pc, 33445, 32796, (short) 4, pc.getMoveState().getHeading(), true);
 			}
 			break;
-		case Áö¹èÀÌ¹İ¹öÇÁ:
+		case ì§€ë°°ì´ë°˜ë²„í”„:
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addDamageReductionByArmor(-4);
@@ -103,16 +103,16 @@ class L1SkillStop {
 				pc.sendPackets(new S_SPMR(pc));
 			}
 			break;
-		case ¿À¸¸Áö¹è1Ãş¹öÇÁ:
-		case ¿À¸¸Áö¹è2Ãş¹öÇÁ:
-		case ¿À¸¸Áö¹è3Ãş¹öÇÁ:
-		case ¿À¸¸Áö¹è4Ãş¹öÇÁ:
-		case ¿À¸¸Áö¹è5Ãş¹öÇÁ:
-		case ¿À¸¸Áö¹è6Ãş¹öÇÁ:
-		case ¿À¸¸Áö¹è7Ãş¹öÇÁ:
-		case ¿À¸¸Áö¹è8Ãş¹öÇÁ:
-		case ¿À¸¸Áö¹è9Ãş¹öÇÁ:
-		case ¿À¸¸Áö¹èÁ¤»óÃş¹öÇÁ:
+		case ì˜¤ë§Œì§€ë°°1ì¸µë²„í”„:
+		case ì˜¤ë§Œì§€ë°°2ì¸µë²„í”„:
+		case ì˜¤ë§Œì§€ë°°3ì¸µë²„í”„:
+		case ì˜¤ë§Œì§€ë°°4ì¸µë²„í”„:
+		case ì˜¤ë§Œì§€ë°°5ì¸µë²„í”„:
+		case ì˜¤ë§Œì§€ë°°6ì¸µë²„í”„:
+		case ì˜¤ë§Œì§€ë°°7ì¸µë²„í”„:
+		case ì˜¤ë§Œì§€ë°°8ì¸µë²„í”„:
+		case ì˜¤ë§Œì§€ë°°9ì¸µë²„í”„:
+		case ì˜¤ë§Œì§€ë°°ì •ìƒì¸µë²„í”„:
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.addMaxHp(-100);
@@ -169,13 +169,13 @@ class L1SkillStop {
 		case BOUNCE_ATTACK: 
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.addDmgup(-Config.¹Ù¿î½º¾îÅÃ¼öÄ¡);
+				pc.addDmgup(-Config.ë°”ìš´ìŠ¤ì–´íƒìˆ˜ì¹˜);
 			}
 			break;
 		case SOLID_CARRIAGE:// 15
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.setAddBowReduction(-Config.¼Ö¸®µåÄ³¸®Áö¼öÄ¡);
+				pc.setAddBowReduction(-Config.ì†”ë¦¬ë“œìºë¦¬ì§€ìˆ˜ì¹˜);
 			}
 			break;
 		case LIGHT:
@@ -310,7 +310,7 @@ class L1SkillStop {
 		case SHAPE_CHANGE:
 			L1PolyMorph.undoPoly(cha);
 			break;
-			// ÀÌºÎºĞÀº ÀüÃ¼ÀûÀ¸·Î Ã³¸®¸¦ ÇÏ±â ¶§¹®¿¡ Á¦¿ÜÇÔ 
+			// ì´ë¶€ë¶„ì€ ì „ì²´ì ìœ¼ë¡œ ì²˜ë¦¬ë¥¼ í•˜ê¸° ë•Œë¬¸ì— ì œì™¸í•¨ 
 		/*case ABSOLUTE_BARRIER:
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
@@ -335,7 +335,7 @@ class L1SkillStop {
 			}
 			break;
 		case SHOCK_STUN:
-		case EMPIER:  //°×ºíÃß°¡ ¿¥ÆÄÀÌ¾îµğ¹öÇÁÅ¸ÀÌ¸Ó 220326
+		case EMPIER:  //ê²œë¸”ì¶”ê°€ ì— íŒŒì´ì–´ë””ë²„í”„íƒ€ì´ë¨¸ 220326
 		case MOB_SHOCKSTUN_30:
 		case MOB_RANGESTUN_19:
 		case MOB_RANGESTUN_18:
@@ -373,7 +373,7 @@ class L1SkillStop {
 			cha.addDmgup(-5);
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
-				pc.sendPackets(new S_SkillSound(pc.getId(), 8956)); // Á¾·á
+				pc.sendPackets(new S_SkillSound(pc.getId(), 8956)); // ì¢…ë£Œ
 			}
 			break;
 		case DRESS_MIGHTY:
@@ -1054,35 +1054,35 @@ class L1SkillStop {
 				pc.sendPackets(new S_OwnCharAttrDef(pc));
 			}
 			break;
-		case STATUS_DRAGONMAAN_EARTH:	//Áö·æ ¸¶¾È
+		case STATUS_DRAGONMAAN_EARTH:	//ì§€ë£¡ ë§ˆì•ˆ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.MaanDodge = false;
 				pc.getResistance().addPetrifaction(-3);
 			}
 			break;
-		case STATUS_DRAGONMAAN_WATER:	//¼ö·æ ¸¶¾È
+		case STATUS_DRAGONMAAN_WATER:	//ìˆ˜ë£¡ ë§ˆì•ˆ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.MaanMagicIm = false;
 				pc.getResistance().addFreeze(-3);
 			}
 			break;
-		case STATUS_DRAGONMAAN_WIND:	//Ç³·æ ¸¶¾È
+		case STATUS_DRAGONMAAN_WIND:	//í’ë£¡ ë§ˆì•ˆ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.MaanMagicDmg = false;
 				pc.getResistance().addSleep(-3);
 			}
 			break;
-		case STATUS_DRAGONMAAN_FIRE:	//È­·æ ¸¶¾È
+		case STATUS_DRAGONMAAN_FIRE:	//í™”ë£¡ ë§ˆì•ˆ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.MaanAddDmg = false;
 				pc.getResistance().addStun(-3);
 			}
 			break;
-		case STATUS_DRAGONMAAN_BIRTH:	//Åº»ı ¸¶¾È
+		case STATUS_DRAGONMAAN_BIRTH:	//íƒ„ìƒ ë§ˆì•ˆ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.MaanDodge = false;
@@ -1090,7 +1090,7 @@ class L1SkillStop {
 				pc.getResistance().addBlind(-3);
 			}
 			break;
-		case STATUS_DRAGONMAAN_SHAPE:	//Çü»ó ¸¶¾È
+		case STATUS_DRAGONMAAN_SHAPE:	//í˜•ìƒ ë§ˆì•ˆ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.MaanDodge = false;
@@ -1099,7 +1099,7 @@ class L1SkillStop {
 				pc.getResistance().addHold(-3);
 			}
 			break;
-		case STATUS_DRAGONMAAN_LIFE:	//Çü»ó ¸¶¾È
+		case STATUS_DRAGONMAAN_LIFE:	//í˜•ìƒ ë§ˆì•ˆ
 			if (cha instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) cha;
 				pc.MaanDodge = false;
@@ -1170,31 +1170,31 @@ private static void CancelAdenaSell(L1PcInstance pc, int id) {
 			coment  = rs.getString("coment");
 			adena = rs.getInt("adena");
 		}
-		if (title.equalsIgnoreCase("°Å·¡Áß")) {
+		if (title.equalsIgnoreCase("ê±°ë˜ì¤‘")) {
 			L1PcInstance target = L1World.getInstance().getPlayer(BidderName);
 //			if (target != null) {
-//				target.sendPackets(new S_Message_YN(622, "»ó´ë¹æÀÌ ÆÇ¸Å Ãë¼Ò¸¦ ¿øÇÕ´Ï´Ù µ¿ÀÇ ÇÏ½Ã°Ú½À´Ï±î?"));
+//				target.sendPackets(new S_Message_YN(622, "ìƒëŒ€ë°©ì´ íŒë§¤ ì·¨ì†Œë¥¼ ì›í•©ë‹ˆë‹¤ ë™ì˜ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?"));
 //				target.setAttrMsgType(1);
-//				pc.sendPackets(new S_SystemMessage("ÆÇ¸Å Ãë¼Ò: »ó´ë¹æÀÇ µ¿ÀÇ¸¦ ¾ò°í ÀÖ½À´Ï´Ù. "));
+//				pc.sendPackets(new S_SystemMessage("íŒë§¤ ì·¨ì†Œ: ìƒëŒ€ë°©ì˜ ë™ì˜ë¥¼ ì–»ê³  ìˆìŠµë‹ˆë‹¤. "));
 //			} else {
-//				pc.sendPackets(new S_SystemMessage("ÆÇ¸Å Ãë¼Ò: ±¸¸ÅÀÚ°¡ Á¢¼ÓÁßÀÌÁö ¾Ê½À´Ï´Ù. "));
+//				pc.sendPackets(new S_SystemMessage("íŒë§¤ ì·¨ì†Œ: êµ¬ë§¤ìê°€ ì ‘ì†ì¤‘ì´ì§€ ì•ŠìŠµë‹ˆë‹¤. "));
 //			}
 			return;
 		}
 
 		BoardTable.getInstance().deleteAdena(pc.getAdenaSellCount());
 		pc.getInventory().storeItem(40308, adena);
-		pc.sendPackets(new S_SystemMessage("ÆÇ¸Å Ãë¼Ò: Á¦ÇÑ ½Ã°£ÀÌ ÃÊ°úµÇ¾î °Ô½Ã¹°ÀÌ »èÁ¦µË´Ï´Ù."));
+		pc.sendPackets(new S_SystemMessage("íŒë§¤ ì·¨ì†Œ: ì œí•œ ì‹œê°„ì´ ì´ˆê³¼ë˜ì–´ ê²Œì‹œë¬¼ì´ ì‚­ì œë©ë‹ˆë‹¤."));
 		pc.setAdenaSellCount(0);
 		pstm2 = con.prepareStatement("UPDATE board_adena SET bidder=?, title=?, step=? WHERE id=?");
 		pstm2.setString(1, BidderName);
-		pstm2.setString(2, "ÆÇ¸ÅÃë¼Ò");
+		pstm2.setString(2, "íŒë§¤ì·¨ì†Œ");
 		pstm2.setInt(3, 3);
 		pstm2.setInt(4, id);
 		pstm2.executeUpdate();
 		pstm2.close();
 	} catch (SQLException e) {
-		pc.sendPackets(new S_SystemMessage(".±¸¸Å½ÅÃ» [°Ô½Ã¹° ¹øÈ£] °Ô½Ã¹° ¹øÈ£°¡ 0001ÀÌ¸é 1¸¸ ÀÔ·Â."));
+		pc.sendPackets(new S_SystemMessage(".êµ¬ë§¤ì‹ ì²­ [ê²Œì‹œë¬¼ ë²ˆí˜¸] ê²Œì‹œë¬¼ ë²ˆí˜¸ê°€ 0001ì´ë©´ 1ë§Œ ì…ë ¥."));
 	} finally {
 		SQLUtil.close(rs);
 		SQLUtil.close(pstm1);
@@ -1264,8 +1264,8 @@ class L1SkillTimerTimerImpl implements L1SkillTimer, Runnable {
 
 	@Override
 	public void run() {
-		if (_skillId == L1SkillId.ÀÚµ¿»ç³É½Ã°£) {
-			if (_cha.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ÀÚµ¿»ç³É½Ã°£)) {
+		if (_skillId == L1SkillId.ìë™ì‚¬ëƒ¥ì‹œê°„) {
+			if (_cha.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ìë™ì‚¬ëƒ¥ì‹œê°„)) {
 				if (((L1PcInstance) _cha).getAutoHunt()) {
 					_remainingTime--;
 				}

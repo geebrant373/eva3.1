@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -43,12 +43,12 @@ public class L1Chat implements L1CommandExecutor {
 			if (st.hasMoreTokens()) {
 				String flag = st.nextToken();
 				String msg;
-				if (flag.compareToIgnoreCase("ÄÔ") == 0) {
+				if (flag.compareToIgnoreCase("ì¼¬") == 0) {
 					L1World.getInstance(). set_worldChatElabled(true);
-					msg = "¿ùµå Ã¤ÆÃÀ» À¯È¿ÇÏ°Ô Çß½À´Ï´Ù. ";
-				} else if (flag.compareToIgnoreCase("²û") == 0) {
+					msg = "ì›”ë“œ ì±„íŒ…ì„ ìœ íš¨í•˜ê²Œ í–ˆìŠµë‹ˆë‹¤. ";
+				} else if (flag.compareToIgnoreCase("ë”") == 0) {
 					L1World.getInstance(). set_worldChatElabled(false);
-					msg = "¿ùµå Ã¤ÆÃÀ» Á¤ÁöÇß½À´Ï´Ù. ";
+					msg = "ì›”ë“œ ì±„íŒ…ì„ ì •ì§€í–ˆìŠµë‹ˆë‹¤. ";
 				} else {
 					throw new Exception();
 				}
@@ -56,14 +56,14 @@ public class L1Chat implements L1CommandExecutor {
 			} else {
 				String msg;
 				if (L1World.getInstance(). isWorldChatElabled()) {
-					msg = "ÇöÀç ¿ùµå Ã¤ÆÃÀº À¯È¿ÇÕ´Ï´Ù.. Ã¤ÆÃ ²û ·Î Á¤ÁöÇÒ ¼ö ÀÖ½À´Ï´Ù. ";
+					msg = "í˜„ì¬ ì›”ë“œ ì±„íŒ…ì€ ìœ íš¨í•©ë‹ˆë‹¤.. ì±„íŒ… ë” ë¡œ ì •ì§€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. ";
 				} else {
-					msg = "ÇöÀç ¿ùµå Ã¤ÆÃÀº Á¤ÁöÇÏ°í ÀÖ½À´Ï´Ù.. Ã¤ÆÃ ÄÔ ·Î À¯È¿ÇÏ°Ô ÇÒ ¼ö ÀÖ½À´Ï´Ù. ";
+					msg = "í˜„ì¬ ì›”ë“œ ì±„íŒ…ì€ ì •ì§€í•˜ê³  ìˆìŠµë‹ˆë‹¤.. ì±„íŒ… ì¼¬ ë¡œ ìœ íš¨í•˜ê²Œ í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. ";
 				}
 				pc.sendPackets(new S_SystemMessage(msg));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(cmdName + " [ÄÔ, ²û]"));
+			pc.sendPackets(new S_SystemMessage(cmdName + " [ì¼¬, ë”]"));
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Auto;
+ï»¿package l1j.server.GameSystem.Auto;
 
 import static l1j.server.server.model.skill.L1SkillId.MOB_CURSEPARALYZ_18;
 import static l1j.server.server.model.skill.L1SkillId.MOB_CURSEPARALYZ_19;
@@ -88,7 +88,7 @@ public class AutoPotionController implements Runnable {
 	}
 
 	private void doAutoPotionAction(L1PcInstance pc) {
-		if (!pc.is_ÀÚµ¿¹°¾à»ç¿ë()) {
+		if (!pc.is_ìë™ë¬¼ì•½ì‚¬ìš©()) {
 			return;
 		}
 		if (pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ABSOLUTE_BARRIER)) {
@@ -117,11 +117,11 @@ public class AutoPotionController implements Runnable {
 			return;
 		}
 		
-		ArrayList<Integer> _¹°¾à¸®½ºÆ® = pc.get_ÀÚµ¿¹°¾à¸®½ºÆ®();
-		if (_¹°¾à¸®½ºÆ® == null || _¹°¾à¸®½ºÆ®.isEmpty()) {
+		ArrayList<Integer> _ë¬¼ì•½ë¦¬ìŠ¤íŠ¸ = pc.get_ìë™ë¬¼ì•½ë¦¬ìŠ¤íŠ¸();
+		if (_ë¬¼ì•½ë¦¬ìŠ¤íŠ¸ == null || _ë¬¼ì•½ë¦¬ìŠ¤íŠ¸.isEmpty()) {
 			return;
 		}
-		for (int itemId : _¹°¾à¸®½ºÆ®) {
+		for (int itemId : _ë¬¼ì•½ë¦¬ìŠ¤íŠ¸) {
 			L1ItemInstance item = pc.getInventory().findItemId(itemId); 
 			if (item == null) {
 				continue;
@@ -135,7 +135,7 @@ public class AutoPotionController implements Runnable {
 					continue;
 				}
 			}
-			int ÆÛ¼¾Æ® = 100 * pc.getCurrentHp() / pc.getMaxHp();
+			int í¼ì„¼íŠ¸ = 100 * pc.getCurrentHp() / pc.getMaxHp();
 			switch(item.getItemId()) {
 			case 40013:
 			case 40018:
@@ -146,52 +146,52 @@ public class AutoPotionController implements Runnable {
 				}
 				break;
 			case 40024:
-				if (ÆÛ¼¾Æ® < pc.get_ÀÚµ¿¹°¾àÆÛ¼¾Æ®()) {
+				if (í¼ì„¼íŠ¸ < pc.get_ìë™ë¬¼ì•½í¼ì„¼íŠ¸()) {
 					HealingPotion.UseHeallingPotion(pc, 55, 197);
 					pc.getInventory().consumeItem(40024, 1);
-					L1ItemDelay.onItemUse(pc, item); // ¾ÆÀÌÅÛ Áö¿¬ °³½Ã
+					L1ItemDelay.onItemUse(pc, item); // ì•„ì´í…œ ì§€ì—° ê°œì‹œ
 				}
 				break;
 			case 40010: {
-				if (ÆÛ¼¾Æ® < pc.get_ÀÚµ¿¹°¾àÆÛ¼¾Æ®()) {
-					HealingPotion.UseHeallingPotion(pc, Config.»¡°»ÀÌÈ¸º¹·®, 189);
+				if (í¼ì„¼íŠ¸ < pc.get_ìë™ë¬¼ì•½í¼ì„¼íŠ¸()) {
+					HealingPotion.UseHeallingPotion(pc, Config.ë¹¨ê°±ì´íšŒë³µëŸ‰, 189);
 					pc.getInventory().consumeItem(40010, 1);
-					L1ItemDelay.onItemUse(pc, item); // ¾ÆÀÌÅÛ Áö¿¬ °³½Ã
+					L1ItemDelay.onItemUse(pc, item); // ì•„ì´í…œ ì§€ì—° ê°œì‹œ
 				}
 			}
 				break;
 			case 40011:
-				if (ÆÛ¼¾Æ® < pc.get_ÀÚµ¿¹°¾àÆÛ¼¾Æ®()) {
-					HealingPotion.UseHeallingPotion(pc, Config.ÁÖÈ«ÀÌÈ¸º¹·®, 194);
+				if (í¼ì„¼íŠ¸ < pc.get_ìë™ë¬¼ì•½í¼ì„¼íŠ¸()) {
+					HealingPotion.UseHeallingPotion(pc, Config.ì£¼í™ì´íšŒë³µëŸ‰, 194);
 					pc.getInventory().consumeItem(40011, 1);
-					L1ItemDelay.onItemUse(pc, item); // ¾ÆÀÌÅÛ Áö¿¬ °³½Ã
+					L1ItemDelay.onItemUse(pc, item); // ì•„ì´í…œ ì§€ì—° ê°œì‹œ
 				}
 				break;
 			case 40012:
-				if (ÆÛ¼¾Æ® < pc.get_ÀÚµ¿¹°¾àÆÛ¼¾Æ®()) {
-					HealingPotion.UseHeallingPotion(pc, Config.¸¼°»ÀÌÈ¸º¹·®, 197);
+				if (í¼ì„¼íŠ¸ < pc.get_ìë™ë¬¼ì•½í¼ì„¼íŠ¸()) {
+					HealingPotion.UseHeallingPotion(pc, Config.ë§‘ê°±ì´íšŒë³µëŸ‰, 197);
 					pc.getInventory().consumeItem(40012, 1);
-					L1ItemDelay.onItemUse(pc, item); // ¾ÆÀÌÅÛ Áö¿¬ °³½Ã
+					L1ItemDelay.onItemUse(pc, item); // ì•„ì´í…œ ì§€ì—° ê°œì‹œ
 				}
 				break;
-			case 437010: // µå´Ù
+			case 437010: // ë“œë‹¤
 				if (pc.getAinHasad() < 1000000) {
 					pc.calAinHasad(1000000);
 					pc.sendPackets(new S_PacketBox(S_PacketBox.AINHASAD, pc.getAinHasad()));
-					pc.sendPackets(new S_SystemMessage("\\fTµå·¡°ïÀÇ ´ÙÀÌ¾Æ¸óµå(1)°¡ ÀÚµ¿ º¹¿ëµÇ¾ú½À´Ï´Ù."));
+					pc.sendPackets(new S_SystemMessage("\\fTë“œë˜ê³¤ì˜ ë‹¤ì´ì•„ëª¬ë“œ(1)ê°€ ìë™ ë³µìš©ë˜ì—ˆìŠµë‹ˆë‹¤."));
 					pc.getInventory().removeItem(item, 1);
-					L1ItemDelay.onItemUse(pc, item); // ¾ÆÀÌÅÛ Áö¿¬ °³½Ã
+					L1ItemDelay.onItemUse(pc, item); // ì•„ì´í…œ ì§€ì—° ê°œì‹œ
 				}
 				break;
 			case 40014:
 			case 41415:
-			case 140014: // ¿ë±âÀÇ ¹°¾à
+			case 140014: // ìš©ê¸°ì˜ ë¬¼ì•½
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_BRAVE)) {
 					BravePotion.checkCondition(pc, item);
 				}
 				break;
 			case 40068: 
-			case 140068: // ¿¤ºì ¿ÍÆÛ
+			case 140068: // ì—˜ë¸ ì™€í¼
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_ELFBRAVE)) {
 					BravePotion.checkCondition(pc, item);
 				}
@@ -202,12 +202,12 @@ public class AutoPotionController implements Runnable {
 					BluePotion.checkCondition(pc, item);
 				}
 				break;
-			case 1437011: // µå·¡°ïÀÇ ÁøÁÖ
+			case 1437011: // ë“œë˜ê³¤ì˜ ì§„ì£¼
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_DRAGONPERL)) {
 					useDragonPearl(pc);
 				}
 				break;
-			case 437011: // µå·¡°ïÀÇ ÁøÁÖ
+			case 437011: // ë“œë˜ê³¤ì˜ ì§„ì£¼
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STATUS_DRAGONPERL)) {
 					if (!pc.getInventory().checkItem(437011)) {
 					} else {
@@ -216,7 +216,7 @@ public class AutoPotionController implements Runnable {
 					}
 				}
 				break;
-			case 31117: // ¹öÇÁ ¹°¾à : ±Ù°Å¸®
+			case 31117: // ë²„í”„ ë¬¼ì•½ : ê·¼ê±°ë¦¬
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.FIRE_WEAPON)) {
 					int[] allBuffSkill = { 148, 26, 42,54, 48, 151 };
 					L1SkillUse l1skilluse = new L1SkillUse();
@@ -227,9 +227,9 @@ public class AutoPotionController implements Runnable {
 					pc.getInventory().consumeItem(31117, 1);
 				}
 				break;
-			case 31118: // ¹öÇÁ ¹°¾à : ¿ø°Å¸®
+			case 31118: // ë²„í”„ ë¬¼ì•½ : ì›ê±°ë¦¬
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.STORM_SHOT)) {
-					int[] allBuffSkill = {  26, 42,54, 48, 166 };//½ºÅè¼¦
+					int[] allBuffSkill = {  26, 42,54, 48, 166 };//ìŠ¤í†°ìƒ·
 					L1SkillUse l1skilluse = new L1SkillUse();
 					for (int i = 0; i < allBuffSkill.length; i++) {
 						l1skilluse.handleCommands(pc, allBuffSkill[i], pc.getId(), pc.getX(), pc.getY(), null, 0,
@@ -238,13 +238,13 @@ public class AutoPotionController implements Runnable {
 					pc.getInventory().consumeItem(31118, 1);
 				}
 				break;
-			case 437003: // ¸¶·Â Áõ°­ÀÇ ÁÖ¹®¼­
+			case 437003: // ë§ˆë ¥ ì¦ê°•ì˜ ì£¼ë¬¸ì„œ
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_CASHSCROLL2)) {
 					useCashScroll(pc, 437003);
 					pc.getInventory().consumeItem(437003, 1);
 				}
 				break;
-			case 437004: // ÀüÅõ °­È­ÀÇ ÁÖ¹®¼­
+			case 437004: // ì „íˆ¬ ê°•í™”ì˜ ì£¼ë¬¸ì„œ
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_CASHSCROLL3)) {
 					useCashScroll(pc, 437004);
 					pc.getInventory().consumeItem(437004, 1);
@@ -255,7 +255,7 @@ public class AutoPotionController implements Runnable {
 					WisdomPotion.checkCondition(pc, item);
 				}
 				break;
-			case 40017: // ÇØµ¶Á¦
+			case 40017: // í•´ë…ì œ
 			case 40507:
 				if (pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_POISON) || pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_POISON_PARALYZING)
 						|| pc.getSkillEffectTimerSet().hasSkillEffect(STATUS_POISON_SILENCE) || pc.getSkillEffectTimerSet().hasSkillEffect(MOB_CURSEPARALYZ_18)
@@ -263,27 +263,27 @@ public class AutoPotionController implements Runnable {
 					CurePotion.checkCondition(pc, item);
 				}
 				break;
-			case 436017: // È¯»óÅ©·¯½ºÆ®Áı°Ô¹ß±¸ÀÌ ¿ø°Å¸®
+			case 436017: // í™˜ìƒí¬ëŸ¬ìŠ¤íŠ¸ì§‘ê²Œë°œêµ¬ì´ ì›ê±°ë¦¬
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.COOKING_1_16_S)) {
 					L1Cooking.useCookingItem(pc, item);
 				}
 				break;
-			case 436019: // È¯»óÄÚÄ« ±Ù°Å¸®
+			case 436019: // í™˜ìƒì½”ì¹´ ê·¼ê±°ë¦¬
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.COOKING_1_18_S)) {
 					L1Cooking.useCookingItem(pc, item);
 				}
 				break;
-			case 436022: // È¯»óµå·¹ÀÌÅ©±¸ÀÌ SP
+			case 436022: // í™˜ìƒë“œë ˆì´í¬êµ¬ì´ SP
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.COOKING_1_21_S)) {
 					L1Cooking.useCookingItem(pc, item);
 				}
 				break;
-			case 41292: // È¯»ó¹ö¼¸½ºÇÁ
+			case 41292: // í™˜ìƒë²„ì„¯ìŠ¤í”„
 				if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.COOKING_1_7_S)) {
 					L1Cooking.useCookingItem(pc, item);
 				}
 				break;
-			case 40879: // ºí·¹½ºÆ®¾Æ¸Ó
+			case 40879: // ë¸”ë ˆìŠ¤íŠ¸ì•„ë¨¸
 				L1Skills skill = SkillsTable.getInstance().getTemplate(21);
 				for (L1ItemInstance item1 : pc.getInventory().getItems()) {
 					if (item1 == null)

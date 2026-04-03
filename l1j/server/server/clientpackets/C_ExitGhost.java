@@ -1,4 +1,4 @@
-/* This program is free software; you can redistribute it and/or modify
+﻿/* This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
@@ -27,7 +27,7 @@ public class C_ExitGhost extends ClientBasePacket {
 
 	private static final String C_EXIT_GHOST = "[C] C_ExitGhost";
 
-	// �̵�
+	// 이동
 	public C_ExitGhost(byte decrypt[], LineageClient client)
 			throws Exception {
 		super(decrypt);

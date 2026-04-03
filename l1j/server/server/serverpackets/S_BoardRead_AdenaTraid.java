@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -62,21 +62,21 @@ public class S_BoardRead_AdenaTraid extends ServerBasePacket {
 				/////////////////////////////////////////////////////////
 				writeS("\r\n"
 						+ "\r\n"
-						+ "   ÇöÀç»óÅÂ: °Å·¡Áß "
+						+ "   í˜„ì¬ìƒíƒœ: ê±°ë˜ì¤‘ "
 						+ "\r\n"
-						+ "   ¹°Ç°¹øÈ£: " + number
-						+ "\r\n"
-						+ "\r\n"
-						+ "   ¾Æµ§¼ö·®: " +  comentPrice.format(rs.getInt(7)) 
-						+ "\r\n"
-						+ "   ÆÇ¸Å±İ¾×: " + comentPrice.format(rs.getInt(8))
+						+ "   ë¬¼í’ˆë²ˆí˜¸: " + number
 						+ "\r\n"
 						+ "\r\n"
-						+ "   ¿¹±İÁÖ: " + rs.getString(13)
+						+ "   ì•„ë´ìˆ˜ëŸ‰: " +  comentPrice.format(rs.getInt(7)) 
 						+ "\r\n"
-						+ "   ÀºÇàÀÌ¸§: " + rs.getString(14)
+						+ "   íŒë§¤ê¸ˆì•¡: " + comentPrice.format(rs.getInt(8))
 						+ "\r\n"
-						+ "   °èÁÂ¹øÈ£: " + rs.getString(15)
+						+ "\r\n"
+						+ "   ì˜ˆê¸ˆì£¼: " + rs.getString(13)
+						+ "\r\n"
+						+ "   ì€í–‰ì´ë¦„: " + rs.getString(14)
+						+ "\r\n"
+						+ "   ê³„ì¢Œë²ˆí˜¸: " + rs.getString(15)
 						+ "\r\n"); // date
 			}
 		} catch (SQLException e) {

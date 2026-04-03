@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,7 +47,7 @@ public class CharacterAutoSetTable {
 		}
 		return _instance;
 	}
-	// È®ÀÎ ¿Ï·á
+	// í™•ì¸ ì™„ë£Œ
 	public void load(L1PcInstance pc) {
 		Connection con = null;
 		PreparedStatement pstm = null;
@@ -58,34 +58,34 @@ public class CharacterAutoSetTable {
 			pstm.setInt(1, pc.getId());
 			rs = pstm.executeQuery();
 			while (rs.next()) {
-				pc.set_ÀÚµ¿¹°¾àÆÛ¼¾Æ®(rs.getInt("Auto_Potion_Percent"));
+				pc.set_ìë™ë¬¼ì•½í¼ì„¼íŠ¸(rs.getInt("Auto_Potion_Percent"));
 				String potions = rs.getString("Auto_Potion_List");
 				if (potions != null && !potions.isEmpty()) {			
 					StringTokenizer list = new StringTokenizer(potions, ",");
 					while (list.hasMoreElements()) {
 						String s = list.nextToken();
-						pc.get_ÀÚµ¿¹°¾à¸®½ºÆ®().add(Integer.valueOf(s));
+						pc.get_ìë™ë¬¼ì•½ë¦¬ìŠ¤íŠ¸().add(Integer.valueOf(s));
 					}
 				}
-				pc.set_ÀÚµ¿¹°¾à»ç¿ë(rs.getInt("Auto_Potion_Use") == 0 ? false : true);
-				pc.set_ÀÚµ¿¹öÇÁ»ç¿ë(rs.getInt("Auto_Buff_Use") == 0 ? false : true);
+				pc.set_ìë™ë¬¼ì•½ì‚¬ìš©(rs.getInt("Auto_Potion_Use") == 0 ? false : true);
+				pc.set_ìë™ë²„í”„ì‚¬ìš©(rs.getInt("Auto_Buff_Use") == 0 ? false : true);
 				String buffs = rs.getString("Auto_Buff_List");
 				if (buffs != null && !buffs.isEmpty()) {			
 					StringTokenizer list = new StringTokenizer(buffs, ",");
 					while (list.hasMoreElements()) {
 						String s = list.nextToken();
-						pc.get_ÀÚµ¿¹öÇÁ¸®½ºÆ®().add(Integer.valueOf(s));
+						pc.get_ìë™ë²„í”„ë¦¬ìŠ¤íŠ¸().add(Integer.valueOf(s));
 					}
 				}
-				pc.set_ÀÚµ¿¹öÇÁÀüÅõ½Ã»ç¿ë(rs.getInt("Auto_Buff_Fight_Use") == 0 ? false : true);
-				pc.set_ÀÚµ¿¹öÇÁ¼¼ÀÌÇÁÆ¼Á¸»ç¿ë(rs.getInt("Auto_Buff_Safety_Use") == 0 ? false : true);
+				pc.set_ìë™ë²„í”„ì „íˆ¬ì‹œì‚¬ìš©(rs.getInt("Auto_Buff_Fight_Use") == 0 ? false : true);
+				pc.set_ìë™ë²„í”„ì„¸ì´í”„í‹°ì¡´ì‚¬ìš©(rs.getInt("Auto_Buff_Safety_Use") == 0 ? false : true);
 				
 				String sellitems = rs.getString("Auto_Sell_List");
 				if ((sellitems != null) && (!sellitems.isEmpty())) {
 					StringTokenizer list = new StringTokenizer(sellitems, ",");
 					while (list.hasMoreElements()) {
 						String s = list.nextToken();
-						pc.get_ÀÚµ¿ÆÇ¸Å¸®½ºÆ®().add(Integer.valueOf(s));
+						pc.get_ìë™íŒë§¤ë¦¬ìŠ¤íŠ¸().add(Integer.valueOf(s));
 					}
 				}
 			}
@@ -98,37 +98,37 @@ public class CharacterAutoSetTable {
 			SQLUtil.close(con);
 		}
 	}
-	// È®ÀÎ ¿Ï·á
+	// í™•ì¸ ì™„ë£Œ
 	public void store(L1PcInstance pc) {
 		Connection con = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			String sql = "INSERT INTO character_auto_set (objid, char_name, Auto_Potion_Percent, Auto_Potion_List, Auto_Potion_Use, Auto_Buff_Use, Auto_Buff_List, Auto_Buff_Fight_Use, Auto_Buff_Safety_Use, Auto_Sell_List) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ON DUPLICATE KEY UPDATE objid=?, char_name=?, Auto_Potion_Percent=?, Auto_Potion_List=?, Auto_Potion_Use=?, Auto_Buff_Use=?, Auto_Buff_List=?, Auto_Buff_Fight_Use=?, Auto_Buff_Safety_Use=?, Auto_Sell_List=?";
 
-			ArrayList<Integer> ¹°¾à¸®½ºÆ® = pc.get_ÀÚµ¿¹°¾à¸®½ºÆ®();
-			String ¹°¾à¸®½ºÆ®1 = ¹°¾à¸®½ºÆ® == null ? null : ¹°¾à¸®½ºÆ®.toString();
-			if (¹°¾à¸®½ºÆ®1 != null) {
-				¹°¾à¸®½ºÆ®1 = ¹°¾à¸®½ºÆ®1.replace("[", "");
-				¹°¾à¸®½ºÆ®1 = ¹°¾à¸®½ºÆ®1.replace("]", "");
-				¹°¾à¸®½ºÆ®1 = ¹°¾à¸®½ºÆ®1.replace(" ", "");
+			ArrayList<Integer> ë¬¼ì•½ë¦¬ìŠ¤íŠ¸ = pc.get_ìë™ë¬¼ì•½ë¦¬ìŠ¤íŠ¸();
+			String ë¬¼ì•½ë¦¬ìŠ¤íŠ¸1 = ë¬¼ì•½ë¦¬ìŠ¤íŠ¸ == null ? null : ë¬¼ì•½ë¦¬ìŠ¤íŠ¸.toString();
+			if (ë¬¼ì•½ë¦¬ìŠ¤íŠ¸1 != null) {
+				ë¬¼ì•½ë¦¬ìŠ¤íŠ¸1 = ë¬¼ì•½ë¦¬ìŠ¤íŠ¸1.replace("[", "");
+				ë¬¼ì•½ë¦¬ìŠ¤íŠ¸1 = ë¬¼ì•½ë¦¬ìŠ¤íŠ¸1.replace("]", "");
+				ë¬¼ì•½ë¦¬ìŠ¤íŠ¸1 = ë¬¼ì•½ë¦¬ìŠ¤íŠ¸1.replace(" ", "");
 			}
-			ArrayList<Integer> ¹öÇÁ¸®½ºÆ® = pc.get_ÀÚµ¿¹öÇÁ¸®½ºÆ®();
-			String ¹öÇÁ¸®½ºÆ®1 = ¹öÇÁ¸®½ºÆ® == null ? null : ¹öÇÁ¸®½ºÆ®.toString();
-			if (¹öÇÁ¸®½ºÆ®1 != null) {
-				¹öÇÁ¸®½ºÆ®1 = ¹öÇÁ¸®½ºÆ®1.replace("[", "");
-				¹öÇÁ¸®½ºÆ®1 = ¹öÇÁ¸®½ºÆ®1.replace("]", "");
-				¹öÇÁ¸®½ºÆ®1 = ¹öÇÁ¸®½ºÆ®1.replace(" ", "");
+			ArrayList<Integer> ë²„í”„ë¦¬ìŠ¤íŠ¸ = pc.get_ìë™ë²„í”„ë¦¬ìŠ¤íŠ¸();
+			String ë²„í”„ë¦¬ìŠ¤íŠ¸1 = ë²„í”„ë¦¬ìŠ¤íŠ¸ == null ? null : ë²„í”„ë¦¬ìŠ¤íŠ¸.toString();
+			if (ë²„í”„ë¦¬ìŠ¤íŠ¸1 != null) {
+				ë²„í”„ë¦¬ìŠ¤íŠ¸1 = ë²„í”„ë¦¬ìŠ¤íŠ¸1.replace("[", "");
+				ë²„í”„ë¦¬ìŠ¤íŠ¸1 = ë²„í”„ë¦¬ìŠ¤íŠ¸1.replace("]", "");
+				ë²„í”„ë¦¬ìŠ¤íŠ¸1 = ë²„í”„ë¦¬ìŠ¤íŠ¸1.replace(" ", "");
 			}
-			ArrayList<Integer> ÆÇ¸Å¸®½ºÆ® = pc.get_ÀÚµ¿ÆÇ¸Å¸®½ºÆ®();
-			String ÆÇ¸Å¸®½ºÆ®1 = ÆÇ¸Å¸®½ºÆ® == null ? null : ÆÇ¸Å¸®½ºÆ®.toString();
-			if (ÆÇ¸Å¸®½ºÆ®1 != null) {
-				ÆÇ¸Å¸®½ºÆ®1 = ÆÇ¸Å¸®½ºÆ®1.replace("[", "");
-				ÆÇ¸Å¸®½ºÆ®1 = ÆÇ¸Å¸®½ºÆ®1.replace("]", "");
-				ÆÇ¸Å¸®½ºÆ®1 = ÆÇ¸Å¸®½ºÆ®1.replace(" ", "");
+			ArrayList<Integer> íŒë§¤ë¦¬ìŠ¤íŠ¸ = pc.get_ìë™íŒë§¤ë¦¬ìŠ¤íŠ¸();
+			String íŒë§¤ë¦¬ìŠ¤íŠ¸1 = íŒë§¤ë¦¬ìŠ¤íŠ¸ == null ? null : íŒë§¤ë¦¬ìŠ¤íŠ¸.toString();
+			if (íŒë§¤ë¦¬ìŠ¤íŠ¸1 != null) {
+				íŒë§¤ë¦¬ìŠ¤íŠ¸1 = íŒë§¤ë¦¬ìŠ¤íŠ¸1.replace("[", "");
+				íŒë§¤ë¦¬ìŠ¤íŠ¸1 = íŒë§¤ë¦¬ìŠ¤íŠ¸1.replace("]", "");
+				íŒë§¤ë¦¬ìŠ¤íŠ¸1 = íŒë§¤ë¦¬ìŠ¤íŠ¸1.replace(" ", "");
 			}
 			L1QueryUtil.execute(con, sql
-					, pc.getId(), pc.getName(), pc.get_ÀÚµ¿¹°¾àÆÛ¼¾Æ®(), ¹°¾à¸®½ºÆ®1, pc.is_ÀÚµ¿¹°¾à»ç¿ë() ? 1 : 0, pc.is_ÀÚµ¿¹öÇÁ»ç¿ë() ? 1 : 0, ¹öÇÁ¸®½ºÆ®1, pc.is_ÀÚµ¿¹öÇÁÀüÅõ½Ã»ç¿ë() ? 1 : 0, pc.is_ÀÚµ¿¹öÇÁ¼¼ÀÌÇÁÆ¼Á¸»ç¿ë() ? 1 : 0, ÆÇ¸Å¸®½ºÆ®1
-							, pc.getId(), pc.getName(), pc.get_ÀÚµ¿¹°¾àÆÛ¼¾Æ®(), ¹°¾à¸®½ºÆ®1, pc.is_ÀÚµ¿¹°¾à»ç¿ë() ? 1 : 0, pc.is_ÀÚµ¿¹öÇÁ»ç¿ë() ? 1 : 0, ¹öÇÁ¸®½ºÆ®1, pc.is_ÀÚµ¿¹öÇÁÀüÅõ½Ã»ç¿ë() ? 1 : 0, pc.is_ÀÚµ¿¹öÇÁ¼¼ÀÌÇÁÆ¼Á¸»ç¿ë() ? 1 : 0, ÆÇ¸Å¸®½ºÆ®1);
+					, pc.getId(), pc.getName(), pc.get_ìë™ë¬¼ì•½í¼ì„¼íŠ¸(), ë¬¼ì•½ë¦¬ìŠ¤íŠ¸1, pc.is_ìë™ë¬¼ì•½ì‚¬ìš©() ? 1 : 0, pc.is_ìë™ë²„í”„ì‚¬ìš©() ? 1 : 0, ë²„í”„ë¦¬ìŠ¤íŠ¸1, pc.is_ìë™ë²„í”„ì „íˆ¬ì‹œì‚¬ìš©() ? 1 : 0, pc.is_ìë™ë²„í”„ì„¸ì´í”„í‹°ì¡´ì‚¬ìš©() ? 1 : 0, íŒë§¤ë¦¬ìŠ¤íŠ¸1
+							, pc.getId(), pc.getName(), pc.get_ìë™ë¬¼ì•½í¼ì„¼íŠ¸(), ë¬¼ì•½ë¦¬ìŠ¤íŠ¸1, pc.is_ìë™ë¬¼ì•½ì‚¬ìš©() ? 1 : 0, pc.is_ìë™ë²„í”„ì‚¬ìš©() ? 1 : 0, ë²„í”„ë¦¬ìŠ¤íŠ¸1, pc.is_ìë™ë²„í”„ì „íˆ¬ì‹œì‚¬ìš©() ? 1 : 0, pc.is_ìë™ë²„í”„ì„¸ì´í”„í‹°ì¡´ì‚¬ìš©() ? 1 : 0, íŒë§¤ë¦¬ìŠ¤íŠ¸1);
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {

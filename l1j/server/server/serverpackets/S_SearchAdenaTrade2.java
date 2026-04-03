@@ -1,4 +1,4 @@
-package l1j.server.server.serverpackets;
+ï»¿package l1j.server.server.serverpackets;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,24 +36,24 @@ public class S_SearchAdenaTrade2 extends ServerBasePacket {
       } 
       DecimalFormat priceformat = new DecimalFormat("#,###,###,###");
       if (board != null) {
-        String boardtype = (board.getType() == 0) ? "ÆÇ¸ÅÁß": ((board.getType() == 1) ? "°Å·¡Áß": "");
+        String boardtype = (board.getType() == 0) ? "íŒë§¤ì¤‘": ((board.getType() == 1) ? "ê±°ë˜ì¤‘": "");
         if (tradenumber > 30000)
-          boardtype = (board.getType() == 0) ? "¸ÅÀÔÁß": ((board.getType() == 1) ? "°Å·¡Áß": ""); 
-        writeS("ÇöÀç»óÅÂ: " + boardtype);
-        writeS("¹°Ç°¹øÈ£: " + tradenumber);
-        writeS("¾Æµ§¼ö·®: " + priceformat.format(board.getAdenaCount()));
+          boardtype = (board.getType() == 0) ? "ë§¤ì…ì¤‘": ((board.getType() == 1) ? "ê±°ë˜ì¤‘": ""); 
+        writeS("í˜„ì¬ìƒíƒœ: " + boardtype);
+        writeS("ë¬¼í’ˆë²ˆí˜¸: " + tradenumber);
+        writeS("ì•„ë´ìˆ˜ëŸ‰: " + priceformat.format(board.getAdenaCount()));
         if (tradenumber > 30000) {
-          writeS("¸ÅÀÔ±İ¾×: " + priceformat.format(board.getSellCount()));
+          writeS("ë§¤ì…ê¸ˆì•¡: " + priceformat.format(board.getSellCount()));
         } else {
-          writeS("ÆÇ¸Å±İ¾×: " + priceformat.format(board.getSellCount()));
+          writeS("íŒë§¤ê¸ˆì•¡: " + priceformat.format(board.getSellCount()));
         } 
         if (board.getTradeId() != 0) {
-          writeS("±¸¸ÅÄ³¸¯: " + board.getTradeName());
+          writeS("êµ¬ë§¤ìºë¦­: " + board.getTradeName());
         } else {
-          writeS("±¸¸ÅÄ³¸¯: ");
+          writeS("êµ¬ë§¤ìºë¦­: ");
         } 
       } else {
-        writeS("ÆÇ¸ÅÁßÀÎ ¹°Ç°ÀÌ Á¸Àç ÇÏÁö ¾Ê½À´Ï´Ù.!");
+        writeS("íŒë§¤ì¤‘ì¸ ë¬¼í’ˆì´ ì¡´ì¬ í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.!");
         writeS(" ");
         writeS(" ");
         writeS(" ");
@@ -71,21 +71,21 @@ public class S_SearchAdenaTrade2 extends ServerBasePacket {
       } 
       DecimalFormat priceformat = new DecimalFormat("#,###,###,###");
       if (board != null) {
-        String boardtype = (board.getType() == 0) ? "ÆÇ¸ÅÁß": ((board.getType() == 1) ? "°Å·¡Áß": "");
-        writeS("ÇöÀç»óÅÂ: " + boardtype);
-        writeS("¹°Ç°¹øÈ£: " + tradenumber);
-        writeS("¾Æµ§¼ö·®: " + priceformat.format(board.getAdenaCount()));
+        String boardtype = (board.getType() == 0) ? "íŒë§¤ì¤‘": ((board.getType() == 1) ? "ê±°ë˜ì¤‘": "");
+        writeS("í˜„ì¬ìƒíƒœ: " + boardtype);
+        writeS("ë¬¼í’ˆë²ˆí˜¸: " + tradenumber);
+        writeS("ì•„ë´ìˆ˜ëŸ‰: " + priceformat.format(board.getAdenaCount()));
         if (tradenumber > 30000) {
-          writeS("¸ÅÀÔ±İ¾×: " + priceformat.format(board.getSellCount()));
+          writeS("ë§¤ì…ê¸ˆì•¡: " + priceformat.format(board.getSellCount()));
         } else {
-          writeS("ÆÇ¸Å±İ¾×: " + priceformat.format(board.getSellCount()));
+          writeS("íŒë§¤ê¸ˆì•¡: " + priceformat.format(board.getSellCount()));
         } 
         if (tradenumber > 30000) {
-          writeS("¸ÅÀÔÄ³¸¯: " + board.getChaName());
+          writeS("ë§¤ì…ìºë¦­: " + board.getChaName());
         } else if (board.getChaName() != null) {
-          writeS("ÆÇ¸ÅÄ³¸¯: " + board.getChaName());
+          writeS("íŒë§¤ìºë¦­: " + board.getChaName());
         } else {
-          writeS("ÆÇ¸ÅÄ³¸¯: ¿î¿µÀÚ");
+          writeS("íŒë§¤ìºë¦­: ìš´ì˜ì");
         } 
         Connection con = null;
         PreparedStatement pstm = null;
@@ -96,10 +96,10 @@ public class S_SearchAdenaTrade2 extends ServerBasePacket {
           pstm.setInt(1, board.getChaId());
           rs = pstm.executeQuery();
           if (rs.next()) {
-            writeS("ÇÚµåÆù: " + rs.getString("phone_number"));
-            writeS("±İÀ¶±â°ü(ÀºÇà¸í): " + rs.getString("bank_name"));
-            writeS("°èÁÂ¹øÈ£: " + rs.getString("bank_number"));
-            writeS("¼ºÇÔ: " + rs.getString("name"));
+            writeS("í•¸ë“œí°: " + rs.getString("phone_number"));
+            writeS("ê¸ˆìœµê¸°ê´€(ì€í–‰ëª…): " + rs.getString("bank_name"));
+            writeS("ê³„ì¢Œë²ˆí˜¸: " + rs.getString("bank_number"));
+            writeS("ì„±í•¨: " + rs.getString("name"));
           } 
         } catch (SQLException e) {
           _log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -109,7 +109,7 @@ public class S_SearchAdenaTrade2 extends ServerBasePacket {
           SQLUtil.close(con);
         } 
       } else {
-        writeS("±¸¸ÅÁßÀÎ ¹°Ç°ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.!");
+        writeS("êµ¬ë§¤ì¤‘ì¸ ë¬¼í’ˆì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.!");
         writeS(" ");
         writeS(" ");
         writeS(" ");

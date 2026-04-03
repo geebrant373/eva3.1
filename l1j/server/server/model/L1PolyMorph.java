@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -43,7 +43,7 @@ public class L1PolyMorph {
 
 	private static final int SWORD_EQUIP = 2;
 
-	 public static final int ARCH_MORPH_BY_ITEMMAGIC = 3; //<Ãß°¡ ºÎºÐ
+	 public static final int ARCH_MORPH_BY_ITEMMAGIC = 3; //<ì¶”ê°€ ë¶€ë¶„
 	 
 	private static final int TWOHANDSWORD_EQUIP = 4;
 
@@ -88,12 +88,12 @@ public class L1PolyMorph {
 
 	private static final int GUARDER_EQUIP = 2048;
 
-	// º¯½ÅÀÇ ¿øÀÎÀ» ³ªÅ¸³»´Â bit
+	// ë³€ì‹ ì˜ ì›ì¸ì„ ë‚˜íƒ€ë‚´ëŠ” bit
 	public static final int MORPH_BY_ITEMMAGIC = 1;
 
 	public static final int MORPH_BY_GM = 2;
 
-	public static final int MORPH_BY_NPC = 4; // Á¡¼º¼ú»ç ÄÉÇÁ¸®»þ ÀÌ¿ÜÀÇ NPC
+	public static final int MORPH_BY_NPC = 4; // ì ì„±ìˆ ì‚¬ ì¼€í”„ë¦¬ìƒ¤ ì´ì™¸ì˜ NPC
 
 	public static final int MORPH_BY_KEPLISHA = 8;
 
@@ -221,8 +221,8 @@ public class L1PolyMorph {
 		}
 		if (cha instanceof L1PcInstance) {
 			L1PcInstance pc = (L1PcInstance) cha;
-			if (pc.getMapId() == 5302) { // ³¬½ÃÅÍ
-				pc.sendPackets(new S_ServerMessage(1170)); // ÀÌ°÷¿¡¼­ º¯½ÅÇÒ¼ö ¾ø½À´Ï´Ù.
+			if (pc.getMapId() == 5302) { // ë‚šì‹œí„°
+				pc.sendPackets(new S_ServerMessage(1170)); // ì´ê³³ì—ì„œ ë³€ì‹ í• ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				return;
 			}
 			if (pc.getGfxId().getTempCharGfx() == 6034
@@ -231,12 +231,12 @@ public class L1PolyMorph {
 				return;	
 			}
 			if (!isMatchCause(polyId, cause)) {
-				pc.sendPackets(new S_ServerMessage(181)); // \f1 ±×·¯ÇÑ monster¿¡°Ô´Â º¯½ÅÇÒ ¼ö ¾ø½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(181)); // \f1 ê·¸ëŸ¬í•œ monsterì—ê²ŒëŠ” ë³€ì‹ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				return;
 			}
 			/*if (pc.getGfxId().getTempCharGfx() != pc.getClassId() &&
 					pc.getSkillEffectTimerSet().getSkillEffectTimeSec(L1SkillId.SHAPE_CHANGE) <=0){
-				pc.sendPackets(new S_SystemMessage("¼±ÅÃÇÏ½Å º¯½ÅÀº ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("ì„ íƒí•˜ì‹  ë³€ì‹ ì€ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 				return;
 			}*/
 			if (polyId == 16074 || polyId == 16053 || polyId == 14491
@@ -245,7 +245,7 @@ public class L1PolyMorph {
 					|| polyId == 16027 || polyId == 16014
 					|| polyId == 16008 || polyId == 15986) {
 				if (!pc.getInventory().checkEquipped(20281) && (!pc.getInventory().checkItem(23099))) {
-					pc.sendPackets(new S_ServerMessage(181)); // \f1 ±×·¯ÇÑ monster¿¡°Ô´Â º¯½ÅÇÒ ¼ö ¾ø½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(181)); // \f1 ê·¸ëŸ¬í•œ monsterì—ê²ŒëŠ” ë³€ì‹ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 				     return;
 				}
 	        }
@@ -348,7 +348,7 @@ public class L1PolyMorph {
 		}
 		return true;
 	}
-	// ÁöÁ¤ÇÑ polyId°¡ ¹«¾ù¿¡ ÀÇÇØ º¯½ÅÇØ, ±×°ÍÀÌ º¯½Å ´çÇÒ±î?
+	// ì§€ì •í•œ polyIdê°€ ë¬´ì—‡ì— ì˜í•´ ë³€ì‹ í•´, ê·¸ê²ƒì´ ë³€ì‹  ë‹¹í• ê¹Œ?
 	public static boolean isMatchCause(int polyId, int cause) {
 		L1PolyMorph poly = PolyTable.getInstance(). getTemplate(polyId);
 		if (poly == null) {

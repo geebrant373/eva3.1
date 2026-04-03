@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -94,7 +94,7 @@ public class Enchant extends L1ItemInstance{
 				case -1:
 					s = (new StringBuilder()).append(
 							pm + item.getEnchantLevel()).append(" ").append(s1)
-							.toString(); // \f1%0ÀÌ%2%1 ºû³³´Ï´Ù.
+							.toString(); // \f1%0ì´%2%1 ë¹›ë‚©ë‹ˆë‹¤.
 					sa = "$246";
 					sb = "$247";
 					break;
@@ -102,7 +102,7 @@ public class Enchant extends L1ItemInstance{
 				case 1: // '\001'
 					s = (new StringBuilder()).append(
 							pm + item.getEnchantLevel()).append(" ").append(s1)
-							.toString(); // \f1%0ÀÌ%2%1 ºû³³´Ï´Ù.
+							.toString(); // \f1%0ì´%2%1 ë¹›ë‚©ë‹ˆë‹¤.
 					sa = "$245";
 					sb = "$247";
 					break;
@@ -110,7 +110,7 @@ public class Enchant extends L1ItemInstance{
 				case 2: // '\002'
 					s = (new StringBuilder()).append(
 							pm + item.getEnchantLevel()).append(" ").append(s1)
-							.toString(); // \f1%0ÀÌ%2%1 ºû³³´Ï´Ù.
+							.toString(); // \f1%0ì´%2%1 ë¹›ë‚©ë‹ˆë‹¤.
 					sa = "$245";
 					sb = "$248";
 					break;
@@ -118,7 +118,7 @@ public class Enchant extends L1ItemInstance{
 				case 3: // '\003'
 					s = (new StringBuilder()).append(
 							pm + item.getEnchantLevel()).append(" ").append(s1)
-							.toString(); // \f1%0ÀÌ%2%1 ºû³³´Ï´Ù.
+							.toString(); // \f1%0ì´%2%1 ë¹›ë‚©ë‹ˆë‹¤.
 					sa = "$245";
 					sb = "$248";
 					break;
@@ -161,7 +161,7 @@ public class Enchant extends L1ItemInstance{
 				case -1:
 					s = (new StringBuilder()).append(
 							pm + item.getEnchantLevel()).append(" ").append(s1)
-							.toString(); // \f1%0ÀÌ%2%1 ºû³³´Ï´Ù.
+							.toString(); // \f1%0ì´%2%1 ë¹›ë‚©ë‹ˆë‹¤.
 					sa = "$246";
 					sb = "$247";
 					break;
@@ -169,7 +169,7 @@ public class Enchant extends L1ItemInstance{
 				case 1: // '\001'
 					s = (new StringBuilder()).append(
 							pm + item.getEnchantLevel()).append(" ").append(s1)
-							.toString(); // \f1%0ÀÌ%2%1 ºû³³´Ï´Ù.
+							.toString(); // \f1%0ì´%2%1 ë¹›ë‚©ë‹ˆë‹¤.
 					if (item.getItem().getGrade() < 0){
 						sa = "$252";
 						sb = "$247 ";
@@ -182,7 +182,7 @@ public class Enchant extends L1ItemInstance{
 				case 2: // '\002'
 					s = (new StringBuilder()).append(
 							pm + item.getEnchantLevel()).append(" ").append(s1)
-							.toString(); // \f1%0ÀÌ%2%1 ºû³³´Ï´Ù.
+							.toString(); // \f1%0ì´%2%1 ë¹›ë‚©ë‹ˆë‹¤.
 					sa = "$252";
 					sb = "$248 ";
 					break;
@@ -190,7 +190,7 @@ public class Enchant extends L1ItemInstance{
 				case 3: // '\003'
 					s = (new StringBuilder()).append(
 							pm + item.getEnchantLevel()).append(" ").append(s1)
-							.toString(); // \f1%0ÀÌ%2%1 ºû³³´Ï´Ù.
+							.toString(); // \f1%0ì´%2%1 ë¹›ë‚©ë‹ˆë‹¤.
 					sa = "$252";
 					sb = "$248 ";
 					break;
@@ -203,9 +203,9 @@ public class Enchant extends L1ItemInstance{
 		int newEnchantLvl = item.getEnchantLevel() + i;
 		int safe_enchant = item.getItem().get_safeenchant();
 		item.setEnchantLevel(newEnchantLvl);
-		if (newEnchantLvl >= 9) { // ¹«±â +10 ¼º°øÇÏ¿´À»¶§ ¾Ë¸²
-			L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("¾î´À ¾Æµ§ ¿ë»ç ´Ô²²¼­ [" + item.getLogName() + "] ÀÎÃ¾Æ®¿¡ ¼º°øÇÏ¿´½À´Ï´Ù."));
-			L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE,"¾î´À ¾Æµ§ ¿ë»ç ´Ô²²¼­ [" + item.getLogName() + "] ÀÎÃ¾Æ®¿¡ ¼º°øÇÏ¿´½À´Ï´Ù"));
+		if (newEnchantLvl >= 9) { // ë¬´ê¸° +10 ì„±ê³µí•˜ì˜€ì„ë•Œ ì•Œë¦¼
+			L1World.getInstance().broadcastPacketToAll(new S_SystemMessage("ì–´ëŠ ì•„ë´ ìš©ì‚¬ ë‹˜ê»˜ì„œ [" + item.getLogName() + "] ì¸ì²¸íŠ¸ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤."));
+			L1World.getInstance().broadcastPacketToAll(new S_PacketBox(S_PacketBox.GREEN_MESSAGE,"ì–´ëŠ ì•„ë´ ìš©ì‚¬ ë‹˜ê»˜ì„œ [" + item.getLogName() + "] ì¸ì²¸íŠ¸ì— ì„±ê³µí•˜ì˜€ìŠµë‹ˆë‹¤"));
 		}
 		pc.getInventory().updateItem(item, L1PcInventory.COL_ENCHANTLVL);		
 		
@@ -217,14 +217,14 @@ public class Enchant extends L1ItemInstance{
 		if (item.getItem().getType2() == 1 && Config.LOGGING_WEAPON_ENCHANT != 0) {
 			if (safe_enchant == 0 || newEnchantLvl >= Config.LOGGING_WEAPON_ENCHANT) {
 				LinAllManager.getInstance().EnchantAppend(item.getName(), oldEnchantLvl, newEnchantLvl, pc.getName(), 0);
-				/** ·Î±×ÆÄÀÏÀúÀå **/
+				/** ë¡œê·¸íŒŒì¼ì €ì¥ **/
 				LoggerInstance.getInstance().addEnchant(pc, item, true);
 			}
 		}
 		if (item.getItem().getType2() == 2 && Config.LOGGING_ARMOR_ENCHANT != 0) {
 			if (safe_enchant == 0 || newEnchantLvl >= Config.LOGGING_ARMOR_ENCHANT) {
 				LinAllManager.getInstance().EnchantAppend(item.getName(), oldEnchantLvl, newEnchantLvl, pc.getName(), 0);
-				/** ·Î±×ÆÄÀÏÀúÀå **/
+				/** ë¡œê·¸íŒŒì¼ì €ì¥ **/
 				LoggerInstance.getInstance().addEnchant(pc, item, true);
 			}
 		}
@@ -246,17 +246,17 @@ public class Enchant extends L1ItemInstance{
 				int i2 = item.getItem().getItemId();
 				if (i2 == 20011 || i2 == 20110 || i2 == 120011
 						|| i2 == 420108 || i2 == 420109 || i2 == 420110 || i2 == 420111
-						|| i2 == 425108 || i2 == 2020011) { // ¸ÅÁ÷
-					// Çì·ë, ¸ÅÁ÷
-					// Ã¼ÀÎ ¸ŞÀÏ
+						|| i2 == 425108 || i2 == 2020011) { // ë§¤ì§
+					// í—¤ë£¸, ë§¤ì§
+					// ì²´ì¸ ë©”ì¼
 					pc.getResistance().addMr(i);
 					pc.sendPackets(new S_SPMR(pc));
 				}
-				if (i2 == 20056 || i2 == 120056 || i2 == 220056 || i2 == 20049 || i2 == 20050 || i2 == 2020056) { // ¸ÅÁ÷ Å¬·ÎÅ©
+				if (i2 == 20056 || i2 == 120056 || i2 == 220056 || i2 == 20049 || i2 == 20050 || i2 == 2020056) { // ë§¤ì§ í´ë¡œí¬
 					pc.getResistance().addMr(i * 2);
 					pc.sendPackets(new S_SPMR(pc));
 				}
-				if (i2 == 20078 || i2 == 20079|| i2 == 20402 ){//Áø¸í¸ÁÅä ÀÎÃ¦*3mr»ó½Â 0221
+				if (i2 == 20078 || i2 == 20079|| i2 == 20402 ){//ì§„ëª…ë§í†  ì¸ì±ˆ*3mrìƒìŠ¹ 0221
 					pc.getResistance().addMr(i * 3);
 					pc.sendPackets(new S_SPMR(pc));
 				}
@@ -274,21 +274,21 @@ public class Enchant extends L1ItemInstance{
 		int itemType = item.getItem().getType2();
 		String nameId = item.getName();
 		String pm = "";
-		if (itemType == 1) { // ¹«±â
+		if (itemType == 1) { // ë¬´ê¸°
 			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
-				s = nameId; // \f1%0%s °­·ÄÇÏ°Ô%1 ºû³ª´õ´Ï Áõ¹ßµÇ¾î »ç¶óÁı´Ï´Ù.
+				s = nameId; // \f1%0%s ê°•ë ¬í•˜ê²Œ%1 ë¹›ë‚˜ë”ë‹ˆ ì¦ë°œë˜ì–´ ì‚¬ë¼ì§‘ë‹ˆë‹¤.
 				sa = "$245";
 			} else {
 				if (item.getEnchantLevel() > 0) {
 					pm = "+";
 				}
 				s = (new StringBuilder()).append(pm + item.getEnchantLevel())
-				.append(" ").append(nameId).toString();  // \f1%0%s °­·ÄÇÏ°Ô%1 ºû³ª´õ´Ï Áõ¹ßµÇ¾î »ç¶óÁı´Ï´Ù.
+				.append(" ").append(nameId).toString();  // \f1%0%s ê°•ë ¬í•˜ê²Œ%1 ë¹›ë‚˜ë”ë‹ˆ ì¦ë°œë˜ì–´ ì‚¬ë¼ì§‘ë‹ˆë‹¤.
 				sa = "$245";
 			}
-		} else if (itemType == 2) { // ¹æ¾î¿ë ±â±¸
+		} else if (itemType == 2) { // ë°©ì–´ìš© ê¸°êµ¬
 			if (!item.isIdentified() || item.getEnchantLevel() == 0) {
-				s = nameId; // \f1%0%s °­·ÄÇÏ°Ô%1 ºû³ª´õ´Ï Áõ¹ßµÇ¾î »ç¶óÁı´Ï´Ù.
+				s = nameId; // \f1%0%s ê°•ë ¬í•˜ê²Œ%1 ë¹›ë‚˜ë”ë‹ˆ ì¦ë°œë˜ì–´ ì‚¬ë¼ì§‘ë‹ˆë‹¤.
 				if (item.getItem().getGrade() < 0)
 					sa = " $252";
 				else
@@ -298,7 +298,7 @@ public class Enchant extends L1ItemInstance{
 					pm = "+";
 				}
 				s = (new StringBuilder()).append(pm + item.getEnchantLevel())
-				.append(" ").append(nameId).toString(); // \f1%0%s °­·ÄÇÏ°Ô%1 ºû³ª´õ´Ï Áõ¹ßµÇ¾î »ç¶óÁı´Ï´Ù.
+				.append(" ").append(nameId).toString(); // \f1%0%s ê°•ë ¬í•˜ê²Œ%1 ë¹›ë‚˜ë”ë‹ˆ ì¦ë°œë˜ì–´ ì‚¬ë¼ì§‘ë‹ˆë‹¤.
 				if (item.getItem().getGrade() < 0)
 					sa = " $252";
 				else
@@ -328,7 +328,7 @@ public class Enchant extends L1ItemInstance{
 		pc.sendPackets(new S_ServerMessage(164, s, sa));
 		pc.getInventory().removeItem(item, item.getCount());		
 		pc.saveInventory();
-		/** ·Î±×ÆÄÀÏÀúÀå **/
+		/** ë¡œê·¸íŒŒì¼ì €ì¥ **/
 		LoggerInstance.getInstance().addEnchant(pc, item, false);
 		if (itemType == 1){
 		} else if (itemType == 2){
@@ -339,18 +339,18 @@ public class Enchant extends L1ItemInstance{
 		int j = _random.nextInt(100) + 1;
 		if (itemId == L1ItemId.B_SCROLL_OF_ENCHANT_WEAPON) {
 			if (item.getItem().get_safeenchant() == 0) {
-				if (j <= Config.¹«±â¾ÈÀü0ÀÏ¶§1¾÷) {
+				if (j <= Config.ë¬´ê¸°ì•ˆì „0ì¼ë•Œ1ì—…) {
 				    return 1;
-				} else if (j <= Config.¹«±â¾ÈÀü0ÀÏ¶§1¾÷ + Config.¹«±â¾ÈÀü0ÀÏ¶§2¾÷) {
+				} else if (j <= Config.ë¬´ê¸°ì•ˆì „0ì¼ë•Œ1ì—… + Config.ë¬´ê¸°ì•ˆì „0ì¼ë•Œ2ì—…) {
 				    return 2;
 				} else {
 				    return 3;
 				}
 			} else {
 				if (item.getEnchantLevel() <= 5) {
-					if (j <= Config.¹«±â¾ÈÀü6ÀÏ¶§1¾÷) {
+					if (j <= Config.ë¬´ê¸°ì•ˆì „6ì¼ë•Œ1ì—…) {
 					    return 1;
-					} else if (j <= Config.¹«±â¾ÈÀü6ÀÏ¶§1¾÷ + Config.¹«±â¾ÈÀü6ÀÏ¶§2¾÷) {
+					} else if (j <= Config.ë¬´ê¸°ì•ˆì „6ì¼ë•Œ1ì—… + Config.ë¬´ê¸°ì•ˆì „6ì¼ë•Œ2ì—…) {
 					    return 2;
 					} else {
 					    return 3;
@@ -362,18 +362,18 @@ public class Enchant extends L1ItemInstance{
 			}
 		} else if (itemId == L1ItemId.B_SCROLL_OF_ENCHANT_ARMOR) {
 			if (item.getItem().get_safeenchant() == 0) {
-				if (j <= Config.¹æ¾î±¸¾ÈÀü0ÀÏ¶§1¾÷) {
+				if (j <= Config.ë°©ì–´êµ¬ì•ˆì „0ì¼ë•Œ1ì—…) {
 				    return 1;
-				} else if (j <= Config.¹æ¾î±¸¾ÈÀü0ÀÏ¶§1¾÷ + Config.¹æ¾î±¸¾ÈÀü0ÀÏ¶§2¾÷) {
+				} else if (j <= Config.ë°©ì–´êµ¬ì•ˆì „0ì¼ë•Œ1ì—… + Config.ë°©ì–´êµ¬ì•ˆì „0ì¼ë•Œ2ì—…) {
 				    return 2;
 				} else {
 				    return 3;
 				}
 			} else if (item.getItem().get_safeenchant() == 4){
 				if (item.getEnchantLevel() <= 3) {
-					if (j <= Config.¹æ¾î±¸¾ÈÀü4ÀÏ¶§1¾÷) {
+					if (j <= Config.ë°©ì–´êµ¬ì•ˆì „4ì¼ë•Œ1ì—…) {
 					    return 1;
-					} else if (j <= Config.¹æ¾î±¸¾ÈÀü4ÀÏ¶§1¾÷ + Config.¹æ¾î±¸¾ÈÀü4ÀÏ¶§2¾÷) {
+					} else if (j <= Config.ë°©ì–´êµ¬ì•ˆì „4ì¼ë•Œ1ì—… + Config.ë°©ì–´êµ¬ì•ˆì „4ì¼ë•Œ2ì—…) {
 					    return 2;
 					} else {
 					    return 3;
@@ -383,9 +383,9 @@ public class Enchant extends L1ItemInstance{
 				}
 			} else if (item.getItem().get_safeenchant() == 6){
 				if (item.getEnchantLevel() <= 5) {
-					if (j <= Config.¹æ¾î±¸¾ÈÀü6ÀÏ¶§1¾÷) {
+					if (j <= Config.ë°©ì–´êµ¬ì•ˆì „6ì¼ë•Œ1ì—…) {
 					    return 1;
-					} else if (j <= Config.¹æ¾î±¸¾ÈÀü6ÀÏ¶§1¾÷ + Config.¹æ¾î±¸¾ÈÀü6ÀÏ¶§2¾÷) {
+					} else if (j <= Config.ë°©ì–´êµ¬ì•ˆì „6ì¼ë•Œ1ì—… + Config.ë°©ì–´êµ¬ì•ˆì „6ì¼ë•Œ2ì—…) {
 					    return 2;
 					} else {
 					    return 3;
@@ -426,13 +426,13 @@ public class Enchant extends L1ItemInstance{
 		int real_level = attr_level;
 		
 		if(attr_level != 0) {
-			if (item_id == L1ItemId.FIRE_ENCHANT_WEAPON_SCROLL) { // ºÒÀÇ ¹«±â °­È­ ÁÖ¹®¼­
+			if (item_id == L1ItemId.FIRE_ENCHANT_WEAPON_SCROLL) { // ë¶ˆì˜ ë¬´ê¸° ê°•í™” ì£¼ë¬¸ì„œ
 				
-			} else if (item_id == L1ItemId.WATER_ENCHANT_WEAPON_SCROLL) { // ¹°ÀÇ ¹«±â °­È­ ÁÖ¹®¼­ 6,7,8,9,10
+			} else if (item_id == L1ItemId.WATER_ENCHANT_WEAPON_SCROLL) { // ë¬¼ì˜ ë¬´ê¸° ê°•í™” ì£¼ë¬¸ì„œ 6,7,8,9,10
 				real_level -= 5;
-			} else if (item_id == L1ItemId.WIND_ENCHANT_WEAPON_SCROLL) { // ¹Ù¶÷ÀÇ ¹«±â °­È­ ÁÖ¹®¼­ 11,12,13,14,15
+			} else if (item_id == L1ItemId.WIND_ENCHANT_WEAPON_SCROLL) { // ë°”ëŒì˜ ë¬´ê¸° ê°•í™” ì£¼ë¬¸ì„œ 11,12,13,14,15
 				real_level -= 10;
-			} else if (item_id == L1ItemId.EARTH_ENCHANT_WEAPON_SCROLL) { // ¶¥ÀÇ ¹«±â °­È­ ÁÖ¹®¼­ 16,17,18,19,20
+			} else if (item_id == L1ItemId.EARTH_ENCHANT_WEAPON_SCROLL) { // ë•…ì˜ ë¬´ê¸° ê°•í™” ì£¼ë¬¸ì„œ 16,17,18,19,20
 				real_level -= 15;
 			}
 		}
@@ -440,16 +440,16 @@ public class Enchant extends L1ItemInstance{
 		AttrEnchantControl aec = AttrEnchantControlTable.getInstance().getAttrEnchantControl(item.getItem().get_safeenchant(), item.getEnchantLevel());
 		if(aec != null) {
 			if(real_level >= aec.getMaxAttrEnchant()) {
-				pc.sendPackets("´õÀÌ»ó ¼Ó¼ºÀÎÃ¦ÀÌ ºÒ°¡´ÉÇÕ´Ï´Ù. [ÇöÀç¼Ó¼ºÀÎÃ¦Á¦ÇÑ¼öÄ¡:" + aec.getMaxAttrEnchant() + "]");
+				pc.sendPackets("ë”ì´ìƒ ì†ì„±ì¸ì±ˆì´ ë¶ˆê°€ëŠ¥í•©ë‹ˆë‹¤. [í˜„ì¬ì†ì„±ì¸ì±ˆì œí•œìˆ˜ì¹˜:" + aec.getMaxAttrEnchant() + "]");
 				return;
 			}
 		} else {
-			pc.sendPackets("¾Æ¹«ÀÏµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.");
+			pc.sendPackets("ì•„ë¬´ì¼ë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
 			return;
 		}
 		
 		int chance = _random.nextInt(100) + 1;
-		if (item_id == L1ItemId.FIRE_ENCHANT_WEAPON_SCROLL) { // ºÒÀÇ ¹«±â °­È­ ÁÖ¹®¼­
+		if (item_id == L1ItemId.FIRE_ENCHANT_WEAPON_SCROLL) { // ë¶ˆì˜ ë¬´ê¸° ê°•í™” ì£¼ë¬¸ì„œ
 			if (attr_level == 0 || (attr_level >= 6)) {
 				if (chance < 30 + Config.ENCHANT_CHANCE_FIRE) {
 					pc.sendPackets(new S_ServerMessage(1410, item.getLogName()));
@@ -480,7 +480,7 @@ public class Enchant extends L1ItemInstance{
 						pc.sendPackets(new S_ServerMessage(1411, item.getLogName()));
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			} else if (attr_level == 4) {
@@ -492,14 +492,14 @@ public class Enchant extends L1ItemInstance{
 						pc.sendPackets(new S_ServerMessage(1411, item.getLogName()));
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			} else if (attr_level == 5) {
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
-		} else if (item_id == L1ItemId.WATER_ENCHANT_WEAPON_SCROLL) { // ¹°ÀÇ ¹«±â °­È­ ÁÖ¹®¼­
+		} else if (item_id == L1ItemId.WATER_ENCHANT_WEAPON_SCROLL) { // ë¬¼ì˜ ë¬´ê¸° ê°•í™” ì£¼ë¬¸ì„œ
 			if ((attr_level >= 0 && attr_level <= 5)
 					|| attr_level >= 11) {
 				if (chance < 30 + Config.ENCHANT_CHANCE_WATER) {
@@ -531,7 +531,7 @@ public class Enchant extends L1ItemInstance{
 						pc.sendPackets(new S_ServerMessage(1411, item.getLogName()));
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			} else if (attr_level == 9) {
@@ -543,14 +543,14 @@ public class Enchant extends L1ItemInstance{
 						pc.sendPackets(new S_ServerMessage(1411, item.getLogName()));
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			} else if (attr_level == 10) {
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
-		} else if (item_id == L1ItemId.WIND_ENCHANT_WEAPON_SCROLL) { // ¹Ù¶÷ÀÇ ¹«±â °­È­ ÁÖ¹®¼­
+		} else if (item_id == L1ItemId.WIND_ENCHANT_WEAPON_SCROLL) { // ë°”ëŒì˜ ë¬´ê¸° ê°•í™” ì£¼ë¬¸ì„œ
 			if ((attr_level >= 0 && attr_level <= 10)
 					|| attr_level >= 16) {
 				if (chance < 30 + Config.ENCHANT_CHANCE_WIND) {
@@ -582,7 +582,7 @@ public class Enchant extends L1ItemInstance{
 						pc.sendPackets(new S_ServerMessage(1411, item.getLogName()));
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			} else if (attr_level == 14) {
@@ -594,14 +594,14 @@ public class Enchant extends L1ItemInstance{
 						pc.sendPackets(new S_ServerMessage(1411, item.getLogName()));
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			} else if (attr_level == 15) {
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
-		} else if (item_id == L1ItemId.EARTH_ENCHANT_WEAPON_SCROLL) { // ¶¥ÀÇ ¹«±â °­È­ ÁÖ¹®¼­
+		} else if (item_id == L1ItemId.EARTH_ENCHANT_WEAPON_SCROLL) { // ë•…ì˜ ë¬´ê¸° ê°•í™” ì£¼ë¬¸ì„œ
 			if (attr_level >= 0 && attr_level <= 15) {
 				if (chance < 30 + Config.ENCHANT_CHANCE_EARTH)  {
 					pc.sendPackets(new S_ServerMessage(1410, item.getLogName()));
@@ -632,7 +632,7 @@ public class Enchant extends L1ItemInstance{
 						pc.sendPackets(new S_ServerMessage(1411, item.getLogName()));
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			} else if (attr_level == 19) {
@@ -644,11 +644,11 @@ public class Enchant extends L1ItemInstance{
 						pc.sendPackets(new S_ServerMessage(1411, item.getLogName()));
 					}
 				} else {
-					pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+					pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 					return;
 				}
 			} else if (attr_level == 20) {
-				pc.sendPackets(new S_ServerMessage(79)); // \f1 ¾Æ¹«°Íµµ ÀÏ¾î³ªÁö ¾Ê¾Ò½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(79)); // \f1 ì•„ë¬´ê²ƒë„ ì¼ì–´ë‚˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.
 				return;
 			}
 		}

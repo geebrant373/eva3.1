@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -22,7 +22,7 @@ package l1j.server.server.templates;
 public class L1PriceTemp {
 	public String itemname;
 	public int enchant;
-	public int price; //°¡°Ý
+	public int price; //ê°€ê²©
 	public int bless;
 	public String pcname;
 	public int locX;

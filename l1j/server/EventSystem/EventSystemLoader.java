@@ -1,4 +1,4 @@
-package l1j.server.EventSystem;
+﻿package l1j.server.EventSystem;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -89,7 +89,7 @@ public class EventSystemLoader {
 				continue;
 			if (info.get_event_name() == null)
 				continue;
-			pc.sendPackets(new S_SystemMessage("No." + info.get_id() + " �̺�Ʈ : " + info.get_event_name()));
+			pc.sendPackets(new S_SystemMessage("No." + info.get_id() + " 이벤트 : " + info.get_event_name()));
 		}
 	}
 	

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -580,7 +580,7 @@ public class L1PetInstance extends L1NpcInstance {
 	public void usePetWeapon(L1ItemInstance weapon) {
 		if (getWeapon() == null) {
 			setPetWeapon(weapon);
-		} else { // ÀÌ¹Ì ¹«¾ùÀÎ°¡¸¦ Àåºñ ÇÏ°í ÀÖ´Â °æ¿ì, ÀüÀÇ Àåºñ¸¦ ¶¾´Ù
+		} else { // ì´ë¯¸ ë¬´ì—‡ì¸ê°€ë¥¼ ì¥ë¹„ í•˜ê³  ìˆëŠ” ê²½ìš°, ì „ì˜ ì¥ë¹„ë¥¼ ë—€ë‹¤
 			if (getWeapon().equals(weapon)) {
 				removePetWeapon(getWeapon());
 			} else {
@@ -593,7 +593,7 @@ public class L1PetInstance extends L1NpcInstance {
 	public void usePetArmor(L1ItemInstance armor) {
 		if (getArmor() == null) {
 			setPetArmor(armor);
-		} else { // ÀÌ¹Ì ¹«¾ùÀÎ°¡¸¦ Àåºñ ÇÏ°í ÀÖ´Â °æ¿ì, ÀüÀÇ Àåºñ¸¦ ¶¾´Ù
+		} else { // ì´ë¯¸ ë¬´ì—‡ì¸ê°€ë¥¼ ì¥ë¹„ í•˜ê³  ìˆëŠ” ê²½ìš°, ì „ì˜ ì¥ë¹„ë¥¼ ë—€ë‹¤
 			if (getArmor().equals(armor)) {
 				removePetArmor(getArmor());
 			} else {

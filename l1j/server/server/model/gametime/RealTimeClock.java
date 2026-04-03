@@ -1,4 +1,4 @@
-package l1j.server.server.model.gametime;
+ï»¿package l1j.server.server.model.gametime;
 
 import java.util.Calendar;
 import java.util.List;
@@ -86,7 +86,7 @@ public class RealTimeClock {
 	}
 	
 	public Calendar getRealTimeCalendar() {
-		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+9")); // ÇÑ±¹ ½Ã°£
+		Calendar cal = Calendar.getInstance(TimeZone.getTimeZone("GMT+9")); // í•œêµ­ ì‹œê°„
 		return cal;
 	}
 }

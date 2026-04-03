@@ -1,4 +1,4 @@
-package l1j.server.server.model.skill.skills;
+﻿package l1j.server.server.model.skill.skills;
 
 import l1j.server.Config;
 import l1j.server.server.model.Broadcaster;

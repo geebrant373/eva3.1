@@ -1,4 +1,4 @@
-package l1j.server.server.TimeController;
+ï»¿package l1j.server.server.TimeController;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,25 +40,25 @@ public class AdenaBoardController implements Runnable {
 				if(board == null) {
 					continue;
 				}
-				if(board.getType() == 2) { //ÆÇ¸Å¿Ï·á ¹°Ç° Á¦¿Ü
+				if(board.getType() == 2) { //íŒë§¤ì™„ë£Œ ë¬¼í’ˆ ì œì™¸
 					continue;
 				}
 				time = board.getAdenaTime().getTimeInMillis() / 1000;
 				
 				if((Realtime - time) >= 7200) {
 					int id = getBroadAdenaTable_Id();
-					board.setId(id); //id¸¦ ÃÖ½ÅÀ¸·Î º¯°æ
+					board.setId(id); //idë¥¼ ìµœì‹ ìœ¼ë¡œ ë³€ê²½
 					Calendar cal = Calendar.getInstance();
 					cal.setTimeInMillis(System.currentTimeMillis());
 					board.setAdenaTime(cal);
-					//Á¤º¸ ¾÷µ¥ÀÌÆ®
+					//ì •ë³´ ì—…ë°ì´íŠ¸
 					BoardAdenaTable.getInstance().updateBoardAdena(board);
 					
 					L1PcInstance target = L1World.getInstance().getPlayer(board.getChaName());
 					if(target != null) {
 						target.sendPackets(new S_SkillSound(target.getId(), 1091));
-						target.sendPackets(new S_SystemMessage("¹°Ç°¹øÈ£[" + board.getTradeNumber() + "] 2½Ã°£ÀÌ Áö³ª Àçµî·ÏµÇ¾ú½À´Ï´Ù."));
-//						target.sendPackets(new S_ServerMessage(428)); // ÆíÁö°¡ µµÂøÇß½À´Ï´Ù.
+						target.sendPackets(new S_SystemMessage("ë¬¼í’ˆë²ˆí˜¸[" + board.getTradeNumber() + "] 2ì‹œê°„ì´ ì§€ë‚˜ ì¬ë“±ë¡ë˜ì—ˆìŠµë‹ˆë‹¤."));
+//						target.sendPackets(new S_ServerMessage(428)); // í¸ì§€ê°€ ë„ì°©í–ˆìŠµë‹ˆë‹¤.
 //						target.sendPackets(new S_LetterList(target, 0 ,40));
 					}
 				}
@@ -70,7 +70,7 @@ public class AdenaBoardController implements Runnable {
 	}
 
 	/**
-	 * ÆíÁö¿¡ »ç¿ëÇÒ ½Ã°£ Æ÷¸ä
+	 * í¸ì§€ì— ì‚¬ìš©í•  ì‹œê°„ í¬ë©§
 	 */
 	private String getLetterTime() {
 		int time = 0;
@@ -85,7 +85,7 @@ public class AdenaBoardController implements Runnable {
 	}
 	
 	/**
-	 * Å×ÀÌºí¿¡ µî·ÏµÉ id¸¦ ¹Ş¾Æ¿Â´Ù.
+	 * í…Œì´ë¸”ì— ë“±ë¡ë  idë¥¼ ë°›ì•„ì˜¨ë‹¤.
 	 */
 	private int getBroadAdenaTable_Id() {
 		int id = 0;

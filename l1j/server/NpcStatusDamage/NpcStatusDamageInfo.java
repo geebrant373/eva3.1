@@ -1,4 +1,4 @@
-package l1j.server.NpcStatusDamage;
+﻿package l1j.server.NpcStatusDamage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -31,7 +31,7 @@ public class S_Sound extends ServerBasePacket {
 	private byte[] _byte = null;
 
 	/**
-	 * È¿°úÀ½À» ¿ï¸°´Ù(sound Æú´õÀÇ wav ÆÄÀÏ).
+	 * íš¨ê³¼ìŒì„ ìš¸ë¦°ë‹¤(sound í´ë”ì˜ wav íŒŒì¼).
 	 * @param sound
 	 */
 	public S_Sound(int sound) {

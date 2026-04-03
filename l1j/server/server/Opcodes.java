@@ -1,12 +1,12 @@
-/**
+ï»¿/**
  * 
  * 					Eva Team - http://eva.pe.kr 
  * 				    
- * 					Member	- »ş»ş (Shax2)				 	 
- * 							- ÄÚµå (Shyeon0111)
- * 							- ¹Ã¹ı»ç (Cr7016)
- * 							- ¶Ë°³ (Zinasura)
- * 							- ¸¶½ºÅÍ (Babuboss)
+ * 					Member	- ìƒ¤ìƒ¤ (Shax2)				 	 
+ * 							- ì½”ë“œ (Shyeon0111)
+ * 							- ë®¨ë²•ì‚¬ (Cr7016)
+ * 							- ë˜¥ê°œ (Zinasura)
+ * 							- ë§ˆìŠ¤í„° (Babuboss)
  * 
  */
 
@@ -246,22 +246,22 @@ public class Opcodes {
 	public static final int S_OPCODE_PUTBOWSOLDIERLIST = 125;//
 	public static final int S_OPCODE_WARTIME = 126;//
 	public static final int S_OPCODE_ITEMNAME = 127;//
-	public static final int S_EXTENDED_PROTOBUF = 0xB4;	// Á¾ÇÕ ÆĞÅ¶
-	/** Server Packet ¾È¾²´Â °Íµé **/
-	public static final int S_OPCODE_HORUN = 0x1003; // È£·±
-	public static final int S_OPCODE_DRAGONPERL = 86; // µå·¡°ïÁøÁÖ
-	public static final int S_OPCODE_PETGUI = 0x1008; // v ½ºÅİ ÃÊ±âÈ­ ±æÀÌ
-	public static final int S_OPCODE_REFRESH_CLAN = 0x1009; // Ç÷¿ø¼ö º¯µ¿ÀÌ ÀÖÀ»¶§ ¿À´Â ÆĞÅ¶
-	public static final int S_OPCODE_SOLDIERGIVE = 82; // ¼±ÅÃÇÑ ¿ëº´ ÁÖ±â
-	public static final int S_OPCODE_SOLDIERBUYLIST = 97; // ¼º ¿ëº´ ±¸ÀÔ ¸®½ºÆ®Ã¢
-	public static final int S_OPCODE_SOLDIERGIVELIST = 97; // ¿ëº´ ÁÖ´Â ¼±ÅÃ ¸®½ºÆ® °í¿ëÇÑ ¿ëº´À» ¹èÄ¡
+	public static final int S_EXTENDED_PROTOBUF = 0xB4;	// ì¢…í•© íŒ¨í‚·
+	/** Server Packet ì•ˆì“°ëŠ” ê²ƒë“¤ **/
+	public static final int S_OPCODE_HORUN = 0x1003; // í˜¸ëŸ°
+	public static final int S_OPCODE_DRAGONPERL = 86; // ë“œë˜ê³¤ì§„ì£¼
+	public static final int S_OPCODE_PETGUI = 0x1008; // v ìŠ¤í…Ÿ ì´ˆê¸°í™” ê¸¸ì´
+	public static final int S_OPCODE_REFRESH_CLAN = 0x1009; // í˜ˆì›ìˆ˜ ë³€ë™ì´ ìˆì„ë•Œ ì˜¤ëŠ” íŒ¨í‚·
+	public static final int S_OPCODE_SOLDIERGIVE = 82; // ì„ íƒí•œ ìš©ë³‘ ì£¼ê¸°
+	public static final int S_OPCODE_SOLDIERBUYLIST = 97; // ì„± ìš©ë³‘ êµ¬ì… ë¦¬ìŠ¤íŠ¸ì°½
+	public static final int S_OPCODE_SOLDIERGIVELIST = 97; // ìš©ë³‘ ì£¼ëŠ” ì„ íƒ ë¦¬ìŠ¤íŠ¸ ê³ ìš©í•œ ìš©ë³‘ì„ ë°°ì¹˜
 	public static final int S_OPCODE_SHORTOFMATERIAL = 0x1010;
-	public static final int S_OPCODE_ALLIANCECHAT = 0x1000; // µ¿¸ÍÃ¤ÆÃ
-	public static final int S_OPCODE_HOTELENTER = 0x1002; // ¿£ÇÇ¾¾·Î ¿©°ü ÁøÀÔ½Ã>>
-	public static final int C_OPCODE_HORUNOK = 0x1012; // È£·± ¸¶¹ı¹è¿ì±â
-	public static final int C_OPCODE_WARTIMESET = 0x1016; // °ø¼º½Ã°£ ÁöÁ¤
-	public static final int C_OPCODE_HORUN = 0x1019; // È£·± Å¬¸¯
-	public static final int C_OPCODE_HOTEL_ENTER = 0x1021; // ¿£ÇÇ¾¾·Î ¿©°ü ÁøÀÔ½Ã
+	public static final int S_OPCODE_ALLIANCECHAT = 0x1000; // ë™ë§¹ì±„íŒ…
+	public static final int S_OPCODE_HOTELENTER = 0x1002; // ì—”í”¼ì”¨ë¡œ ì—¬ê´€ ì§„ì…ì‹œ>>
+	public static final int C_OPCODE_HORUNOK = 0x1012; // í˜¸ëŸ° ë§ˆë²•ë°°ìš°ê¸°
+	public static final int C_OPCODE_WARTIMESET = 0x1016; // ê³µì„±ì‹œê°„ ì§€ì •
+	public static final int C_OPCODE_HORUN = 0x1019; // í˜¸ëŸ° í´ë¦­
+	public static final int C_OPCODE_HOTEL_ENTER = 0x1021; // ì—”í”¼ì”¨ë¡œ ì—¬ê´€ ì§„ì…ì‹œ
 		/** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * **/
 			
 }

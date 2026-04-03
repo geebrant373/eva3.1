@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,7 +47,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 	public L1GuardianInstance(L1Npc template) {
 		super(template);
 		synchronized (this) {
-			if (getNpcTemplate().get_npcId() == 70848 || getNpcTemplate().get_npcId() == 70850) { // ¿£Æ®
+			if (getNpcTemplate().get_npcId() == 70848 || getNpcTemplate().get_npcId() == 70850) { // ì—”íŠ¸
 				_restoreguardian = new ReStoreMonitor();
 				_restTimer.schedule(_restoreguardian, RESTORE_MILLISEC, RESTORE_MILLISEC);
 			}
@@ -64,10 +64,10 @@ public class L1GuardianInstance extends L1NpcInstance {
 					|| pc.isGhost()) {
 				continue;
 			}
-			if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) { // ÀÎºñÁöÃ¼Å©
-				if (!pc.isElf()) { // ¿äÁ¤ÀÌ¾Æ´Ï¸é
+			if (!pc.isInvisble() || getNpcTemplate().is_agrocoi()) { // ì¸ë¹„ì§€ì²´í¬
+				if (!pc.isElf()) { // ìš”ì •ì´ì•„ë‹ˆë©´
 					targetPlayer = pc;
-					Broadcaster.wideBroadcastPacket(this, new S_NpcChatPacket(this, "$804", 1)); // ±×´ë¿©. ¸ñ¼ûÀÌ ¾Æ±î¿ì¸é »¡¸® ÀÌ°÷À» ¶°³¯Áö¾î´Ù. ÀÌ°÷Àº ±×´ë°°Àº ÀÚ°¡ ´õ·´È÷Áö ¸øÇÒ ½Å¼ºÇÑ °÷ÀÌ´Ù.
+					Broadcaster.wideBroadcastPacket(this, new S_NpcChatPacket(this, "$804", 1)); // ê·¸ëŒ€ì—¬. ëª©ìˆ¨ì´ ì•„ê¹Œìš°ë©´ ë¹¨ë¦¬ ì´ê³³ì„ ë– ë‚ ì§€ì–´ë‹¤. ì´ê³³ì€ ê·¸ëŒ€ê°™ì€ ìê°€ ë”ëŸ½íˆì§€ ëª»í•  ì‹ ì„±í•œ ê³³ì´ë‹¤.
 					break;
 				}
 			}
@@ -78,10 +78,10 @@ public class L1GuardianInstance extends L1NpcInstance {
 		}
 	}
 
-	// ¸µÅ©ÀÇ ¼³Á¤
+	// ë§í¬ì˜ ì„¤ì •
 	@Override
 	public void setLink(L1Character cha) {
-		if (cha != null && _hateList.isEmpty()) { // Å¸°ÙÀÌ ¾ø´Â °æ¿ì¸¸ Ãß°¡
+		if (cha != null && _hateList.isEmpty()) { // íƒ€ê²Ÿì´ ì—†ëŠ” ê²½ìš°ë§Œ ì¶”ê°€
 			_hateList.add(cha, 0);
 			checkTarget();
 		}
@@ -103,51 +103,51 @@ public class L1GuardianInstance extends L1NpcInstance {
 
 			if (attack.calcHit() && attack.calcDamage() <= 15 
 					&& (player.getGfxId().getTempCharGfx() == 37 || player.getGfxId().getTempCharGfx() == 138)) {
-				if (getNpcTemplate().get_npcId() == 70848) { // ¿£Æ®
+				if (getNpcTemplate().get_npcId() == 70848) { // ì—”íŠ¸
 					int chance = _random.nextInt(100) + 1;
-					if(getInventory().checkItem(40499)){	//¹öÆ÷->²®Áú
+					if(getInventory().checkItem(40499)){	//ë²„í¬->ê»ì§ˆ
 						player.sendPackets(new S_ServerMessage(143, "$755",
-								"$770" + " (" + getInventory().findItemId(40499).getCount() + ")")); // \f1%0ÀÌ%1¸¦ ÁÖ¾ú½À´Ï´Ù
-						player.getInventory().storeItem(40505, getInventory().findItemId(40499).getCount()); //¹ö¼¸Æ÷ÀÚ
+								"$770" + " (" + getInventory().findItemId(40499).getCount() + ")")); // \f1%0ì´%1ë¥¼ ì£¼ì—ˆìŠµë‹ˆë‹¤
+						player.getInventory().storeItem(40505, getInventory().findItemId(40499).getCount()); //ë²„ì„¯í¬ì
 						getInventory().consumeItem(40499, getInventory().findItemId(40499).getCount());
 					}else{
-						if(getInventory().checkItem(40507, 6)){	//	¿£Æ®ÁÙ±â
+						if(getInventory().checkItem(40507, 6)){	//	ì—”íŠ¸ì¤„ê¸°
 							if (chance <= 20){
 								player.getInventory().storeItem(40507, 6);
 								getInventory().consumeItem(40507, 6);
-								player.sendPackets(new S_ServerMessage(143, "$755", "$763" + " (" + 6 + ")")); // \f1%0ÀÌ%1¸¦ ÁÖ¾ú½À´Ï´Ù.
+								player.sendPackets(new S_ServerMessage(143, "$755", "$763" + " (" + 6 + ")")); // \f1%0ì´%1ë¥¼ ì£¼ì—ˆìŠµë‹ˆë‹¤.
 							}
 						}else{							
 							if(getInventory().checkItem(40506, 1)){
 								if (chance <= 10){
 									getInventory().consumeItem(40506, 1);
-									// 	1°³¸¦ Áà¾ß ÇÏÁö¸¸ ÀÏ´Ü ÆíÀÇ»ó 5°³·Î..
+									// 	1ê°œë¥¼ ì¤˜ì•¼ í•˜ì§€ë§Œ ì¼ë‹¨ í¸ì˜ìƒ 5ê°œë¡œ..
 									player.getInventory().storeItem(40506, 5);
-									player.sendPackets(new S_ServerMessage(143, "$755", "$794")); // \f1%0ÀÌ%1¸¦ ÁÖ¾ú½À´Ï´Ù.
+									player.sendPackets(new S_ServerMessage(143, "$755", "$794")); // \f1%0ì´%1ë¥¼ ì£¼ì—ˆìŠµë‹ˆë‹¤.
 								}
 							}else{
-								if (chance <= 40) Broadcaster.broadcastPacket(this, new S_NpcChatPacket(this, "$822", 0)); // ...Áö±İ. °¡Áö. ²®Áú. ¾ø´Ù. ³ªÁß¿¡. ´Ù½Ã. ¿Í¶ó.							
+								if (chance <= 40) Broadcaster.broadcastPacket(this, new S_NpcChatPacket(this, "$822", 0)); // ...ì§€ê¸ˆ. ê°€ì§€. ê»ì§ˆ. ì—†ë‹¤. ë‚˜ì¤‘ì—. ë‹¤ì‹œ. ì™€ë¼.							
 							}
 						}
 					}
 				}
-				if (getNpcTemplate().get_npcId() == 70850) { // ÆÇ
+				if (getNpcTemplate().get_npcId() == 70850) { // íŒ
 					int chance = _random.nextInt(100) + 1;
 					if(getInventory().checkItem(40519, 5)){
 						if (chance <= 20) {
 							getInventory().consumeItem(40519, 5);
 							player.getInventory().storeItem(40519, 5);
-							player.sendPackets(new S_ServerMessage(143, "$753", "$760" + " (" + 5 + ")")); // \f1%0ÀÌ%1¸¦ ÁÖ¾ú½À´Ï´Ù.
+							player.sendPackets(new S_ServerMessage(143, "$753", "$760" + " (" + 5 + ")")); // \f1%0ì´%1ë¥¼ ì£¼ì—ˆìŠµë‹ˆë‹¤.
 						}
 					}else{
-						if (chance <= 40) Broadcaster.broadcastPacket(this, new S_NpcChatPacket(this, "$824", 0)); // °¥±âÅĞÀÌ ³²¾Æ³ªÁú ¾Ê°Ú´Ù! Á» ÀÖ´ÙÇØ!						
+						if (chance <= 40) Broadcaster.broadcastPacket(this, new S_NpcChatPacket(this, "$824", 0)); // ê°ˆê¸°í„¸ì´ ë‚¨ì•„ë‚˜ì§ˆ ì•Šê² ë‹¤! ì¢€ ìˆë‹¤í•´!						
 					}
 				}
-				if (getNpcTemplate().get_npcId() == 70846) {  //¾Æ¶óÅ©³×					
+				if (getNpcTemplate().get_npcId() == 70846) {  //ì•„ë¼í¬ë„¤					
 					if(getInventory().checkItem(40507, 2)){						
 						getInventory().consumeItem(40507, 2);
 						player.getInventory().storeItem(40503, 1);
-						player.sendPackets(new S_ServerMessage(143, "$752",	"$769")); // \f1%0ÀÌ%1¸¦ ÁÖ¾ú½À´Ï´Ù.						
+						player.sendPackets(new S_ServerMessage(143, "$752",	"$769")); // \f1%0ì´%1ë¥¼ ì£¼ì—ˆìŠµë‹ˆë‹¤.						
 					}
 
 				}
@@ -177,10 +177,10 @@ public class L1GuardianInstance extends L1NpcInstance {
 		String[] htmldata = null;
 
 		if (talking != null) {
-			int pcx = player.getX(); // PCÀÇ XÁÂÇ¥
-			int pcy = player.getY(); // PCÀÇ YÁÂÇ¥
-			int npcx = target.getX(); // NPCÀÇ XÁÂÇ¥
-			int npcy = target.getY(); // NPCÀÇ YÁÂÇ¥
+			int pcx = player.getX(); // PCì˜ Xì¢Œí‘œ
+			int pcy = player.getY(); // PCì˜ Yì¢Œí‘œ
+			int npcx = target.getX(); // NPCì˜ Xì¢Œí‘œ
+			int npcy = target.getY(); // NPCì˜ Yì¢Œí‘œ
 
 			int heading = 0;
 			if (pcx == npcx && pcy < npcy) 			heading = 0;
@@ -343,7 +343,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 	public class ReStoreMonitor extends TimerTask {
 		@Override
 		public void run() {
-			if (getNpcTemplate().get_npcId() == 70848) { // ¿£Æ®
+			if (getNpcTemplate().get_npcId() == 70848) { // ì—”íŠ¸
 				if(!getInventory().checkItem(40506, 1)){
 					getInventory().storeItem(40506, 1);
 				}
@@ -351,7 +351,7 @@ public class L1GuardianInstance extends L1NpcInstance {
 					getInventory().storeItem(40507, 1);
 				}
 			}
-			if (getNpcTemplate().get_npcId() == 70850) { // ÆÇ
+			if (getNpcTemplate().get_npcId() == 70850) { // íŒ
 				if (!getInventory().checkItem(40519, 60)){
 					getInventory().storeItem(40519, 1);
 				}

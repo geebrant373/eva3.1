@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -41,7 +41,7 @@ public class L1Speed implements L1CommandExecutor {
 			L1BuffUtil.haste(pc, 3600 * 1000);
 			L1BuffUtil.brave(pc, 3600 * 1000);
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage(".¼Óµµ¾÷ Ä¿¸àµå ¿¡·¯"));
+			pc.sendPackets(new S_SystemMessage(".ì†ë„ì—… ì»¤ë©˜ë“œ ì—ëŸ¬"));
 		}
 	}
 }

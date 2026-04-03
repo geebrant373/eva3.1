@@ -1,6 +1,6 @@
-//******************************************************************************
+ï»¿//******************************************************************************
 // File Name	: L1Node.java
-// Description	: ³ëµå Å¬·¡½º
+// Description	: ë…¸ë“œ í´ë˜ìŠ¤
 // Create		: 2003/04/01 JongHa Woo
 // Update		: 2008/03/17 SiraSoni
 //******************************************************************************
@@ -8,16 +8,16 @@ package l1j.server.server.model;
 
 public class L1Node {
 	public int f;				// f = g+h
-	public int h;				// ÈŞ¸®½ºÆ½ °ª
-	public int g;				// ÇöÀç±îÁöÀÇ °Å¸®
-	public int x, y;			// ³ëµåÀÇ À§Ä¡
-	public L1Node prev;			// ÀÌÀü ³ëµå
-	public L1Node	direct[];	// ÀÎÁ¢ÇÑ ³ëµå
-	public L1Node	next;		// ´ÙÀ½ ³ëµå
+	public int h;				// íœ´ë¦¬ìŠ¤í‹± ê°’
+	public int g;				// í˜„ì¬ê¹Œì§€ì˜ ê±°ë¦¬
+	public int x, y;			// ë…¸ë“œì˜ ìœ„ì¹˜
+	public L1Node prev;			// ì´ì „ ë…¸ë“œ
+	public L1Node	direct[];	// ì¸ì ‘í•œ ë…¸ë“œ
+	public L1Node	next;		// ë‹¤ìŒ ë…¸ë“œ
 	
 	//*************************************************************************
 	// Name : L1Node()
-	// Desc : »ı¼ºÀÚ
+	// Desc : ìƒì„±ì
 	//*************************************************************************
 	public L1Node() {
 		direct = new L1Node[8];

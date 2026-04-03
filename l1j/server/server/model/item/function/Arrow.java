@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -39,7 +39,7 @@ public class Arrow extends L1ItemInstance{
 			L1PcInstance pc = (L1PcInstance)cha;
 			L1ItemInstance useItem = pc.getInventory().getItem(this.getId());
 			pc.getInventory().setArrow(useItem.getItem().getItemId());
-			pc.sendPackets(new S_ServerMessage(452, useItem.getLogName())); // %0°¡ ¼±ÅÃµÇ¾ú½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(452, useItem.getLogName())); // %0ê°€ ì„ íƒë˜ì—ˆìŠµë‹ˆë‹¤.
 		}
 	}
 }

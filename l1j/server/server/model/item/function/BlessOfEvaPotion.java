@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -49,20 +49,20 @@ public class BlessOfEvaPotion extends L1ItemInstance{
 	}
 	
 	private void useBlessOfEva(L1PcInstance pc, int item_id) {
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(71) == true) { // µğÄÉÀÌÆ÷¼Ç »óÅÂ
-			pc.sendPackets(new S_ServerMessage(698)); // \f1¸¶·Â¿¡ ÀÇÇØ ¾Æ¹«°Íµµ ¸¶½Ç ¼ö°¡ ¾ø½À´Ï´Ù.
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(71) == true) { // ë””ì¼€ì´í¬ì…˜ ìƒíƒœ
+			pc.sendPackets(new S_ServerMessage(698)); // \f1ë§ˆë ¥ì— ì˜í•´ ì•„ë¬´ê²ƒë„ ë§ˆì‹¤ ìˆ˜ê°€ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 
-		// ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÀÇ ÇØÁ¦
+		// ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì˜ í•´ì œ
 		pc.cancelAbsoluteBarrier();
 
 		int time = 0;
-		if (item_id == 40032) { // ¿¡¹ÙÀÇ Ãàº¹
+		if (item_id == 40032) { // ì—ë°”ì˜ ì¶•ë³µ
 			time = 1800;
-		} else if (item_id == 40041) { // mermaidÀÇ ºñ´Ã
+		} else if (item_id == 40041) { // mermaidì˜ ë¹„ëŠ˜
 			time = 300;
-		} else if (item_id == 41344) { // ¹°ÀÇ Á¤¼ö
+		} else if (item_id == 41344) { // ë¬¼ì˜ ì •ìˆ˜
 			time = 2100;
 		} else {
 			return;

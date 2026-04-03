@@ -1,4 +1,4 @@
-package l1j.server.server.model.trap;
+﻿package l1j.server.server.model.trap;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

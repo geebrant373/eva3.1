@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -53,7 +53,7 @@ public class FurnitureItem extends L1ItemInstance{
 			L1PcInstance pc = (L1PcInstance)cha;
 			L1ItemInstance useItem = pc.getInventory().getItem(this.getId());
 			int itemId = this.getItemId();
-			if (itemId >= 41383 && itemId <= 41400) { // °¡±¸
+			if (itemId >= 41383 && itemId <= 41400) { // ê°€êµ¬
 				useFurnitureItem(pc, itemId, this.getId());
 			} else if (itemId == 41401) { 
 				useFurnitureRemovalWand(pc, packet.readD(), useItem);
@@ -65,7 +65,7 @@ public class FurnitureItem extends L1ItemInstance{
 
 	private void useFurnitureItem(L1PcInstance pc, int itemId, int itemObjectId) {
 		if (!L1HouseLocation.isInHouse(pc.getX(), pc.getY(), pc.getMapId())) {
-			pc.sendPackets(new S_ServerMessage(563)); // \f1 ¿©±â¿¡¼­´Â »ç¿ëÇÒ ¼ö ¾ø½À´Ï´Ù.
+			pc.sendPackets(new S_ServerMessage(563)); // \f1 ì—¬ê¸°ì—ì„œëŠ” ì‚¬ìš©í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			return;
 		}
 
@@ -75,7 +75,7 @@ public class FurnitureItem extends L1ItemInstance{
 		for (L1Object l1object : L1World.getInstance().getObject()) {
 			if(l1object instanceof L1FurnitureInstance){
 				furniture = (L1FurnitureInstance)l1object;
-				if (furniture.getItemObjId() == itemObjectId) { // ÀÌ¹Ì ²¨³»°í ÀÖ´Â °¡±¸
+				if (furniture.getItemObjId() == itemObjectId) { // ì´ë¯¸ êº¼ë‚´ê³  ìžˆëŠ” ê°€êµ¬
 					isAppear = false;
 					break;
 				}	

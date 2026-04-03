@@ -1,4 +1,4 @@
-/* This program is free software; you can redistribute it and/or modify
+ï»¿/* This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import l1j.server.Config;
 import l1j.server.L1DatabaseFactory;
 
-//import java.util.Random; // ½Ã°£ÀÇ ±Õ¿­ - Æ¼Ä®¿ë ÁÖ¼®
+//import java.util.Random; // ì‹œê°„ì˜ ê· ì—´ - í‹°ì¹¼ìš© ì£¼ì„
 
 import l1j.server.GameSystem.CrockSystem;
 import l1j.server.GameSystem.PetRacing;
@@ -63,7 +63,7 @@ public class C_MoveChar extends ClientBasePacket {
 	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };	
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
-	// ÀÌµ¿
+	// ì´ë™
 	public C_MoveChar(byte decrypt[], LineageClient client) throws Exception {
 		super(decrypt);
 		int locx = readH();
@@ -73,12 +73,12 @@ public class C_MoveChar extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 		if (pc == null) return;
 		if (pc.isTeleport()) { return; }
-		/** ¶Õ¾î¹ö±× */
+		/** ëš«ì–´ë²„ê·¸ */
 		if (!pc.getMap().ismPassable(locx, locy, heading)){
 			ck = true;
 		}
 		
-		// ÀÌºÎºĞ Ãß°¡ ¿µÀÚ ¶Õ¾î ¾ÈµÇ¸é »èÁ¦ - Åõ¸í»óÅÂÀÏ¶§¸¸220303 ¹«ºù
+		// ì´ë¶€ë¶„ ì¶”ê°€ ì˜ì ëš«ì–´ ì•ˆë˜ë©´ ì‚­ì œ - íˆ¬ëª…ìƒíƒœì¼ë•Œë§Œ220303 ë¬´ë¹™
 //		ArrayList<L1Object> allList = L1World.getInstance().getVisibleObjects(pc, 5);
 //		L1Object[] objs = allList.toArray(new L1Object[allList.size()]);
 //		for(int i = 0; i < objs.length; i++){
@@ -102,56 +102,56 @@ public class C_MoveChar extends ClientBasePacket {
 		pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.MEDITATION);
 		pc.setCallClanId(0);
 
-		if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ABSOLUTE_BARRIER)) { // ¾Æºê¼Ò¸£Æ®¹Ù¸®¾ÆÁßÀº ¾Æ´Ï´Ù
+		if (!pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.ABSOLUTE_BARRIER)) { // ì•„ë¸Œì†Œë¥´íŠ¸ë°”ë¦¬ì•„ì¤‘ì€ ì•„ë‹ˆë‹¤
 			pc.setRegenState(REGENSTATE_MOVE);
 		}
 		
-		/** ¹èÆ²Á¸ **/
+		/** ë°°í‹€ì¡´ **/
 		if (pc.getMapId() == 5153) {
 			if (pc.get_DuelLine() == 0 && !pc.isGm()) {
 				L1Teleport.teleport(pc, 33419, 32810, (short) 4, 5, true);
 			}
 		}
 		if (pc.getMapId() == 13 || pc.getMapId() == 36) {
-			if (pc.getAccount().getDragonGludioTime() >= Config.¿ë´øº»´ø½Ã°£) {
+			if (pc.getAccount().getDragonGludioTime() >= Config.ìš©ë˜ë³¸ë˜ì‹œê°„) {
 				L1Teleport.teleport(pc, 33432, 32817, (short) 4, 5, true);
 				pc.getAccount().updateDragonGludio();
-				pc.getAccount().setDragonGludioTime(Config.¿ë´øº»´ø½Ã°£);
+				pc.getAccount().setDragonGludioTime(Config.ìš©ë˜ë³¸ë˜ì‹œê°„);
 			}
 		}
 		if (pc.getMapId() == 49 || pc.getMapId() == 50 || pc.getMapId() == 51) {
-			if (pc.getAccount().getAntDundeonTime() >= Config.°³¹Ì´øÀü½Ã°£) {
+			if (pc.getAccount().getAntDundeonTime() >= Config.ê°œë¯¸ë˜ì „ì‹œê°„) {
 				L1Teleport.teleport(pc, 33432, 32817, (short) 4, 5, true);
 				pc.getAccount().updateAntDundeon();
-				pc.getAccount().setAntDundeonTime(Config.°³¹Ì´øÀü½Ã°£);
+				pc.getAccount().setAntDundeonTime(Config.ê°œë¯¸ë˜ì „ì‹œê°„);
 			}
 		}
 		if (pc.getMapId() == 522 || pc.getMapId() == 523 || pc.getMapId() == 524) {
-			if (pc.getAccount().getShadowTempleTime() >= Config.±×¸²ÀÚ½ÅÀü½Ã°£) {
+			if (pc.getAccount().getShadowTempleTime() >= Config.ê·¸ë¦¼ìì‹ ì „ì‹œê°„) {
 				L1Teleport.teleport(pc, 33432, 32817, (short) 4, 5, true);
 				pc.getAccount().updateShadowTemple();
-				pc.getAccount().setShadowTempleTime(Config.±×¸²ÀÚ½ÅÀü½Ã°£);
+				pc.getAccount().setShadowTempleTime(Config.ê·¸ë¦¼ìì‹ ì „ì‹œê°„);
 			}
 		}
 		if (pc.getMapId() == 53 || pc.getMapId() == 54) {
-			if (pc.getAccount().getGiranPrisonTime() >= Config.±â°¨½Ã°£) {
+			if (pc.getAccount().getGiranPrisonTime() >= Config.ê¸°ê°ì‹œê°„) {
 				L1Teleport.teleport(pc, 33432, 32817, (short) 4, 5, true);
 				pc.getAccount().updateGiranPrison();
-				pc.getAccount().setGiranPrisonTime(Config.±â°¨½Ã°£);
+				pc.getAccount().setGiranPrisonTime(Config.ê¸°ê°ì‹œê°„);
 			}
 		}
 		if (pc.getMapId() == 303) {
-			if (pc.getAccount().getDreamIslandTime() >= Config.¸ù¼¶½Ã°£) {
+			if (pc.getAccount().getDreamIslandTime() >= Config.ëª½ì„¬ì‹œê°„) {
 				L1Teleport.teleport(pc, 33432, 32817, (short) 4, 5, true);
 				pc.getAccount().updateDreamIsland();
-				pc.getAccount().setDreamIslandTime(Config.±â°¨½Ã°£);
+				pc.getAccount().setDreamIslandTime(Config.ê¸°ê°ì‹œê°„);
 			}
 		}
 		if (pc.getMapId() >= 530 && pc.getMapId() <= 533) {
-			if (pc.getAccount().getLastabardTime() >= Config.¶ó´ø½Ã°£) {
+			if (pc.getAccount().getLastabardTime() >= Config.ë¼ë˜ì‹œê°„) {
 				L1Teleport.teleport(pc, 33432, 32817, (short) 4, 5, true);
 				pc.getAccount().updateLastabard();
-				pc.getAccount().setLastabardTime(Config.±â°¨½Ã°£);
+				pc.getAccount().setLastabardTime(Config.ê¸°ê°ì‹œê°„);
 			}
 		}
 		//safeUpdate("giranprison");
@@ -171,7 +171,7 @@ public class C_MoveChar extends ClientBasePacket {
 				if (result == AcceleratorChecker.R_DISCONNECTED) {				
 					L1Teleport.teleport(pc, pc.getX(), pc.getY(), pc.getMapId(), pc.getMoveState().getHeading(), false);
 					//pc.getMoveState().setHeading(heading);
-					//pc.sendPackets(new S_PacketBox(S_PacketBox.À¯Àú»ª½ºÅÇ, pc));
+					//pc.sendPackets(new S_PacketBox(S_PacketBox.ìœ ì €ë¹½ìŠ¤íƒ­, pc));
 					//Broadcaster.broadcastPacket(pc, new S_ChangeHeading(pc));
 					return;
 				}
@@ -181,11 +181,11 @@ public class C_MoveChar extends ClientBasePacket {
 		locx += HEADING_TABLE_X[heading];
 		locy += HEADING_TABLE_Y[heading];
 
-		if (Dungeon.getInstance().dg(locx, locy, pc.getMap().getId(), pc)) { // ÁöÇÏ °¨¿Á¿¡ ÅÚ·¹Æ÷Æ® ÇßÀ» °æ¿ì
+		if (Dungeon.getInstance().dg(locx, locy, pc.getMap().getId(), pc)) { // ì§€í•˜ ê°ì˜¥ì— í…”ë ˆí¬íŠ¸ í–ˆì„ ê²½ìš°
 			return;
 		}		  
 
-		if (DungeonRandom.getInstance().dg(locx, locy, pc.getMap().getId(),	pc)) { // ÅÚ·¹Æ÷Æ®Ã³°¡ ·£´ıÀÎ ÅÚ·¹Æ÷Æ® ÁöÁ¡
+		if (DungeonRandom.getInstance().dg(locx, locy, pc.getMap().getId(),	pc)) { // í…”ë ˆí¬íŠ¸ì²˜ê°€ ëœë¤ì¸ í…”ë ˆí¬íŠ¸ ì§€ì 
 			return;
 		}
 		if (ck){
@@ -193,16 +193,16 @@ public class C_MoveChar extends ClientBasePacket {
 			return;
 		}
 		BuffInfo[] buffList = { 
-				new BuffInfo(101, L1SkillId.¿À¸¸Áö¹è1Ãş¹öÇÁ), new BuffInfo(102, L1SkillId.¿À¸¸Áö¹è2Ãş¹öÇÁ),
-				new BuffInfo(103, L1SkillId.¿À¸¸Áö¹è3Ãş¹öÇÁ), new BuffInfo(104, L1SkillId.¿À¸¸Áö¹è4Ãş¹öÇÁ),
-				new BuffInfo(105, L1SkillId.¿À¸¸Áö¹è5Ãş¹öÇÁ), new BuffInfo(106, L1SkillId.¿À¸¸Áö¹è6Ãş¹öÇÁ),
-				new BuffInfo(107, L1SkillId.¿À¸¸Áö¹è7Ãş¹öÇÁ), new BuffInfo(108, L1SkillId.¿À¸¸Áö¹è8Ãş¹öÇÁ),
-				new BuffInfo(109, L1SkillId.¿À¸¸Áö¹è9Ãş¹öÇÁ), new BuffInfo(111, L1SkillId.¿À¸¸Áö¹èÁ¤»óÃş¹öÇÁ) };
+				new BuffInfo(101, L1SkillId.ì˜¤ë§Œì§€ë°°1ì¸µë²„í”„), new BuffInfo(102, L1SkillId.ì˜¤ë§Œì§€ë°°2ì¸µë²„í”„),
+				new BuffInfo(103, L1SkillId.ì˜¤ë§Œì§€ë°°3ì¸µë²„í”„), new BuffInfo(104, L1SkillId.ì˜¤ë§Œì§€ë°°4ì¸µë²„í”„),
+				new BuffInfo(105, L1SkillId.ì˜¤ë§Œì§€ë°°5ì¸µë²„í”„), new BuffInfo(106, L1SkillId.ì˜¤ë§Œì§€ë°°6ì¸µë²„í”„),
+				new BuffInfo(107, L1SkillId.ì˜¤ë§Œì§€ë°°7ì¸µë²„í”„), new BuffInfo(108, L1SkillId.ì˜¤ë§Œì§€ë°°8ì¸µë²„í”„),
+				new BuffInfo(109, L1SkillId.ì˜¤ë§Œì§€ë°°9ì¸µë²„í”„), new BuffInfo(111, L1SkillId.ì˜¤ë§Œì§€ë°°ì •ìƒì¸µë²„í”„) };
 
 		for (BuffInfo buff : buffList) {
 			if (pc.getMapId() != buff.mapId && pc.getSkillEffectTimerSet().hasSkillEffect(buff.skillId)) {
 				pc.getSkillEffectTimerSet().removeSkillEffect(buff.skillId);
-				pc.sendPackets(new S_SystemMessage("\\fT¿À¸¸ÀÇ Å¾ Áö¹è¹öÇÁ°¡ ¼Ò¸êµÇ¾ú½À´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("\\fTì˜¤ë§Œì˜ íƒ‘ ì§€ë°°ë²„í”„ê°€ ì†Œë©¸ë˜ì—ˆìŠµë‹ˆë‹¤."));
 			}
 		}
 		
@@ -216,8 +216,8 @@ public class C_MoveChar extends ClientBasePacket {
 			if(Math.abs(loc[0]-pc.getX())<=1 && Math.abs(loc[1] - pc.getY())<=1 && loc[2] == pc.getMap().getId()) {
 				switch(eva.getMoveLocation()) {
 				case 0: return;
-				case 1: L1Teleport.teleport(pc, 32639, 32876, (short) 780, 2, false); break;// Å×º£
-				case 2: L1Teleport.teleport(pc, 32793, 32754, (short) 783, 2, false); break;// Æ¼Ä®
+				case 1: L1Teleport.teleport(pc, 32639, 32876, (short) 780, 2, false); break;// í…Œë² 
+				case 2: L1Teleport.teleport(pc, 32793, 32754, (short) 783, 2, false); break;// í‹°ì¹¼
 				}			
 			}
 		}
@@ -232,7 +232,7 @@ public class C_MoveChar extends ClientBasePacket {
         PreparedStatement p = null;
         try {
             cc = L1DatabaseFactory.getInstance().getConnection();
-            cc.setAutoCommit(false); // Æ®·£Àè¼Ç Ã³¸®
+            cc.setAutoCommit(false); // íŠ¸ëœì­ì…˜ ì²˜ë¦¬
             p = cc.prepareStatement("UPDATE accounts SET " + columnName + "=0");
             p.executeUpdate();
             cc.commit();

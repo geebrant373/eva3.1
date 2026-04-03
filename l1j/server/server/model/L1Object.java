@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -29,7 +29,7 @@ import l1j.server.server.model.map.L1WorldMap;
 // L1PcInstance, L1Character
 
 /**
- * ¿ùµå»ó¿¡ Á¸ÀçÇÏ´Â ¸ğµç ¿ÀºêÁ§Æ®ÀÇ º£ÀÌ½º Å¬·¡½º
+ * ì›”ë“œìƒì— ì¡´ì¬í•˜ëŠ” ëª¨ë“  ì˜¤ë¸Œì íŠ¸ì˜ ë² ì´ìŠ¤ í´ë˜ìŠ¤
  */
 public class L1Object implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -84,7 +84,7 @@ public class L1Object implements Serializable {
 	}
 	
 	/**
-	 * ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â MAPÀÇ MAP ID¸¦ µ¹·ÁÁØ´Ù
+	 * ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” MAPì˜ MAP IDë¥¼ ëŒë ¤ì¤€ë‹¤
 	 * 
 	 * @return MAP ID
 	 */
@@ -93,7 +93,7 @@ public class L1Object implements Serializable {
 		return (short) this._loc.getMap().getBaseMapId();
 	}
 	/**
-	 * ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â MAPÀÇ MAP ID¸¦ ¼³Á¤ÇÑ´Ù
+	 * ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” MAPì˜ MAP IDë¥¼ ì„¤ì •í•œë‹¤
 	 * 
 	 * @param mapId
 	 *            MAP ID
@@ -101,16 +101,16 @@ public class L1Object implements Serializable {
 	public void setMap(short mapId) {	_loc.setMap(L1WorldMap.getInstance().getMap(mapId));	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â MAP¸¦ º¸°ü À¯ÁöÇÏ´Â L1Map ¿ÀºêÁ§Æ®¸¦ µ¹·ÁÁØ´Ù
+	 * ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” MAPë¥¼ ë³´ê´€ ìœ ì§€í•˜ëŠ” L1Map ì˜¤ë¸Œì íŠ¸ë¥¼ ëŒë ¤ì¤€ë‹¤
 	 * 
 	 */
 	public L1Map getMap() {	return _loc.getMap();	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â MAP¸¦ ¼³Á¤ÇÑ´Ù
+	 * ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” MAPë¥¼ ì„¤ì •í•œë‹¤
 	 * 
 	 * @param map
-	 *            ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â MAP¸¦ º¸°ü À¯ÁöÇÏ´Â L1Map ¿ÀºêÁ§Æ®
+	 *            ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” MAPë¥¼ ë³´ê´€ ìœ ì§€í•˜ëŠ” L1Map ì˜¤ë¸Œì íŠ¸
 	 */
 	public void setMap(L1Map map) {
 		if (map == null) {
@@ -120,54 +120,54 @@ public class L1Object implements Serializable {
 	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®¸¦ ½Äº°ÇÏ´Â ID¸¦ µ¹·ÁÁØ´Ù
+	 * ì˜¤ë¸Œì íŠ¸ë¥¼ ì‹ë³„í•˜ëŠ” IDë¥¼ ëŒë ¤ì¤€ë‹¤
 	 * 
-	 * @return ¿ÀºêÁ§Æ® ID
+	 * @return ì˜¤ë¸Œì íŠ¸ ID
 	 */
 	public int getId() {	return _id;	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®¸¦ ½Äº°ÇÏ´Â ID¸¦ ¼³Á¤ÇÑ´Ù
+	 * ì˜¤ë¸Œì íŠ¸ë¥¼ ì‹ë³„í•˜ëŠ” IDë¥¼ ì„¤ì •í•œë‹¤
 	 * 
 	 * @param id
-	 *            ¿ÀºêÁ§Æ® ID
+	 *            ì˜¤ë¸Œì íŠ¸ ID
 	 */
 	public void setId(int id) {	_id = id;	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â ÁÂÇ¥ÀÇ XÄ¡¸¦ µ¹·ÁÁØ´Ù
+	 * ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” ì¢Œí‘œì˜ Xì¹˜ë¥¼ ëŒë ¤ì¤€ë‹¤
 	 * 
-	 * @return ÁÂÇ¥ÀÇ XÄ¡
+	 * @return ì¢Œí‘œì˜ Xì¹˜
 	 */
 	public int getX() {	return _loc.getX();	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â ÁÂÇ¥ÀÇ XÄ¡¸¦ ¼³Á¤ÇÑ´Ù
+	 * ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” ì¢Œí‘œì˜ Xì¹˜ë¥¼ ì„¤ì •í•œë‹¤
 	 * 
 	 * @param x
-	 *            ÁÂÇ¥ÀÇ XÄ¡
+	 *            ì¢Œí‘œì˜ Xì¹˜
 	 */
 	public void setX(int x) {	_loc.setX(x);	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â ÁÂÇ¥ÀÇ YÄ¡¸¦ µ¹·ÁÁØ´Ù
+	 * ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” ì¢Œí‘œì˜ Yì¹˜ë¥¼ ëŒë ¤ì¤€ë‹¤
 	 * 
-	 * @return ÁÂÇ¥ÀÇ YÄ¡
+	 * @return ì¢Œí‘œì˜ Yì¹˜
 	 */
 	public int getY() {	return _loc.getY();	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â ÁÂÇ¥ÀÇ YÄ¡¸¦ ¼³Á¤ÇÑ´Ù
+	 * ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” ì¢Œí‘œì˜ Yì¹˜ë¥¼ ì„¤ì •í•œë‹¤
 	 * 
 	 * @param y
-	 *            ÁÂÇ¥ÀÇ YÄ¡
+	 *            ì¢Œí‘œì˜ Yì¹˜
 	 */
 	public void setY(int y) {	_loc.setY(y);	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®°¡ Á¸ÀçÇÏ´Â À§Ä¡¸¦ º¸°ü À¯ÁöÇÏ´Â, L1Location ¿ÀºêÁ§Æ®¿¡ÀÇ ÂüÁ¶¸¦ µ¹·ÁÁØ´Ù.
+	 * ì˜¤ë¸Œì íŠ¸ê°€ ì¡´ì¬í•˜ëŠ” ìœ„ì¹˜ë¥¼ ë³´ê´€ ìœ ì§€í•˜ëŠ”, L1Location ì˜¤ë¸Œì íŠ¸ì—ì˜ ì°¸ì¡°ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return ÁÂÇ¥¸¦ º¸°ü À¯ÁöÇÏ´Â, L1Location ¿ÀºêÁ§Æ®¿¡ÀÇ ÂüÁ¶
+	 * @return ì¢Œí‘œë¥¼ ë³´ê´€ ìœ ì§€í•˜ëŠ”, L1Location ì˜¤ë¸Œì íŠ¸ì—ì˜ ì°¸ì¡°
 	 */
 	public L1Location getLocation() {	return _loc;	}
 
@@ -184,43 +184,43 @@ public class L1Object implements Serializable {
 	}
 
 	/**
-	 * ÁöÁ¤µÈ ¿ÀºêÁ§Æ®±îÁöÀÇ Á÷¼± °Å¸®¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì˜¤ë¸Œì íŠ¸ê¹Œì§€ì˜ ì§ì„  ê±°ë¦¬ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public double getLineDistance(L1Object obj) {	return this.getLocation().getLineDistance(obj.getLocation());	}
 
 	/**
-	 * ÁöÁ¤µÈ ¿ÀºêÁ§Æ®±îÁöÀÇ Á÷¼± Å¸ÀÏ¼ö¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì˜¤ë¸Œì íŠ¸ê¹Œì§€ì˜ ì§ì„  íƒ€ì¼ìˆ˜ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public int getTileLineDistance(L1Object obj) {	return this.getLocation().getTileLineDistance(obj.getLocation());	}
 
 	/**
-	 * ÁöÁ¤µÈ ¿ÀºêÁ§Æ®±îÁöÀÇ Å¸ÀÏ¼ö¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì˜¤ë¸Œì íŠ¸ê¹Œì§€ì˜ íƒ€ì¼ìˆ˜ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public int getTileDistance(L1Object obj) {	return this.getLocation().getTileDistance(obj.getLocation());	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®°¡ ÇÃ·¹ÀÌ¾îÀÇ È­¸é³»¿¡ Á¢¾îµç(ÀÎ½ÄµÈ) ¶§¿¡ ºÒ·Á °£´Ù.
+	 * ì˜¤ë¸Œì íŠ¸ê°€ í”Œë ˆì´ì–´ì˜ í™”ë©´ë‚´ì— ì ‘ì–´ë“ (ì¸ì‹ëœ) ë•Œì— ë¶ˆë ¤ ê°„ë‹¤.
 	 * 
 	 * @param perceivedFrom
-	 *            ÀÌ ¿ÀºêÁ§Æ®¸¦ ÀÎ½ÄÇÑ PC
+	 *            ì´ ì˜¤ë¸Œì íŠ¸ë¥¼ ì¸ì‹í•œ PC
 	 */
 	public void onPerceive(L1PcInstance perceivedFrom) {
 	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®¿Í ¾×¼ÇÀÌ ¹ß»ıÇÒ ¶§ È£Ãâ
+	 * ì˜¤ë¸Œì íŠ¸ì™€ ì•¡ì…˜ì´ ë°œìƒí•  ë•Œ í˜¸ì¶œ
 	 * 
 	 * @param actionFrom
-	 *            ¾×¼ÇÀ» ÀÏÀ¸Å² PC
+	 *            ì•¡ì…˜ì„ ì¼ìœ¼í‚¨ PC
 	 */
 	public void onAction(L1PcInstance actionFrom) {
 	}
 
 	/**
-	 * ¿ÀºêÁ§Æ®¿Í ´ëÈ­ÇÒ ¶§ È£Ãâ
+	 * ì˜¤ë¸Œì íŠ¸ì™€ ëŒ€í™”í•  ë•Œ í˜¸ì¶œ
 	 * 
 	 * @param talkFrom
-	 *            ¸»À» °Ç³Ù PC
+	 *            ë§ì„ ê±´ë„¨ PC
 	 */
 	public void onTalkAction(L1PcInstance talkFrom) {
 	}

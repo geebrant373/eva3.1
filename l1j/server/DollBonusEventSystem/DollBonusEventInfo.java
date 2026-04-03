@@ -1,4 +1,4 @@
-package l1j.server.DollBonusEventSystem;
+ï»¿package l1j.server.DollBonusEventSystem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -92,7 +92,7 @@ public class DollBonusEventInfo {
 		
 		if (_is_loggin) {
 			if (pc.isGm()) {
-				System.out.println(String.format("¸Ê ¾ÆÀÌµğ: %d, ÀÌ¸§: %s, º¯°æ È®·ü:(%d)", _map_id, _map_name, probability));
+				System.out.println(String.format("ë§µ ì•„ì´ë””: %d, ì´ë¦„: %s, ë³€ê²½ í™•ë¥ :(%d)", _map_id, _map_name, probability));
 			}
 		}
 		

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -82,69 +82,69 @@ public class S_CheckRanking extends ServerBasePacket {
 		String title = null;
 		writeC(Opcodes.S_OPCODE_BOARDREAD);
 		writeD(number);
-		writeS("GM");// ±Û¾´ÀÌ
+		writeS("GM");// ê¸€ì“´ì´
 		switch (number) {
 		
 		case 1:
-			title = "¼öÇ¥ ·©Å·";
+			title = "ìˆ˜í‘œ ë­í‚¹";
 			break;
 		case 2:
-			title = "Ã¢°í ¼öÇ¥";
+			title = "ì°½ê³  ìˆ˜í‘œ";
 			break;
 		}
 		writeS(title);
 		writeS(date);
 		switch (pc.getType()) {
 		case 0:
-			type = "±ºÁÖ";
+			type = "êµ°ì£¼";
 			break;
 		case 1:
-			type = "±â»ç";
+			type = "ê¸°ì‚¬";
 			break;
 		case 2:
-			type = "¿äÁ¤";
+			type = "ìš”ì •";
 			break;
 		case 3:
-			type = "¸¶¹ı»ç";
+			type = "ë§ˆë²•ì‚¬";
 			break;
 		case 4:
-			type = "´ÙÅ©¿¤ÇÁ";
+			type = "ë‹¤í¬ì—˜í”„";
 			break;
 		}
 		int p = Rank(pc, number);
-		if (number == 1) { // Ãß°¡ºÎºĞÀÔ´Ï´Ù
-			writeS("   1À§ " + name[0] + "[" + priaden[0] + "Àå]\n\r" 
-					+ "  2À§ " + name[1] + "[" + priaden[1] + "Àå]\n\r"
-					+ "  3À§ " + name[2] + "[" + priaden[2] + "Àå]\n\r"
-					+ "  4À§ " + name[3] + "[" + priaden[3] + "Àå]\n\r"
-					+ "  5À§ " + name[4] + "[" + priaden[4] + "Àå]\n\r"
-					+ "  6À§ " + name[5] + "[" + priaden[5] + "Àå]\n\r"
-					+ "  7À§ " + name[6] + "[" + priaden[6] + "Àå]\n\r"
-					+ "  8À§ " + name[7] + "[" + priaden[7] + "Àå]\n\r"
-					+ "  9À§ " + name[8] + "[" + priaden[8] + "Àå]\n\r"
-					+ "  10À§ " + name[9] + "[" + priaden[9] + "Àå]\n\r"
-					+ "  11À§ " + name[9] + "[" + priaden[10] + "Àå]\n\r"
-					+ "  12À§ " + name[9] + "[" + priaden[11] + "Àå]\n\r"
-					+ "  13À§ " + name[9] + "[" + priaden[12] + "Àå]\n\r"
-					+ "  14À§ " + name[9] + "[" + priaden[13] + "Àå]\n\r"
-					+ "  15À§ " + name[9] + "[" + priaden[14] + "Àå]\n\r"
+		if (number == 1) { // ì¶”ê°€ë¶€ë¶„ì…ë‹ˆë‹¤
+			writeS("   1ìœ„ " + name[0] + "[" + priaden[0] + "ì¥]\n\r" 
+					+ "  2ìœ„ " + name[1] + "[" + priaden[1] + "ì¥]\n\r"
+					+ "  3ìœ„ " + name[2] + "[" + priaden[2] + "ì¥]\n\r"
+					+ "  4ìœ„ " + name[3] + "[" + priaden[3] + "ì¥]\n\r"
+					+ "  5ìœ„ " + name[4] + "[" + priaden[4] + "ì¥]\n\r"
+					+ "  6ìœ„ " + name[5] + "[" + priaden[5] + "ì¥]\n\r"
+					+ "  7ìœ„ " + name[6] + "[" + priaden[6] + "ì¥]\n\r"
+					+ "  8ìœ„ " + name[7] + "[" + priaden[7] + "ì¥]\n\r"
+					+ "  9ìœ„ " + name[8] + "[" + priaden[8] + "ì¥]\n\r"
+					+ "  10ìœ„ " + name[9] + "[" + priaden[9] + "ì¥]\n\r"
+					+ "  11ìœ„ " + name[9] + "[" + priaden[10] + "ì¥]\n\r"
+					+ "  12ìœ„ " + name[9] + "[" + priaden[11] + "ì¥]\n\r"
+					+ "  13ìœ„ " + name[9] + "[" + priaden[12] + "ì¥]\n\r"
+					+ "  14ìœ„ " + name[9] + "[" + priaden[13] + "ì¥]\n\r"
+					+ "  15ìœ„ " + name[9] + "[" + priaden[14] + "ì¥]\n\r"
 					);
-		} else if (number == 2) { // Ãß°¡ºÎºĞÀÔ´Ï´Ù
-			writeS("   1À§ °èÁ¤ " + name[0] + "[" + MaxMp[0] + "Àå]\n\r" 
-					+ "  2À§ °èÁ¤ " + name[1] + "[" + MaxMp[1] + "Àå]\n\r"
-					+ "  3À§ °èÁ¤ " + name[2] + "[" + MaxMp[2] + "Àå]\n\r"
-					+ "  4À§ °èÁ¤ " + name[3] + "[" + MaxMp[3] + "Àå]\n\r"
-					+ "  5À§ °èÁ¤ " + name[4] + "[" + MaxMp[4] + "Àå]\n\r"
-					+ "  6À§ °èÁ¤ " + name[5] + "[" + MaxMp[5] + "Àå]\n\r"
-					+ "  7À§ °èÁ¤ " + name[6] + "[" + MaxMp[6] + "Àå]\n\r"
-					+ "  8À§ °èÁ¤ " + name[7] + "[" + MaxMp[7] + "Àå]\n\r"
-					+ "  9À§ °èÁ¤ " + name[8] + "[" + MaxMp[8] + "Àå]\n\r"
-					+ "  10À§ °èÁ¤ " + name[9] + "[" + MaxMp[9] + "Àå]\n\r"
-					+ "  11À§ °èÁ¤ " + name[9] + "[" + MaxMp[10] + "Àå]\n\r"
-					+ "  12À§ °èÁ¤ " + name[9] + "[" + MaxMp[11] + "Àå]\n\r"
-					+ "  13À§ °èÁ¤ " + name[9] + "[" + MaxMp[12] + "Àå]\n\r"
-					+ "  14À§ °èÁ¤ " + name[9] + "[" + MaxMp[13] + "Àå]\n\r"
-					+ "  15À§ °èÁ¤ " + name[9] + "[" + MaxMp[14] + "Àå]\n\r"
+		} else if (number == 2) { // ì¶”ê°€ë¶€ë¶„ì…ë‹ˆë‹¤
+			writeS("   1ìœ„ ê³„ì • " + name[0] + "[" + MaxMp[0] + "ì¥]\n\r" 
+					+ "  2ìœ„ ê³„ì • " + name[1] + "[" + MaxMp[1] + "ì¥]\n\r"
+					+ "  3ìœ„ ê³„ì • " + name[2] + "[" + MaxMp[2] + "ì¥]\n\r"
+					+ "  4ìœ„ ê³„ì • " + name[3] + "[" + MaxMp[3] + "ì¥]\n\r"
+					+ "  5ìœ„ ê³„ì • " + name[4] + "[" + MaxMp[4] + "ì¥]\n\r"
+					+ "  6ìœ„ ê³„ì • " + name[5] + "[" + MaxMp[5] + "ì¥]\n\r"
+					+ "  7ìœ„ ê³„ì • " + name[6] + "[" + MaxMp[6] + "ì¥]\n\r"
+					+ "  8ìœ„ ê³„ì • " + name[7] + "[" + MaxMp[7] + "ì¥]\n\r"
+					+ "  9ìœ„ ê³„ì • " + name[8] + "[" + MaxMp[8] + "ì¥]\n\r"
+					+ "  10ìœ„ ê³„ì • " + name[9] + "[" + MaxMp[9] + "ì¥]\n\r"
+					+ "  11ìœ„ ê³„ì • " + name[9] + "[" + MaxMp[10] + "ì¥]\n\r"
+					+ "  12ìœ„ ê³„ì • " + name[9] + "[" + MaxMp[11] + "ì¥]\n\r"
+					+ "  13ìœ„ ê³„ì • " + name[9] + "[" + MaxMp[12] + "ì¥]\n\r"
+					+ "  14ìœ„ ê³„ì • " + name[9] + "[" + MaxMp[13] + "ì¥]\n\r"
+					+ "  15ìœ„ ê³„ì • " + name[9] + "[" + MaxMp[14] + "ì¥]\n\r"
 					);
 		}
 
@@ -165,7 +165,7 @@ public class S_CheckRanking extends ServerBasePacket {
 						"SELECT count, characters.char_name FROM character_items, characters WHERE item_id in(select item_id from etcitem) And char_id in(select objid from characters where AccessLevel = 0) And character_items.char_id=characters.objid And item_id = 400075 order by count desc limit 15");
 				break;
 		
-			case 2: // Ãß°¡ºÎºĞÀÔ´Ï´Ù
+			case 2: // ì¶”ê°€ë¶€ë¶„ì…ë‹ˆë‹¤
 				pstm = con.prepareStatement(
 						"SELECT count, accounts.login FROM character_warehouse, accounts WHERE  login in(select login from accounts where access_level = 0) And character_warehouse.account_name =accounts.login And item_id = 400075 order by count desc limit 15");
 				break;
@@ -175,13 +175,13 @@ public class S_CheckRanking extends ServerBasePacket {
 			}
 
 			rs = pstm.executeQuery();
-			if (number == 1) { // Ãß°¡ºÎºĞÀÔ´Ï´Ù
+			if (number == 1) { // ì¶”ê°€ë¶€ë¶„ì…ë‹ˆë‹¤
 				while (rs.next()) {
 					priaden[i] = rs.getInt(1);
 					name[i] = rs.getString(2);
 					i++;
 				}
-			} else if (number == 2) { // Ãß°¡ºÎºĞÀÔ´Ï´Ù
+			} else if (number == 2) { // ì¶”ê°€ë¶€ë¶„ì…ë‹ˆë‹¤
 				while (rs.next()) {
 					MaxMp[i] = rs.getInt(1);
 					name[i] = rs.getString(2);
@@ -194,9 +194,9 @@ public class S_CheckRanking extends ServerBasePacket {
 					i++;
 				}
 
-				// ·¹ÄÚµå°¡ ¾ø°Å³ª 5º¸´Ù ÀÛÀ»¶§
+				// ë ˆì½”ë“œê°€ ì—†ê±°ë‚˜ 5ë³´ë‹¤ ì‘ì„ë•Œ
 				while (i < 10) {
-					name[i] = "¾øÀ½.";
+					name[i] = "ì—†ìŒ.";
 					i++;
 				}
 			}

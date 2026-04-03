@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -46,15 +46,15 @@ public class S_BoardRead extends ServerBasePacket {
 		} else if (board.getNpcId() == 900009643){
 			buildPacket7(board, number);
 		} else if (board.getNpcId() == 900009644){
-			buildPacketªÁ≥…≈Õ¡§∫∏(board, number);
+			buildPacketÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥(board, number);
 		} else if (board.getNpcId() == 900009645){
-			buildPacket∫∏Ω∫¡§∫∏(board, number);
+			buildPacketÎ≥¥Ïä§Ï†ïÎ≥¥(board, number);
 		} else if (board.getNpcId() == 900009646){
-			buildPacketπ´±‚¡§∫∏(board, number);
+			buildPacketÎ¨¥Í∏∞Ï†ïÎ≥¥(board, number);
 		} else if (board.getNpcId() == 900009647){
-			buildPacketπÊæÓ±∏¡§∫∏(board, number);
+			buildPacketÎ∞©Ïñ¥Íµ¨Ï†ïÎ≥¥(board, number);
 		} else if (board.getNpcId() == 900009648){
-			buildPacket¿Œ√æ¿≤¡§∫∏(board, number);
+			buildPacketÏù∏Ï≤∏Ïú®Ï†ïÎ≥¥(board, number);
 		} else {
 			buildPacket(board, number);
 		}
@@ -191,13 +191,13 @@ public class S_BoardRead extends ServerBasePacket {
 		}
 	}
 	
-	private void buildPacketªÁ≥…≈Õ¡§∫∏(L1NpcInstance board, int number) {
+	private void buildPacketÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥(L1NpcInstance board, int number) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("SELECT * FROM board_ªÁ≥…≈Õ¡§∫∏ WHERE id=?");
+			pstm = con.prepareStatement("SELECT * FROM board_ÏÇ¨ÎÉ•ÌÑ∞Ï†ïÎ≥¥ WHERE id=?");
 			pstm.setInt(1, number);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
@@ -217,13 +217,13 @@ public class S_BoardRead extends ServerBasePacket {
 		}
 	}
 	
-	private void buildPacket∫∏Ω∫¡§∫∏(L1NpcInstance board, int number) {
+	private void buildPacketÎ≥¥Ïä§Ï†ïÎ≥¥(L1NpcInstance board, int number) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("SELECT * FROM board_∫∏Ω∫¡§∫∏ WHERE id=?");
+			pstm = con.prepareStatement("SELECT * FROM board_Î≥¥Ïä§Ï†ïÎ≥¥ WHERE id=?");
 			pstm.setInt(1, number);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
@@ -243,13 +243,13 @@ public class S_BoardRead extends ServerBasePacket {
 		}
 	}
 	
-	private void buildPacketπ´±‚¡§∫∏(L1NpcInstance board, int number) {
+	private void buildPacketÎ¨¥Í∏∞Ï†ïÎ≥¥(L1NpcInstance board, int number) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("SELECT * FROM board_π´±‚¡§∫∏ WHERE id=?");
+			pstm = con.prepareStatement("SELECT * FROM board_Î¨¥Í∏∞Ï†ïÎ≥¥ WHERE id=?");
 			pstm.setInt(1, number);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
@@ -269,13 +269,13 @@ public class S_BoardRead extends ServerBasePacket {
 		}
 	}
 	
-	private void buildPacketπÊæÓ±∏¡§∫∏(L1NpcInstance board, int number) {
+	private void buildPacketÎ∞©Ïñ¥Íµ¨Ï†ïÎ≥¥(L1NpcInstance board, int number) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("SELECT * FROM board_πÊæÓ±∏¡§∫∏ WHERE id=?");
+			pstm = con.prepareStatement("SELECT * FROM board_Î∞©Ïñ¥Íµ¨Ï†ïÎ≥¥ WHERE id=?");
 			pstm.setInt(1, number);
 			rs = pstm.executeQuery();
 			while (rs.next()) {
@@ -295,13 +295,13 @@ public class S_BoardRead extends ServerBasePacket {
 		}
 	}
 	
-	private void buildPacket¿Œ√æ¿≤¡§∫∏(L1NpcInstance board, int number) {
+	private void buildPacketÏù∏Ï≤∏Ïú®Ï†ïÎ≥¥(L1NpcInstance board, int number) {
 		Connection con = null;
 		PreparedStatement pstm = null;
 		ResultSet rs = null;
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
-			pstm = con.prepareStatement("SELECT * FROM board_¿Œ√æ¿≤¡§∫∏ WHERE id=?");
+			pstm = con.prepareStatement("SELECT * FROM board_Ïù∏Ï≤∏Ïú®Ï†ïÎ≥¥ WHERE id=?");
 			pstm.setInt(1, number);
 			rs = pstm.executeQuery();
 			while (rs.next()) {

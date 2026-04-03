@@ -1,4 +1,4 @@
-package l1j.server.EventSystem;
+ï»¿package l1j.server.EventSystem;
 
 import java.util.Calendar;
 import java.util.HashMap;
@@ -120,7 +120,7 @@ public class EventSystemTimeController extends Thread {
 		return fmeFlag;
 	}
 
-	/** ÇÊµå ¿­¸®´Â ½Ã°£ hour:½Ã°£ minute:ºĞ 24½Ã°£°³³ä **/
+	/** í•„ë“œ ì—´ë¦¬ëŠ” ì‹œê°„ hour:ì‹œê°„ minute:ë¶„ 24ì‹œê°„ê°œë… **/
 	private boolean isTime(EventSystemInfo EventInfo) {
 		Calendar calender = Calendar.getInstance();
 		int hour, minute, second;

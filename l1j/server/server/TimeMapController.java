@@ -1,5 +1,5 @@
-/**
- * Å¸ÀÌ¸Ó °ü·Ã ¸Ê¿¡ ´ëÇÑ ÄÁÆ®·Ñ·¯
+ï»¿/**
+ * íƒ€ì´ë¨¸ ê´€ë ¨ ë§µì— ëŒ€í•œ ì»¨íŠ¸ë¡¤ëŸ¬
  * 2008. 12. 04
 */
 
@@ -82,10 +82,10 @@ public class TimeMapController extends Thread {
 	}
 	
 	/**
-	 * Å¸ÀÓ ÀÌº¥Æ®°¡ ÀÖ´Â ¸Ê µî·Ï
-	 * Áßº¹ µî·ÏÀÌ µÇÁö ¾Êµµ·Ï ÀÌ¹Ì µî·ÏµÈ ¸Ê ¾ÆÀÌµğ¿Í ºñ±³ ¾ø´Ù¸é µî·Ï
-	 * »çÀÌÁî°¡ 0 ÀÌ¶ó¸é Áï ÃÊ±â¶ó¸é ºñ±³´ë»óÀÌ ¾ø±â¶§¹®¿¡ ¹«Á¶°Ç µî·Ï
-	 * @param	(TimeMap)	µî·ÏÇÒ ¸Ê °´Ã¼
+	 * íƒ€ì„ ì´ë²¤íŠ¸ê°€ ìˆëŠ” ë§µ ë“±ë¡
+	 * ì¤‘ë³µ ë“±ë¡ì´ ë˜ì§€ ì•Šë„ë¡ ì´ë¯¸ ë“±ë¡ëœ ë§µ ì•„ì´ë””ì™€ ë¹„êµ ì—†ë‹¤ë©´ ë“±ë¡
+	 * ì‚¬ì´ì¦ˆê°€ 0 ì´ë¼ë©´ ì¦‰ ì´ˆê¸°ë¼ë©´ ë¹„êµëŒ€ìƒì´ ì—†ê¸°ë•Œë¬¸ì— ë¬´ì¡°ê±´ ë“±ë¡
+	 * @param	(TimeMap)	ë“±ë¡í•  ë§µ ê°ì²´
 	*/
 	public void add(L1TimeMap map){
 		if(mapList.size() > 0){
@@ -98,9 +98,9 @@ public class TimeMapController extends Thread {
 		}else mapList.add(map);
 	}
 	/**
-	 * Å¸ÀÓ ÀÌº¥Æ®°¡ ÀÖ´Â ¸Ê »èÁ¦
-	 * Áßº¹ »èÁ¦ ¶Ç´Â IndexOutOfBoundsExceptionÀÌ µÇÁö ¾Êµµ·Ï ÀÌ¹Ì µî·ÏµÈ ¸Ê ¾ÆÀÌµğ¿Í ºñ±³ ÀÖ´Ù¸é »èÁ¦
-	 * @param	(TimeMap)	»èÁ¦ÇÒ ¸Ê °´Ã¼
+	 * íƒ€ì„ ì´ë²¤íŠ¸ê°€ ìˆëŠ” ë§µ ì‚­ì œ
+	 * ì¤‘ë³µ ì‚­ì œ ë˜ëŠ” IndexOutOfBoundsExceptionì´ ë˜ì§€ ì•Šë„ë¡ ì´ë¯¸ ë“±ë¡ëœ ë§µ ì•„ì´ë””ì™€ ë¹„êµ ìˆë‹¤ë©´ ì‚­ì œ
+	 * @param	(TimeMap)	ì‚­ì œí•  ë§µ ê°ì²´
 	*/
 	private void remove(L1TimeMap map){
 		for(L1TimeMap m : array()){
@@ -112,31 +112,31 @@ public class TimeMapController extends Thread {
 		map = null;
 	}
 	/**
-	 * ÄÁÆ®·Ñ·¯ ¸®½ºÆ® ÃÊ±âÈ­
-	 * °ÔÀÓ¼­¹ö Á¾·á½Ã ¿äÃ»(°¡±ŞÀûÀ¸·Î »ç¿ëÁßÁö)
+	 * ì»¨íŠ¸ë¡¤ëŸ¬ ë¦¬ìŠ¤íŠ¸ ì´ˆê¸°í™”
+	 * ê²Œì„ì„œë²„ ì¢…ë£Œì‹œ ìš”ì²­(ê°€ê¸‰ì ìœ¼ë¡œ ì‚¬ìš©ì¤‘ì§€)
 	*/
 	private void clear(){
 		mapList.clear();
 	}
 	/**
-	 * µî·ÏµÈ ÀÌº¥Æ® ¸Ê ¹è¿­ ¸®ÅÏ
-	 * @return	(TimeMap[])	¸Ê °´Ã¼ ¹è¿­
+	 * ë“±ë¡ëœ ì´ë²¤íŠ¸ ë§µ ë°°ì—´ ë¦¬í„´
+	 * @return	(TimeMap[])	ë§µ ê°ì²´ ë°°ì—´
 	*/
 	private L1TimeMap[] array(){
 		return mapList.toArray(new L1TimeMap[mapList.size()]);
 	}
 	/**
-	 * ÄÁÆ®·Ñ·¯ ¸®½ºÆ® °´Ã¼(Exception ¿À·ù½Ã º¹»ç¿ë)
-	 * @return	(ArrayList<TimeMap>)	¸Ê ÀúÀå ¸®½ºÆ®
+	 * ì»¨íŠ¸ë¡¤ëŸ¬ ë¦¬ìŠ¤íŠ¸ ê°ì²´(Exception ì˜¤ë¥˜ì‹œ ë³µì‚¬ìš©)
+	 * @return	(ArrayList<TimeMap>)	ë§µ ì €ì¥ ë¦¬ìŠ¤íŠ¸
 	*/
 	private ArrayList<L1TimeMap> arrayList(){
 		return mapList;
 	}
 	/**
-	 * ÄÁÆ®·Ñ·¯ ¿¹¿Ü Ã³¸®½Ã µî·ÏµÈ ¸Ê ÀÌº¥Æ®¸¦ À¯Áö½ÃÅ°±â À§ÇØ ¸®½ºÆ® °´Ã¼ º¹»ç
-	 * Çâ»óµÈ for ¹®À» ÀÌ¿ëÇÏµÇ ¿¹¿Ü ¹ß»ı½Ã ±âÁ¸ for ¹®À» ÀÌ¿ëÇÏ¿© º¹»ç
-	 * @param	(ArrayList<TimeMap>)	src		¿øº» ¸®½ºÆ®
-	 * @param	(ArrayList<TimeMap>)	desc	º¹»çµÉ ¸®½ºÆ®
+	 * ì»¨íŠ¸ë¡¤ëŸ¬ ì˜ˆì™¸ ì²˜ë¦¬ì‹œ ë“±ë¡ëœ ë§µ ì´ë²¤íŠ¸ë¥¼ ìœ ì§€ì‹œí‚¤ê¸° ìœ„í•´ ë¦¬ìŠ¤íŠ¸ ê°ì²´ ë³µì‚¬
+	 * í–¥ìƒëœ for ë¬¸ì„ ì´ìš©í•˜ë˜ ì˜ˆì™¸ ë°œìƒì‹œ ê¸°ì¡´ for ë¬¸ì„ ì´ìš©í•˜ì—¬ ë³µì‚¬
+	 * @param	(ArrayList<TimeMap>)	src		ì›ë³¸ ë¦¬ìŠ¤íŠ¸
+	 * @param	(ArrayList<TimeMap>)	desc	ë³µì‚¬ë  ë¦¬ìŠ¤íŠ¸
 	*/
 	private void copy(ArrayList<L1TimeMap> src, ArrayList<L1TimeMap> desc){
 		try{

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU General Public License as published by the Free Software Foundation; either version 2, or (at
  * your option) any later version.
@@ -52,18 +52,18 @@ public class L1CheckCharacter implements L1CommandExecutor {
 
       String itemname;
       int searchCount = 0;
-      if (type.equalsIgnoreCase("ÀÎº¥")) {
+      if (type.equalsIgnoreCase("ì¸ë²¤")) {
         try {
-          // Ä³¸¯ ¿ÀºêÁ§Æ® ID °Ë»ö 1=objid 2=charname
+          // ìºë¦­ ì˜¤ë¸Œì íŠ¸ ID ê²€ìƒ‰ 1=objid 2=charname
           p = c.prepareStatement(
               "SELECT objid, char_name FROM characters WHERE char_name = '" + charname + "'");
           r = p.executeQuery();
           while (r.next()) {
-            pc.sendPackets(new S_SystemMessage("\\fW** °Ë»ç: " + type + " Ä³¸¯: " + charname + " **"));
+            pc.sendPackets(new S_SystemMessage("\\fW** ê²€ì‚¬: " + type + " ìºë¦­: " + charname + " **"));
             L1PcInstance target = L1World.getInstance().getPlayer(charname);
             if (target != null)
               target.saveInventory();
-            // Ä³¸¯ ¾ÆÀÌÅÛ °Ë»ö 1-itemid 2-ÀÎÃ¦ 3-Âø¿ë 4-¼ö·® 5-ÀÌ¸§ 6-Ãàº¹ 7-¼Ó¼º
+            // ìºë¦­ ì•„ì´í…œ ê²€ìƒ‰ 1-itemid 2-ì¸ì±ˆ 3-ì°©ìš© 4-ìˆ˜ëŸ‰ 5-ì´ë¦„ 6-ì¶•ë³µ 7-ì†ì„±
             p1 = c.prepareStatement(
                 "SELECT item_id,enchantlvl,is_equipped,count,item_name,bless,attr_enchantlvl "
                     + "FROM character_items WHERE char_id = '" + r.getInt(1)
@@ -75,12 +75,12 @@ public class L1CheckCharacter implements L1CommandExecutor {
               pc.sendPackets(new S_SystemMessage("\\fU" + ++searchCount + ". " + itemname));
               itemname = "";
             }
-            pc.sendPackets(new S_SystemMessage("\\fW** ÃÑ " + searchCount + "°ÇÀÇ ¾ÆÀÌÅÛÀÌ °Ë»ö µÇ¾ú½À´Ï´Ù **"));
+            pc.sendPackets(new S_SystemMessage("\\fW** ì´ " + searchCount + "ê±´ì˜ ì•„ì´í…œì´ ê²€ìƒ‰ ë˜ì—ˆìŠµë‹ˆë‹¤ **"));
           }
         } catch (Exception e) {
-          pc.sendPackets(new S_SystemMessage("\\fW** [" + charname + "] Ä³¸¯ °Ë»ö ¿À·ù **"));
+          pc.sendPackets(new S_SystemMessage("\\fW** [" + charname + "] ìºë¦­ ê²€ìƒ‰ ì˜¤ë¥˜ **"));
         }
-      } else if (type.equalsIgnoreCase("Ã¢°í")) {
+      } else if (type.equalsIgnoreCase("ì°½ê³ ")) {
         try {
           p = c
               .prepareStatement("SELECT account_name, char_name FROM characters WHERE char_name = '"
@@ -88,8 +88,8 @@ public class L1CheckCharacter implements L1CommandExecutor {
           r = p.executeQuery();
           while (r.next()) {
             pc.sendPackets(new S_SystemMessage(
-                "\\fW** °Ë»ç: " + type + " Ä³¸¯: " + charname + "(" + r.getString(1) + ") **"));
-            // Ä³¸¯ Ã¢°í °Ë»ö 1-itemid 2-ÀÎÃ¦ 3-¼ö·® 4-ÀÌ¸§ 5-Ãàº¹ 6-¼Ó¼º
+                "\\fW** ê²€ì‚¬: " + type + " ìºë¦­: " + charname + "(" + r.getString(1) + ") **"));
+            // ìºë¦­ ì°½ê³  ê²€ìƒ‰ 1-itemid 2-ì¸ì±ˆ 3-ìˆ˜ëŸ‰ 4-ì´ë¦„ 5-ì¶•ë³µ 6-ì†ì„±
             p1 = c.prepareStatement(
                 "SELECT item_id,enchantlvl,count,item_name,bless,attr_enchantlvl FROM character_warehouse "
                     + "WHERE account_name = '" + r.getString(1) + "' ORDER BY 2 DESC, 1 ASC");
@@ -100,12 +100,12 @@ public class L1CheckCharacter implements L1CommandExecutor {
               pc.sendPackets(new S_SystemMessage("\\fU" + ++searchCount + ". " + itemname));
               itemname = "";
             }
-            pc.sendPackets(new S_SystemMessage("\\fW** ÃÑ " + searchCount + "°ÇÀÇ ¾ÆÀÌÅÛÀÌ °Ë»ö µÇ¾ú½À´Ï´Ù **"));
+            pc.sendPackets(new S_SystemMessage("\\fW** ì´ " + searchCount + "ê±´ì˜ ì•„ì´í…œì´ ê²€ìƒ‰ ë˜ì—ˆìŠµë‹ˆë‹¤ **"));
           }
         } catch (Exception e) {
-          pc.sendPackets(new S_SystemMessage("\\fW** [" + charname + "] Ä³¸¯ °Ë»ö ¿À·ù **"));
+          pc.sendPackets(new S_SystemMessage("\\fW** [" + charname + "] ìºë¦­ ê²€ìƒ‰ ì˜¤ë¥˜ **"));
         }
-      } else if (type.equalsIgnoreCase("¿äÁ¤Ã¢°í")) {
+      } else if (type.equalsIgnoreCase("ìš”ì •ì°½ê³ ")) {
         try {
           p = c
               .prepareStatement("SELECT account_name, char_name FROM characters WHERE char_name = '"
@@ -113,8 +113,8 @@ public class L1CheckCharacter implements L1CommandExecutor {
           r = p.executeQuery();
           while (r.next()) {
             pc.sendPackets(new S_SystemMessage(
-                "\\fW** °Ë»ç: " + type + " Ä³¸¯: " + charname + "(" + r.getString(1) + ") **"));
-            // Ä³¸¯ ¿äÁ¤Ã¢°í °Ë»ö 1-itemid 2-ÀÎÃ¦ 3-¼ö·® 4-ÀÌ¸§ 5-Ãàº¹ 6-¼Ó¼º
+                "\\fW** ê²€ì‚¬: " + type + " ìºë¦­: " + charname + "(" + r.getString(1) + ") **"));
+            // ìºë¦­ ìš”ì •ì°½ê³  ê²€ìƒ‰ 1-itemid 2-ì¸ì±ˆ 3-ìˆ˜ëŸ‰ 4-ì´ë¦„ 5-ì¶•ë³µ 6-ì†ì„±
             p1 = c.prepareStatement(
                 "SELECT item_id,enchantlvl,count,item_name,bless,attr_enchantlvl FROM character_elf_warehouse "
                     + "WHERE account_name = '" + r.getString(1) + "' ORDER BY 2 DESC, 1 ASC");
@@ -125,14 +125,14 @@ public class L1CheckCharacter implements L1CommandExecutor {
               pc.sendPackets(new S_SystemMessage("\\fU" + ++searchCount + ". " + itemname));
               itemname = "";
             }
-            pc.sendPackets(new S_SystemMessage("\\fW** ÃÑ " + searchCount + "°ÇÀÇ ¾ÆÀÌÅÛÀÌ °Ë»ö µÇ¾ú½À´Ï´Ù **"));
+            pc.sendPackets(new S_SystemMessage("\\fW** ì´ " + searchCount + "ê±´ì˜ ì•„ì´í…œì´ ê²€ìƒ‰ ë˜ì—ˆìŠµë‹ˆë‹¤ **"));
           }
         } catch (Exception e) {
-          pc.sendPackets(new S_SystemMessage("\\fW** [" + charname + "] Ä³¸¯ °Ë»ö ¿À·ù **"));
+          pc.sendPackets(new S_SystemMessage("\\fW** [" + charname + "] ìºë¦­ ê²€ìƒ‰ ì˜¤ë¥˜ **"));
         }
       }
     } catch (Exception e) {
-      pc.sendPackets(new S_SystemMessage(".°Ë»ç [Ä³¸¯¸í] [ÀÎº¥,Ã¢°í,¿äÁ¤Ã¢°í]"));
+      pc.sendPackets(new S_SystemMessage(".ê²€ì‚¬ [ìºë¦­ëª…] [ì¸ë²¤,ì°½ê³ ,ìš”ì •ì°½ê³ ]"));
     } finally {
       SQLUtil.close(r1);
       SQLUtil.close(p1);
@@ -145,8 +145,8 @@ public class L1CheckCharacter implements L1CommandExecutor {
   private String getInvenItemMsg(int itemid, int enchant, int equip, int count, String itemname,
       int bless, int attr) {
     StringBuilder name = new StringBuilder();
-    // +9 Ãàº¹¹ÞÀº ½ÇÇÁÀÇ Èæ¿Õµµ (Âø¿ë)
-    // ÀÎÃ¦
+    // +9 ì¶•ë³µë°›ì€ ì‹¤í”„ì˜ í‘ì™•ë„ (ì°©ìš©)
+    // ì¸ì±ˆ
     if (enchant > 0) {
       name.append("+" + enchant + " ");
     } else if (enchant == 0) {
@@ -154,21 +154,21 @@ public class L1CheckCharacter implements L1CommandExecutor {
     } else if (enchant < 0) {
       name.append(String.valueOf(enchant) + " ");
     }
-    // Ãàº¹
+    // ì¶•ë³µ
     switch (bless) {
       case 0:
-        name.append("Ãàº¹¹ÞÀº ");
+        name.append("ì¶•ë³µë°›ì€ ");
         break;
       case 1:
         name.append("");
         break;
       case 2:
-        name.append("ÀúÁÖ¹ÞÀº ");
+        name.append("ì €ì£¼ë°›ì€ ");
         break;
       default:
         break;
     }
-    // ¼Ó¼º
+    // ì†ì„±
     switch (attr) {
       case 1:
         name.append("$6115 ");
@@ -209,13 +209,13 @@ public class L1CheckCharacter implements L1CommandExecutor {
       default:
         break;
     }
-    // ÀÌ¸§
+    // ì´ë¦„
     name.append(itemname + " ");
-    // Âø¿ë¿©ºÎ
+    // ì°©ìš©ì—¬ë¶€
     if (equip == 1) {
-      name.append("(Âø¿ë)");
+      name.append("(ì°©ìš©)");
     }
-    // Ä«¿îÆ®
+    // ì¹´ìš´íŠ¸
     if (count > 1) {
       name.append("(" + count + ")");
     }

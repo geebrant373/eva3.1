@@ -1,4 +1,4 @@
-package l1j.server.server.taskmanager;
+﻿package l1j.server.server.taskmanager;
 
 import static l1j.server.server.taskmanager.TaskTypes.TYPE_GLOBAL_TASK;
 

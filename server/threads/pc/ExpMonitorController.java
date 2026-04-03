@@ -1,4 +1,4 @@
-package server.threads.pc;
+﻿package server.threads.pc;
 
 import java.util.Collection;
 import java.util.logging.Level;
@@ -163,7 +163,7 @@ public class ExpMonitorController implements Runnable {
 				pc.LawfulSP = 0;
 				pc.sendPackets(new S_SPMR(pc));
 			}
-			//ī��ƽ
+			//카오틱
 		} else {
 			if (pc.LawfulAC != 0) {
 				pc.getAC().addAc(pc.LawfulAC * -1);

@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Robot;
+ï»¿package l1j.server.GameSystem.Robot;
 
 import static l1j.server.server.model.skill.L1SkillId.HASTE;
 import static l1j.server.server.model.skill.L1SkillId.STATUS_UNDERWATER_BREATH;
@@ -31,7 +31,7 @@ import l1j.server.server.utils.SQLUtil;
 public class Robot {
 
 	private static Random _random = new Random(System.currentTimeMillis());
-	public static boolean ÀÎÇü = false;
+	public static boolean ì¸í˜• = false;
 	
 	
 	
@@ -42,14 +42,14 @@ public class Robot {
 	private static void polyNormal(L1RobotInstance bot) {
 		if (bot.getLevel() < 70) {
 			polyNormal51(bot);
-		} else if (bot.getLevel() >= 70 && bot.getLevel() < 80) { // 80·¹º§ ÀÌ»ó
+		} else if (bot.getLevel() >= 70 && bot.getLevel() < 80) { // 80ë ˆë²¨ ì´ìƒ
 			polyNormal75(bot);
 		} else {
 			polyNormal80(bot);
 		}
 	}
 
-	private static void polyNormal51(L1RobotInstance bot) { // ·Îº¿º¯½Å
+	private static void polyNormal51(L1RobotInstance bot) { // ë¡œë´‡ë³€ì‹ 
 		if (bot.isElf() && bot.getCurrentWeapon() == 20) {
 			bot.getGfxId().setTempCharGfx(6160);
 		} else if (bot.isCrown() || bot.isKnight()) {
@@ -61,7 +61,7 @@ public class Robot {
 		}
 	}
 
-	private static void polyNormal75(L1RobotInstance bot) { // ·Îº¿º¯½Å
+	private static void polyNormal75(L1RobotInstance bot) { // ë¡œë´‡ë³€ì‹ 
 		if (bot.isElf() && bot.getCurrentWeapon() == 20) {
 			bot.getGfxId().setTempCharGfx(6269);
 		} else if (bot.isCrown() || bot.isKnight()) {
@@ -73,7 +73,7 @@ public class Robot {
 		}
 	}
 
-	private static void polyNormal80(L1RobotInstance bot) { // ·Îº¿º¯½Å
+	private static void polyNormal80(L1RobotInstance bot) { // ë¡œë´‡ë³€ì‹ 
 		if (bot.isElf() && bot.getCurrentWeapon() == 20) {
 			bot.getGfxId().setTempCharGfx(6278);
 		} else if (bot.isCrown() || bot.isKnight()) {
@@ -85,9 +85,9 @@ public class Robot {
 		}
 	}
 
-	public static boolean ¼Óµµ¹öÇÁ(L1RobotInstance bot) {
-		// TODO ÀÚµ¿ »ı¼ºµÈ ¸Ş¼Òµå ½ºÅÓ
-		// µğÄÉÀÌ ¾Æ´Ò¶§
+	public static boolean ì†ë„ë²„í”„(L1RobotInstance bot) {
+		// TODO ìë™ ìƒì„±ëœ ë©”ì†Œë“œ ìŠ¤í…
+		// ë””ì¼€ì´ ì•„ë‹ë•Œ
 		if (bot.getMap().isUnderwater()) {
 			if (!bot.getSkillEffectTimerSet().hasSkillEffect(
 					STATUS_UNDERWATER_BREATH)) {
@@ -110,7 +110,7 @@ public class Robot {
 		if (_random.nextInt(100) > 10)
 			return false;
 		if (bot.isKnight() || bot.isCrown()) {
-			// µğÄÉÀÌ¾Æ´Ò¶§
+			// ë””ì¼€ì´ì•„ë‹ë•Œ
 			if (!bot.getSkillEffectTimerSet().hasSkillEffect(
 					L1SkillId.STATUS_BRAVE)
 					&& !bot.getSkillEffectTimerSet().hasSkillEffect(
@@ -258,8 +258,8 @@ public class Robot {
 		return false;
 	}
 
-	public static boolean Å¬·¡½º¹öÇÁ(L1RobotInstance bot) {
-		// TODO ÀÚµ¿ »ı¼ºµÈ ¸Ş¼Òµå ½ºÅÓ
+	public static boolean í´ë˜ìŠ¤ë²„í”„(L1RobotInstance bot) {
+		// TODO ìë™ ìƒì„±ëœ ë©”ì†Œë“œ ìŠ¤í…
 		if (bot.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.SILENCE))
 			return false;
 		if (bot.isKnight()) {
@@ -293,7 +293,7 @@ public class Robot {
 	private static long joinTime = 0;
 
 	public static void clan_join(L1RobotInstance bot) {
-		// TODO ÀÚµ¿ »ı¼ºµÈ ¸Ş¼Òµå ½ºÅÓ
+		// TODO ìë™ ìƒì„±ëœ ë©”ì†Œë“œ ìŠ¤í…
 		if (bot.getClanid() != 0 || bot.isCrown())
 			return;
 		if (_random.nextInt(10) == 0)
@@ -308,8 +308,8 @@ public class Robot {
 			joinTime = System.currentTimeMillis()
 					+ (60000 * (20 + _random.nextInt(21)));
 		}
-		// ·Îº¿Áß °¡ÀÔ µÇ¾îÀÖ´Â ÄÉ¸¯ÀÌ 650ÄÉ¸¯ ÀÌ»óÀÎÁö
-		// °¡ÀÔÇÏ·Á´ÂÇ÷ ÃÑÇ÷ ´Ù ¹Ş¾Æ¿Í¼­ À¯Àú ºñ±³ Á¦ÀÏÀûÀºÇ÷
+		// ë¡œë´‡ì¤‘ ê°€ì… ë˜ì–´ìˆëŠ” ì¼€ë¦­ì´ 650ì¼€ë¦­ ì´ìƒì¸ì§€
+		// ê°€ì…í•˜ë ¤ëŠ”í˜ˆ ì´í˜ˆ ë‹¤ ë°›ì•„ì™€ì„œ ìœ ì € ë¹„êµ ì œì¼ì ì€í˜ˆ
 		String clanname = robot_clan_count();
 		if (clanname == null)
 			return;
@@ -319,24 +319,24 @@ public class Robot {
 		L1PcInstance pc = L1World.getInstance().getPlayer(clan.getLeaderName());
 		if (pc == null)
 			return;
-		// ±ºÁÖ±ÙÃ³¿¡ Ç÷¿øÀÌ ÀÖ´ÂÁö
+		// êµ°ì£¼ê·¼ì²˜ì— í˜ˆì›ì´ ìˆëŠ”ì§€
 		for (L1PcInstance pp : L1World.getInstance().getVisiblePlayer(pc)) {
 			if (!(pp instanceof L1RobotInstance)
 					&& pc.getClanid() == pp.getClanid())
 				return;
 		}
-		// ³» ±ÙÃ³¿¡ °°ÀºÇ÷ ÀÖ´ÂÁö
+		// ë‚´ ê·¼ì²˜ì— ê°™ì€í˜ˆ ìˆëŠ”ì§€
 		for (L1PcInstance pp : L1World.getInstance().getVisiblePlayer(bot)) {
 			if (!(pp instanceof L1RobotInstance)
 					&& pc.getClanid() == pp.getClanid())
 				return;
 		}
-		// °¡ÀÔ
+		// ê°€ì…
 		for (L1PcInstance clanMembers : clan.getOnlineClanMember()) {
-			clanMembers.sendPackets(new S_ServerMessage(94, bot.getName())); // \f1%0ÀÌ
-																				// Ç÷¸ÍÀÇ
-																				// ÀÏ¿øÀ¸·Î¼­
-																				// ¹Ş¾Æµé¿©Á³½À´Ï´Ù.
+			clanMembers.sendPackets(new S_ServerMessage(94, bot.getName())); // \f1%0ì´
+																				// í˜ˆë§¹ì˜
+																				// ì¼ì›ìœ¼ë¡œì„œ
+																				// ë°›ì•„ë“¤ì—¬ì¡ŒìŠµë‹ˆë‹¤.
 		}
 		bot.setClanid(clan.getClanId());
 		bot.setClanname(clan.getClanName());
@@ -452,7 +452,7 @@ public class Robot {
 
 		@Override
 		public void run() {
-			// TODO ÀÚµ¿ »ı¼ºµÈ ¸Ş¼Òµå ½ºÅÓ
+			// TODO ìë™ ìƒì„±ëœ ë©”ì†Œë“œ ìŠ¤í…
 			try {
 
 				if (crown._userTitle == null
@@ -472,7 +472,7 @@ public class Robot {
 						joinchar.updateclan(joinchar.getClanname(),
 								joinchar.getClanid(), crown._userTitle, true);
 					else
-						joinchar.save(); // DB¿¡ Ä³¸¯ÅÍ Á¤º¸¸¦ ½á ¿ì
+						joinchar.save(); // DBì— ìºë¦­í„° ì •ë³´ë¥¼ ì¨ ìš°
 				} catch (Exception e) {
 				}
 
@@ -480,7 +480,7 @@ public class Robot {
 						.getClan(crown.getClanname());
 				if (clan != null) {
 					for (L1PcInstance clanPc : clan.getOnlineClanMember()) {
-						// \f1%0ÀÌ%1¿¡ ¡¸%2¶ó°í ÇÏ´Â È£ÄªÀ» ÁÖ¾ú½À´Ï´Ù.
+						// \f1%0ì´%1ì— ã€Œ%2ë¼ê³  í•˜ëŠ” í˜¸ì¹­ì„ ì£¼ì—ˆìŠµë‹ˆë‹¤.
 						S_ServerMessage sm = new S_ServerMessage(203,
 								crown.getName(), joinchar.getName(),
 								joinchar.getTitle());
@@ -505,8 +505,8 @@ public class Robot {
 		@Override
 		public void run() {
 			try {
-				// TODO ÀÚµ¿ »ı¼ºµÈ ¸Ş¼Òµå ½ºÅÓ
-				if (bot.isDead() || bot._½º·¹µåÁ¾·á || L1World.getInstance().getPlayer(bot.getName()) == null)
+				// TODO ìë™ ìƒì„±ëœ ë©”ì†Œë“œ ìŠ¤í…
+				if (bot.isDead() || bot._ìŠ¤ë ˆë“œì¢…ë£Œ || L1World.getInstance().getPlayer(bot.getName()) == null)
 					return;
 				poly(bot);
 				Broadcaster.broadcastPacket(bot, new S_ChangeShape(bot.getId(), bot.getGfxId().getTempCharGfx()));

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -49,20 +49,20 @@ public class L1UserCalc implements L1CommandExecutor {
 			
 			if (type.equalsIgnoreCase("+")){
 				calcUser += count;
-				msg = new StringBuilder().append("»½Æ¢±â : "+count+"¸í Ãß°¡ / ÇöÀç »½Æ¢±â : "+calcUser+"¸í").toString();
+				msg = new StringBuilder().append("ë»¥íŠ€ê¸° : "+count+"ëª… ì¶”ê°€ / í˜„ìž¬ ë»¥íŠ€ê¸° : "+calcUser+"ëª…").toString();
 			} else if (type.equalsIgnoreCase("-")) {				
 				int temp = calcUser - count;
 				if (temp < 0){
-					pc.sendPackets(new S_SystemMessage("»½Æ¢±â°¡ -°¡ µÉ¼ö´Â ¾ø½À´Ï´Ù. ÇöÀç »½Æ¢±â : "+calcUser));
+					pc.sendPackets(new S_SystemMessage("ë»¥íŠ€ê¸°ê°€ -ê°€ ë ìˆ˜ëŠ” ì—†ìŠµë‹ˆë‹¤. í˜„ìž¬ ë»¥íŠ€ê¸° : "+calcUser));
 					return;
 				}else{
 					calcUser = temp;
-					msg = new StringBuilder().append("»½Æ¢±â : "+count+"¸í °¨¼Ò / ÇöÀç »½Æ¢±â : "+calcUser+"¸í").toString();
+					msg = new StringBuilder().append("ë»¥íŠ€ê¸° : "+count+"ëª… ê°ì†Œ / í˜„ìž¬ ë»¥íŠ€ê¸° : "+calcUser+"ëª…").toString();
 				}				
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "", e);
-			msg = new StringBuilder().append(cmdName).append(" [+,-] [COUNT] ÀÔ·Â").toString();
+			msg = new StringBuilder().append(cmdName).append(" [+,-] [COUNT] ìž…ë ¥").toString();
 		} finally {
 			if (msg != null) {
 				pc.sendPackets(new S_SystemMessage(msg));

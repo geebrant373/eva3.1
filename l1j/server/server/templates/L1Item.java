@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -27,7 +27,7 @@ public abstract class L1Item implements Serializable {
 	public L1Item() {
 	}
 
-	// ¡á¡á¡á¡á¡á¡á L1EtcItem, L1Weapon, L1Armor ¿¡ °øÅëµÇ´Â Ç×¸ñ ¡á¡á¡á¡á¡á¡á
+	// â– â– â– â– â– â–  L1EtcItem, L1Weapon, L1Armor ì— ê³µí†µë˜ëŠ” í•­ëª© â– â– â– â– â– â– 
 
 	private int _type2; //  0=L1EtcItem, 1=L1Weapon, 2=L1Armor
 
@@ -52,7 +52,7 @@ public abstract class L1Item implements Serializable {
 	private int _type;
 
 	/**
-	 * ¾ÆÀÌÅÛÀÇ Á¾·ù¸¦ µ¹·ÁÁØ´Ù.<br>
+	 * ì•„ì´í…œì˜ ì¢…ë¥˜ë¥¼ ëŒë ¤ì¤€ë‹¤.<br>
 	 * 
 	 * @return
 	 * <p>
@@ -78,7 +78,7 @@ public abstract class L1Item implements Serializable {
 	private int _type1;
 
 	/**
-	 * ¾ÆÀÌÅÛÀÇ Á¾·ù¸¦ µ¹·ÁÁØ´Ù.<br>
+	 * ì•„ì´í…œì˜ ì¢…ë¥˜ë¥¼ ëŒë ¤ì¤€ë‹¤.<br>
 	 * 
 	 * @return
 	 * <p>
@@ -94,11 +94,11 @@ public abstract class L1Item implements Serializable {
 	private int _material;
 
 	/**
-	 * ¾ÆÀÌÅÛÀÇ ¼ÒÀç¸¦ µ¹·ÁÁØ´Ù
+	 * ì•„ì´í…œì˜ ì†Œì¬ë¥¼ ëŒë ¤ì¤€ë‹¤
 	 *
-	 * @return 0:none 1:¾×Ã¼ 2:web 3:½Ä¹°¼º 4:µ¿¹°¼º 5:Áö 6:Æ÷ 7:ÇÇ 8:¸ñ 9:°ñ 10:·æÀÇ ¸° 11:Ã¶
-	 *         12:°­Ã¶ 13:µ¿ 14:Àº 15:±İ 16:ÇÃ¶óÆ¼³ª 17:¹Ì½º¸± 18:ºê¶ôÅ©¹Ì½º¸± 19:À¯¸® 20:º¸¼®
-	 *         21:±¤¹° 22:¿À¸®ÇÏ¸£ÄÜ
+	 * @return 0:none 1:ì•¡ì²´ 2:web 3:ì‹ë¬¼ì„± 4:ë™ë¬¼ì„± 5:ì§€ 6:í¬ 7:í”¼ 8:ëª© 9:ê³¨ 10:ë£¡ì˜ ë¦° 11:ì² 
+	 *         12:ê°•ì²  13:ë™ 14:ì€ 15:ê¸ˆ 16:í”Œë¼í‹°ë‚˜ 17:ë¯¸ìŠ¤ë¦´ 18:ë¸Œë½í¬ë¯¸ìŠ¤ë¦´ 19:ìœ ë¦¬ 20:ë³´ì„
+	 *         21:ê´‘ë¬¼ 22:ì˜¤ë¦¬í•˜ë¥´ì½˜
 	 */
 	public int getMaterial() {	return _material;	}
 	public void setMaterial(int material) {	_material = material;	}
@@ -126,7 +126,7 @@ public abstract class L1Item implements Serializable {
 	private int _itemDescId;
 
 	/**
-	 * °¨Á¤½Ã¿¡ Ç¥½ÃµÇ´Â ItemDesc.tblÀÇ ¸Ş¼¼Áö ID¸¦ µ¹·ÁÁØ´Ù.
+	 * ê°ì •ì‹œì— í‘œì‹œë˜ëŠ” ItemDesc.tblì˜ ë©”ì„¸ì§€ IDë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public int getItemDescId() {	return _itemDescId;	}
 	public void setItemDescId(int descId) {	_itemDescId = descId;	}
@@ -153,7 +153,7 @@ public abstract class L1Item implements Serializable {
 	private boolean _save_at_once;
 
 	/**
-	 * ¾ÆÀÌÅÛÀÇ °³¼ö°¡ º¯È­ÇßÀ» ¶§¿¡ °ğ¹Ù·Î DB¿¡ ±âÀÔÇØ¾ßÇÒ °ÍÀÎ°¡¸¦ µ¹·ÁÁØ´Ù.
+	 * ì•„ì´í…œì˜ ê°œìˆ˜ê°€ ë³€í™”í–ˆì„ ë•Œì— ê³§ë°”ë¡œ DBì— ê¸°ì…í•´ì•¼í•  ê²ƒì¸ê°€ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public boolean isToBeSavedAtOnce() {
 		return _save_at_once;
@@ -163,7 +163,7 @@ public abstract class L1Item implements Serializable {
 		_save_at_once = flag;
 	}
 
-	// ¡á¡á¡á¡á¡á¡á L1EtcItem, L1Weapon ¿¡ °øÅëµÇ´Â Ç×¸ñ ¡á¡á¡á¡á¡á¡á
+	// â– â– â– â– â– â–  L1EtcItem, L1Weapon ì— ê³µí†µë˜ëŠ” í•­ëª© â– â– â– â– â– â– 
 
 
 	private int _dmgSmall = 0; 
@@ -176,9 +176,9 @@ public abstract class L1Item implements Serializable {
 	public int getDmgLarge() {	return _dmgLarge;	}
 	public void setDmgLarge(int dmgLarge) {	_dmgLarge = dmgLarge;	}
 
-	// ¡á¡á¡á¡á¡á¡á L1EtcItem, L1Armor ¿¡ °øÅëµÇ´Â Ç×¸ñ ¡á¡á¡á¡á¡á¡á
+	// â– â– â– â– â– â–  L1EtcItem, L1Armor ì— ê³µí†µë˜ëŠ” í•­ëª© â– â– â– â– â– â– 
 
-	// ¡á¡á¡á¡á¡á¡á L1Weapon, L1Armor ¿¡ °øÅëµÇ´Â Ç×¸ñ ¡á¡á¡á¡á¡á¡á
+	// â– â– â– â– â– â–  L1Weapon, L1Armor ì— ê³µí†µë˜ëŠ” í•­ëª© â– â– â– â– â– â– 
 
 	private int _safeEnchant = 0;
 	public int get_safeenchant() {	return _safeEnchant;	}
@@ -275,7 +275,7 @@ public abstract class L1Item implements Serializable {
 	private int _useType;
 
 	/**
-	 * »ç¿ëÇßÀ» ¶§ÀÇ ¸®¾×¼ÇÀ» °áÁ¤ÇÏ´Â Å¸ÀÔÀ» µ¹·ÁÁØ´Ù.
+	 * ì‚¬ìš©í–ˆì„ ë•Œì˜ ë¦¬ì•¡ì…˜ì„ ê²°ì •í•˜ëŠ” íƒ€ì…ì„ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public int getUseType() {	return _useType;	}
 	public void setUseType(int useType) {	_useType = useType;	}
@@ -283,13 +283,13 @@ public abstract class L1Item implements Serializable {
 	private int _foodVolume;
 
 	/**
-	 * °í±âµîÀÇ ¾ÆÀÌÅÛÀ¸·Î ¼³Á¤µÇ¾î ÀÖ´Â ¸¸º¹µµ¸¦ µ¹·ÁÁØ´Ù.
+	 * ê³ ê¸°ë“±ì˜ ì•„ì´í…œìœ¼ë¡œ ì„¤ì •ë˜ì–´ ìˆëŠ” ë§Œë³µë„ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public int getFoodVolume() {	return _foodVolume;	}
 	public void setFoodVolume(int volume) {	_foodVolume = volume;	}
 
 	/**
-	 * ·¥ÇÁµîÀÇ ¾ÆÀÌÅÛÀ¸·Î ¼³Á¤µÇ¾î ÀÖ´Â ¹àÀ½À» µ¹·ÁÁØ´Ù.
+	 * ë¨í”„ë“±ì˜ ì•„ì´í…œìœ¼ë¡œ ì„¤ì •ë˜ì–´ ìˆëŠ” ë°ìŒì„ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public int getLightRange() {
 		if (_itemId == 40001) {
@@ -322,7 +322,7 @@ public abstract class L1Item implements Serializable {
 	}
 
 
-	// ¡á¡á¡á¡á¡á¡á L1EtcItem ·Î ¿À¹ö¶óÀÌµå(override) ÇÏ´Â Ç×¸ñ ¡á¡á¡á¡á¡á¡á
+	// â– â– â– â– â– â–  L1EtcItem ë¡œ ì˜¤ë²„ë¼ì´ë“œ(override) í•˜ëŠ” í•­ëª© â– â– â– â– â– â– 
 	public boolean isStackable() {	return false;	}
 
 	public int get_locx() {	return 0;	}
@@ -345,7 +345,7 @@ public abstract class L1Item implements Serializable {
 	public boolean isCanSeal() {
 		return false;
 	}
-	// ¡á¡á¡á¡á¡á¡á L1Weapon ·Î ¿À¹ö¶óÀÌµå(override) ÇÏ´Â Ç×¸ñ ¡á¡á¡á¡á¡á¡á
+	// â– â– â– â– â– â–  L1Weapon ë¡œ ì˜¤ë²„ë¼ì´ë“œ(override) í•˜ëŠ” í•­ëª© â– â– â– â– â– â– 
 	public int getRange() 		{	return 0;	}
 	public int getHitModifier() {	return 0;	}
 
@@ -359,7 +359,7 @@ public abstract class L1Item implements Serializable {
 
 	public boolean isTwohandedWeapon() {	return false;	}
 
-	// ¡á¡á¡á¡á¡á¡á L1Armor ·Î ¿À¹ö¶óÀÌµå(override) ÇÏ´Â Ç×¸ñ ¡á¡á¡á¡á¡á¡á
+	// â– â– â– â– â– â–  L1Armor ë¡œ ì˜¤ë²„ë¼ì´ë“œ(override) í•˜ëŠ” í•­ëª© â– â– â– â– â– â– 
 	public int get_ac() {	return 0;	}
 
 	public int getDamageReduction() {	return 0;	}
@@ -394,14 +394,14 @@ public abstract class L1Item implements Serializable {
 
 	public int get_regist_blind() {	return 0;	}
 
-	private int _grade; // ¡Ü Àå½Å±¸ ´Ü°è
+	private int _grade; // â— ì¥ì‹ êµ¬ ë‹¨ê³„
 	public int getGrade() {	return _grade;	}
 	public void setGrade(int grade) {	_grade = grade;	}
 
-	private int _price; // ¡Ü °¡°İ
+	private int _price; // â— ê°€ê²©
 	public int get_price() {	return _price;	}
 	public void set_price(int price) {	_price = price;	}
-	/* ¹ö±×º£¾î °æÁÖ °ü·Ã Ç×¸ñ */
+	/* ë²„ê·¸ë² ì–´ ê²½ì£¼ ê´€ë ¨ í•­ëª© */
 	private String _BugName;
 	//private double _Rate;
 

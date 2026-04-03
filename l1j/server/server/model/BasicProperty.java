@@ -1,4 +1,4 @@
-package l1j.server.server.model;
+ï»¿package l1j.server.server.model;
 
 import l1j.server.server.utils.IntRange;
 
@@ -28,16 +28,16 @@ public class BasicProperty {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ ÇöÀçÀÇ HP¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ í˜„ìž¬ì˜ HPë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return ÇöÀçÀÇ HP
+	 * @return í˜„ìž¬ì˜ HP
 	 */
 	public int getCurrentHp() {	return _currentHp; }
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ HP¸¦ ¼³Á¤ÇÑ´Ù.
+	 * ìºë¦­í„°ì˜ HPë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
-	 * @param i Ä³¸¯ÅÍÀÇ »õ·Î¿î HP
+	 * @param i ìºë¦­í„°ì˜ ìƒˆë¡œìš´ HP
 	 */
 	public void setCurrentHp(int i) {
 		if (i >= getMaxHp()) {
@@ -49,18 +49,18 @@ public class BasicProperty {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ ÇöÀçÀÇ MP¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ í˜„ìž¬ì˜ MPë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return ÇöÀçÀÇ MP
+	 * @return í˜„ìž¬ì˜ MP
 	 */
 	public int getCurrentMp() {
 		return _currentMp;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ MP¸¦ ¼³Á¤ÇÑ´Ù.
+	 * ìºë¦­í„°ì˜ MPë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
-	 * @param i Ä³¸¯ÅÍÀÇ »õ·Î¿î MP
+	 * @param i ìºë¦­í„°ì˜ ìƒˆë¡œìš´ MP
 	 */
 	public void setCurrentMp(int i) {
 		if (i >= getMaxMp()) {
@@ -112,9 +112,9 @@ public class BasicProperty {
 		else if (_lawful < -32768) { _lawful = -32768; }
 	}
 
-	/** Ä³¸¯ÅÍÀÇ ¾÷À» µ¹·ÁÁØ´Ù.	 */
+	/** ìºë¦­í„°ì˜ ì—…ì„ ëŒë ¤ì¤€ë‹¤.	 */
 	public int getKarma() {	return _karma; }
 
-	/** Ä³¸¯ÅÍÀÇ ¾÷À» ¼³Á¤ÇÑ´Ù.	 */
+	/** ìºë¦­í„°ì˜ ì—…ì„ ì„¤ì •í•œë‹¤.	 */
 	public void setKarma(int karma) { _karma = karma; }
 }

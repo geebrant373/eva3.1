@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -47,7 +47,7 @@ public class JPolyScroll extends L1ItemInstance{
 					pc.getInventory().removeItem(useItem, 1);
 				}
 			} else {
-				pc.sendPackets(new S_ServerMessage(181)); // \f1 ±×·¯ÇÑ monster¿¡°Ô´Â º¯½ÅÇÒ ¼ö ¾ø½À´Ï´Ù.
+				pc.sendPackets(new S_ServerMessage(181)); // \f1 ê·¸ëŸ¬í•œ monsterì—ê²ŒëŠ” ë³€ì‹ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤.
 			}
 		}
 	}
@@ -55,7 +55,7 @@ public class JPolyScroll extends L1ItemInstance{
 	private boolean usePolyScroll(L1PcInstance pc, int item_id, String s) {
 		
 		int time = 0;
-		if (item_id == 45077) { // º¯½Å ½ºÅ©·Ñ, »ó¾ÆÀÇ Å¾ÀÇ º¯½Å ½ºÅ©·Ñ
+		if (item_id == 45077) { // ë³€ì‹  ìŠ¤í¬ë¡¤, ìƒì•„ì˜ íƒ‘ì˜ ë³€ì‹  ìŠ¤í¬ë¡¤
 			time = 1800;
 		} 
 		L1PolyMorph poly = PolyTable.getInstance().getTemplate(s);

@@ -1,4 +1,4 @@
-/* This program is free software; you can redistribute it and/or modify
+ï»¿/* This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
  * any later version.
@@ -68,10 +68,10 @@ public class Point {
 	private static final int HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
 	/**
-	 * ÁöÁ¤µÈ ¹æÇâÀ¸·Î ÀÌ ÁÂÇ¥¸¦ ÇÏ³ª ÁøÇàÇÑ´Ù.
+	 * ì§€ì •ëœ ë°©í–¥ìœ¼ë¡œ ì´ ì¢Œí‘œë¥¼ í•˜ë‚˜ ì§„í–‰í•œë‹¤.
 	 *
 	 * @param heading
-	 *            ¹æÇâ(0~7)
+	 *            ë°©í–¥(0~7)
 	 */
 	public void forward(int heading) {
 		_x += HEADING_TABLE_X[heading];
@@ -79,10 +79,10 @@ public class Point {
 	}
 
 	/**
-	 * ÁöÁ¤µÈ ¹æÇâ°ú ¿ª¹æÇâÀ¸·Î ÀÌ ÁÂÇ¥¸¦ ÇÏ³ª ÁøÇàÇÑ´Ù.
+	 * ì§€ì •ëœ ë°©í–¥ê³¼ ì—­ë°©í–¥ìœ¼ë¡œ ì´ ì¢Œí‘œë¥¼ í•˜ë‚˜ ì§„í–‰í•œë‹¤.
 	 *
 	 * @param heading
-	 *            ¹æÇâ(0~7)
+	 *            ë°©í–¥(0~7)
 	 */
 	public void backward(int heading) {
 		_x -= HEADING_TABLE_X[heading];
@@ -90,11 +90,11 @@ public class Point {
 	}
 
 	/**
-	 * ÁöÁ¤µÈ ÁÂÇ¥¿¡ÀÇ Á÷¼± °Å¸®¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì¢Œí‘œì—ì˜ ì§ì„  ê±°ë¦¬ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 *
 	 * @param pt
-	 *            ÁÂÇ¥¸¦ º¸°ü À¯ÁöÇÏ´Â Point ¿ÀºêÁ§Æ®
-	 * @return ÁÂÇ¥±îÁöÀÇ Á÷¼± °Å¸®
+	 *            ì¢Œí‘œë¥¼ ë³´ê´€ ìœ ì§€í•˜ëŠ” Point ì˜¤ë¸Œì íŠ¸
+	 * @return ì¢Œí‘œê¹Œì§€ì˜ ì§ì„  ê±°ë¦¬
 	 */
 	public double getLineDistance(Point pt) {
 		long diffX = pt.getX() - this.getX();
@@ -103,34 +103,34 @@ public class Point {
 	}
 
 	/**
-	 * ÁöÁ¤µÈ ÁÂÇ¥±îÁöÀÇ Á÷¼± Å¸ÀÏ¼ö¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì¢Œí‘œê¹Œì§€ì˜ ì§ì„  íƒ€ì¼ìˆ˜ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 *
 	 * @param pt
-	 *            ÁÂÇ¥¸¦ º¸°ü À¯ÁöÇÏ´Â Point ¿ÀºêÁ§Æ®
-	 * @return ÁöÁ¤µÈ ÁÂÇ¥±îÁöÀÇ Á÷¼± Å¸ÀÏ¼ö.
+	 *            ì¢Œí‘œë¥¼ ë³´ê´€ ìœ ì§€í•˜ëŠ” Point ì˜¤ë¸Œì íŠ¸
+	 * @return ì§€ì •ëœ ì¢Œí‘œê¹Œì§€ì˜ ì§ì„  íƒ€ì¼ìˆ˜.
 	 */
 	public int getTileLineDistance(Point pt) {
 		return Math.max(Math.abs(pt.getX() - getX()), Math.abs(pt.getY() - getY()));
 	}
 
 	/**
-	 * ÁöÁ¤µÈ ÁÂÇ¥±îÁöÀÇ Å¸ÀÏ¼ö¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì¢Œí‘œê¹Œì§€ì˜ íƒ€ì¼ìˆ˜ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 *
 	 * @param pt
-	 *            ÁÂÇ¥¸¦ º¸°ü À¯ÁöÇÏ´Â Point ¿ÀºêÁ§Æ®
-	 * @return ÁöÁ¤µÈ ÁÂÇ¥±îÁöÀÇ Å¸ÀÏ¼ö.
+	 *            ì¢Œí‘œë¥¼ ë³´ê´€ ìœ ì§€í•˜ëŠ” Point ì˜¤ë¸Œì íŠ¸
+	 * @return ì§€ì •ëœ ì¢Œí‘œê¹Œì§€ì˜ íƒ€ì¼ìˆ˜.
 	 */
 	public int getTileDistance(Point pt) {
 		return Math.abs(pt.getX() - getX()) + Math.abs(pt.getY() - getY());
 	}
 
 	/**
-	 * ÁöÁ¤µÈ ÁÂÇ¥°¡ È­¸é³»·Î º¸ÀÏ±î¸¦ µ¹·ÁÁÖ´Â ÇÃ·¹ÀÌ¾îÀÇ ÁÂÇ¥¸¦(0,0)ÀÌ¶ó°í ÇÏ¸é º¸ÀÌ´Â ¹üÀ§ÀÇ ÁÂÇ¥´Â
-	 * ÁÂ»ó(2,-15) ¿ì»ó(15,-2) ÁÂÇÏ(-15,2) ¿ìÇÏ(-2,15)µÈ´Ù. Ã¤ÆÃ¶õ¿¡ ¼û¾î ¾Èº¸ÀÌ´Â ºÎºĞµµ È­¸é³»¿¡ Æ÷ÇÔµÈ´Ù.
+	 * ì§€ì •ëœ ì¢Œí‘œê°€ í™”ë©´ë‚´ë¡œ ë³´ì¼ê¹Œë¥¼ ëŒë ¤ì£¼ëŠ” í”Œë ˆì´ì–´ì˜ ì¢Œí‘œë¥¼(0,0)ì´ë¼ê³  í•˜ë©´ ë³´ì´ëŠ” ë²”ìœ„ì˜ ì¢Œí‘œëŠ”
+	 * ì¢Œìƒ(2,-15) ìš°ìƒ(15,-2) ì¢Œí•˜(-15,2) ìš°í•˜(-2,15)ëœë‹¤. ì±„íŒ…ë€ì— ìˆ¨ì–´ ì•ˆë³´ì´ëŠ” ë¶€ë¶„ë„ í™”ë©´ë‚´ì— í¬í•¨ëœë‹¤.
 	 *
 	 * @param pt
-	 *            ÁÂÇ¥¸¦ º¸°ü À¯ÁöÇÏ´Â Point ¿ÀºêÁ§Æ®
-	 * @return ÁöÁ¤µÈ ÁÂÇ¥°¡ È­¸é³»·Î º¸ÀÌ´Â °æ¿ì´Â true.±×·¸Áö ¾ÊÀº °æ¿ì´Â false.
+	 *            ì¢Œí‘œë¥¼ ë³´ê´€ ìœ ì§€í•˜ëŠ” Point ì˜¤ë¸Œì íŠ¸
+	 * @return ì§€ì •ëœ ì¢Œí‘œê°€ í™”ë©´ë‚´ë¡œ ë³´ì´ëŠ” ê²½ìš°ëŠ” true.ê·¸ë ‡ì§€ ì•Šì€ ê²½ìš°ëŠ” false.
 	 */
 //	public boolean isInScreen(Point pt) {
 //		int dist = this.getTileDistance(pt);
@@ -158,8 +158,8 @@ public class Point {
 		} else if (dist <= 13) {
 			return true;
 		} else {
-			// ÁÂ¿ìÀÇ È­¸é ¿ÜºÎºĞÀ» Á¦¿Ü
-			// ÇÃ·¹ÀÌ¾îÀÇ ÁÂÇ¥¸¦(15, 15)·Î ÇßÀ» °æ¿ì¿¡(0, 0)¿¡ ÇØ´çÇÏ´Â ÁÂÇ¥·ÎºÎÅÍÀÇ °Å¸®·Î ÆÇ´Ü
+			// ì¢Œìš°ì˜ í™”ë©´ ì™¸ë¶€ë¶„ì„ ì œì™¸
+			// í”Œë ˆì´ì–´ì˜ ì¢Œí‘œë¥¼(15, 15)ë¡œ í–ˆì„ ê²½ìš°ì—(0, 0)ì— í•´ë‹¹í•˜ëŠ” ì¢Œí‘œë¡œë¶€í„°ì˜ ê±°ë¦¬ë¡œ íŒë‹¨
 			// Point pointZero = new Point(this.getX() - 15, this.getY() - 15);
 			// int dist2 = pointZero.getTileDistance(pt);
 			int dist2 = Math.abs(pt.getX() - (this.getX() - 15))
@@ -172,11 +172,11 @@ public class Point {
 	}
 
 	/**
-	 * ÁöÁ¤µÈ ÁÂÇ¥¿Í °°Àº ÁÂÇ¥ÀÎÁö¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì¢Œí‘œì™€ ê°™ì€ ì¢Œí‘œì¸ì§€ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 *
 	 * @param pt
-	 *            ÁÂÇ¥¸¦ º¸°ü À¯ÁöÇÏ´Â Point ¿ÀºêÁ§Æ®
-	 * @return ÁöÁ¤µÈ ÁÂÇ¥¿Í °°Àº ÁÂÇ¥ÀÎ°¡.
+	 *            ì¢Œí‘œë¥¼ ë³´ê´€ ìœ ì§€í•˜ëŠ” Point ì˜¤ë¸Œì íŠ¸
+	 * @return ì§€ì •ëœ ì¢Œí‘œì™€ ê°™ì€ ì¢Œí‘œì¸ê°€.
 	 */
 	public boolean isSamePoint(Point pt) {
 		return (pt.getX() == getX() && pt.getY() == getY());

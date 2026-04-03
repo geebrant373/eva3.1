@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -88,166 +88,166 @@ public class L1Reload implements L1CommandExecutor {
 
 	@Override
 	public void execute(L1PcInstance gm, String cmdName, String arg) {
-		if (arg.equalsIgnoreCase("µå¶ø")) {
+		if (arg.equalsIgnoreCase("ë“œë")) {
 			DropTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: µå¶ø"));
-		} else if (arg.equalsIgnoreCase("½ºÅ³È®·ü")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë“œë"));
+		} else if (arg.equalsIgnoreCase("ìŠ¤í‚¬í™•ë¥ ")) {
 			SkillsProbabilityDetailTable.getInstance().reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ½ºÅ³È®·ü"));
-		} else if (arg.equalsIgnoreCase("·¹º§¼±¹°")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ìŠ¤í‚¬í™•ë¥ "));
+		} else if (arg.equalsIgnoreCase("ë ˆë²¨ì„ ë¬¼")) {
 			CharactersGiftItemTable.reload();
-			gm.sendPackets("levelup_quests_item Å×ÀÌºíÀÌ ¸®·Îµå µÇ¾ú½À´Ï´Ù.");
-		} else if (arg.equalsIgnoreCase("³¬½Ã°æÇèÄ¡")) {
+			gm.sendPackets("levelup_quests_item í…Œì´ë¸”ì´ ë¦¬ë¡œë“œ ë˜ì—ˆìŠµë‹ˆë‹¤.");
+		} else if (arg.equalsIgnoreCase("ë‚šì‹œê²½í—˜ì¹˜")) {
 			FishExpTable.getInstance().reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ³¬½Ã°æÇèÄ¡"));
-		} else if (arg.equalsIgnoreCase("¸÷¹ë·±½º")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë‚šì‹œê²½í—˜ì¹˜"));
+		} else if (arg.equalsIgnoreCase("ëª¹ë°¸ëŸ°ìŠ¤")) {
 			MonsterBalance.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¸÷¹ë·±½º"));
-		} else if (arg.equalsIgnoreCase("¾Æ¸Ó¹ë·±½º")){
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ëª¹ë°¸ëŸ°ìŠ¤"));
+		} else if (arg.equalsIgnoreCase("ì•„ë¨¸ë°¸ëŸ°ìŠ¤")){
 		      ArmorBalanceTable.reload();
-		      gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: armor_balance"));
-		} else if (arg.equalsIgnoreCase("¼ö¹è¸Ê")){
+		      gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: armor_balance"));
+		} else if (arg.equalsIgnoreCase("ìˆ˜ë°°ë§µ")){
 			WantedTeleportTable.reload();
-		      gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: wantedteleportmaps"));
-		} else if (arg.equalsIgnoreCase("Àå½Å±¸¹ë·±½º")){
+		      gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: wantedteleportmaps"));
+		} else if (arg.equalsIgnoreCase("ì¥ì‹ êµ¬ë°¸ëŸ°ìŠ¤")){
 		      AccessoryBalanceTable.reload();
-		      gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: Accessary_balance"));
-		} else if (arg.equalsIgnoreCase("µå¶ø¾ÆÀÌÅÛ")) {
+		      gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: Accessary_balance"));
+		} else if (arg.equalsIgnoreCase("ë“œëì•„ì´í…œ")) {
 			DropItemTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: µå¶ø¾ÆÀÌÅÛ"));
-		} else if (arg.equalsIgnoreCase("»óÁ¡¾Æµ§Å¸ÀÔ")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë“œëì•„ì´í…œ"));
+		} else if (arg.equalsIgnoreCase("ìƒì ì•„ë´íƒ€ì…")) {
 			NpcShopAdenTypeTable.getInstance().reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: »óÁ¡¾Æµ§Å¸ÀÔ"));
-		} else if (arg.equalsIgnoreCase("¼Ó¼ºÀÎÃ¦Á¦ÇÑ")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ìƒì ì•„ë´íƒ€ì…"));
+		} else if (arg.equalsIgnoreCase("ì†ì„±ì¸ì±ˆì œí•œ")) {
 			AttrEnchantControlTable.getInstance().reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¼Ó¼ºÀÎÃ¦Á¦ÇÑ"));
-		} else if (arg.equalsIgnoreCase("Å¾º¸½º")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ì†ì„±ì¸ì±ˆì œí•œ"));
+		} else if (arg.equalsIgnoreCase("íƒ‘ë³´ìŠ¤")) {
 			DominanceDataLoader.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á:Å¾º¸½º"));
-		} else if (arg.equalsIgnoreCase("¸÷¹ë·±½º")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ:íƒ‘ë³´ìŠ¤"));
+		} else if (arg.equalsIgnoreCase("ëª¹ë°¸ëŸ°ìŠ¤")) {
 			 MonsterBalance.reload();
-			gm.sendPackets("¸®·Îµå ¿Ï·á:¸ó½ºÅÍ¹ë·±½º");
-		} else if (arg.equalsIgnoreCase("½ºÅ³´ë¹ÌÁö")) {
+			gm.sendPackets("ë¦¬ë¡œë“œ ì™„ë£Œ:ëª¬ìŠ¤í„°ë°¸ëŸ°ìŠ¤");
+		} else if (arg.equalsIgnoreCase("ìŠ¤í‚¬ëŒ€ë¯¸ì§€")) {
 			SkillsDmgTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á:½ºÅ³´ë¹ÌÁö"));
-		} else if(arg.equalsIgnoreCase("¹æ¾î±¸ÀÎÃ¾")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ:ìŠ¤í‚¬ëŒ€ë¯¸ì§€"));
+		} else if(arg.equalsIgnoreCase("ë°©ì–´êµ¬ì¸ì²¸")) {
 			ArmorEnchantTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á:¹æ¾î±¸ÀÎÃ¾¸®½ºÆ®"));
-		} else if (arg.equalsIgnoreCase("º¯½Å")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ:ë°©ì–´êµ¬ì¸ì²¸ë¦¬ìŠ¤íŠ¸"));
+		} else if (arg.equalsIgnoreCase("ë³€ì‹ ")) {
 			PolyTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: º¯½Å"));
-		} else if (arg.equalsIgnoreCase("¾Ç¼¼ÀÎÃ¦Á¤º¸")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë³€ì‹ "));
+		} else if (arg.equalsIgnoreCase("ì•…ì„¸ì¸ì±ˆì •ë³´")) {
 			AccessoryEnchantInformationTable.reload();
 			AccessoryEnchantInformationTable1.reload();
-			gm.sendPackets("\\aGDB:[accessory_enchant_lis] Å×ÀÌºí ¸®·Îµå ¿Ï·á!");
-		} else if (arg.equalsIgnoreCase("Á¦ÀÛ")) {
+			gm.sendPackets("\\aGDB:[accessory_enchant_lis] í…Œì´ë¸” ë¦¬ë¡œë“œ ì™„ë£Œ!");
+		} else if (arg.equalsIgnoreCase("ì œì‘")) {
 			CraftListTable.reload();
-			gm.sendPackets(new S_SystemMessage("Á¦ÀÛ Å×ÀÌºí ³»¿ëÀÌ ÃÖ½ÅÈ­ µÇ¾ú½À´Ï´Ù."));
-		} else if (arg.equalsIgnoreCase("¿£ÇÇ¾¾´ë¹ÌÁö")) {
+			gm.sendPackets(new S_SystemMessage("ì œì‘ í…Œì´ë¸” ë‚´ìš©ì´ ìµœì‹ í™” ë˜ì—ˆìŠµë‹ˆë‹¤."));
+		} else if (arg.equalsIgnoreCase("ì—”í”¼ì”¨ëŒ€ë¯¸ì§€")) {
 			NpcStatusDamageInfo.do_load();
-			gm.sendPackets("\\aGDB:[npc_status_dmg] ¸®·Îµå ¿Ï·á!");
-		} else if (arg.equalsIgnoreCase("º¸½º½ºÆù")) {
+			gm.sendPackets("\\aGDB:[npc_status_dmg] ë¦¬ë¡œë“œ ì™„ë£Œ!");
+		} else if (arg.equalsIgnoreCase("ë³´ìŠ¤ìŠ¤í°")) {
 			SpawnBossTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: º¸½º½ºÆù"));
-		} else if (arg.equalsIgnoreCase("Å¸ÀÓ¿£ÇÇ¾¾½ºÆù")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë³´ìŠ¤ìŠ¤í°"));
+		} else if (arg.equalsIgnoreCase("íƒ€ì„ì—”í”¼ì”¨ìŠ¤í°")) {
 			NewNpcSpawnTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: Å¸ÀÓ¿£ÇÇ¾¾½ºÆù"));
-		} else if (arg.equalsIgnoreCase("¿ëÇØÁ¦")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: íƒ€ì„ì—”í”¼ì”¨ìŠ¤í°"));
+		} else if (arg.equalsIgnoreCase("ìš©í•´ì œ")) {
 			ResolventTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¿ëÇØÁ¦"));
-		} else if (arg.equalsIgnoreCase("ÀÎÇüÀÌº¥Æ®")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ìš©í•´ì œ"));
+		} else if (arg.equalsIgnoreCase("ì¸í˜•ì´ë²¤íŠ¸")) {
 			DollBonusEventLoader.reload();
-			gm.sendPackets(new S_SystemMessage("\\aGDB:[doll_bonus_event_system] Å×ÀÌºí ¸®·Îµå ¿Ï·á!"));
-		} else if (arg.equalsIgnoreCase("º¸³Ê½º¸Ê")) {
+			gm.sendPackets(new S_SystemMessage("\\aGDB:[doll_bonus_event_system] í…Œì´ë¸” ë¦¬ë¡œë“œ ì™„ë£Œ!"));
+		} else if (arg.equalsIgnoreCase("ë³´ë„ˆìŠ¤ë§µ")) {
 			SpecialMapTable.reload();
-			gm.sendPackets("\\aGDB:[Bonus_map] Å×ÀÌºí ¸®·Îµå ¿Ï·á!");
-		} else if (arg.equalsIgnoreCase("¹Ú½º")) {
+			gm.sendPackets("\\aGDB:[Bonus_map] í…Œì´ë¸” ë¦¬ë¡œë“œ ì™„ë£Œ!");
+		} else if (arg.equalsIgnoreCase("ë°•ìŠ¤")) {
 			L1TreasureBox.load();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: Æ®·¹Á®¹Ú½º"));
-		} else if (arg.equalsIgnoreCase("½ºÅ³")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: íŠ¸ë ˆì ¸ë°•ìŠ¤"));
+		} else if (arg.equalsIgnoreCase("ìŠ¤í‚¬")) {
 			SkillsTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ½ºÅ³"));
-		} else if (arg.equalsIgnoreCase("¸÷½ºÅ³")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ìŠ¤í‚¬"));
+		} else if (arg.equalsIgnoreCase("ëª¹ìŠ¤í‚¬")) {
 			MobSkillTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¸÷ ½ºÅ³"));
-		} else if (arg.equalsIgnoreCase("¸ÊÇÈ½º")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ëª¹ ìŠ¤í‚¬"));
+		} else if (arg.equalsIgnoreCase("ë§µí”½ìŠ¤")) {
 			MapFixKeyTable.reload();
-		} else if (arg.equalsIgnoreCase("»óÁ¡")) {
+		} else if (arg.equalsIgnoreCase("ìƒì ")) {
 			ShopTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: »óÁ¡"));
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ìƒì "));
 		
-		} else if (arg.equalsIgnoreCase("ÇÑÀÔ¸¸")) {
+		} else if (arg.equalsIgnoreCase("í•œì…ë§Œ")) {
 			AddRewardMonTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: º¸½ºÇÑÀÔ¸¸½Ã½ºÅÛ"));
-		} else if (arg.equalsIgnoreCase("·ÎÅ×ÀÌ¼Ç")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë³´ìŠ¤í•œì…ë§Œì‹œìŠ¤í…œ"));
+		} else if (arg.equalsIgnoreCase("ë¡œí…Œì´ì…˜")) {
 			LotationStatics.reload();
-			gm.sendPackets(new S_SystemMessage("\\f:·ÎÅ×ÀÌ¼Ç¸Ê Å×ÀÌºíÀÌ ¸®·Îµå µÇ¾ú½À´Ï´Ù."));
-		} else if (arg.equalsIgnoreCase("±â¿îÅÛ")) {
+			gm.sendPackets(new S_SystemMessage("\\f:ë¡œí…Œì´ì…˜ë§µ í…Œì´ë¸”ì´ ë¦¬ë¡œë“œ ë˜ì—ˆìŠµë‹ˆë‹¤."));
+		} else if (arg.equalsIgnoreCase("ê¸°ìš´í…œ")) {
 			ForceItem.reload();
-			gm.sendPackets(new S_SystemMessage("\\f:¸®·Îµå ¿Ï·á: ±â¿îÅÛ"));
-		} else if (arg.equalsIgnoreCase("¿£ÇÇ¾¾¾×¼Ç")) {
+			gm.sendPackets(new S_SystemMessage("\\f:ë¦¬ë¡œë“œ ì™„ë£Œ: ê¸°ìš´í…œ"));
+		} else if (arg.equalsIgnoreCase("ì—”í”¼ì”¨ì•¡ì…˜")) {
 			NPCTalkDataTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¿£ÇÇ¾¾¾×¼Ç"));
-		} else if (arg.equalsIgnoreCase("ÄÁÇÇ±×")) {
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ÄÁÇÇ±×"));
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ì—”í”¼ì”¨ì•¡ì…˜"));
+		} else if (arg.equalsIgnoreCase("ì»¨í”¼ê·¸")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ì»¨í”¼ê·¸"));
 			Config.load();
-			// } else if (arg.equalsIgnoreCase("¾ÆÀÌÇÇ")) {
-			// gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¾ÆÀÌÇÇ"));
+			// } else if (arg.equalsIgnoreCase("ì•„ì´í”¼")) {
+			// gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ì•„ì´í”¼"));
 			// Config.load1();
-		} else if (arg.equalsIgnoreCase("½ºÆù¸®½ºÆ®")) {
+		} else if (arg.equalsIgnoreCase("ìŠ¤í°ë¦¬ìŠ¤íŠ¸")) {
 			SpawnTable.getInstance().reload1();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ½ºÆù¸®½ºÆ®"));
-		} else if (arg.equalsIgnoreCase("¾ÆÀÌÅÛ")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ìŠ¤í°ë¦¬ìŠ¤íŠ¸"));
+		} else if (arg.equalsIgnoreCase("ì•„ì´í…œ")) {
 			ItemTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¾ÆÀÌÅÛ"));
-		} else if (arg.equalsIgnoreCase("¿£ÇÇ¾¾")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ì•„ì´í…œ"));
+		} else if (arg.equalsIgnoreCase("ì—”í”¼ì”¨")) {
 			NpcTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¿£ÇÇ¾¾"));
-		} else if (arg.equalsIgnoreCase("Æ÷Å»")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ì—”í”¼ì”¨"));
+		} else if (arg.equalsIgnoreCase("í¬íƒˆ")) {
 			Dungeon.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: Æ÷Å»"));
-		} else if (arg.equalsIgnoreCase("¸Ê")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: í¬íƒˆ"));
+		} else if (arg.equalsIgnoreCase("ë§µ")) {
 			MapsTable.getInstance().reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¸Ê"));
-		} else if (arg.equalsIgnoreCase("¸ÊÀÌº¥Æ®")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë§µ"));
+		} else if (arg.equalsIgnoreCase("ë§µì´ë²¤íŠ¸")) {
 			Map_Event.getInstance().reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¸ÊÀÌº¥Æ®"));
-		} else if (arg.equalsIgnoreCase("µå¶øÀÌº¥Æ®")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë§µì´ë²¤íŠ¸"));
+		} else if (arg.equalsIgnoreCase("ë“œëì´ë²¤íŠ¸")) {
 			DropEventTable.getInstance().reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: µå¶øÀÌº¥Æ®"));
-		} else if (arg.equalsIgnoreCase("¹«±â¹ë·±½º")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë“œëì´ë²¤íŠ¸"));
+		} else if (arg.equalsIgnoreCase("ë¬´ê¸°ë°¸ëŸ°ìŠ¤")) {
 			WeaponPcBalanceTable.reload();
 			WeaponNpcBalanceTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¹«±â¹ë·±½º"));
-		} else if (arg.equalsIgnoreCase("¹«±â¸¶¹ıÇÇ¾¾¹ë·±½º")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë¬´ê¸°ë°¸ëŸ°ìŠ¤"));
+		} else if (arg.equalsIgnoreCase("ë¬´ê¸°ë§ˆë²•í”¼ì”¨ë°¸ëŸ°ìŠ¤")) {
 			WeaponMagicPcBalanceTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¹«±â¸¶¹ıÇÇ¾¾¹ë·±½º"));
-		} else if (arg.equalsIgnoreCase("¹«±â¸¶¹ı¿£ÇÇ¾¾¹ë·±½º")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë¬´ê¸°ë§ˆë²•í”¼ì”¨ë°¸ëŸ°ìŠ¤"));
+		} else if (arg.equalsIgnoreCase("ë¬´ê¸°ë§ˆë²•ì—”í”¼ì”¨ë°¸ëŸ°ìŠ¤")) {
 			WeaponMagicNpcBalanceTable.reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: ¹«±â¸¶¹ı¾ØÇÇ¾¾¹ë·±½º"));
-		} else if (arg.equalsIgnoreCase("Ä³¸¯ÅÍ¹ë·±½º")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ë¬´ê¸°ë§ˆë²•ì•¤í”¼ì”¨ë°¸ëŸ°ìŠ¤"));
+		} else if (arg.equalsIgnoreCase("ìºë¦­í„°ë°¸ëŸ°ìŠ¤")) {
 			CharacterBalance.getInstance().reload();
 			CharactersMrTable.getInstance().reload();
 		    CharactersAcTable.getInstance().reload();
 		    CharactersReducTable.getInstance().reload();
-			gm.sendPackets(new S_SystemMessage("¸®·Îµå ¿Ï·á: Ä³¸¯ÅÍ¹ë·±½º"));
-		} else if (arg.equalsIgnoreCase("±â¾ïÃ¥")) {
+			gm.sendPackets(new S_SystemMessage("ë¦¬ë¡œë“œ ì™„ë£Œ: ìºë¦­í„°ë°¸ëŸ°ìŠ¤"));
+		} else if (arg.equalsIgnoreCase("ê¸°ì–µì±…")) {
 			huntingbookTable.reload();
-			gm.sendPackets((ServerBasePacket) new S_SystemMessage("huntingbookTable ¸®·Îµå ¿Ï·á"));
+			gm.sendPackets((ServerBasePacket) new S_SystemMessage("huntingbookTable ë¦¬ë¡œë“œ ì™„ë£Œ"));
 		} else {
-			gm.sendPackets("\\fY¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬ ¿î¿µÀÚ ¸®·Îµå ¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬¦¬");
-			gm.sendPackets("\\fR[±âº»]:.µå¶ø .¸Ê .»óÁ¡ .¾ÆÀÌÇÇ .µå¶ø¾ÆÀÌÅÛ");
-			gm.sendPackets("\\fR[±âº»]:.º¯½Å .¿ëÇØÁ¦ .Æ÷ÄÏ .Ä³¸¯ÅÍ¹ë·±½º");
-			gm.sendPackets("\\fR[±âº»]:.ÄÁÇÇ±× .º¸½º½ºÆù .½ºÆù¸®½ºÆ®");
-			gm.sendPackets("\\fR[±âº»]:.¹«±â¹ë·±½º .¸ÊÀÌº¥Æ® .µå¶øÀÌº¥Æ®");
-			gm.sendPackets("\\fR[±âº»]:.ÇÑÀÔ¸¸ .Æ÷ÄÏ .·ÎÅ×ÀÌ¼Ç .±â¿îÅÛ .·¹º§¼±¹°");
-			gm.sendPackets("\\fR[±âº»]:.ÀÎÇüÀÌº¥Æ® .¾Ç¼¼ÀÎÃ¦Á¤º¸ .¿£ÇÇ¾¾´ë¹ÌÁö ");
-			gm.sendPackets("\\fR[±âº»]:.º¸³Ê½º¸Ê .½ºÅ³´ë¹ÌÁö .¸÷¹ë·±½º .¹«±â¸¶¹ıÇÇ¾¾¹ë·±½º");
-			gm.sendPackets("\\fR[±âº»]:.Àå½Å±¸¹ë·±½º .Å¸ÀÓ¿£ÇÇ¾¾½ºÆù .¼ö¹è¸Ê .¹«±â¸¶¹ı¿£ÇÇ¾¾¹ë·±½º");
+			gm.sendPackets("\\fYâ”â”â”â”â”â”â”â”â”â”â”â” ìš´ì˜ì ë¦¬ë¡œë“œ â”â”â”â”â”â”â”â”â”â”â”â”");
+			gm.sendPackets("\\fR[ê¸°ë³¸]:.ë“œë .ë§µ .ìƒì  .ì•„ì´í”¼ .ë“œëì•„ì´í…œ");
+			gm.sendPackets("\\fR[ê¸°ë³¸]:.ë³€ì‹  .ìš©í•´ì œ .í¬ì¼“ .ìºë¦­í„°ë°¸ëŸ°ìŠ¤");
+			gm.sendPackets("\\fR[ê¸°ë³¸]:.ì»¨í”¼ê·¸ .ë³´ìŠ¤ìŠ¤í° .ìŠ¤í°ë¦¬ìŠ¤íŠ¸");
+			gm.sendPackets("\\fR[ê¸°ë³¸]:.ë¬´ê¸°ë°¸ëŸ°ìŠ¤ .ë§µì´ë²¤íŠ¸ .ë“œëì´ë²¤íŠ¸");
+			gm.sendPackets("\\fR[ê¸°ë³¸]:.í•œì…ë§Œ .í¬ì¼“ .ë¡œí…Œì´ì…˜ .ê¸°ìš´í…œ .ë ˆë²¨ì„ ë¬¼");
+			gm.sendPackets("\\fR[ê¸°ë³¸]:.ì¸í˜•ì´ë²¤íŠ¸ .ì•…ì„¸ì¸ì±ˆì •ë³´ .ì—”í”¼ì”¨ëŒ€ë¯¸ì§€ ");
+			gm.sendPackets("\\fR[ê¸°ë³¸]:.ë³´ë„ˆìŠ¤ë§µ .ìŠ¤í‚¬ëŒ€ë¯¸ì§€ .ëª¹ë°¸ëŸ°ìŠ¤ .ë¬´ê¸°ë§ˆë²•í”¼ì”¨ë°¸ëŸ°ìŠ¤");
+			gm.sendPackets("\\fR[ê¸°ë³¸]:.ì¥ì‹ êµ¬ë°¸ëŸ°ìŠ¤ .íƒ€ì„ì—”í”¼ì”¨ìŠ¤í° .ìˆ˜ë°°ë§µ .ë¬´ê¸°ë§ˆë²•ì—”í”¼ì”¨ë°¸ëŸ°ìŠ¤");
 
-			// gm.sendPackets(new S_SystemMessage(cmdName + " : [µå¶ø, ¸Ê, »óÁ¡,¾ÆÀÌÇÇ,
-			// µå¶ø¾ÆÀÌÅÛ, º¯½Å, ¿ëÇØÁ¦, Æ÷ÄÏ, ÄÁÇÇ±×, º¸½º½ºÆù, ½ºÆù¸®½ºÆ®, ¹«±â¹ë·±½º, ¸ÊÀÌº¥Æ®,
-			// µå¶øÀÌº¥Æ®,ÇÑÀÔ¸¸,·ÎÅ×ÀÌ¼Ç,±â¿îÅÛ,ÀÎÇüÀÌº¥Æ®,º§·±½º,¾Ç¼¼ÀÎÃ¦Á¤º¸,¿£ÇÇ¾¾´ë¹ÌÁö]"));
+			// gm.sendPackets(new S_SystemMessage(cmdName + " : [ë“œë, ë§µ, ìƒì ,ì•„ì´í”¼,
+			// ë“œëì•„ì´í…œ, ë³€ì‹ , ìš©í•´ì œ, í¬ì¼“, ì»¨í”¼ê·¸, ë³´ìŠ¤ìŠ¤í°, ìŠ¤í°ë¦¬ìŠ¤íŠ¸, ë¬´ê¸°ë°¸ëŸ°ìŠ¤, ë§µì´ë²¤íŠ¸,
+			// ë“œëì´ë²¤íŠ¸,í•œì…ë§Œ,ë¡œí…Œì´ì…˜,ê¸°ìš´í…œ,ì¸í˜•ì´ë²¤íŠ¸,ë²¨ëŸ°ìŠ¤,ì•…ì„¸ì¸ì±ˆì •ë³´,ì—”í”¼ì”¨ëŒ€ë¯¸ì§€]"));
 		}
 	}
 }

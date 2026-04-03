@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -58,7 +58,7 @@ public class S_BoardRead_AdenaTraiding extends ServerBasePacket {
 				writeS(rs.getString(3)); // name
 				writeS(rs.getString(4)); // date
 				/////////////////////////////////////////////////////////
-				writeS(rs.getString(7)); // ¿©±âºÎÅÍ ³»¿ë
+				writeS(rs.getString(7)); // ì—¬ê¸°ë¶€í„° ë‚´ìš©
 			}
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -36,8 +36,8 @@ import l1j.server.server.utils.SQLUtil;
 
 
 /**
- * ¾Æµ¥³ª À¯Àú °Å·¡ °Ô½ÃÆÇ
- * @author Èæ¿µ
+ * ì•„ë°ë‚˜ ìœ ì € ê±°ë˜ ê²Œì‹œíŒ
+ * @author í‘ì˜
  *
  */
 public class BoardAdenaTable {
@@ -101,7 +101,7 @@ public class BoardAdenaTable {
 	}
 	
 	/**
-	 * Å×ÀÌºí µî·Ï
+	 * í…Œì´ë¸” ë“±ë¡
 	 */
 	public void writeBoardAdena(L1BoardAdena board) {
 		Connection con = null;
@@ -137,7 +137,7 @@ public class BoardAdenaTable {
 			
 			pstm.execute();
 			
-			_boards.put(board.getTradeNumber(), board); //¸®½ºÆ® µî·Ï
+			_boards.put(board.getTradeNumber(), board); //ë¦¬ìŠ¤íŠ¸ ë“±ë¡
 			
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -148,7 +148,7 @@ public class BoardAdenaTable {
 	}
 	
 	/**
-	 * Å×ÀÌºí »èÁ¦
+	 * í…Œì´ë¸” ì‚­ì œ
 	 */
 	public void deleteBoardAdena(int number) {
 		Connection con = null;
@@ -159,7 +159,7 @@ public class BoardAdenaTable {
 			pstm.setInt(1, number);
 			pstm.execute();
 			
-			_boards.remove(number); //¸®½ºÆ®¿¡¼­ »èÁ¦
+			_boards.remove(number); //ë¦¬ìŠ¤íŠ¸ì—ì„œ ì‚­ì œ
 		} catch (SQLException e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
 		} finally {
@@ -169,7 +169,7 @@ public class BoardAdenaTable {
 	}
 	
 	/**
-	 * Å×ÀÌºí ¾÷µ¥ÀÌÆ®
+	 * í…Œì´ë¸” ì—…ë°ì´íŠ¸
 	 */
 	public void updateBoardAdena(L1BoardAdena board) {
 		Connection con = null;

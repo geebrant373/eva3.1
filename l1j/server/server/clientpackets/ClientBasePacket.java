@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -96,13 +96,13 @@ public abstract class ClientBasePacket {
 			StringBuffer test = new StringBuffer(); 
 			do{ 
 				if ((_decrypt[start]&0xff)>=127 || (_decrypt[start+1]&0xff)>=127){ 
-				/** ÇÑ±Û **/ 
+				/** í•œê¸€ **/ 
 					byte[] t = new byte[2]; 
 					t[0] = _decrypt[start+1]; 
 					t[1] = _decrypt[start]; 
 					test.append(new String(t, 0, 2, "EUC-KR")); 
 				}else{ 
-					/** ¿µ¹®&¼ıÀÚ **/ 
+					/** ì˜ë¬¸&ìˆ«ì **/ 
 					test.append(new String(_decrypt, start, 1, "EUC-KR")); 
 				} 
 				start+=2; 
@@ -134,7 +134,7 @@ public abstract class ClientBasePacket {
 		return BYTE;
 	}
 	/**
-	 * Å¬¶óÀÌ¾ğÆ® ÆĞÅ¶ÀÇ Á¾·ù¸¦ ³ªÅ¸³»´Â Ä³¸¯ÅÍ ¶óÀÎÀ» µ¹·ÁÁØ´Ù. ("[C] C_DropItem" µî )
+	 * í´ë¼ì´ì–¸íŠ¸ íŒ¨í‚·ì˜ ì¢…ë¥˜ë¥¼ ë‚˜íƒ€ë‚´ëŠ” ìºë¦­í„° ë¼ì¸ì„ ëŒë ¤ì¤€ë‹¤. ("[C] C_DropItem" ë“± )
 	 */
 	public String getType() {
 		return "[C] " + this.getClass().getSimpleName();

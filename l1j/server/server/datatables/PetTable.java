@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -195,11 +195,11 @@ public class PetTable {
 	}
 
 	/**
-	 * Pets Å×ÀÌºí¿¡ ÀÌ¹Ì ÀÌ¸§ÀÌ Á¸ÀçÇÒ±î¸¦ µ¹·ÁÁØ´Ù.
+	 * Pets í…Œì´ë¸”ì— ì´ë¯¸ ì´ë¦„ì´ ì¡´ì¬í• ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param nameCaseInsensitive
-	 *            Á¶»çÇÏ´Â ¾Ö¿Ïµ¿¹°ÀÇ ÀÌ¸§. ´ë¹®ÀÚ ¼Ò¹®ÀÚÀÇ Â÷ÀÌ´Â ¹«½ÃµÈ´Ù.
-	 * @return ÀÌ¹Ì ÀÌ¸§ÀÌ Á¸ÀçÇÏ¸é true
+	 *            ì¡°ì‚¬í•˜ëŠ” ì• ì™„ë™ë¬¼ì˜ ì´ë¦„. ëŒ€ë¬¸ì ì†Œë¬¸ìì˜ ì°¨ì´ëŠ” ë¬´ì‹œëœë‹¤.
+	 * @return ì´ë¯¸ ì´ë¦„ì´ ì¡´ì¬í•˜ë©´ true
 	 */
 	public static boolean isNameExists(String nameCaseInsensitive) {
 		String nameLower = nameCaseInsensitive.toLowerCase();
@@ -209,16 +209,16 @@ public class PetTable {
 		try {
 			con = L1DatabaseFactory.getInstance().getConnection();
 			/*
-			 * °°Àº ÀÌ¸§À» Ã£´Â´Ù. MySQL´Â µğÆúÆ®·Î case insensitiveÀÎ ½ÍÀº
-			 * º»·¡ LOWER´Â ÇÊ¿ä¾øÁö¸¸, binary·Î º¯°æµÇ¾úÀ» °æ¿ì¿¡ ´ëºñÇØ.
+			 * ê°™ì€ ì´ë¦„ì„ ì°¾ëŠ”ë‹¤. MySQLëŠ” ë””í´íŠ¸ë¡œ case insensitiveì¸ ì‹¶ì€
+			 * ë³¸ë˜ LOWERëŠ” í•„ìš”ì—†ì§€ë§Œ, binaryë¡œ ë³€ê²½ë˜ì—ˆì„ ê²½ìš°ì— ëŒ€ë¹„í•´.
 			 */
 			pstm = con.prepareStatement("SELECT item_obj_id FROM pets WHERE LOWER(name)=?");
 			pstm.setString(1, nameLower);
 			rs = pstm.executeQuery();
-			if (!rs.next()) { // °°Àº ÀÌ¸§ÀÌ ¾ø¾ú´Ù
+			if (!rs.next()) { // ê°™ì€ ì´ë¦„ì´ ì—†ì—ˆë‹¤
 				return false;
 			}
-			if (PetTypeTable.getInstance().isNameDefault(nameLower)) { // µğÆúÆ®ÀÇ ÀÌ¸§ÀÌ¶ó¸é Áßº¹ ÇÏ°í ÀÖÁö ¾ÊÀ¸¸é °£ÁÖÇÑ´Ù
+			if (PetTypeTable.getInstance().isNameDefault(nameLower)) { // ë””í´íŠ¸ì˜ ì´ë¦„ì´ë¼ë©´ ì¤‘ë³µ í•˜ê³  ìˆì§€ ì•Šìœ¼ë©´ ê°„ì£¼í•œë‹¤
 				return false;
 			}
 		} catch (SQLException e) {

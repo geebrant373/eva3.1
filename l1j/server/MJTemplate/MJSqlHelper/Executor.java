@@ -1,4 +1,4 @@
-package l1j.server.MJTemplate.MJSqlHelper;
+﻿package l1j.server.MJTemplate.MJSqlHelper;
 
 import l1j.server.MJTemplate.MJSqlHelper.Handler.Handler;
 

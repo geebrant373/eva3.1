@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -38,9 +38,9 @@ public class C_SoldierGive extends ClientBasePacket {
 	public C_SoldierGive(byte abyte0[], LineageClient clientthread) {
 		super(abyte0);
 
-		// SoldierGiveSelect.java ¿©¾ß ÇÏÁö¸¸ ±æ¾î¼­ ¼¿·ºÆ®´Â »ı·«.
-		int objid = readD(); // ¸» °Ç npc id
-		int type = readH(); // ¼±ÅÃ
+		// SoldierGiveSelect.java ì—¬ì•¼ í•˜ì§€ë§Œ ê¸¸ì–´ì„œ ì…€ë ‰íŠ¸ëŠ” ìƒëµ.
+		int objid = readD(); // ë§ ê±´ npc id
+		int type = readH(); // ì„ íƒ
 
 		L1PcInstance pc = clientthread.getActiveChar();
 

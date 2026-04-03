@@ -1,4 +1,4 @@
-package server.connection;
+ï»¿package server.connection;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -106,8 +106,8 @@ public class ConnectionAcceptor extends Thread /*implements Monitorable*/ {
 			s = "[LoginServer] Started..";
 			break;
 		case WAITING: 
-			//s = "[LoginServer : ¸Ş¸ğ¸®] " + SystemUtil.getUsedMemoryMB() + "MB »ç¿ë";
-			s = "[LoginServer : Á¢¼Ó] ´ë±â ñé...";
+			//s = "[LoginServer : ë©”ëª¨ë¦¬] " + SystemUtil.getUsedMemoryMB() + "MB ì‚¬ìš©";
+			s = "[LoginServer : ì ‘ì†] ëŒ€ê¸° ä¸­...";
 			break;
 		case CONNECTION: 
 			s = "[LoginServer] Connected Client IP: " + clientIp;

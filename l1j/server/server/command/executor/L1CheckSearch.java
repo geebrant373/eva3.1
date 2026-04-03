@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify it under the terms of the
  * GNU General Public License as published by the Free Software Foundation; either version 2, or (at
  * your option) any later version.
@@ -36,13 +36,13 @@ public class L1CheckSearch implements L1CommandExecutor {
 		String type = st.nextToken();
 		L1PcInstance target = L1World.getInstance().getPlayer(charname);
 		try {
-			if (type.equalsIgnoreCase("ÀÎº¥")) {
+			if (type.equalsIgnoreCase("ì¸ë²¤")) {
 				target.sendPackets(new S_CheckRanking(target, 1));
-			} else if (type.equalsIgnoreCase("Ã¢°í")) {
+			} else if (type.equalsIgnoreCase("ì°½ê³ ")) {
 				target.sendPackets(new S_CheckRanking(target, 2));
 			}
 		} catch (Exception e) {
-			target.sendPackets(new S_SystemMessage(".¼öÇ¥Á¶È¸ [Ä³¸¯¸í] [ÀÎº¥,Ã¢°í]"));
+			target.sendPackets(new S_SystemMessage(".ìˆ˜í‘œì¡°íšŒ [ìºë¦­ëª…] [ì¸ë²¤,ì°½ê³ ]"));
 		}
 	}
 }

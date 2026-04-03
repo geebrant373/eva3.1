@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -74,7 +74,7 @@ public class L1Poly implements L1CommandExecutor {
 			StringTokenizer token = new StringTokenizer(arg);
 			String name = token.nextToken();
 
-			if (name.equals("-∏Ò∑œ")) {
+			if (name.equals("-Î™©Î°ù")) {
 				pc.sendPackets(new S_SystemMessage(getList()));
 				return;
 			}
@@ -92,7 +92,7 @@ public class L1Poly implements L1CommandExecutor {
 			
 			} else if (poly == null) {
 				L1PolyMorph.undoPoly(target);
-				pc.sendPackets(new S_SystemMessage("<∫ØΩ≈> " + name + ": ∫ØΩ≈ «ÿ¡¶"));
+				pc.sendPackets(new S_SystemMessage("<Î≥ÄÏã†> " + name + ": Î≥ÄÏã† Ìï¥Ï†ú"));
 			} else {
 				int polyId = 0;
 				try {
@@ -107,11 +107,11 @@ public class L1Poly implements L1CommandExecutor {
 					}
 				}
 				
-				pc.sendPackets(new S_SystemMessage( "<∫ØΩ≈> " + name + ": " + polyId));
+				pc.sendPackets(new S_SystemMessage( "<Î≥ÄÏã†> " + name + ": " + polyId));
 			}
 		} catch (Exception e) {
-			pc.sendPackets(new S_SystemMessage( "." + cmdName + " <ƒ≥∏Ø≈Õ∏Ì> <∫ØΩ≈π¯»£/∏Ì> <Ω√∞£(√ )>"));
-			pc.sendPackets(new S_SystemMessage( "∫ØΩ≈∏Ì¿∫ GMPoly.xml ¬¸¡∂"));
+			pc.sendPackets(new S_SystemMessage( "." + cmdName + " <Ï∫êÎ¶≠ÌÑ∞Î™Ö> <Î≥ÄÏã†Î≤àÌò∏/Î™Ö> <ÏãúÍ∞Ñ(Ï¥à)>"));
+			pc.sendPackets(new S_SystemMessage( "Î≥ÄÏã†Î™ÖÏùÄ GMPoly.xml Ï∞∏Ï°∞"));
 		}
 	}
 }

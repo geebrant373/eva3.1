@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -82,10 +82,10 @@ public class FishingTimeController implements Runnable {
 					if (currentTime > (time + 1000)) {
 						if (pc.getInventory().checkItem(241295, 1) || pc.getInventory().checkItem(141295, 1) || pc.getInventory().consumeItem(41295, 1)) {
 							if(pc._fishingRod.getItemId() == 41294){
-								successFishing(pc, 49494, "¾î¸ÁÁÖ¸Ó´Ï(¸¦)"); // º£¸®¾Æ³ª
+								successFishing(pc, 49494, "ì–´ë§ì£¼ë¨¸ë‹ˆ(ë¥¼)"); // ë² ë¦¬ì•„ë‚˜
 								pc.setFishingTime(System.currentTimeMillis() + 60000);
 							} else {
-								successFishing(pc, 49494, "¾î¸ÁÁÖ¸Ó´Ï(¸¦)"); // º£¸®¾Æ³ª
+								successFishing(pc, 49494, "ì–´ë§ì£¼ë¨¸ë‹ˆ(ë¥¼)"); // ë² ë¦¬ì•„ë‚˜
 								pc.setFishingTime(System.currentTimeMillis() + 120000);
 							}
 						} else {
@@ -133,7 +133,7 @@ public class FishingTimeController implements Runnable {
 			return;
 		}
 
-		if (chance < Config.³¬½Ã¼º°øÈ®·ü) {
+		if (chance < Config.ë‚šì‹œì„±ê³µí™•ë¥ ) {
 			if (pc != null) {
 				L1ItemInstance item = pc.getInventory().storeItem(itemid, 1);
 				if (pc.getLevel() < Config.LIMITLEVEL) {

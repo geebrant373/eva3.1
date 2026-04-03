@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -88,7 +88,7 @@ public class UBSpawnTable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		_log.config("UBmonster ¹èÄ¡ ¸®½ºÆ® " + _spawnTable.size() + "°Ç ·Îµå");
+		_log.config("UBmonster ë°°ì¹˜ ë¦¬ìŠ¤íŠ¸ " + _spawnTable.size() + "ê±´ ë¡œë“œ");
 	}
 
 	public L1UbSpawn getSpawn(int spawnId) {

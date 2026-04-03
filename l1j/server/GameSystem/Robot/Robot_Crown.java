@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Robot;
+ï»¿package l1j.server.GameSystem.Robot;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -117,7 +117,7 @@ public class Robot_Crown {
 				newPc.setDeaths(0);
 				newPc.setNetConnection(null);
 				newPc._userTitle = rs.getString("user_title");
-				newPc.°¡ÀÔ±ºÁÖ = true;
+				newPc.ê°€ì…êµ°ì£¼ = true;
 				GeneralThreadPool.getInstance().schedule(new on(newPc),
 						_random.nextInt(60000));
 				// GeneralThreadPool.getInstance().schedule(new on(newPc),
@@ -142,24 +142,24 @@ public class Robot_Crown {
 
 		@Override
 		public void run() {
-			// TODO ÀÚµ¿ »ı¼ºµÈ ¸Ş¼Òµå ½ºÅÓ
+			// TODO ìë™ ìƒì„±ëœ ë©”ì†Œë“œ ìŠ¤í…
 			try {
 				L1Clan clan = L1World.getInstance()
 						.getClan(newPc.getClanname());
 				if (clan != null) {
-					if (newPc.getClanid() == clan.getClanId() && // Å©¶õÀ» ÇØ»êÇØ, ÀçÂ÷,
-																	// µ¿¸íÀÇ Å©¶õÀÌ
-																	// Ã¢¼³µÇ¾úÀ» ¶§ÀÇ
-																	// ´ëÃ¥
+					if (newPc.getClanid() == clan.getClanId() && // í¬ë€ì„ í•´ì‚°í•´, ì¬ì°¨,
+																	// ë™ëª…ì˜ í¬ë€ì´
+																	// ì°½ì„¤ë˜ì—ˆì„ ë•Œì˜
+																	// ëŒ€ì±…
 							newPc.getClanname().toLowerCase()
 									.equals(clan.getClanName().toLowerCase())) {
 						clan.addOnlineClanMember(newPc.getName(), newPc);
 						for (L1PcInstance clanMember : clan
 								.getOnlineClanMember()) {
 							if (clanMember.getId() != newPc.getId()) {
-								// Áö±İ, Ç÷¸Í¿øÀÇ%0%s°¡ °ÔÀÓ¿¡ Á¢¼ÓÇß½À´Ï´Ù.
-								clanMember.sendPackets(new S_SystemMessage("Ç÷¸Í¿ø " + newPc.getName()
-												+ "´Ô²²¼­ ¹æ±İ °ÔÀÓ¿¡ Á¢¼ÓÇÏ¼Ì½À´Ï´Ù."), true);
+								// ì§€ê¸ˆ, í˜ˆë§¹ì›ì˜%0%sê°€ ê²Œì„ì— ì ‘ì†í–ˆìŠµë‹ˆë‹¤.
+								clanMember.sendPackets(new S_SystemMessage("í˜ˆë§¹ì› " + newPc.getName()
+												+ "ë‹˜ê»˜ì„œ ë°©ê¸ˆ ê²Œì„ì— ì ‘ì†í•˜ì…¨ìŠµë‹ˆë‹¤."), true);
 							}
 						}
 					}

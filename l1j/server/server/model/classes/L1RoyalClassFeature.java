@@ -1,4 +1,4 @@
-/*
+Ôªø/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -25,7 +25,7 @@ class L1RoyalClassFeature extends L1ClassFeature {
 	}
 
 	public String getClassName() {
-		return "±∫¡÷";
+		return "Íµ∞Ï£º";
 	}
 
 	public String getClassInitial() {
@@ -33,7 +33,7 @@ class L1RoyalClassFeature extends L1ClassFeature {
 	}
 
 	public String getClassAbbr() {
-		return "±∫";
+		return "Íµ∞";
 	}
 	@Override
 	public int getMagicLevel(int playerLevel) {

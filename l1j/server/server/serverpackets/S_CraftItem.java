@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -51,7 +51,7 @@ public class S_CraftItem extends ServerBasePacket {
 		Collections.sort(craftList, new Comparator<CraftTemp>() {
 			@Override
 			public int compare(CraftTemp o1, CraftTemp o2) {
-				// TODO ÀÚµ¿ »ı¼ºµÈ ¸Ş¼Òµå ½ºÅÓ
+				// TODO ìë™ ìƒì„±ëœ ë©”ì†Œë“œ ìŠ¤í…
 				return o1.order_id - o2.order_id;
 			}
 		});
@@ -61,7 +61,7 @@ public class S_CraftItem extends ServerBasePacket {
 			if(item != null) {
 				String itemName = "";
 				if(temp.create_bless == 0) {
-					itemName += "Ãàº¹¹ŞÀº ";
+					itemName += "ì¶•ë³µë°›ì€ ";
 				}
 				
 				if(temp.create_enchant != 0) {
@@ -70,9 +70,9 @@ public class S_CraftItem extends ServerBasePacket {
 				
 				itemName += item.getName();
 				
-				writeS("¢¹" + itemName);
+				writeS("â–·" + itemName);
 			}else {
-				writeS("Á¦ÀÛÇÏ·Á´Â ¾ÆÀÌÅÛÀÌ ¾øÀ½");
+				writeS("ì œì‘í•˜ë ¤ëŠ” ì•„ì´í…œì´ ì—†ìŒ");
 			}
 		}
 		
@@ -93,7 +93,7 @@ public class S_CraftItem extends ServerBasePacket {
 		
 		CraftTemp temp = CraftListTable.getInstance().getCraftTemp(pc.Craft_Npcid, pc.Craft_Orderid);
 		if(temp == null) {
-			writeS("Á¦ÀÛ¸®½ºÆ® ¿À·ùÀÔ´Ï´Ù.");
+			writeS("ì œì‘ë¦¬ìŠ¤íŠ¸ ì˜¤ë¥˜ì…ë‹ˆë‹¤.");
 			for(int i = 0; i < 10; i++) {
 				writeS(" ");
 			}
@@ -106,7 +106,7 @@ public class S_CraftItem extends ServerBasePacket {
 		if(item != null) {
 			String itemName = "";
 			if(temp.create_bless == 0) {
-				itemName += "Ãàº¹¹ŞÀº ";
+				itemName += "ì¶•ë³µë°›ì€ ";
 			}
 			
 			if(temp.create_enchant != 0) {
@@ -121,7 +121,7 @@ public class S_CraftItem extends ServerBasePacket {
 			writeS(itemName);
 			
 		}else {
-			writeS("Á¦ÀÛÇÏ·Á´Â ¾ÆÀÌÅÛÀÌ ¾øÀ½");
+			writeS("ì œì‘í•˜ë ¤ëŠ” ì•„ì´í…œì´ ì—†ìŒ");
 		}
 		
 		for(CraftMeterialTemp mtemp : temp._MeterialList) {
@@ -129,7 +129,7 @@ public class S_CraftItem extends ServerBasePacket {
 			if(item != null) {
 				String itemName = "";
 				if(mtemp.bless == 0) {
-					itemName += "Ãàº¹¹ŞÀº ";
+					itemName += "ì¶•ë³µë°›ì€ ";
 				}
 				
 				if(mtemp.enchant != 0) {
@@ -148,7 +148,7 @@ public class S_CraftItem extends ServerBasePacket {
 				}
 				writeS(itemName);
 			}else {
-				writeS("Àç·á¾ÆÀÌÅÛÀÌ ¾ø½À´Ï´Ù.");
+				writeS("ì¬ë£Œì•„ì´í…œì´ ì—†ìŠµë‹ˆë‹¤.");
 			}
 		}
 		

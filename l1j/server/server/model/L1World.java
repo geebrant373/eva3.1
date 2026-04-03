@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -81,32 +81,32 @@ public class L1World {
 	
 	@SuppressWarnings("unchecked")
 	private L1World() {
-		_allPlayers = new ConcurrentHashMap<String, L1PcInstance>(); // ¸ğµç ÇÃ·¹ÀÌ¾î
-		_allPets = new ConcurrentHashMap<Integer, L1PetInstance>(); // ¸ğµç ¾Ö¿Ïµ¿¹°
-		_allSummons = new ConcurrentHashMap<Integer, L1SummonInstance>(); // ¸ğµç
-																			// »ç¸ó¸ó½ºÅ¸
-		_allObjects = new ConcurrentHashMap<Integer, L1Object>(); // ¸ğµç
-																	// ¿ÀºêÁ§Æ®(L1ItemInstance
-																	// µé¾î°¡,
-																	// L1Inventory´Â
-																	// ¾øÀ½)
-		_allMannequin = new ConcurrentHashMap<Integer, L1MannequinInstance>(); // ¸ğµç
-																				// ¸¶³×Å·
+		_allPlayers = new ConcurrentHashMap<String, L1PcInstance>(); // ëª¨ë“  í”Œë ˆì´ì–´
+		_allPets = new ConcurrentHashMap<Integer, L1PetInstance>(); // ëª¨ë“  ì• ì™„ë™ë¬¼
+		_allSummons = new ConcurrentHashMap<Integer, L1SummonInstance>(); // ëª¨ë“ 
+																			// ì‚¬ëª¬ëª¬ìŠ¤íƒ€
+		_allObjects = new ConcurrentHashMap<Integer, L1Object>(); // ëª¨ë“ 
+																	// ì˜¤ë¸Œì íŠ¸(L1ItemInstance
+																	// ë“¤ì–´ê°€,
+																	// L1InventoryëŠ”
+																	// ì—†ìŒ)
+		_allMannequin = new ConcurrentHashMap<Integer, L1MannequinInstance>(); // ëª¨ë“ 
+																				// ë§ˆë„¤í‚¹
 		_allRobot = new ConcurrentHashMap<Integer, L1RobotInstance>();
-		_allShopNpc = new ConcurrentHashMap<Integer, L1ShopNpcInstance>(); // ¸ğµç
-																			// ¹«ÀÎNPC»óÁ¡
-		_visibleObjects = new ConcurrentHashMap[MAX_MAP_ID + 1]; // MAP ¸¶´ÙÀÇ
-																	// ¿ÀºêÁ§Æ®(L1Inventory
-																	// µé¾î°¡,
-																	// L1ItemInstance´Â
-																	// ¾øÀ½)
-		_allWars = new CopyOnWriteArrayList<L1War>(); // ¸ğµç ÀüÀï
-		_allClans = new ConcurrentHashMap<String, L1Clan>(); // ¸ğµç
-																// Å©¶õ(Online/Offline
-																// ¾î´ÀÂÊÀÌ³ª)
-		_allFieldObject = new ConcurrentHashMap<Integer, L1FieldObjectInstance>(); // ¸ğµç
-																					// ÇÊµå¿ÀºêÁ§Æ®
-		_allNpc = new ConcurrentHashMap<Integer, L1NpcInstance>(); // ¸ğµç npc
+		_allShopNpc = new ConcurrentHashMap<Integer, L1ShopNpcInstance>(); // ëª¨ë“ 
+																			// ë¬´ì¸NPCìƒì 
+		_visibleObjects = new ConcurrentHashMap[MAX_MAP_ID + 1]; // MAP ë§ˆë‹¤ì˜
+																	// ì˜¤ë¸Œì íŠ¸(L1Inventory
+																	// ë“¤ì–´ê°€,
+																	// L1ItemInstanceëŠ”
+																	// ì—†ìŒ)
+		_allWars = new CopyOnWriteArrayList<L1War>(); // ëª¨ë“  ì „ìŸ
+		_allClans = new ConcurrentHashMap<String, L1Clan>(); // ëª¨ë“ 
+																// í¬ë€(Online/Offline
+																// ì–´ëŠìª½ì´ë‚˜)
+		_allFieldObject = new ConcurrentHashMap<Integer, L1FieldObjectInstance>(); // ëª¨ë“ 
+																					// í•„ë“œì˜¤ë¸Œì íŠ¸
+		_allNpc = new ConcurrentHashMap<Integer, L1NpcInstance>(); // ëª¨ë“  npc
 																	// (5120+(Config.Login.MaximumOnlineUsers/2))
 
 		for (int i = 0; i <= MAX_MAP_ID; i++) {
@@ -167,8 +167,8 @@ public class L1World {
 			_width = width;
 			_height = height;
 
-			// ÁÂÇ¥¸¶´Ù »ı¼ºÇÏ¸é ÁÁÁö¸¸ ¸Ş¸ğ¸®°¡ 4±â°¡³ª ¸ÔÀ½.
-			// ±×·¡¼­ visibleLocSize ´ÜÀ§·Î ²÷¾î¼­ ÀúÀå
+			// ì¢Œí‘œë§ˆë‹¤ ìƒì„±í•˜ë©´ ì¢‹ì§€ë§Œ ë©”ëª¨ë¦¬ê°€ 4ê¸°ê°€ë‚˜ ë¨¹ìŒ.
+			// ê·¸ë˜ì„œ visibleLocSize ë‹¨ìœ„ë¡œ ëŠì–´ì„œ ì €ì¥
 			int w = width / visibleLocSize;
 			int h = height / visibleLocSize;
 
@@ -314,8 +314,8 @@ public class L1World {
 	}
 	
 	/**
-	 * ¸ğµç »óÅÂ¸¦ Å¬¸®¾î ÇÑ´Ù.<br>
-	 * µğ¹ö±×, Å×½ºÆ®µîÀÌ Æ¯¼öÇÑ ¸ñÀû ÀÌ¿Ü·Î È£ÃâÇØ¼­´Â ¾È µÈ´Ù.
+	 * ëª¨ë“  ìƒíƒœë¥¼ í´ë¦¬ì–´ í•œë‹¤.<br>
+	 * ë””ë²„ê·¸, í…ŒìŠ¤íŠ¸ë“±ì´ íŠ¹ìˆ˜í•œ ëª©ì  ì´ì™¸ë¡œ í˜¸ì¶œí•´ì„œëŠ” ì•ˆ ëœë‹¤.
 	 */
 	public void clear() {
 		_instance = new L1World();
@@ -401,7 +401,7 @@ public class L1World {
 		return null;
 	}
 
-	// _allObjectsÀÇ ºä
+	// _allObjectsì˜ ë·°
 	private Collection<L1Object> _allValues;
 
 	public Collection<L1Object> getObject() {
@@ -410,11 +410,11 @@ public class L1World {
 	}
 
 	public L1GroundInventory getInventory(int x, int y, short map) {
-		int inventoryKey = ((x - 30000) * 10000 + (y - 30000)) * -1; // xyÀÇ
-																		// ¸¶ÀÌ³Ê½ºÄ¡¸¦
-																		// ÀÎº¥Æ®¸®
-																		// Å°·Î¼­
-																		// »ç¿ë
+		int inventoryKey = ((x - 30000) * 10000 + (y - 30000)) * -1; // xyì˜
+																		// ë§ˆì´ë„ˆìŠ¤ì¹˜ë¥¼
+																		// ì¸ë²¤íŠ¸ë¦¬
+																		// í‚¤ë¡œì„œ
+																		// ì‚¬ìš©
 
 		Object object = _visibleObjects[map].get(inventoryKey);
 		if (object == null) {
@@ -506,9 +506,9 @@ public class L1World {
 		}
 	}
 	
-	public void moveVisibleObject(L1Object object, int newMap) // set_Map·Î »õ·Î¿î
-																// Map·Î ÇÏ±â Àü¿¡
-																// ºÎ¸£´Â °Í
+	public void moveVisibleObject(L1Object object, int newMap) // set_Mapë¡œ ìƒˆë¡œìš´
+																// Mapë¡œ í•˜ê¸° ì „ì—
+																// ë¶€ë¥´ëŠ” ê²ƒ
 	{
 		if (object.getMapId() != newMap) {
 			if (object.getMapId() <= MAX_MAP_ID) {
@@ -524,7 +524,7 @@ public class L1World {
 		ConcurrentHashMap<Integer, Integer> lineMap = new ConcurrentHashMap<Integer, Integer>();
 
 		/*
-		 * http://www2.starcat.ne.jp/~fussy/algo/algo1-1.htmº¸´Ù
+		 * http://www2.starcat.ne.jp/~fussy/algo/algo1-1.htmë³´ë‹¤
 		 */
 		int E;
 		int x;
@@ -542,7 +542,7 @@ public class L1World {
 
 		x = x0;
 		y = y0;
-		/* ±â¿ï±â°¡ 1 ÀÌÇÏÀÇ °æ¿ì */
+		/* ê¸°ìš¸ê¸°ê°€ 1 ì´í•˜ì˜ ê²½ìš° */
 		if (dx >= dy) {
 			E = -dx;
 			for (i = 0; i <= dx; i++) {
@@ -555,7 +555,7 @@ public class L1World {
 					E -= 2 * dx;
 				}
 			}
-			/* ±â¿ï±â°¡ 1º¸´Ù Å« °æ¿ì */
+			/* ê¸°ìš¸ê¸°ê°€ 1ë³´ë‹¤ í° ê²½ìš° */
 		} else {
 			E = -dy;
 			for (i = 0; i <= dy; i++) {
@@ -618,16 +618,16 @@ public class L1World {
 					continue;
 				}
 				int distance = location.getTileLineDistance(element.getLocation());
-				// Á÷¼± °Å¸®°¡ ³ôÀÌ, Æø¾î´À ÂÊº¸´Ù Å« °æ¿ì, °è»êÇÒ °Íµµ ¾øÀÌ ¹üÀ§¿Ü
+				// ì§ì„  ê±°ë¦¬ê°€ ë†’ì´, í­ì–´ëŠ ìª½ë³´ë‹¤ í° ê²½ìš°, ê³„ì‚°í•  ê²ƒë„ ì—†ì´ ë²”ìœ„ì™¸
 				if (distance > height && distance > width) {
 					continue;
 				}
 
-				// objectÀÇ À§Ä¡¸¦ ¿øÁ¡°úÇÏ±â À§ÇÑ ÁÂÇ¥ º¸Á¤
+				// objectì˜ ìœ„ì¹˜ë¥¼ ì›ì ê³¼í•˜ê¸° ìœ„í•œ ì¢Œí‘œ ë³´ì •
 				int x1 = element.getX() - x;
 				int y1 = element.getY() - y;
 
-				// ZÃàÈ¸Àü½ÃÅ°°í °¢µµ¸¦ 0¹øÀ¸·Î ÇÑ´Ù.
+				// Zì¶•íšŒì „ì‹œí‚¤ê³  ê°ë„ë¥¼ 0ë²ˆìœ¼ë¡œ í•œë‹¤.
 				int rotX = (int) Math.round(x1 * cosSita + y1 * sinSita);
 				int rotY = (int) Math.round(-x1 * sinSita + y1 * cosSita);
 
@@ -636,7 +636,7 @@ public class L1World {
 				int ymin = -width;
 				int ymax = width;
 
-				// ±íÀÌ°¡ »çÁ¤°ú ¸Â¹°¸®Áö ¾Ê±â ¶§¹®¿¡ Á÷¼± °Å¸®·Î ÆÇÁ¤ÇÏµµ·Ï(µíÀÌ) º¯°æ.
+				// ê¹Šì´ê°€ ì‚¬ì •ê³¼ ë§ë¬¼ë¦¬ì§€ ì•Šê¸° ë•Œë¬¸ì— ì§ì„  ê±°ë¦¬ë¡œ íŒì •í•˜ë„ë¡(ë“¯ì´) ë³€ê²½.
 				// if (rotX > xmin && rotX <= xmax && rotY >= ymin && rotY <=
 				// ymax) {
 				if (rotX > xmin && distance <= xmax && rotY >= ymin && rotY <= ymax) {
@@ -686,7 +686,7 @@ public class L1World {
 
 	public ArrayList<L1Object> getVisiblePoint(L1Location loc, int radius) {
 		ArrayList<L1Object> result = new ArrayList<L1Object>();
-		int mapId = loc.getMapId(); // ·çÇÁ³»¿¡¼­ ºÎ¸£¸é(ÀÚ) ¹«°Ì±â ¶§¹®¿¡
+		int mapId = loc.getMapId(); // ë£¨í”„ë‚´ì—ì„œ ë¶€ë¥´ë©´(ì) ë¬´ê²ê¸° ë•Œë¬¸ì—
 
 		if (mapId <= MAX_MAP_ID) {
 			for (L1Object element : _visibleObjects[mapId].values()) {
@@ -766,7 +766,7 @@ public class L1World {
 	}
 
 	/**
-	 * object¸¦ ÀÎ½ÄÇÒ ¼ö ÀÖ´Â ¹üÀ§¿¡ ÀÖ´Â ÇÃ·¹ÀÌ¾î¸¦ ÃëµæÇÑ´Ù
+	 * objectë¥¼ ì¸ì‹í•  ìˆ˜ ìˆëŠ” ë²”ìœ„ì— ìˆëŠ” í”Œë ˆì´ì–´ë¥¼ ì·¨ë“í•œë‹¤
 	 * 
 	 * @param object
 	 * @return
@@ -799,11 +799,11 @@ public class L1World {
 	}
 	
 	/**
-	 * ¿ùµå³»¿¡ ÀÖ´Â ÁöÁ¤µÈ ÀÌ¸§ÀÇ ÇÃ·¹ÀÌ¾î¸¦ ÃëµæÇÑ´Ù.
+	 * ì›”ë“œë‚´ì— ìˆëŠ” ì§€ì •ëœ ì´ë¦„ì˜ í”Œë ˆì´ì–´ë¥¼ ì·¨ë“í•œë‹¤.
 	 * 
 	 * @param name
-	 *            - ÇÃ·¹ÀÌ¾î¸í(¼Ò¹®ÀÚ¡¤´ë¹®ÀÚ´Â ¹«½ÃµÈ´Ù)
-	 * @return ÁöÁ¤µÈ ÀÌ¸§ÀÇ L1PcInstance. ÇØ´ç ÇÃ·¹ÀÌ¾î°¡ Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì´Â null¸¦ µ¹·ÁÁØ´Ù.
+	 *            - í”Œë ˆì´ì–´ëª…(ì†Œë¬¸ìÂ·ëŒ€ë¬¸ìëŠ” ë¬´ì‹œëœë‹¤)
+	 * @return ì§€ì •ëœ ì´ë¦„ì˜ L1PcInstance. í•´ë‹¹ í”Œë ˆì´ì–´ê°€ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°ëŠ” nullë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public L1PcInstance getPlayer(String name) {
 		if (null == name) return null;
@@ -811,11 +811,11 @@ public class L1World {
 	}
 
 	/**
-	 * ¿ùµå³»¿¡ ÀÖ´Â ÁöÁ¤µÈ ÀÌ¸§ÀÇ ¸¶³×Å·À» ÃëµæÇÑ´Ù.
+	 * ì›”ë“œë‚´ì— ìˆëŠ” ì§€ì •ëœ ì´ë¦„ì˜ ë§ˆë„¤í‚¹ì„ ì·¨ë“í•œë‹¤.
 	 * 
 	 * @param name
-	 *            - ¸¶³×Å·¸í(¼Ò¹®ÀÚ¡¤´ë¹®ÀÚ´Â ¹«½ÃµÈ´Ù)
-	 * @return ÁöÁ¤µÈ ÀÌ¸§ÀÇ L1MannequinInstance. ÇØ´ç ¸¶³×Å· Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì´Â null¸¦ µ¹·ÁÁØ´Ù.
+	 *            - ë§ˆë„¤í‚¹ëª…(ì†Œë¬¸ìÂ·ëŒ€ë¬¸ìëŠ” ë¬´ì‹œëœë‹¤)
+	 * @return ì§€ì •ëœ ì´ë¦„ì˜ L1MannequinInstance. í•´ë‹¹ ë§ˆë„¤í‚¹ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°ëŠ” nullë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public L1MannequinInstance getMannequin(String name) {
 		Collection<L1MannequinInstance> npc = null;
@@ -831,11 +831,11 @@ public class L1World {
 	}
 
 	/**
-	 * ¿ùµå³»¿¡ ÀÖ´Â ÁöÁ¤µÈ ÀÌ¸§ÀÇ ¹«ÀÎNPC»óÁ¡À» ÃëµæÇÑ´Ù.
+	 * ì›”ë“œë‚´ì— ìˆëŠ” ì§€ì •ëœ ì´ë¦„ì˜ ë¬´ì¸NPCìƒì ì„ ì·¨ë“í•œë‹¤.
 	 * 
 	 * @param name
-	 *            - ¹«ÀÎNPC»óÁ¡¸í(¼Ò¹®ÀÚ¡¤´ë¹®ÀÚ´Â ¹«½ÃµÈ´Ù)
-	 * @return ÁöÁ¤µÈ ÀÌ¸§ÀÇ L1ShopNpcInstance. ÇØ´ç ¸¶³×Å· Á¸ÀçÇÏÁö ¾Ê´Â °æ¿ì´Â null¸¦ µ¹·ÁÁØ´Ù.
+	 *            - ë¬´ì¸NPCìƒì ëª…(ì†Œë¬¸ìÂ·ëŒ€ë¬¸ìëŠ” ë¬´ì‹œëœë‹¤)
+	 * @return ì§€ì •ëœ ì´ë¦„ì˜ L1ShopNpcInstance. í•´ë‹¹ ë§ˆë„¤í‚¹ ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê²½ìš°ëŠ” nullë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public L1ShopNpcInstance getShopNpc(String name) {
 		Collection<L1ShopNpcInstance> npc = null;
@@ -850,7 +850,7 @@ public class L1World {
 		return null;
 	}
 
-	// _allPetsÀÇ ºä
+	// _allPetsì˜ ë·°
 	private Collection<L1PetInstance> _allPetValues;
 
 	public Collection<L1PetInstance> getAllPets() {
@@ -858,7 +858,7 @@ public class L1World {
 		return (vs != null) ? vs : (_allPetValues = Collections.unmodifiableCollection(_allPets.values()));
 	}
 
-	// _allSummonsÀÇ ºä
+	// _allSummonsì˜ ë·°
 	private Collection<L1SummonInstance> _allSummonValues;
 
 	public Collection<L1SummonInstance> getAllSummons() {
@@ -866,7 +866,7 @@ public class L1World {
 		return (vs != null) ? vs : (_allSummonValues = Collections.unmodifiableCollection(_allSummons.values()));
 	}
 
-	// _allMannequinÀÇ ºä
+	// _allMannequinì˜ ë·°
 	private Collection<L1MannequinInstance> _allMannequinValues;
 
 	public Collection<L1MannequinInstance> getAllMannequin() {
@@ -874,7 +874,7 @@ public class L1World {
 		return (vs != null) ? vs : (_allMannequinValues = Collections.unmodifiableCollection(_allMannequin.values()));
 	}
 
-	// _allShopNpcÀÇ ºä
+	// _allShopNpcì˜ ë·°
 	private Collection<L1ShopNpcInstance> _allShopNpcValues;
 
 	public Collection<L1ShopNpcInstance> getAllShopNpc() {
@@ -910,7 +910,7 @@ public class L1World {
 		}
 	}
 
-	// _allWarsÀÇ ºä
+	// _allWarsì˜ ë·°
 	private List<L1War> _allWarList;
 
 	public List<L1War> getWarList() {
@@ -936,7 +936,7 @@ public class L1World {
 		return _allClans.get(clan_name);
 	}
 
-	// _allClansÀÇ ºä
+	// _allClansì˜ ë·°
 	private Collection<L1Clan> _allClanValues;
 
 	public Collection<L1Clan> getAllClans() {
@@ -984,10 +984,10 @@ public class L1World {
 	}
 
 	/**
-	 * ¿ùµå»ó¿¡ Á¸ÀçÇÏ´Â ¸ğµç ÇÃ·¹ÀÌ¾î¿¡ ÆĞÅ¶À» ¼Û½ÅÇÑ´Ù.
+	 * ì›”ë“œìƒì— ì¡´ì¬í•˜ëŠ” ëª¨ë“  í”Œë ˆì´ì–´ì— íŒ¨í‚·ì„ ì†¡ì‹ í•œë‹¤.
 	 * 
 	 * @param packet
-	 *            ¼Û½ÅÇÏ´Â ÆĞÅ¶À» ³ªÅ¸³»´Â ServerBasePacket ¿ÀºêÁ§Æ®.
+	 *            ì†¡ì‹ í•˜ëŠ” íŒ¨í‚·ì„ ë‚˜íƒ€ë‚´ëŠ” ServerBasePacket ì˜¤ë¸Œì íŠ¸.
 	 */
 	public void broadcastPacketToAll(ServerBasePacket packet) {
 		_log.finest("players to notify : " + getAllPlayers().size());
@@ -1001,10 +1001,10 @@ public class L1World {
 	}
 
 	/**
-	 * ¿ùµå»ó¿¡ Á¸ÀçÇÏ´Â ¸ğµç ÇÃ·¹ÀÌ¾î¿¡ ¼­¹ö ¸Ş¼¼Áö¸¦ ¼Û½ÅÇÑ´Ù.
+	 * ì›”ë“œìƒì— ì¡´ì¬í•˜ëŠ” ëª¨ë“  í”Œë ˆì´ì–´ì— ì„œë²„ ë©”ì„¸ì§€ë¥¼ ì†¡ì‹ í•œë‹¤.
 	 * 
 	 * @param message
-	 *            ¼Û½ÅÇÏ´Â ¸Ş¼¼Áö
+	 *            ì†¡ì‹ í•˜ëŠ” ë©”ì„¸ì§€
 	 */
 	public void broadcastServerMessage(String message) {
 		broadcastPacketToAll(new S_SystemMessage(message));

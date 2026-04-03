@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -511,11 +511,11 @@ public class L1V1Map extends L1Map {
 	{
 		int tile = accessOriginalTile(locX, locY);
 		// System.out.println("tile : " + tile);
-		// º®ÀÎ½ÄÀÌ¶ó°í Ã¼Å© µÉ¶§
+		// ë²½ì¸ì‹ì´ë¼ê³  ì²´í¬ ë ë•Œ
 		if (tile == 12 || (tile & 0x30) == tile)
 		{
 			String key = new StringBuilder().append(_mapId).append(locX).append(locY).toString();
-			return !MapFixKeyTable.getInstance().isLockey(key); // key¿¡ ¾øÀ»¶§ true;
+			return !MapFixKeyTable.getInstance().isLockey(key); // keyì— ì—†ì„ë•Œ true;
 		}
 		return false;
 	}

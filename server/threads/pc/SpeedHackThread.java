@@ -1,4 +1,4 @@
-package server.threads.pc;
+ï»¿package server.threads.pc;
 
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -21,7 +21,7 @@ public class SpeedHackThread extends Thread{
 	}
 	
 	public void run(){
-		System.out.println(SpeedHackThread.class.getName() + " ½ÃÀÛ");
+		System.out.println(SpeedHackThread.class.getName() + " ì‹œìž‘");
 		while(true){
 			try {
 				check_Hacktimer();

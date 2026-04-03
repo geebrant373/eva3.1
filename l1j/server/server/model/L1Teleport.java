@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -37,7 +37,7 @@ public class L1Teleport {
 	public static final int CALL_CLAN = 3;
 	public static final int DUNGEON_TELEPORT = 4;
 	
-	// Â÷·Ê·Î teleport(Èò»ö), change position e(ÆÄ¶û), ad mass teleport e(»¡°­), call clan(ÃÊ·Ï)
+	// ì°¨ë¡€ë¡œ teleport(í°ìƒ‰), change position e(íŒŒëž‘), ad mass teleport e(ë¹¨ê°•), call clan(ì´ˆë¡)
 	public static final int[] EFFECT_SPR = { 169, 2235, 2236, 2281,169 };
 	public static final int[] EFFECT_TIME = { 280, 440, 440, 1120,280 };
 
@@ -58,7 +58,7 @@ public class L1Teleport {
 	public static void teleport(L1PcInstance pc, int x, int y, short mapId, int head, boolean effectable, int skillType) {
 		pc.sendPackets(new S_Paralysis(S_Paralysis.TYPE_TELEPORT_UNLOCK, false));
 
-		// ÀÌºÎºÐ Ãß°¡ ¿µÀÚ ¶Õ¾î ¾ÈµÇ¸é »èÁ¦ - Åõ¸í»óÅÂÀÏ¶§¸¸ ÅÚ·¹Æ÷Æ®¾Èº¸ÀÓ220303 
+		// ì´ë¶€ë¶„ ì¶”ê°€ ì˜ìž ëš«ì–´ ì•ˆë˜ë©´ ì‚­ì œ - íˆ¬ëª…ìƒíƒœì¼ë•Œë§Œ í…”ë ˆí¬íŠ¸ì•ˆë³´ìž„220303 
 		if (!pc.isGm()) {
 		
 			if (effectable && (skillType >= 0 && skillType <= EFFECT_SPR.length)) {
@@ -95,9 +95,9 @@ public class L1Teleport {
 		int oldmap = pc.getMapId();
 		int newmap = pc.getMapId();
 		if (oldmap != newmap) {
-			int setTimer1 = (Config.±â°¨½Ã°£ * 60) - pc.getAccount().getGiranPrisonTime();
-			int setTimer2 = (Config.¸ù¼¶½Ã°£ * 60) - pc.getAccount().getDreamIslandTime();
-			int setTimer3 = (Config.¶ó´ø½Ã°£ * 60) - pc.getAccount().getLastabardTime();
+			int setTimer1 = (Config.ê¸°ê°ì‹œê°„ * 60) - pc.getAccount().getGiranPrisonTime();
+			int setTimer2 = (Config.ëª½ì„¬ì‹œê°„ * 60) - pc.getAccount().getDreamIslandTime();
+			int setTimer3 = (Config.ë¼ë˜ì‹œê°„ * 60) - pc.getAccount().getLastabardTime();
 			
 			if (pc.noPlayerCK) {
 				return;

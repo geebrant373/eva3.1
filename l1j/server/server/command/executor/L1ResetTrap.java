@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -38,6 +38,6 @@ public class L1ResetTrap implements L1CommandExecutor {
 	@Override
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		L1WorldTraps.getInstance(). resetAllTraps();
-		pc.sendPackets(new S_SystemMessage("Æ®·¦À» Àç¹èÄ¡Çß½À´Ï´Ù"));
+		pc.sendPackets(new S_SystemMessage("íŠ¸ë©ì„ ì¬ë°°ì¹˜í–ˆìŠµë‹ˆë‹¤"));
 	}
 }

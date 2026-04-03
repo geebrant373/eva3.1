@@ -1,4 +1,4 @@
-package l1j.server.server.templates;
+ï»¿package l1j.server.server.templates;
 
 public enum eSkillsProbabilityDetailCalcType {
 	NONE(0), 
@@ -24,17 +24,17 @@ public enum eSkillsProbabilityDetailCalcType {
 
 	public static eSkillsProbabilityDetailCalcType fromString(String type) {
 		switch (type) {
-		case "¾øÀ½":
+		case "ì—†ìŒ":
 			return NONE;
-		case "¼®È­":
+		case "ì„í™”":
 			return STONE;
-		case "¼ö¸é":
+		case "ìˆ˜ë©´":
 			return SLEEP;
-		case "µ¿ºù":
+		case "ë™ë¹™":
 			return FREEZE;
-		case "È¦µå":
+		case "í™€ë“œ":
 			return HOLD;
-		case "½ºÅÏ":
+		case "ìŠ¤í„´":
 			return STUN;
 		default:
 			throw new IllegalArgumentException(String.format("invalid arguments eSkillsProbabilityDetailCalcType, %d", type));

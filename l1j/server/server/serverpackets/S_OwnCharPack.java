@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -46,7 +46,7 @@ public class S_OwnCharPack extends ServerBasePacket {
 	private void buildPacket(L1PcInstance pc) {
 		int status = STATUS_PC;
 
-		// ±¼µ¶°°Àº ÃÊ·ÏÀÇ µ¶
+		// êµ´ë…ê°™ì€ ì´ˆë¡ì˜ ë…
 		// if (pc.isPoison()) {
 		// status |= STATUS_POISON;
 		// }
@@ -99,10 +99,10 @@ public class S_OwnCharPack extends ServerBasePacket {
 		writeS(pc.getTitle());
 		writeC(status);
 		writeD(pc.getClanid() > 0 ? pc.getClan().getEmblemId() : 0);
-		writeS(pc.getClanname()); // Å©¶õ¸í
-		writeS(null); // ÆêÈ£ÆÃ?
+		writeS(pc.getClanname()); // í¬ë€ëª…
+		writeS(null); // í«í˜¸íŒ…?
 		writeC(0); // ?
-		if (pc.isInParty()) // ÆÄÆ¼Áß
+		if (pc.isInParty()) // íŒŒí‹°ì¤‘
 		{
 			writeC(100 * pc.getCurrentHp() / pc.getMaxHp());
 		} else {

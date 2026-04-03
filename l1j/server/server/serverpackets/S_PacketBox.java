@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * OpenEva - http://eva.pe.kr
  */
 package l1j.server.server.serverpackets;
@@ -16,7 +16,7 @@ import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.L1Clan.ClanMember;
 
 /**
- * ½ºÅ³ ¾ÆÀÌÄÜÀÌ³ª Â÷´Ü ¸®½ºÆ®ÀÇ Ç¥½Ã µî º¹¼öÀÇ ¿ëµµ¿¡ »ç¿ëµÇ´Â ÆĞÅ¶ÀÇ Å¬·¡½º
+ * ìŠ¤í‚¬ ì•„ì´ì½˜ì´ë‚˜ ì°¨ë‹¨ ë¦¬ìŠ¤íŠ¸ì˜ í‘œì‹œ ë“± ë³µìˆ˜ì˜ ìš©ë„ì— ì‚¬ìš©ë˜ëŠ” íŒ¨í‚·ì˜ í´ë˜ìŠ¤
  */
 public class S_PacketBox extends ServerBasePacket {
 	private static final String S_PACKETBOX = "[S] S_PacketBox";
@@ -24,231 +24,231 @@ public class S_PacketBox extends ServerBasePacket {
 	private byte[] _byte = null;
 
 	// *** S_107 sub code list ***
-	/** »ç¿îµå Àç»ı by : B.C. */
+	/** ì‚¬ìš´ë“œ ì¬ìƒ by : B.C. */
 	public static final int PLAYSOUND = 73;
 	
-	public static final int BAPO = 114; // ¹ÙÆ÷±ê¹ß
-	public static final int µå·¡°ï·¹ÀÌµå¹öÇÁ = 179;
-	/** ÀÎ´ø ³ì»ö ¸Ş¼¼Áö */
+	public static final int BAPO = 114; // ë°”í¬ê¹ƒë°œ
+	public static final int ë“œë˜ê³¤ë ˆì´ë“œë²„í”„ = 179;
+	/** ì¸ë˜ ë…¹ìƒ‰ ë©”ì„¸ì§€ */
 	public static final int GREEN_MESSAGE = 84;
 	
-	// 1:Kent 2:Orc 3:WW 4:Giran 5:Heine 6:Dwarf 7:Aden 8:Diad 9:¼º¸í 9 ...
-	/** C(id) H(?): %sÀÇ °ø¼ºÀüÀÌ ½ÃÀÛµÇ¾ú½À´Ï´Ù. */
+	// 1:Kent 2:Orc 3:WW 4:Giran 5:Heine 6:Dwarf 7:Aden 8:Diad 9:ì„±ëª… 9 ...
+	/** C(id) H(?): %sì˜ ê³µì„±ì „ì´ ì‹œì‘ë˜ì—ˆìŠµë‹ˆë‹¤. */
 	public static final int MSG_WAR_BEGIN = 0;
 
-	/** C(id) H(?): %sÀÇ °ø¼ºÀüÀÌ Á¾·áÇß½À´Ï´Ù. */
+	/** C(id) H(?): %sì˜ ê³µì„±ì „ì´ ì¢…ë£Œí–ˆìŠµë‹ˆë‹¤. */
 	public static final int MSG_WAR_END = 1;
 
-	/** C(id) H(?): %sÀÇ °ø¼ºÀüÀÌ ÁøÇàÁßÀÔ´Ï´Ù. */
+	/** C(id) H(?): %sì˜ ê³µì„±ì „ì´ ì§„í–‰ì¤‘ì…ë‹ˆë‹¤. */
 	public static final int MSG_WAR_GOING = 2;
 
-	/** -: ¼ºÀÇ ÁÖµµ±ÇÀ» Àâ¾Ò½À´Ï´Ù. (À½¾ÇÀÌ ¹Ù²ï´Ù) */
+	/** -: ì„±ì˜ ì£¼ë„ê¶Œì„ ì¡ì•˜ìŠµë‹ˆë‹¤. (ìŒì•…ì´ ë°”ë€ë‹¤) */
 	public static final int MSG_WAR_INITIATIVE = 3;
 
-	/** -: ¼ºÀ» Á¡°ÅÇß½À´Ï´Ù. */
+	/** -: ì„±ì„ ì ê±°í–ˆìŠµë‹ˆë‹¤. */
 	public static final int MSG_WAR_OCCUPY = 4;
 
-	/** ?: °áÅõ°¡ ³¡³µ½À´Ï´Ù. (À½¾ÇÀÌ ¹Ù²ï´Ù) */
+	/** ?: ê²°íˆ¬ê°€ ëë‚¬ìŠµë‹ˆë‹¤. (ìŒì•…ì´ ë°”ë€ë‹¤) */
 	public static final int MSG_DUEL = 5;
 
-	/** C(count): SMSÀÇ ¼Û½Å¿¡ ½ÇÆĞÇß½À´Ï´Ù. / ÀüºÎ%d°Ç¼Û½ÅµÇ¾ú½À´Ï´Ù. */
+	/** C(count): SMSì˜ ì†¡ì‹ ì— ì‹¤íŒ¨í–ˆìŠµë‹ˆë‹¤. / ì „ë¶€%dê±´ì†¡ì‹ ë˜ì—ˆìŠµë‹ˆë‹¤. */
 	public static final int MSG_SMS_SENT = 6;
 
-	/** -: Ãàº¹¾È, 2¸íÀº ºÎºÎ·Î¼­ ¿¬°áµÇ¾ú½À´Ï´Ù. (À½¾ÇÀÌ ¹Ù²ï´Ù) */
+	/** -: ì¶•ë³µì•ˆ, 2ëª…ì€ ë¶€ë¶€ë¡œì„œ ì—°ê²°ë˜ì—ˆìŠµë‹ˆë‹¤. (ìŒì•…ì´ ë°”ë€ë‹¤) */
 	public static final int MSG_MARRIED = 9;
 
-	/** C(weight): Áß·®(30 ´Ü°è) */
+	/** C(weight): ì¤‘ëŸ‰(30 ë‹¨ê³„) */
 	public static final int WEIGHT = 10;
 
-	/** C(food): ¸¸º¹µµ(30 ´Ü°è) */
+	/** C(food): ë§Œë³µë„(30 ë‹¨ê³„) */
 	public static final int FOOD = 11;
 
-	/** C(0) C(level): ÀÌ ¾ÆÀÌÅÛÀº%d·¹º§ ÀÌÇÏ¸¸ »ç¿ëÇÒ ¼ö ÀÖ½À´Ï´Ù. (0~49ÀÌ¿Ü´Â Ç¥½ÃµÇÁö ¾Ê´Â´Ù) */
+	/** C(0) C(level): ì´ ì•„ì´í…œì€%dë ˆë²¨ ì´í•˜ë§Œ ì‚¬ìš©í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤. (0~49ì´ì™¸ëŠ” í‘œì‹œë˜ì§€ ì•ŠëŠ”ë‹¤) */
 	public static final int MSG_LEVEL_OVER = 12;
 
-	/** UBÁ¤º¸ HTML */
+	/** UBì •ë³´ HTML */
 	public static final int HTML_UB = 14;
 
 	/**
 	 * C(id)<br>
-	 * 1:¸ö¿¡ ´ã°ÜÁ® ÀÖ´ø Á¤·ÉÀÇ ÈûÀÌ °ø±â¾È¿¡ ³ì¾Æ °¡´Â °ÍÀ» ´À²¼½À´Ï´Ù.<br>
-	 * 2:¸öÀÇ ±¸¼®±¸¼®¿¡ È­ÀÇ Á¤·É·ÂÀÌ ½º¸çµé¾î ¿É´Ï´Ù.<br>
-	 * 3:¸öÀÇ ±¸¼®±¸¼®¿¡ ¹°ÀÇ Á¤·É·ÂÀÌ ½º¸çµé¾î ¿É´Ï´Ù.<br>
-	 * 4:¸öÀÇ ±¸¼®±¸¼®¿¡ ¹Ù¶÷ÀÇ Á¤·É·ÂÀÌ ½º¸çµé¾î ¿É´Ï´Ù.<br>
-	 * 5:¸öÀÇ ±¸¼®±¸¼®¿¡ ¶¥ÀÇ Á¤·É·ÂÀÌ ½º¸çµé¾î ¿É´Ï´Ù.<br>
+	 * 1:ëª¸ì— ë‹´ê²¨ì ¸ ìˆë˜ ì •ë ¹ì˜ í˜ì´ ê³µê¸°ì•ˆì— ë…¹ì•„ ê°€ëŠ” ê²ƒì„ ëŠê¼ˆìŠµë‹ˆë‹¤.<br>
+	 * 2:ëª¸ì˜ êµ¬ì„êµ¬ì„ì— í™”ì˜ ì •ë ¹ë ¥ì´ ìŠ¤ë©°ë“¤ì–´ ì˜µë‹ˆë‹¤.<br>
+	 * 3:ëª¸ì˜ êµ¬ì„êµ¬ì„ì— ë¬¼ì˜ ì •ë ¹ë ¥ì´ ìŠ¤ë©°ë“¤ì–´ ì˜µë‹ˆë‹¤.<br>
+	 * 4:ëª¸ì˜ êµ¬ì„êµ¬ì„ì— ë°”ëŒì˜ ì •ë ¹ë ¥ì´ ìŠ¤ë©°ë“¤ì–´ ì˜µë‹ˆë‹¤.<br>
+	 * 5:ëª¸ì˜ êµ¬ì„êµ¬ì„ì— ë•…ì˜ ì •ë ¹ë ¥ì´ ìŠ¤ë©°ë“¤ì–´ ì˜µë‹ˆë‹¤.<br>
 	 */
 	public static final int MSG_ELF = 15;
 
-	/** C(count) S(name)...: Â÷´Ü ¸®½ºÆ® º¹¼ö Ãß°¡ */
+	/** C(count) S(name)...: ì°¨ë‹¨ ë¦¬ìŠ¤íŠ¸ ë³µìˆ˜ ì¶”ê°€ */
 	public static final int ADD_EXCLUDE2 = 17;
 
-	/** S(name): Â÷´Ü ¸®½ºÆ® Ãß°¡ */
+	/** S(name): ì°¨ë‹¨ ë¦¬ìŠ¤íŠ¸ ì¶”ê°€ */
 	public static final int ADD_EXCLUDE = 18;
 
-	/** S(name): Â÷´Ü ÇØÁ¦ */
+	/** S(name): ì°¨ë‹¨ í•´ì œ */
 	public static final int REM_EXCLUDE = 19;
 
-	/** ½ºÅ³ ¾ÆÀÌÄÜ */
+	/** ìŠ¤í‚¬ ì•„ì´ì½˜ */
 	public static final int ICONS1 = 20;
 
-	/** ½ºÅ³ ¾ÆÀÌÄÜ */
+	/** ìŠ¤í‚¬ ì•„ì´ì½˜ */
 	public static final int ICONS2 = 21;
 
-	/** ¾Æ¿ì¶ó°èÀÇ ½ºÅ³ ¾ÆÀÌÄÜ ¹× ÀÌ·¹ÀÌÁî¸ÅÁ÷ ¾ÆÀÌÄÜ »èÁ¦ */
+	/** ì•„ìš°ë¼ê³„ì˜ ìŠ¤í‚¬ ì•„ì´ì½˜ ë° ì´ë ˆì´ì¦ˆë§¤ì§ ì•„ì´ì½˜ ì‚­ì œ */
 	public static final int ICON_AURA = 22;
 
-	/** S(name): Å¸¿î ¸®´õ¿¡°Ô%s°¡ ¼±ÅÃµÇ¾ú½À´Ï´Ù. */
+	/** S(name): íƒ€ìš´ ë¦¬ë”ì—ê²Œ%sê°€ ì„ íƒë˜ì—ˆìŠµë‹ˆë‹¤. */
 	public static final int MSG_TOWN_LEADER = 23;
 
 	/**
-	 * D(Ç÷¸Í¿ø¼ö) (S(Ç÷¿øÀÌ¸§) C(Ç÷¿ø°è±Ş)) Ç÷¸Í¿ø °»½ÅÀÌ µÈ »óÅÂ¿¡¼­ÀÇ /Ç÷¸Í.
+	 * D(í˜ˆë§¹ì›ìˆ˜) (S(í˜ˆì›ì´ë¦„) C(í˜ˆì›ê³„ê¸‰)) í˜ˆë§¹ì› ê°±ì‹ ì´ ëœ ìƒíƒœì—ì„œì˜ /í˜ˆë§¹.
 	 */
 	public static final int PLEDGE_TWO = 24;
 
 	/**
-	 * D(Ç÷¸Í¿øÀÌ¸§) C(·©Å©) Ç÷¸Í¿¡ Ãß°¡µÈ ÀÎ¿øÀÌ ÀÖÀ»¶§ º¸³»ÁÖ´Â ÆĞÅ¶
+	 * D(í˜ˆë§¹ì›ì´ë¦„) C(ë­í¬) í˜ˆë§¹ì— ì¶”ê°€ëœ ì¸ì›ì´ ìˆì„ë•Œ ë³´ë‚´ì£¼ëŠ” íŒ¨í‚·
 	 */
 	public static final int PLEDGE_REFRESH_PLUS = 25;
 
 	/**
-	 * D(Ç÷¸Í¿øÀÌ¸§) C(·©Å©) Ç÷¸Í¿¡ »èÁ¦µÈ ÀÎ¿øÀÌ ÀÖÀ»¶§ º¸³»ÁÖ´Â ÆĞÅ¶
+	 * D(í˜ˆë§¹ì›ì´ë¦„) C(ë­í¬) í˜ˆë§¹ì— ì‚­ì œëœ ì¸ì›ì´ ìˆì„ë•Œ ë³´ë‚´ì£¼ëŠ” íŒ¨í‚·
 	 */
 	public static final int PLEDGE_REFRESH_MINUS = 26;
 
 	/**
-	 * C(id): ´ç½ÅÀÇ ·©Å©°¡%s·Î º¯°æµÇ¾ú½À´Ï´Ù. (1-°ß½À 2-ÀÏ¹İ 3-¼öÈ£±â»ç)
+	 * C(id): ë‹¹ì‹ ì˜ ë­í¬ê°€%së¡œ ë³€ê²½ë˜ì—ˆìŠµë‹ˆë‹¤. (1-ê²¬ìŠµ 2-ì¼ë°˜ 3-ìˆ˜í˜¸ê¸°ì‚¬)
 	 */
 	public static final int MSG_RANK_CHANGED = 27;
 
 	/**
-	 * D(Ç÷¸Í¿ø¼ö) (S(Ç÷¿øÀÌ¸§) C(Ç÷¿ø°è±Ş)) Ç÷¸Í¿ø °»½ÅÀÌ ¾ÈµÈ »óÅÂ¿¡¼­ÀÇ /Ç÷¸Í.
+	 * D(í˜ˆë§¹ì›ìˆ˜) (S(í˜ˆì›ì´ë¦„) C(í˜ˆì›ê³„ê¸‰)) í˜ˆë§¹ì› ê°±ì‹ ì´ ì•ˆëœ ìƒíƒœì—ì„œì˜ /í˜ˆë§¹.
 	 */
 	public static final int PLEDGE_ONE = 29;
 
-	/** D(?) S(name) S(clanname): %sÇ÷¸ÍÀÇ%s°¡ ¶ó½ºÅ¸¹Ùµå±ºÀ» Ä¡¿ü½À´Ï´Ù. */
+	/** D(?) S(name) S(clanname): %sí˜ˆë§¹ì˜%sê°€ ë¼ìŠ¤íƒ€ë°”ë“œêµ°ì„ ì¹˜ì› ìŠµë‹ˆë‹¤. */
 	public static final int MSG_WIN_LASTAVARD = 30;
 
-	/** -: \f1±âºĞÀÌ ÁÁ¾ÆÁ³½À´Ï´Ù. */
+	/** -: \f1ê¸°ë¶„ì´ ì¢‹ì•„ì¡ŒìŠµë‹ˆë‹¤. */
 	public static final int MSG_FEEL_GOOD = 31;
 
-	/** ºÒ¸í.C_30 ÆĞÅ¶ÀÌ ³­´Ù */
+	/** ë¶ˆëª….C_30 íŒ¨í‚·ì´ ë‚œë‹¤ */
 	public static final int SOMETHING1 = 33;
 
-	/** H(time): ºí·ç ÀÏºÎÀÇ ¾ÆÀÌÄÜÀÌ Ç¥½ÃµÈ´Ù. */
+	/** H(time): ë¸”ë£¨ ì¼ë¶€ì˜ ì•„ì´ì½˜ì´ í‘œì‹œëœë‹¤. */
 	public static final int ICON_BLUEPOTION = 34;
 
-	/** H(time): º¯½ÅÀÇ ¾ÆÀÌÄÜÀÌ Ç¥½ÃµÈ´Ù. */
+	/** H(time): ë³€ì‹ ì˜ ì•„ì´ì½˜ì´ í‘œì‹œëœë‹¤. */
 	public static final int ICON_POLYMORPH = 35;
 
-	/** H(time): Ã¤ÆÃ ±İÁöÀÇ ¾ÆÀÌÄÜÀÌ Ç¥½ÃµÈ´Ù. */
+	/** H(time): ì±„íŒ… ê¸ˆì§€ì˜ ì•„ì´ì½˜ì´ í‘œì‹œëœë‹¤. */
 	public static final int ICON_CHATBAN = 36;
 
-	/** Æê ¾ÆÀÌÅÛ °»½Å ÆĞÅ¶ */
+	/** í« ì•„ì´í…œ ê°±ì‹  íŒ¨í‚· */
 	public static final int PET_ITEM = 37;
 
-	/** Ç÷¸Í Á¤º¸ÀÇ HTML°¡ Ç¥½ÃµÈ´Ù */
+	/** í˜ˆë§¹ ì •ë³´ì˜ HTMLê°€ í‘œì‹œëœë‹¤ */
 	public static final int HTML_CLAN1 = 38;
 
-	/** H(time): ÀÌ¹ÂÀÇ ¾ÆÀÌÄÜÀÌ Ç¥½ÃµÈ´Ù */
+	/** H(time): ì´ë®¤ì˜ ì•„ì´ì½˜ì´ í‘œì‹œëœë‹¤ */
 	public static final int ICON_I2H = 40;
 
-	/** Ä³¸¯ÅÍÀÇ °ÔÀÓ ¿É¼Ç, ¼îÆ® ÄÆ Á¤º¸µîÀ» º¸³½´Ù */
+	/** ìºë¦­í„°ì˜ ê²Œì„ ì˜µì…˜, ì‡¼íŠ¸ ì»· ì •ë³´ë“±ì„ ë³´ë‚¸ë‹¤ */
 	public static final int CHARACTER_CONFIG = 41;
 
-	/** Ä³¸¯ÅÍ ¼±ÅÃ È­¸éÀ¸·Î µ¹¾Æ°£´Ù */
+	/** ìºë¦­í„° ì„ íƒ í™”ë©´ìœ¼ë¡œ ëŒì•„ê°„ë‹¤ */
 	public static final int LOGOUT = 42;
 
-	/** ÀüÅõÁß¿¡ Àç½Ã µ¿¿äÇÒ ¼ö ¾ø½À´Ï´Ù. */
+	/** ì „íˆ¬ì¤‘ì— ì¬ì‹œ ë™ìš”í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤. */
 	public static final int MSG_CANT_LOGOUT = 43;
 
 	/**
 	 * C(count) D(time) S(name) S(info):<br>
-	 * [CALL] ¹öÆ°ÀÌ ºÙÀº À©µµ¿ì°¡ Ç¥½ÃµÈ´Ù.
-	 * ÀÌ¸§À» ´õºí Å¬¸¯ ÇÏ¸é(ÀÚ) C_RequestWho°¡ ³¯¾Æ, Å¬¶óÀÌ¾ğÆ®ÀÇ
-	 * Æú´õ¿¡ bot_list.txt°¡ »ı¼ºµÈ´Ù.ÀÌ¸§À» ¼±ÅÃÇØ+Å°¸¦ ´©¸£¸é(ÀÚ) »õ·Î¿î À©µµ¿ì°¡ ¿­¸°´Ù.
+	 * [CALL] ë²„íŠ¼ì´ ë¶™ì€ ìœˆë„ìš°ê°€ í‘œì‹œëœë‹¤.
+	 * ì´ë¦„ì„ ë”ë¸” í´ë¦­ í•˜ë©´(ì) C_RequestWhoê°€ ë‚ ì•„, í´ë¼ì´ì–¸íŠ¸ì˜
+	 * í´ë”ì— bot_list.txtê°€ ìƒì„±ëœë‹¤.ì´ë¦„ì„ ì„ íƒí•´+í‚¤ë¥¼ ëˆ„ë¥´ë©´(ì) ìƒˆë¡œìš´ ìœˆë„ìš°ê°€ ì—´ë¦°ë‹¤.
 	 */
 	public static final int CALL_SOMETHING = 45;
 
 	/**
-	 * C(id): ¹èÆ² Äİ·Ô¼¼¿ò, Ä«¿À½º ´ëÀüÀÌ¡ª<br>
-	 * id - 1:°³½ÃÇÕ´Ï´Ù 2:»èÁ¦µÇ¾ú´ø 3:Á¾·áÇÕ´Ï´Ù
+	 * C(id): ë°°í‹€ ì½œë¡¯ì„¸ì›€, ì¹´ì˜¤ìŠ¤ ëŒ€ì „ì´â€•<br>
+	 * id - 1:ê°œì‹œí•©ë‹ˆë‹¤ 2:ì‚­ì œë˜ì—ˆë˜ 3:ì¢…ë£Œí•©ë‹ˆë‹¤
 	 */
 	public static final int MSG_COLOSSEUM = 49;
 
-	/** Ç÷¸Í Á¤º¸ÀÇ HTML */
+	/** í˜ˆë§¹ ì •ë³´ì˜ HTML */
 	public static final int HTML_CLAN2 = 51;
 
-	/** ¿ä¸® À©µµ¿ì¸¦ ¿¬´Ù */
+	/** ìš”ë¦¬ ìœˆë„ìš°ë¥¼ ì—°ë‹¤ */
 	public static final int COOK_WINDOW = 52;
 
-	/** C(type) H(time): ¿ä¸® ¾ÆÀÌÄÜÀÌ Ç¥½ÃµÈ´Ù */
+	/** C(type) H(time): ìš”ë¦¬ ì•„ì´ì½˜ì´ í‘œì‹œëœë‹¤ */
 	public static final int ICON_COOKING = 53;
 
-	/** ¹°°í±âÂî Èçµé¸²Æ÷½Ã */
+	/** ë¬¼ê³ ê¸°ì°Œ í”ë“¤ë¦¼í¬ì‹œ */
 	public static final int FISHING = 55;
 
-	public static final int DRAGONPERL = 60; // µå·¡°ïÁøÁÖ
+	public static final int DRAGONPERL = 60; // ë“œë˜ê³¤ì§„ì£¼
 	
-	/** ¾ÆÀÌÄÜ »èÁ¦ */
+	/** ì•„ì´ì½˜ ì‚­ì œ */
 	public static final int DEL_ICON = 59;
 
-	/** °èÁ¤ ½Ã°£ type:¿¹¾à°áÁ¦ time:½Ã°£*/
+	/** ê³„ì • ì‹œê°„ type:ì˜ˆì•½ê²°ì œ time:ì‹œê°„*/
 	public static final int ACCOUNT_TIME = 61;
 
-	/** µ¿¸Í ¸ñ·Ï */
+	/** ë™ë§¹ ëª©ë¡ */
 	public static final int ALLIANCE_LIST = 62;
 
-	/** ¹Ì´Ï°ÔÀÓ : 5,4,3,2,1 Ä«¿îÆ® */
+	/** ë¯¸ë‹ˆê²Œì„ : 5,4,3,2,1 ì¹´ìš´íŠ¸ */
 	public static final int MINIGAME_START_COUNT = 64;
 
-	/** ¹Ì´Ï°ÔÀÓ : Å¸ÀÓ(0:00½ÃÀÛ) */
+	/** ë¯¸ë‹ˆê²Œì„ : íƒ€ì„(0:00ì‹œì‘) */
 	public static final int MINIGAME_START_TIME = 65;
 
-	/** ¹Ì´Ï°ÔÀÓ : °ÔÀÓÀÚ ¸®½ºÆ® */
+	/** ë¯¸ë‹ˆê²Œì„ : ê²Œì„ì ë¦¬ìŠ¤íŠ¸ */
 	public static final int MINIGAME_LIST = 66;
 
-	/** ¹Ì´Ï°ÔÀÓ : Àá½Ã ÈÄ ¸¶À»·Î ÀÌµ¿µË´Ï´Ù(10ÃÊ À½) **/
+	/** ë¯¸ë‹ˆê²Œì„ : ì ì‹œ í›„ ë§ˆì„ë¡œ ì´ë™ë©ë‹ˆë‹¤(10ì´ˆ ìŒ) **/
 	public static final int MINIGAME_10SECOND_COUNT = 69;
 
-	/** ¹Ì´Ï°ÔÀÓ : Á¾·á */
+	/** ë¯¸ë‹ˆê²Œì„ : ì¢…ë£Œ */
 	public static final int MINIGAME_END = 70;
 
-	/** ¹Ì´Ï°ÔÀÓ : Å¸ÀÓ */
+	/** ë¯¸ë‹ˆê²Œì„ : íƒ€ì„ */
 	public static final int MINIGAME_TIME = 71;
 
-	/** ¹Ì´Ï°ÔÀÓ : Å¸ÀÓ»èÁ¦ */
+	/** ë¯¸ë‹ˆê²Œì„ : íƒ€ì„ì‚­ì œ */
 	public static final int MINIGAME_TIME_CLEAR = 72;
 
-	/** ÆÈÀ» ´ÙÃÄ °ø°İ ´É·ÂÀÌ ÇÏ¶ôÇÕ´Ï´Ù. */
+	/** íŒ”ì„ ë‹¤ì³ ê³µê²© ëŠ¥ë ¥ì´ í•˜ë½í•©ë‹ˆë‹¤. */
 	public static final int DAMAGE_DOWN = 74;
 
-	/** °ø¼ºÀüÀÌ ½ÃÀÛµÇ¾ú½À´Ï´Ù. 78
-	 *  ¼ºÀ» ¼ÒÀ¯ÇÏ°í ÀÖ´Â Ç÷¸ÍÀº ´ÙÀ½°ú °°½À´Ï´Ù. */
+	/** ê³µì„±ì „ì´ ì‹œì‘ë˜ì—ˆìŠµë‹ˆë‹¤. 78
+	 *  ì„±ì„ ì†Œìœ í•˜ê³  ìˆëŠ” í˜ˆë§¹ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤. */
 
-	/** °ø¼ºÀüÀÌ Á¾·áµÇ¾ú½À´Ï´Ù. 79
-	 *  ¼ºÀ» ¼ÒÀ¯ÇÏ°í ÀÖ´Â Ç÷¸ÍÀº ´ÙÀ½°ú °°½À´Ï´Ù. */
+	/** ê³µì„±ì „ì´ ì¢…ë£Œë˜ì—ˆìŠµë‹ˆë‹¤. 79
+	 *  ì„±ì„ ì†Œìœ í•˜ê³  ìˆëŠ” í˜ˆë§¹ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤. */
 
-	/** °ø¼ºÀüÀÌ ÁøÇàÁßÀÔ´Ï´Ù. 80
-	 *  ¼ºÀ» ¼ÒÀ¯ÇÏ°í ÀÖ´Â Ç÷¸ÍÀº ´ÙÀ½°ú °°½À´Ï´Ù. */
+	/** ê³µì„±ì „ì´ ì§„í–‰ì¤‘ì…ë‹ˆë‹¤. 80
+	 *  ì„±ì„ ì†Œìœ í•˜ê³  ìˆëŠ” í˜ˆë§¹ì€ ë‹¤ìŒê³¼ ê°™ìŠµë‹ˆë‹¤. */
 
-	/** ¾ÆÀÎÇÏ»çµå ¹öÇÁ */
+	/** ì•„ì¸í•˜ì‚¬ë“œ ë²„í”„ */
 	public static final int AINHASAD = 82;
 
-	/** ¿¡¸Ş¶öµå ¾ÆÀÌÄÜ - playeva.net */
+	/** ì—ë©”ë„ë“œ ì•„ì´ì½˜ - playeva.net */
 	public static final int EMERALD_EVA = 86;
 
-	/** ¿ìÈ£µµ UI Ç¥½Ã
-	 * + ¿å¸ÁÀÇ µ¿±¼
-	 * - ±×¸²ÀÚ ½ÅÀü
+	/** ìš°í˜¸ë„ UI í‘œì‹œ
+	 * + ìš•ë§ì˜ ë™êµ´
+	 * - ê·¸ë¦¼ì ì‹ ì „
 	 */
 	public static final int KARMA = 87;
 
-	/** ¿ìÈ£µµ ´ÙÀ½¿¡ ¿À´Â
-	 * ºÒºĞ¸í ÆĞÅ¶ 2°³ ¡é
+	/** ìš°í˜¸ë„ ë‹¤ìŒì— ì˜¤ëŠ”
+	 * ë¶ˆë¶„ëª… íŒ¨í‚· 2ê°œ â†“
 	 */
 	public static final int LOGIN_UNKNOWN1 = 88;
 
-	/** ¾ğÄÉ´Ï´åÁö ¼öÄ¡ Ç¥½Ã*/
+	/** ì–¸ì¼€ë‹ˆë‹·ì§€ ìˆ˜ì¹˜ í‘œì‹œ*/
 	public static final int DODGE = 101;
 
 	public S_PacketBox(int subCode, int type, boolean show){
@@ -258,7 +258,7 @@ public class S_PacketBox extends ServerBasePacket {
 
 		switch (subCode) {
 		case BAPO:
-			writeD(type); // 1~7 ±ê¹ß
+			writeD(type); // 1~7 ê¹ƒë°œ
 			writeD(show ? 0x01 : 0x00);
 		default:
 			break;
@@ -354,7 +354,7 @@ public class S_PacketBox extends ServerBasePacket {
 			break;
 		case MSG_LEVEL_OVER:
 			writeC(0); // ?
-			writeC(value); // 0-49ÀÌ¿Ü´Â Ç¥½ÃµÇÁö ¾Ê´Â´Ù
+			writeC(value); // 0-49ì´ì™¸ëŠ” í‘œì‹œë˜ì§€ ì•ŠëŠ”ë‹¤
 			break;
 		case COOK_WINDOW:
 			writeC(0xdb); // ?
@@ -364,19 +364,19 @@ public class S_PacketBox extends ServerBasePacket {
 			writeC(0x01);
 			writeC(value); // level
 			break;
-		case µå·¡°ï·¹ÀÌµå¹öÇÁ:
+		case ë“œë˜ê³¤ë ˆì´ë“œë²„í”„:
 			writeC(0x01);
 			writeC(0x27);
 			writeC(0x0E);
-			writeD(value);// ³²ÀºÃÊ
+			writeD(value);// ë‚¨ì€ì´ˆ
 			writeH(0x63EF);
 			break;
 		case AINHASAD:
 			value /= 10000;
-			writeD(value);// % ¼öÄ¡ 1~200
+			writeD(value);// % ìˆ˜ì¹˜ 1~200
 			break;
 		case DODGE:
-			writeC(value);// +´Â -·Î ¹İ´ë
+			writeC(value);// +ëŠ” -ë¡œ ë°˜ëŒ€
 			break;
 		default:
 			break;
@@ -388,7 +388,7 @@ public class S_PacketBox extends ServerBasePacket {
 		writeC(subCode);
 
 		switch (subCode) {
-		case DRAGONPERL:// µå·¡°ïÁøÁÖ
+		case DRAGONPERL:// ë“œë˜ê³¤ì§„ì£¼
 			writeC(time);
 			writeC(type);
 			break;
@@ -434,11 +434,11 @@ public class S_PacketBox extends ServerBasePacket {
 			writeD(type);
 			writeD(time);
 			break;
-		case EMERALD_EVA: // ¿¡¸Ş¶öµå ¾ÆÀÌÄÜ
+		case EMERALD_EVA: // ì—ë©”ë„ë“œ ì•„ì´ì½˜
 			writeC(0x70);
 			writeC(0x01);
 			writeC(type);
-			writeH(time); // time(ÃÊ)
+			writeH(time); // time(ì´ˆ)
 			break;
 		default:
 			break;
@@ -473,7 +473,7 @@ public class S_PacketBox extends ServerBasePacket {
 		case PLAYSOUND:  //?
 			writeH(Integer.parseInt(name));
 			break;
-		case GREEN_MESSAGE: // ÀÎ´øÃß°¡
+		case GREEN_MESSAGE: // ì¸ë˜ì¶”ê°€
 			writeC(2);
 			writeS(name);
 			break;	
@@ -504,7 +504,7 @@ public class S_PacketBox extends ServerBasePacket {
 
 		switch (subCode) {
 		case MSG_WIN_LASTAVARD:
-			writeD(id); // Å©¶õ IDÀÎ°¡ ¹«¾ùÀÎ°¡?
+			writeD(id); // í¬ë€ IDì¸ê°€ ë¬´ì—‡ì¸ê°€?
 			writeS(name);
 			writeS(clanName);
 			break;
@@ -526,7 +526,7 @@ public class S_PacketBox extends ServerBasePacket {
 			writeD(clan.getClanMemberList().size());
 
 			ClanMember member;
-			ArrayList<ClanMember> clanMemberList = clan.getClanMemberList(); // ¸ğµç Ç÷¸Í¿øÀÇ ÀÌ¸§°ú µî±Ş
+			ArrayList<ClanMember> clanMemberList = clan.getClanMemberList(); // ëª¨ë“  í˜ˆë§¹ì›ì˜ ì´ë¦„ê³¼ ë“±ê¸‰
 			for(int i = 0 ; i < clanMemberList.size() ; i ++) {
 				member = clanMemberList.get(i);
 				writeS(member.name);
@@ -534,7 +534,7 @@ public class S_PacketBox extends ServerBasePacket {
 			}
 
 			/*if (offlineMemberCount > 0) {
-				for(int i = 0 ; i < offlineMemberCount ; i++) { // ¿ÀÇÁ¶óÀÎ
+				for(int i = 0 ; i < offlineMemberCount ; i++) { // ì˜¤í”„ë¼ì¸
 					String name = clan.getOfflineMemberName(i);
 					int rank = clan.getOfflineMemberRank(name);
 					if(rank < 0) continue;
@@ -544,7 +544,7 @@ public class S_PacketBox extends ServerBasePacket {
 			}*/
 
 			writeD(clan.getOnlineMemberCount());
-			for (L1PcInstance targetPc : clan.getOnlineClanMember()) { // ¿Â¶óÀÎ
+			for (L1PcInstance targetPc : clan.getOnlineClanMember()) { // ì˜¨ë¼ì¸
 				writeS(targetPc.getName());
 			}
 			break;
@@ -556,7 +556,7 @@ public class S_PacketBox extends ServerBasePacket {
 			break;
 		case KARMA:
 			writeD(pc.getKarma());
-			writeH(0); // ÇÊ¿äÇÒ±î?
+			writeH(0); // í•„ìš”í• ê¹Œ?
 			break;
 		case ALLIANCE_LIST:
 			if (pc.getClan() == null || pc.getClan().getAlliance() == null) {
@@ -587,7 +587,7 @@ public class S_PacketBox extends ServerBasePacket {
 			pc = itr.next();
 			acc = Account.load(pc.getAccountName());
 
-			// ½Ã°£ Á¤º¸ ¿ì¼± ·Î±×ÀÎ ½Ã°£À» ³Ö¾î º»´Ù655
+			// ì‹œê°„ ì •ë³´ ìš°ì„  ë¡œê·¸ì¸ ì‹œê°„ì„ ë„£ì–´ ë³¸ë‹¤655
 
 			if (acc == null) {
 				writeD(0);
@@ -597,12 +597,12 @@ public class S_PacketBox extends ServerBasePacket {
 				cal.setTimeInMillis(lastactive);
 				cal.set(Calendar.YEAR, 1970);
 				int time = (int) (cal.getTimeInMillis() / 1000);
-				writeD(time); // JST 1970 1/1 09:00 ÀÌ ±âÁØ
+				writeD(time); // JST 1970 1/1 09:00 ì´ ê¸°ì¤€
 			}
 
-			// Ä³¸¯ÅÍ Á¤º¸
-			writeS(pc.getName()); // ¹İ°¢ 12ÀÚ±îÁö
-			writeS(pc.getClanname()); // []³»¿¡ Ç¥½ÃµÇ´Â Ä³¸¯ÅÍ ¶óÀÎ.¹İ°¢ 12ÀÚ±îÁö
+			// ìºë¦­í„° ì •ë³´
+			writeS(pc.getName()); // ë°˜ê° 12ìê¹Œì§€
+			writeS(pc.getClanname()); // []ë‚´ì— í‘œì‹œë˜ëŠ” ìºë¦­í„° ë¼ì¸.ë°˜ê° 12ìê¹Œì§€
 		}
 	}
 

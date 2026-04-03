@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -27,8 +27,8 @@ public class S_DeleteInventoryItem extends ServerBasePacket {
 	private static final String S_DELETE_INVENTORY_ITEM = "[S] S_DeleteInventoryItem";
 
 	/**
-	 * ¸ñ·ÏÀ¸·ÎºÎÅÍ ¾ÆÀÌÅÛÀ» »èÁ¦ÇÑ´Ù.
-	 * @param item - »èÁ¦ÇÏ´Â ¾ÆÀÌÅÛ
+	 * ëª©ë¡ìœ¼ë¡œë¶€í„° ì•„ì´í…œì„ ì‚­ì œí•œë‹¤.
+	 * @param item - ì‚­ì œí•˜ëŠ” ì•„ì´í…œ
 	 */
 	public S_DeleteInventoryItem(L1ItemInstance item) {
 		if (item != null) {

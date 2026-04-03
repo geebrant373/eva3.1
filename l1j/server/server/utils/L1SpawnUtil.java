@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -80,7 +80,7 @@ public class L1SpawnUtil {
 			L1World.getInstance().addVisibleObject(npc);
 
 			npc.getLight().turnOnOffLight();
-			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // Ã¤ÆÃ °³½Ã
+			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // ì±„íŒ… ê°œì‹œ
 			if (0 < timeMillisToDelete) {
 				L1NpcDeleteTimer timer = new L1NpcDeleteTimer(npc, timeMillisToDelete);
 				timer.begin();
@@ -91,7 +91,7 @@ public class L1SpawnUtil {
 	}
 
 	/**
-	 * ¿£ÇÇ¾¾¸¦ ½ºÆùÇÑ´Ù
+	 * ì—”í”¼ì”¨ë¥¼ ìŠ¤í°í•œë‹¤
 	 * 
 	 * @param x
 	 * @param y
@@ -100,7 +100,7 @@ public class L1SpawnUtil {
 	 * @param randomRange
 	 * @param timeMillisToDelete
 	 * @param movemap
-	 *            (ÀÌµ¿½ÃÅ³ ¸ÊÀ» ¼³Á¤ÇÑ´Ù - ¾ÈÅ¸·¹ÀÌµå)
+	 *            (ì´ë™ì‹œí‚¬ ë§µì„ ì„¤ì •í•œë‹¤ - ì•ˆíƒ€ë ˆì´ë“œ)
 	 */
 
 	public static L1NpcInstance spawnnpc(int x, int y, short map, int npcId, int randomRange, int timeMillisToDelete, int movemap) {
@@ -131,7 +131,7 @@ public class L1SpawnUtil {
 			if (randomRange == 0) {
 				npc.getLocation().set(x, y, map);
 				/**
-				 * ¿ë¶¥µµÆ÷ÇÔ~~~ ÇÏµò °ü·Ã NPC°¡ ¾Æ´Ò °æ¿ì¿¡¸¸ Àû¿ë ÀÏ´Ü ÁÖ¼® Ã³¸® ÇØº½.
+				 * ìš©ë•…ë„í¬í•¨~~~ í•˜ë”˜ ê´€ë ¨ NPCê°€ ì•„ë‹ ê²½ìš°ì—ë§Œ ì ìš© ì¼ë‹¨ ì£¼ì„ ì²˜ë¦¬ í•´ë´„.
 				 **/
 				/*
 				 * if(npcId != 4212013 && !(npcId >= 5000038 && npcId <=
@@ -179,10 +179,10 @@ public class L1SpawnUtil {
 
 			L1World.getInstance().storeObject(npc);
 			L1World.getInstance().addVisibleObject(npc);
-			// ¾ÈÅ¸¶ó½ºÀÇ °æ¿ì Æ¢¾î ³ª¿À°Ô²û..
+			// ì•ˆíƒ€ë¼ìŠ¤ì˜ ê²½ìš° íŠ€ì–´ ë‚˜ì˜¤ê²Œë”..
 			if (npcId == 4212015 || npcId == 4212016 || npcId == 4038000 || npcId == 4200010 || npcId == 4200011 || npcId == 4039000
-					|| npcId == 4039006 || npcId == 4039007 || npcId == 100011) { // ¾ÈÅ¸
-																					// ÆÄÇª
+					|| npcId == 4039006 || npcId == 4039007 || npcId == 100011) { // ì•ˆíƒ€
+																					// íŒŒí‘¸
 				// npc.broadcastPacket(new S_DoActionGFX(npc.getId(), 11));
 				// npc.setActionStatus(11);
 				npc.broadcastPacket(new S_NPCPack(npc));
@@ -200,7 +200,7 @@ public class L1SpawnUtil {
 			}
 
 			npc.getLight().turnOnOffLight();
-			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // Ã¤ÆÃ °³½Ã
+			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // ì±„íŒ… ê°œì‹œ
 			if (0 < timeMillisToDelete) {
 				L1NpcDeleteTimer timer = new L1NpcDeleteTimer(npc, timeMillisToDelete);
 				timer.begin();
@@ -250,7 +250,7 @@ public class L1SpawnUtil {
 			L1World.getInstance().addVisibleObject(npc);
 
 			npc.getLight().turnOnOffLight();
-			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // Ã¤ÆÃ °³½Ã
+			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // ì±„íŒ… ê°œì‹œ
 			if (0 < timeMillisToDelete) {
 				L1NpcDeleteTimer timer = new L1NpcDeleteTimer(npc, timeMillisToDelete);
 				timer.begin();
@@ -293,7 +293,7 @@ public class L1SpawnUtil {
 			L1World.getInstance().addVisibleObject(npc);
 
 			npc.getLight().turnOnOffLight();
-			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // Ã¤ÆÃ °³½Ã
+			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // ì±„íŒ… ê°œì‹œ
 
 			if (0 < timeMillisToDelete) {
 				L1NpcDeleteTimer timer = new L1NpcDeleteTimer(npc, timeMillisToDelete);
@@ -304,7 +304,7 @@ public class L1SpawnUtil {
 		}
 	}
 
-	public static void spawn·ÎÅ×(L1NpcInstance pc, int npcId, int randomRange, int timeMillisToDelete) {
+	public static void spawnë¡œí…Œ(L1NpcInstance pc, int npcId, int randomRange, int timeMillisToDelete) {
 		try {
 			L1NpcInstance npc = NpcTable.getInstance().newNpcInstance(npcId);
 			npc.setId(ObjectIdFactory.getInstance().nextId());
@@ -332,12 +332,12 @@ public class L1SpawnUtil {
 			npc.setHomeX(npc.getX());
 			npc.setHomeY(npc.getY());
 			npc.getMoveState().setHeading(pc.getMoveState().getHeading());
-			npc.·ÎÅ×_½ÃÀÛ1 = true;
+			npc.ë¡œí…Œ_ì‹œìž‘1 = true;
 			L1World.getInstance().storeObject(npc);
 			L1World.getInstance().addVisibleObject(npc);
 
 			npc.getLight().turnOnOffLight();
-			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // Ã¤ÆÃ °³½Ã
+			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // ì±„íŒ… ê°œì‹œ
 
 			if (0 < timeMillisToDelete) {
 				L1NpcDeleteTimer timer = new L1NpcDeleteTimer(npc, timeMillisToDelete);
@@ -373,7 +373,7 @@ public class L1SpawnUtil {
 		return npc;
 	}
 
-	/** ¶ó½ºÅ¸¹Ùµå ·¹ÀÌµå Àü¿ë ½ºÆù */
+	/** ë¼ìŠ¤íƒ€ë°”ë“œ ë ˆì´ë“œ ì „ìš© ìŠ¤í° */
 	public static void spawnLastabard(int x, int y, short MapId, int Heading, int npcId, int randomRangeX, int randomRangeY, int stage) {
 		try {
 			L1NpcInstance npc = NpcTable.getInstance().newNpcInstance(npcId);
@@ -425,7 +425,7 @@ public class L1SpawnUtil {
 			}
 
 			npc.getLight().turnOnOffLight();
-			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // Ã¤ÆÃ °³½Ã
+			npc.startChat(L1NpcInstance.CHAT_TIMING_APPEARANCE); // ì±„íŒ… ê°œì‹œ
 
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, "L1SpawnUtil[]Error7", e);

@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.MiniGame;
+ï»¿package l1j.server.GameSystem.MiniGame;
 
 import l1j.server.server.model.Broadcaster;
 import l1j.server.server.model.L1Object;
@@ -59,8 +59,8 @@ public class DeathMatch extends MiniGame implements Runnable{
 					setMiniGameStatus(Status.ENTERREADY);
 					break;
 				case ENTERREADY:
-					if(DEATH_MATCH_PLAY_LEVEL == 1)	Broadcaster.broadcastPacket(kusan, new S_NpcChatPacket(datoo, "30ÀÌ»ó 51ÀÌÇÏ µ¥½º¸ÅÄ¡ ÀÔÀå ´ë±âÁßÀÔ´Ï´Ù ¸¹ÀºÂü¿© ¹Ù¶ø´Ï´Ù", 0));
-					else	 Broadcaster.broadcastPacket(datoo, new S_NpcChatPacket(kusan, "52ÀÌ»ó µ¥½º¸ÅÄ¡ ÀÔÀå ´ë±âÁßÀÔ´Ï´Ù ¸¹ÀºÂü¿© ¹Ù¶ø´Ï´Ù", 0));
+					if(DEATH_MATCH_PLAY_LEVEL == 1)	Broadcaster.broadcastPacket(kusan, new S_NpcChatPacket(datoo, "30ì´ìƒ 51ì´í•˜ ë°ìŠ¤ë§¤ì¹˜ ì…ì¥ ëŒ€ê¸°ì¤‘ì…ë‹ˆë‹¤ ë§ì€ì°¸ì—¬ ë°”ëë‹ˆë‹¤", 0));
+					else	 Broadcaster.broadcastPacket(datoo, new S_NpcChatPacket(kusan, "52ì´ìƒ ë°ìŠ¤ë§¤ì¹˜ ì…ì¥ ëŒ€ê¸°ì¤‘ì…ë‹ˆë‹¤ ë§ì€ì°¸ì—¬ ë°”ëë‹ˆë‹¤", 0));
 					
 					Thread.sleep(240000L);
 					if(getEnterMemberCount() < LIMIT_MIN_PLAYER_COUNT){
@@ -161,7 +161,7 @@ public class DeathMatch extends MiniGame implements Runnable{
 		case ENTERREADY:
 			for(int i = 0; i < getEnterMemberCount(); i++){
 				pc = entermembers.get(i);
-				// µ¥½º¸ÅÄ¡¿¡ ÀÔÀåÇÏ½Ã°Ú½À´Ï±î? (Y/N)
+				// ë°ìŠ¤ë§¤ì¹˜ì— ì…ì¥í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N)
 				pc.sendPackets(new S_Message_YN(1268, ""));
 			}
 			break;
@@ -227,9 +227,9 @@ public class DeathMatch extends MiniGame implements Runnable{
 		L1PcInstance pc;
 		for(int i = 0; i < getPlayerMemberCount(); i++){
 			pc = playmembers.get(i);
-			// °æ±â ÃÖ¼Ò ÀÎ¿øÀÌ 5¸íÀÌ ¸¸Á·ÇÏÁö ¾Ê¾Æ °æ±â¸¦ °­Á¦ Á¾·á ÇÕ´Ï´Ù. 1000 ¾Æµ¥³ª¸¦ µ¹·Á µå·È½À´Ï´Ù.
+			// ê²½ê¸° ìµœì†Œ ì¸ì›ì´ 5ëª…ì´ ë§Œì¡±í•˜ì§€ ì•Šì•„ ê²½ê¸°ë¥¼ ê°•ì œ ì¢…ë£Œ í•©ë‹ˆë‹¤. 1000 ì•„ë°ë‚˜ë¥¼ ëŒë ¤ ë“œë ¸ìŠµë‹ˆë‹¤.
 			pc.sendPackets(new S_ServerMessage(1270));
-			pc.getInventory().storeItem(40308, 1000); // 1000 ¾Æµ¥³ª Áö±Ş
+			pc.getInventory().storeItem(40308, 1000); // 1000 ì•„ë°ë‚˜ ì§€ê¸‰
 			L1Teleport.teleport(pc, 32624, 32813, (short) 4, 5, true);
 		}
 	}
@@ -238,7 +238,7 @@ public class DeathMatch extends MiniGame implements Runnable{
 		L1PcInstance pc;
 		for(int i = 0; i < getPlayerMemberCount(); i++){
 			pc = playmembers.get(i);
-			// µ¥½º¸ÅÄ¡ ¼±¹°»óÀÚ - ¹°¾à
+			// ë°ìŠ¤ë§¤ì¹˜ ì„ ë¬¼ìƒì - ë¬¼ì•½
 			pc.getInventory().storeItem(L1ItemId.DEATHMATCH_POTION_BOX, 1);
 			pc.sendPackets(new S_ServerMessage(1269));
 		}
@@ -250,18 +250,18 @@ public class DeathMatch extends MiniGame implements Runnable{
 			return;
 		}
 		if (!isEnterMember(pc)) {
-			// %d¹øÂ° ¼ø¹øÀ¸·Î ÀÔÀå ¿¹¾àµÇ¾ú½À´Ï´Ù.
+			// %dë²ˆì§¸ ìˆœë²ˆìœ¼ë¡œ ì…ì¥ ì˜ˆì•½ë˜ì—ˆìŠµë‹ˆë‹¤.
 			addEnterMember(pc);
 			pc.sendPackets(new S_ServerMessage(1265, Integer.toString(getEnterMemberCount())));
 		} else {
-			// ÀÌ¹Ì µ¥½º¸ÅÄ¡ ÀÔÀå ¿¹¾àµÇ¾îÀÖ½À´Ï´Ù.
+			// ì´ë¯¸ ë°ìŠ¤ë§¤ì¹˜ ì…ì¥ ì˜ˆì•½ë˜ì–´ìˆìŠµë‹ˆë‹¤.
 			pc.sendPackets(new S_ServerMessage(1266));
 		}
 	}
 
 	
 	public void addPlayMember(L1PcInstance pc) {
-		if (pc.isInParty()) { // ÆÄÆ¼Áß
+		if (pc.isInParty()) { // íŒŒí‹°ì¤‘
 			pc.getParty().leaveMember(pc);
 		}
 		
@@ -270,10 +270,10 @@ public class DeathMatch extends MiniGame implements Runnable{
 		L1SkillUse l1skilluse = new L1SkillUse();
 		l1skilluse.handleCommands(pc, L1SkillId.CANCELLATION, pc.getId(), pc.getX(), pc.getY(), null, 0, L1SkillUse.TYPE_LOGIN);
 		
-		L1Teleport.teleport(pc, 32658, 32899, (short) DEATHMATCH_MAPID, 2, true); // ÅÚ
+		L1Teleport.teleport(pc, 32658, 32899, (short) DEATHMATCH_MAPID, 2, true); // í…”
 	}
 	
 	public void giveBackAdena(L1PcInstance pc) {
-		pc.getInventory().storeItem(40308, 1000); // 1000 ¾Æµ¥³ª Áö±Ş
+		pc.getInventory().storeItem(40308, 1000); // 1000 ì•„ë°ë‚˜ ì§€ê¸‰
 	}
 }

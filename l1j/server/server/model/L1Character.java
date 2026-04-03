@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -44,7 +44,7 @@ import l1j.server.server.utils.IntRange;
 public class L1Character extends L1Object {
 	private static final long serialVersionUID = 1L;
 	
-	// ÄÉ¸¯ÅÍ ±âº»
+	// ì¼€ë¦­í„° ê¸°ë³¸
 	//private BasicProperty basic;
 	
 	private String _name; 
@@ -71,24 +71,24 @@ public class L1Character extends L1Object {
 	private L1Paralysis _paralysis;
 	private boolean _isDead; 
 
-	protected GfxId gfx;					// ÄÉ¸¯ÅÍ ±×·¡ÇÈ ID
-	private MoveState moveState;		// ÀÌµ¿¼Óµµ, ¹Ù¶óº¸´Â ¹æÇâ
-	protected Light light;				// ÄÉ¸¯ÅÍ ÁÖÀ§  ºû
-	protected Ability ability; 			// ´É·ÂÄ¡, SP, MagicBonus
-	protected Resistance resistance;	// ÀúÇ× (¸¶¹æ, ºÒ, ¹°, ¹Ù¶÷, ¶¥, ½ºÅÏ, µ¿ºù, ½½¸³, ¼®È­)
-	protected AC ac;					// AC ¹æ¾î
+	protected GfxId gfx;					// ì¼€ë¦­í„° ê·¸ë˜í”½ ID
+	private MoveState moveState;		// ì´ë™ì†ë„, ë°”ë¼ë³´ëŠ” ë°©í–¥
+	protected Light light;				// ì¼€ë¦­í„° ì£¼ìœ„  ë¹›
+	protected Ability ability; 			// ëŠ¥ë ¥ì¹˜, SP, MagicBonus
+	protected Resistance resistance;	// ì €í•­ (ë§ˆë°©, ë¶ˆ, ë¬¼, ë°”ëŒ, ë•…, ìŠ¤í„´, ë™ë¹™, ìŠ¬ë¦½, ì„í™”)
+	protected AC ac;					// AC ë°©ì–´
 		
-	private NearObjects nearObjects;	// ÁÖÀ§ °´Ã¼ ¹× ÇÃ·¹ÀÌ¾îµé
-	private SkillEffectTimerSet skillEffectTimerSet;	// ½ºÅ³ Å¸ÀÌ¸Ó 
+	private NearObjects nearObjects;	// ì£¼ìœ„ ê°ì²´ ë° í”Œë ˆì´ì–´ë“¤
+	private SkillEffectTimerSet skillEffectTimerSet;	// ìŠ¤í‚¬ íƒ€ì´ë¨¸ 
 
-	private int _heading; // ¡Ü ¹æÇâ 0. ÁÂ»ó 1. »ó 2. ¿ì»ó 3. ¿À¸¥ÂÊ 4. ¿ìÇÏ 5. ÇÏ 6. ÁÂÇÏ 7. ÁÂ
+	private int _heading; // â— ë°©í–¥ 0. ì¢Œìƒ 1. ìƒ 2. ìš°ìƒ 3. ì˜¤ë¥¸ìª½ 4. ìš°í•˜ 5. í•˜ 6. ì¢Œí•˜ 7. ì¢Œ
 	
-	// ¸ğ¸£´Â°Å
+	// ëª¨ë¥´ëŠ”ê±°
 	private boolean _isSkillDelay;
 	private int _addAttrKind; 
 	private int actionStatus; 
 
-	// µ¥¹ÌÁö
+	// ë°ë¯¸ì§€
 	private int _dmgup; 
 	private int _trueDmgup; 
 	private int _bowDmgup; 
@@ -136,10 +136,10 @@ public class L1Character extends L1Object {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ¸¦ ºÎÈ°½ÃÅ²´Ù.
+	 * ìºë¦­í„°ë¥¼ ë¶€í™œì‹œí‚¨ë‹¤.
 	 * 
 	 * @param hp
-	 *            ºÎÈ° ÈÄÀÇ HP
+	 *            ë¶€í™œ í›„ì˜ HP
 	 */
 	public void resurrect(int hp) {
 		if (!isDead()) return;
@@ -166,16 +166,16 @@ public class L1Character extends L1Object {
 	}
 	
 	/**
-	 * Ä³¸¯ÅÍÀÇ ÇöÀçÀÇ HP¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ í˜„ì¬ì˜ HPë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return ÇöÀçÀÇ HP
+	 * @return í˜„ì¬ì˜ HP
 	 */
 	public int getCurrentHp() {	return _currentHp; }
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ HP¸¦ ¼³Á¤ÇÑ´Ù.
+	 * ìºë¦­í„°ì˜ HPë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
-	 * @param i Ä³¸¯ÅÍÀÇ »õ·Î¿î HP
+	 * @param i ìºë¦­í„°ì˜ ìƒˆë¡œìš´ HP
 	 */
 	public void setCurrentHp(int i) {
 		if (i >= getMaxHp()) {
@@ -187,18 +187,18 @@ public class L1Character extends L1Object {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ ÇöÀçÀÇ MP¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ í˜„ì¬ì˜ MPë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return ÇöÀçÀÇ MP
+	 * @return í˜„ì¬ì˜ MP
 	 */
 	public int getCurrentMp() {
 		return _currentMp;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ MP¸¦ ¼³Á¤ÇÑ´Ù.
+	 * ìºë¦­í„°ì˜ MPë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
-	 * @param i Ä³¸¯ÅÍÀÇ »õ·Î¿î MP
+	 * @param i ìºë¦­í„°ì˜ ìƒˆë¡œìš´ MP
 	 */
 	public void setCurrentMp(int i) {
 		if (i >= getMaxMp()) {
@@ -210,37 +210,37 @@ public class L1Character extends L1Object {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ Àá»óÅÂ¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ ì ìƒíƒœë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return Àá»óÅÂ¸¦ ³ªÅ¸³»´Â °ª. Àá»óÅÂÀÌ¸é true.
+	 * @return ì ìƒíƒœë¥¼ ë‚˜íƒ€ë‚´ëŠ” ê°’. ì ìƒíƒœì´ë©´ true.
 	 */
 	public boolean isSleeped() {
 		return _sleeped;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ Àá»óÅÂ¸¦ ¼³Á¤ÇÑ´Ù.
+	 * ìºë¦­í„°ì˜ ì ìƒíƒœë¥¼ ì„¤ì •í•œë‹¤.
 	 * 
 	 * @param sleeped
-	 *            Àá»óÅÂ¸¦ ³ªÅ¸³»´Â °ª. Àá»óÅÂÀÌ¸é true.
+	 *            ì ìƒíƒœë¥¼ ë‚˜íƒ€ë‚´ëŠ” ê°’. ì ìƒíƒœì´ë©´ true.
 	 */
 	public void setSleeped(boolean sleeped) {
 		_sleeped = sleeped;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ ¸¶ºñ »óÅÂ¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ ë§ˆë¹„ ìƒíƒœë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return ¸¶ºñ »óÅÂ¸¦ ³ªÅ¸³»´Â °ª. ¸¶ºñ »óÅÂÀÌ¸é true.
+	 * @return ë§ˆë¹„ ìƒíƒœë¥¼ ë‚˜íƒ€ë‚´ëŠ” ê°’. ë§ˆë¹„ ìƒíƒœì´ë©´ true.
 	 */
 	public boolean isParalyzed() {
 		return _paralyzed;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ ¸¶ºñ »óÅÂ¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ ë§ˆë¹„ ìƒíƒœë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return ¸¶ºñ »óÅÂ¸¦ ³ªÅ¸³»´Â °ª. ¸¶ºñ »óÅÂÀÌ¸é true.
+	 * @return ë§ˆë¹„ ìƒíƒœë¥¼ ë‚˜íƒ€ë‚´ëŠ” ê°’. ë§ˆë¹„ ìƒíƒœì´ë©´ true.
 	 */
 	public void setParalyzed(boolean paralyzed) {
 		_paralyzed = paralyzed;
@@ -260,9 +260,9 @@ public class L1Character extends L1Object {
 		}
 	}
 	/**
-	 * Ä³¸¯ÅÍÀÇ °¡½Ã ¹üÀ§¿¡ ÀÖ´Â ÇÃ·¹ÀÌ¾î¿¡, ÆĞÅ¶À» ¼Û½ÅÇÑ´Ù.
+	 * ìºë¦­í„°ì˜ ê°€ì‹œ ë²”ìœ„ì— ìˆëŠ” í”Œë ˆì´ì–´ì—, íŒ¨í‚·ì„ ì†¡ì‹ í•œë‹¤.
 	 * 
-	 * @param packet ¼Û½ÅÇÏ´Â ÆĞÅ¶À» ³ªÅ¸³»´Â ServerBasePacket ¿ÀºêÁ§Æ®.
+	 * @param packet ì†¡ì‹ í•˜ëŠ” íŒ¨í‚·ì„ ë‚˜íƒ€ë‚´ëŠ” ServerBasePacket ì˜¤ë¸Œì íŠ¸.
 	 */
 	public void broadcastPacket(ServerBasePacket packet) {
 		for (L1PcInstance pc : L1World.getInstance().getRecognizePlayer(this)) {
@@ -270,16 +270,16 @@ public class L1Character extends L1Object {
 		}
 	}
 	/**
-	 * Ä³¸¯ÅÍÀÇ ¸ñ·ÏÀ» µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ ëª©ë¡ì„ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return Ä³¸¯ÅÍÀÇ ¸ñ·ÏÀ» ³ªÅ¸³»´Â, L1Inventory ¿ÀºêÁ§Æ®.
+	 * @return ìºë¦­í„°ì˜ ëª©ë¡ì„ ë‚˜íƒ€ë‚´ëŠ”, L1Inventory ì˜¤ë¸Œì íŠ¸.
 	 */
 	public L1Inventory getInventory() {
 		return null;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ¿¡, skill delay Ãß°¡
+	 * ìºë¦­í„°ì—, skill delay ì¶”ê°€
 	 * 
 	 * @param flag
 	 */
@@ -288,72 +288,72 @@ public class L1Character extends L1Object {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ µ¶ »óÅÂ¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ ë… ìƒíƒœë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return ½ºÅ³ Áö¿¬ÁßÀÎ°¡.
+	 * @return ìŠ¤í‚¬ ì§€ì—°ì¤‘ì¸ê°€.
 	 */
 	public boolean isSkillDelay() {
 		return _isSkillDelay;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ¿¡, Item delay Ãß°¡
+	 * ìºë¦­í„°ì—, Item delay ì¶”ê°€
 	 * 
 	 * @param delayId
-	 *            ¾ÆÀÌÅÛ Áö¿¬ ID.  Åë»óÀÇ ¾ÆÀÌÅÛÀÌ¸é 0, ÀÎºñÁöºñ¸®Æ¼Å©·ÎÅ©, ¹Ù¸£·Î±×ºê¶ùµğÅ©·ÎÅ©ÀÌ¸é 1.
+	 *            ì•„ì´í…œ ì§€ì—° ID.  í†µìƒì˜ ì•„ì´í…œì´ë©´ 0, ì¸ë¹„ì§€ë¹„ë¦¬í‹°í¬ë¡œí¬, ë°”ë¥´ë¡œê·¸ë¸Œëë””í¬ë¡œí¬ì´ë©´ 1.
 	 * @param timer
-	 *            Áö¿¬ ½Ã°£À» ³ªÅ¸³»´Â, L1ItemDelay.ItemDelayTimer ¿ÀºêÁ§Æ®.
+	 *            ì§€ì—° ì‹œê°„ì„ ë‚˜íƒ€ë‚´ëŠ”, L1ItemDelay.ItemDelayTimer ì˜¤ë¸Œì íŠ¸.
 	 */
 	public void addItemDelay(int delayId, L1ItemDelay.ItemDelayTimer timer) {
 		_itemdelay.put(delayId, timer);
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ·ÎºÎÅÍ, Item delay »èÁ¦
+	 * ìºë¦­í„°ë¡œë¶€í„°, Item delay ì‚­ì œ
 	 * 
 	 * @param delayId
-	 *            ¾ÆÀÌÅÛ Áö¿¬ ID.  Åë»óÀÇ ¾ÆÀÌÅÛÀÌ¸é 0, ÀÎºñÁöºñ¸®Æ¼Å©·ÎÅ©, ¹Ù¸£·Î±×ºê¶ùµğÅ©·ÎÅ©ÀÌ¸é 1.
+	 *            ì•„ì´í…œ ì§€ì—° ID.  í†µìƒì˜ ì•„ì´í…œì´ë©´ 0, ì¸ë¹„ì§€ë¹„ë¦¬í‹°í¬ë¡œí¬, ë°”ë¥´ë¡œê·¸ë¸Œëë””í¬ë¡œí¬ì´ë©´ 1.
 	 */
 	public void removeItemDelay(int delayId) {
 		_itemdelay.remove(delayId);
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ¿¡, Item delay ÀÌ ÀÖÀ»±î
+	 * ìºë¦­í„°ì—, Item delay ì´ ìˆì„ê¹Œ
 	 * 
 	 * @param delayId
-	 *            Á¶»çÇÏ´Â ¾ÆÀÌÅÛ Áö¿¬ ID.  Åë»óÀÇ ¾ÆÀÌÅÛÀÌ¸é 0, ÀÎºñÁöºñ¸®Æ¼Å©·ÎÅ©, ¹Ù¸£·Î±×ºê¶ùµğ
-	 *            Å¬·ÎÅ©ÀÌ¸é 1.
-	 * @return ¾ÆÀÌÅÛ Áö¿¬ÀÌ ÀÖÀ¸¸é true, ¾øÀ¸¸é false.
+	 *            ì¡°ì‚¬í•˜ëŠ” ì•„ì´í…œ ì§€ì—° ID.  í†µìƒì˜ ì•„ì´í…œì´ë©´ 0, ì¸ë¹„ì§€ë¹„ë¦¬í‹°í¬ë¡œí¬, ë°”ë¥´ë¡œê·¸ë¸Œëë””
+	 *            í´ë¡œí¬ì´ë©´ 1.
+	 * @return ì•„ì´í…œ ì§€ì—°ì´ ìˆìœ¼ë©´ true, ì—†ìœ¼ë©´ false.
 	 */
 	public boolean hasItemDelay(int delayId) {
 		return _itemdelay.containsKey(delayId);
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ item delay ½Ã°£À» ³ªÅ¸³»´Â, L1ItemDelay.ItemDelayTimer¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ item delay ì‹œê°„ì„ ë‚˜íƒ€ë‚´ëŠ”, L1ItemDelay.ItemDelayTimerë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param delayId
-	 *            Á¶»çÇÏ´Â ¾ÆÀÌÅÛ Áö¿¬ ID.  Åë»óÀÇ ¾ÆÀÌÅÛÀÌ¸é 0, ÀÎºñÁöºñ¸®Æ¼Å©·ÎÅ©, ¹Ù¸£·Î±×ºê¶ùµğ
-	 *            Å¬·ÎÅ©ÀÌ¸é 1.
-	 * @return ¾ÆÀÌÅÛ Áö¿¬ ½Ã°£À» ³ªÅ¸³»´Â, L1ItemDelay.ItemDelayTimer.
+	 *            ì¡°ì‚¬í•˜ëŠ” ì•„ì´í…œ ì§€ì—° ID.  í†µìƒì˜ ì•„ì´í…œì´ë©´ 0, ì¸ë¹„ì§€ë¹„ë¦¬í‹°í¬ë¡œí¬, ë°”ë¥´ë¡œê·¸ë¸Œëë””
+	 *            í´ë¡œí¬ì´ë©´ 1.
+	 * @return ì•„ì´í…œ ì§€ì—° ì‹œê°„ì„ ë‚˜íƒ€ë‚´ëŠ”, L1ItemDelay.ItemDelayTimer.
 	 */
 	public L1ItemDelay.ItemDelayTimer getItemDelayTimer(int delayId) {
 		return _itemdelay.get(delayId);
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ¿¡, µ¶À» Ãß°¡ÇÑ´Ù.
+	 * ìºë¦­í„°ì—, ë…ì„ ì¶”ê°€í•œë‹¤.
 	 * 
 	 * @param poison
-	 *            µ¶À» ³ªÅ¸³»´Â, L1Poison ¿ÀºêÁ§Æ®.
+	 *            ë…ì„ ë‚˜íƒ€ë‚´ëŠ”, L1Poison ì˜¤ë¸Œì íŠ¸.
 	 */
 	public void setPoison(L1Poison poison) {
 		_poison = poison;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ µ¶À» Ä¡·áÇÑ´Ù.
+	 * ìºë¦­í„°ì˜ ë…ì„ ì¹˜ë£Œí•œë‹¤.
 	 */
 	public void curePoison() {
 		if (_poison == null) {
@@ -363,16 +363,16 @@ public class L1Character extends L1Object {
 	}
 
 	/**
-	 * Ä³¸¯ÅÍÀÇ µ¶»óÅÂ¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ì˜ ë…ìƒíƒœë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return Ä³¸¯ÅÍÀÇ µ¶À» ³ªÅ¸³»´Â, L1Poison ¿ÀºêÁ§Æ®.
+	 * @return ìºë¦­í„°ì˜ ë…ì„ ë‚˜íƒ€ë‚´ëŠ”, L1Poison ì˜¤ë¸Œì íŠ¸.
 	 */
 	public L1Poison getPoison() {
 		return _poison;
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ¿¡ µ¶ÀÇ È¿°ú¸¦ ºÎ°¡ÇÑ´Ù
+	 * ìºë¦­í„°ì— ë…ì˜ íš¨ê³¼ë¥¼ ë¶€ê°€í•œë‹¤
 	 * 
 	 * @param effectId
 	 * @see S_Poison#S_Poison(int, int)
@@ -485,12 +485,12 @@ public class L1Character extends L1Object {
 			return 0;
 		}
 	}
-	/** Ä³¸¯ÅÍÀÇ ¿ìÈ£µµÀ» µ¹·ÁÁØ´Ù.	 */
+	/** ìºë¦­í„°ì˜ ìš°í˜¸ë„ì„ ëŒë ¤ì¤€ë‹¤.	 */
 	public int getKarma() {	return _karma; }
-	/** Ä³¸¯ÅÍÀÇ ¿ìÈ£µµÀ» ¼³Á¤ÇÑ´Ù.	 */
+	/** ìºë¦­í„°ì˜ ìš°í˜¸ë„ì„ ì„¤ì •í•œë‹¤.	 */
 	public void setKarma(int karma) { _karma = karma; }
 
-	// ** µµ¿ì³Ê µô·¹ÀÌ Å¸ÀÌ¸Ó ¼öÁ¤ **// by µµ¿ì³Ê
+	// ** ë„ìš°ë„ˆ ë”œë ˆì´ íƒ€ì´ë¨¸ ìˆ˜ì • **// by ë„ìš°ë„ˆ
 		private long _skilldelay2;
 
 		public long getSkilldelay2() {
@@ -501,7 +501,7 @@ public class L1Character extends L1Object {
 			_skilldelay2 = skilldelay2;
 		}
 
-		// ** µµ¿ì³Ê µô·¹ÀÌ Å¸ÀÌ¸Ó ¼öÁ¤ **// by µµ¿ì³Ê
+		// ** ë„ìš°ë„ˆ ë”œë ˆì´ íƒ€ì´ë¨¸ ìˆ˜ì • **// by ë„ìš°ë„ˆ
 	
 	public GfxId getGfxId()				{ return gfx;			}
 	public NearObjects getNearObjects()	{ return nearObjects;	}
@@ -532,7 +532,7 @@ public class L1Character extends L1Object {
 				getSkillEffectTimerSet().hasSkillEffect(L1SkillId.BLIND_HIDING));
 	}
 	
-	//Ãß°¡  /** ¹ö±×°ü·Ã¼öÁ¤ (¾ÆÀÌÅÛ ¸¶¹ı ³ëµô¼öÁ¤) By µµ¿ì³Ê **/
+	//ì¶”ê°€  /** ë²„ê·¸ê´€ë ¨ìˆ˜ì • (ì•„ì´í…œ ë§ˆë²• ë…¸ë”œìˆ˜ì •) By ë„ìš°ë„ˆ **/
     private long _itemdelayCheck;  
     
     public long getItemdelayCheck(){
@@ -566,35 +566,35 @@ public class L1Character extends L1Object {
 		_knownPlayer.clear();
 	}
 	/**
-	 * Ä³¸¯ÅÍ¿¡, »õ·Ó°Ô ÀÎ½ÄÇÏ´Â ¿ÀºêÁ§Æ®¸¦ Ãß°¡ÇÑ´Ù.
+	 * ìºë¦­í„°ì—, ìƒˆë¡­ê²Œ ì¸ì‹í•˜ëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ì¶”ê°€í•œë‹¤.
 	 * 
 	 * @param obj
-	 *            »õ·Ó°Ô ÀÎ½ÄÇÏ´Â ¿ÀºêÁ§Æ®.
+	 *            ìƒˆë¡­ê²Œ ì¸ì‹í•˜ëŠ” ì˜¤ë¸Œì íŠ¸.
 	 */
 	
     private final List<L1Object> _knownObjects = new CopyOnWriteArrayList<L1Object>();
     private final List<L1PcInstance> _knownPlayer = new CopyOnWriteArrayList<L1PcInstance>();
 
 	/**
-	 * ÁöÁ¤µÈ ¿ÀºêÁ§Æ®¸¦, Ä³¸¯ÅÍ°¡ ÀÎ½ÄÇÏ°í ÀÖÀ»±î¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì˜¤ë¸Œì íŠ¸ë¥¼, ìºë¦­í„°ê°€ ì¸ì‹í•˜ê³  ìˆì„ê¹Œë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @param obj Á¶»çÇÏ´Â ¿ÀºêÁ§Æ®.
-	 * @return ¿ÀºêÁ§Æ®¸¦ Ä³¸¯ÅÍ°¡ ÀÎ½ÄÇÏ°í ÀÖÀ¸¸é true, ÇÏ°í ÀÖÁö ¾ÊÀ¸¸é false. ÀÚ±â ÀÚ½Å¿¡ ´ëÇØ¼­´Â false¸¦ µ¹·ÁÁØ´Ù.
+	 * @param obj ì¡°ì‚¬í•˜ëŠ” ì˜¤ë¸Œì íŠ¸.
+	 * @return ì˜¤ë¸Œì íŠ¸ë¥¼ ìºë¦­í„°ê°€ ì¸ì‹í•˜ê³  ìˆìœ¼ë©´ true, í•˜ê³  ìˆì§€ ì•Šìœ¼ë©´ false. ìê¸° ìì‹ ì— ëŒ€í•´ì„œëŠ” falseë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public boolean knownsObject(L1Object obj) {
 		return _knownObjects.contains(obj);
 	}
 
 	/**
-	 * Ä³¸¯ÅÍ°¡ ÀÎ½ÄÇÏ°í ÀÖ´Â ¸ğµç ¿ÀºêÁ§Æ®¸¦ µ¹·ÁÁØ´Ù.
+	 * ìºë¦­í„°ê°€ ì¸ì‹í•˜ê³  ìˆëŠ” ëª¨ë“  ì˜¤ë¸Œì íŠ¸ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
-	 * @return Ä³¸¯ÅÍ°¡ ÀÎ½ÄÇÏ°í ÀÖ´Â ¿ÀºêÁ§Æ®¸¦ ³ªÅ¸³»´Â L1Object°¡ °İ³³µÈ ArrayList.
+	 * @return ìºë¦­í„°ê°€ ì¸ì‹í•˜ê³  ìˆëŠ” ì˜¤ë¸Œì íŠ¸ë¥¼ ë‚˜íƒ€ë‚´ëŠ” L1Objectê°€ ê²©ë‚©ëœ ArrayList.
 	 */
 	public List<L1Object> getKnownObjects() {
 		return _knownObjects;
 	}
 	
-	//Ãß°¡  /** ¹ö±×°ü·Ã¼öÁ¤ (¾ÆÀÌÅÛ ¸¶¹ı ³ëµô¼öÁ¤) By µµ¿ì³Ê **/
+	//ì¶”ê°€  /** ë²„ê·¸ê´€ë ¨ìˆ˜ì • (ì•„ì´í…œ ë§ˆë²• ë…¸ë”œìˆ˜ì •) By ë„ìš°ë„ˆ **/
     public void addKnownObject(L1Object obj) {
 		if (!_knownObjects.contains(obj)) {
 			_knownObjects.add(obj);
@@ -611,7 +611,7 @@ public class L1Character extends L1Object {
       public void setTempCharGfx(int i) {
         this._tempCharGfx = i;
       }
-      /**mjSpr°ü·Ã*/
+      /**mjSprê´€ë ¨*/
   	protected SpriteInformation _currentSpriteInfo;
 
   	public int getCurrentSpriteId() {
@@ -639,7 +639,7 @@ public class L1Character extends L1Object {
   		return (long) _currentSpriteInfo.getInterval(this, actionCode);
   	}
   	
-  	private int _moveSpeed; // ¡Ü ½ºÇÇµå 0. Åë»ó 1. ÇìÀÌ ÆÄ¾÷ 2. ½½·Î¿ì
+  	private int _moveSpeed; // â— ìŠ¤í”¼ë“œ 0. í†µìƒ 1. í—¤ì´ íŒŒì—… 2. ìŠ¬ë¡œìš°
   	
   	public int getMoveSpeed() {
   		return _moveSpeed;
@@ -653,7 +653,7 @@ public class L1Character extends L1Object {
 				|| getSkillEffectTimerSet().hasSkillEffect(L1SkillId.GREATER_HASTE) || getMoveSpeed() == 1);
 	}
 	
-	private int _braveSpeed; // ¡Ü Ä¡¿ìÄ§ ÀÌºê »óÅÂ 0. Åë»ó 1. Ä¡¿ìÄ§ ÀÌºê
+	private int _braveSpeed; // â— ì¹˜ìš°ì¹¨ ì´ë¸Œ ìƒíƒœ 0. í†µìƒ 1. ì¹˜ìš°ì¹¨ ì´ë¸Œ
 	
 	public int getBraveSpeed() {
 		return _braveSpeed;
@@ -671,7 +671,7 @@ public class L1Character extends L1Object {
 	public void setMagicDoll(L1DollInstance doll) {
 		_doll = doll;
 	}
-///ÀÚµ¿¼ıµ¹
+///ìë™ìˆ«ëŒ
     private boolean autoWeapon = false;
 
     public boolean isAutoWeapon() {
@@ -681,7 +681,7 @@ public class L1Character extends L1Object {
     public void setAutoWeapon(boolean autoWeapon) {
         this.autoWeapon = autoWeapon;
     }
-  ///ÀÚµ¿¼ıµ¹
+  ///ìë™ìˆ«ëŒ
     private int healItemNum;
 
     public int getHealItemNum() {
@@ -713,24 +713,24 @@ public class L1Character extends L1Object {
     }
 
     /**
-	 * ÁöÁ¤µÈ ÁÂÇ¥¿¡ ´ëÇÒ ¹æÇâÀ» µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì¢Œí‘œì— ëŒ€í•  ë°©í–¥ì„ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param tx
-	 *            ÁÂÇ¥ÀÇ XÄ¡
+	 *            ì¢Œí‘œì˜ Xì¹˜
 	 * @param ty
-	 *            ÁÂÇ¥ÀÇ YÄ¡
-	 * @return ÁöÁ¤µÈ ÁÂÇ¥¿¡ ´ëÇÒ ¹æÇâ
+	 *            ì¢Œí‘œì˜ Yì¹˜
+	 * @return ì§€ì •ëœ ì¢Œí‘œì— ëŒ€í•  ë°©í–¥
 	 */
 	public int targetDirection(int tx, int ty) {
-		float dis_x = Math.abs(getX() - tx); // X¹æÇâÀÇ Å¸°Ù±îÁöÀÇ °Å¸®
-		float dis_y = Math.abs(getY() - ty); // Y¹æÇâÀÇ Å¸°Ù±îÁöÀÇ °Å¸®
-		float dis = Math.max(dis_x, dis_y); // Å¸°Ù±îÁöÀÇ °Å¸®
+		float dis_x = Math.abs(getX() - tx); // Xë°©í–¥ì˜ íƒ€ê²Ÿê¹Œì§€ì˜ ê±°ë¦¬
+		float dis_y = Math.abs(getY() - ty); // Yë°©í–¥ì˜ íƒ€ê²Ÿê¹Œì§€ì˜ ê±°ë¦¬
+		float dis = Math.max(dis_x, dis_y); // íƒ€ê²Ÿê¹Œì§€ì˜ ê±°ë¦¬
 
 		if (dis == 0)
 			return getHeading();
 
-		int avg_x = (int) Math.floor((dis_x / dis) + 0.59f); // »óÇÏ ÁÂ¿ì°¡ Á¶±İ ¿ì¼±ÀÎ µÕ±Ù
-		int avg_y = (int) Math.floor((dis_y / dis) + 0.59f); // »óÇÏ ÁÂ¿ì°¡ Á¶±İ ¿ì¼±ÀÎ µÕ±Ù
+		int avg_x = (int) Math.floor((dis_x / dis) + 0.59f); // ìƒí•˜ ì¢Œìš°ê°€ ì¡°ê¸ˆ ìš°ì„ ì¸ ë‘¥ê·¼
+		int avg_y = (int) Math.floor((dis_y / dis) + 0.59f); // ìƒí•˜ ì¢Œìš°ê°€ ì¡°ê¸ˆ ìš°ì„ ì¸ ë‘¥ê·¼
 
 		int dir_x = 0;
 		int dir_y = 0;
@@ -751,21 +751,21 @@ public class L1Character extends L1Object {
 			dir_y = 0;
 
 		if (dir_x == 1 && dir_y == -1)
-			return 1; // »ó
+			return 1; // ìƒ
 		if (dir_x == 1 && dir_y == 0)
-			return 2; // ¿ì»ó
+			return 2; // ìš°ìƒ
 		if (dir_x == 1 && dir_y == 1)
-			return 3; // ¿À¸¥ÂÊ
+			return 3; // ì˜¤ë¥¸ìª½
 		if (dir_x == 0 && dir_y == 1)
-			return 4; // ¿ìÇÏ
+			return 4; // ìš°í•˜
 		if (dir_x == -1 && dir_y == 1)
-			return 5; // ÇÏ
+			return 5; // í•˜
 		if (dir_x == -1 && dir_y == 0)
-			return 6; // ÁÂÇÏ
+			return 6; // ì¢Œí•˜
 		if (dir_x == -1 && dir_y == -1)
-			return 7; // ¿ŞÂÊ
+			return 7; // ì™¼ìª½
 		if (dir_x == 0 && dir_y == -1)
-			return 0; // ÁÂ»ó
+			return 0; // ì¢Œìƒ
 
 		return getHeading();
 	}
@@ -779,13 +779,13 @@ public class L1Character extends L1Object {
 	}
 	
 	/**
-	 * ÁöÁ¤µÈ ÁÂÇ¥±îÁöÀÇ Á÷¼±»ó¿¡, Àå¾Ö¹°ÀÌ Á¸Àç*ÇÏÁö ¾Ê´Â°¡*¸¦ µ¹·ÁÁØ´Ù.
+	 * ì§€ì •ëœ ì¢Œí‘œê¹Œì§€ì˜ ì§ì„ ìƒì—, ì¥ì• ë¬¼ì´ ì¡´ì¬*í•˜ì§€ ì•ŠëŠ”ê°€*ë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 * 
 	 * @param tx
-	 *            ÁÂÇ¥ÀÇ XÄ¡
+	 *            ì¢Œí‘œì˜ Xì¹˜
 	 * @param ty
-	 *            ÁÂÇ¥ÀÇ YÄ¡
-	 * @return Àå¾Ö¹°ÀÌ ¾øÀ¸¸é true, ¾î´À false¸¦ µ¹·ÁÁØ´Ù.
+	 *            ì¢Œí‘œì˜ Yì¹˜
+	 * @return ì¥ì• ë¬¼ì´ ì—†ìœ¼ë©´ true, ì–´ëŠ falseë¥¼ ëŒë ¤ì¤€ë‹¤.
 	 */
 	public boolean glanceCheck(int tx, int ty) {
 		L1Map map = getMap();

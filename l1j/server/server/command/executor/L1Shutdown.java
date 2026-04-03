@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -39,11 +39,11 @@ public class L1Shutdown implements L1CommandExecutor {
 	@Override
 	public void execute(L1PcInstance pc, String cmdName, String arg) {
 		try {
-			if (arg.equalsIgnoreCase("Áö±İ")) {
+			if (arg.equalsIgnoreCase("ì§€ê¸ˆ")) {
 				GameServer.getInstance(). shutdown();
 				return;
 			}
-			if (arg.equalsIgnoreCase("Ãë¼Ò")) {
+			if (arg.equalsIgnoreCase("ì·¨ì†Œ")) {
 				GameServer.getInstance(). abortShutdown();
 				return;
 			}
@@ -51,7 +51,7 @@ public class L1Shutdown implements L1CommandExecutor {
 			GameServer.getInstance(). shutdownWithCountdown(sec);
 		} catch (Exception e) {
 			pc.sendPackets(new S_SystemMessage(
-					". shutdown [Á¾·á´ë±âÃÊ,Áö±İ,Ãë¼Ò] ¶ó°í ÀÔ·ÂÇØ ÁÖ¼¼¿ä. "));
+					". shutdown [ì¢…ë£ŒëŒ€ê¸°ì´ˆ,ì§€ê¸ˆ,ì·¨ì†Œ] ë¼ê³  ì…ë ¥í•´ ì£¼ì„¸ìš”. "));
 		}
 	}
 }

@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.biscuitGame;
+ï»¿package l1j.server.GameSystem.biscuitGame;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,7 +41,7 @@ public class BiscuitLastabardController implements Runnable {
 		return _instance;
 	}
 	
-	// ºñ½ºÅ¶, ÅÚ·¹Æ÷Æ®
+	// ë¹„ìŠ¤í‚·, í…”ë ˆí¬íŠ¸
 	private boolean door5300 = false;
 	private boolean door5311 = false;
 	private boolean door5312 = false;
@@ -115,7 +115,7 @@ public class BiscuitLastabardController implements Runnable {
 		this.door5333 = door5333;
 	}
 
-	/* ½ºÅ×ÀÌÁö */
+	/* ìŠ¤í…Œì´ì§€ */
 	private boolean stage5300 = false;
 	private int stage5311 = 0;
 	private int stage5312 = 0;
@@ -134,7 +134,7 @@ public class BiscuitLastabardController implements Runnable {
 	private boolean second533Room = false;
 	private boolean third533Room = false;
 	
-	/* ´ÙÀ½ ½Ã°£ */
+	/* ë‹¤ìŒ ì‹œê°„ */
 	private int nextClock5300 = -1;
 	private int nextClock5311 = -1;
 	private int nextClock5312 = -1;
@@ -153,7 +153,7 @@ public class BiscuitLastabardController implements Runnable {
 				pcChk(531);
 				pcChk(533);
 				
-				// 530¸Ê ÄÉÀÌ³ª º¸½º
+				// 530ë§µ ì¼€ì´ë‚˜ ë³´ìŠ¤
 				if (!stage5300) {
 					spawnMonster(530, 1);
 					nextClock5300 = -1;
@@ -166,7 +166,7 @@ public class BiscuitLastabardController implements Runnable {
 					}
 				}
 				
-				// 531¸Ê 1¹ø¹æ
+				// 531ë§µ 1ë²ˆë°©
 				if(stage5311 == 1){
 					ListClear(5311);
 					stage5311 = 2;
@@ -178,7 +178,7 @@ public class BiscuitLastabardController implements Runnable {
 					}
 				}
 				
-				// 531¸Ê 2¹ø¹æ
+				// 531ë§µ 2ë²ˆë°©
 				if(stage5312 == 1){
 					ListClear(5312);
 					stage5312 = 2;
@@ -191,7 +191,7 @@ public class BiscuitLastabardController implements Runnable {
 					}
 				}
 				
-				// 531¸Ê 3¹ø¹æ
+				// 531ë§µ 3ë²ˆë°©
 				if(stage5313 == 1){
 					ListClear(5313);
 					stage5313 = 2;
@@ -205,7 +205,7 @@ public class BiscuitLastabardController implements Runnable {
 				}
 				
 				
-				// 532¸Ê ÀÌµ¥¾Æ º¸½º
+				// 532ë§µ ì´ë°ì•„ ë³´ìŠ¤
 				if (!stage5320) {
 					spawnMonster(532, 1);
 					nextClock5320 = -1;
@@ -218,7 +218,7 @@ public class BiscuitLastabardController implements Runnable {
 					}
 				}
 				
-				// 533¸Ê 1¹ø¹æ
+				// 533ë§µ 1ë²ˆë°©
 				if(stage5331 == 1){
 					ListClear(5331);
 					stage5331 = 2;
@@ -230,7 +230,7 @@ public class BiscuitLastabardController implements Runnable {
 					}
 				}
 				
-				// 533¸Ê 2¹ø¹æ
+				// 533ë§µ 2ë²ˆë°©
 				if(stage5332 == 1){
 					ListClear(5332);
 					stage5332 = 2;
@@ -243,7 +243,7 @@ public class BiscuitLastabardController implements Runnable {
 					}
 				}
 				
-				// 531¸Ê 3¹ø¹æ
+				// 531ë§µ 3ë²ˆë°©
 				if(stage5333 == 1){
 					ListClear(5333);
 					stage5333 = 2;
@@ -258,7 +258,7 @@ public class BiscuitLastabardController implements Runnable {
 				
 			} catch (Exception e) {
 				e.printStackTrace();
-				_log.log(Level.SEVERE, "BiscuitLastabardController¿¡¼­ ¿¡·¯¹ß»ı", e);
+				_log.log(Level.SEVERE, "BiscuitLastabardControllerì—ì„œ ì—ëŸ¬ë°œìƒ", e);
 			} finally {
 				try {
 					Thread.sleep(1000);
@@ -272,7 +272,7 @@ public class BiscuitLastabardController implements Runnable {
 		for ( L1Object obj : L1World.getInstance().getVisibleObjects(mapId).values() ) {
 			if (obj instanceof L1PcInstance) {
 				L1PcInstance pc = (L1PcInstance) obj;
-				// 531¸Ê
+				// 531ë§µ
 				if (pc.getMapId() == 531) {
 					if (pc.getX() >= 32730 && pc.getX() <= 32742 && pc.getY() >= 32734 && pc.getY() <= 32757) {
 						int i = 0;
@@ -327,7 +327,7 @@ public class BiscuitLastabardController implements Runnable {
 					}
 				}
 
-				// 533¸Ê
+				// 533ë§µ
 				if (pc.getMapId() == 533) {
 					if (pc.getX() >= 32845 && pc.getX() <= 32873 && pc.getY() >= 32926 && pc.getY() <= 32938) {
 						int i = 0;
@@ -445,160 +445,160 @@ public class BiscuitLastabardController implements Runnable {
 		}
 	}
 
-	/** ÁÂÇ¥ ¸Ê ¹æÇâ ¸ğ¸£°Ù°í °¹¼ö ¹æÇöÀç¹æÁö¿ª */
+	/** ì¢Œí‘œ ë§µ ë°©í–¥ ëª¨ë¥´ê²Ÿê³  ê°¯ìˆ˜ ë°©í˜„ì¬ë°©ì§€ì—­ */
 	private void spawnMonster(int mapId, int stage) {
 		if (mapId == 530) {
-		//	L1SpawnUtil.spawnLastabard(32862, 32840, (short) 530, 0, 45955, 0, 0, 530); // ´ë¹ı°ü ÄÉÀÌ³ª 0521 ¸±Â÷´Ü
+		//	L1SpawnUtil.spawnLastabard(32862, 32840, (short) 530, 0, 45955, 0, 0, 530); // ëŒ€ë²•ê´€ ì¼€ì´ë‚˜ 0521 ë¦´ì°¨ë‹¨
 		} else if (mapId == 532) {
-			L1SpawnUtil.spawnLastabard(32789, 32812, (short) 532, 0, 45959, 0, 0, 532); // ´ë¹ı°ü ÀÌµ¥¾Æ
+			L1SpawnUtil.spawnLastabard(32789, 32812, (short) 532, 0, 45959, 0, 0, 532); // ëŒ€ë²•ê´€ ì´ë°ì•„
 		} else if (mapId == 531) {
 			if (stage == 1) {
-				L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 45956, 0, 0, 5311); // ´ë¹ı°ü ºñ¾ÆÅ¸½º
+				L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 45956, 0, 0, 5311); // ëŒ€ë²•ê´€ ë¹„ì•„íƒ€ìŠ¤
 				for (int i = 0; i < 4; i++) {
-					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 46002, 16, 6, 5311); // Àå·Î ¼öÇà¿ø 
-				}
-				for (int i = 0; i < 4; i++) {
-					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 46012, 16, 6, 5311); // ºê¶ùµğ³ªÀÌÆ® 
+					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 46002, 16, 6, 5311); // ì¥ë¡œ ìˆ˜í–‰ì› 
 				}
 				for (int i = 0; i < 4; i++) {
-					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 46005, 16, 6, 5311); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´ 
+					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 46012, 16, 6, 5311); // ë¸Œëë””ë‚˜ì´íŠ¸ 
+				}
+				for (int i = 0; i < 4; i++) {
+					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 46005, 16, 6, 5311); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘ 
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 45990, 16, 6, 5311); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´ 
+					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 45990, 16, 6, 5311); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘ 
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 46001, 16, 6, 5311); // ºê¶ùµå¾Æ»ç½Å 
+					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 46001, 16, 6, 5311); // ë¸Œëë“œì•„ì‚¬ì‹  
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 46006, 16, 6, 5311); // ÆÒÅÒ ³ªÀÌÆ® 
+					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 46006, 16, 6, 5311); // íŒ¬í…€ ë‚˜ì´íŠ¸ 
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 45993, 16, 6, 5311); // ´ÙÅ© À§Àúµå 
+					L1SpawnUtil.spawnLastabard(32757, 32744, (short) 531, 0, 45993, 16, 6, 5311); // ë‹¤í¬ ìœ„ì €ë“œ 
 				}
 			} else if (stage == 2) {
-				L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 45957, 0, 0, 5312); // ´ë¹ı°ü ¹Ù·Î¸Ş½º
+				L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 45957, 0, 0, 5312); // ëŒ€ë²•ê´€ ë°”ë¡œë©”ìŠ¤
 				for (int i = 0; i < 4; i++) {
-					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 46002, 20, 6, 5312); // Àå·Î ¼öÇà¿ø
-				}
-				for (int i = 0; i < 4; i++) {
-					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 46012, 20, 6, 5312); // ºê¶ùµğ³ªÀÌÆ®
+					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 46002, 20, 6, 5312); // ì¥ë¡œ ìˆ˜í–‰ì›
 				}
 				for (int i = 0; i < 4; i++) {
-					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 46005, 20, 6, 5312); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´
+					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 46012, 20, 6, 5312); // ë¸Œëë””ë‚˜ì´íŠ¸
+				}
+				for (int i = 0; i < 4; i++) {
+					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 46005, 20, 6, 5312); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 45990, 20, 6, 5312); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´
+					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 45990, 20, 6, 5312); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 46001, 20, 6, 5312); // ºê¶ùµå¾Æ»ç½Å
+					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 46001, 20, 6, 5312); // ë¸Œëë“œì•„ì‚¬ì‹ 
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 46006, 20, 6, 5312); // ÆÒÅÒ ³ªÀÌÆ®
+					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 46006, 20, 6, 5312); // íŒ¬í…€ ë‚˜ì´íŠ¸
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 45993, 20, 6, 5312); // ´ÙÅ© À§Àúµå
+					L1SpawnUtil.spawnLastabard(32791, 32786, (short) 531, 0, 45993, 20, 6, 5312); // ë‹¤í¬ ìœ„ì €ë“œ
 				}
 			} else if (stage == 3) {
-				L1SpawnUtil.spawnLastabard(32845, 32857, (short) 531, 0, 45958, 0, 0, 5313); // ´ë¹ı°ü ¿£µğ¾Æ½º
+				L1SpawnUtil.spawnLastabard(32845, 32857, (short) 531, 0, 45958, 0, 0, 5313); // ëŒ€ë²•ê´€ ì—”ë””ì•„ìŠ¤
 				for (int i = 0; i < 4; i++) {
-					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 46002, 14, 13, 5313); // Àå·Î ¼öÇà¿ø
-				}
-				for (int i = 0; i < 4; i++) {
-					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 46012, 14, 13, 5313); // ºê¶ùµğ³ªÀÌÆ®
+					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 46002, 14, 13, 5313); // ì¥ë¡œ ìˆ˜í–‰ì›
 				}
 				for (int i = 0; i < 4; i++) {
-					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 46005, 14, 13, 5313); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´
+					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 46012, 14, 13, 5313); // ë¸Œëë””ë‚˜ì´íŠ¸
+				}
+				for (int i = 0; i < 4; i++) {
+					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 46005, 14, 13, 5313); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 45990, 14, 13, 5313); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´
+					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 45990, 14, 13, 5313); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 46001, 14, 13, 5313); // ºê¶ùµå¾Æ»ç½Å
+					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 46001, 14, 13, 5313); // ë¸Œëë“œì•„ì‚¬ì‹ 
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 46006, 14, 13, 5313); // ÆÒÅÒ ³ªÀÌÆ®
+					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 46006, 14, 13, 5313); // íŒ¬í…€ ë‚˜ì´íŠ¸
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 45993, 14, 13, 5313); // ´ÙÅ© À§Àúµå
+					L1SpawnUtil.spawnLastabard(32829, 32857, (short) 531, 0, 45993, 14, 13, 5313); // ë‹¤í¬ ìœ„ì €ë“œ
 				}
 			}
 		} else if (mapId == 533) {
 			if (stage == 1) {
-				L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 45960, 0, 0, 5331); // ´ë¹ı°ü Æ¼¾Æ¸Ş½º
+				L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 45960, 0, 0, 5331); // ëŒ€ë²•ê´€ í‹°ì•„ë©”ìŠ¤
 				for (int i = 0; i < 5; i++) {
-					L1SpawnUtil.spawnLastabard(32851, 32897, (short) 533, 0, 46002, 18, 11, 5331); // Àå·Î ¼öÇà¿ø
-				}
-				for (int i = 0; i < 5; i++) {
-					L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 46012, 18, 11, 5331); // ºê¶ùµğ³ªÀÌÆ®
+					L1SpawnUtil.spawnLastabard(32851, 32897, (short) 533, 0, 46002, 18, 11, 5331); // ì¥ë¡œ ìˆ˜í–‰ì›
 				}
 				for (int i = 0; i < 5; i++) {
-					L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 46005, 18, 11, 5331); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´
+					L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 46012, 18, 11, 5331); // ë¸Œëë””ë‚˜ì´íŠ¸
+				}
+				for (int i = 0; i < 5; i++) {
+					L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 46005, 18, 11, 5331); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 45990, 18, 11, 5331); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´
+					L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 45990, 18, 11, 5331); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 45996, 18, 11, 5331); // ´ÙÅ© À§Àúµå
+					L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 45996, 18, 11, 5331); // ë‹¤í¬ ìœ„ì €ë“œ
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 46001, 18, 11, 5331); // ºê¶ùµå¾Æ»ç½Å
+					L1SpawnUtil.spawnLastabard(32859, 32897, (short) 533, 0, 46001, 18, 11, 5331); // ë¸Œëë“œì•„ì‚¬ì‹ 
 				}
 			} else if (stage == 2) {
-				L1SpawnUtil.spawnLastabard(32789, 32891, (short) 533, 0, 45961, 0, 0, 5332); // ´ë¹ı°ü ¶ó¹Ì¾Æ½º
+				L1SpawnUtil.spawnLastabard(32789, 32891, (short) 533, 0, 45961, 0, 0, 5332); // ëŒ€ë²•ê´€ ë¼ë¯¸ì•„ìŠ¤
 				for (int i = 0; i < 5; i++) {
-					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 46002, 12, 10, 5332); // Àå·Î ¼öÇà¿ø
+					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 46002, 12, 10, 5332); // ì¥ë¡œ ìˆ˜í–‰ì›
 				}
 				for (int i = 0; i < 5; i++) {
-					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 46012, 12, 10, 5332); // ºê¶ùµğ³ªÀÌÆ®
+					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 46012, 12, 10, 5332); // ë¸Œëë””ë‚˜ì´íŠ¸
 				}
 				for (int i = 0; i < 5; i++) {
-					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 46005, 12, 10, 5332); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´
+					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 46005, 12, 10, 5332); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘
 				}
 				for (int i = 0; i < 5; i++) {
-					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 46010, 12, 10, 5332); // ¾îµÒÀÇ º¹¼öÀÚ
+					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 46010, 12, 10, 5332); // ì–´ë‘ ì˜ ë³µìˆ˜ì
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 45990, 12, 10, 5332); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´
+					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 45990, 12, 10, 5332); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 45996, 12, 10, 5332); // ´ÙÅ© À§Àúµå
+					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 45996, 12, 10, 5332); // ë‹¤í¬ ìœ„ì €ë“œ
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 46001, 12, 10, 5332); // ºê¶ùµå¾Æ»ç½Å
+					L1SpawnUtil.spawnLastabard(32777, 32891, (short) 533, 0, 46001, 12, 10, 5332); // ë¸Œëë“œì•„ì‚¬ì‹ 
 				}
 			} else if (stage == 3) {
-				L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 45962, 0, 0, 5333); // ´ë¹ı°ü ¹Ù·Îµå
+				L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 45962, 0, 0, 5333); // ëŒ€ë²•ê´€ ë°”ë¡œë“œ
 				for (int i = 0; i < 5; i++) {
-					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 46002, 12, 12, 5333); // Àå·Î ¼öÇà¿ø
-				}
-				for (int i = 0; i < 5; i++) {
-					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 46012, 12, 12, 5333); // ºê¶ùµğ³ªÀÌÆ®
+					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 46002, 12, 12, 5333); // ì¥ë¡œ ìˆ˜í–‰ì›
 				}
 				for (int i = 0; i < 5; i++) {
-					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 46005, 12, 12, 5333); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´
+					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 46012, 12, 12, 5333); // ë¸Œëë””ë‚˜ì´íŠ¸
+				}
+				for (int i = 0; i < 5; i++) {
+					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 46005, 12, 12, 5333); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 45990, 12, 12, 5333); // ¶ó½ºÅ¸¹Ùµå ±ÙÀ§º´
+					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 45990, 12, 12, 5333); // ë¼ìŠ¤íƒ€ë°”ë“œ ê·¼ìœ„ë³‘
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 45996, 12, 12, 5333); // ´ÙÅ© À§Àúµå
+					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 45996, 12, 12, 5333); // ë‹¤í¬ ìœ„ì €ë“œ
 				}
 				for (int i = 0; i < 7; i++) {
-					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 46001, 12, 12, 5333); // ºê¶ùµå¾Æ»ç½Å
+					L1SpawnUtil.spawnLastabard(32753, 32811, (short) 533, 0, 46001, 12, 12, 5333); // ë¸Œëë“œì•„ì‚¬ì‹ 
 				}
 			}
 		}
 
 	}
 	
-	/** ¸÷ »õ·Ó°Ô ¼ÂÆÃÇÒ¶§¸¶´Ù ¸¶À»·Î ÀÌµ¿ */
+	/** ëª¹ ìƒˆë¡­ê²Œ ì…‹íŒ…í• ë•Œë§ˆë‹¤ ë§ˆì„ë¡œ ì´ë™ */
 	private void pcTel(L1PcInstance pc) {
 		switch(pc.getMapId()){
 		case 534:
-			L1Teleport.teleport(pc, 32733, 32872, (short) 468, 5, true); // Àå·ÎÈ¸ÀÇÀå
+			L1Teleport.teleport(pc, 32733, 32872, (short) 468, 5, true); // ì¥ë¡œíšŒì˜ì¥
 			break;
 		default:
-			// °¢ ÃşÀÇ ÈŞ½ÄÃşÀ¸·Î ±ÍÈ¯
+			// ê° ì¸µì˜ íœ´ì‹ì¸µìœ¼ë¡œ ê·€í™˜
 			int[] loc = Getback.GetBack_Location(pc, true);
 			L1Teleport.teleport(pc, loc[0], loc[1], (short) loc[2], 5, true);
 		}
@@ -606,7 +606,7 @@ public class BiscuitLastabardController implements Runnable {
 
 	private void check(int mapId) {
 		
-		// ÄÉÀÌ³ª ½Ã°£Áö³ª¸é 531¸ÊÀÇ 1¹ø¹æµµ µ¿ÀÏÇÏ°Ô Á¾·á
+		// ì¼€ì´ë‚˜ ì‹œê°„ì§€ë‚˜ë©´ 531ë§µì˜ 1ë²ˆë°©ë„ ë™ì¼í•˜ê²Œ ì¢…ë£Œ
 		if (mapId == 530) {
 			if (nextClock5300 > -1) {
 				nextClock5300++;
@@ -618,7 +618,7 @@ public class BiscuitLastabardController implements Runnable {
 			if (nextClock5300 > 1500) {
 				stage5300 = false;
 				stage5311 = 0;
-				reset(531, 1); // 531¸ÊÀÇ 1¹ø¹æ ¸÷ ´Ù »èÁ¦
+				reset(531, 1); // 531ë§µì˜ 1ë²ˆë°© ëª¹ ë‹¤ ì‚­ì œ
 				closeDoor(5311);
 				setDoor5311(false);
 				for (L1PcInstance pcList : _pcList5311) {
@@ -630,14 +630,14 @@ public class BiscuitLastabardController implements Runnable {
 			}
 		}
 		
-		// 531¸ÊÀÇ 2¹ø¹æ
+		// 531ë§µì˜ 2ë²ˆë°©
 		if (mapId == 5312) {
 			if (nextClock5312 > -1) {
 				nextClock5312++;
 			}
 			if (nextClock5312 > 2100) {
 				stage5312 = 0;
-				reset(531, 2); // 531¸ÊÀÇ 2¹ø¹æ ¸÷ ´Ù »èÁ¦
+				reset(531, 2); // 531ë§µì˜ 2ë²ˆë°© ëª¹ ë‹¤ ì‚­ì œ
 				for (L1PcInstance pcList : _pcList5312) {
 					pcTel(pcList);
 				}
@@ -650,14 +650,14 @@ public class BiscuitLastabardController implements Runnable {
 			}
 		}
 		
-		// 531¸ÊÀÇ 3¹ø¹æ
+		// 531ë§µì˜ 3ë²ˆë°©
 		if (mapId == 5313) {
 			if (nextClock5313 > -1) {
 				nextClock5313++;
 			}
 			if (nextClock5313 > 2700) {
 				stage5313 = 0;
-				reset(531, 3); // 531¸ÊÀÇ 2¹ø¹æ ¸÷ ´Ù »èÁ¦
+				reset(531, 3); // 531ë§µì˜ 2ë²ˆë°© ëª¹ ë‹¤ ì‚­ì œ
 				for (L1PcInstance pcList : _pcList5313) {
 					pcTel(pcList);
 				}
@@ -670,7 +670,7 @@ public class BiscuitLastabardController implements Runnable {
 			}
 		}
 		
-		// ÀÌµ¥¾Æ ½Ã°£Áö³ª¸é 533¸ÊÀÇ 1¹ø¹æµµ µ¿ÀÏÇÏ°Ô Á¾·á
+		// ì´ë°ì•„ ì‹œê°„ì§€ë‚˜ë©´ 533ë§µì˜ 1ë²ˆë°©ë„ ë™ì¼í•˜ê²Œ ì¢…ë£Œ
 		if (mapId == 532) {
 			if (nextClock5320 > -1) {
 				nextClock5320++;
@@ -682,7 +682,7 @@ public class BiscuitLastabardController implements Runnable {
 			if (nextClock5320 > 1500) {
 				stage5320 = false;
 				stage5331 = 0;
-				reset(533, 1); // 533¸ÊÀÇ 1¹ø¹æ ¸÷ ´Ù »èÁ¦
+				reset(533, 1); // 533ë§µì˜ 1ë²ˆë°© ëª¹ ë‹¤ ì‚­ì œ
 				closeDoor(5331);
 				setDoor5331(false);
 				for (L1PcInstance pcList : _pcList5331) {
@@ -694,14 +694,14 @@ public class BiscuitLastabardController implements Runnable {
 			}
 		}
 		
-		// 533¸ÊÀÇ 2¹ø¹æ
+		// 533ë§µì˜ 2ë²ˆë°©
 		if (mapId == 5332) {
 			if (nextClock5332 > -1) {
 				nextClock5332++;
 			}
 			if (nextClock5332 > 2100) {
 				stage5332 = 0;
-				reset(533, 2); // 533¸ÊÀÇ 2¹ø¹æ ¸÷ ´Ù »èÁ¦
+				reset(533, 2); // 533ë§µì˜ 2ë²ˆë°© ëª¹ ë‹¤ ì‚­ì œ
 				for (L1PcInstance pcList : _pcList5332) {
 					pcTel(pcList);
 				}
@@ -714,14 +714,14 @@ public class BiscuitLastabardController implements Runnable {
 			}
 		}
 		
-		// 533¸ÊÀÇ 3¹ø¹æ
+		// 533ë§µì˜ 3ë²ˆë°©
 		if (mapId == 5333) {
 			if (nextClock5333 > -1) {
 				nextClock5333++;
 			}
 			if (nextClock5333 > 2700) {
 				stage5333 = 0;
-				reset(533, 3); // 533¸ÊÀÇ 3¹ø¹æ ¸÷ ´Ù »èÁ¦
+				reset(533, 3); // 533ë§µì˜ 3ë²ˆë°© ëª¹ ë‹¤ ì‚­ì œ
 				for (L1PcInstance pcList : _pcList5333) {
 					pcTel(pcList);
 				}
@@ -757,27 +757,27 @@ public class BiscuitLastabardController implements Runnable {
 		}
 	}
 
-	/** ³²Àº¸÷ ¸àÆ®¾Ë¸®¹Ì */
+	/** ë‚¨ì€ëª¹ ë©˜íŠ¸ì•Œë¦¬ë¯¸ */
 	private void countMob(L1PcInstance pc, int mapId) {
 		if (mapId == 531) {
 			if(first531Room){
-				pc.sendPackets(new S_SystemMessage("\\fTÇöÀç1¹ø¹æÀÇ ³²Àº ¸ó½ºÅÍ´Â [ " + _list5311.size() + " ]¸¶¸® ÀÔ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("\\fTí˜„ì¬1ë²ˆë°©ì˜ ë‚¨ì€ ëª¬ìŠ¤í„°ëŠ” [ " + _list5311.size() + " ]ë§ˆë¦¬ ì…ë‹ˆë‹¤."));
 			}
 			if(second531Room){
-				pc.sendPackets(new S_SystemMessage("\\fTÇöÀç2¹ø¹æÀÇ ³²Àº ¸ó½ºÅÍ´Â [ " + _list5312.size() + " ]¸¶¸® ÀÔ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("\\fTí˜„ì¬2ë²ˆë°©ì˜ ë‚¨ì€ ëª¬ìŠ¤í„°ëŠ” [ " + _list5312.size() + " ]ë§ˆë¦¬ ì…ë‹ˆë‹¤."));
 			}
 			if(third531Room){
-				pc.sendPackets(new S_SystemMessage("\\fTÇöÀç3¹ø¹æÀÇ ³²Àº ¸ó½ºÅÍ´Â [ " + _list5313.size() + " ]¸¶¸® ÀÔ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("\\fTí˜„ì¬3ë²ˆë°©ì˜ ë‚¨ì€ ëª¬ìŠ¤í„°ëŠ” [ " + _list5313.size() + " ]ë§ˆë¦¬ ì…ë‹ˆë‹¤."));
 			}
 		} else if (mapId == 533) {
 			if(first533Room){
-				pc.sendPackets(new S_SystemMessage("\\fTÇöÀç1¹ø¹æÀÇ ³²Àº ¸ó½ºÅÍ´Â [ " + _list5331.size() + " ]¸¶¸® ÀÔ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("\\fTí˜„ì¬1ë²ˆë°©ì˜ ë‚¨ì€ ëª¬ìŠ¤í„°ëŠ” [ " + _list5331.size() + " ]ë§ˆë¦¬ ì…ë‹ˆë‹¤."));
 			}
 			if(second533Room){
-				pc.sendPackets(new S_SystemMessage("\\fTÇöÀç2¹ø¹æÀÇ ³²Àº ¸ó½ºÅÍ´Â [ " + _list5332.size() + " ]¸¶¸® ÀÔ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("\\fTí˜„ì¬2ë²ˆë°©ì˜ ë‚¨ì€ ëª¬ìŠ¤í„°ëŠ” [ " + _list5332.size() + " ]ë§ˆë¦¬ ì…ë‹ˆë‹¤."));
 			}
 			if(third533Room){
-				pc.sendPackets(new S_SystemMessage("\\fTÇöÀç3¹ø¹æÀÇ ³²Àº ¸ó½ºÅÍ´Â [ " + _list5333.size() + " ]¸¶¸® ÀÔ´Ï´Ù."));
+				pc.sendPackets(new S_SystemMessage("\\fTí˜„ì¬3ë²ˆë°©ì˜ ë‚¨ì€ ëª¬ìŠ¤í„°ëŠ” [ " + _list5333.size() + " ]ë§ˆë¦¬ ì…ë‹ˆë‹¤."));
 			}
 		}
 	}
@@ -987,7 +987,7 @@ public class BiscuitLastabardController implements Runnable {
 		
 	}
 
-	/** ¸ó½ºÅÍ ¸®½ºÆ® */
+	/** ëª¬ìŠ¤í„° ë¦¬ìŠ¤íŠ¸ */
 	private final ArrayList<L1NpcInstance> _list5311 = new ArrayList<L1NpcInstance>();
 	private final ArrayList<L1NpcInstance> _list5312 = new ArrayList<L1NpcInstance>();
 	private final ArrayList<L1NpcInstance> _list5313 = new ArrayList<L1NpcInstance>();
@@ -1307,7 +1307,7 @@ public class BiscuitLastabardController implements Runnable {
 				spawnDat.setCountMapId(rs.getInt("count_map"));
 
 				if (count > 1 && spawnDat.getLocX1() == 0) {
-					// ´Ù¼öÀÇ °íÁ¤ ½ºÆù¸÷Àº  °³Ã¼¼ö * 6 ÀÇ ¹üÀ§½ºÆù (¹üÀ§ 30 ÀÌÇÏ)
+					// ë‹¤ìˆ˜ì˜ ê³ ì • ìŠ¤í°ëª¹ì€  ê°œì²´ìˆ˜ * 6 ì˜ ë²”ìœ„ìŠ¤í° (ë²”ìœ„ 30 ì´í•˜)
 					int range = Math.min(count * 6, 30);
 					spawnDat.setLocX1(spawnDat.getLocX() - range);
 					spawnDat.setLocY1(spawnDat.getLocY() - range);
@@ -1332,7 +1332,7 @@ public class BiscuitLastabardController implements Runnable {
 			SQLUtil.close(pstm);
 			SQLUtil.close(con);
 		}
-		_log.fine("[Lastabard] ÃÑ " + spawnCount + "¸¶¸®");
+		_log.fine("[Lastabard] ì´ " + spawnCount + "ë§ˆë¦¬");
 	}
 	
 	private static int calcCount(L1Npc npc, int count, double rate) {

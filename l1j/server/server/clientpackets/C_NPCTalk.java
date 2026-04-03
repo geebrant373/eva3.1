@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -49,7 +49,7 @@ public class C_NPCTalk extends ClientBasePacket {
 		L1Object obj = L1World.getInstance().findObject(objid);
 		L1PcInstance pc = client.getActiveChar();
 		int npcid = ((L1NpcInstance) obj).getNpcId();
-		// Á¦ÀÛÅ×ÀÌºíÀÌ µî·ÏµÈ ¿£ÇÇ¾¾ÀÎ°æ¿ì
+		// ì œì‘í…Œì´ë¸”ì´ ë“±ë¡ëœ ì—”í”¼ì”¨ì¸ê²½ìš°
 		if (CraftListTable.getInstance().isCraftNpc(npcid)) {
 			pc.Craft_Npcid = 0;
 			pc.Craft_Orderid = -1;
@@ -82,7 +82,7 @@ public class C_NPCTalk extends ClientBasePacket {
 			}
 			obj.onTalkAction(pc);
 		} else {
-			_log.severe("¿ÀºêÁ§Æ®°¡ ¹ß°ßµÇÁö ¾Ê½À´Ï´Ù objid=" + objid);
+			_log.severe("ì˜¤ë¸Œì íŠ¸ê°€ ë°œê²¬ë˜ì§€ ì•ŠìŠµë‹ˆë‹¤ objid=" + objid);
 		}
 	}
 

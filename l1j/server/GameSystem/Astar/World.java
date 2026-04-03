@@ -1,4 +1,4 @@
-package l1j.server.GameSystem.Astar;
+ï»¿package l1j.server.GameSystem.Astar;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -20,23 +20,23 @@ public final class World {
 	static private Map<Integer, l1j.server.GameSystem.Astar.bean.Map> list;
 
 	static public void init() {
-		TimeLine.start("¿ùµå¸Ê ºÒ·¯¿À±â....¾ÈÇØ");
+		TimeLine.start("ì›”ë“œë§µ ë¶ˆëŸ¬ì˜¤ê¸°....ì•ˆí•´");
 		list = new HashMap<Integer, l1j.server.GameSystem.Astar.bean.Map>();
 
 		try {
 			File f = new File("Sabu/maps/Cache");
-			// Æú´õ°¡ Á¸ÀçÇÒ°æ¿ì
+			// í´ë”ê°€ ì¡´ì¬í• ê²½ìš°
 			if (f.isDirectory()) {
-				// Ä³½¬ÆÄÀÏ·ÎºÎÅÍ ¸Ê ·Îµù
+				// ìºì‰¬íŒŒì¼ë¡œë¶€í„° ë§µ ë¡œë”©
 				read(false);
-				// Æú´õ°¡ Á¸ÀçÇÏÁö ¾ÊÀ»°æ¿ì
+				// í´ë”ê°€ ì¡´ì¬í•˜ì§€ ì•Šì„ê²½ìš°
 			} else {
-				System.out.println("Ä³½¬ Æú´õ°¡ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
-				// Æú´õ»ı¼º
+				System.out.println("ìºì‰¬ í´ë”ê°€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+				// í´ë”ìƒì„±
 				f.mkdir();
-				// txtÆÄÀÏ·ÎºÎÅÍ ¸Ê ·Îµù
+				// txtíŒŒì¼ë¡œë¶€í„° ë§µ ë¡œë”©
 				read(true);
-				// Ä³½¬ÆÄÀÏ ÀÛ¼º
+				// ìºì‰¬íŒŒì¼ ì‘ì„±
 				writeCache();
 			}
 		} catch (Exception e) {
@@ -50,7 +50,7 @@ public final class World {
 	static private void writeCache() throws Exception {
 		try {
 
-			System.out.println("Ä³½¬ ÆÄÀÏÀ» »ı¼ºÇÏ°í ÀÖ½À´Ï´Ù.");
+			System.out.println("ìºì‰¬ íŒŒì¼ì„ ìƒì„±í•˜ê³  ìˆìŠµë‹ˆë‹¤.");
 			BufferedOutputStream bw = null;
 			for (l1j.server.GameSystem.Astar.bean.Map m : list.values()) {
 				bw = new BufferedOutputStream(new FileOutputStream(
@@ -58,18 +58,18 @@ public final class World {
 				bw.write(m.data);
 				bw.close();
 			}
-			System.out.println(" (¿Ï·á)");
+			System.out.println(" (ì™„ë£Œ)");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
 	static private void read(boolean type) throws Exception {
-		// text·ÎºÎÅÍ ÀĞ´Â°Å ¾Ë¸²¿ë
+		// textë¡œë¶€í„° ì½ëŠ”ê±° ì•Œë¦¼ìš©
 		try {
 
 			if (type)
-				System.out.println("Text ÆÄÀÏ¿¡¼­ ¿ùµå¸Ê Á¤º¸¸¦ ÃßÃâÇÏ°í ÀÖ½À´Ï´Ù.");
+				System.out.println("Text íŒŒì¼ì—ì„œ ì›”ë“œë§µ ì •ë³´ë¥¼ ì¶”ì¶œí•˜ê³  ìˆìŠµë‹ˆë‹¤.");
 
 			String maps;
 			StringTokenizer st1;
@@ -189,7 +189,7 @@ public final class World {
 	private static final byte BITFLAG_IS_DOOR_IMPASSABLE_X = (byte) 0x80;
 	private static final byte BITFLAG_IS_DOOR_IMPASSABLE_Y = (byte) 0x40;
 
-	static public void ¹®ÀÌµ¿(int x, int y, int map, boolean h, boolean flag) {
+	static public void ë¬¸ì´ë™(int x, int y, int map, boolean h, boolean flag) {
 		L1V1Map m = (L1V1Map) L1WorldMap.getInstance().getMap((short) map);
 		if (m != null) {
 			if (!m.isInMap(x, y)) {
@@ -214,7 +214,7 @@ public final class World {
 	private static final byte HEADING_TABLE_X[] = { 0, 1, 1, 1, 0, -1, -1, -1 };
 	private static final byte HEADING_TABLE_Y[] = { -1, -1, 0, 1, 1, 1, 0, -1 };
 
-	static public boolean ¹®ÀÌµ¿(int x, int y, int map, int h) {
+	static public boolean ë¬¸ì´ë™(int x, int y, int map, int h) {
 		if (h < 0 || h > 7) {
 			return false;
 		}

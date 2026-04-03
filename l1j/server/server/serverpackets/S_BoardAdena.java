@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -83,7 +83,7 @@ public class S_BoardAdena extends ServerBasePacket {
 		writeH(count);
 		writeH(300);
 		for (int i = 0; i < count; ++i) {
-			writeD(id[i]); //9999 ±îÁö Ç¥ÇöµÊ
+			writeD(id[i]); //9999 ê¹Œì§€ í‘œí˜„ë¨
 			writeS(db[i][0]);
 			writeS(db[i][1]);
 			writeS(db[i][2]);

@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -38,20 +38,20 @@ public class C_ExtraCommand extends ClientBasePacket {
 		if (pc.isGhost()) {
 			return;
 		}
-		if (pc.isInvisble()) { // ÀÎºñÁöºñ¸®Æ¼, ºê¶óÀÎµåÇÏÀÌµò±×Áß
+		if (pc.isInvisble()) { // ì¸ë¹„ì§€ë¹„ë¦¬í‹°, ë¸Œë¼ì¸ë“œí•˜ì´ë”˜ê·¸ì¤‘
 			return;
 		}
-		if (pc.isTeleport()) { // ÅÚ·¹Æ÷Æ® Ã³¸®Áß
+		if (pc.isTeleport()) { // í…”ë ˆí¬íŠ¸ ì²˜ë¦¬ì¤‘
 			return;
 		}
-		if (pc.getSkillEffectTimerSet().hasSkillEffect(SHAPE_CHANGE)) { // ¸¸ÀÏÀ» À§ÇØ, º¯½ÅÁßÀº Å¸ÇÃ·¹ÀÌ¾î¿¡ ¼Û½ÅÇÏÁö ¾Ê´Â´Ù
+		if (pc.getSkillEffectTimerSet().hasSkillEffect(SHAPE_CHANGE)) { // ë§Œì¼ì„ ìœ„í•´, ë³€ì‹ ì¤‘ì€ íƒ€í”Œë ˆì´ì–´ì— ì†¡ì‹ í•˜ì§€ ì•ŠëŠ”ë‹¤
 			int gfxId = pc.getGfxId().getTempCharGfx();
 			if (gfxId != 6080 && gfxId != 6094) {
 				return;
 			}
 		}
 		S_DoActionGFX gfx = new S_DoActionGFX(pc.getId(), actionId);
-		Broadcaster.broadcastPacket(pc, gfx); // ÁÖÀ§ÀÇ ÇÃ·¹ÀÌ¾î¿¡ ¼Û½Å
+		Broadcaster.broadcastPacket(pc, gfx); // ì£¼ìœ„ì˜ í”Œë ˆì´ì–´ì— ì†¡ì‹ 
 	}
 
 	@Override

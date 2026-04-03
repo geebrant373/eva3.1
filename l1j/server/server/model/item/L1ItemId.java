@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -62,13 +62,13 @@ public class L1ItemId {
 	public static final int C_SCROLL_OF_ENCHANT_ARMOR 				= 240074;
 	public static final int C_SCROLL_OF_ENCHANT_WEAPON 				= 240087;
 
-	// ÀÏ¹İ ½ÃÁğ3~
-	public static final int DOLL_Çã¼ö¾Æºñ 								= 41916;
+	// ì¼ë°˜ ì‹œì¦Œ3~
+	public static final int DOLL_í—ˆìˆ˜ì•„ë¹„ 								= 41916;
 	public static final int DOLL_STONEGOLEM 						= 430000;
 	public static final int DOLL_ELDER 								= 430001;
 	public static final int DOLL_CRUSTACEA 							= 430002;
 	public static final int DOLL_SEADANCER 							= 430003;
-	public static final int DOLL_¿¡Æ¼		 							= 430004;
+	public static final int DOLL_ì—í‹°		 							= 430004;
 	public static final int REMINISCING_CANDLE 						= 430005;
 	public static final int UGDRA_FRUIT 							= 430006;
 	public static final int AWAKE_BORNPIECE 						= 430007;
@@ -79,8 +79,8 @@ public class L1ItemId {
 	public static final int WATER_ENCHANT_WEAPON_SCROLL 			= 430012;
 	public static final int FIRE_ENCHANT_WEAPON_SCROLL				= 430013;
 	public static final int ACCESSORY_ENCHANT_SCROLL 				= 430014;
-	public static final int ORIM_ACCESSORY_ENCHANT_SCROLL = 7323; //¿À¸²ÀÇ Àå½Å±¸ ÁÖ¹®¼­
-	public static final int ORIM_ACCESSORY_ENCHANT_SCROLL_B = 7324;// Ãàº¹ ¿À¸²ÀÇ Àå½Å±¸ÁÖ¹®¼­
+	public static final int ORIM_ACCESSORY_ENCHANT_SCROLL = 7323; //ì˜¤ë¦¼ì˜ ì¥ì‹ êµ¬ ì£¼ë¬¸ì„œ
+	public static final int ORIM_ACCESSORY_ENCHANT_SCROLL_B = 7324;// ì¶•ë³µ ì˜¤ë¦¼ì˜ ì¥ì‹ êµ¬ì£¼ë¬¸ì„œ
 	public static final int SHARNA_POLYSCROLL_LV30 					= 430015;
 	public static final int SHARNA_POLYSCROLL_LV40 					= 430016;
 	public static final int SHARNA_POLYSCROLL_LV52					= 430017;
@@ -113,12 +113,12 @@ public class L1ItemId {
 	public static final int DOLL_DRAGON_M							= 430501;
 	public static final int DOLL_DRAGON_W 							= 430502;
 	public static final int DOLL_HIGH_DRAGON_M						= 430503;
-	public static final int DOLL_HIGH_µ¥½º³ªÀÌÆ®						= 430504;
+	public static final int DOLL_HIGH_ë°ìŠ¤ë‚˜ì´íŠ¸						= 430504;
 	public static final int DOLL_LAMIA								= 430505;
 	public static final int DOLL_SPATOI								= 430506;
 	
 
-	// »ç³ÉÅÍ°ü·Ã(3)
+	// ì‚¬ëƒ¥í„°ê´€ë ¨(3)
 	public static final int LOWER_OSIRIS_PRESENT_PIECE_DOWN 		= 433000;
 	public static final int LOWER_OSIRIS_PRESENT_PIECE_UP 			= 433001;
 	public static final int CLOSE_LOWER_OSIRIS_PRESENT 				= 433002;
@@ -143,7 +143,7 @@ public class L1ItemId {
 
 	public static final int ANTCATALYST 							= 433200;
 
-	// ÀÌº¥Æ®¼º(5)
+	// ì´ë²¤íŠ¸ì„±(5)
 	public static final int HALLOWEEN_PUMPKIN_PIE 					= 435000;
 	public static final int SHINY_LEAF 								= 435001;
 	public static final int MIRACLE_FRAGMENT 						= 435002;
@@ -164,7 +164,7 @@ public class L1ItemId {
 	public static final int CHUNSANG_MP_SCROLL						= 435019;
 	public static final int CHUNSANG_ATTACK_SCROLL					= 435020;
 
-	// ¿ä¸®(6)
+	// ìš”ë¦¬(6)
 	public static final int	COOK_HUB								= 436000;
 	public static final int	COOKSTUFF_CRUSTCEA_CLAW					= 436001;
 	public static final int	COOKSTUFF_GRIFFON_FOOD					= 436002;
@@ -197,7 +197,7 @@ public class L1ItemId {
 	public static final int	SCOOKFOOD_BASILIST_EGG_SOUP				= 436024;
 	public static final int SPECIAL_COOKFOOD_3RD_END				= 436024;
 
-	// ÇÁ¸®¹Ì¾ö(7)
+	// í”„ë¦¬ë¯¸ì—„(7)
 	public static final int MYSTERY_CUBE 							= 437000;
 	public static final int CHANGING_SEX_POTION 					= 437001;
 	public static final int INCRESE_HP_SCROLL 						= 437002;
@@ -221,7 +221,7 @@ public class L1ItemId {
 	public static final int MYSTERY_QUICK_POTION					= 437021;
 	public static final int FORTUNE_COOKIE							= 437023;
 
-	//ÇÁ¸®¼·Æ¯È­(8)
+	//í”„ë¦¬ì„­íŠ¹í™”(8)
 	public static final int CHARACTER_REPAIR_SCROLL 				= 438000;
 	public static final int TEST_MARK				 				= 438005;
 	public static final int TEST_ENCHANT_WEAPON 					= 438006;
@@ -231,21 +231,21 @@ public class L1ItemId {
 	public static final int BERRY				 				= 45066;
 	public static final int G_COIN				 				= 45067;
 
-	public static final int DOLLTYPE_SCARECROW = 41916; //Çã¼ö¾Æºñ
-	public static final int DOLLTYPE_giant = 4370598; //ÀÚÀÌ¾ğÆ®
-	// 3´Ü°è
-	public static final int DOLLTYPE_»çÀÌÅ¬·Ó½º = 4370599; //»çÀÌÅ¬·Ó½º
-	public static final int DOLLTYPE_road = 4370600; //¸Ó¹Ì·Îµå
-	public static final int DOLLTYPE_½Ã¾î = 744;
-	public static final int DOLLTYPE_³ªÀÌÆ®¹ßµå = 743;
-	public static final int DOLLTYPE_¸®Ä¡ = 447016;
+	public static final int DOLLTYPE_SCARECROW = 41916; //í—ˆìˆ˜ì•„ë¹„
+	public static final int DOLLTYPE_giant = 4370598; //ìì´ì–¸íŠ¸
+	// 3ë‹¨ê³„
+	public static final int DOLLTYPE_ì‚¬ì´í´ë¡­ìŠ¤ = 4370599; //ì‚¬ì´í´ë¡­ìŠ¤
+	public static final int DOLLTYPE_road = 4370600; //ë¨¸ë¯¸ë¡œë“œ
+	public static final int DOLLTYPE_ì‹œì–´ = 744;
+	public static final int DOLLTYPE_ë‚˜ì´íŠ¸ë°œë“œ = 743;
+	public static final int DOLLTYPE_ë¦¬ì¹˜ = 447016;
 	
-	public static final int DOLLTYPE_µ¥½º³ªÀÌÆ® = 5370601; 
-	public static final int DOLLTYPE_µ¥¸ó = 5370600; 
-	public static final int DOLLTYPE_Å¸¶ô = 5370603;
-	public static final int DOLLTYPE_¾óÀ½¿©¿Õ = 5370602;
-	public static final int DOLLTYPE_¹Ù¶õÄ« = 5370604; 
-	public static final int DOLLTYPE_¾ÈÅ¸¶ó½º = 5370605;
+	public static final int DOLLTYPE_ë°ìŠ¤ë‚˜ì´íŠ¸ = 5370601; 
+	public static final int DOLLTYPE_ë°ëª¬ = 5370600; 
+	public static final int DOLLTYPE_íƒ€ë½ = 5370603;
+	public static final int DOLLTYPE_ì–¼ìŒì—¬ì™• = 5370602;
+	public static final int DOLLTYPE_ë°”ë€ì¹´ = 5370604; 
+	public static final int DOLLTYPE_ì•ˆíƒ€ë¼ìŠ¤ = 5370605;
 	
 	public static final int HIGH_CHARACTER_TRADE = 100002;
 	public static final int LOW_CHARACTER_TRADE = 100003;

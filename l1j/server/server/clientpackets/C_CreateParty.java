@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -40,11 +40,11 @@ public class C_CreateParty extends ClientBasePacket {
 		L1PcInstance pc = client.getActiveChar();
 
 		if (pc.getMapId() == 5153 || pc.getMapId() == 5001) {
-			pc.sendPackets(new S_SystemMessage("ÇöÀç¸Ê¿¡¼­´Â ÆÄÆ¼¸¦ ÇÒ ¼ö ¾ø½À´Ï´Ù."));
+			pc.sendPackets(new S_SystemMessage("í˜„ì¬ë§µì—ì„œëŠ” íŒŒí‹°ë¥¼ í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤."));
 			return;
 		}
 		int type = readC();
-		if (type == 0 || type == 1) {// 0.ÀÏ¹İ 1.ºĞ¹è
+		if (type == 0 || type == 1) {// 0.ì¼ë°˜ 1.ë¶„ë°°
 			int targetId = readD();
 			L1Object temp = L1World.getInstance().findObject(targetId);
 			if (temp instanceof L1PcInstance) {
@@ -53,7 +53,7 @@ public class C_CreateParty extends ClientBasePacket {
 				if (pc.getId() == targetPc.getId()) return;
 				
 				if (targetPc.isInParty()) {
-					// ¹ú½á ´Ù¸¥ ÆÄÆ¼¿¡ ¼Ò¼ÓÇØ ÀÖ±â (À§ÇØ)¶§¹®¿¡ ÃÊ´ëÇÒ ¼ö ¾ø½À´Ï´Ù
+					// ë²Œì¨ ë‹¤ë¥¸ íŒŒí‹°ì— ì†Œì†í•´ ìˆê¸° (ìœ„í•´)ë•Œë¬¸ì— ì´ˆëŒ€í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤
 					pc.sendPackets(new S_ServerMessage(415));
 					return;
 				}
@@ -61,10 +61,10 @@ public class C_CreateParty extends ClientBasePacket {
 				if (pc.isInParty()) {
 					if (pc.getParty().isLeader(pc)) {
 						targetPc.setPartyID(pc.getId());
-						// \f2%0\f>%s·ÎºÎÅÍ \fUÆÄÆ¼ \f> ¿¡ ÃÊ´ëµÇ¾ú½À´Ï´Ù. ÀÀÇÕ´Ï±î? (Y/N)
+						// \f2%0\f>%së¡œë¶€í„° \fUíŒŒí‹° \f> ì— ì´ˆëŒ€ë˜ì—ˆìŠµë‹ˆë‹¤. ì‘í•©ë‹ˆê¹Œ? (Y/N)
 						targetPc.sendPackets(new S_Message_YN(953, pc.getName()));
 					} else {
-						// ÆÄÆ¼ÀÇ ¸®´õ¸¸À» ÃÊ´ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
+						// íŒŒí‹°ì˜ ë¦¬ë”ë§Œì„ ì´ˆëŒ€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 						pc.sendPackets(new S_ServerMessage(416));
 					}
 				} else {
@@ -72,28 +72,28 @@ public class C_CreateParty extends ClientBasePacket {
 					targetPc.setPartyID(pc.getId());
 					switch (type) {
 					case 0:
-						// \f2%0\f>%s·ÎºÎÅÍ \fUÆÄÆ¼ \f> ¿¡ ÃÊ´ëµÇ¾ú½À´Ï´Ù. ÀÀÇÕ´Ï±î? (Y/N)
+						// \f2%0\f>%së¡œë¶€í„° \fUíŒŒí‹° \f> ì— ì´ˆëŒ€ë˜ì—ˆìŠµë‹ˆë‹¤. ì‘í•©ë‹ˆê¹Œ? (Y/N)
 						targetPc.sendPackets(new S_Message_YN(953, pc.getName()));
 						break;
 					case 1:
-						// \f2%0\f>%s \fUÀÚµ¿ºĞ¹èÆÄÆ¼\f> ÃÊ´ëÇÏ¿´½À´Ï´Ù. Çã¶ôÇÏ½Ã°Ú½À´Ï±î? (Y/N)
+						// \f2%0\f>%s \fUìë™ë¶„ë°°íŒŒí‹°\f> ì´ˆëŒ€í•˜ì˜€ìŠµë‹ˆë‹¤. í—ˆë½í•˜ì‹œê² ìŠµë‹ˆê¹Œ? (Y/N)
 						targetPc.sendPackets(new S_Message_YN(954, pc.getName()));
 						break;
 					}
 				}
 			}
-		} else if (type == 2) { // Ã¤ÆÃ ÆÄÆ¼
+		} else if (type == 2) { // ì±„íŒ… íŒŒí‹°
 			String name = readS();
 			L1PcInstance targetPc = L1World.getInstance().getPlayer(name);
 			if (targetPc == null) {
-				// %0¶ó´Â ÀÌ¸§ÀÇ »ç¶÷Àº ¾ø½À´Ï´Ù.
+				// %0ë¼ëŠ” ì´ë¦„ì˜ ì‚¬ëŒì€ ì—†ìŠµë‹ˆë‹¤.
 				pc.sendPackets(new S_ServerMessage(109));
 				return;
 			}
 			if (pc.getId() == targetPc.getId()) return;
 			
 			if (targetPc.isInChatParty()) {
-				// ¹ú½á ´Ù¸¥ ÆÄÆ¼¿¡ ¼Ò¼ÓÇØ ÀÖ±â (À§ÇØ)¶§¹®¿¡ ÃÊ´ëÇÒ ¼ö ¾ø½À´Ï´Ù
+				// ë²Œì¨ ë‹¤ë¥¸ íŒŒí‹°ì— ì†Œì†í•´ ìˆê¸° (ìœ„í•´)ë•Œë¬¸ì— ì´ˆëŒ€í•  ìˆ˜ ì—†ìŠµë‹ˆë‹¤
 				pc.sendPackets(new S_ServerMessage(415));
 				return;
 			}
@@ -101,15 +101,15 @@ public class C_CreateParty extends ClientBasePacket {
 			if (pc.isInChatParty()) {
 				if (pc.getChatParty().isLeader(pc)) {
 					targetPc.setPartyID(pc.getId());
-					// \f2%0\f>%s·ÎºÎÅÍ\fUÃ¤ÆÃ ÆÄÆ¼ \f>¿¡ ÃÊ´ëµÇ¾ú½À´Ï´Ù. ÀÀÇÕ´Ï±î? (Y/N)
+					// \f2%0\f>%së¡œë¶€í„°\fUì±„íŒ… íŒŒí‹° \f>ì— ì´ˆëŒ€ë˜ì—ˆìŠµë‹ˆë‹¤. ì‘í•©ë‹ˆê¹Œ? (Y/N)
 					targetPc.sendPackets(new S_Message_YN(951, pc.getName()));
 				} else {
-					// ÆÄÆ¼ÀÇ ¸®´õ¸¸À» ÃÊ´ëÇÒ ¼ö ÀÖ½À´Ï´Ù.
+					// íŒŒí‹°ì˜ ë¦¬ë”ë§Œì„ ì´ˆëŒ€í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
 					pc.sendPackets(new S_ServerMessage(416));
 				}
 			} else {
 				targetPc.setPartyID(pc.getId());
-				// \f2%0\f>%s·ÎºÎÅÍ\fUÃ¤ÆÃ ÆÄÆ¼ \f>¿¡ ÃÊ´ëµÇ¾ú½À´Ï´Ù. ÀÀÇÕ´Ï±î? (Y/N)
+				// \f2%0\f>%së¡œë¶€í„°\fUì±„íŒ… íŒŒí‹° \f>ì— ì´ˆëŒ€ë˜ì—ˆìŠµë‹ˆë‹¤. ì‘í•©ë‹ˆê¹Œ? (Y/N)
 				targetPc.sendPackets(new S_Message_YN(951, pc.getName()));
 			}
 		} else if (type == 3){

@@ -1,4 +1,4 @@
-package l1j.server.GameSystem;
+ï»¿package l1j.server.GameSystem;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -97,7 +97,7 @@ public class ShopNpcSystem implements TimeListener {
 	}
 
 	@Override
-	public void onHourChanged(BaseTime time) {//ÇÑ½Ã°£¿¡ÇÑ¹ø°»½Å
+	public void onHourChanged(BaseTime time) {//í•œì‹œê°„ì—í•œë²ˆê°±ì‹ 
 		if (isPower())
 			ShopNpcTable.reloding();
 	}

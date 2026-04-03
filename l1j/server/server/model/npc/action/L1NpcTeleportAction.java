@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -51,12 +51,12 @@ public class L1NpcTeleportAction extends L1NpcXmlAction {
 	@Override
 	public L1NpcHtml execute(String actionName, L1PcInstance pc, L1Object obj, byte[] args) {
 		if ((_loc.getMapId() == 68 || _loc.getMapId() == 69) && pc.getLevel() >=13){
-			// ³ë¼¶, ¼û°è
+			// ë…¸ì„¬, ìˆ¨ê³„
 			return L1NpcHtml.HTML_CLOSE;
 		}
 		if ((pc.getLevel() <45 && pc.getLevel() > 51) && 
 			(_loc.getMapId() == 777 || _loc.getMapId() == 778 || _loc.getMapId() == 779)) {
-			// ¹ö¶¥ ÀÌµ¿ºÎºĞ
+			// ë²„ë•… ì´ë™ë¶€ë¶„
 			return L1NpcHtml.HTML_CLOSE;
 		}
 		if (!pc.getInventory().checkItem(L1ItemId.ADENA, _price)) {

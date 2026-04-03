@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -36,13 +36,13 @@ import l1j.server.server.model.item.L1ItemId;
 
 public class S_DropList extends ServerBasePacket {
 	public S_DropList(L1PcInstance pc) {
-		int size = pc._ÀÚµ¿ÆÇ¸ÅÃÊÀÌ½º¸®½ºÆ®.size();
+		int size = pc._ìë™íŒë§¤ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸.size();
 		if (size > 0) {
 			writeC(Opcodes.S_OPCODE_SHOWRETRIEVELIST);
 			writeD(-1);
 			writeH(size);
-			writeC(3); // °³ÀÎ Ã¢°í
-			for (L1ItemInstance item : pc._ÀÚµ¿ÆÇ¸ÅÃÊÀÌ½º¸®½ºÆ®) {
+			writeC(3); // ê°œì¸ ì°½ê³ 
+			for (L1ItemInstance item : pc._ìë™íŒë§¤ì´ˆì´ìŠ¤ë¦¬ìŠ¤íŠ¸) {
 				writeD(item.getId());
 				writeC(0);
 				writeH(item.get_gfxid());

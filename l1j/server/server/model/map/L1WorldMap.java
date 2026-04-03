@@ -1,4 +1,4 @@
-/*
+ï»¿/*
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2, or (at your option)
@@ -70,7 +70,7 @@ public class L1WorldMap {
 		try {
 			_maps = in.read();
 			if (_maps == null) {
-				throw new RuntimeException("MAPÀÇ read¿¡ ½ÇÆĞ");
+				throw new RuntimeException("MAPì˜ readì— ì‹¤íŒ¨");
 			}
 		} catch (Exception e) {
 			_log.log(Level.SEVERE, e.getLocalizedMessage(), e);
@@ -97,9 +97,9 @@ public class L1WorldMap {
 		return map;
 	}
 	/**
-	 * ±âÁ¸ ¸ÊÀ» °¡Á®¿Í¼­ »õ·Î¿î id·Î ÇØ¼­ ³Ö±â
-	 * @param targetId °¡Á®¿Ã ¸Ê ¾ÆÀÌµğ
-	 * @param newId »õ·Î ¸¸µé ¸Ê ¾ÆÀÌµğ 
+	 * ê¸°ì¡´ ë§µì„ ê°€ì ¸ì™€ì„œ ìƒˆë¡œìš´ idë¡œ í•´ì„œ ë„£ê¸°
+	 * @param targetId ê°€ì ¸ì˜¬ ë§µ ì•„ì´ë””
+	 * @param newId ìƒˆë¡œ ë§Œë“¤ ë§µ ì•„ì´ë”” 
 	 */
 	public void cloneMap(int targetId, int newId){
 		L1Map copymap = null;

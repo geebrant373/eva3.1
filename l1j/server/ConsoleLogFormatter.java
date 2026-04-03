@@ -1,4 +1,4 @@
-/*
+﻿/*
  * $Header: /cvsroot/l2j/L2_Gameserver/java/net/sf/l2j/Server.java,v 1.2 2004/06/27 08:12:59 jeichhorn Exp $
  *
  * $Author: jeichhorn $

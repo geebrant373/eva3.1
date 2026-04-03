@@ -1,4 +1,4 @@
-package l1j.server.EventSystem;
+﻿package l1j.server.EventSystem;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
