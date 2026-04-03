@@ -5945,7 +5945,7 @@ private int _seletedOneDoll1 = 0;
 		setAutoPolyID(getCurrentSpriteId());
 		setAutoHunt(true);
 		setAutoMapid(getMapId());
-		_AutoController = GeneralThreadPool.getInstance().scheduleAtFixedRate(new AutoHuntController(getId()), 0L, 10L);
+		_AutoController = GeneralThreadPool.getInstance().scheduleAtFixedRate(new AutoHuntController(getId()), 0L, 150L);
 	}
 
 	public void EndAutoController() {
