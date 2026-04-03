@@ -1242,6 +1242,10 @@ public class UserCommands {
 			return;
 		}
 
+		if (pc.getAutoHunt()) {
+			pc.sendPackets(new S_SystemMessage("자동사냥중에는 혈맹파티를 할수 없습니다."));
+			return;
+		}
 		int ClanId = pc.getClanid();
 		L1Clan clan = L1World.getInstance().getClan(pc.getClanname());
 

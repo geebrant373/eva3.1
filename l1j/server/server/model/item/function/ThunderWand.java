@@ -86,8 +86,8 @@ public class ThunderWand extends L1ItemInstance{
 			if (target != null) {
 				if (target instanceof L1MannequinInstance 
 						|| target instanceof L1ShopNpcInstance) {
-					pc.sendPackets(new S_UseAttackSkill(pc, 0, 10, spellsc_x, spellsc_y, 18));
-					Broadcaster.broadcastPacket(pc, new S_UseAttackSkill(pc, 0, 10, spellsc_x, spellsc_y, 18));
+					pc.sendPackets(new S_UseAttackSkill(pc, 0, 10, spellsc_x, spellsc_y, 17));
+					Broadcaster.broadcastPacket(pc, new S_UseAttackSkill(pc, 0, 10, spellsc_x, spellsc_y, 17));
 				} else
 				doWandAction(pc, target);
 			} else {
@@ -95,8 +95,8 @@ public class ThunderWand extends L1ItemInstance{
 				Broadcaster.broadcastPacket(pc, new S_AttackPacket(pc, 0, ActionCodes.ACTION_Wand));
 				pc.sendPackets(new S_EffectLocation(spellsc_x, spellsc_y, 10));
 				Broadcaster.broadcastPacket(pc, new S_EffectLocation(spellsc_x, spellsc_y, 10));*/
-				pc.sendPackets(new S_UseAttackSkill(pc, pc.getId(), 10, pc.getX(), pc.getY(), 18));
-				Broadcaster.broadcastPacket(pc, new S_UseAttackSkill(pc, pc.getId(), 10, pc.getX(), pc.getY(), 18));
+				pc.sendPackets(new S_UseAttackSkill(pc, pc.getId(), 10, pc.getX(), pc.getY(), 17));
+				Broadcaster.broadcastPacket(pc, new S_UseAttackSkill(pc, pc.getId(), 10, pc.getX(), pc.getY(), 17));
 				if (pc.getSkillEffectTimerSet().hasSkillEffect(153)) {
 					pc.getSkillEffectTimerSet().removeSkillEffect(153);
 				}
@@ -124,9 +124,9 @@ public class ThunderWand extends L1ItemInstance{
 			L1PcInstance pc = (L1PcInstance) target;
 			if (CharPosUtil.getZoneType(pc) == 1 || user.checkNonPvP(user, pc)
 					|| CharPosUtil.getZoneType(user) == 1) {
-				user.sendPackets(new S_UseAttackSkill(user, 0, 10, pc.getX(), pc.getY(), 18));//¿Ó¾î¿ä
+				user.sendPackets(new S_UseAttackSkill(user, 0, 10, pc.getX(), pc.getY(), 17));//¿Ó¾î¿ä
 				
-				Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, 0, 10, pc.getX(), pc.getY(), 18));
+				Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, 0, 10, pc.getX(), pc.getY(), 17));
 				return;
 			}
 
@@ -148,11 +148,11 @@ public class ThunderWand extends L1ItemInstance{
 					|| pc.getGfxId().getTempCharGfx() == 16002 || pc.getGfxId().getTempCharGfx() == 16040
 					|| pc.getGfxId().getTempCharGfx() == 16027 || pc.getGfxId().getTempCharGfx() == 16014
 					|| pc.getGfxId().getTempCharGfx() == 16008 || pc.getGfxId().getTempCharGfx() == 15986) {
-				user.sendPackets(new S_UseAttackSkill(user, pc.getId(), 10, pc.getX(), pc.getY(), 18, false));
-				Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, pc.getId(), 10, pc.getX(), pc.getY(), 18,  false));
+				user.sendPackets(new S_UseAttackSkill(user, pc.getId(), 10, pc.getX(), pc.getY(), 17, false));
+				Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, pc.getId(), 10, pc.getX(), pc.getY(), 17,  false));
 			} else {
-				user.sendPackets(new S_UseAttackSkill(user, pc.getId(), 10, pc.getX(), pc.getY(), 18));
-				Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, pc.getId(), 10, pc.getX(), pc.getY(), 18));
+				user.sendPackets(new S_UseAttackSkill(user, pc.getId(), 10, pc.getX(), pc.getY(), 17));
+				Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, pc.getId(), 10, pc.getX(), pc.getY(), 17));
 			}
 			
 			L1PinkName.onAction(pc, user);
@@ -185,14 +185,14 @@ public class ThunderWand extends L1ItemInstance{
 			}
 		} else if (target instanceof L1MonsterInstance) {
 			L1MonsterInstance mob = (L1MonsterInstance) target;
-			user.sendPackets(new S_UseAttackSkill(user, mob.getId(), 10, mob.getX(), mob.getY(), 18));
-			Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, mob.getId(), 10, mob.getX(), mob.getY(), 18));
+			user.sendPackets(new S_UseAttackSkill(user, mob.getId(), 10, mob.getX(), mob.getY(), 17));
+			Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, mob.getId(), 10, mob.getX(), mob.getY(), 17));
 //			Broadcaster.broadcastPacket(mob, new S_AttackPacketForNpc(user, mob.getId(), 2));
 			mob.receiveDamage(user, dmg);
 		} else if (target instanceof L1NpcInstance) {
 			L1NpcInstance npc = (L1NpcInstance) target;
-			user.sendPackets(new S_UseAttackSkill(user, npc.getId(), 10, npc.getX(), npc.getY(), 18));
-			Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, npc.getId(), 10, npc.getX(), npc.getY(), 18));
+			user.sendPackets(new S_UseAttackSkill(user, npc.getId(), 10, npc.getX(), npc.getY(), 17));
+			Broadcaster.broadcastPacket(user, new S_UseAttackSkill(user, npc.getId(), 10, npc.getX(), npc.getY(), 17));
 //			Broadcaster.broadcastPacket(npc, new S_DoActionGFX(npc.getId(), ActionCodes.ACTION_Damage));
 		}
 	}
